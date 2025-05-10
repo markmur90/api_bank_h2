@@ -121,16 +121,16 @@
       <div class="mt-4 p-3 bg-light border rounded">
         <h5>Archivos Relacionados</h5>
         {% for archivo, contenido in archivos.items %}
-        <div class="mb-3">
-          <h6 class="text-primary">{{ archivo|capfirst }}</h6>
-          {% if contenido %}
-          <div class="log-content" style="max-height: 300px; overflow-y: auto;">
-            <pre class="mb-0">{{ contenido }}</pre>
+          <div class="mb-3">
+            <h6 class="text-primary">{{ archivo|capfirst }}</h6>
+            {% if contenido %}
+              <div class="border rounded p-2 bg-white log-content" style="max-height: 300px; overflow-y: auto">
+                <pre class="mb-0">{{ contenido }}</pre>
+              </div>
+            {% else %}
+              <p class="text-muted">El archivo {{ archivo }} no contiene información.</p>
+            {% endif %}
           </div>
-          {% else %}
-          <p class="text-muted">El archivo {{ archivo }} no contiene información.</p>
-          {% endif %}
-        </div>
         {% endfor %}
       </div>
 
