@@ -73,7 +73,7 @@ class TransferAdmin(admin.ModelAdmin):
     )
 
 class LogTransferenciaAdmin(admin.ModelAdmin):
-    list_display = ('transfer', 'log_file', 'created_at')
+    list_display = ('registro', 'tipo_log', 'contenido', 'created_at')
     readonly_fields = ('created_at',)
     list_select_related = ('transfer',)
 

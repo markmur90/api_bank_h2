@@ -1,51 +1,66 @@
+
+================================================================================
+Fecha y hora: 2025-05-11 00:07:19
+================================================================================
+=== Info ===
+OAuth: callback - fallo
+
+=== Body de la petición ===
 {
-  "timestamp": "2025-05-11 00:07:19",
-  "accion": "callback",
-  "estado": "fallo",
-  "metadata": {
     "razon": "flujo_no_iniciado"
-  },
-  "error": null
 }
+
+
+================================================================================
+Fecha y hora: 2025-05-11 00:08:07
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
 {
-  "timestamp": "2025-05-11 00:08:07",
-  "accion": "inicio_autorizacion",
-  "estado": "exito",
-  "metadata": {
     "state": "d9156f38024f435cbe02563564d00147",
     "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=d9156f38024f435cbe02563564d00147&code_challenge_method=S256&code_challenge=spJmjYeL4NrSM9sZVM4KHC-zxB99gmie2d4SYQ9lKCQ",
     "code_challenge": "spJmjYeL4NrSM9sZVM4KHC-zxB99gmie2d4SYQ9lKCQ"
-  },
-  "error": null
 }
+
+
+================================================================================
+Fecha y hora: 2025-05-11 00:08:32
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
 {
-  "timestamp": "2025-05-11 00:08:32",
-  "accion": "inicio_autorizacion",
-  "estado": "exito",
-  "metadata": {
     "state": "13515790dbf748a1abdc32ad602bebaf",
     "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=13515790dbf748a1abdc32ad602bebaf&code_challenge_method=S256&code_challenge=fToAS_Da4B8LV5yu63g7TQGjcgD19gku_OZzG-7y1SE",
     "code_challenge": "fToAS_Da4B8LV5yu63g7TQGjcgD19gku_OZzG-7y1SE"
-  },
-  "error": null
 }
+
+
+================================================================================
+Fecha y hora: 2025-05-11 00:08:36
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
 {
-  "timestamp": "2025-05-11 00:08:36",
-  "accion": "inicio_autorizacion",
-  "estado": "exito",
-  "metadata": {
     "state": "3820d8d6510343eb94422e40f6f3175d",
     "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=3820d8d6510343eb94422e40f6f3175d&code_challenge_method=S256&code_challenge=PzN3AUPLWOkQocSntgjFi6s8wFl0iuDCBe-ug7pkCIU",
     "code_challenge": "PzN3AUPLWOkQocSntgjFi6s8wFl0iuDCBe-ug7pkCIU"
-  },
-  "error": null
 }
+
+
+================================================================================
+Fecha y hora: 2025-05-11 00:08:56
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - fallo
+
+=== Body de la petición ===
 {
-  "timestamp": "2025-05-11 00:08:56",
-  "accion": "inicio_autorizacion",
-  "estado": "fallo",
-  "metadata": {
     "razon": "oauth_inactivo"
-  },
-  "error": null
 }
+

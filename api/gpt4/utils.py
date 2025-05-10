@@ -52,40 +52,10 @@ def obtener_ruta_schema_transferencia(payment_id: str) -> str:
     os.makedirs(carpeta, exist_ok=True)
     return carpeta
 
-def registrar_log(
-    payment_id: str,
-    headers_enviados: dict = None,
-    request_body: dict = None,
-    response_headers: dict = None,
-    response_text: str = None,
-    error: Exception = None,
-    extra_info: str = None
-):
-    """Escribe un bloque de log en la carpeta de la transferencia y, si hay error, en el log global."""
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    entry = "\n" + "="*80 + "\n"
-    entry += f"Fecha y hora: {timestamp}\n" + "="*80 + "\n"
-    if extra_info:
-        entry += f"=== Info ===\n{extra_info}\n\n"
-    if headers_enviados:
-        entry += "=== Headers enviados ===\n" + json.dumps(headers_enviados, indent=4) + "\n\n"
-    if request_body:
-        entry += "=== Body de la petición ===\n" + json.dumps(request_body, indent=4, default=str) + "\n\n"
-    if response_headers:
-        entry += "=== Response Headers ===\n" + json.dumps(response_headers, indent=4) + "\n\n"
-    if response_text:
-        entry += "=== Respuesta ===\n" + response_text + "\n\n"
-    if error:
-        entry += "=== Error ===\n" + str(error) + "\n"
-    # Log por transferencia
-    carpeta = obtener_ruta_schema_transferencia(payment_id)
-    log_path = os.path.join(carpeta, f"transferencia_{payment_id}.log")
-    with open(log_path, 'a', encoding='utf-8') as f:
-        f.write(entry)
-    # Log global
-    if error:
-        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
-            gf.write(f"[{timestamp}] TRANSFER {payment_id} ERROR: {error}\n")
+# utils.py (modificar la función registrar_log)
+
+
+
 
 # ===========================
 # GENERADORES DE ID
@@ -236,7 +206,7 @@ def generar_xml_pain001(transferencia: Transfer, payment_id: str) -> str:
         
     xml_path = os.path.join(ruta, f"pain001_{payment_id}.xml")
     ET.ElementTree(root).write(xml_path, encoding='utf-8', xml_declaration=True)
-    registrar_log(payment_id, extra_info=f"XML pain.001 generado en {xml_path}")
+    registrar_log(payment_id, extra_info=f"XML pain.001 generado en {xml_path}", tipo_log='XML')
     return xml_path
 
 def generar_xml_pain002(data, payment_id):
@@ -325,7 +295,7 @@ def generar_archivo_aml(transferencia: Transfer, payment_id: str) -> str:
     ET.SubElement(flags, "ManualReviewRequired").text = "false"
     ET.ElementTree(root).write(aml_path, encoding="utf-8", xml_declaration=True)
     
-    registrar_log(payment_id, extra_info=f"Archivo AML generado en {aml_path}")
+    registrar_log(payment_id, extra_info=f"Archivo AML generado en {aml_path}", tipo_log='AML')
     return aml_path
 
 
@@ -1137,9 +1107,9 @@ def obtener_otp_automatico_con_challenge(transfer):
 
 
 def registrar_log_oauth(accion, estado, metadata=None, error=None, request=None):
-    """
-    Registra eventos detallados del flujo OAuth2
-    """
+    from api.gpt4.models import LogTransferencia
+    from api.gpt4.utils import registrar_log
+
     log_entry = {
         'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         'accion': accion,
@@ -1147,31 +1117,113 @@ def registrar_log_oauth(accion, estado, metadata=None, error=None, request=None)
         'metadata': metadata or {},
         'error': error
     }
-    
-    # Directorio específico para logs OAuth
+    entry = json.dumps(log_entry, indent=2)
+
     log_dir = os.path.join(BASE_SCHEMA_DIR, "oauth_logs")
     os.makedirs(log_dir, exist_ok=True)
-    
-    # Archivo de log general
     log_file = os.path.join(log_dir, "oauth_general.log")
-    
-    # Archivo de log por sesión (si hay request)
-    session_log_file = None
+
+    session_id = None
     if request and hasattr(request, 'session'):
         session_id = request.session.session_key
-        if session_id:
-            session_log_file = os.path.join(log_dir, f"oauth_session_{session_id}.log")
-    
-    # Escribir en los logs
+
+    session_log_file = os.path.join(log_dir, f"oauth_session_{session_id}.log") if session_id else None
+
     try:
         with open(log_file, 'a') as f:
-            f.write(json.dumps(log_entry) + "\n")
-        
+            f.write(entry + "\n")
         if session_log_file:
             with open(session_log_file, 'a') as f:
-                f.write(json.dumps(log_entry) + "\n")
+                f.write(entry + "\n")
     except Exception as e:
         print(f"Error escribiendo logs OAuth: {str(e)}")
+
+    registro = request.session.get('current_payment_id') if request and hasattr(request, 'session') else None
+    if not registro:
+        registro = session_id or "SIN_SESION"
+
+    try:
+        LogTransferencia.objects.create(
+            registro=registro,
+            tipo_log='OAUTH',
+            contenido=entry
+        )
+    except Exception as e:
+        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as f:
+            f.write(f"[{datetime.now()}] Error guardando log OAuth en DB: {str(e)}\n")
+
+    registrar_log(
+        registro=registro,
+        tipo_log='OAUTH',
+        request_body=metadata,
+        error=error,
+        extra_info=f"OAuth: {accion} - {estado}"
+    )
+
+
+
+def registrar_log(
+    registro: str,
+    tipo_log: str = 'GENERAL',
+    headers_enviados: dict = None,
+    request_body: any = None,
+    response_headers: dict = None,
+    response_text: str = None,
+    error: any = None,
+    extra_info: str = None
+):
+    from api.gpt4.models import LogTransferencia
+
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    entry = "\n" + "=" * 80 + "\n"
+    entry += f"Fecha y hora: {timestamp}\n" + "=" * 80 + "\n"
+
+    if extra_info:
+        entry += f"=== Info ===\n{extra_info}\n\n"
+    if headers_enviados:
+        try:
+            entry += "=== Headers enviados ===\n" + json.dumps(headers_enviados, indent=4) + "\n\n"
+        except Exception:
+            entry += "=== Headers enviados (sin formato) ===\n" + str(headers_enviados) + "\n\n"
+    if request_body:
+        try:
+            entry += "=== Body de la petición ===\n" + json.dumps(request_body, indent=4, default=str) + "\n\n"
+        except Exception:
+            entry += "=== Body de la petición (sin formato) ===\n" + str(request_body) + "\n\n"
+    if response_headers:
+        try:
+            entry += "=== Response Headers ===\n" + json.dumps(response_headers, indent=4) + "\n\n"
+        except Exception:
+            entry += "=== Response Headers (sin formato) ===\n" + str(response_headers) + "\n\n"
+    if response_text:
+        entry += "=== Respuesta ===\n" + str(response_text) + "\n\n"
+    if error:
+        entry += "=== Error ===\n" + str(error) + "\n"
+
+    carpeta = obtener_ruta_schema_transferencia(registro)
+    log_path = os.path.join(carpeta, f"transferencia_{registro}.log")
+    try:
+        with open(log_path, 'a', encoding='utf-8') as f:
+            f.write(entry)
+    except Exception as e:
+        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
+            gf.write(f"[{timestamp}] ERROR AL GUARDAR EN ARCHIVO {registro}.log: {str(e)}\n")
+
+    try:
+        LogTransferencia.objects.create(
+            registro=registro,
+            tipo_log=tipo_log or 'GENERAL',
+            contenido=entry
+        )
+    except Exception as e:
+        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
+            gf.write(f"[{timestamp}] ERROR AL GUARDAR LOG EN DB para {registro}: {str(e)}\n")
+
+    if error:
+        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
+            gf.write(f"[{timestamp}] ERROR [{registro}]: {str(error)}\n")
+
+
 
 def limpiar_datos_sensibles(data):
     """

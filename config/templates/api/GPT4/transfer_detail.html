@@ -34,15 +34,11 @@
   .log-content {
     scrollbar-width: thin;
     scrollbar-color: rgba(0,0,0,0.3) transparent;
-  }
-  .button-toolbar { padding-top: 0.5rem; }
-  .button-toolbar .btn {
-    width: 6rem;
-    height: 2.5rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+    white-space: pre-wrap;
+    word-break: break-word;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    border-radius: 6px;
   }
 </style>
 
@@ -128,7 +124,7 @@
         <div class="mb-3">
           <h6 class="text-primary">{{ archivo|capfirst }}</h6>
           {% if contenido %}
-          <div class="border rounded p-2 bg-white log-content" style="max-height: 300px; overflow-y: auto;">
+          <div class="log-content" style="max-height: 300px; overflow-y: auto;">
             <pre class="mb-0">{{ contenido }}</pre>
           </div>
           {% else %}
@@ -136,16 +132,56 @@
           {% endif %}
         </div>
         {% endfor %}
-        <a href="/schemas/{{ transfer.payment_id }}/pain001_{{ transfer.payment_id }}.xml" target="_blank" title="Ver pain.001">Ver pain.001</a> |
-        <a href="/schemas/{{ transfer.payment_id }}/pain002_{{ transfer.payment_id }}.xml" target="_blank" title="Ver pain.002">Ver pain.002</a>
       </div>
 
       <div class="mt-4 p-3 bg-light border rounded">
-        <h5>Log de Transferencia</h5>
+        <h5>Registro de Actividad (por Payment ID)</h5>
+
+        <ul class="nav nav-tabs" id="logTabs" role="tablist">
+          {% for tipo, logs in logs_por_tipo.items %}
+          <li class="nav-item" role="presentation">
+            <button class="nav-link {% if forloop.first %}active{% endif %}" id="{{ tipo }}-tab"
+                    data-bs-toggle="tab" data-bs-target="#{{ tipo }}-logs" type="button" role="tab">
+              {{ tipo|capfirst }}
+            </button>
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div class="tab-content p-3 bg-white border border-top-0 rounded-bottom">
+          {% for tipo, logs in logs_por_tipo.items %}
+          <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ tipo }}-logs" role="tabpanel">
+            {% for log in logs %}
+            <div class="mb-3 border-bottom pb-2">
+              <small class="text-muted">{{ log.created_at|date:"d/m/Y H:i:s" }}</small>
+              <div class="log-content {% if tipo == 'errores' %}text-danger{% endif %}">{{ log.contenido }}</div>
+            </div>
+            {% empty %}
+            <p class="text-muted">No hay logs registrados para este tipo.</p>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <div class="mt-4 p-3 bg-light border rounded">
+        <h5>Logs de la sesión actual ({{ request.session.session_key }})</h5>
+        {% for log in session_logs %}
+        <div class="mb-3 border-bottom pb-2">
+          <small class="text-muted">{{ log.created_at|date:"d/m/Y H:i:s" }} – {{ log.tipo_log }}</small>
+          <div class="log-content">{{ log.contenido }}</div>
+        </div>
+        {% empty %}
+        <p class="text-muted">No hay logs asociados a esta sesión.</p>
+        {% endfor %}
+      </div>
+
+      <div class="mt-4 p-3 bg-light border rounded">
+        <h5>Log de Transferencia (Archivo)</h5>
         {% for nombre, contenido in log_files_content.items %}
         <div class="mt-3">
           <h6 class="text-primary">{{ nombre }}</h6>
-          <div class="border rounded p-2 bg-white log-content" style="max-height: 300px; overflow-y: auto;">
+          <div class="log-content" style="max-height: 300px; overflow-y: auto;">
             <pre class="mb-0">{{ contenido }}</pre>
           </div>
         </div>

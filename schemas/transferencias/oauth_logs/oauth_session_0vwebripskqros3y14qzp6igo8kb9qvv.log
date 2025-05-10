@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-05-10 22:14:04",
+  "accion": "inicio_autorizacion",
+  "estado": "exito",
+  "metadata": {
+    "state": "404c6f58af564d7d86b01fb3857c8839",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=404c6f58af564d7d86b01fb3857c8839&code_challenge_method=S256&code_challenge=qpEM50SNWyKHVWi4kLoR8n3QUcnX_F3KPkYq-9-Qc_k",
+    "code_challenge": "qpEM50SNWyKHVWi4kLoR8n3QUcnX_F3KPkYq-9-Qc_k"
+  },
+  "error": null
+}

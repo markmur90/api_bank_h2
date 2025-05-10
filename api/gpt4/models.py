@@ -162,15 +162,30 @@ class Transfer(models.Model):
     def __str__(self):
         return self.payment_id
 
+
+
 class LogTransferencia(models.Model):
-    transfer = models.ForeignKey(Transfer, on_delete=models.CASCADE)
-    log_file = models.FileField(upload_to='logs/transferencias/')
+    registro = models.CharField(max_length=64, help_text="Puede ser payment_id o session_id")
+    tipo_log = models.CharField(max_length=20, choices=[
+        ('AUTH', 'Autenticación'),
+        ('TRANSFER', 'Transferencia'),
+        ('XML', 'Generación XML'),
+        ('AML', 'Generación AML'),
+        ('ERROR', 'Error'),
+        ('OAUTH', 'OAuth2'),
+        ('SCA', 'Autenticación fuerte'),
+        ('OTP', 'Generación OTP'),
+    ])
+    contenido = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Log de Transferencia'
+        verbose_name_plural = 'Logs de Transferencias'
+
     def __str__(self):
-        return f"Log de {self.transfer.payment_id}"
-
-
+        return f"{self.tipo_log} - {self.registro} - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
     
     
 COD_01 = '27CDBFRDE17BEH'

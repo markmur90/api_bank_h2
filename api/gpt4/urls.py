@@ -43,5 +43,6 @@ urlpatterns = [
     path('oauth2/callback/', views.oauth2_callback, name='oauth2_callback'),
     path('toggle-oauth/', views.toggle_oauth, name='toggle_oauth'),
     path('oauth2/logs/', views.get_oauth_logs, name='get_oauth_logs'),
+    path("logs/", views.list_logs, name="list_logsGPT4"),
     
 ]

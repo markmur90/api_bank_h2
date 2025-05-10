@@ -48,7 +48,7 @@ confirmar() {
     
 }
 
-
+clear
 
 
 # 1. Puertos
@@ -58,8 +58,7 @@ if confirmar "Detener puertos abiertos"; then
             if confirmar "Cerrar procesos en puerto $PUERTO"; then
                 sudo fuser -k "${PUERTO}"/tcp || true
                 echo -e "\033[7;30m✅ Puerto $PUERTO liberado.\033[0m"
-                echo -e "\033[7;30m----------///----------\033[0m"
-                
+                echo -e "\033[7;30m----------///--------------------///----------\033[0m"
             fi
         fi
     done
@@ -75,11 +74,11 @@ if confirmar "Detener contenedores Docker"; then
     if [ -n "$PIDS" ]; then
         docker stop $PIDS
         echo -e "\033[7;30m🐳 Contenedores detenidos.\033[0m"
-        echo -e "\033[7;30m----------///----------\033[0m"
+        echo -e "\033[7;30m----------///--------------------///----------\033[0m"
         
     else
         echo -e "\033[7;30m🐳 No hay contenedores.\033[0m"
-        echo -e "\033[7;30m----------///----------\033[0m"
+        echo -e "\033[7;30m----------///--------------------///----------\033[0m"
     fi
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
@@ -91,7 +90,7 @@ sleep 2
 if confirmar "Actualizar sistema"; then
     sudo apt update && sudo apt upgrade -y
     echo -e "\033[7;30m🔄 Sistema actualizado.\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
@@ -106,11 +105,11 @@ if confirmar "Configurar venv y PostgreSQL"; then
     echo "📦 Instalando dependencias..."
     echo -e "\033[7;30m----------///----------\033[0m"
     pip install -r "$PROJECT_ROOT/requirements.txt"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
     sudo systemctl enable postgresql
     sudo systemctl start postgresql
     echo -e "\033[7;30m🐍 Entorno y PostgreSQL listos.\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
@@ -132,7 +131,7 @@ if confirmar "Configurar UFW"; then
     sudo ufw deny 22/tcp comment "Bloquear SSH real en 22"
     sudo ufw enable
     echo -e "\033[7;30m🔐 Reglas de UFW aplicadas con éxito.\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
@@ -144,7 +143,7 @@ sleep 2
 
 
 
-# 7. DB: reset y usuario
+# 6. DB: reset y usuario
 if confirmar "Resetear base de datos y crear usuario en PostgreSQL"; then
     DB_NAME="mydatabase"
     DB_USER="markmur88"
@@ -175,6 +174,7 @@ if [ $? -eq 0 ]; then
     echo -e "\033[7;30m----------///----------\033[0m"
     sudo -u postgres psql -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '${DB_NAME}';"
     sudo -u postgres psql -c "DROP DATABASE ${DB_NAME};"
+    echo -e "\033[7;30m----------///----------\033[0m"
 fi
 
 # Crear la base de datos y asignar permisos
@@ -185,7 +185,7 @@ GRANT CONNECT ON DATABASE ${DB_NAME} TO ${DB_USER};
 GRANT CREATE ON DATABASE ${DB_NAME} TO ${DB_USER};
 EOF
     echo -e "\033[7;30mBase de datos y usuario recreados.\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
@@ -193,31 +193,42 @@ sleep 2
 
 
 
-# 8. Migraciones, datos y superusuario condicional
-if confirmar "Ejecutar migraciones y cargar datos"; then
+# 7. Migraciones
+if confirmar "Ejecutar migraciones"; then
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
+    
+    echo "🧹 Eliminando cachés de Python y migraciones anteriores..."
+    find . -path "*/__pycache__" -type d -exec rm -rf {} +
+    find . -name "*.pyc" -delete
+    find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+    find . -path "*/migrations/*.pyc" -delete
+
     echo "🔄 Generando migraciones de Django..."
-    echo -e "\033[7;30m----------///----------\033[0m"
     python manage.py makemigrations
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
+
     echo "⏳ Aplicando migraciones de la base de datos..."
-    echo -e "\033[7;30m----------///----------\033[0m"
     python manage.py migrate
-    echo "📥 Cargando fixtures desde bdd.json..."
-    echo -e "\033[7;30m----------///----------\033[0m"
-    LOADDATA_OUT=$(python manage.py loaddata bdd.json)
-    echo -e "\033[7;30m📥 Datos subidos:\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
-    echo "$LOADDATA_OUT"
-    if echo "$LOADDATA_OUT" | grep -q 'Installed 0'; then
-        if confirmar "Crear superusuario de Django"; then
-            python manage.py createsuperuser
-            echo -e "\033[7;30m👤 Superusuario creado.\033[0m"
-            echo -e "\033[7;30m----------///----------\033[0m"
-        fi
-    else
-        echo -e "\033[7;30m👥 Datos cargados, se omite superusuario.\033[0m"
-        echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
+fi
+
+echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
+sleep 2
+
+
+
+
+# 8. Datos y superusuario condicional
+if confirmar "Cargar datos JSON"; then
+    python manage.py loaddata bdd.json
+    echo -e "\033[1;32mDatos cargados.\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
+else
+    if confirmar "Crear superusuario de Django"; then
+        python manage.py createsuperuser
+        echo -e "\033[7;30m👤 Superusuario creado.\033[0m"
+        echo -e "\033[7;30m----------///--------------------///----------\033[0m"
     fi
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
@@ -233,11 +244,11 @@ if confirmar "Sincronizar cambios a api_bank_heroku"; then
     rsync -av --exclude=".gitattributes" --exclude="auto_commit_sync.sh" --exclude="" --exclude="livereload.log" --exclude="honeypot.log" --exclude="02_H_G.sh" --exclude="colores.sh" --exclude="bdd.json" --exclude="api_bank_heroku.txt" --exclude="03_full.sh" --exclude="base1.py" --exclude="*local.py" --exclude=".git/" --exclude="gunicorn.log" --exclude="honeypot_logs.csv" --exclude="token.md" --exclude="url_help.md" --exclude="honeypot.py" --exclude="URL_TOKEN.md" --exclude="01_full.sh" --exclude="05Gunicorn.sh" --exclude="*.zip" --exclude="*.db" --exclude="*.sqlite3" --exclude="temp/" \
         "$PROJECT_ROOT/" "$HEROKU_ROOT/"
     echo -e "\033[7;30m📂 Cambios enviados a api_bank_heroku.\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
     sleep 3
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
-
+sleep 2
 
 
 
@@ -248,17 +259,16 @@ if confirmar "Crear respaldo ZIP"; then
     zip -r "$ZIP_PATH" "$PROJECT_ROOT" \
         -x "$PROJECT_ROOT/venvAPI/*" "$PROJECT_ROOT/backup/*" "$PROJECT_ROOT/*.zip"
     echo -e "\033[7;30m📦 ZIP creado: $ZIP_PATH.\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
 
 
+
+# 11. Sincronizar BDD
 if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir las bases de datos a la web"); then
     echo -e "\033[7;30m🚀 Subiendo las bses de datos...\033[0m"
-
-# if [ "$SYNC_REMOTE_DB" = true ]; then
-#     echo "🚀 Sincronizando base de datos remota..."
     echo -e "\033[7;30m----------///----------\033[0m"
     LOCAL_DB_NAME="mydatabase"
     LOCAL_DB_USER="markmur88"
@@ -278,14 +288,16 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     echo "🧹 Reseteando base de datos remota..."
     echo -e "\033[7;30m----------///----------\033[0m"
     psql "$REMOTE_DB_URL" -q -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;" || { echo "❌ Error al resetear la DB remota. Abortando."; exit 1; }
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
     echo "📦 Generando backup local..."
     echo -e "\033[7;30m----------///----------\033[0m"
     pg_dump --no-owner --no-acl -U "$LOCAL_DB_USER" -h "$LOCAL_DB_HOST" -d "$LOCAL_DB_NAME" > "$BACKUP_FILE" || { echo "❌ Error haciendo el backup local. Abortando."; exit 1; }
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
     echo "🌐 Importando backup en la base de datos remota..."
     echo -e "\033[7;30m----------///----------\033[0m"
     pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" -q > /dev/null || { echo "❌ Error al importar el backup en la base de datos remota."; exit 1; }
     echo "✅ Sincronización completada con éxito: $BACKUP_FILE"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
@@ -293,7 +305,7 @@ sleep 2
 
 
 
-# 11. Retención de backups
+# 12. Retención de backups
 if [[ "$OMIT_CLEAN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Limpiar respaldos antiguos"); then
     echo "🚀 Limpiando..."
     cd "$BACKUP_DIR"
@@ -314,6 +326,7 @@ if [[ "$OMIT_CLEAN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "
     for f in "${files[@]}"; do
         if [[ -z "${keep[$f]:-}" ]]; then 
             rm -f "$f" && echo -e "\033[7;30m🗑️ Eliminado $f.\033[0m"
+            echo -e "\033[7;30m----------///--------------------///----------\033[0m"
         fi
     done
     cd - >/dev/null
@@ -322,25 +335,30 @@ echo -e "\033[7;33m-------------------------------------------------------------
 sleep 2
 
 
+
+# 13. Subir datos a Heroku
 if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir el proyecto a la web"); then
     echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
-# if [ "$HEROKU" = true ]; then
-#     echo -e "\033[7;30m Haciendo deploy... \033[0m"
     echo -e "\033[7;30m----------///----------\033[0m"
     cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 1; }
+    echo -e "\033[7;30m----------///----------\033[0m"
     # Git commit y push (automático)
     git add --all
+    echo -e "\033[7;30m----------///----------\033[0m"
     git commit -m "fix: Actualizar ajustes"
+    echo -e "\033[7;30m----------///----------\033[0m"
     git push origin api-bank || { echo -e "\033[7;30m❌ Error al subir a GitHub\033[0m"; exit 1; }
-    # Deploy en Heroku (sin confirmación)
+    echo -e "\033[7;30m----------///----------\033[0m"
     sleep 20
     heroku login || { echo -e "\033[7;30m❌ Error en login de Heroku\033[0m"; exit 1; }
+    echo -e "\033[7;30m----------///----------\033[0m"
     sleep 20
     git push heroku api-bank:main || { echo -e "\033[7;30m❌ Error en deploy\033[0m"; exit 1; }
+    echo -e "\033[7;30m----------///----------\033[0m"
     sleep 20
     cd "$PROJECT_ROOT"
     echo -e "\033[7;30m✅ ¡Deploy completado!\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
     
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
@@ -349,7 +367,7 @@ sleep 2
 
 
 
-# 6. Cambiar MAC
+# 14. Cambiar MAC
 if confirmar "Cambiar MAC de la interfaz $INTERFAZ"; then
     sudo ip link set "$INTERFAZ" down
     MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
@@ -357,14 +375,14 @@ if confirmar "Cambiar MAC de la interfaz $INTERFAZ"; then
     sudo ip link set "$INTERFAZ" up
     echo -e "\033[7;30m🔍 MAC anterior: $MAC_ANTERIOR\033[0m"
     echo -e "\033[7;30m🎉 MAC asignada: $MAC_NUEVA\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
 
 
 
-
+# 15. Despliegue
 if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then
     echo "🚀 Iniciar Gunicorn, honeypot y livereload simultáneamente..."
     echo -e "\033[7;30m----------///----------\033[0m"
@@ -390,7 +408,7 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
             fi
         done
         echo -e "\033[1;32mTodos los servicios detenidos y puertos liberados.\033[0m"
-        echo -e "\033[7;30m----------///----------\033[0m"
+        echo -e "\033[7;30m----------///--------------------///----------\033[0m"
         exit 0
     }
     # Configurar trap para Ctrl+C
@@ -399,9 +417,7 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     for port in 8001 5000 35729; do
         if lsof -i :$port > /dev/null; then
             echo "Liberando puerto $port..."
-            echo -e "\033[7;30m----------///----------\033[0m"
-            
-            echo ""
+            echo -e "\033[7;30m----------///--------------------///----------\033[0m"
             kill $(lsof -t -i :$port) 2>/dev/null || true
         fi
     done
@@ -419,7 +435,7 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     sleep 5
     firefox --new-tab http://0.0.0.0:8000 --new-tab http://localhost:5000
     echo -e "\033[7;30m🚧 Gunicorn, honeypot y livereload están activos. Presiona Ctrl+C para detenerlos.\033[0m"
-    echo -e "\033[7;30m----------///----------\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
     # Esperar indefinidamente hasta que se presione Ctrl+C
     while true; do
         sleep 1
