@@ -441,6 +441,22 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
         sleep 1
     done
 fi
+echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
+sleep 2
+
+
+
+
+if [ "$OMIT_HEROKU" != "1" ]; then
+    echo "Lanzando navegador hacia Heroku..."
+    if which xdg-open > /dev/null 2>&1; then
+        xdg-open "https://api-bank-heroku-72c443ab11d3.herokuapp.com/"
+    elif which open > /dev/null 2>&1; then
+        open "https://api-bank-heroku-72c443ab11d3.herokuapp.com/"
+    else
+        echo "No se pudo abrir el navegador automáticamente. Abre manualmente: https://api-bank-heroku-72c443ab11d3.herokuapp.com/"
+    fi
+fi
 
 # clear
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
