@@ -1,10 +1,9 @@
-# ClientID
+# DATOS DEUTSCHE
 
-766ae693-6297-47ea-b825-fd3d07dcf9b6
-
-Secret Client
-
-CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ
+Client_ID: 766ae693-6297-47ea-b825-fd3d07dcf9b6
+Secret Client: CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ
+Authorization_Code
+Enforce_PKCE
 
 ## USERS
 
