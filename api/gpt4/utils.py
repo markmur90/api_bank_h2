@@ -22,9 +22,12 @@ from reportlab.pdfgen import canvas
 from reportlab.lib.utils import ImageReader
 import qrcode
 import jwt
+from cryptography.hazmat.primitives import serialization
 
+from api.gpt4.utils_core import load_private_key_y_kid
 from config import settings
 from api.gpt4.models import Transfer
+
 
 # ==== Directorios de schemas y logs ====
 BASE_SCHEMA_DIR = os.path.join("schemas", "transferencias")
@@ -44,16 +47,10 @@ API_URL = settings.API_URL
 logger = logging.getLogger(__name__)
 
 
-# ===========================
-# UTILIDADES DE LOG
-# ===========================
 def obtener_ruta_schema_transferencia(payment_id: str) -> str:
     carpeta = os.path.join(BASE_SCHEMA_DIR, str(payment_id))
     os.makedirs(carpeta, exist_ok=True)
     return carpeta
-
-# utils.py (modificar la función registrar_log)
-
 
 
 
@@ -123,8 +120,8 @@ def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
         'iat': now,
         'exp': now + 300
     }
-    key = Path(settings.PRIVATE_KEY_PATH).read_bytes()
-    assertion = jwt.encode(payload, key, algorithm='RS256', headers={'kid': transfer.kid.kid})
+    private_key, kid = load_private_key_y_kid()
+    assertion = jwt.encode(payload, private_key, algorithm='ES256', headers={'kid': kid})
     data = {
         'grant_type': 'client_credentials',
         'scope': settings.SCOPE,
@@ -542,12 +539,12 @@ def get_access_token1(payment_id, force_refresh=True):
         'iat': now,
         'exp': now + 300
     }
-    private_key = Path(settings.PRIVATE_KEY_PATH).read_bytes()
+    private_key, kid = load_private_key_y_kid()
     client_assertion = jwt.encode(
         payload,
         private_key,
-        algorithm='RS256',
-        headers={'kid': KID}
+        algorithm='ES256',
+        headers={'kid': kid}
     )
     data = {
         'grant_type': 'client_credentials',
@@ -599,8 +596,8 @@ def get_access_token_jwt2(payment_id, force_refresh=False):
             'iat': now,
             'exp': now + 300
         }
-        key = Path(settings.PRIVATE_KEY_PATH).read_bytes()
-        assertion = jwt.encode(payload, key, algorithm='RS256', headers={'kid': transfer.kid.kid})
+        private_key, kid = load_private_key_y_kid()
+        assertion = jwt.encode(payload, private_key, algorithm='ES256', headers={'kid': kid})
         data = {
             'grant_type':'client_credentials',
             'scope':settings.SCOPE,
@@ -1240,8 +1237,3 @@ def limpiar_datos_sensibles(data):
 
 
 
-# BASE_DIR = tres niveles arriba de este archivo
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-def get_project_path(*rel_path: str | Path) -> str:
-    return str(BASE_DIR.joinpath(*rel_path))

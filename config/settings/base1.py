@@ -4,12 +4,14 @@ import environ
 from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
 
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 # 1. Creamos el lector de .env
 env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
 env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
 if not env_file.exists():
     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
@@ -19,6 +21,8 @@ env.read_env(env_file)
 SECRET_KEY = env('SECRET_KEY')
 DEBUG      = env.bool('DEBUG', default=False)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+
+
 
 CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
 SECRET_CLIENT = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
@@ -30,6 +34,7 @@ API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/
 AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
 REDIRECT_URI = 'https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/'
 SCOPE = 'sepa_credit_transfers'
+
 
 # 4. Apps y middleware (sin cambios)
 INSTALLED_APPS = [
@@ -159,13 +164,26 @@ REST_FRAMEWORK = {
 
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
+
+# CLIENT_ID = env('CLIENT_ID')
+# SECRET_CLIENT = env('SECRET_CLIENT')
+# ACCESS_TOKEN = env('ACCESS_TOKEN')
+# ORIGIN = env('ORIGIN')
+# TOKEN_URL = env('TOKEN_URL')
+# OTP_URL = env('OTP_URL')
+# AUTH_URL = env('AUTH_URL')
+# API_URL = env('API_URL')
+# AUTHORIZE_URL = env('AUTHORIZE_URL')
+# REDIRECT_URI = env('REDIRECT_URI')
+# SCOPE = env('SCOPE')
+
 OAUTH2 = {
-    'CLIENT_ID': CLIENT_ID,
-    'CLIENT_SECRET': SECRET_CLIENT,
-    'TOKEN_URL': TOKEN_URL,
-    'AUTHORIZE_URL': AUTHORIZE_URL,
-    'REDIRECT_URI': REDIRECT_URI,
-    'SCOPE': SCOPE,
+    'CLIENT_ID': env('CLIENT_ID'),
+    'CLIENT_SECRET': env('SECRET_CLIENT'),
+    'TOKEN_URL': env('TOKEN_URL'),
+    'AUTHORIZE_URL': env('AUTHORIZE_URL'),
+    'REDIRECT_URI': env('REDIRECT_URI'),
+    'SCOPE': env('SCOPE'),
     'TIMEOUT': 10,
 }
 SIMPLE_JWT = {
@@ -201,7 +219,7 @@ LOGGING = {
 }
 
 LOGIN_URL = '/login/'
-SESSION_COOKIE_AGE = 300
+SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -212,4 +230,6 @@ DEBUG_TOOLBAR_CONFIG = {
 import django_heroku
 django_heroku.settings(locals())
 
-PRIVATE_KEY_KID = '4dd70ec0-d187-4b8c-a0de-6fbd6cbb27f2'
+
+PRIVATE_KEY_KID = 'a7289369-d825-4222-a68f-352295cc6962'
+PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')

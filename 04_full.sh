@@ -241,7 +241,7 @@ sleep 2
 if confirmar "Sincronizar cambios a api_bank_heroku"; then
     echo "🔄 Sincronizando archivos al destino..."
     echo -e "\033[7;30m----------///----------\033[0m"
-    rsync -av --exclude=".gitattributes" --exclude="auto_commit_sync.sh" --exclude="" --exclude="livereload.log" --exclude="honeypot.log" --exclude="02_H_G.sh" --exclude="colores.sh" --exclude="bdd.json" --exclude="api_bank_heroku.txt" --exclude="03_full.sh" --exclude="base1.py" --exclude="*local.py" --exclude=".git/" --exclude="gunicorn.log" --exclude="honeypot_logs.csv" --exclude="token.md" --exclude="url_help.md" --exclude="honeypot.py" --exclude="URL_TOKEN.md" --exclude="01_full.sh" --exclude="05Gunicorn.sh" --exclude="*.zip" --exclude="*.db" --exclude="*.sqlite3" --exclude="temp/" \
+    rsync -av --exclude=".gitattributes" --exclude="auto_commit_sync.sh" --exclude="" --exclude="livereload.log" --exclude="honeypot.log" --exclude="02_H_G.sh" --exclude="colores.sh" --exclude="api_bank_heroku.txt" --exclude="03_full.sh" --exclude="*local.py" --exclude=".git/" --exclude="gunicorn.log" --exclude="honeypot_logs.csv" --exclude="token.md" --exclude="url_help.md" --exclude="honeypot.py" --exclude="URL_TOKEN.md" --exclude="01_full.sh" --exclude="05Gunicorn.sh" --exclude="*.zip" --exclude="*.db" --exclude="*.sqlite3" --exclude="temp/" \
         "$PROJECT_ROOT/" "$HEROKU_ROOT/"
     echo -e "\033[7;30m📂 Cambios enviados a api_bank_heroku.\033[0m"
     echo -e "\033[7;30m----------///--------------------///----------\033[0m"
@@ -367,22 +367,30 @@ sleep 2
 
 
 
-# # 14. Cambiar MAC
-# if confirmar "Cambiar MAC de la interfaz $INTERFAZ"; then
-#     sudo ip link set "$INTERFAZ" down
-#     MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
-#     MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
-#     sudo ip link set "$INTERFAZ" up
-#     echo -e "\033[7;30m🔍 MAC anterior: $MAC_ANTERIOR\033[0m"
-#     echo -e "\033[7;30m🎉 MAC asignada: $MAC_NUEVA\033[0m"
-#     echo -e "\033[7;30m----------///--------------------///----------\033[0m"
-# fi
-# echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
-# sleep 2
+# 14. Cambiar MAC
+if confirmar "Cambiar MAC de la interfaz $INTERFAZ"; then
+    sudo ip link set "$INTERFAZ" down
+    MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
+    MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
+    sudo ip link set "$INTERFAZ" up
+    echo -e "\033[7;30m🔍 MAC anterior: $MAC_ANTERIOR\033[0m"
+    echo -e "\033[7;30m🎉 MAC asignada: $MAC_NUEVA\033[0m"
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
+fi
+echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
+sleep 2
 
 
+# 15. Generar claves
+if confirmar "Generar o cambiar PEM JWKS"; then
+    python3 manage.py genkey
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
+fi
+echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
+sleep 2
 
-# 15. Despliegue
+
+# 16. Despliegue
 if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then
     echo "🚀 Iniciar Gunicorn, honeypot y livereload simultáneamente..."
     echo -e "\033[7;30m----------///----------\033[0m"
@@ -390,6 +398,7 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
     python manage.py collectstatic --noinput
+    python manage.py genkey
     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
     # Función para limpiar y salir
     cleanup() {
