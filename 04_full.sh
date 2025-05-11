@@ -367,18 +367,18 @@ sleep 2
 
 
 
-# 14. Cambiar MAC
-if confirmar "Cambiar MAC de la interfaz $INTERFAZ"; then
-    sudo ip link set "$INTERFAZ" down
-    MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
-    MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
-    sudo ip link set "$INTERFAZ" up
-    echo -e "\033[7;30m🔍 MAC anterior: $MAC_ANTERIOR\033[0m"
-    echo -e "\033[7;30m🎉 MAC asignada: $MAC_NUEVA\033[0m"
-    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
-fi
-echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
-sleep 2
+# # 14. Cambiar MAC
+# if confirmar "Cambiar MAC de la interfaz $INTERFAZ"; then
+#     sudo ip link set "$INTERFAZ" down
+#     MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
+#     MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
+#     sudo ip link set "$INTERFAZ" up
+#     echo -e "\033[7;30m🔍 MAC anterior: $MAC_ANTERIOR\033[0m"
+#     echo -e "\033[7;30m🎉 MAC asignada: $MAC_NUEVA\033[0m"
+#     echo -e "\033[7;30m----------///--------------------///----------\033[0m"
+# fi
+# echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
+# sleep 2
 
 
 

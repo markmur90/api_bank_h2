@@ -15,6 +15,23 @@ IBAN: DE00500700100200040224
 Currency Code: EUR
 BIC: DEUTDEFFXXX
 
+Name:  Tom Winter
+postal_address_country: DE
+postal_address_street: Augsburger Strasse 14a
+postal_address_city: 80337 München
+IBAN: DE00500700100200043574
+
+Currency Code: EUR
+BIC: DEUTDEFFXXX
+FKN+PIN: 10020433900062128
+OTP: otpauth://totp/gluesim:100204339000001?secret=6RIVNEFU2WWBXCMV
+
+Counterparty IBAN: DE10010000000000022137
+Transaction Code: 123
+Domain Code: BFWA
+Family Code: CCRD
+Sub Family Code: CWDL
+
 ## CUENTA PROPIA
 
 Branch: 100
@@ -32,11 +49,31 @@ Servidor (host): ec2-63-33-30-239.eu-west-1.compute.amazonaws.com
 Puerto: 5432
 Base de datos: d9vb99r9t1m7kt
 
-
-
 USERS DEMO
 
-
-
-
 10020400400079945
+
+Edit: 
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/{payment_id}/edit/
+
+Create: 
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/create/
+
+Send: 
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/{payment_id}/send/
+
+SCA: 
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/{payment_id}/sca/
+
+Detail: 
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/{payment_id}/
+
+https://api-bank-heroku-72c443ab11d3.herokuapp.com/dashboard/
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/oauth2/callback/
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/oauth2/authorize/
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/{payment_id}/
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/{payment_id}/sca/
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/{payment_id}/send/
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/create/
+https://api-bank-heroku-72c443abd3.herokuapp.com/app/gpt4/transfers/{payment_id}/edit/
