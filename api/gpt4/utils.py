@@ -1236,3 +1236,12 @@ def limpiar_datos_sensibles(data):
                 cleaned[key] = "***REDACTED***"
         return cleaned
     return data
+
+
+
+
+# BASE_DIR = tres niveles arriba de este archivo
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
+def get_project_path(*rel_path: str | Path) -> str:
+    return str(BASE_DIR.joinpath(*rel_path))

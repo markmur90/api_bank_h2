@@ -211,3 +211,5 @@ DEBUG_TOOLBAR_CONFIG = {
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
+PRIVATE_KEY_KID = '4dd70ec0-d187-4b8c-a0de-6fbd6cbb27f2'
