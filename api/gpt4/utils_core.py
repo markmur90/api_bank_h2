@@ -3,7 +3,7 @@ from pathlib import Path
 from config import settings
 from cryptography.hazmat.primitives import serialization
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 def get_project_path(*rel_path: str | Path) -> str:
     return str(BASE_DIR.joinpath(*rel_path))

@@ -30,7 +30,7 @@ class Command(BaseCommand):
             "jwks":    keys_dir / "jwks_public.json"
         }
 
-        usuario = getpass.getuser()
+        usuario = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
 
         try:
             existentes = [f for f in files.values() if f.exists()]

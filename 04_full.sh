@@ -138,11 +138,6 @@ sleep 2
 
 
 
-
-
-
-
-
 # 6. DB: reset y usuario
 if confirmar "Resetear base de datos y crear usuario en PostgreSQL"; then
     DB_NAME="mydatabase"
@@ -157,7 +152,6 @@ BEGIN
     END IF;
 END
 \$\$;
-
 -- Asignar permisos al usuario
 ALTER USER ${DB_USER} WITH SUPERUSER;
 GRANT USAGE, CREATE ON SCHEMA public TO ${DB_USER};
@@ -166,7 +160,6 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO ${DB_USER};
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO ${DB_USER};
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO ${DB_USER};
 EOF
-
 # Verificar si la base de datos existe y eliminarla si es necesario
 sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname = '${DB_NAME}'" | grep -q 1
 if [ $? -eq 0 ]; then
@@ -176,7 +169,6 @@ if [ $? -eq 0 ]; then
     sudo -u postgres psql -c "DROP DATABASE ${DB_NAME};"
     echo -e "\033[7;30m----------///----------\033[0m"
 fi
-
 # Crear la base de datos y asignar permisos
 sudo -u postgres psql <<-EOF
 CREATE DATABASE ${DB_NAME};
@@ -189,7 +181,6 @@ EOF
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
-
 
 
 
@@ -212,10 +203,8 @@ if confirmar "Ejecutar migraciones"; then
     python manage.py migrate
     echo -e "\033[7;30m----------///--------------------///----------\033[0m"
 fi
-
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
-
 
 
 
@@ -236,8 +225,17 @@ sleep 2
 
 
 
+# 9. Generar claves
+if confirmar "Generar o cambiar PEM JWKS"; then
+    python3 manage.py genkey
+    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
+fi
+echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
+sleep 2
 
-# 9. Sincronizar a Heroku
+
+
+# 10. Sincronizar a Heroku
 if confirmar "Sincronizar cambios a api_bank_heroku"; then
     echo "🔄 Sincronizando archivos al destino..."
     echo -e "\033[7;30m----------///----------\033[0m"
@@ -252,7 +250,7 @@ sleep 2
 
 
 
-# 10. Respaldo ZIP y SQL
+# 11. Respaldo ZIP y SQL
 if confirmar "Crear respaldo ZIP"; then
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
     ZIP_PATH="$BACKUP_DIR/respaldo_${TIMESTAMP}.zip"
@@ -266,7 +264,7 @@ sleep 2
 
 
 
-# 11. Sincronizar BDD
+# 12. Sincronizar BDD
 if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir las bases de datos a la web"); then
     echo -e "\033[7;30m🚀 Subiendo las bses de datos...\033[0m"
     echo -e "\033[7;30m----------///----------\033[0m"
@@ -304,8 +302,7 @@ sleep 2
 
 
 
-
-# 12. Retención de backups
+# 13. Retención de backups
 if [[ "$OMIT_CLEAN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Limpiar respaldos antiguos"); then
     echo "🚀 Limpiando..."
     cd "$BACKUP_DIR"
@@ -336,7 +333,7 @@ sleep 2
 
 
 
-# 13. Subir datos a Heroku
+# 14. Subir datos a Heroku
 if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir el proyecto a la web"); then
     echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
     echo -e "\033[7;30m----------///----------\033[0m"
@@ -359,15 +356,13 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     cd "$PROJECT_ROOT"
     echo -e "\033[7;30m✅ ¡Deploy completado!\033[0m"
     echo -e "\033[7;30m----------///--------------------///----------\033[0m"
-    
 fi
 echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
 sleep 2
 
 
 
-
-# 14. Cambiar MAC
+# 15. Cambiar MAC
 if confirmar "Cambiar MAC de la interfaz $INTERFAZ"; then
     sudo ip link set "$INTERFAZ" down
     MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
@@ -381,14 +376,6 @@ echo -e "\033[7;33m-------------------------------------------------------------
 sleep 2
 
 
-# 15. Generar claves
-if confirmar "Generar o cambiar PEM JWKS"; then
-    python3 manage.py genkey
-    echo -e "\033[7;30m----------///--------------------///----------\033[0m"
-fi
-echo -e "\033[7;33m--------------------------------------------------------------------------------\033[0m"
-sleep 2
-
 
 # 16. Despliegue
 if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then
@@ -398,7 +385,6 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
     python manage.py collectstatic --noinput
-    python manage.py genkey
     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
     # Función para limpiar y salir
     cleanup() {
@@ -455,7 +441,7 @@ sleep 2
 
 
 
-
+# 17. Despliegue
 if [ "$OMIT_HEROKU" != "1" ]; then
     echo "Lanzando navegador hacia Heroku..."
     if which xdg-open > /dev/null 2>&1; then

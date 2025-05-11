@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-05-11T09:52:53.883043",
+  "usuario": "766ae693-6297-47ea-b825-fd3d07dcf9b6",
+  "archivos": {
+    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/api/keys/ecdsa_private_key.pem",
+    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/api/keys/ecdsa_public_key.pem",
+    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/api/keys/jwks_public.json"
+  },
+  "kid": "6f645e42-759a-4225-bb21-8d4e7fdee21e"
+}
