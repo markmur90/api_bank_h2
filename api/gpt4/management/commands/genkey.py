@@ -16,10 +16,10 @@ class Command(BaseCommand):
     help = "Genera clave privada ECDSA P-256, clave pública y JWKS para client_assertion OAuth2"
 
     def handle(self, *args, **kwargs):
-        keys_dir = Path(get_project_path("keys"))
-        logs_dir = Path(get_project_path("logs"))
+        keys_dir = Path(get_project_path("schemas/keys"))
+        logs_dir = Path(get_project_path("schemas/keys/logs"))
         settings_path = Path(get_project_path("config/settings/base1.py"))
-        log_file = Path(get_project_path("logs/clave_gen.log"))
+        log_file = Path(get_project_path("schemas/keys/logs/clave_gen.log"))
 
         keys_dir.mkdir(parents=True, exist_ok=True)
         logs_dir.mkdir(parents=True, exist_ok=True)

@@ -75,7 +75,6 @@ if confirmar "Detener contenedores Docker"; then
         docker stop $PIDS
         echo -e "\033[7;30m🐳 Contenedores detenidos.\033[0m"
         echo -e "\033[7;30m----------///--------------------///----------\033[0m"
-        
     else
         echo -e "\033[7;30m🐳 No hay contenedores.\033[0m"
         echo -e "\033[7;30m----------///--------------------///----------\033[0m"
@@ -188,17 +187,14 @@ sleep 2
 if confirmar "Ejecutar migraciones"; then
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
-    
     echo "🧹 Eliminando cachés de Python y migraciones anteriores..."
     find . -path "*/__pycache__" -type d -exec rm -rf {} +
     find . -name "*.pyc" -delete
     find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
     find . -path "*/migrations/*.pyc" -delete
-
     echo "🔄 Generando migraciones de Django..."
     python manage.py makemigrations
     echo -e "\033[7;30m----------///--------------------///----------\033[0m"
-
     echo "⏳ Aplicando migraciones de la base de datos..."
     python manage.py migrate
     echo -e "\033[7;30m----------///--------------------///----------\033[0m"
@@ -272,7 +268,6 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     LOCAL_DB_USER="markmur88"
     LOCAL_DB_HOST="localhost"
     REMOTE_DB_URL="postgres://ue2erdhkle4v0h:pa1773a2b68d739e66a794acd529d1b60c016733f35be6884a9f541365d5922cf@ec2-63-33-30-239.eu-west-1.compute.amazonaws.com:5432/d9vb99r9t1m7kt"
-
     # **🕒 Marca de tiempo para el backup**
     DATE=$(date +"%Y%m%d_%H%M%S")
     BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
