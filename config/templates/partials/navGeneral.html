@@ -12,11 +12,6 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav me-auto">
 
-        <li class="nav-item">
-          <a class="nav-link" href="javascript:void(0);" id="oauthLink" data-url="{% url 'oauth2_authorize' %}">
-            <i class="bi bi-key-fill me-1"></i> Autorizar DB
-          </a>
-        </li>
 
         <li class="nav-item d-none" id="resultNavItem">
           <a class="nav-link" href="{% url 'oauth2_callback' %}" id="oauthResultLink">
@@ -59,6 +54,24 @@
     </div>
     <div class="toast-body">
       Proceso de autorización completado. Haz clic en "Ver Resultado" para ver los detalles.
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="oauthContextModal" tabindex="-1" aria-labelledby="oauthContextModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border border-danger shadow">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="oauthContextModalLabel">OAuth2 no disponible</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Debes iniciar el proceso de autorización desde una <strong>transferencia específica</strong>.</p>
+        <p class="mb-0">Selecciona una transferencia y haz clic en "Autorizar con OAuth2".</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Entendido</button>
+      </div>
     </div>
   </div>
 </div>
@@ -108,4 +121,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+function iniciarOAuth() {
+  const paymentId = "{{ request.session.current_payment_id|default_if_none:'' }}";
+  if (paymentId) {
+    window.location.href = "{% url 'oauth2_authorize' %}?payment_id=" + paymentId;
+  } else {
+    const modal = new bootstrap.Modal(document.getElementById('oauthContextModal'));
+    modal.show();
+  }
+}
+
 </script>

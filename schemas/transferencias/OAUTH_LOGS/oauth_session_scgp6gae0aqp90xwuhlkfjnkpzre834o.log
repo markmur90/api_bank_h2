@@ -1,0 +1,18 @@
+{
+  "timestamp": "2025-05-11 06:40:19",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-05-11 06:40:26",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}

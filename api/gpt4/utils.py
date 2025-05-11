@@ -1119,7 +1119,7 @@ def registrar_log_oauth(accion, estado, metadata=None, error=None, request=None)
     }
     entry = json.dumps(log_entry, indent=2)
 
-    log_dir = os.path.join(BASE_SCHEMA_DIR, "oauth_logs")
+    log_dir = os.path.join(BASE_SCHEMA_DIR, "OAUTH_LOGS")
     os.makedirs(log_dir, exist_ok=True)
     log_file = os.path.join(log_dir, "oauth_general.log")
 

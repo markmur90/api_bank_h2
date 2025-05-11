@@ -73,32 +73,6 @@
           {{ form.manual_otp }}
         </div>
 
-        <!-- CREDENTIALS -->
-        <div class="card custom-card mb-4">
-          <div class="custom-card-header">Credenciales</div>
-          <div class="card-body custom-card-body">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label for="{{ form.client.id_for_label }}" class="form-label">
-                  ClientID
-                </label>
-                {{ form.client }}
-                <a href="{% url 'create_clientidGPT4' %}" class="btn btn-link p-0">
-                  Crear nuevo ClientID
-                </a>
-              </div>
-              <div class="col-md-6">
-                <label for="{{ form.kid.id_for_label }}" class="form-label">
-                  KID
-                </label>
-                {{ form.kid }}
-                <a href="{% url 'create_kidGPT4' %}" class="btn btn-link p-0">
-                  Crear nuevo KID
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
 
         <!-- BOTONES -->
         <div class="d-flex justify-content-end gap-2 mt-4">

@@ -9,7 +9,8 @@ from api.gpt4.models import (
     ClientID,
     Kid,
     Transfer,
-    LogTransferencia
+    LogTransferencia,
+    ClaveGenerada
 )
 
 class DebtorAdmin(admin.ModelAdmin):
@@ -77,6 +78,7 @@ class LogTransferenciaAdmin(admin.ModelAdmin):
     readonly_fields = ('created_at',)
     list_select_related = ('transfer',)
 
+
 admin.site.register(Debtor, DebtorAdmin)
 admin.site.register(DebtorAccount, DebtorAccountAdmin)
 admin.site.register(Creditor, CreditorAdmin)
@@ -87,3 +89,11 @@ admin.site.register(ClientID, ClientIDAdmin)
 admin.site.register(Kid, KidAdmin)
 admin.site.register(Transfer, TransferAdmin)
 admin.site.register(LogTransferencia, LogTransferenciaAdmin)
+
+
+@admin.register(ClaveGenerada)
+class ClaveGeneradaAdmin(admin.ModelAdmin):
+    list_display = ("fecha", "usuario", "estado", "kid")
+    list_filter = ("estado", "usuario")
+    search_fields = ("usuario", "kid")
+

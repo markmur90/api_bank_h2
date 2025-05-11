@@ -1,0 +1,106 @@
+
+================================================================================
+Fecha y hora: 2025-05-11 06:32:09
+================================================================================
+=== Info ===
+XML pain.001 generado en schemas/transferencias/64bd81b9-ecae-4c15-b372-5ba9b16576bd/pain001_64bd81b9-ecae-4c15-b372-5ba9b16576bd.xml
+
+
+================================================================================
+Fecha y hora: 2025-05-11 06:32:09
+================================================================================
+=== Info ===
+Archivo AML generado en schemas/transferencias/64bd81b9-ecae-4c15-b372-5ba9b16576bd/aml_64bd81b9-ecae-4c15-b372-5ba9b16576bd.xml
+
+
+================================================================================
+Fecha y hora: 2025-05-11 06:33:42
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "8f044c22cb0646a19a0490d0360ca090",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=8f044c22cb0646a19a0490d0360ca090&code_challenge_method=S256&code_challenge=rt29jGN08d2ICv2P2ovPVDESbGZQAGhuLz7ZDUPjeGE",
+    "code_challenge": "rt29jGN08d2ICv2P2ovPVDESbGZQAGhuLz7ZDUPjeGE"
+}
+
+
+================================================================================
+Fecha y hora: 2025-05-11 06:33:42
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "ithNmxThzCW8KGyt3SHAVrJ0NJcTvQ-tFWPTSf98gYutnh3-tiKsQXJTEHBTniLPcweIgI2CbjKniibfAbtt-Q",
+    "challenge": "rt29jGN08d2ICv2P2ovPVDESbGZQAGhuLz7ZDUPjeGE",
+    "state": "8f044c22cb0646a19a0490d0360ca090"
+}
+
+
+================================================================================
+Fecha y hora: 2025-05-11 06:33:55
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "6e1c8374f5ac4593acd84a7de899ac4b",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=6e1c8374f5ac4593acd84a7de899ac4b&code_challenge_method=S256&code_challenge=ZRw8EKeUMwXMiNwAPpcAtBUUmH0GPBcRL8BNozbwsEs",
+    "code_challenge": "ZRw8EKeUMwXMiNwAPpcAtBUUmH0GPBcRL8BNozbwsEs"
+}
+
+
+================================================================================
+Fecha y hora: 2025-05-11 06:33:55
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "EbLGLhnGL-4j7DKWzUD6RUcYY-e2_vF0OclIWYnRHG5tGnXGPfYwmmHVAD0Xx6LHpJYq3cctRbqTQRACPhg33w",
+    "challenge": "ZRw8EKeUMwXMiNwAPpcAtBUUmH0GPBcRL8BNozbwsEs",
+    "state": "6e1c8374f5ac4593acd84a7de899ac4b"
+}
+
+
+================================================================================
+Fecha y hora: 2025-05-11 06:34:19
+================================================================================
+=== Info ===
+OAuth no iniciado o token expirado
+
+=== Error ===
+Token no disponible
+
+================================================================================
+Fecha y hora: 2025-05-11 06:34:33
+================================================================================
+=== Info ===
+Errores en validación
+
+=== Error ===
+Formulario inválido
+
+================================================================================
+Fecha y hora: 2025-05-11 07:08:35
+================================================================================
+=== Info ===
+OAuth no iniciado o token expirado
+
+=== Error ===
+Token no disponible
+
+================================================================================
+Fecha y hora: 2025-05-11 07:11:23
+================================================================================
+=== Info ===
+Errores en validación
+
+=== Error ===
+Formulario inválido

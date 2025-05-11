@@ -41,7 +41,7 @@
           <i class="bi bi-house-door-fill me-2"></i> Volver al Inicio
         </a>
         {% if not request.session.oauth_success %}
-        <a href="{% url 'oauth2_authorize' %}" class="btn btn-primary">
+        <a href="{% url 'oauth2_authorize' %}?payment_id={{ request.session.current_payment_id }}" class="btn btn-primary">
           <i class="bi bi-arrow-repeat me-2"></i> Reintentar
         </a>
         {% endif %}

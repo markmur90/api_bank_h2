@@ -188,15 +188,26 @@ class LogTransferencia(models.Model):
         return f"{self.tipo_log} - {self.registro} - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
     
     
-COD_01 = '27CDBFRDE17BEH'
-COD_02 = 'DEUT27CDBFRDE17BEH'
-COD_03 = 'IMAD-20250427-001'
-COD_04 = 'JEtg1v94VWNbpGoFwqiWxRR92QFESFHGHdwFiHvc'
-COD_05 = 'SE0IWHFHJFHB848R9E0R9FRUFBCJHW0W9FHF008E88W0457338ASKH64880'
-COD_06 = 'H858hfhg0ht40588hhfjpfhhd9944940jf'
-COD_07 = '090512DEUTDEFFXXX886479'
-COD_08 = 'DE0005140008'
-COD_09 = 'DE86500700100925993805'
-COD_10 = '25993805'
-COD_11 = '0925993805'
-COD_12 = '0105528001187'
+class ClaveGenerada(models.Model):
+    ESTADOS = [
+        ('EXITO', 'Éxito'),
+        ('CANCELADO', 'Cancelado por el usuario'),
+        ('ERROR', 'Error durante la ejecución'),
+    ]
+
+    fecha = models.DateTimeField(auto_now_add=True)
+    usuario = models.CharField(max_length=50)
+    estado = models.CharField(max_length=10, choices=ESTADOS)
+    kid = models.CharField(max_length=64, blank=True, null=True)
+    path_privada = models.CharField(max_length=200, blank=True, null=True)
+    path_publica = models.CharField(max_length=200, blank=True, null=True)
+    path_jwks = models.CharField(max_length=200, blank=True, null=True)
+    mensaje_error = models.TextField(blank=True, null=True)
+
+    class Meta:
+        verbose_name = "Clave ECDSA Generada"
+        verbose_name_plural = "Claves ECDSA Generadas"
+
+    def __str__(self):
+        return f"{self.fecha.strftime('%Y-%m-%d %H:%M')} - {self.usuario} - {self.estado}"
+

@@ -38,7 +38,7 @@
     word-break: break-word;
     background-color: #f8f9fa;
     padding: 1rem;
-    border-radius: 6px;
+    border-radius: 2px;
   }
 </style>
 
@@ -62,8 +62,8 @@
         <a href="{% url 'transfer_detailGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm" title="Refrescar estado">
           Refrescar
         </a>
-        <a href="{% url 'transfer_update_scaGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
-          SCA
+        <a href="{% url 'oauth2_authorize' %}?payment_id={{ transfer.payment_id }}" class="btn btn-outline-info btn-sm">
+          OAuth2
         </a>
       </div>
     </div>
@@ -78,65 +78,36 @@
         <dt class="col-sm-2">Auth ID</dt>
         <dd class="col-sm-4">{{ transfer.auth_id }}</dd>
         {% endif %}
-
         <dt class="col-sm-2">Payment ID</dt>
         <dd class="col-sm-4">{{ transfer.payment_id }}</dd>
-
         <dt class="col-sm-2">Estado</dt>
         <dd class="col-sm-4">
           <span class="badge bg-{{ transfer.get_status_color }}">{{ transfer.status }}</span>
         </dd>
-
         <dt class="col-sm-2">Deudor</dt>
         <dd class="col-sm-4">{{ transfer.debtor.name }}</dd>
-
         <dt class="col-sm-2">Deudor (IBAN)</dt>
         <dd class="col-sm-4">{{ transfer.debtor_account.iban }}</dd>
-
         <dt class="col-sm-2">Acreedor</dt>
         <dd class="col-sm-4">{{ transfer.creditor.name }}</dd>
-
         <dt class="col-sm-2">Acreedor (IBAN)</dt>
         <dd class="col-sm-4">{{ transfer.creditor_account.iban }}</dd>
-
         <dt class="col-sm-2">Creado en</dt>
         <dd class="col-sm-4">{{ transfer.created_at|date:"d/m/Y H:i" }}</dd>
-
         <dt class="col-sm-2">Fecha de Ejecución</dt>
         <dd class="col-sm-4">{{ transfer.requested_execution_date|date:"d/m/Y" }}</dd>
-
         <dt class="col-sm-2">Importe</dt>
         <dd class="col-sm-4">{{ transfer.instructed_amount|floatformat:2 }} {{ transfer.currency }}</dd>
-
         <dt class="col-sm-2">Referencia</dt>
         <dd class="col-sm-4">{{ transfer.remittance_information_unstructured }}</dd>
-
         <dt class="col-sm-2">Instruction ID</dt>
         <dd class="col-sm-4">{{ transfer.payment_identification.instruction_id }}</dd>
-
         <dt class="col-sm-2">End to End ID</dt>
         <dd class="col-sm-4">{{ transfer.payment_identification.end_to_end_id }}</dd>
       </dl>
 
       <div class="mt-4 p-3 bg-light border rounded">
-        <h5>Archivos Relacionados</h5>
-        {% for archivo, contenido in archivos.items %}
-          <div class="mb-3">
-            <h6 class="text-primary">{{ archivo|capfirst }}</h6>
-            {% if contenido %}
-              <div class="border rounded p-2 bg-white log-content" style="max-height: 300px; overflow-y: auto">
-                <pre class="mb-0">{{ contenido }}</pre>
-              </div>
-            {% else %}
-              <p class="text-muted">El archivo {{ archivo }} no contiene información.</p>
-            {% endif %}
-          </div>
-        {% endfor %}
-      </div>
-
-      <div class="mt-4 p-3 bg-light border rounded">
         <h5>Registro de Actividad (por Payment ID)</h5>
-
         <ul class="nav nav-tabs" id="logTabs" role="tablist">
           {% for tipo, logs in logs_por_tipo.items %}
           <li class="nav-item" role="presentation">
@@ -147,7 +118,6 @@
           </li>
           {% endfor %}
         </ul>
-
         <div class="tab-content p-3 bg-white border border-top-0 rounded-bottom">
           {% for tipo, logs in logs_por_tipo.items %}
           <div class="tab-pane fade {% if forloop.first %}show active{% endif %}" id="{{ tipo }}-logs" role="tabpanel">
@@ -164,31 +134,6 @@
         </div>
       </div>
 
-      <div class="mt-4 p-3 bg-light border rounded">
-        <h5>Logs de la sesión actual ({{ request.session.session_key }})</h5>
-        {% for log in session_logs %}
-        <div class="mb-3 border-bottom pb-2">
-          <small class="text-muted">{{ log.created_at|date:"d/m/Y H:i:s" }} – {{ log.tipo_log }}</small>
-          <div class="log-content">{{ log.contenido }}</div>
-        </div>
-        {% empty %}
-        <p class="text-muted">No hay logs asociados a esta sesión.</p>
-        {% endfor %}
-      </div>
-
-      <div class="mt-4 p-3 bg-light border rounded">
-        <h5>Log de Transferencia (Archivo)</h5>
-        {% for nombre, contenido in log_files_content.items %}
-        <div class="mt-3">
-          <h6 class="text-primary">{{ nombre }}</h6>
-          <div class="log-content" style="max-height: 300px; overflow-y: auto;">
-            <pre class="mb-0">{{ contenido }}</pre>
-          </div>
-        </div>
-        {% empty %}
-        <p class="text-muted">No hay logs disponibles para esta transferencia.</p>
-        {% endfor %}
-      </div>
     </div>
   </div>
 </div>

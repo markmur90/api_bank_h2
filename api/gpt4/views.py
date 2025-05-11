@@ -282,98 +282,78 @@ def send_transfer_view(request, payment_id):
     form = SendTransferForm(request.POST or None, instance=transfer)
     token = None
 
-    if request.session.get('oauth_active', False):
-        token = request.session.get('access_token')
+    if request.session.get('oauth_success') and request.session.get('current_payment_id') == payment_id:
+        session_token = request.session.get('access_token')
         expires = request.session.get('token_expires', 0)
-        
-        if not token or time.time() > expires - 60:
-            rt = request.session.get('refresh_token')
-            
-            if rt:
-                try:
-                    token, rt_new, exp = refresh_access_token(rt)
-                    request.session['access_token'] = token
-                    request.session['refresh_token'] = rt_new or rt
-                    request.session['token_expires'] = time.time() + exp
-                except Exception as e:
-                    token, exp = get_client_credentials_token()
-                    request.session['access_token'] = token
-                    request.session['token_expires'] = time.time() + exp
-                    
-            else:
-                token, exp = get_client_credentials_token()
-                request.session['access_token'] = token
-                request.session['token_expires'] = time.time() + exp
+        if session_token and time.time() < expires - 60:
+            token = session_token
 
     if request.method == "POST":
         try:
             if not form.is_valid():
-                registrar_log(transfer.payment_id,tipo_log='ERROR',error="Formulario inválido",extra_info="Errores de validación en vista")
+                registrar_log(transfer.payment_id, tipo_log='TRANSFER', error="Formulario inválido", extra_info="Errores en validación")
                 messages.error(request, "Formulario inválido. Revisa los campos.")
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
-            
+
             manual_token = form.cleaned_data['manual_token']
             final_token = manual_token or token
-            
             if not final_token:
-                mensaje = "Para obtener el token, primero activa OAuth2 en la barra de navegación."
-                registrar_log(transfer.payment_id, tipo_log='AUTH', error=mensaje, extra_info="Token ausente")
-                messages.error(request, mensaje)
+                registrar_log(transfer.payment_id, tipo_log='AUTH', error="Token no disponible", extra_info="OAuth no iniciado o token expirado")
+                messages.error(request, "Token no disponible. Inicia OAuth2 desde esta transferencia.")
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
-            
+
             obtain_otp = form.cleaned_data['obtain_otp']
             manual_otp = form.cleaned_data['manual_otp']
-            
+            otp = None
+
             try:
                 if obtain_otp:
                     method = form.cleaned_data.get('otp_method')
-                    
                     if method == 'MTAN':
                         challenge_id = crear_challenge_mtan(transfer, final_token, transfer.payment_id)
                         transfer.auth_id = challenge_id
                         transfer.save()
                         return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
-                    
                     elif method == 'PHOTOTAN':
                         challenge_id, img64 = crear_challenge_phototan(transfer, final_token, transfer.payment_id)
                         request.session['photo_tan_img'] = img64
                         transfer.auth_id = challenge_id
                         transfer.save()
                         return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
-                    
                     else:
-                        otp = resolver_challenge_pushtan(crear_challenge_pushtan(transfer, final_token, transfer.payment_id),final_token,transfer.payment_id)
-                        
+                        otp = resolver_challenge_pushtan(crear_challenge_pushtan(transfer, final_token, transfer.payment_id), final_token, transfer.payment_id)
                 elif manual_otp:
                     otp = manual_otp
-                    
                 else:
-                    mensaje = "Debes seleccionar 'Obtener OTP automáticamente' o introducirlo manualmente."
-                    registrar_log(transfer.payment_id, tipo_log='OTP', error=mensaje, extra_info="Falta OTP")
-                    messages.error(request, mensaje)
+                    registrar_log(transfer.payment_id, tipo_log='OTP', error="No se proporcionó OTP", extra_info="Ni automático ni manual")
+                    messages.error(request, "Debes obtener o proporcionar un OTP.")
                     return redirect('transfer_detailGPT4', payment_id=payment_id)
-                
             except Exception as e:
-                registrar_log(transfer.payment_id,tipo_log='OTP',error=str(e),extra_info="Error generando u obteniendo OTP")
+                registrar_log(transfer.payment_id, tipo_log='OTP', error=str(e), extra_info="Error obteniendo OTP")
                 messages.error(request, str(e))
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
-            
+
             try:
                 send_transfer(transfer, final_token, otp)
+                request.session.pop('access_token', None)
+                request.session.pop('refresh_token', None)
+                request.session.pop('token_expires', None)
+                request.session.pop('oauth_success', None)
+                request.session.pop('current_payment_id', None)
                 messages.success(request, "Transferencia enviada correctamente.")
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
-            
             except Exception as e:
-                registrar_log(transfer.payment_id,tipo_log='TRANSFER',error=str(e),extra_info="Error enviando transferencia SEPA")
+                registrar_log(transfer.payment_id, tipo_log='TRANSFER', error=str(e), extra_info="Error enviando transferencia")
                 messages.error(request, str(e))
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
-            
+
         except Exception as e:
-            registrar_log(transfer.payment_id,tipo_log='ERROR',error=str(e),extra_info="Excepción inesperada en vista send_transfer_view")
+            registrar_log(transfer.payment_id, tipo_log='TRANSFER', error=str(e), extra_info="Error inesperado en vista")
             messages.error(request, f"Error inesperado: {str(e)}")
             return redirect('transfer_detailGPT4', payment_id=payment_id)
-        
-    return render(request,"api/GPT4/send_transfer.html",{"form": form, "transfer": transfer})
+
+    return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
+
         
             
             
@@ -483,11 +463,18 @@ def descargar_pdf(request, payment_id):
 # ==== OAUTH2 ====
 def oauth2_authorize(request):
     try:
-        if not request.session.get('oauth_active', False):
-            registrar_log_oauth("inicio_autorizacion", "fallo", {"razon": "oauth_inactivo"}, request=request)
-            registrar_log("OAUTH-AUTHORIZING", tipo_log="OAUTH", error="OAuth inactivo", extra_info="Intento de autorización sin flag activo")
-            messages.error(request, "El flujo OAuth2 no está activado.")
+        payment_id = request.GET.get('payment_id')
+        if not payment_id:
+            registrar_log("SIN_ID", tipo_log="OAUTH", error="OAuth2 requiere un payment_id", extra_info="Falta payment_id en GET")
+            messages.error(request, "Debes iniciar autorización desde una transferencia específica.")
             return redirect('dashboard')
+
+        transfer = get_object_or_404(Transfer, payment_id=payment_id)
+
+        if not request.session.get('oauth_active', False):
+            registrar_log(payment_id, tipo_log="OAUTH", error="OAuth inactivo", extra_info="Intento de autorización sin activar el switch")
+            messages.error(request, "OAuth2 no está activado. Actívalo en la barra de navegación.")
+            return redirect('transfer_detailGPT4', payment_id=payment_id)
 
         verifier, challenge = generate_pkce_pair()
         state = uuid.uuid4().hex
@@ -496,7 +483,8 @@ def oauth2_authorize(request):
             'pkce_verifier': verifier,
             'oauth_state': state,
             'oauth_in_progress': True,
-            'oauth_start_time': time.time()
+            'oauth_start_time': time.time(),
+            'current_payment_id': payment_id
         })
 
         auth_url = build_auth_url(state, challenge)
@@ -507,57 +495,53 @@ def oauth2_authorize(request):
             "code_challenge": challenge
         }, request=request)
 
-        registrar_log("OAUTH-AUTHORIZING", tipo_log="OAUTH", request_body={
+        registrar_log(payment_id, tipo_log="OAUTH", request_body={
             "verifier": verifier,
             "challenge": challenge,
             "state": state
-        }, extra_info="Inicio de flujo de autorización")
+        }, extra_info="Inicio del flujo OAuth2 desde transferencia")
 
-        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-            return JsonResponse({'auth_url': auth_url})
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': auth_url})
 
     except Exception as e:
-        registrar_log_oauth("inicio_autorizacion", "error", None, str(e), request=request)
-        registrar_log("OAUTH-AUTHORIZING", tipo_log="OAUTH", error=str(e), extra_info="Excepción en oauth2_authorize")
-        messages.error(request, "Error al iniciar autorización OAuth2")
+        registrar_log("SIN_ID", tipo_log="OAUTH", error=str(e), extra_info="Excepción en oauth2_authorize")
+        messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
+        return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
 
-    return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
 
 
 def oauth2_callback(request):
     try:
         if not request.session.get('oauth_in_progress', False):
             registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error="Flujo no iniciado", extra_info="oauth_in_progress no presente")
-            messages.error(request, "No hay una autorización en progreso")
+            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error="Flujo no iniciado", extra_info="oauth_in_progress ausente")
+            messages.error(request, "No hay una autorización en curso.")
             return redirect('dashboard')
 
         request.session['oauth_in_progress'] = False
 
         error = request.GET.get('error')
         if error:
-            error_desc = request.GET.get('error_description', '')
-            registrar_log_oauth("callback", "fallo", {
-                "error": error,
-                "error_description": error_desc,
-                "params": dict(request.GET)
-            }, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error=error, extra_info=error_desc)
-            messages.error(request, f"Error en autorización: {error} - {error_desc}")
+            desc = request.GET.get('error_description', '')
+            registrar_log_oauth("callback", "fallo", {"error": error, "desc": desc}, request=request)
+            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error=error, extra_info=desc)
+            messages.error(request, f"OAuth falló: {error} - {desc}")
             return render(request, 'api/GPT4/oauth2_callback.html')
 
         state = request.GET.get('state')
-        session_state = request.session.get('oauth_state')
-        if state != session_state:
-            registrar_log_oauth("callback", "fallo", {
-                "razon": "state_mismatch",
-                "state_recibido": state,
-                "state_esperado": session_state
-            }, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error="State mismatch", extra_info=f"state={state}, esperado={session_state}")
-            messages.error(request, "Error de seguridad: State mismatch")
+        expected = request.session.get('oauth_state')
+        if state != expected:
+            registrar_log_oauth("callback", "fallo", {"razon": "state_mismatch", "recibido": state, "esperado": expected}, request=request)
+            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error="State mismatch", extra_info=f"State recibido: {state}, esperado: {expected}")
+            messages.error(request, "Error de seguridad: state inválido")
             return render(request, 'api/GPT4/oauth2_callback.html')
+
+        payment_id = request.session.get('current_payment_id')
+        if not payment_id:
+            registrar_log_oauth("callback", "fallo", {"razon": "sin_payment_id"}, request=request)
+            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error="Falta payment_id", extra_info="OAuth sin contexto de transferencia")
+            messages.error(request, "No se puede aplicar autorización: no se asoció a ninguna transferencia.")
+            return redirect('dashboard')
 
         code = request.GET.get('code')
         verifier = request.session.pop('pkce_verifier', None)
@@ -574,29 +558,27 @@ def oauth2_callback(request):
         })
 
         registrar_log_oauth("obtencion_token", "exito", {
-            "token_type": "Bearer",
             "expires_in": expires,
             "scope": settings.OAUTH2['SCOPE']
         }, request=request)
 
-        registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", request_body={
+        registrar_log(payment_id, tipo_log="OAUTH", request_body={
             "code": code,
             "verifier": verifier,
-            "access_token": "***REDACTED***",
-            "refresh_token": "***REDACTED***",
+            "access_token": access_token,
+            "refresh_token": refresh_token,
             "expires": expires
-        }, extra_info="Token OAuth2 recibido correctamente")
+        }, extra_info="Token OAuth2 recibido y vinculado correctamente")
 
-        messages.success(request, "Autorización completada exitosamente!")
+        messages.success(request, "Autorización completada para esta transferencia.")
         return render(request, 'api/GPT4/oauth2_callback.html')
 
     except Exception as e:
         registrar_log_oauth("callback", "error", None, str(e), request=request)
         registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error=str(e), extra_info="Excepción durante callback")
         request.session['oauth_success'] = False
-        messages.error(request, f"Error en el proceso de autorización: {str(e)}")
-
-    return render(request, 'api/GPT4/oauth2_callback.html')
+        messages.error(request, f"Error en autorización: {str(e)}")
+        return render(request, 'api/GPT4/oauth2_callback.html')
 
 
 def get_oauth_logs(request):

@@ -8,7 +8,7 @@ with open("jwks_private.json", "r") as f:
 jwk_key = jwk.JWK.from_json(json.dumps(jwks_private["keys"][0]))
 
 client_id = "766ae693-6297-47ea-b825-fd3d07dcf9b6"  # <- cambia esto
-token_url = "https://simulator-api.db.com/gw/oidc/token"
+token_url = "https://api.db.com/gw/oidc/token"
 
 now = int(time.time())
 exp = now + 300
