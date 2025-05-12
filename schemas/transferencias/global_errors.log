@@ -1,2 +1,12 @@
 [2025-05-13 00:10:41] ERROR [824a2667-f520-415d-806a-d427d33c1acf]: Token no disponible
 [2025-05-13 00:10:53] ERROR [824a2667-f520-415d-806a-d427d33c1acf]: Token no disponible
+[2025-05-13 01:24:41] ERROR [SIN_ID]: OAuth2 requiere un payment_id
+[2025-05-13 01:24:49] ERROR [OAUTH-CALLBACK]: Flujo no iniciado
+[2025-05-13 01:25:00] ERROR [SIN_ID]: OAuth2 requiere un payment_id
+[2025-05-13 01:25:10] ERROR [OAUTH-CALLBACK]: Flujo no iniciado
+[2025-05-13 01:25:37] ERROR [SIN_ID]: OAuth2 requiere un payment_id
+[2025-05-13 01:32:23] ERROR [SIN_ID]: OAuth2 requiere un payment_id
+[2025-05-13 01:35:41] ERROR [b3ff6607-3208-411a-b5e1-e075f5e396c0]: Token no disponible
+[2025-05-13 01:35:43] ERROR [SIN_ID]: OAuth2 requiere un payment_id
+[2025-05-13 01:35:50] ERROR [SIN_ID]: OAuth2 requiere un payment_id
+[2025-05-13 01:38:22] ERROR [OAUTH-CALLBACK]: State mismatch
