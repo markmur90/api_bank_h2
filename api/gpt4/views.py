@@ -234,7 +234,7 @@ def transfer_detail(request, payment_id):
         'aml': logs_db.filter(tipo_log='AML'),
         'sca': logs_db.filter(tipo_log='SCA'),
         'otp': logs_db.filter(tipo_log='OTP'),
-        'oauth': logs_db.filter(tipo_log='OAUTH'),
+        'oauth': logs_db.filter(tipo_log='AUTH'),
     }
     
     # Detectar si hay errores
@@ -291,7 +291,7 @@ def send_transfer_view(request, payment_id):
     if request.method == "POST":
         try:
             if not form.is_valid():
-                registrar_log(transfer.payment_id, tipo_log='TRANSFER', error="Formulario inválido", extra_info="Errores en validación")
+                registrar_log(transfer.payment_id, tipo_log='ERROR', error="Formulario inválido", extra_info="Errores en validación")
                 messages.error(request, "Formulario inválido. Revisa los campos.")
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
 
@@ -329,7 +329,7 @@ def send_transfer_view(request, payment_id):
                     messages.error(request, "Debes obtener o proporcionar un OTP.")
                     return redirect('transfer_detailGPT4', payment_id=payment_id)
             except Exception as e:
-                registrar_log(transfer.payment_id, tipo_log='OTP', error=str(e), extra_info="Error obteniendo OTP")
+                registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e), extra_info="Error obteniendo OTP")
                 messages.error(request, str(e))
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
 
@@ -343,12 +343,12 @@ def send_transfer_view(request, payment_id):
                 messages.success(request, "Transferencia enviada correctamente.")
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
             except Exception as e:
-                registrar_log(transfer.payment_id, tipo_log='TRANSFER', error=str(e), extra_info="Error enviando transferencia")
+                registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e), extra_info="Error enviando transferencia")
                 messages.error(request, str(e))
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
 
         except Exception as e:
-            registrar_log(transfer.payment_id, tipo_log='TRANSFER', error=str(e), extra_info="Error inesperado en vista")
+            registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e), extra_info="Error inesperado en vista")
             messages.error(request, f"Error inesperado: {str(e)}")
             return redirect('transfer_detailGPT4', payment_id=payment_id)
 
@@ -370,11 +370,11 @@ def transfer_update_sca(request, payment_id):
                 update_sca_request(transfer, action, otp, token)
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
             except Exception as e:
-                registrar_log(transfer.payment_id, {}, "", error=str(e), tipo_log='SCA', extra_info="Error procesando SCA en vista")
+                registrar_log(transfer.payment_id, {}, "", error=str(e), tipo_log='ERROR', extra_info="Error procesando SCA en vista")
                 mensaje_error = str(e)
                 return _render_transfer_detail(request, transfer, mensaje_error)
         else:
-            registrar_log(transfer.payment_id, {}, "", error="Formulario SCA inválido", tipo_log='SCA', extra_info="Errores validación SCA")
+            registrar_log(transfer.payment_id, {}, "", error="Formulario SCA inválido", tipo_log='ERROR', extra_info="Errores validación SCA")
             mensaje_error = "Por favor corrige los errores en la autorización."
             return _render_transfer_detail(request, transfer, mensaje_error)
     return render(request, 'api/GPT4/transfer_sca.html', {'form': form, 'transfer': transfer})
@@ -690,7 +690,7 @@ def send_transfer_view4(request, payment_id):
                     {},
                     "",
                     error=str(e),
-                    tipo_log='TRANSFER',
+                    tipo_log='ERROR',
                     extra_info="Error enviando transferencia en vista"
                 )
                 return _render_transfer_detail(request, transfer, mensaje_error=str(e))
@@ -700,7 +700,7 @@ def send_transfer_view4(request, payment_id):
                 {},
                 "",
                 error="Formulario inválido",
-                tipo_log='TRANSFER',
+                tipo_log='ERROR',
                 extra_info="Errores de validación en vista"
             )
             return _render_transfer_detail(
