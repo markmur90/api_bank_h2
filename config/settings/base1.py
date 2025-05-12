@@ -154,7 +154,7 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 
-TIMEOUT_REQUEST = 60
+TIMEOUT_REQUEST = 7889118
 CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
 CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
 ORIGIN = 'https://api-bank-heroku-72c443ab11d3.herokuapp.com'
@@ -180,7 +180,7 @@ OAUTH2 = {
     'AUTHORIZE_URL': env('AUTHORIZE_URL'),
     'REDIRECT_URI': env('REDIRECT_URI'),
     'SCOPE': env('SCOPE'),
-    'TIMEOUT': 60,
+    'TIMEOUT': 7889118,
 }
 
 SIMPLE_JWT = {
@@ -228,5 +228,5 @@ import django_heroku
 django_heroku.settings(locals())
 
 
-PRIVATE_KEY_KID = '66c09d23-bc4a-4e2b-9943-cca700a2eb9c'
+PRIVATE_KEY_KID = '962176cc-6fde-4154-b3f8-1603926f7c88'
 PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')

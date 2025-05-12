@@ -563,7 +563,6 @@ def send_transfer2(
         )
     return response
 
-# — Envío SEPA — 
 def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None,
                   regenerate_token: bool = False, regenerate_otp: bool = False) -> requests.Response:
     pid = transfer.payment_id
@@ -774,7 +773,7 @@ def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
         'sub': transfer.client.clientId,
         'aud': TOKEN_URL,
         'iat': now,
-        'exp': now + 300
+        'exp': now + 3600
     }
     private_key, kid = load_private_key_y_kid()
     assertion = jwt.encode(payload, private_key, algorithm='ES256', headers={'kid': kid})
