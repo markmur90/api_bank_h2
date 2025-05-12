@@ -11,10 +11,12 @@ from django.template.loader import get_template
 from weasyprint import HTML
 from django.views.decorators.http import require_POST
 
-from api.gpt4.models import Debtor, DebtorAccount, Creditor, CreditorAccount, CreditorAgent, LogTransferencia, PaymentIdentification, Transfer
-from api.gpt4.forms import ClientIDForm, DebtorForm, DebtorAccountForm, CreditorForm, CreditorAccountForm, CreditorAgentForm, KidForm, ScaForm, SendTransferForm, TransferForm
-from api.gpt4.utils import BASE_SCHEMA_DIR, build_auth_url, crear_challenge_mtan, crear_challenge_phototan, crear_challenge_pushtan, fetch_token_by_code, fetch_transfer_details, generar_archivo_aml, generar_pdf_transferencia, generar_xml_pain001, generar_xml_pain002, generate_deterministic_id, generate_payment_id_uuid, generate_pkce_pair, get_access_token, get_client_credentials_token, handle_error_response, obtener_otp_automatico_con_challenge, obtener_ruta_schema_transferencia, read_log_file, refresh_access_token, registrar_log, registrar_log_oauth, resolver_challenge_pushtan, send_transfer, update_sca_request
+from api.gpt4.forms import ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm, DebtorAccountForm, DebtorForm, KidForm, ScaForm, SendTransferForm, TransferForm
+from api.gpt4.models import Creditor, CreditorAccount, CreditorAgent, Debtor, DebtorAccount, LogTransferencia, PaymentIdentification, Transfer
+from api.gpt4.utils import BASE_SCHEMA_DIR, build_auth_url, crear_challenge_mtan, crear_challenge_phototan, crear_challenge_pushtan, fetch_token_by_code, fetch_transfer_details, generar_archivo_aml, generar_pdf_transferencia, generar_xml_pain001, generate_deterministic_id, generate_payment_id_uuid, generate_pkce_pair, get_access_token, get_client_credentials_token, obtener_ruta_schema_transferencia, read_log_file, refresh_access_token, registrar_log, registrar_log_oauth, resolver_challenge_pushtan, send_transfer, update_sca_request
 from config import settings
+
+
 
 
 logger = logging.getLogger(__name__)
@@ -365,7 +367,6 @@ def transfer_update_sca(request, payment_id):
             otp = form.cleaned_data['otp']
             try:
                 token = get_access_token(transfer.payment_id)
-                from api.gpt4.utils import update_sca_request
                 update_sca_request(transfer, action, otp, token)
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
             except Exception as e:
@@ -581,7 +582,6 @@ def oauth2_callback(request):
 
 
 def get_oauth_logs(request):
-    from api.gpt4.models import LogTransferencia
 
     session_key = request.GET.get('session_key')
     if not session_key:
@@ -719,8 +719,6 @@ def toggle_oauth(request):
     request.session['oauth_active'] = 'oauth_active' in request.POST
     return redirect(request.META.get('HTTP_REFERER', 'dashboard'))
 
-
-from api.gpt4.models import LogTransferencia
 
 def list_logs(request):
     registro = request.GET.get("registro", "").strip()

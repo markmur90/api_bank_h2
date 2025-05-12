@@ -24,17 +24,6 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 
 
-CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
-SECRET_CLIENT = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
-ORIGIN = 'https://api-bank-heroku-72c443ab11d3.herokuapp.com'
-TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
-OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
-AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
-API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
-AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
-REDIRECT_URI = 'https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/'
-SCOPE = 'sepa_credit_transfers'
-
 
 # 4. Apps y middleware (sin cambios)
 INSTALLED_APPS = [
@@ -165,27 +154,35 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 
-# CLIENT_ID = env('CLIENT_ID')
-# SECRET_CLIENT = env('SECRET_CLIENT')
-# ACCESS_TOKEN = env('ACCESS_TOKEN')
-# ORIGIN = env('ORIGIN')
-# TOKEN_URL = env('TOKEN_URL')
-# OTP_URL = env('OTP_URL')
-# AUTH_URL = env('AUTH_URL')
-# API_URL = env('API_URL')
-# AUTHORIZE_URL = env('AUTHORIZE_URL')
-# REDIRECT_URI = env('REDIRECT_URI')
-# SCOPE = env('SCOPE')
+TIMEOUT_REQUEST = 60
+CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
+CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
+ORIGIN = 'https://api-bank-heroku-72c443ab11d3.herokuapp.com'
+TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
+OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
+AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
+API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
+AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
+REDIRECT_URI = 'https://api-bank-heroku-72c443ab11d3.herokuapp.com/app/gpt4/oauth2/callback/'
+SCOPE = 'sepa_credit_transfers'
+
+ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
 
 OAUTH2 = {
     'CLIENT_ID': env('CLIENT_ID'),
-    'CLIENT_SECRET': env('SECRET_CLIENT'),
+    'CLIENT_SECRET': env('CLIENT_SECRET'),
+    'ACCESS_TOKEN': env('ACCESS_TOKEN'),
+    'ORIGIN': env('ORIGIN'),
+    'OTP_URL': env('OTP_URL'),
+    'AUTH_URL': env('AUTH_URL'),
+    'API_URL': env('API_URL'),
     'TOKEN_URL': env('TOKEN_URL'),
     'AUTHORIZE_URL': env('AUTHORIZE_URL'),
     'REDIRECT_URI': env('REDIRECT_URI'),
     'SCOPE': env('SCOPE'),
-    'TIMEOUT': 10,
+    'TIMEOUT': 60,
 }
+
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
