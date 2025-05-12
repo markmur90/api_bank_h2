@@ -234,7 +234,6 @@ def transfer_detail(request, payment_id):
         'aml': logs_db.filter(tipo_log='AML'),
         'sca': logs_db.filter(tipo_log='SCA'),
         'otp': logs_db.filter(tipo_log='OTP'),
-        'oauth': logs_db.filter(tipo_log='AUTH'),
     }
     
     # Detectar si hay errores

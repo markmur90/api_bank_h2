@@ -172,7 +172,6 @@ class LogTransferencia(models.Model):
         ('XML', 'Generación XML'),
         ('AML', 'Generación AML'),
         ('ERROR', 'Error'),
-        ('OAUTH', 'OAuth2'),
         ('SCA', 'Autenticación fuerte'),
         ('OTP', 'Generación OTP'),
     ])
