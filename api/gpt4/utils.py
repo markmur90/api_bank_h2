@@ -139,7 +139,7 @@ def generar_xml_pain001(transferencia: Transfer, payment_id: str) -> str:
         
     xml_path = os.path.join(ruta, f"pain001_{payment_id}.xml")
     ET.ElementTree(root).write(xml_path, encoding='utf-8', xml_declaration=True)
-    registrar_log(payment_id, tipo_log='XML', extra_info=f"XML pain.001 generado en {xml_path}")
+    registrar_log("OAUTH-LOGS", payment_id, tipo_log='XML', extra_info=f"XML pain.001 generado en {xml_path}")
     return xml_path
 
 def generar_xml_pain002(data, payment_id):
@@ -228,7 +228,7 @@ def generar_archivo_aml(transferencia: Transfer, payment_id: str) -> str:
     ET.SubElement(flags, "ManualReviewRequired").text = "false"
     ET.ElementTree(root).write(aml_path, encoding="utf-8", xml_declaration=True)
     
-    registrar_log(payment_id, tipo_log='AML', extra_info=f"Archivo AML generado en {aml_path}")
+    registrar_log("OAUTH-LOGS", payment_id, tipo_log='AML', extra_info=f"Archivo AML generado en {aml_path}")
     return aml_path
 
 
@@ -396,7 +396,7 @@ def generar_pdf_transferencia(transferencia: Transfer) -> str:
     c.save()
     if os.path.exists(qr_path):
         os.remove(qr_path)
-    registrar_log(transferencia.payment_id, tipo_log='TRANSFER', extra_info=f"PDF generado en {pdf_path}")
+    registrar_log("OAUTH-LOGS", transferencia.payment_id, tipo_log='TRANSFER', extra_info=f"PDF generado en {pdf_path}")
     return pdf_path
 
 def crear_tabla_pdf(c, data, y_position):
@@ -437,7 +437,7 @@ def send_transfer0(transfer, use_token=None, use_otp=None, regenerate_token=Fals
         transfer.auth_id = data.get('authId')
         transfer.status = data.get('transactionStatus', transfer.status)
         transfer.save()
-        registrar_log(
+        registrar_log("OAUTH-LOGS", 
             transfer.payment_id,
             request_headers=headers,
             request_body=schema_data,
@@ -584,29 +584,29 @@ def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None
         'Correlation-Id': pid,
         'Otp': otp
     }
-    registrar_log(pid, headers_enviados=headers, request_body=body, tipo_log='TRANSFER', extra_info="Enviando transferencia SEPA")
+    registrar_log("OAUTH-LOGS", pid, headers_enviados=headers, request_body=body, tipo_log='TRANSFER', extra_info="Enviando transferencia SEPA")
     try:
         resp = requests.post(API_URL, headers=headers, json=body, timeout=TIMEOUT_REQUEST)
-        registrar_log(pid, tipo_log='TRANSFER', response_text=resp.text, extra_info="Respuesta del API SEPA")
+        registrar_log("OAUTH-LOGS", pid, tipo_log='TRANSFER', response_text=resp.text, extra_info="Respuesta del API SEPA")
         resp.raise_for_status()
     except requests.RequestException as e:
         err = str(e)
-        registrar_log(pid, error=err, tipo_log='ERROR', extra_info="Error HTTP enviando transferencia")
+        registrar_log("OAUTH-LOGS", pid, error=err, tipo_log='ERROR', extra_info="Error HTTP enviando transferencia")
         raise
     data = resp.json()
     transfer.auth_id = data.get('authId')
     transfer.status = data.get('transactionStatus', transfer.status)
     transfer.save()
-    registrar_log(pid, tipo_log='TRANSFER', extra_info="Transferencia enviada con éxito")
+    registrar_log("OAUTH-LOGS", pid, tipo_log='TRANSFER', extra_info="Transferencia enviada con éxito")
     # 4️⃣ Validaciones adicionales
     try:
         xml_path = generar_xml_pain001(transfer, pid)
         aml_path = generar_archivo_aml(transfer, pid)
         validar_xml_pain001(xml_path)
         validar_aml_con_xsd(aml_path)
-        registrar_log(pid, tipo_log='TRANSFER' ,extra_info="Validación XML/AML completada")
+        registrar_log("OAUTH-LOGS", pid, tipo_log='TRANSFER' ,extra_info="Validación XML/AML completada")
     except Exception as e:
-        registrar_log(pid, error=str(e), tipo_log='ERROR', extra_info="Error generando XML/AML posterior")
+        registrar_log("OAUTH-LOGS", pid, error=str(e), tipo_log='ERROR', extra_info="Error generando XML/AML posterior")
     return resp
 
 
@@ -655,8 +655,7 @@ def registrar_log_oauth(accion, estado, metadata=None, error=None, request=None)
         with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as f:
             f.write(f"[{datetime.now()}] Error guardando log OAuth en DB: {str(e)}\n")
 
-    registrar_log(
-        registro=registro,
+    registrar_log("OAUTH-LOGS", 
         tipo_log='AUTH',
         request_body=metadata,
         error=error,
@@ -744,22 +743,22 @@ def limpiar_datos_sensibles(data):
 
 def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str:
     """Client Credentials Grant"""
-    registrar_log(payment_id, tipo_log='AUTH', extra_info="Obteniendo Access Token (Client Credentials)")
+    registrar_log("OAUTH-LOGS", tipo_log='AUTH', extra_info="Obteniendo Access Token (Client Credentials)")
     data = {'grant_type': 'client_credentials', 'scope': settings.SCOPE}
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-    registrar_log(payment_id, tipo_log='AUTH', headers_enviados=headers, request_body=data)
+    registrar_log("OAUTH-LOGS", tipo_log='AUTH', headers_enviados=headers, request_body=data)
     try:
         resp = requests.post(TOKEN_URL, data=data, auth=(CLIENT_ID, CLIENT_SECRET), timeout=TIMEOUT_REQUEST)
         registrar_log(payment_id, tipo_log='AUTH', response_text=resp.text)
         resp.raise_for_status()
     except Exception as e:
         err = str(e)
-        registrar_log(payment_id, tipo_log='ERROR', error=err, extra_info="Error al obtener Access Token")
+        registrar_log("OAUTH-LOGS", tipo_log='ERROR', error=err, extra_info="Error al obtener Access Token")
         raise
     token = resp.json().get('access_token')
     if not token:
         err = resp.json().get('error_description', 'Sin access_token en respuesta')
-        registrar_log(payment_id, tipo_log='AUTH', error=err, extra_info="Token inválido recibido")
+        registrar_log("OAUTH-LOGS", tipo_log='AUTH', error=err, extra_info="Token inválido recibido")
         raise Exception(f"Token inválido: {err}")
     registrar_log(payment_id, tipo_log='AUTH', extra_info="Token obtenido correctamente")
     return token
@@ -767,7 +766,7 @@ def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str
 def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
     """JWT Assertion Grant"""
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
-    registrar_log(payment_id, tipo_log='AUTH', extra_info="Obteniendo Access Token (JWT Assertion)")
+    registrar_log("OAUTH-LOGS", tipo_log='AUTH', extra_info="Obteniendo Access Token (JWT Assertion)")
     now = int(time.time())
     payload = {
         'iss': transfer.client.clientId,
@@ -784,21 +783,21 @@ def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
         'client_assertion_type': 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
         'client_assertion': assertion
     }
-    registrar_log(payment_id, tipo_log='AUTH', request_body=data)
+    registrar_log("OAUTH-LOGS", tipo_log='AUTH', request_body=data)
     try:
         resp = requests.post(TOKEN_URL, data=data, timeout=TIMEOUT_REQUEST)
-        registrar_log(payment_id, tipo_log='AUTH', response_text=resp.text)
+        registrar_log("OAUTH-LOGS", tipo_log='AUTH', response_text=resp.text)
         resp.raise_for_status()
     except Exception as e:
         err = str(e)
-        registrar_log(payment_id, tipo_log='ERROR', error=err, extra_info="Error obteniendo Access Token JWT")
+        registrar_log("OAUTH-LOGS", tipo_log='ERROR', error=err, extra_info="Error obteniendo Access Token JWT")
         raise
     token = resp.json().get('access_token')
     if not token:
         err = resp.json().get('error_description', 'Sin access_token en respuesta')
-        registrar_log(payment_id, tipo_log='AUTH', error=err, extra_info="Token JWT inválido")
+        registrar_log("OAUTH-LOGS", tipo_log='AUTH', error=err, extra_info="Token JWT inválido")
         raise Exception(f"Token JWT inválido: {err}")
-    registrar_log(payment_id, tipo_log='AUTH', extra_info="Token JWT obtenido correctamente")
+    registrar_log("OAUTH-LOGS", tipo_log='AUTH', extra_info="Token JWT obtenido correctamente")
     return token
 
 _access_token = None
@@ -945,9 +944,9 @@ def update_sca_request(transfer: Transfer, action: str, otp: str, token: str) ->
         'Correlation-Id': transfer.payment_id
     }
     payload = {'action': action, 'authId': transfer.auth_id}
-    registrar_log(transfer.payment_id, tipo_log='SCA', headers_enviados=headers, request_body=payload, extra_info="Actualizando SCA")
+    registrar_log("OAUTH-LOGS", tipo_log='SCA', headers_enviados=headers, request_body=payload, extra_info="Actualizando SCA")
     resp = requests.patch(url, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
-    registrar_log(transfer.payment_id, tipo_log='SCA', response_text=resp.text, extra_info="Respuesta SCA")
+    registrar_log("OAUTH-LOGS", tipo_log='SCA', response_text=resp.text, extra_info="Respuesta SCA")
     resp.raise_for_status()
     data = resp.json()
     transfer.auth_id = data.get('authId')
@@ -963,9 +962,9 @@ def fetch_transfer_details(transfer: Transfer, token: str) -> dict:
         'Idempotency-Id': transfer.payment_id,
         'Correlation-Id': transfer.payment_id
     }
-    registrar_log(transfer.payment_id, tipo_log='TRANSFER', headers_enviados=headers, extra_info="Obteniendo estado de transferencia")
+    registrar_log("OAUTH-LOGS", tipo_log='TRANSFER', headers_enviados=headers, extra_info="Obteniendo estado de transferencia")
     resp = requests.get(url, headers=headers, timeout=TIMEOUT_REQUEST)
-    registrar_log(transfer.payment_id, tipo_log='TRANSFER', response_text=resp.text, extra_info="Respuesta fetch status")
+    registrar_log("OAUTH-LOGS", tipo_log='TRANSFER', response_text=resp.text, extra_info="Respuesta fetch status")
     resp.raise_for_status()
     data = resp.json()
     transfer.status = data.get('transactionStatus', transfer.status)
@@ -973,7 +972,7 @@ def fetch_transfer_details(transfer: Transfer, token: str) -> dict:
     # Generar pain002
     xml_path = generar_xml_pain002(data, transfer.payment_id)
     validar_xml_con_xsd(xml_path, xsd_path="schemas/xsd/pain.002.001.03.xsd")
-    registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Pain002 generado y validado")
+    registrar_log("OAUTH-LOGS", tipo_log='TRANSFER', extra_info="Pain002 generado y validado")
     return data
 
 def get_client_credentials_token():
@@ -1018,10 +1017,10 @@ def build_auth_url(state, challenge, redirect_uri):
             'acr_values': 'urn:dbapi:psd2:sca'
         }
         url = f"{settings.OAUTH2['AUTH_URL']}?{urlencode(params)}"
-        registrar_log("SIN_ID", tipo_log="AUTH", extra_info="URL de autorización construida", request_body={"url": url})
+        registrar_log("OAUTH-LOGS", tipo_log="AUTH", extra_info="URL de autorización construida", request_body={"url": url})
         return url
     except Exception as e:
-        registrar_log("SIN_ID", tipo_log="ERROR", error=str(e), extra_info="Error construyendo URL de autorización")
+        registrar_log("OAUTH-LOGS", tipo_log="ERROR", error=str(e), extra_info="Error construyendo URL de autorización")
         raise
 
 def fetch_token_by_code(code, code_verifier):
@@ -1065,9 +1064,9 @@ def crear_challenge_mtan(transfer: Transfer, token: str, payment_id: str) -> str
             'mobilePhoneNumber': transfer.debtor.mobile_phone_number
         }
     }
-    registrar_log(payment_id, headers_enviados=headers, request_body=payload, extra_info="Iniciando MTAN challenge", tipo_log='OTP')
+    registrar_log("OAUTH-LOGS", payment_id, headers_enviados=headers, request_body=payload, extra_info="Iniciando MTAN challenge", tipo_log='OTP')
     resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
-    registrar_log(payment_id, response_text=resp.text, tipo_log='OTP')
+    registrar_log("OAUTH-LOGS", payment_id, response_text=resp.text, tipo_log='OTP')
     resp.raise_for_status()
     return resp.json()['id']
 
@@ -1094,9 +1093,9 @@ def crear_challenge_phototan(transfer: Transfer, token: str, payment_id: str):
         'requestType': 'SEPA_TRANSFER_GRANT',
         'challenge': {}
     }
-    registrar_log(payment_id, headers_enviados=headers, request_body=payload, extra_info="Iniciando PhotoTAN challenge", tipo_log='OTP')
+    registrar_log("OAUTH-LOGS", payment_id, headers_enviados=headers, request_body=payload, extra_info="Iniciando PhotoTAN challenge", tipo_log='OTP')
     resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
-    registrar_log(payment_id, response_text=resp.text, tipo_log='OTP')
+    registrar_log("OAUTH-LOGS", payment_id, response_text=resp.text, tipo_log='OTP')
     resp.raise_for_status()
     data = resp.json()
     return data['id'], data.get('imageBase64')
@@ -1115,20 +1114,20 @@ def resolver_challenge(challenge_id: str, token: str, payment_id: str) -> str:
     start = time.time()
     while True:
         resp = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
-        registrar_log(payment_id, response_text=resp.text, extra_info=f"Comprobando estado challenge {challenge_id}", tipo_log='OTP')
+        registrar_log("OAUTH-LOGS", payment_id, response_text=resp.text, extra_info=f"Comprobando estado challenge {challenge_id}", tipo_log='OTP')
         data = resp.json()
         status = data.get('status')
         if status == 'VALIDATED':
             otp = data.get('otp')
-            registrar_log(payment_id, extra_info=f"OTP validado: {otp}", tipo_log='AUTH')
+            registrar_log("OAUTH-LOGS", payment_id, extra_info=f"OTP validado: {otp}", tipo_log='OTP')
             return otp
         if status in ('EXPIRED', 'REJECTED', 'EIDP_ERROR'):
             msg = f"Challenge fallido: {status}"
-            registrar_log(payment_id, error=msg, tipo_log='ERROR')
+            registrar_log("OAUTH-LOGS", payment_id, error=msg, tipo_log='ERROR')
             raise Exception(msg)
         if time.time() - start > 300:
             msg = "Timeout esperando VALIDATED"
-            registrar_log(payment_id, error=msg, tipo_log='ERROR')
+            registrar_log("OAUTH-LOGS", payment_id, error=msg, tipo_log='ERROR')
             raise TimeoutError(msg)
         time.sleep(1)
 
@@ -1175,14 +1174,14 @@ def crear_challenge_pushtan(transfer: Transfer, token: str, payment_id: str) -> 
     response.raise_for_status()
     if response.status_code != 201:
         error_msg = handle_error_response(response)
-        registrar_log(payment_id, headers, response.text, error=error_msg, tipo_log='ERROR')
+        registrar_log("OAUTH-LOGS", payment_id, headers, response.text, error=error_msg, tipo_log='ERROR')
         raise Exception(error_msg)
     return response.json()['id']
 
 def crear_challenge_autorizacion(transfer, token):
     pid = transfer.payment_id
     try:
-        registrar_log(pid, extra_info="Iniciando challenge OTP", tipo_log='OTP')
+        registrar_log("OAUTH-LOGS", pid, extra_info="Iniciando challenge OTP", tipo_log='OTP')
         payload = {
             'method':'PUSHTAN','requestType':'SEPA_TRANSFER_GRANT',
             'requestData':{
@@ -1193,15 +1192,15 @@ def crear_challenge_autorizacion(transfer, token):
             },'language':'de'
         }
         headers = {'Authorization':f'Bearer {token}','Content-Type':'application/json'}
-        registrar_log(pid, headers_enviados=headers, request_body=payload, tipo_log='OTP')
+        registrar_log("OAUTH-LOGS", pid, headers_enviados=headers, request_body=payload, tipo_log='OTP')
         resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
-        registrar_log(pid, response_text=resp.text, tipo_log='OTP')
+        registrar_log("OAUTH-LOGS", pid, response_text=resp.text, tipo_log='OTP')
         resp.raise_for_status()
         cid = resp.json().get('id')
-        registrar_log(pid, extra_info=f"Challenge creado con ID {cid}", tipo_log='OTP')
+        registrar_log("OAUTH-LOGS", pid, extra_info=f"Challenge creado con ID {cid}", tipo_log='OTP')
         return cid
     except Exception as e:
-        registrar_log(pid, error=str(e), extra_info="Error al crear challenge", tipo_log='ERROR')
+        registrar_log("OAUTH-LOGS", pid, error=str(e), extra_info="Error al crear challenge", tipo_log='ERROR')
         raise
 
 def resolver_challenge_pushtan(challenge_id: str, token: str, payment_id: str) -> str:
@@ -1218,25 +1217,25 @@ def resolver_challenge_pushtan(challenge_id: str, token: str, payment_id: str) -
             return data['otp']
         if status == 'PENDING' and time.time() - start < 300:
             msg = "Timeout agotado esperando VALIDATED"
-            registrar_log(payment_id, headers, error=msg, tipo_log='ERROR')
+            registrar_log("OAUTH-LOGS", payment_id, headers, error=msg, tipo_log='ERROR')
             raise TimeoutError(msg)
             time.sleep(1)
             continue
         elif status == "EXPIRED":
             msg = "El challenge ha expirado (status=EXPIRED)"
-            registrar_log(payment_id, headers, response.text, error=msg, tipo_log='ERROR')
+            registrar_log("OAUTH-LOGS", payment_id, headers, response.text, error=msg, tipo_log='ERROR')
             raise Exception(msg)
         elif status == "REJECTED":
             msg = "El challenge fue rechazado por el usuario (status=REJECTED)"
-            registrar_log(payment_id, headers, response.text, error=msg, tipo_log='ERROR')
+            registrar_log("OAUTH-LOGS", payment_id, headers, response.text, error=msg, tipo_log='ERROR')
             raise Exception(msg)
         elif status == "EIDP_ERROR":
             msg = "Error interno de EIDP procesando el challenge (status=EIDP_ERROR)"
-            registrar_log(payment_id, headers, response.text, error=msg, tipo_log='ERROR')
+            registrar_log("OAUTH-LOGS", payment_id, headers, response.text, error=msg, tipo_log='ERROR')
             raise Exception(msg)
         else:
             msg = f"Estado de challenge desconocido: {status}"
-            registrar_log(payment_id, headers, response.text, error=msg, tipo_log='ERROR')
+            registrar_log("OAUTH-LOGS", payment_id, headers, response.text, error=msg, tipo_log='ERROR')
             raise Exception(msg)
 
 
