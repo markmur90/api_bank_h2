@@ -174,6 +174,9 @@ class LogTransferencia(models.Model):
         ('ERROR', 'Error'),
         ('SCA', 'Autenticación fuerte'),
         ('OTP', 'Generación OTP'),
+        ('INFO', 'Información'),
+        ('DEBUG', 'Debug'),
+        
     ])
     contenido = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
