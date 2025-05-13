@@ -23,8 +23,8 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 # Configuración de seguridad
 SECRET_KEY = 'django-insecure-z*_hrh0ssiq1s5t=dqe5_c6@qfb(fhb!+ruqnvu$mxi4$*m0s4'
 DEBUG = False
-ALLOWED_HOSTS = ['api-bank-heroku-72c443ab11d3.herokuapp.com', '0.0.0.0']
-ORIGIN = 'api-bank-heroku-72c443ab11d3.herokuapp.com'
+ALLOWED_HOSTS = ['api-bank-2-749ee30aca65.herokuapp.com', '0.0.0.0']
+ORIGIN = 'api-bank-2-749ee30aca65.herokuapp.com'
 
 # Installed apps
 INSTALLED_APPS = [
