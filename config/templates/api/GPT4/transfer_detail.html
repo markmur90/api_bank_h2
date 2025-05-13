@@ -46,6 +46,8 @@
   <div class="card custom-card mb-4">
     <div class="custom-card-header d-flex justify-content-between align-items-center">
       <h2 class="mb-0">GPT4 Transferencia</h2>
+      
+
       <div class="button-toolbar d-flex flex-wrap justify-content-end gap-2">
         <a href="{% url 'dashboard' %}" class="btn btn-outline-info btn-sm">
           <i class="bi bi-arrow-left"></i> Dashboard
@@ -53,19 +55,23 @@
         <a href="{% url 'descargar_pdfGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
           <i class="bi bi-file-earmark-pdf"></i> PDF
         </a>
+        <a href="{% url 'edit_transferGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm" title="Editar Transferencia">
+          <i class="bi bi-pencil-square"></i> Editar
+        </a>
+        {% if not transfer.auth_id %}
+        <a href="{% url 'oauth2_authorize' %}?payment_id={{ transfer.payment_id }}" class="btn btn-outline-info btn-sm">
+          <i class="bi bi-shield-lock"></i> OAuth2
+        </a>
+        {% endif %}
         <a href="{% url 'send_transfer_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
           <i class="bi bi-send-check"></i> Enviar
         </a>
-        <a href="{% url 'edit_transferGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm" title="Editar Transferencia">
-          Editar
-        </a>
         <a href="{% url 'transfer_detailGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm" title="Refrescar estado">
-          Refrescar
-        </a>
-        <a href="{% url 'oauth2_authorize' %}?payment_id={{ transfer.payment_id }}" class="btn btn-outline-info btn-sm">
-          OAuth2
+          <i class="bi bi-arrow-clockwise"></i> Refrescar
         </a>
       </div>
+
+
     </div>
 
     <div class="card-body custom-card-body">
