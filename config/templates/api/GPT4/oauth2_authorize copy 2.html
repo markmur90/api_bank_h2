@@ -39,19 +39,9 @@
 </div>
 
 <script>
-  const paymentId = "{{ payment_id }}";
-
-  fetch("{% url 'log_oauth_visual_inicio' %}?payment_id=" + encodeURIComponent(paymentId))
-    .then(() => {
-      setTimeout(() => {
-        window.location.href = "{{ auth_url }}";
-      }, 2000);
-    })
-    .catch(() => {
-      setTimeout(() => {
-        window.location.href = "{{ auth_url }}";
-      }, 2000);
-    });
+  setTimeout(() => {
+    window.location.href = "{{ auth_url }}";
+  }, 2000);
 </script>
 
 {% endblock %}

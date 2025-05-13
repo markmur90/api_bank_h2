@@ -721,3 +721,38 @@ def list_logs(request):
         "tipo_log": tipo_log,
         "choices": choices
     })
+    
+
+
+from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime, timezone
+
+@csrf_exempt
+def log_oauth_visual_inicio(request):
+    if not request.session.session_key:
+        request.session.save()  # Fuerza a crear una sesión si no existe
+
+    payment_id = request.GET.get("payment_id") or request.session.get("current_payment_id", "SIN_ID")
+    user_agent = request.META.get("HTTP_USER_AGENT", "Desconocido")
+    ip_address = request.META.get("HTTP_X_FORWARDED_FOR", request.META.get("REMOTE_ADDR", "IP desconocida"))
+    now = datetime.now(timezone.utc)
+
+    metadata = {
+        "payment_id": payment_id,
+        "ip_address": ip_address,
+        "user_agent": user_agent,
+        "timestamp_utc": now.isoformat(timespec='milliseconds').replace("+00:00", "Z"),
+        "timestamp_unix_ms": int(now.timestamp() * 1000),
+        "session_id": request.session.session_key
+    }
+
+    registrar_log_oauth(
+        accion="AUTORIZACION_VISUAL_INICIADA",
+        estado="ok",
+        metadata=metadata,
+        request=request
+    )
+    return JsonResponse({"status": "ok"})
+
+
+
