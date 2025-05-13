@@ -164,7 +164,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://api.db.com",
-    "https://api-bank-heroku-72c443ab11d3.herokuapp.com",
+    "https://api-bank-2-749ee30aca65.herokuapp.com",
 ]
 
 # REST Framework

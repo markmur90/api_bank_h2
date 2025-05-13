@@ -153,7 +153,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://api.db.com",
-    "https://api-bank-heroku-72c443ab11d3.herokuapp.com",
+    "https://api-bank-2-749ee30aca65.herokuapp.com",
 ]
 
 # REST Framework
@@ -181,7 +181,7 @@ OAUTH2 = {
     'CLIENT_SECRET': 'pbkdf2_sha256$870000$KBmduLQnMQdWI9gAjKMBMs$Ih40gPHNYMupc6H5N+k+JsDT2erKQdvpXz9RmDC20KA=',
     'TOKEN_URL': 'https://api.db.com:443/gw/oidc/token',
     'AUTHORIZE_URL': 'https://api.db.com:443/gw/oidc/authorize',
-    'REDIRECT_URI': 'https://api-bank-heroku-72c443ab11d3.herokuapp.com/oauth2/callback',
+    'REDIRECT_URI': 'https://api-bank-2-749ee30aca65.herokuapp.com/oauth2/callback',
     'SCOPE': 'sepa_credit_transfers',
     'TIMEOUT': 10,
 }
