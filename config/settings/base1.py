@@ -154,13 +154,13 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 
-ORIGIN = os.getenv("API_ORIGIN", "https://api.db.com")
-CLIENT_ID = os.getenv("DB_CLIENT_ID", "")
-CLIENT_SECRET = os.getenv("DB_CLIENT_SECRET", "")
-TOKEN_URL = os.getenv("DB_TOKEN_URL", "")
-AUTH_URL = os.getenv("DB_AUTH_URL", "")
-API_URL = os.getenv("DB_API_URL", "")
-SCOPE = os.getenv("DB_SCOPE", "sepa_credit_transfers")
+# ORIGIN = os.getenv("API_ORIGIN", "https://api.db.com")
+# CLIENT_ID = os.getenv("DB_CLIENT_ID", "")
+# CLIENT_SECRET = os.getenv("DB_CLIENT_SECRET", "")
+# TOKEN_URL = os.getenv("DB_TOKEN_URL", "")
+# AUTH_URL = os.getenv("DB_AUTH_URL", "")
+# API_URL = os.getenv("DB_API_URL", "")
+# SCOPE = os.getenv("DB_SCOPE", "sepa_credit_transfers")
 
 
 TIMEOUT_REQUEST = 3600
@@ -187,7 +187,7 @@ OAUTH2 = {
     'TOKEN_URL': 'https://simulator-api.db.com/gw/oidc/token',
     'AUTHORIZE_URL': 'https://simulator-api.db.com/gw/oidc/authorize',
     'REDIRECT_URI': 'https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/oauth2/callback/',
-    'SCOPE': 'sepa_credit_transfers offline_access openid',
+    'SCOPE': 'sepa_credit_transfers',
     'TIMEOUT': 3600,
 }
 
