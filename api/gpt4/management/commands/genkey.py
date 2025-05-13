@@ -20,23 +20,17 @@ class Command(BaseCommand):
         logs_dir = Path(get_project_path("schemas/keys/logs"))
         settings_path = Path(get_project_path("config/settings/base1.py"))
         log_file = Path(get_project_path("schemas/keys/logs/clave_gen.log"))
-        usuario_path = Path(get_project_path("schemas/keys/client_id.key"))
 
         keys_dir.mkdir(parents=True, exist_ok=True)
         logs_dir.mkdir(parents=True, exist_ok=True)
-
-        if not usuario_path.exists():
-            raise FileNotFoundError(f"No se encontró el archivo {usuario_path}")
-
-        usuario = usuario_path.read_text(encoding="utf-8").strip()
-        if not usuario:
-            raise ValueError("El archivo client_id.key está vacío. No se puede continuar sin un usuario válido.")
 
         files = {
             "private": keys_dir / "ecdsa_private_key.pem",
             "public":  keys_dir / "ecdsa_public_key.pem",
             "jwks":    keys_dir / "jwks_public.json"
         }
+
+        usuario = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
 
         try:
             existentes = [f for f in files.values() if f.exists()]
@@ -50,6 +44,7 @@ class Command(BaseCommand):
                     self.stdout.write(self.style.NOTICE("🛑 Operación cancelada. Registro creado en la base de datos."))
                     return
 
+            # 1. Clave privada
             private_key = ec.generate_private_key(ec.SECP256R1())
             private_pem = private_key.private_bytes(
                 encoding=serialization.Encoding.PEM,
@@ -59,6 +54,7 @@ class Command(BaseCommand):
             files["private"].write_bytes(private_pem)
             self.stdout.write(self.style.SUCCESS(f"✅ Clave privada: {files['private']}"))
 
+            # 2. Clave pública
             public_key = private_key.public_key()
             public_pem = public_key.public_bytes(
                 encoding=serialization.Encoding.PEM,
@@ -67,6 +63,7 @@ class Command(BaseCommand):
             files["public"].write_bytes(public_pem)
             self.stdout.write(self.style.SUCCESS(f"✅ Clave pública: {files['public']}"))
 
+            # 3. JWKS
             kid = str(uuid.uuid4())
             jwk_key = jwk.JWK.from_pem(public_pem)
             jwk_key.update({"alg": "ES256", "use": "sig", "kid": kid})
@@ -74,6 +71,7 @@ class Command(BaseCommand):
             files["jwks"].write_text(json.dumps(jwks, indent=2))
             self.stdout.write(self.style.SUCCESS(f"✅ JWKS generado con kid={kid}: {files['jwks']}"))
 
+            # 4. Log texto
             log_entry = {
                 "timestamp": datetime.now().isoformat(),
                 "usuario": usuario,
@@ -84,6 +82,7 @@ class Command(BaseCommand):
                 lf.write(json.dumps(log_entry, indent=2) + "\n")
             self.stdout.write(self.style.SUCCESS(f"📝 Log escrito en: {log_file}"))
 
+            # 5. Log en DB
             ClaveGenerada.objects.create(
                 usuario=usuario,
                 estado="EXITO",
@@ -94,6 +93,7 @@ class Command(BaseCommand):
             )
             self.stdout.write(self.style.SUCCESS("📥 Registro guardado en la base de datos."))
 
+            # 6. Actualizar base1.py
             if settings_path.exists():
                 with open(settings_path, "r", encoding="utf-8") as f:
                     lines = f.readlines()
@@ -127,6 +127,7 @@ class Command(BaseCommand):
             self.stdout.write(self.style.ERROR(f"❌ Error durante ejecución: {e}"))
             raise
 
+        # 3b. Verificación de integridad del JWKS
         jwks_data = json.loads(files["jwks"].read_text(encoding="utf-8"))
         jwks_keys = jwks_data.get("keys", [])
 
