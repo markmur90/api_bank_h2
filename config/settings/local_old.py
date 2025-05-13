@@ -13,7 +13,7 @@ load_dotenv(os.path.join(BASE_DIR, '.env'))
 SECRET_KEY = 'django-insecure-z*_hrh0ssiq1s5t=dqe5_c6@qfb(fhb!+ruqnvu$mxi4$*m0s4'
 DEBUG = False
 ALLOWED_HOSTS = ['localhost', '0.0.0.0', '127.0.0.1']
-ORIGIN = 'apibank2-d42d7ed0d036.herokuapp.com'
+ORIGIN = 'api-bank-2-749ee30aca65.herokuapp.com'
 
 # Installed apps
 INSTALLED_APPS = [
@@ -153,7 +153,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://api.db.com",
-    "https://apibank2-d42d7ed0d036.herokuapp.com",
+    "https://api-bank-2-749ee30aca65.herokuapp.com",
 ]
 
 # REST Framework
@@ -181,7 +181,7 @@ OAUTH2 = {
     'CLIENT_SECRET': 'pbkdf2_sha256$870000$KBmduLQnMQdWI9gAjKMBMs$Ih40gPHNYMupc6H5N+k+JsDT2erKQdvpXz9RmDC20KA=',
     'TOKEN_URL': 'https://api.db.com:443/gw/oidc/token',
     'AUTHORIZE_URL': 'https://api.db.com:443/gw/oidc/authorize',
-    'REDIRECT_URI': 'https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback',
+    'REDIRECT_URI': 'https://api-bank-2-749ee30aca65.herokuapp.com/oauth2/callback',
     'SCOPE': 'sepa_credit_transfers',
     'TIMEOUT': 10,
 }

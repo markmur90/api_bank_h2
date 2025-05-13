@@ -1,5 +1,6 @@
 import os
 import time
+from urllib.parse import urlencode
 import uuid
 import json
 import logging
@@ -992,17 +993,36 @@ def generate_pkce_pair():
     ).rstrip(b'=').decode()
     return verifier, challenge
 
-def build_auth_url(state, code_challenge):
-    p = settings.OAUTH2
-    return (
-      f"{p['AUTHORIZE_URL']}?response_type=code"
-      f"&client_id={p['CLIENT_ID']}"
-      f"&redirect_uri={p['REDIRECT_URI']}"
-      f"&scope={p['SCOPE']}"
-      f"&state={state}"
-      f"&code_challenge_method=S256"
-      f"&code_challenge={code_challenge}"
-    )
+# def build_auth_url(state, code_challenge):
+#     p = settings.OAUTH2
+#     return (
+#       f"{p['AUTHORIZE_URL']}?response_type=code"
+#       f"&client_id={p['CLIENT_ID']}"
+#       f"&redirect_uri={p['REDIRECT_URI']}"
+#       f"&scope={p['SCOPE']}"
+#       f"&state={state}"
+#       f"&code_challenge_method=S256"
+#       f"&code_challenge={code_challenge}"
+#     )
+
+def build_auth_url(state, challenge, redirect_uri):
+    try:
+        params = {
+            'client_id': settings.OAUTH2['CLIENT_ID'],
+            'response_type': 'code',
+            'redirect_uri': redirect_uri,
+            'code_challenge': challenge,
+            'code_challenge_method': 'S256',
+            'scope': settings.OAUTH2['SCOPE'],
+            'state': state,
+            'acr_values': 'urn:dbapi:psd2:sca'
+        }
+        url = f"{settings.OAUTH2['AUTH_URL']}?{urlencode(params)}"
+        registrar_log("SIN_ID", tipo_log="AUTH", extra_info="URL de autorización construida", request_body={"url": url})
+        return url
+    except Exception as e:
+        registrar_log("SIN_ID", tipo_log="ERROR", error=str(e), extra_info="Error construyendo URL de autorización")
+        raise
 
 def fetch_token_by_code(code, code_verifier):
     p = settings.OAUTH2
