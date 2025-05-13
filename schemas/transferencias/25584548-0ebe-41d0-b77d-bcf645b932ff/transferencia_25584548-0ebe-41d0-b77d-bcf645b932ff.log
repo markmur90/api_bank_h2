@@ -1,0 +1,42 @@
+
+================================================================================
+Fecha y hora: 2025-05-13 22:43:42
+================================================================================
+=== Info ===
+XML pain.001 generado en schemas/transferencias/25584548-0ebe-41d0-b77d-bcf645b932ff/pain001_25584548-0ebe-41d0-b77d-bcf645b932ff.xml
+
+
+================================================================================
+Fecha y hora: 2025-05-13 22:43:42
+================================================================================
+=== Info ===
+Archivo AML generado en schemas/transferencias/25584548-0ebe-41d0-b77d-bcf645b932ff/aml_25584548-0ebe-41d0-b77d-bcf645b932ff.xml
+
+
+================================================================================
+Fecha y hora: 2025-05-13 22:43:49
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "5a5dc0e66577455eb07341d409b510e6",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=5a5dc0e66577455eb07341d409b510e6&code_challenge_method=S256&code_challenge=M3NnRrjeGRT7GuKO9p3PtT-ojO077h4ym8Innl5Kea4",
+    "code_challenge": "M3NnRrjeGRT7GuKO9p3PtT-ojO077h4ym8Innl5Kea4"
+}
+
+
+================================================================================
+Fecha y hora: 2025-05-13 22:43:50
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "Mts8mx1aedq8_cPQ9g0ra43VTZfXgKPr6FDVQ68oURvjtCyLzOE-14ZgwzdeR9f9icxmpowhQL8ZhFCIHeUUEw",
+    "challenge": "M3NnRrjeGRT7GuKO9p3PtT-ojO077h4ym8Innl5Kea4",
+    "state": "5a5dc0e66577455eb07341d409b510e6"
+}
+

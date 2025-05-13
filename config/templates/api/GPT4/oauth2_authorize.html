@@ -29,11 +29,16 @@
 
 <script>
 function redirectToAuth() {
-    // Redirige a la URL de autorización de Deutsche Bank
-    window.location.href = "{{ auth_url }}";
-    
-    // Alternativa para abrir en ventana emergente (si es preferible)
-    window.open("{{ auth_url }}", 'oauthWindow', 'width=600,height=700');
+    const popup = window.open("{{ auth_url }}", 'oauthWindow', 'width=600,height=700');
+
+    const interval = setInterval(() => {
+        if (popup.closed) {
+            clearInterval(interval);
+            // Redirige a la vista de envío una vez que la ventana de autorización se haya cerrado
+            window.location.href = "{% url 'send_transfer_viewGPT4' payment_id %}";
+        }
+    }, 1000);
 }
 </script>
+
 {% endblock %}

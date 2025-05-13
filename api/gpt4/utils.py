@@ -629,7 +629,7 @@ def registrar_log_oauth(accion, estado, metadata=None, error=None, request=None)
     if request and hasattr(request, 'session'):
         session_id = request.session.session_key
 
-    session_log_file = os.path.join(log_dir, f"oauth_session_{session_id}.log") if session_id else None
+    session_log_file = os.path.join(log_dir, f"oauth_general.log") if session_id else None
 
     try:
         with open(log_file, 'a') as f:

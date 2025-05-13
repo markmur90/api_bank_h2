@@ -475,7 +475,12 @@ def oauth2_authorize(request):
         auth_url = build_auth_url(state, challenge)
         registrar_log_oauth("inicio_autorizacion", "exito", {"state": state,"auth_url": auth_url,"code_challenge": challenge}, request=request)
         registrar_log(payment_id, tipo_log="AUTH", request_body={"verifier": verifier,"challenge": challenge,"state": state}, extra_info="Inicio del flujo OAuth2 desde transferencia")
-        return render(request, 'api/GPT4/oauth2_authorize.html', {'auth_url': auth_url})
+        # return render(request, 'api/GPT4/oauth2_authorize.html', {'auth_url': auth_url})
+        return render(request, 'api/GPT4/oauth2_authorize.html', {
+            'auth_url': auth_url,
+            'payment_id': payment_id,
+        })
+
     except Exception as e:
         registrar_log_oauth("inicio_autorizacion", "error", None, str(e),request=request)        
         registrar_log(tipo_log="ERROR", error=str(e), extra_info="Excepción en oauth2_authorize SIN_ID")
@@ -588,7 +593,7 @@ def get_oauth_logs(request):
     if not session_key:
         return JsonResponse({'error': 'Session key required'}, status=400)
 
-    archivo_path = os.path.join(BASE_SCHEMA_DIR, "oauth_logs", f"oauth_session_{session_key}.log")
+    archivo_path = os.path.join(BASE_SCHEMA_DIR, "oauth_logs", f"oauth_general.log")
     logs_archivo = []
     logs_bd = []
 
