@@ -10,3 +10,4 @@
 [2025-05-13 01:35:43] ERROR [SIN_ID]: OAuth2 requiere un payment_id
 [2025-05-13 01:35:50] ERROR [SIN_ID]: OAuth2 requiere un payment_id
 [2025-05-13 01:38:22] ERROR [OAUTH-CALLBACK]: State mismatch
+[2025-05-13 22:20:56] ERROR [OAUTH-LOGS]: build_auth_url() missing 1 required positional argument: 'redirect_uri'
