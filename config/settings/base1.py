@@ -169,17 +169,17 @@ SCOPE = 'sepa_credit_transfers'
 ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
 
 OAUTH2 = {
-    'CLIENT_ID': env('CLIENT_ID'),
-    'CLIENT_SECRET': env('CLIENT_SECRET'),
+    'CLIENT_ID': os.environ.get("DB_CLIENT_ID"),
+    'CLIENT_SECRET': os.environ.get("DB_CLIENT_SECRET"),
     'ACCESS_TOKEN': env('ACCESS_TOKEN'),
-    'ORIGIN': env('ORIGIN'),
-    'OTP_URL': env('OTP_URL'),
-    'AUTH_URL': env('AUTH_URL'),
-    'API_URL': env('API_URL'),
-    'TOKEN_URL': env('TOKEN_URL'),
-    'AUTHORIZE_URL': env('AUTHORIZE_URL'),
-    'REDIRECT_URI': env('REDIRECT_URI'),
-    'SCOPE': env('SCOPE'),
+    'ORIGIN': 'https://api-bank-2-749ee30aca65.herokuapp.com',
+    'OTP_URL':'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single',
+    'AUTH_URL': 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges',
+    'API_URL': 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer',
+    'TOKEN_URL': 'https://simulator-api.db.com/gw/oidc/token',
+    'AUTHORIZE_URL': 'https://simulator-api.db.com/gw/oidc/authorize',
+    'REDIRECT_URI': 'https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/oauth2/callback/',
+    'SCOPE': 'sepa_credit_transfers offline_access openid',
     'TIMEOUT': 3600,
 }
 
