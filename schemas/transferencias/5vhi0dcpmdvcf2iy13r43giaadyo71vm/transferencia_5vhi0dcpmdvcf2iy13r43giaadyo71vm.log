@@ -1,9 +1,0 @@
-
-================================================================================
-Fecha y hora: 2025-05-13 12:39:25
-================================================================================
-=== Info ===
-OAuth: inicio_autorizacion - error
-
-=== Error ===
-registrar_log() missing 1 required positional argument: 'registro'

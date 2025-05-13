@@ -1,7 +1,0 @@
-{
-  "timestamp": "2025-05-13 12:39:24",
-  "accion": "inicio_autorizacion",
-  "estado": "error",
-  "metadata": {},
-  "error": "registrar_log() missing 1 required positional argument: 'registro'"
-}
