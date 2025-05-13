@@ -5,13 +5,13 @@ from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # 1. Creamos el lector de .env
 env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
 env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
 if not env_file.exists():
     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
@@ -154,15 +154,6 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 
-ORIGIN = os.getenv("API_ORIGIN", "https://api.db.com")
-CLIENT_ID = os.getenv("DB_CLIENT_ID", "")
-CLIENT_SECRET = os.getenv("DB_CLIENT_SECRET", "")
-TOKEN_URL = os.getenv("DB_TOKEN_URL", "")
-AUTH_URL = os.getenv("DB_AUTH_URL", "")
-API_URL = os.getenv("DB_API_URL", "")
-SCOPE = os.getenv("DB_SCOPE", "sepa_credit_transfers")
-
-
 TIMEOUT_REQUEST = 3600
 CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
 CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
@@ -180,6 +171,7 @@ ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXN
 OAUTH2 = {
     'CLIENT_ID': os.environ.get("DB_CLIENT_ID"),
     'CLIENT_SECRET': os.environ.get("DB_CLIENT_SECRET"),
+    'ACCESS_TOKEN': env('ACCESS_TOKEN'),
     'ORIGIN': 'https://api-bank-2-749ee30aca65.herokuapp.com',
     'OTP_URL':'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single',
     'AUTH_URL': 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges',
