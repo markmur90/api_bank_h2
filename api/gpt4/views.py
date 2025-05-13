@@ -468,54 +468,48 @@ def oauth2_authorize(request):
             registrar_log(tipo_log="ERROR", error="OAuth2 requiere un payment_id", extra_info="Falta payment_id en GET SIN_ID")
             messages.error(request, "Debes iniciar autorización desde una transferencia específica.")
             return redirect('dashboard')
-
         transfer = get_object_or_404(Transfer, payment_id=payment_id)
-
         verifier, challenge = generate_pkce_pair()
         state = uuid.uuid4().hex
-
-        request.session.update({
-            'pkce_verifier': verifier,
-            'oauth_state': state,
-            'oauth_in_progress': True,
-            'oauth_start_time': time.time(),
-            'current_payment_id': payment_id
-        })
-
+        request.session.update({'pkce_verifier': verifier,'oauth_state': state,'oauth_in_progress': True,'oauth_start_time': time.time(),'current_payment_id': payment_id})
         auth_url = build_auth_url(state, challenge)
-
-        registrar_log_oauth("inicio_autorizacion", "exito", {
-            "state": state,
-            "auth_url": auth_url,
-            "code_challenge": challenge
-        }, request=request)
-
-        registrar_log(payment_id, tipo_log="AUTH", request_body={
-            "verifier": verifier,
-            "challenge": challenge,
-            "state": state
-        }, extra_info="Inicio del flujo OAuth2 desde transferencia")
-
-        return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': auth_url})
-
+        registrar_log_oauth("inicio_autorizacion", "exito", {"state": state,"auth_url": auth_url,"code_challenge": challenge}, request=request)
+        registrar_log(payment_id, tipo_log="AUTH", request_body={"verifier": verifier,"challenge": challenge,"state": state}, extra_info="Inicio del flujo OAuth2 desde transferencia")
+        return render(request, 'api/GPT4/oauth2_authorize.html', {'auth_url': auth_url})
     except Exception as e:
+        registrar_log_oauth("inicio_autorizacion", "error", None, str(e),request=request)        
         registrar_log(tipo_log="ERROR", error=str(e), extra_info="Excepción en oauth2_authorize SIN_ID")
         messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
 
 
+def oauth2_authorize1(request):
+    try:
+        # if not request.session.get('oauth_active', False):
+        #     registrar_log_oauth("inicio_autorizacion", "fallo", {"razon": "oauth_inactivo"}, request=request)
+        #     messages.error(request, "El flujo OAuth2 no está activado.")
+        #     return redirect('dashboard')
+        verifier, challenge = generate_pkce_pair()
+        state = uuid.uuid4().hex
+        request.session.update({'pkce_verifier': verifier,'oauth_state': state,'oauth_in_progress': True,'oauth_start_time': time.time()})
+        auth_url = build_auth_url(state, challenge)
+        registrar_log_oauth("inicio_autorizacion", "exito", {"state": state,"auth_url": auth_url,"code_challenge": challenge},request=request)
+        return render(request, 'api/GPT4/oauth2_authorize.html', {'auth_url': auth_url})
+    except Exception as e:
+        registrar_log_oauth("inicio_autorizacion", "error", None, str(e),request=request)
+        messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
+        return redirect('dashboard')
 
 
-def oauth2_callback(request):
+
+def oauth2_callback1(request):
     try:
         if not request.session.get('oauth_in_progress', False):
             registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
             registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error="Flujo no iniciado", extra_info="oauth_in_progress ausente")
             messages.error(request, "No hay una autorización en curso.")
             return redirect('dashboard')
-
         request.session['oauth_in_progress'] = False
-
         error = request.GET.get('error')
         if error:
             desc = request.GET.get('error_description', '')
@@ -523,7 +517,6 @@ def oauth2_callback(request):
             registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error=error, extra_info=desc)
             messages.error(request, f"OAuth falló: {error} - {desc}")
             return render(request, 'api/GPT4/oauth2_callback.html')
-
         state = request.GET.get('state')
         expected = request.session.get('oauth_state')
         if state != expected:
@@ -531,50 +524,62 @@ def oauth2_callback(request):
             registrar_log("OAUTH-CALLBACK", tipo_log="AUTH", error="State mismatch", extra_info=f"State recibido: {state}, esperado: {expected}")
             messages.error(request, "Error de seguridad: state inválido")
             return render(request, 'api/GPT4/oauth2_callback.html')
-
         payment_id = request.session.get('current_payment_id')
         if not payment_id:
             registrar_log_oauth("callback", "fallo", {"razon": "sin_payment_id"}, request=request)
             registrar_log("OAUTH-CALLBACK", tipo_log="AUTH", error="Falta payment_id", extra_info="OAuth sin contexto de transferencia")
             messages.error(request, "No se puede aplicar autorización: no se asoció a ninguna transferencia.")
             return redirect('dashboard')
-
         code = request.GET.get('code')
         verifier = request.session.pop('pkce_verifier', None)
-
         registrar_log_oauth("callback", "procesando", {"code": code, "state": state}, request=request)
-
         access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
-
-        request.session.update({
-            'access_token': access_token,
-            'refresh_token': refresh_token,
-            'token_expires': time.time() + expires,
-            'oauth_success': True
-        })
-
-        registrar_log_oauth("obtencion_token", "exito", {
-            "expires_in": expires,
-            "scope": settings.OAUTH2['SCOPE']
-        }, request=request)
-
-        registrar_log(payment_id, tipo_log="AUTH", request_body={
-            "code": code,
-            "verifier": verifier,
-            "access_token": access_token,
-            "refresh_token": refresh_token,
-            "expires": expires
-        }, extra_info="Token OAuth2 recibido y vinculado correctamente")
-
+        request.session.update({'access_token': access_token,'refresh_token': refresh_token,'token_expires': time.time() + expires,'oauth_success': True})
+        registrar_log_oauth("obtencion_token", "exito", {"expires_in": expires,"scope": settings.OAUTH2['SCOPE']}, request=request)
+        registrar_log(payment_id, tipo_log="AUTH", request_body={"code": code,"verifier": verifier,"access_token": access_token,"refresh_token": refresh_token,"expires": expires}, extra_info="Token OAuth2 recibido y vinculado correctamente")
         messages.success(request, "Autorización completada para esta transferencia.")
         return render(request, 'api/GPT4/oauth2_callback.html')
-
     except Exception as e:
         registrar_log_oauth("callback", "error", None, str(e), request=request)
         registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error=str(e), extra_info="Excepción durante callback")
         request.session['oauth_success'] = False
         messages.error(request, f"Error en autorización: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html')
+
+
+def oauth2_callback(request):
+    try:
+        if not request.session.get('oauth_in_progress', False):
+            registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"},request=request)
+            messages.error(request, "No hay una autorización en progreso")
+            return redirect('dashboard')
+        request.session['oauth_in_progress'] = False
+        error = request.GET.get('error')
+        if error:
+            error_desc = request.GET.get('error_description', '')
+            registrar_log_oauth("callback", "fallo", {"error": error,"error_description": error_desc,"params": dict(request.GET)},request=request)
+            messages.error(request, f"Error en autorización: {error} - {error_desc}")
+            return render(request, 'api/GPT4/oauth2_callback.html')
+        state = request.GET.get('state')
+        session_state = request.session.get('oauth_state')
+        if state != session_state:
+            registrar_log_oauth("callback", "fallo", {"razon": "state_mismatch","state_recibido": state,"state_esperado": session_state},request=request)
+            messages.error(request, "Error de seguridad: State mismatch")
+            return render(request, 'api/GPT4/oauth2_callback.html')
+        code = request.GET.get('code')
+        verifier = request.session.pop('pkce_verifier', None)
+        registrar_log_oauth("callback", "procesando", {"code": code, "state": state},request=request)
+        access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+        request.session.update({'access_token': access_token,'refresh_token': refresh_token,'token_expires': time.time() + expires,'oauth_success': True})
+        registrar_log_oauth("obtencion_token", "exito", {"token_type": "Bearer","expires_in": expires,"scope": settings.OAUTH2['SCOPE']},request=request)
+        messages.success(request, "Autorización completada exitosamente!")
+        return render(request, 'api/GPT4/oauth2_callback.html')
+    except Exception as e:
+        registrar_log_oauth("callback", "error", None, str(e),request=request)
+        request.session['oauth_success'] = False
+        messages.error(request, f"Error en el proceso de autorización: {str(e)}")
+        return render(request, 'api/GPT4/oauth2_callback.html')
+
 
 
 def get_oauth_logs(request):
