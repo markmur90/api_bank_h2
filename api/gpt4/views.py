@@ -465,16 +465,11 @@ def oauth2_authorize(request):
     try:
         payment_id = request.GET.get('payment_id')
         if not payment_id:
-            registrar_log("SIN_ID", tipo_log="OAUTH", error="OAuth2 requiere un payment_id", extra_info="Falta payment_id en GET")
+            registrar_log(tipo_log="ERROR", error="OAuth2 requiere un payment_id", extra_info="Falta payment_id en GET SIN_ID")
             messages.error(request, "Debes iniciar autorización desde una transferencia específica.")
             return redirect('dashboard')
 
         transfer = get_object_or_404(Transfer, payment_id=payment_id)
-
-        if not request.session.get('oauth_active', False):
-            registrar_log(payment_id, tipo_log="OAUTH", error="OAuth inactivo", extra_info="Intento de autorización sin activar el switch")
-            messages.error(request, "OAuth2 no está activado. Actívalo en la barra de navegación.")
-            return redirect('transfer_detailGPT4', payment_id=payment_id)
 
         verifier, challenge = generate_pkce_pair()
         state = uuid.uuid4().hex
@@ -495,7 +490,7 @@ def oauth2_authorize(request):
             "code_challenge": challenge
         }, request=request)
 
-        registrar_log(payment_id, tipo_log="OAUTH", request_body={
+        registrar_log(payment_id, tipo_log="AUTH", request_body={
             "verifier": verifier,
             "challenge": challenge,
             "state": state
@@ -504,9 +499,10 @@ def oauth2_authorize(request):
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': auth_url})
 
     except Exception as e:
-        registrar_log("SIN_ID", tipo_log="OAUTH", error=str(e), extra_info="Excepción en oauth2_authorize")
+        registrar_log(tipo_log="ERROR", error=str(e), extra_info="Excepción en oauth2_authorize SIN_ID")
         messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
+
 
 
 
@@ -514,7 +510,7 @@ def oauth2_callback(request):
     try:
         if not request.session.get('oauth_in_progress', False):
             registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error="Flujo no iniciado", extra_info="oauth_in_progress ausente")
+            registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error="Flujo no iniciado", extra_info="oauth_in_progress ausente")
             messages.error(request, "No hay una autorización en curso.")
             return redirect('dashboard')
 
@@ -524,7 +520,7 @@ def oauth2_callback(request):
         if error:
             desc = request.GET.get('error_description', '')
             registrar_log_oauth("callback", "fallo", {"error": error, "desc": desc}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error=error, extra_info=desc)
+            registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error=error, extra_info=desc)
             messages.error(request, f"OAuth falló: {error} - {desc}")
             return render(request, 'api/GPT4/oauth2_callback.html')
 
@@ -532,14 +528,14 @@ def oauth2_callback(request):
         expected = request.session.get('oauth_state')
         if state != expected:
             registrar_log_oauth("callback", "fallo", {"razon": "state_mismatch", "recibido": state, "esperado": expected}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error="State mismatch", extra_info=f"State recibido: {state}, esperado: {expected}")
+            registrar_log("OAUTH-CALLBACK", tipo_log="AUTH", error="State mismatch", extra_info=f"State recibido: {state}, esperado: {expected}")
             messages.error(request, "Error de seguridad: state inválido")
             return render(request, 'api/GPT4/oauth2_callback.html')
 
         payment_id = request.session.get('current_payment_id')
         if not payment_id:
             registrar_log_oauth("callback", "fallo", {"razon": "sin_payment_id"}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error="Falta payment_id", extra_info="OAuth sin contexto de transferencia")
+            registrar_log("OAUTH-CALLBACK", tipo_log="AUTH", error="Falta payment_id", extra_info="OAuth sin contexto de transferencia")
             messages.error(request, "No se puede aplicar autorización: no se asoció a ninguna transferencia.")
             return redirect('dashboard')
 
@@ -562,7 +558,7 @@ def oauth2_callback(request):
             "scope": settings.OAUTH2['SCOPE']
         }, request=request)
 
-        registrar_log(payment_id, tipo_log="OAUTH", request_body={
+        registrar_log(payment_id, tipo_log="AUTH", request_body={
             "code": code,
             "verifier": verifier,
             "access_token": access_token,
@@ -575,7 +571,7 @@ def oauth2_callback(request):
 
     except Exception as e:
         registrar_log_oauth("callback", "error", None, str(e), request=request)
-        registrar_log("OAUTH-CALLBACK", tipo_log="OAUTH", error=str(e), extra_info="Excepción durante callback")
+        registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error=str(e), extra_info="Excepción durante callback")
         request.session['oauth_success'] = False
         messages.error(request, f"Error en autorización: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html')
