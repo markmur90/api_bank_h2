@@ -148,19 +148,22 @@ def create_transfer(request):
             transfer.payment_identification = payment_identification
             transfer.save()
 
-            carpeta = obtener_ruta_schema_transferencia(transfer.payment_id)
-            os.makedirs(carpeta, exist_ok=True)
-
+            registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia creada")
             generar_xml_pain001(transfer, transfer.payment_id)
+            registrar_log(transfer.payment_id, tipo_log='XML', extra_info="Archivo pain.001 generado")
+
             generar_archivo_aml(transfer, transfer.payment_id)
+            registrar_log(transfer.payment_id, tipo_log='AML', extra_info="Archivo AML generado")
 
             messages.success(request, "Transferencia creada y XML/AML generados correctamente.")
             return redirect('dashboard')
         else:
+            registrar_log("SIN_ID", tipo_log='ERROR', error="Formulario inválido en creación", extra_info="Errores en campos del TransferForm")
             messages.error(request, "Por favor corrige los errores en el formulario.")
     else:
         form = TransferForm()
     return render(request, 'api/GPT4/create_transfer.html', {'form': form, 'transfer': None})
+
 
 def list_transfers(request):
     estado = request.GET.get("estado")
@@ -168,64 +171,28 @@ def list_transfers(request):
 
     if estado in ["PNDG", "RJCT", "ACSP"]:
         transfers = transfers.filter(status=estado)
+        registrar_log("LISTA", tipo_log='TRANSFER', extra_info=f"Listado filtrado por estado: {estado}")
+    else:
+        registrar_log("LISTA", tipo_log='TRANSFER', extra_info="Listado completo de transferencias")
 
     paginator = Paginator(transfers, 10)
     page_number = request.GET.get('page', 1)
     try:
         transfers_paginated = paginator.page(page_number)
     except (EmptyPage, PageNotAnInteger):
+        registrar_log("LISTA", tipo_log='ERROR', error="Página inválida solicitada", extra_info=f"page={page_number}")
         transfers_paginated = paginator.page(1)
 
     return render(request, 'api/GPT4/list_transfer.html', {
         'transfers': transfers_paginated
     })
 
-def transfer_detail0(request, payment_id):
-    transfer = get_object_or_404(Transfer, payment_id=payment_id)
-    token = get_access_token(transfer.payment_id)
-    details = fetch_transfer_details(transfer, token)
-    
-    log_content = read_log_file(transfer.payment_id)
-    carpeta = obtener_ruta_schema_transferencia(transfer.payment_id)
-    archivos_logs = {
-        archivo: os.path.join(carpeta, archivo)
-        for archivo in os.listdir(carpeta)
-        if archivo.endswith(".log")
-    }
-    log_files_content = {}
-    mensaje_error = None
-    for nombre, ruta in archivos_logs.items():
-        if os.path.exists(ruta):
-            with open(ruta, 'r', encoding='utf-8') as f:
-                contenido = f.read()
-                log_files_content[nombre] = contenido
-                if "=== Error ===" in contenido:
-                    mensaje_error = contenido.split("=== Error ===")[-1].strip().split("===")[0].strip()
-    archivos = {
-        'pain001': os.path.join(carpeta, f"pain001_{transfer.payment_id}.xml") if os.path.exists(os.path.join(carpeta, f"pain001_{transfer.payment_id}.xml")) else None,
-        'aml': os.path.join(carpeta, f"aml_{transfer.payment_id}.xml") if os.path.exists(os.path.join(carpeta, f"aml_{transfer.payment_id}.xml")) else None,
-        'pain002': os.path.join(carpeta, f"pain002_{transfer.payment_id}.xml") if os.path.exists(os.path.join(carpeta, f"pain002_{transfer.payment_id}.xml")) else None,
-    }
-    errores_detectados = []
-    for contenido in log_files_content.values():
-        if "Error" in contenido or "Traceback" in contenido or "no válido según el XSD" in contenido:
-            errores_detectados.append(contenido)
-    
-    return render(request, "api/GPT4/transfer_detail.html", {
-        "transfer": transfer,
-        "details": details,
-        'log_files_content': log_files_content,
-        'log_content': log_content,
-        'archivos': archivos,
-        'errores_detectados': errores_detectados,
-        'mensaje_error': mensaje_error
-    })
 
 def transfer_detail(request, payment_id):
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
+    registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Vista de detalle accedida")
+
     log_content = read_log_file(transfer.payment_id)
-    
-    # Obtener logs de la base de datos
     logs_db = LogTransferencia.objects.filter(registro=transfer.payment_id).order_by('-created_at')
 
     logs_por_tipo = {
@@ -237,20 +204,19 @@ def transfer_detail(request, payment_id):
         'sca': logs_db.filter(tipo_log='SCA'),
         'otp': logs_db.filter(tipo_log='OTP'),
     }
-    
-    # Detectar si hay errores
+
     errores_detectados = logs_db.filter(tipo_log='ERROR')
     mensaje_error = errores_detectados.first().contenido if errores_detectados.exists() else None
-    
-    
+
     carpeta = obtener_ruta_schema_transferencia(transfer.payment_id)
     archivos_logs = {
         archivo: os.path.join(carpeta, archivo)
         for archivo in os.listdir(carpeta)
         if archivo.endswith(".log")
     }
+
     log_files_content = {}
-    mensaje_error = None
+    errores_detectados = []
     for nombre, ruta in archivos_logs.items():
         if os.path.exists(ruta):
             with open(ruta, 'r', encoding='utf-8') as f:
@@ -258,15 +224,19 @@ def transfer_detail(request, payment_id):
                 log_files_content[nombre] = contenido
                 if "=== Error ===" in contenido:
                     mensaje_error = contenido.split("=== Error ===")[-1].strip().split("===")[0].strip()
+        else:
+            registrar_log(transfer.payment_id, tipo_log='ERROR', error=f"Archivo log no encontrado: {nombre}")
+
     archivos = {
         'pain001': os.path.join(carpeta, f"pain001_{transfer.payment_id}.xml") if os.path.exists(os.path.join(carpeta, f"pain001_{transfer.payment_id}.xml")) else None,
         'aml': os.path.join(carpeta, f"aml_{transfer.payment_id}.xml") if os.path.exists(os.path.join(carpeta, f"aml_{transfer.payment_id}.xml")) else None,
         'pain002': os.path.join(carpeta, f"pain002_{transfer.payment_id}.xml") if os.path.exists(os.path.join(carpeta, f"pain002_{transfer.payment_id}.xml")) else None,
     }
-    errores_detectados = []
+
     for contenido in log_files_content.values():
         if "Error" in contenido or "Traceback" in contenido or "no válido según el XSD" in contenido:
             errores_detectados.append(contenido)
+
     return render(request, 'api/GPT4/transfer_detail.html', {
         'transfer': transfer,
         'log_files_content': log_files_content,
@@ -314,12 +284,14 @@ def send_transfer_view(request, payment_id):
                         challenge_id = crear_challenge_mtan(transfer, final_token, transfer.payment_id)
                         transfer.auth_id = challenge_id
                         transfer.save()
+                        registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"Challenge MTAN creado con ID {challenge_id}")
                         return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
                     elif method == 'PHOTOTAN':
                         challenge_id, img64 = crear_challenge_phototan(transfer, final_token, transfer.payment_id)
                         request.session['photo_tan_img'] = img64
                         transfer.auth_id = challenge_id
                         transfer.save()
+                        registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"Challenge PHOTOTAN creado con ID {challenge_id}")
                         return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
                     else:
                         otp = resolver_challenge_pushtan(crear_challenge_pushtan(transfer, final_token, transfer.payment_id), final_token, transfer.payment_id)
@@ -336,6 +308,7 @@ def send_transfer_view(request, payment_id):
 
             try:
                 send_transfer(transfer, final_token, otp)
+                registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia enviada correctamente")
                 request.session.pop('access_token', None)
                 request.session.pop('refresh_token', None)
                 request.session.pop('token_expires', None)
@@ -355,9 +328,7 @@ def send_transfer_view(request, payment_id):
 
     return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
 
-        
-            
-            
+
 def transfer_update_sca(request, payment_id):
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
     form = ScaForm(request.POST or None)
@@ -379,6 +350,7 @@ def transfer_update_sca(request, payment_id):
             return _render_transfer_detail(request, transfer, mensaje_error)
     return render(request, 'api/GPT4/transfer_sca.html', {'form': form, 'transfer': transfer})
 
+
 def _render_transfer_detail(request, transfer, mensaje_error=None, details=None):
     if mensaje_error:
         registrar_log(
@@ -387,6 +359,8 @@ def _render_transfer_detail(request, transfer, mensaje_error=None, details=None)
             error=mensaje_error,
             extra_info="Renderizando vista de detalle tras error"
         )
+    else:
+        registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Renderizando vista de detalle sin errores")
 
     log_content = read_log_file(transfer.payment_id)
     carpeta = obtener_ruta_schema_transferencia(transfer.payment_id)
@@ -433,16 +407,20 @@ def edit_transfer(request, payment_id):
         form = TransferForm(request.POST, instance=transfer)
         if form.is_valid():
             form.save()
+            registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia editada correctamente")
             messages.success(request, "Transferencia actualizada correctamente.")
             return redirect('transfer_detailGPT4', payment_id=payment_id)
         else:
+            registrar_log(transfer.payment_id, tipo_log='ERROR', error="Formulario de edición inválido", extra_info="Errores en campos")
             messages.error(request, "Por favor corrige los errores en el formulario.")
     else:
         form = TransferForm(instance=transfer)
+        registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Accediendo a vista de edición de transferencia")
     return render(request, 'api/GPT4/edit_transfer.html', {
         'form': form,
         'transfer': transfer
     })
+
 
 
 # ==== PDF ====
@@ -465,125 +443,122 @@ def oauth2_authorize(request):
     try:
         payment_id = request.GET.get('payment_id')
         if not payment_id:
-            registrar_log(tipo_log="ERROR", error="OAuth2 requiere un payment_id", extra_info="Falta payment_id en GET SIN_ID")
+            registrar_log_oauth("inicio_autorizacion", "error", {"error": "Falta payment_id"}, "OAuth2 requiere un payment_id", request=request)
+            registrar_log(registro="SIN_ID", tipo_log="ERROR", error="OAuth2 requiere un payment_id", extra_info="Falta payment_id en GET")
             messages.error(request, "Debes iniciar autorización desde una transferencia específica.")
             return redirect('dashboard')
+
         transfer = get_object_or_404(Transfer, payment_id=payment_id)
         verifier, challenge = generate_pkce_pair()
         state = uuid.uuid4().hex
-        request.session.update({'pkce_verifier': verifier,'oauth_state': state,'oauth_in_progress': True,'oauth_start_time': time.time(),'current_payment_id': payment_id})
+        request.session.update({
+            'pkce_verifier': verifier,
+            'oauth_state': state,
+            'oauth_in_progress': True,
+            'oauth_start_time': time.time(),
+            'current_payment_id': payment_id
+        })
+
         auth_url = build_auth_url(state, challenge)
-        registrar_log_oauth("inicio_autorizacion", "exito", {"state": state,"auth_url": auth_url,"code_challenge": challenge}, request=request)
-        registrar_log(payment_id, tipo_log="AUTH", request_body={"verifier": verifier,"challenge": challenge,"state": state}, extra_info="Inicio del flujo OAuth2 desde transferencia")
-        # return render(request, 'api/GPT4/oauth2_authorize.html', {'auth_url': auth_url})
+
+        registrar_log_oauth("inicio_autorizacion", "exito", {
+            "state": state,
+            "auth_url": auth_url,
+            "code_challenge": challenge
+        }, request=request)
+
+        registrar_log(payment_id, tipo_log="AUTH", request_body={
+            "verifier": verifier,
+            "challenge": challenge,
+            "state": state
+        }, extra_info="Inicio del flujo OAuth2 desde transferencia")
+
         return render(request, 'api/GPT4/oauth2_authorize.html', {
             'auth_url': auth_url,
             'payment_id': payment_id,
         })
 
     except Exception as e:
-        registrar_log_oauth("inicio_autorizacion", "error", None, str(e),request=request)        
-        registrar_log(tipo_log="ERROR", error=str(e), extra_info="Excepción en oauth2_authorize SIN_ID")
+        registrar_log_oauth("inicio_autorizacion", "error", None, str(e), request=request)
+        registrar_log(registro="SIN_ID", tipo_log="ERROR", error=str(e), extra_info="Excepción en oauth2_authorize")
         messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
 
 
-def oauth2_authorize1(request):
-    try:
-        # if not request.session.get('oauth_active', False):
-        #     registrar_log_oauth("inicio_autorizacion", "fallo", {"razon": "oauth_inactivo"}, request=request)
-        #     messages.error(request, "El flujo OAuth2 no está activado.")
-        #     return redirect('dashboard')
-        verifier, challenge = generate_pkce_pair()
-        state = uuid.uuid4().hex
-        request.session.update({'pkce_verifier': verifier,'oauth_state': state,'oauth_in_progress': True,'oauth_start_time': time.time()})
-        auth_url = build_auth_url(state, challenge)
-        registrar_log_oauth("inicio_autorizacion", "exito", {"state": state,"auth_url": auth_url,"code_challenge": challenge},request=request)
-        return render(request, 'api/GPT4/oauth2_authorize.html', {'auth_url': auth_url})
-    except Exception as e:
-        registrar_log_oauth("inicio_autorizacion", "error", None, str(e),request=request)
-        messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
-        return redirect('dashboard')
 
 
-
-def oauth2_callback1(request):
-    try:
-        if not request.session.get('oauth_in_progress', False):
-            registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error="Flujo no iniciado", extra_info="oauth_in_progress ausente")
-            messages.error(request, "No hay una autorización en curso.")
-            return redirect('dashboard')
-        request.session['oauth_in_progress'] = False
-        error = request.GET.get('error')
-        if error:
-            desc = request.GET.get('error_description', '')
-            registrar_log_oauth("callback", "fallo", {"error": error, "desc": desc}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error=error, extra_info=desc)
-            messages.error(request, f"OAuth falló: {error} - {desc}")
-            return render(request, 'api/GPT4/oauth2_callback.html')
-        state = request.GET.get('state')
-        expected = request.session.get('oauth_state')
-        if state != expected:
-            registrar_log_oauth("callback", "fallo", {"razon": "state_mismatch", "recibido": state, "esperado": expected}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="AUTH", error="State mismatch", extra_info=f"State recibido: {state}, esperado: {expected}")
-            messages.error(request, "Error de seguridad: state inválido")
-            return render(request, 'api/GPT4/oauth2_callback.html')
-        payment_id = request.session.get('current_payment_id')
-        if not payment_id:
-            registrar_log_oauth("callback", "fallo", {"razon": "sin_payment_id"}, request=request)
-            registrar_log("OAUTH-CALLBACK", tipo_log="AUTH", error="Falta payment_id", extra_info="OAuth sin contexto de transferencia")
-            messages.error(request, "No se puede aplicar autorización: no se asoció a ninguna transferencia.")
-            return redirect('dashboard')
-        code = request.GET.get('code')
-        verifier = request.session.pop('pkce_verifier', None)
-        registrar_log_oauth("callback", "procesando", {"code": code, "state": state}, request=request)
-        access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
-        request.session.update({'access_token': access_token,'refresh_token': refresh_token,'token_expires': time.time() + expires,'oauth_success': True})
-        registrar_log_oauth("obtencion_token", "exito", {"expires_in": expires,"scope": settings.OAUTH2['SCOPE']}, request=request)
-        registrar_log(payment_id, tipo_log="AUTH", request_body={"code": code,"verifier": verifier,"access_token": access_token,"refresh_token": refresh_token,"expires": expires}, extra_info="Token OAuth2 recibido y vinculado correctamente")
-        messages.success(request, "Autorización completada para esta transferencia.")
-        return render(request, 'api/GPT4/oauth2_callback.html')
-    except Exception as e:
-        registrar_log_oauth("callback", "error", None, str(e), request=request)
-        registrar_log("OAUTH-CALLBACK", tipo_log="ERROR", error=str(e), extra_info="Excepción durante callback")
-        request.session['oauth_success'] = False
-        messages.error(request, f"Error en autorización: {str(e)}")
-        return render(request, 'api/GPT4/oauth2_callback.html')
 
 
 def oauth2_callback(request):
     try:
         if not request.session.get('oauth_in_progress', False):
-            registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"},request=request)
+            registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
+            registrar_log("SIN_ID", tipo_log="ERROR", error="Flujo OAuth no iniciado", extra_info="callback sin sesión válida")
             messages.error(request, "No hay una autorización en progreso")
             return redirect('dashboard')
+
         request.session['oauth_in_progress'] = False
         error = request.GET.get('error')
+
         if error:
             error_desc = request.GET.get('error_description', '')
-            registrar_log_oauth("callback", "fallo", {"error": error,"error_description": error_desc,"params": dict(request.GET)},request=request)
+            registrar_log_oauth("callback", "fallo", {
+                "error": error,
+                "error_description": error_desc,
+                "params": dict(request.GET)
+            }, request=request)
+            registrar_log("SIN_ID", tipo_log="ERROR", error=f"{error} - {error_desc}", extra_info="Error en callback OAuth")
             messages.error(request, f"Error en autorización: {error} - {error_desc}")
             return render(request, 'api/GPT4/oauth2_callback.html')
+
         state = request.GET.get('state')
         session_state = request.session.get('oauth_state')
+
         if state != session_state:
-            registrar_log_oauth("callback", "fallo", {"razon": "state_mismatch","state_recibido": state,"state_esperado": session_state},request=request)
+            registrar_log_oauth("callback", "fallo", {
+                "razon": "state_mismatch",
+                "state_recibido": state,
+                "state_esperado": session_state
+            }, request=request)
+            registrar_log("SIN_ID", tipo_log="ERROR", error="State mismatch en OAuth callback", extra_info=f"Recibido: {state} / Esperado: {session_state}")
             messages.error(request, "Error de seguridad: State mismatch")
             return render(request, 'api/GPT4/oauth2_callback.html')
+
         code = request.GET.get('code')
         verifier = request.session.pop('pkce_verifier', None)
-        registrar_log_oauth("callback", "procesando", {"code": code, "state": state},request=request)
+
+        registrar_log_oauth("callback", "procesando", {
+            "code": code,
+            "state": state
+        }, request=request)
+
         access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
-        request.session.update({'access_token': access_token,'refresh_token': refresh_token,'token_expires': time.time() + expires,'oauth_success': True})
-        registrar_log_oauth("obtencion_token", "exito", {"token_type": "Bearer","expires_in": expires,"scope": settings.OAUTH2['SCOPE']},request=request)
+
+        request.session.update({
+            'access_token': access_token,
+            'refresh_token': refresh_token,
+            'token_expires': time.time() + expires,
+            'oauth_success': True
+        })
+
+        registrar_log_oauth("obtencion_token", "exito", {
+            "token_type": "Bearer",
+            "expires_in": expires,
+            "scope": settings.OAUTH2['SCOPE']
+        }, request=request)
+
+        registrar_log(request.session.get('current_payment_id', "SIN_ID"), tipo_log='AUTH', extra_info="Token OAuth2 almacenado en sesión exitosamente")
+
         messages.success(request, "Autorización completada exitosamente!")
         return render(request, 'api/GPT4/oauth2_callback.html')
+
     except Exception as e:
-        registrar_log_oauth("callback", "error", None, str(e),request=request)
+        registrar_log_oauth("callback", "error", None, str(e), request=request)
+        registrar_log("SIN_ID", tipo_log="ERROR", error=str(e), extra_info="Excepción en oauth2_callback")
         request.session['oauth_success'] = False
         messages.error(request, f"Error en el proceso de autorización: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html')
+
 
 
 
