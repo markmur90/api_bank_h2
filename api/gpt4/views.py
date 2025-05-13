@@ -190,7 +190,7 @@ def list_transfers(request):
 
 def transfer_detail(request, payment_id):
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
-    registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Vista de detalle accedida")
+    # registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Vista de detalle accedida")
 
     log_content = read_log_file(transfer.payment_id)
     logs_db = LogTransferencia.objects.filter(registro=transfer.payment_id).order_by('-created_at')
@@ -407,15 +407,15 @@ def edit_transfer(request, payment_id):
         form = TransferForm(request.POST, instance=transfer)
         if form.is_valid():
             form.save()
-            registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia editada correctamente")
+            # registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia editada correctamente")
             messages.success(request, "Transferencia actualizada correctamente.")
             return redirect('transfer_detailGPT4', payment_id=payment_id)
         else:
-            registrar_log(transfer.payment_id, tipo_log='ERROR', error="Formulario de edición inválido", extra_info="Errores en campos")
+            # registrar_log(transfer.payment_id, tipo_log='ERROR', error="Formulario de edición inválido", extra_info="Errores en campos")
             messages.error(request, "Por favor corrige los errores en el formulario.")
     else:
         form = TransferForm(instance=transfer)
-        registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Accediendo a vista de edición de transferencia")
+        # registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Accediendo a vista de edición de transferencia")
     return render(request, 'api/GPT4/edit_transfer.html', {
         'form': form,
         'transfer': transfer

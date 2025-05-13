@@ -228,5 +228,5 @@ import django_heroku
 django_heroku.settings(locals())
 
 
-PRIVATE_KEY_KID = '369306fd-9ca8-41d0-afe7-73353e935c5b'
+PRIVATE_KEY_KID = 'e0d161bc-0152-4bf1-9478-244476798500'
 PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
