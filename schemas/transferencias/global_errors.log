@@ -10,3 +10,11 @@
 [2025-05-13 01:35:43] ERROR [SIN_ID]: OAuth2 requiere un payment_id
 [2025-05-13 01:35:50] ERROR [SIN_ID]: OAuth2 requiere un payment_id
 [2025-05-13 01:38:22] ERROR [OAUTH-CALLBACK]: State mismatch
+[2025-05-13 12:39:25] ERROR [5vhi0dcpmdvcf2iy13r43giaadyo71vm]: registrar_log() missing 1 required positional argument: 'registro'
+[2025-05-13 12:52:11] ERROR [jqxnkmopol6lk1uz45s6d5wsdrk79zie]: registrar_log() missing 1 required positional argument: 'registro'
+[2025-05-13 12:52:41] ERROR [OAUTH-LOGS]: Flujo no iniciado
+[2025-05-13 12:57:47] ERROR [jqxnkmopol6lk1uz45s6d5wsdrk79zie]: registrar_log() missing 1 required positional argument: 'registro'
+[2025-05-13 12:57:52] ERROR [OAUTH-LOGS]: Flujo no iniciado
+[2025-05-13 13:01:15] ERROR [6cb2n0qgjtf5764ocqueowa5ma12tk47]: registrar_log() missing 1 required positional argument: 'registro'
+[2025-05-13 13:07:36] ERROR [xd8ndbq7riy32924ok6vhnedk85vexfz]: registrar_log() missing 1 required positional argument: 'registro'
+[2025-05-13 13:11:20] ERROR [43hifjuutvyedb24fqj1svqj39d7fqx4]: registrar_log() missing 1 required positional argument: 'registro'

@@ -169,33 +169,26 @@ CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjp
 ORIGIN = 'https://apibank2-d42d7ed0d036.herokuapp.com'
 TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
 OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
-# AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
-AUTH_URL = 'https://simulator-api.db.com/gw/oidc/authorize'
+AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
 API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
 AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
-REDIRECT_URI = 'https://apibank2-d42d7ed0d036.herokuapp.com'
+REDIRECT_URI = 'https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/'
 SCOPE = 'sepa_credit_transfers'
 
 ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
 
 OAUTH2 = {
-    # 'CLIENT_ID': os.environ.get("DB_CLIENT_ID"),
-    'CLIENT_SECRET': os.environ.get("DB_CLIENT_SECRET"),
+    'CLIENT_SECRET': 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ',
     'ORIGIN': 'https://apibank2-d42d7ed0d036.herokuapp.com',
     'OTP_URL':'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single',
-    # 'AUTH_URL': 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges',
+    'AUTH_URL': 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges',
     'API_URL': 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer',
-    # 'TOKEN_URL': 'https://simulator-api.db.com/gw/oidc/token',
-    'AUTHORIZE_URL': 'https://simulator-api.db.com/gw/oidc/authorize',
-    # 'REDIRECT_URI': 'https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback',
-    # 'SCOPE': 'sepa_credit_transfers',
+    'AUTHORIZE_URL': 'https://simulator-api.db.com:443/gw/oidc/authorize',
+    'REDIRECT_URI': 'https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/',
     'TIMEOUT': 3600,
-
     'CLIENT_ID': '766ae693-6297-47ea-b825-fd3d07dcf9b6',
-    'REDIRECT_URI': 'https://apibank2-d42d7ed0d036.herokuapp.com',
-    'SCOPE': 'sepa_credit_transfers openid offline_access',
-    'TOKEN_URL': 'https://simulator-api.db.com/gw/oidc/token',
-    'AUTH_URL': 'https://simulator-api.db.com/gw/oidc/authorize'
+    'SCOPE': 'sepa_credit_transfers',
+    'TOKEN_URL': 'https://simulator-api.db.com:443/gw/oidc/token',
 }
 
 

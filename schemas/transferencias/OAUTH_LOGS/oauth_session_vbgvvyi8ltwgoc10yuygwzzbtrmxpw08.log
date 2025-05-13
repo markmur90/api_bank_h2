@@ -1,0 +1,11 @@
+{
+  "timestamp": "2025-05-13 13:27:29",
+  "accion": "inicio_autorizacion",
+  "estado": "exito",
+  "metadata": {
+    "state": "uPmG5vR64vvuOvq7epUE4WYtI7wwS1d-JthQQuaNaVM",
+    "auth_url": "https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges?client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&response_type=code&redirect_uri=https%3A%2F%2Fapibank2-d42d7ed0d036.herokuapp.com%2Fapp%2Fgpt4%2Foauth2%2Fcallback%2F&code_challenge=vu1yZVdB-EnredwYmxRTHgxym8PzkMW5Ingb9aLtBMg&code_challenge_method=S256&scope=sepa_credit_transfers&state=uPmG5vR64vvuOvq7epUE4WYtI7wwS1d-JthQQuaNaVM&acr_values=urn%3Adbapi%3Apsd2%3Asca",
+    "code_challenge": "vu1yZVdB-EnredwYmxRTHgxym8PzkMW5Ingb9aLtBMg"
+  },
+  "error": null
+}
