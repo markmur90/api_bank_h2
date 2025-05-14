@@ -152,10 +152,10 @@ def create_transfer(request):
 
             registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia creada")
             generar_xml_pain001(transfer, transfer.payment_id)
-            registrar_log(transfer.payment_id, tipo_log='XML', extra_info="Archivo pain.001 generado")
+            # registrar_log(transfer.payment_id, tipo_log='XML', extra_info="Archivo pain.001 generado")
 
             generar_archivo_aml(transfer, transfer.payment_id)
-            registrar_log(transfer.payment_id, tipo_log='AML', extra_info="Archivo AML generado")
+            # registrar_log(transfer.payment_id, tipo_log='AML', extra_info="Archivo AML generado")
 
             messages.success(request, "Transferencia creada y XML/AML generados correctamente.")
             return redirect('dashboard')
@@ -660,7 +660,7 @@ def log_oauth_visual_inicio(request):
 
 
 
-def send_transfer_viewOriginal(request, payment_id):
+def send_transfer_view(request, payment_id):
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
     form = SendTransferForm(request.POST or None, instance=transfer)
     token = None
@@ -739,98 +739,6 @@ def send_transfer_viewOriginal(request, payment_id):
         except Exception as e:
             registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e), extra_info="Error inesperado en vista")
             messages.error(request, f"Error inesperado: {str(e)}")
-            return redirect('transfer_detailGPT4', payment_id=payment_id)
-
-    return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
-
-def send_transfer_view(request, payment_id):
-    transfer = get_object_or_404(Transfer, payment_id=payment_id)
-    form = SendTransferForm(request.POST or None, instance=transfer)
-    token = None
-
-    if request.session.get('oauth_success') and request.session.get('current_payment_id') == payment_id:
-        session_token = request.session.get('access_token')
-        expires = request.session.get('token_expires', 0)
-        if session_token and time.time() < expires - 60:
-            token = session_token
-
-    if request.method == "POST":
-        try:
-            if not form.is_valid():
-                registrar_log(transfer.payment_id, tipo_log='ERROR', error="Formulario inválido", extra_info="Errores en validación")
-                messages.error(request, "Formulario inválido. Revisa los campos.")
-                transfer.status = "ERRO"
-                transfer.save()
-                return redirect('transfer_detailGPT4', payment_id=payment_id)
-
-            manual_token = form.cleaned_data['manual_token']
-            final_token = manual_token or token
-
-            if not final_token:
-                registrar_log(transfer.payment_id, tipo_log='AUTH', error="Token no disponible", extra_info="OAuth no iniciado o token expirado")
-                request.session['return_to_send'] = True
-                return redirect(f"{reverse('oauth2_authorize')}?payment_id={payment_id}")
-
-            obtain_otp = form.cleaned_data['obtain_otp']
-            manual_otp = form.cleaned_data['manual_otp']
-            otp = None
-
-            try:
-                if obtain_otp:
-                    method = form.cleaned_data.get('otp_method')
-                    if method == 'MTAN':
-                        challenge_id = crear_challenge_mtan(transfer, final_token, transfer.payment_id)
-                        transfer.auth_id = challenge_id
-                        transfer.save()
-                        registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"Challenge MTAN creado con ID {challenge_id}")
-                        return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
-                    elif method == 'PHOTOTAN':
-                        challenge_id, img64 = crear_challenge_phototan(transfer, final_token, transfer.payment_id)
-                        request.session['photo_tan_img'] = img64
-                        transfer.auth_id = challenge_id
-                        transfer.save()
-                        registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"Challenge PHOTOTAN creado con ID {challenge_id}")
-                        return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
-                    else:
-                        otp = resolver_challenge_pushtan(crear_challenge_pushtan(transfer, final_token, transfer.payment_id), final_token, transfer.payment_id)
-                elif manual_otp:
-                    otp = manual_otp
-                else:
-                    registrar_log(transfer.payment_id, tipo_log='OTP', error="No se proporcionó OTP", extra_info="Ni automático ni manual")
-                    messages.error(request, "Debes obtener o proporcionar un OTP.")
-                    transfer.status = "ERRO"
-                    transfer.save()
-                    return redirect('transfer_detailGPT4', payment_id=payment_id)
-            except Exception as e:
-                registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e), extra_info="Error obteniendo OTP")
-                messages.error(request, str(e))
-                transfer.status = "ERRO"
-                transfer.save()
-                return redirect('transfer_detailGPT4', payment_id=payment_id)
-
-            try:
-                send_transfer(transfer, final_token, otp)
-                registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia enviada correctamente")
-                request.session.pop('access_token', None)
-                request.session.pop('refresh_token', None)
-                request.session.pop('token_expires', None)
-                request.session.pop('oauth_success', None)
-                request.session.pop('current_payment_id', None)
-                messages.success(request, "Transferencia enviada correctamente.")
-                return redirect('transfer_detailGPT4', payment_id=payment_id)
-
-            except Exception as e:
-                registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e), extra_info="Error enviando transferencia")
-                messages.error(request, str(e))
-                transfer.status = "ERRO"
-                transfer.save()
-                return redirect('transfer_detailGPT4', payment_id=payment_id)
-
-        except Exception as e:
-            registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e), extra_info="Error inesperado en vista")
-            messages.error(request, f"Error inesperado: {str(e)}")
-            transfer.status = "ERRO"
-            transfer.save()
             return redirect('transfer_detailGPT4', payment_id=payment_id)
 
     return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
