@@ -1,44 +1,100 @@
 {
-  "timestamp": "2025-05-14 01:38:44",
+  "timestamp": "2025-05-14 03:41:33",
   "accion": "inicio_autorizacion",
   "estado": "exito",
   "metadata": {
-    "state": "f1e069b346f54cf591b2ecc5c5dfe6a9",
-    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=f1e069b346f54cf591b2ecc5c5dfe6a9&code_challenge_method=S256&code_challenge=z5jcE5BnVDDmbKVOKfZJp8xhmx3wmtAXaeaTgNil0X0",
-    "code_challenge": "z5jcE5BnVDDmbKVOKfZJp8xhmx3wmtAXaeaTgNil0X0"
+    "state": "6734674ffd194b6bbb0b6163b7e318d6",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=6734674ffd194b6bbb0b6163b7e318d6&code_challenge_method=S256&code_challenge=7OqWZ2rbd_cAD6uTzOnQdnFZUctmZFHZqJ5LneH2il8",
+    "code_challenge": "7OqWZ2rbd_cAD6uTzOnQdnFZUctmZFHZqJ5LneH2il8"
   },
   "error": null
 }
 {
-  "timestamp": "2025-05-14 01:38:44",
+  "timestamp": "2025-05-14 03:41:33",
   "accion": "inicio_autorizacion",
   "estado": "exito",
   "metadata": {
-    "state": "f1e069b346f54cf591b2ecc5c5dfe6a9",
-    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=f1e069b346f54cf591b2ecc5c5dfe6a9&code_challenge_method=S256&code_challenge=z5jcE5BnVDDmbKVOKfZJp8xhmx3wmtAXaeaTgNil0X0",
-    "code_challenge": "z5jcE5BnVDDmbKVOKfZJp8xhmx3wmtAXaeaTgNil0X0"
+    "state": "6734674ffd194b6bbb0b6163b7e318d6",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=6734674ffd194b6bbb0b6163b7e318d6&code_challenge_method=S256&code_challenge=7OqWZ2rbd_cAD6uTzOnQdnFZUctmZFHZqJ5LneH2il8",
+    "code_challenge": "7OqWZ2rbd_cAD6uTzOnQdnFZUctmZFHZqJ5LneH2il8"
   },
   "error": null
 }
 {
-  "timestamp": "2025-05-14 01:39:31",
-  "accion": "inicio_autorizacion",
-  "estado": "exito",
+  "timestamp": "2025-05-14 03:41:33",
+  "accion": "AUTORIZACION_VISUAL_INICIADA",
+  "estado": "ok",
   "metadata": {
-    "state": "d4d6f0edc00e474e82b4b4202667ce54",
-    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=d4d6f0edc00e474e82b4b4202667ce54&code_challenge_method=S256&code_challenge=1hIgdfgTVq1Wx7El2rPrqpRbxH8_CnzgB0pK9_qr3Bo",
-    "code_challenge": "1hIgdfgTVq1Wx7El2rPrqpRbxH8_CnzgB0pK9_qr3Bo"
+    "payment_id": "d5170d79-6f5a-43c2-82fc-82eadadf65fb",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-14T01:41:33.807Z",
+    "timestamp_unix_ms": 1747186893807,
+    "session_id": "nnandeavijg3d5icoh56egtaqmli0iwi"
   },
   "error": null
 }
 {
-  "timestamp": "2025-05-14 01:39:31",
+  "timestamp": "2025-05-14 03:41:33",
+  "accion": "AUTORIZACION_VISUAL_INICIADA",
+  "estado": "ok",
+  "metadata": {
+    "payment_id": "d5170d79-6f5a-43c2-82fc-82eadadf65fb",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-14T01:41:33.807Z",
+    "timestamp_unix_ms": 1747186893807,
+    "session_id": "nnandeavijg3d5icoh56egtaqmli0iwi"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-05-14 03:42:32",
   "accion": "inicio_autorizacion",
   "estado": "exito",
   "metadata": {
-    "state": "d4d6f0edc00e474e82b4b4202667ce54",
-    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=d4d6f0edc00e474e82b4b4202667ce54&code_challenge_method=S256&code_challenge=1hIgdfgTVq1Wx7El2rPrqpRbxH8_CnzgB0pK9_qr3Bo",
-    "code_challenge": "1hIgdfgTVq1Wx7El2rPrqpRbxH8_CnzgB0pK9_qr3Bo"
+    "state": "00c7de818f5e4eafb23a967a4783cd0e",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=00c7de818f5e4eafb23a967a4783cd0e&code_challenge_method=S256&code_challenge=SRTUHxG8TCU5ak1id0C39vZhXRh6jNvkSDR0G94L8Pk",
+    "code_challenge": "SRTUHxG8TCU5ak1id0C39vZhXRh6jNvkSDR0G94L8Pk"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-05-14 03:42:32",
+  "accion": "inicio_autorizacion",
+  "estado": "exito",
+  "metadata": {
+    "state": "00c7de818f5e4eafb23a967a4783cd0e",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=00c7de818f5e4eafb23a967a4783cd0e&code_challenge_method=S256&code_challenge=SRTUHxG8TCU5ak1id0C39vZhXRh6jNvkSDR0G94L8Pk",
+    "code_challenge": "SRTUHxG8TCU5ak1id0C39vZhXRh6jNvkSDR0G94L8Pk"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-05-14 03:42:32",
+  "accion": "AUTORIZACION_VISUAL_INICIADA",
+  "estado": "ok",
+  "metadata": {
+    "payment_id": "d5170d79-6f5a-43c2-82fc-82eadadf65fb",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-14T01:42:32.862Z",
+    "timestamp_unix_ms": 1747186952862,
+    "session_id": "nnandeavijg3d5icoh56egtaqmli0iwi"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-05-14 03:42:32",
+  "accion": "AUTORIZACION_VISUAL_INICIADA",
+  "estado": "ok",
+  "metadata": {
+    "payment_id": "d5170d79-6f5a-43c2-82fc-82eadadf65fb",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-14T01:42:32.862Z",
+    "timestamp_unix_ms": 1747186952862,
+    "session_id": "nnandeavijg3d5icoh56egtaqmli0iwi"
   },
   "error": null
 }
