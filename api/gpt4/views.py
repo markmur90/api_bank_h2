@@ -9,8 +9,9 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import get_template
 from weasyprint import HTML
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_http_methods
 from django.urls import reverse
+from django.utils.timezone import now
 
 from api.gpt4.forms import ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm, DebtorAccountForm, DebtorForm, KidForm, ScaForm, SendTransferForm, TransferForm
 from api.gpt4.models import Creditor, CreditorAccount, CreditorAgent, Debtor, DebtorAccount, LogTransferencia, PaymentIdentification, Transfer
@@ -739,3 +740,38 @@ def send_transfer_view(request, payment_id):
             return redirect('transfer_detailGPT4', payment_id=payment_id)
 
     return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
+
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def handle_notification(request):
+    try:
+        payload = request.body.decode('utf-8')
+        content_type = request.META.get('CONTENT_TYPE', 'application/json')
+        headers = {k: v for k, v in request.META.items() if k.startswith('HTTP_')}
+        registro = request.GET.get('registro') or request.headers.get('X-Request-Id') or f"AUTOLOG-{now().timestamp()}"
+
+        registrar_log(
+            registro=registro,
+            tipo_log='NOTIFICACION',
+            headers_enviados=headers,
+            request_body=payload,
+            extra_info="Notificación automática recibida en webhook"
+        )
+
+        LogTransferencia.objects.create(
+            registro=registro,
+            tipo_log='NOTIFICACION',
+            contenido=payload
+        )
+
+        return JsonResponse({'status': 'ok', 'mensaje': 'Notificación registrada'})
+    except Exception as e:
+        registrar_log(
+            registro='NOTIF_ERROR',
+            tipo_log='ERROR',
+            error=str(e),
+            extra_info="Error procesando notificación entrante"
+        )
+        return JsonResponse({'status': 'error', 'mensaje': str(e)}, status=500)
