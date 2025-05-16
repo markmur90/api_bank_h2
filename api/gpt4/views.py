@@ -441,7 +441,7 @@ def descargar_pdf(request, payment_id):
 
 
 # ==== OAUTH2 ====
-def oauth2_authorize(request):
+def oauth2_authorizeA(request):
     try:
         payment_id = request.GET.get('payment_id')
         if not payment_id:
@@ -486,12 +486,7 @@ def oauth2_authorize(request):
         messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
 
-
-
-
-
-
-def oauth2_callback(request):
+def oauth2_callbackA(request):
     try:
         if not request.session.get('oauth_in_progress', False):
             registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
@@ -560,6 +555,33 @@ def oauth2_callback(request):
         request.session['oauth_success'] = False
         messages.error(request, f"Error en el proceso de autorización: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html')
+
+
+def oauth2_authorize(request):
+    verifier, challenge = generate_pkce_pair()
+    state = uuid.uuid4().hex
+    request.session['pkce_verifier'] = verifier
+    request.session['oauth_state'] = state
+    return redirect(build_auth_url(state, challenge))
+
+def oauth2_callback(request):
+    error = request.GET.get('error')
+    if error:
+        messages.error(request, f"OAuth Error: {error}")
+        return redirect('dashboard')
+    code = request.GET.get('code')
+    state = request.GET.get('state')
+    if state != request.session.get('oauth_state'):
+        messages.error(request, "State mismatch en OAuth2.")
+        return redirect('dashboard')
+    verifier = request.session.pop('pkce_verifier', None)
+    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+    request.session['access_token'] = access_token
+    request.session['refresh_token'] = refresh_token
+    request.session['token_expires'] = time.time() + expires
+    messages.success(request, "Autorización completada.")
+    return redirect('dashboard')
+
 
 
 
