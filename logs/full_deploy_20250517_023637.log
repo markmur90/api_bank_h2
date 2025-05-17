@@ -1,0 +1,57 @@
+
+🔍 Diagnóstico del sistema - sáb 17 may 2025 02:36:37 CEST
+🧠 RAM:
+               total       usado       libre  compartido   búf/caché  disponible
+Mem:           7,5Gi       5,6Gi       418Mi       590Mi       2,5Gi       1,9Gi
+Inter:          11Gi       9,5Mi        11Gi
+
+💾 Disco:
+S.ficheros     Tamaño Usados  Disp Uso% Montado en
+/dev/sda5        385G   156G  209G  43% /
+
+🧮 CPU:
+%Cpu(s): 13,3 us,  3,3 sy,  0,0 ni, 76,7 id,  6,7 wa,  0,0 hi,  0,0 si,  0,0 st 
+
+🌐 Red:
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host noprefixroute 
+    inet 192.168.0.129/24 brd 192.168.0.255 scope global dynamic noprefixroute wlan0
+    inet6 fe80::c2e4:34ff:fe95:bd5b/64 scope link noprefixroute 
+    inet 172.19.0.1/16 brd 172.19.255.255 scope global br-4507c00080cd
+    inet 172.20.0.1/16 brd 172.20.255.255 scope global br-8699c1768082
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+    inet 172.18.0.1/16 brd 172.18.255.255 scope global br-d87d2889ab5a
+    inet 10.2.0.2/32 scope global noprefixroute proton0
+    inet6 2a07:b944::2:2/128 scope global noprefixroute 
+    inet6 fe80::be6d:a885:c4ae:6374/64 scope link noprefixroute 
+    inet6 fdeb:446c:912d:8da::/64 scope global noprefixroute 
+    inet6 fe80::3dce:a7d3:e0c2:2a03/64 scope link noprefixroute 
+
+🔥 Procesos activos relevantes:
+root         950  0.0  0.4  41528 33520 ?        Ss   01:58   0:01 /usr/bin/python3 /usr/bin/supervisord -n -c /etc/supervisor/supervisord.conf
+markmur+    2146  0.2  2.0 1413504 161680 ?      Sl   02:00   0:04 /usr/bin/python3 /usr/bin/protonvpn-app
+markmur+    2221  0.0  0.7 530412 57668 ?        Sl   02:00   0:00 /usr/bin/python3 /usr/bin/blueman-applet
+markmur+    2343  0.0  0.5  66060 40688 ?        S    02:00   0:00 /usr/bin/python3 /usr/share/system-config-printer/applet.py
+markmur+    4764  0.0  0.2  33732 19924 ?        S    02:01   0:00 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/python3 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/gunicorn bank_ghost.wsgi:application --bind unix:/home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/ghost.sock --workers 3 --daemon
+markmur+    4765  0.0  0.5  56392 45896 ?        S    02:01   0:00 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/python3 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/gunicorn bank_ghost.wsgi:application --bind unix:/home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/ghost.sock --workers 3 --daemon
+markmur+    4766  0.0  0.5  56392 45996 ?        S    02:01   0:00 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/python3 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/gunicorn bank_ghost.wsgi:application --bind unix:/home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/ghost.sock --workers 3 --daemon
+markmur+    4767  0.0  0.5  56392 46092 ?        S    02:01   0:00 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/python3 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/gunicorn bank_ghost.wsgi:application --bind unix:/home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/ghost.sock --workers 3 --daemon
+markmur+    6058  0.0  0.2  33736 20364 ?        S    02:02   0:00 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/python3 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/gunicorn bank_ghost.wsgi:application --bind 127.0.0.1:8011 --workers 3 --daemon --pid /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/tmp/ghostcache/gunicorn.pid --error-logfile /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/logs/gunicorn_error.log
+markmur+    6061  0.0  0.5  56404 45800 ?        S    02:02   0:00 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/python3 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/gunicorn bank_ghost.wsgi:application --bind 127.0.0.1:8011 --workers 3 --daemon --pid /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/tmp/ghostcache/gunicorn.pid --error-logfile /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/logs/gunicorn_error.log
+markmur+    6062  0.0  0.5  56404 45896 ?        S    02:02   0:00 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/python3 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/gunicorn bank_ghost.wsgi:application --bind 127.0.0.1:8011 --workers 3 --daemon --pid /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/tmp/ghostcache/gunicorn.pid --error-logfile /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/logs/gunicorn_error.log
+markmur+    6063  0.0  0.5  56404 46044 ?        S    02:02   0:00 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/python3 /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/venv/bin/gunicorn bank_ghost.wsgi:application --bind 127.0.0.1:8011 --workers 3 --daemon --pid /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/tmp/ghostcache/gunicorn.pid --error-logfile /home/markmur88/Documentos/GitHub/zIncognito/bank_ghost/logs/gunicorn_error.log
+postgres    7735  0.0  0.3 219020 30136 ?        Ss   02:03   0:00 /usr/lib/postgresql/17/bin/postgres -D /var/lib/postgresql/17/main -c config_file=/etc/postgresql/17/main/postgresql.conf
+markmur+    7776  1.2  8.0 1223031200 628100 ?   Sl   02:03   0:24 /usr/share/code/code /home/markmur88/.vscode/extensions/ms-python.vscode-pylance-2025.4.1/dist/server.bundle.js --cancellationReceive=file:4097e0bb297f14cdb1665200d62bf88ce252264013 --node-ipc --clientProcessId=6785
+postgres    7796  0.0  0.3 219420 26388 ?        Ss   02:03   0:00 postgres: 17/main: checkpointer 
+postgres    7797  0.0  0.1 219160  8008 ?        Ss   02:03   0:00 postgres: 17/main: background writer 
+postgres    7832  0.0  0.1 219020 10460 ?        Ss   02:03   0:00 postgres: 17/main: walwriter 
+postgres    7833  0.0  0.1 220580  9140 ?        Ss   02:03   0:00 postgres: 17/main: autovacuum launcher 
+postgres    7834  0.0  0.1 220588  8320 ?        Ss   02:03   0:00 postgres: 17/main: logical replication launcher 
+markmur+    7852  0.3  3.3 1219567748 263792 ?   Sl   02:03   0:06 /usr/share/code/code /home/markmur88/.vscode/extensions/ms-python.vscode-pylance-2025.4.1/dist/server.bundle.js --cancellationReceive=file:e708d39af314cb41deb923f87efd61a700ee8c3151 --node-ipc --clientProcessId=6786
+markmur+   38262  0.8  0.4  40060 32084 ?        S    02:36   0:00 python3 /usr/bin/wsdd --no-host --discovery --listen /run/user/1000/gvfsd/wsdd
+
+✅ Fin diagnóstico
+
+[1;34m[INFO] 🛠️  BLOQUE: Actualización del sistema operativo[0m
+[1;34m[INFO] ➡️ Ejecutando: sudo apt-get update[0m
+sudo: a password is required
