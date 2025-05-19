@@ -1,10 +1,7 @@
 ✅ 2. Variables de entorno necesarias en Heroku
 
-Puedes configurarlas vía:
-
-heroku config:set NOMBRE=valor
-
 Aquí tienes lo esencial:
+heroku config:set NOMBRE=valor
 
 heroku config:set DJANGO_SECRET_KEY=clave_supersecreta_en_produccion
 heroku config:set DJANGO_DEBUG=False

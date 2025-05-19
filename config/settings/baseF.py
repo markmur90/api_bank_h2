@@ -145,8 +145,10 @@ API_URL = os.getenv("DB_API_URL", "")
 SCOPE = os.getenv("DB_SCOPE", "sepa_credit_transfers")
 
 # Claves privadas para client_assertion
-PRIVATE_KEY_PATH = os.getenv("PRIVATE_KEY_PATH", "keys/private_key.pem")
-PRIVATE_KEY_KID = os.getenv("PRIVATE_KEY_KID", "clave-demo")
+# PRIVATE_KEY_PATH = os.getenv("PRIVATE_KEY_PATH", "keys/private_key.pem")
+# PRIVATE_KEY_KID = os.getenv("PRIVATE_KEY_KID", "clave-demo")
+# PRIVATE_KEY_PATH = "schemas/keys/ecdsa_private_key.pem"
+# PRIVATE_KEY_KID = "clave-demo"
 
 # Timeout de requests (en segundos)
 TIMEOUT_REQUEST = int(os.getenv("TIMEOUT_REQUEST", 20))

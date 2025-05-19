@@ -18,7 +18,7 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         keys_dir = Path(get_project_path("schemas/keys"))
         logs_dir = Path(get_project_path("schemas/keys/logs"))
-        settings_path = Path(get_project_path("config/settings/base1.py"))
+        settings_path = Path(get_project_path("config/settings/baseF.py"))
         log_file = Path(get_project_path("schemas/keys/logs/clave_gen.log"))
         usuario_path = Path(get_project_path("schemas/keys/client_id.key"))
 

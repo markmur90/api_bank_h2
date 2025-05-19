@@ -25,3 +25,4 @@ django_heroku.settings(locals(), logging=False)
 
 # Desactiva colecta automática de estáticos en producción si no usas WhiteNoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
