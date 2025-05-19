@@ -1,0 +1,55 @@
+✅ 2. Variables de entorno necesarias en Heroku
+
+Puedes configurarlas vía:
+
+heroku config:set NOMBRE=valor
+
+Aquí tienes lo esencial:
+
+heroku config:set DJANGO_SECRET_KEY=clave_supersecreta_en_produccion
+heroku config:set DJANGO_DEBUG=False
+heroku config:set DJANGO_ALLOWED_HOSTS=*.herokuapp.com
+
+heroku config:set DB_CLIENT_ID=tu-client-id-heroku
+heroku config:set DB_CLIENT_SECRET=tu-client-secret-heroku
+heroku config:set DB_TOKEN_URL=https://simulator-api.db.com:443/gw/dbapi/token
+heroku config:set DB_AUTH_URL=https://simulator-api.db.com:443/gw/dbapi/authorize
+heroku config:set DB_API_URL=https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer
+heroku config:set DB_SCOPE=sepa_credit_transfers
+heroku config:set API_ORIGIN=https://simulator-api.db.com
+heroku config:set TIMEOUT_REQUEST=20
+
+heroku config:set PRIVATE_KEY_PATH=keys/private_key.pem
+heroku config:set PRIVATE_KEY_KID=clave-jwt-heroku
+
+heroku config:set OAUTH2_REDIRECT_URI=https://<TU_APP>.herokuapp.com/oauth2/callback/
+
+    Sustituye <TU_APP> por el nombre real de tu aplicación en Heroku.
+
+✅ 3. Configurar y desplegar tu app Django en Heroku
+A. Inicializar el repositorio (si no lo hiciste aún):
+
+git init
+heroku create nombre-heroku
+
+B. Agregar buildpacks (si usas WeasyPrint):
+
+heroku buildpacks:add --index 1 https://github.com/miketheman/heroku-buildpack-apt
+
+C. Push al deploy:
+
+git add .
+git commit -m "deploy inicial"
+git push heroku master
+
+D. Migraciones y superusuario (opcional)
+
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser
+
+✅ 4. Consideraciones especiales para Deutsche Bank en Heroku
+
+    ✅ Registra el redirect_uri como:
+    https://<TU_APP>.herokuapp.com/oauth2/callback/
+
+    ✅ Verifica que la clave privada (keys/private_key.pem) esté cargada. Usa git o mejor aún, almacénala en config vars y reconstrúyela en tiempo de arranque.

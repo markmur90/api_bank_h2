@@ -1,0 +1,16 @@
+# Crear la app
+heroku create apibank2-d42d7ed0d036
+
+# Añadir buildpack (opcional si usas WeasyPrint)
+heroku buildpacks:add --index 1 https://github.com/miketheman/heroku-buildpack-apt
+
+# Setear variables de entorno (ver paso 1)
+
+# Hacer push del proyecto
+git add .
+git commit -m "Primer deploy"
+git push heroku master
+
+# Migraciones y superusuario
+heroku run python manage.py migrate
+heroku run python manage.py createsuperuser  # solo si no usaste CREATE_SUPERUSER=true
