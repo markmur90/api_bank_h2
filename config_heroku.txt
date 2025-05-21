@@ -50,3 +50,37 @@ heroku run python manage.py createsuperuser
     https://<TU_APP>.herokuapp.com/oauth2/callback/
 
     ✅ Verifica que la clave privada (keys/private_key.pem) esté cargada. Usa git o mejor aún, almacénala en config vars y reconstrúyela en tiempo de arranque.
+
+
+
+
+
+
+🔧 CAMBIOS QUE SE APLICARÁN
+1. Centralización de configuración
+    Cargar automáticamente las variables sensibles y rutas desde config_master.py o el .env generado (source destinos.env).
+    Eliminar duplicados de valores como PROJECT_DIR, LOG_DIR, INTERFAZ, DB_NAME, DB_USER, DB_PASS, etc.
+
+2. Normalización de rutas y variables
+    Usar PROJECT_ROOT, LOG_FILE_SCRIPT, BACKUP_DIR, DB_NAME, TOR_PASS, etc. desde destinos.env.
+    Reemplazar rutas absolutas y credenciales inline.
+
+3. Uso uniforme de logs
+    Todos los scripts escribirán en el master_run_YYYYMMDD_HHMMSS.log, pero cada uno además puede registrar eventos claves en su propio sublog si corresponde (operation.log, cron.log, etc.).
+
+4. Modularización de helpers comunes
+    NO ....Extraer funciones como log_info, log_error, ejecutar, etc., a un script scripts/helpers.sh para ser reutilizado en todos.
+
+5. Protección y control de errores
+    Mejorar validaciones y detección de fallos (if [[ -z "$VAR" ]], command -v, etc.).
+
+6. Refuerzo de seguridad y portabilidad
+    Separar secretos en .env, evitar duplicar contraseñas PostgreSQL o claves Heroku/Njalla en scripts públicos.
+    Validar existencia de claves, dependencias y rutas antes de ejecutar.
+
+📦 ENTREGABLE FINAL
+
+    Todos los scripts refactorizados profesionalmente, sin valores hardcodeados.
+    Archivo destinos.env completo
+    Un esquema .env.example base seguro y comentado para usar como plantilla.
+    Un README.md de uso y despliegue rápido.

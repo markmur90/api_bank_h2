@@ -1,0 +1,70 @@
+# =====================================
+Trust Wallet:
+# =====================================
+USDT (TRC20)
+kind kiwi cause strike arrest legal price energy great warm rely common
+TBfeWqKSBvkQbvxTSxfMrXHe4n1gGmXPvR
+# =====================================
+
+
+
+# =====================================
+Monedero:
+# =====================================
+syncd.cache.018
+
+Red:
+Mainnet
+
+##_//Ptf8454Jd55\\_##
+
+carga líquido ceniza amigo iris pie puerta deporte melena afición batuta moneda piscina cráter apagar hormiga atroz ahogo bingo disco fábrica mito afirmar alivio carga
+
+4B7fF6GUcMt1JQhpZ7iVLkepvxFmQvXQs8TY7iGohk4f7yDDTZV1ezr5mpYHeoifkQWL7nynJt6dGh4CqHCv21D5K7om4bv
+# =====================================
+
+
+
+# =====================================
+Protonmail:
+# =====================================
+netghostx90@protonmail.com
+##_//Ptf8454Jd55\\_##
+# =====================================
+
+
+
+# =====================================
+server - Debian 12 (VPS 15)
+# =====================================
+Server name:
+FGM069DMT
+
+Reverse DNS Name (FQDN):
+504e1ebc.host.njalla.net
+
+Network
+IPs: 80.78.30.188
+2a0a:3840:8078:30::504e:1ebc:1337
+
+You can log in via ssh as root with the provided SSH key. 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELi49PO3V5HAtZUsmOAgMpvkj83C08cqehlt8azE628 vps_njalla_api
+# =====================================
+
+
+
+# =====================================
+dominain - coretransapi.com
+# =====================================
+DNS Settings
+
+Custom name servers:
+By enabling custom name servers, you are delegating the management of all records to those servers. You are responsible for the configuration of those name servers, we can not help with that.
+
+Whois
+Njalla does not publish any information about you in the WHOIS database unless you insist and enter your details here. In that case they will be added to the WHOIS database. Please note that you have to verify the email or your domain will be suspended. Providing wrong or invalid information can also lead to the suspension of your domain. 
+
+DNSSEC
+
+Glue records
+# =====================================

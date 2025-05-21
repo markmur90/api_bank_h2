@@ -1,0 +1,7 @@
+[2025-05-11 20:18:32 -0500] [32296] [INFO] Starting gunicorn 23.0.0
+[2025-05-11 20:18:32 -0500] [32296] [INFO] Listening at: https://0.0.0.0:8443 (32296)
+[2025-05-11 20:18:32 -0500] [32296] [INFO] Using worker: sync
+[2025-05-11 20:18:32 -0500] [32298] [INFO] Booting worker with pid: 32298
+[2025-05-11 20:26:07 -0500] [32296] [INFO] Handling signal: int
+[2025-05-12 03:26:07 +0200] [32298] [INFO] Worker exiting (pid: 32298)
+[2025-05-11 20:26:08 -0500] [32296] [INFO] Shutting down: Master

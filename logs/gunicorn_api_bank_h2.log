@@ -1,0 +1,6 @@
+/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/core/handlers/base.py:61: UserWarning: No directory at: /home/markmur88/Documentos/GitHub/api_bank_h2/staticfiles/
+  mw_instance = middleware(adapted_handler)
+/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/core/handlers/base.py:61: UserWarning: No directory at: /home/markmur88/Documentos/GitHub/api_bank_h2/staticfiles/
+  mw_instance = middleware(adapted_handler)
+/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/core/handlers/base.py:61: UserWarning: No directory at: /home/markmur88/Documentos/GitHub/api_bank_h2/staticfiles/
+  mw_instance = middleware(adapted_handler)

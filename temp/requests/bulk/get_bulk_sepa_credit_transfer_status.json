@@ -1,0 +1,8 @@
+{
+  "headers": {
+    "Correlation-Id": "abcd1234-5678-90ef-ghij-klmnopqrstuv"
+  },
+  "pathParameters": {
+    "paymentId": "232ed5b7-fc70-4c67-98bb-bf95b3300001"
+  }
+}
