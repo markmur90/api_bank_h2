@@ -1,6 +1,0 @@
-[2025-05-21 22:12:29 +0200] [379680] [INFO] Starting gunicorn 23.0.0
-[2025-05-21 22:12:29 +0200] [379680] [INFO] Listening at: unix:/home/markmur88/Documentos/GitHub/api_bank_h2/servers/gunicorn/api.sock (379680)
-[2025-05-21 22:12:29 +0200] [379680] [INFO] Using worker: sync
-[2025-05-21 22:12:29 +0200] [379682] [INFO] Booting worker with pid: 379682
-[2025-05-21 22:12:29 +0200] [379683] [INFO] Booting worker with pid: 379683
-[2025-05-21 22:12:29 +0200] [379684] [INFO] Booting worker with pid: 379684

@@ -171,42 +171,44 @@ confirmar() {
 #     echo ""
 # }
 
-# echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
+echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
 
-# if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
-#     echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
+if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
+    echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
 
-#     PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
-#     PROJECT_BASE_DIR="/home/markmur88/Documentos/GitHub"
-#     BACKUP_DIR="$PROJECT_BASE_DIR/backup"
+    bash /home/markmur88/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
+    
+    # PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+    # PROJECT_BASE_DIR="/home/markmur88/Documentos/GitHub"
+    # BACKUP_DIR="$PROJECT_BASE_DIR/backup"
 
-#     mkdir -p "$BACKUP_DIR"
+    # mkdir -p "$BACKUP_DIR"
 
-#     FECHA=$(date +%Y%m%d)
-#     CONTEO=$(ls "$BACKUP_DIR"/respaldo_"$FECHA"_*.zip 2>/dev/null | wc -l)
-#     NUM=$(printf "%03d" $((CONTEO + 1)))
-#     ZIP_PATH="$BACKUP_DIR/respaldo_${FECHA}_${NUM}.zip"
+    # FECHA=$(date +%Y%m%d)
+    # CONTEO=$(ls "$BACKUP_DIR"/respaldo_"$FECHA"_*.zip 2>/dev/null | wc -l)
+    # NUM=$(printf "%03d" $((CONTEO + 1)))
+    # ZIP_PATH="$BACKUP_DIR/respaldo_${FECHA}_${NUM}.zip"
 
-#     echo -e "\033[1;34m🔐 Asignando permisos de lectura a todos los archivos y ejecución a carpetas...\033[0m"
-#     find "$PROJECT_ROOT" -type f -exec chmod u+r {} +
-#     find "$PROJECT_ROOT" -type d -exec chmod u+rx {} +
+    # echo -e "\033[1;34m🔐 Asignando permisos de lectura a todos los archivos y ejecución a carpetas...\033[0m"
+    # find "$PROJECT_ROOT" -type f -exec chmod u+r {} +
+    # find "$PROJECT_ROOT" -type d -exec chmod u+rx {} +
 
-#     echo -e "\033[1;34m📦 Creando respaldo ZIP completo sin excluir ningún archivo...\033[0m"
-#     zip -r "$ZIP_PATH" "$PROJECT_ROOT" || echo -e "\033[0;31m❌ Error creando el ZIP en $ZIP_PATH\033[0m"
+    # echo -e "\033[1;34m📦 Creando respaldo ZIP completo sin excluir ningún archivo...\033[0m"
+    # zip -r "$ZIP_PATH" "$PROJECT_ROOT" || echo -e "\033[0;31m❌ Error creando el ZIP en $ZIP_PATH\033[0m"
 
-#     if [[ -f "$ZIP_PATH" ]]; then
-#         echo -e "\033[7;30m📦 ZIP creado: $ZIP_PATH.\033[0m"
-#     else
-#         echo -e "\033[0;31m❌ ZIP no fue creado.\033[0m"
-#     fi
+    # if [[ -f "$ZIP_PATH" ]]; then
+    #     echo -e "\033[7;30m📦 ZIP creado: $ZIP_PATH.\033[0m"
+    # else
+    #     echo -e "\033[0;31m❌ ZIP no fue creado.\033[0m"
+    # fi
 
-#     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-#     echo ""
-# fi
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+fi
 
 
-# echo ""
-# sleep 3
+echo ""
+sleep 3
 
 
 
@@ -510,8 +512,12 @@ EXCLUDES=(
     "--exclude=*.zip"
     "--exclude=*local.py"
     "--exclude=temp/"
-    "--exclude=servers/"
+    "--exclude=gunicorn/"
+    "--exclude=tor/"
+    "--exclude=supervisor/"
+    "--exclude=nginx/"
     "--exclude=*.log"
+    "--exclude=*.key"
 )
 actualizar_django_env() {
     local destino="$1"

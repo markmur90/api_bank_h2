@@ -20,14 +20,18 @@ log_ok()    { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE"; }
 log_error() { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE"; }
 
 EXCLUDES=(
-    --exclude=".gitattributes"
-    --exclude=".git/"
-    --exclude="*.db"
-    --exclude="*.sqlite3"
-    --exclude="*.zip"
-    --exclude="servers/"
-    --exclude="config/settings/__init__.py"
-
+    "--exclude=.gitattributes"
+    "--exclude=.git/"
+    "--exclude=*.db"
+    "--exclude=*.sqlite3"
+    "--exclude=*.zip"
+    "--exclude=*local.py"
+    "--exclude=temp/"
+    "--exclude=*gunicorn/"
+    "--exclude=*tor/"
+    "--exclude=*supervisor/"
+    "--exclude=*nginx/"
+    "--exclude=*.log"
 )
 
 actualizar_django_env() {
