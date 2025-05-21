@@ -27,11 +27,14 @@ EXCLUDES=(
     "--exclude=*.zip"
     "--exclude=*local.py"
     "--exclude=temp/"
-    "--exclude=*gunicorn/"
-    "--exclude=*tor/"
-    "--exclude=*supervisor/"
-    "--exclude=*nginx/"
     "--exclude=*.log"
+    "--exclude=*.key"
+    "--exclude=*.service"
+    "--exclude=*.conf"
+    "--exclude=*torrc"
+    "--exclude=*.crt"
+    "--exclude=*.key"
+    "--exclude=*.sock"
 )
 
 actualizar_django_env() {

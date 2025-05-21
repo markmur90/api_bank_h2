@@ -445,7 +445,11 @@ if confirmar "Ejecutar migraciones"; then
     python manage.py migrate
     echo "⏳ Migraciones a la base de datos completa."
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo ""
+    echo ""    
+    echo "⏳ Aplicando Collectstatic..."
+    python manage.py collectstatic --noinput
+    echo "⏳ Migraciones a la base de datos completa."
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 fi
 
 
@@ -512,12 +516,14 @@ EXCLUDES=(
     "--exclude=*.zip"
     "--exclude=*local.py"
     "--exclude=temp/"
-    "--exclude=gunicorn/"
-    "--exclude=tor/"
-    "--exclude=supervisor/"
-    "--exclude=nginx/"
     "--exclude=*.log"
     "--exclude=*.key"
+    "--exclude=*.service"
+    "--exclude=*.conf"
+    "--exclude=*torrc"
+    "--exclude=*.crt"
+    "--exclude=*.key"
+    "--exclude=*.sock"
 )
 actualizar_django_env() {
     local destino="$1"
@@ -593,7 +599,7 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     # Crear carpeta keys/ si no existe
     mkdir -p keys
     # Ruta esperada del archivo
-    PEM_PATH="keys/private_key.pem"
+    PEM_PATH="/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
     # Verificar existencia de la clave privada
     if [[ ! -f "$PEM_PATH" ]]; then
         echo -e "\033[7;33m⚠️  Clave privada no encontrada. Generando clave ECDSA P-256...\033[0m"
