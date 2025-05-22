@@ -1,0 +1,3 @@
+# Requisitos para Ghost Recon Ultimate
+requests==2.31.0
+playwright==1.44.0

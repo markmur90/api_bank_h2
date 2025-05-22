@@ -1,0 +1,10 @@
+4. Generación de checklist para revisar scripts
+    Cargue .env correctamente.
+    Active el entorno virtual desde $VENV_DIR.
+    Loguee en $LOG_DIR/master_run.log.
+    Use funciones log_info, log_ok, log_error.
+    Ejecute con set -euo pipefail.
+    Use rutas variables desde .env y no hardcodeadas.
+    Verifique que comandos críticos se ejecuten y manejen errores.
+    Para scripts de SSH/rsync, que usen clave privada y opciones seguras.
+    Para scripts de backup, que comprueben existencia de archivos y cifrado.

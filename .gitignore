@@ -1,0 +1,78 @@
+# 🔒 Seguridad: claves y certificados
+*.pem
+*.key
+*.crt
+*.csr
+*.p12
+*.jks
+*.pfx
+
+# 🔒 SSL, certificados, Tor, DB privados
+**/ssl/
+**/certs/
+**/schemas/keys/
+**/torrc
+*.conf
+*.service
+
+# 🔐 Variables de entorno
+.env
+.env.*
+!.env.example
+
+# 💽 Bases de datos locales
+*.db
+*.sqlite3
+
+# 🗃️ Backups y archivos comprimidos
+*.zip
+*.gz
+*.tar
+*.bak
+
+# 📝 Logs
+*.log
+logs/
+**/logs/
+**/*.log
+
+# 📸 Capturas o pruebas
+captures/
+screenshots/
+*.png
+*.jpg
+
+# 🐍 Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# 📁 Django
+staticfiles/
+media/
+db.sqlite3
+
+# 🧪 Test output
+htmlcov/
+.coverage
+.cache
+*.cover
+*.mo
+
+# 🛠️ VSCode/IDE/editor config
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# 🧼 Others
+*.sock
+*.pid
+.DS_Store
+*.swp
+*.swo
+*.tmp
+
+# ❗ Permitir ejemplos
+!*.example
