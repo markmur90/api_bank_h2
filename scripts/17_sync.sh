@@ -77,7 +77,6 @@ actualizar_django_env() {
 log_info "🔁 Iniciando sincronización multi-entorno..."
 
 DIR_PRODUCTION="$HOME/Documentos/GitHub/servers/production"
-DIR_HEROKU="$HOME/Documentos/GitHub/servers/heroku"
 DIR_API_BANK_HEROKU="$HOME/Documentos/GitHub/api_bank_heroku"
 DIR_LOCAL="$HOME/Documentos/GitHub/servers/local"
 

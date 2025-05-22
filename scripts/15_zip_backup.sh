@@ -3,7 +3,7 @@ set -euo pipefail
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2_H"
+PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2"
 PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
 BACKUP_DIR="$PROJECT_BASE_DIR/backup"
 LOG_DIR="$PROJECT_DIR/logs"

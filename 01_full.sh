@@ -18,7 +18,7 @@ fi
 COMENTARIO_COMMIT=""
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2_H           ║
+# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2           ║
 # ║  Automatización total: setup, backups, deploy, limpieza y seguridad       ║
 # ║  Soporte para 30 combinaciones de despliegue con alias `d_*`              ║
 # ║  Ejecuta `deploy_menu` para selección interactiva con FZF                 ║
@@ -27,13 +27,13 @@ COMENTARIO_COMMIT=""
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
 # === VARIABLES DE PROYECTO ===
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2_H"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 HEROKU_ROOT2="$HOME/Documentos/GitHub/coretransapi"
 VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
 INTERFAZ="wlan0"
 LOGS_DIR="$PROJECT_ROOT/logs"
-LOG_FILE_SCRIPT="$LOGS_DIR/full_deploy_$(date +%Y%m%d_%H%M%S).log"
+LOG_FILE_SCRIPT="$LOGS_DIR/full_deploy.log"
 
 # === FLAGS DE CONTROL DE BLOQUES ===
 PROMPT_MODE=true
@@ -93,7 +93,7 @@ ejecutar() {
 
 usage() {
     echo -e ""
-    echo -e "\033[7;34m                                ➤ SCRIPT MAESTRO DE DESPLIEGUE: api_bank_h2_H\033[0m"
+    echo -e "\033[7;34m                                ➤ SCRIPT MAESTRO DE DESPLIEGUE: api_bank_h2\033[0m"
     echo -e "\033[1;37mUso:\033[0m ./01_full.sh [opciones]"
     echo -e ""
 
@@ -302,9 +302,9 @@ sleep 3
 echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
 if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
     echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
-    bash $HOME/Documentos/GitHub/api_bank_h2_H/scripts/15_zip_backup.sh
+    bash $HOME/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
     
-    # PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2_H"
+    # PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
     # PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
     # BACKUP_DIR="$PROJECT_BASE_DIR/backup"
     # mkdir -p "$BACKUP_DIR"
@@ -710,7 +710,7 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     # Crear carpeta keys/ si no existe
     mkdir -p keys
     # Ruta esperada del archivo
-    PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2_H/schemas/keys/ecdsa_private_key.pem"
+    PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
     # Verificar existencia de la clave privada
     if [[ ! -f "$PEM_PATH" ]]; then
         echo -e "\033[7;33m⚠️  Clave privada no encontrada. Generando clave ECDSA P-256...\033[0m"
@@ -745,12 +745,6 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     git add --all
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
-    echo -e "\033[7;30mPor favor, ingrese el comentario del commit:\033[0m"
-    read -p "✏️  Comentario: " COMENTARIO_COMMIT
-    if [[ -z "$COMENTARIO_COMMIT" ]]; then
-        echo -e "\033[7;31m❌ No se puede continuar sin un comentario de commit.\033[0m"
-        exit 1
-    fi
     echo -e "\033[7;30mHaciendo commit con el mensaje: \"$COMENTARIO_COMMIT\"...\033[0m"
     git commit -m "$COMENTARIO_COMMIT"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -917,7 +911,7 @@ sleep 3
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"
-notify-send "api_bank_h2_H" "✅ Proyecto iniciado correctamente en:
+notify-send "api_bank_h2" "✅ Proyecto iniciado correctamente en:
 $URL
 $URL_HEROKU
 🏁 ¡Todo completado con éxito!

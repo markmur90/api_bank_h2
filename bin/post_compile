@@ -1,8 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
-LOG_DIR="$HOME/logs"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$(realpath "$SCRIPT_DIR/..")"
+
+LOG_DIR="$PROJECT_DIR/logs"
 LOG_FILE="$LOG_DIR/post_compile.log"
-DESTINO="$HOME/schemas/keys/ecdsa_private_key.pem"
+DESTINO="$PROJECT_DIR/schemas/keys/ecdsa_private_key.pem"
 
 mkdir -p "$(dirname "$DESTINO")"
 mkdir -p "$LOG_DIR"
@@ -11,7 +14,7 @@ echo "🔐 Restaurando clave privada desde PRIVATE_KEY_B64..." | tee -a "$LOG_FI
 
 STATUS="OK"
 
-if [ -n "$PRIVATE_KEY_B64" ]; then
+if [ -n "${PRIVATE_KEY_B64:-}" ]; then
     echo "$PRIVATE_KEY_B64" | base64 -d > "$DESTINO" 2>>"$LOG_FILE"
     if [ $? -eq 0 ]; then
         chmod 600 "$DESTINO"
@@ -28,11 +31,10 @@ if [ -n "$PRIVATE_KEY_B64" ]; then
         STATUS="DECODE_ERROR"
     fi
 else
-    echo "⚠️ PRIVATE_KEY_B64 no está definido. Clave no restaurada." | tee -a "$LOG_FILE"key pe
+    echo "⚠️ PRIVATE_KEY_B64 no está definido. Clave no restaurada." | tee -a "$LOG_FILE"
     STATUS="UNDEFINED"
 fi
 
-# 🔍 Resultado final resumen
 echo ""
 case "$STATUS" in
     "OK")
@@ -48,5 +50,3 @@ case "$STATUS" in
         echo "🔒 Resultado post_compile: ⚠️ VARIABLE PRIVATE_KEY_B64 NO DEFINIDA" | tee -a "$LOG_FILE"
         ;;
 esac
-
-echo ""

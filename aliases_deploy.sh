@@ -1,5 +1,5 @@
 # ╔═════════════════════════════════════════════════════════════╗
-# ║     ALIAS RESUMIDOS + MENÚ TUI PARA api_bank_h2_H          ║
+# ║     ALIAS RESUMIDOS + MENÚ TUI PARA api_bank_h2          ║
 # ║  Ejecutar despliegues automatizados y personalizados        ║
 # ║  Usa `deploy_menu` para elegir visualmente con FZF         ║
 # ║  Usa `d_help` para ver ejemplos detallados con flags       ║
@@ -39,7 +39,7 @@ alias d_baremetal="./01_full.sh -a -Z -C -U -V"
 alias d_rebuild="./01_full.sh -a -Q -I -U -V"
 alias d_trimmed="./01_full.sh -a -L -U -V -w"
 alias d_noufw="./01_full.sh -a -x"
-alias d_help='sed -n "/EJEMPLOS COMBINADOS/,/FIN: EJEMPLOS COMBINADOS/p" ~/Documentos/GitHub/api_bank_h2_H/01_full.sh | less -R'
+alias d_help='sed -n "/EJEMPLOS COMBINADOS/,/FIN: EJEMPLOS COMBINADOS/p" ~/Documentos/GitHub/api_bank_h2/01_full.sh | less -R'
 
 deploy_menu() {
     local options=(
