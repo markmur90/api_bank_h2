@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
 PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 HEROKU_ROOT2="$HOME/Documentos/GitHub/coretransapi"
@@ -8,17 +7,13 @@ VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
 INTERFAZ="wlan0"
 
 
-
-
 PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 LOGS_DIR="$PROJECT_ROOT/logs"
 LOG_FILE_SCRIPT="$LOGS_DIR/full_deploy_$(date +%Y%m%d_%H%M%S).log"
-
 # === FUNCIONES UTILITARIAS ===
 log_info()    { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
 log_ok()      { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
 log_error()   { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
-
 check_status() {
     local status=$?
     if [ $status -ne 0 ]; then
@@ -28,13 +23,11 @@ check_status() {
         log_ok "Éxito: $1"
     fi
 }
-
 ejecutar() {
     log_info "➡️ Ejecutando: $*"
     "$@" >> "$LOG_FILE_SCRIPT" 2>&1
     check_status "$*"
 }
-
 diagnostico_entorno() {
     echo -e "\n\033[1;35m🔍 Diagnóstico del Sistema:\033[0m"
     echo "🧠 Memoria RAM:"
@@ -53,10 +46,8 @@ diagnostico_entorno() {
     ps aux | grep -E 'python|postgres|gunicorn' | grep -v grep
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m\n"
 }
-
 # === LLAMAR AL DIAGNÓSTICO TEMPRANO ===
 diagnostico_entorno
-
 PROMPT_MODE=true
 OMIT_SYNC_REMOTE_DB=false
 OMIT_HEROKU=false
@@ -71,14 +62,10 @@ OMIT_LOAD_LOCAL=false
 OMIT_LOAD_WEB=false
 OMIT_USER=false
 
-
-
 DB_NAME="mydatabase"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
 DB_HOST="localhost"
-
-
 
 # === OPCIONES DISPONIBLES PARA ./01_full.sh ===
 # -a  --all                Ejecuta todo sin confirmaciones interactivas
@@ -95,7 +82,6 @@ DB_HOST="localhost"
 # -w  --omit-load-web      Omite carga de respaldo web
 # -M  --omit-mac           Omite comandos específicos para macOS
 # -C  --omit-clean         Omite limpieza de archivos temporales
-
 # === COMBINACIONES RECOMENDADAS ===
 # ./01_full.sh -a                           # Todo automático
 # ./01_full.sh -a -W -L -Z                  # Todo excepto respaldos
@@ -107,9 +93,7 @@ DB_HOST="localhost"
 # ./01_full.sh -a -H -C -G -W -Z -U         # Desarrollo local sin limpieza ni despliegue
 # ./01_full.sh -a -L -l -W -U               # Solo pruebas sin tocar backups ni usuarios:
 
-
 # mkdir -p "$BACKUP_DIR"
-
 function usage() {
     echo "Uso: $0 [opciones]"
     echo
@@ -131,7 +115,6 @@ function usage() {
     echo "  -h, --help                  Mostrar esta ayuda y salir"
     echo
 }
-
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -a|--all) PROMPT_MODE=false; shift ;;
@@ -152,7 +135,6 @@ while [[ $# -gt 0 ]]; do
         *) echo "Opción desconocida: $1"; usage; exit 1 ;;
     esac
 done
-
 confirmar() {
     [[ "$PROMPT_MODE" == false ]] && return 0
     echo
@@ -161,7 +143,6 @@ confirmar() {
     [[ "$resp" =~ ^[sS]$ || -z "$resp" ]]
     echo ""
 }
-
 # confirmar() {
 #     [[ "$PROMPT_MODE" == false ]] && return 0
 #     echo
@@ -171,105 +152,70 @@ confirmar() {
 #     echo ""
 # }
 
-echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
-
-if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
-    echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
-
-    bash /home/markmur88/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
-    
-    # PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
-    # PROJECT_BASE_DIR="/home/markmur88/Documentos/GitHub"
-    # BACKUP_DIR="$PROJECT_BASE_DIR/backup"
-
-    # mkdir -p "$BACKUP_DIR"
-
-    # FECHA=$(date +%Y%m%d)
-    # CONTEO=$(ls "$BACKUP_DIR"/respaldo_"$FECHA"_*.zip 2>/dev/null | wc -l)
-    # NUM=$(printf "%03d" $((CONTEO + 1)))
-    # ZIP_PATH="$BACKUP_DIR/respaldo_${FECHA}_${NUM}.zip"
-
-    # echo -e "\033[1;34m🔐 Asignando permisos de lectura a todos los archivos y ejecución a carpetas...\033[0m"
-    # find "$PROJECT_ROOT" -type f -exec chmod u+r {} +
-    # find "$PROJECT_ROOT" -type d -exec chmod u+rx {} +
-
-    # echo -e "\033[1;34m📦 Creando respaldo ZIP completo sin excluir ningún archivo...\033[0m"
-    # zip -r "$ZIP_PATH" "$PROJECT_ROOT" || echo -e "\033[0;31m❌ Error creando el ZIP en $ZIP_PATH\033[0m"
-
-    # if [[ -f "$ZIP_PATH" ]]; then
-    #     echo -e "\033[7;30m📦 ZIP creado: $ZIP_PATH.\033[0m"
-    # else
-    #     echo -e "\033[0;31m❌ ZIP no fue creado.\033[0m"
-    # fi
-
-    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo ""
-fi
-
-
-echo ""
-echo ""
-echo ""
-sleep 3
-
-
-
-# echo -e "\033[7;33m----------------------------------------------PUERTOS----------------------------------------------\033[0m"
-# if confirmar "Detener puertos abiertos"; then
-#     PUERTOS_OCUPADOS=0
-#     for PUERTO in 2222 8000 5000 8001 35729; do
-#         if lsof -i tcp:"$PUERTO" &>/dev/null; then
-#             PUERTOS_OCUPADOS=$((PUERTOS_OCUPADOS + 1))
-#             if confirmar "Cerrar procesos en puerto $PUERTO"; then
-#                 sudo fuser -k "${PUERTO}"/tcp || true
-#                 echo -e "\033[7;30m✅ Puerto $PUERTO liberado.\033[0m"
-#                 echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-#                 echo ""
-#             fi
-#         fi
-#     done
-#     if [ "$PUERTOS_OCUPADOS" -eq 0 ]; then
-#         echo -e "\033[7;31m🚫 No se encontraron procesos en los puertos definidos.\033[0m"
-#         echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-#         echo ""
-#     fi
-# fi
-
-
-# echo ""
-# sleep 3
-# # clear
-
-
-
-# echo -e "\033[7;33m--------------------------------------------CONTENEDORES-------------------------------------------\033[0m"
-# if confirmar "Detener contenedores Docker"; then
-#     PIDS=$(docker ps -q)
-#     if [ -n "$PIDS" ]; then
-#         docker stop $PIDS
-#         echo -e "\033[7;30m🐳 Contenedores detenidos.\033[0m"
-#         echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-#         echo ""
-#     else
-#         echo -e "\033[7;30m🐳 No hay contenedores.\033[0m"
-#         echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-#         echo ""
-#     fi
-# fi
-
-
-# echo ""
-# sleep 3
-# # clear
-
-
-
 echo -e "\033[7;33m----------------------------------------------SISTEMA----------------------------------------------\033[0m"
 if confirmar "Actualizar sistema"; then
     sudo apt-get update && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y && sudo apt-get clean
     echo -e "\033[7;30m🔄 Sistema actualizado.\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
+fi
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
+
+echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
+if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
+    echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
+    bash $HOME/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
+    
+    # PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+    # PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
+    # BACKUP_DIR="$PROJECT_BASE_DIR/backup"
+    # mkdir -p "$BACKUP_DIR"
+    # FECHA=$(date +%Y%m%d)
+    # CONTEO=$(ls "$BACKUP_DIR"/respaldo_"$FECHA"_*.zip 2>/dev/null | wc -l)
+    # NUM=$(printf "%03d" $((CONTEO + 1)))
+    # ZIP_PATH="$BACKUP_DIR/respaldo_${FECHA}_${NUM}.zip"
+    # echo -e "\033[1;34m🔐 Asignando permisos de lectura a todos los archivos y ejecución a carpetas...\033[0m"
+    # find "$PROJECT_ROOT" -type f -exec chmod u+r {} +
+    # find "$PROJECT_ROOT" -type d -exec chmod u+rx {} +
+    # echo -e "\033[1;34m📦 Creando respaldo ZIP completo sin excluir ningún archivo...\033[0m"
+    # zip -r "$ZIP_PATH" "$PROJECT_ROOT" || echo -e "\033[0;31m❌ Error creando el ZIP en $ZIP_PATH\033[0m"
+    # if [[ -f "$ZIP_PATH" ]]; then
+    #     echo -e "\033[7;30m📦 ZIP creado: $ZIP_PATH.\033[0m"
+    # else
+    #     echo -e "\033[0;31m❌ ZIP no fue creado.\033[0m"
+    # fi
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+fi
+
+echo ""
+echo ""
+echo ""
+sleep 3
+
+echo -e "\033[7;33m----------------------------------------------PUERTOS----------------------------------------------\033[0m"
+if confirmar "Detener puertos abiertos"; then
+    PUERTOS_OCUPADOS=0
+    for PUERTO in 2222 8000 5000 8001 35729; do
+        if lsof -i tcp:"$PUERTO" &>/dev/null; then
+            PUERTOS_OCUPADOS=$((PUERTOS_OCUPADOS + 1))
+            if confirmar "Cerrar procesos en puerto $PUERTO"; then
+                sudo fuser -k "${PUERTO}"/tcp || true
+                echo -e "\033[7;30m✅ Puerto $PUERTO liberado.\033[0m"
+                echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+                echo ""
+            fi
+        fi
+    done
+    if [ "$PUERTOS_OCUPADOS" -eq 0 ]; then
+        echo -e "\033[7;31m🚫 No se encontraron procesos en los puertos definidos.\033[0m"
+        echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+        echo ""
+    fi
 fi
 
 echo ""
@@ -278,7 +224,26 @@ echo ""
 sleep 3
 # clear
 
+echo -e "\033[7;33m--------------------------------------------CONTENEDORES-------------------------------------------\033[0m"
+if confirmar "Detener contenedores Docker"; then
+    PIDS=$(docker ps -q)
+    if [ -n "$PIDS" ]; then
+        docker stop $PIDS
+        echo -e "\033[7;30m🐳 Contenedores detenidos.\033[0m"
+        echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+        echo ""
+    else
+        echo -e "\033[7;30m🐳 No hay contenedores.\033[0m"
+        echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+        echo ""
+    fi
+fi
 
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
 echo -e "\033[7;33m------------------------------------------RESPALDOS LOCAL------------------------------------------\033[0m"
 if [[ "$OMIT_JSON_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear bdd_local"); then
@@ -289,14 +254,11 @@ if [[ "$OMIT_JSON_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confir
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
 fi
-
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 echo -e "\033[7;33m----------------------------------------------POSTGRES---------------------------------------------\033[0m"
 if confirmar "Configurar venv y PostgreSQL"; then
@@ -315,14 +277,11 @@ if confirmar "Configurar venv y PostgreSQL"; then
     echo ""
 fi
 
-
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 echo -e "\033[7;33m------------------------------------------------UFW------------------------------------------------\033[0m"
 if confirmar "Configurar UFW"; then
@@ -339,41 +298,31 @@ if confirmar "Configurar UFW"; then
     sudo ufw allow 28080/tcp    # HTTPS
     sudo ufw allow 28081/tcp    # HTTPS
     sudo ufw allow 49222/tcp   # HTTPS NJALLA
-
     # Gunicorn y PostgreSQL solo local
     sudo ufw allow from 127.0.0.1 to any port 8000
     sudo ufw allow from 127.0.0.1 to any port 8011
     sudo ufw allow from 127.0.0.1 to any port 8001
     sudo ufw allow from 127.0.0.1 to any port 5432
-
     # Honeypot SSH
     sudo ufw allow 2222/tcp
-
     # Supervisor local
     sudo ufw allow from 127.0.0.1 to any port 9001
-
     # Tor
     sudo ufw allow from 127.0.0.1 to any port 9050
     sudo ufw allow from 127.0.0.1 to any port 9051
-
     # DNS y NTP salientes
     sudo ufw allow out 53
     sudo ufw allow out 123/udp
-
     # Heroku CLI saliente
     sudo ufw allow out to any port 443
-
     # Monero (XMR)
     sudo ufw allow 18080/tcp                                     # Nodo P2P abierto
     sudo ufw allow proto tcp from 127.0.0.1 to any port 18082    # Wallet RPC local
     sudo ufw allow proto tcp from 127.0.0.1 to any port 18089:18100  # Rango wallets
-
     # Livereload (local)
     sudo ufw allow from 127.0.0.1 to any port 35729
-
     # Ghost API (local)
     sudo ufw allow from 127.0.0.1 to any port 5000
-
     # Activar UFW
     sudo ufw --force enable
     echo -e "\033[7;30m🔐 Reglas de UFW aplicadas con éxito.\033[0m"
@@ -381,14 +330,11 @@ if confirmar "Configurar UFW"; then
     echo ""
 fi
 
-
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 echo -e "\033[7;33m----------------------------------------------RESETEO----------------------------------------------\033[0m"
 if confirmar "Resetear base de datos y crear usuario en PostgreSQL"; then
@@ -427,14 +373,11 @@ EOF
     echo ""
 fi
 
-
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 echo -e "\033[7;33m--------------------------------------------MIGRACIONES--------------------------------------------\033[0m"
 if confirmar "Ejecutar migraciones"; then
@@ -461,15 +404,13 @@ if confirmar "Ejecutar migraciones"; then
     echo "⏳ Migraciones a la base de datos completa."
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 fi
-
+echo ""
 
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 echo -e "\033[7;33m----------------------------------------------USUARIO----------------------------------------------\033[0m"
 if [[ "$OMIT_USER" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear Super Usuario"); then
@@ -480,14 +421,11 @@ if [[ "$OMIT_USER" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "C
     echo ""
 fi
 
-
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 echo -e "\033[7;33m--------------------------------------------CARGAR LOCAL-------------------------------------------\033[0m"
 if [[ "$OMIT_LOAD_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir bdd_local"); then
@@ -498,14 +436,11 @@ if [[ "$OMIT_LOAD_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confir
     echo ""
 fi
 
-
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 # echo -e "\033[7;33m----------------------------------------------PEM JWKS---------------------------------------------\033[0m"
 # if confirmar "Generar o cambiar PEM JWKS"; then
@@ -514,30 +449,23 @@ sleep 3
 #     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 #     echo ""
 # fi
-
 # echo ""
 # echo ""
 # echo ""
 # sleep 3
 # # clear
 
-
-
 echo -e "\033[7;33m----------------------------------------SINCRONIZACION COMPLETA----------------------------------------\033[0m"
-
 EXCLUDES=(
     "--exclude=.git/"
     "--exclude=*.zip"
     "--exclude=temp/"
 )  # Puedes vaciarlo por completo si quieres TODO
-
 actualizar_django_env() {
     local destino="$1"
     local entorno_base
     entorno_base=$(basename "$destino")
-
     local nuevo_valor_env
-
     case "$entorno_base" in
         local)
             nuevo_valor_env="local"
@@ -553,19 +481,14 @@ actualizar_django_env() {
             return
             ;;
     esac
-
     echo "🌍 Actualizando DJANGO_ENV en __init__.py de: $destino (valor: $nuevo_valor_env)"
-
     local temp_script="/tmp/update_django_env.py"
-
     cat > "$temp_script" <<EOF
 import os
 settings_path = os.path.join("$destino", "config", "settings", "__init__.py")
-
 if os.path.exists(settings_path):
     with open(settings_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
-
     updated = False
     new_lines = []
     for line in lines:
@@ -577,7 +500,6 @@ if os.path.exists(settings_path):
                 new_lines.append(line)
         else:
             new_lines.append(line)
-
     if updated:
         with open(settings_path, "w", encoding="utf-8") as f:
             f.writelines(new_lines)
@@ -587,15 +509,12 @@ if os.path.exists(settings_path):
 else:
     print("⚠️ No se encontró __init__.py para actualizar DJANGO_ENV.")
 EOF
-
     python3 "$temp_script" || {
         echo "🔐 Intentando con privilegios elevados (sudo)..."
         sudo python3 "$temp_script"
     }
-
     rm -f "$temp_script"
 }
-
 if [[ "$OMIT_SYNC_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "¿Sincronizas archivos locales?"); then
     for destino in "$HEROKU_ROOT" "$HEROKU_ROOT2" "$PROJECT_ROOT"; do
         echo -e "\033[7;30m🔄 Sincronizando archivos al destino: $destino\033[0m"
@@ -610,15 +529,11 @@ if [[ "$OMIT_SYNC_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confir
         echo ""
     done
 fi
-
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
-
 
 
 echo -e "\033[7;33m-------------------------------------------SUBIR A HEROKU------------------------------------------\033[0m"
@@ -644,12 +559,11 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     heroku config:set TIMEOUT_REQUEST=3600
     heroku config:set DISABLE_COLLECTSTATIC=1
     heroku config:set PRIVATE_KEY_B64="$(cat ghost.key.b64)"
-
     echo -e "\033[7;36m🔐 Verificando y generando clave privada JWT...\033[0m"
     # Crear carpeta keys/ si no existe
     mkdir -p keys
     # Ruta esperada del archivo
-    PEM_PATH="/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
+    PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
     # Verificar existencia de la clave privada
     if [[ ! -f "$PEM_PATH" ]]; then
         echo -e "\033[7;33m⚠️  Clave privada no encontrada. Generando clave ECDSA P-256...\033[0m"
@@ -712,7 +626,6 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     echo ""
 fi
 
-
 echo ""
 echo ""
 echo ""
@@ -721,14 +634,11 @@ sleep 3
 
 
 
-
-
-
-
 echo -e "\033[7;33m-----------------------------------------BORRANDO ZIP Y SQL----------------------------------------\033[0m"
 if [[ "$OMIT_CLEAN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Limpiar respaldos antiguos"); then
     echo -e "\033[7;30mLimpiando respaldos antiguos...\033[0m"
     echo ""
+    BACKUP_DIR=$HOME/Documentos/GitHub/backup
     cd "$BACKUP_DIR"
     mapfile -t files < <(ls -1tr *.zip *.sql 2>/dev/null)
     declare -A first last all keep
@@ -753,15 +663,13 @@ if [[ "$OMIT_CLEAN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "
     done
     cd - >/dev/null
 fi
-
+echo ""
 
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 echo -e "\033[7;33m---------------------------------------------CAMBIO MAC--------------------------------------------\033[0m"
 if [[ "$OMIT_MAC" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Cambiar MAC de la interfaz $INTERFAZ"); then
@@ -776,14 +684,11 @@ if [[ "$OMIT_MAC" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Ca
     echo ""
 fi
 
-
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 echo -e "\033[7;33m----------------------------------------------GUNICORN---------------------------------------------\033[0m"
 # === CONFIGURACIÓN ===
@@ -832,15 +737,13 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     echo -e "$LOGO_SEP\n"
     while true; do sleep 3; done
 fi
-
+echo ""
 
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 # === ABRIR WEB HEROKU ===
 echo -e "\033[7;33m---------------------------------------------CARGAR WEB--------------------------------------------\033[0m"
@@ -855,15 +758,13 @@ if [[ "$OMIT_LOAD_WEB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     echo -e "$LOGO_SEP\n"
     while true; do sleep 3; done
 fi
-
+echo ""
 
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
-
-
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"
@@ -875,6 +776,3 @@ $URL_HEROKU
 📦 Commit con el mensaje: $COMENTARIO_COMMIT
 log_info "🗂 Log disponible en: $LOG_FILE_SCRIPT"
 
-
-
-base64 -w 0 /home/markmur88/Documentos/GitHub/api_bank_h2/servers/ssl/api_bank_h2/ghost.key > ghost.key.b64

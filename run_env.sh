@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # === CONFIGURACIÓN GENERAL ===
-PROJECT_DIR="/home/markmur88/Documentos/GitHub/zIncognito/bank_ghost"
+PROJECT_DIR="$HOME/Documentos/GitHub/zIncognito/bank_ghost"
 MANAGE="$PROJECT_DIR/manage.py"
 KEYS_DIR="$PROJECT_DIR/schemas/keys"
 KEY_PATH="$KEYS_DIR/private_key.pem"

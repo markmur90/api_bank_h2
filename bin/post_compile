@@ -28,7 +28,7 @@ if [ -n "$PRIVATE_KEY_B64" ]; then
         STATUS="DECODE_ERROR"
     fi
 else
-    echo "⚠️ PRIVATE_KEY_B64 no está definido. Clave no restaurada." | tee -a "$LOG_FILE"
+    echo "⚠️ PRIVATE_KEY_B64 no está definido. Clave no restaurada." | tee -a "$LOG_FILE"key pe
     STATUS="UNDEFINED"
 fi
 

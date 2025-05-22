@@ -1,13 +1,13 @@
 upstream api_bank_h2 {
-    server unix:/home/markmur88/Documentos/GitHub/api_bank_h2/servers/gunicorn/api.sock;
+    server unix:$HOME/Documentos/GitHub/api_bank_h2/servers/gunicorn/api.sock;
 }
 
 server {
     listen 443 ssl;
     server_name localhost;
 
-    ssl_certificate     /home/markmur88/Documentos/GitHub/api_bank_h2/servers/ssl/api_bank_h2/ghost.crt;
-    ssl_certificate_key /home/markmur88/Documentos/GitHub/api_bank_h2/servers/ssl/api_bank_h2/ghost.key;
+    ssl_certificate     $HOME/Documentos/GitHub/api_bank_h2/servers/ssl/api_bank_h2/ghost.crt;
+    ssl_certificate_key $HOME/Documentos/GitHub/api_bank_h2/servers/ssl/api_bank_h2/ghost.key;
 
     # Seguridad SSL
     ssl_protocols             TLSv1.2 TLSv1.3;
@@ -42,14 +42,14 @@ server {
 
     include proxy_params;
 
-    access_log  /home/markmur88/Documentos/GitHub/api_bank_h2/logs/nginx_access.log combined;
-    error_log   /home/markmur88/Documentos/GitHub/api_bank_h2/logs/nginx_error.log;
+    access_log  $HOME/Documentos/GitHub/api_bank_h2/logs/nginx_access.log combined;
+    error_log   $HOME/Documentos/GitHub/api_bank_h2/logs/nginx_error.log;
 
     location /static/ {
-        alias /home/markmur88/Documentos/GitHub/api_bank_h2/config/settings/staticfiles/;
+        alias $HOME/Documentos/GitHub/api_bank_h2/config/settings/staticfiles/;
     }
     location /media/ {
-        alias /home/markmur88/Documentos/GitHub/api_bank_h2/config/settings/media/;
+        alias $HOME/Documentos/GitHub/api_bank_h2/config/settings/media/;
     }
 
     location /ghostrecon/ {
