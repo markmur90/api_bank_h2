@@ -643,7 +643,8 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     heroku config:set API_ORIGIN=https://simulator-api.db.com
     heroku config:set TIMEOUT_REQUEST=3600
     heroku config:set DISABLE_COLLECTSTATIC=1
-    
+    heroku config:set PRIVATE_KEY_B64="$(cat ghost.key.b64)"
+
     echo -e "\033[7;36m🔐 Verificando y generando clave privada JWT...\033[0m"
     # Crear carpeta keys/ si no existe
     mkdir -p keys
@@ -720,101 +721,6 @@ sleep 3
 
 
 
-echo -e "\033[7;33m----------------------------------------SINCRONIZACION LOCAL----------------------------------------\033[0m"
-
-### Definir ruta del proyecto origen y del archivo de destinos
-PROJECT_ROOT="/ruta/al/proyecto/origen"
-DESTINOS_FILE="destinos.env"
-
-declare -A DESTINOS
-
-### Cargar destinos desde el archivo destinos.env
-if [[ -f "$DESTINOS_FILE" ]]; then
-    while IFS=":" read -r ruta entorno; do
-        [[ -z "$ruta" || -z "$entorno" ]] && continue
-        DESTINOS["$ruta"]="$entorno"
-    done < "$DESTINOS_FILE"
-else
-    echo "❌ Archivo de destinos no encontrado: $DESTINOS_FILE"
-    exit 1
-fi
-
-EXCLUDES=(
-    "--exclude=.gitattributes"
-    "--exclude=.git/"
-    "--exclude=*.db"
-    "--exclude=*.sqlite3"
-    "--exclude=*.zip"
-    "--exclude=*.log"
-    "--exclude=temp/"
-    "--exclude=servers/"
-)
-
-actualizar_django_env_con_valor() {
-    local destino="$1"
-    local nuevo_valor="$2"
-    echo "🌍 Actualizando DJANGO_ENV en __init__.py de: $destino → $nuevo_valor"
-    python3 <<EOF
-import os
-settings_path = os.path.join("$destino", "config", "settings", "__init__.py")
-if os.path.exists(settings_path):
-    with open(settings_path, "r", encoding="utf-8") as f:
-        lines = f.readlines()
-    updated = False
-    new_lines = []
-    for line in lines:
-        if "DJANGO_ENV = os.getenv(" in line:
-            start = line.find('os.getenv(')
-            if start != -1:
-                new_line = line[:start] + f'DJANGO_ENV = os.getenv("DJANGO_ENV", "$nuevo_valor")\n'
-                new_lines.append(new_line)
-                updated = True
-            else:
-                new_lines.append(line)
-        else:
-            new_lines.append(line)
-    if updated:
-        with open(settings_path, "w", encoding="utf-8") as f:
-            f.writelines(new_lines)
-        print(f"✅ DJANGO_ENV actualizado a '$nuevo_valor' en __init__.py.")
-    else:
-        print("⚠️ No se encontró 'DJANGO_ENV' para actualizar.")
-else:
-    print("⚠️ No se encontró __init__.py para actualizar DJANGO_ENV.")
-EOF
-}
-
-sincronizar_y_actualizar() {
-    local destino="$1"
-    local valor_entorno="$2"
-    if [[ ! -d "$destino" ]]; then
-        echo -e "\033[1;34m📁 La ruta no existe. Creando carpeta: $destino\033[0m"
-        mkdir -p "$destino"
-    fi
-    echo -e "\033[7;30m🔄 Sincronizando archivos al destino: $destino\033[0m"
-    rsync -av "${EXCLUDES[@]}" "$PROJECT_ROOT/" "$destino/"
-    echo -e "\033[7;30m📂 Cambios enviados a $destino.\033[0m"
-    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo ""
-    cd "$destino"
-    actualizar_django_env_con_valor "$destino" "$valor_entorno"
-    cd "$PROJECT_ROOT"
-    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo ""
-}
-
-if [[ "$OMIT_SYNC_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Sincronizas archivos locales"); then
-    for destino in "${!DESTINOS[@]}"; do
-        sincronizar_y_actualizar "$destino" "${DESTINOS[$destino]}"
-    done
-fi
-
-
-echo ""
-echo ""
-echo ""
-sleep 3
-# clear
 
 
 
@@ -971,3 +877,4 @@ log_info "🗂 Log disponible en: $LOG_FILE_SCRIPT"
 
 
 
+base64 -w 0 /home/markmur88/Documentos/GitHub/api_bank_h2/servers/ssl/api_bank_h2/ghost.key > ghost.key.b64
