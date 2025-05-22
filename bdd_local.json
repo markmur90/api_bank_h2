@@ -1728,24 +1728,6 @@
   }
 },
 {
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$3n0HJUz5dzIwV7MUkWknAM$HZvPJXRUcPIYVFVgDPYgjkuu9Yrp8SXqCeAInM4M1Kk=",
-    "last_login": "2025-05-12T22:01:54.725Z",
-    "is_superuser": true,
-    "username": "493069k1",
-    "first_name": "",
-    "last_name": "",
-    "email": "j.moltke@db.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2025-05-12T10:01:56.991Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
   "model": "contenttypes.contenttype",
   "pk": 1,
   "fields": {
@@ -2127,91 +2109,6 @@
   "fields": {
     "app_label": "gpt4",
     "model": "transfer"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "jrximxt8ykk9h32ld8v128d774d7cpp1",
-  "fields": {
-    "session_data": ".eJxVjMEOwiAQBf-FsyFAgYJH7_0GssuCVA0kpT0Z_92Q9KDXNzPvzQIcewlHT1tYiV2ZZJffDSE-Ux2AHlDvjcdW921FPhR-0s6XRul1O92_gwK9jFobJSfh8oRgpcOUolfGztILAIsUlRNOWEFZCrKZ0Gsjac5RR5UdKvb5AtkuN_U:1uEbDe:F3cVRA_pyy5M3iE1RovxYK9b8cR2OV2O6BaXjQ8skik",
-    "expire_date": "2025-05-12T22:31:54.785Z"
-  }
-},
-{
-  "model": "gpt4.debtor",
-  "pk": 1,
-  "fields": {
-    "name": "Claudia Klar",
-    "customer_id": "10020400400079945",
-    "postal_address_country": "DE",
-    "postal_address_street": "Große Bockenheimer Straße 19",
-    "postal_address_city": "60311 Frankfurt",
-    "mobile_phone_number": "+49170123456"
-  }
-},
-{
-  "model": "gpt4.debtoraccount",
-  "pk": 1,
-  "fields": {
-    "debtor": 1,
-    "iban": "DE00500700100200040224",
-    "currency": "EUR"
-  }
-},
-{
-  "model": "gpt4.creditor",
-  "pk": 1,
-  "fields": {
-    "name": "Tom Winter",
-    "postal_address_country": "DE",
-    "postal_address_street": "Augsburger Strasse 14a",
-    "postal_address_city": "80337 München"
-  }
-},
-{
-  "model": "gpt4.creditoraccount",
-  "pk": 1,
-  "fields": {
-    "creditor": 1,
-    "iban": "DE00500700100200043574",
-    "currency": "EUR"
-  }
-},
-{
-  "model": "gpt4.creditoragent",
-  "pk": 1,
-  "fields": {
-    "bic": "DEUTDEFFXXX",
-    "financial_institution_id": "DEUTDEFFXXX",
-    "other_information": "Deutsche Bank"
-  }
-},
-{
-  "model": "gpt4.clavegenerada",
-  "pk": 1,
-  "fields": {
-    "fecha": "2025-05-12T09:48:06.465Z",
-    "usuario": "c40cd522-3d41-456d-a699-921e0573495b",
-    "estado": "CANCELADO",
-    "kid": null,
-    "path_privada": null,
-    "path_publica": null,
-    "path_jwks": null,
-    "mensaje_error": null
-  }
-},
-{
-  "model": "gpt4.clavegenerada",
-  "pk": 2,
-  "fields": {
-    "fecha": "2025-05-12T21:59:58.464Z",
-    "usuario": "c40cd522-3d41-456d-a699-921e0573495b",
-    "estado": "CANCELADO",
-    "kid": null,
-    "path_privada": null,
-    "path_publica": null,
-    "path_jwks": null,
-    "mensaje_error": null
   }
 }
 ]

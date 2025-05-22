@@ -1,5 +1,5 @@
 import dj_database_url
-from .baseF import *
+from .base1 import *
 
 import os
 from pathlib import Path
@@ -9,10 +9,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=False)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['.herokuapp.com'])
-
-DATABASES = {
-    'default': env.db('DATABASE_URL')
-}
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

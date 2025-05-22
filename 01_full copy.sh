@@ -1,6 +1,76 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+
+# === FUNCIONES UTILITARIAS ===
+LOG_FILE_SCRIPT="$PROJECT_DIR/tmp/deploy_$(date +%Y%m%d_%H%M%S).log"
+
+log_info()    { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
+log_ok()      { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
+log_error()   { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
+
+check_status() {
+    local status=$?
+    if [ $status -ne 0 ]; then
+        log_error "Fallo al ejecutar: $1"
+        exit $status
+    else
+        log_ok "Éxito: $1"
+    fi
+}
+
+diagnostico_entorno() {
+    echo -e "\n\033[1;35m🔍 Diagnóstico del Sistema:\033[0m"
+    echo "🧠 Memoria RAM:"
+    free -h
+    echo ""
+    echo "💾 Espacio en disco:"
+    df -h /
+    echo ""
+    echo "🧮 Uso de CPU:"
+    top -bn1 | grep "Cpu(s)"
+    echo ""
+    echo "🌐 Conectividad:"
+    ip a | grep inet
+    echo ""
+    echo "🔥 Procesos activos de Python, PostgreSQL y Gunicorn:"
+    ps aux | grep -E 'python|postgres|gunicorn' | grep -v grep
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m\n"
+}
+
+# === LLAMAR AL DIAGNÓSTICO TEMPRANO ===
+diagnostico_entorno
+
+PROMPT_MODE=true
+OMIT_SYNC_REMOTE_DB=false
+OMIT_HEROKU=false
+OMIT_GUNICORN=false
+OMIT_CLEAN=false
+OMIT_JSON_LOCAL=false
+# OMIT_JSON_WEB=false
+OMIT_SYNC_LOCAL=false
+OMIT_ZIP_SQL=false
+OMIT_MAC=false
+OMIT_LOAD_LOCAL=false
+OMIT_LOAD_WEB=false
+OMIT_USER=false
+
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2_H"
+BACKUP_DIR="$HOME/Documentos/GitHub/backup"
+HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
+HEROKU_ROOT2="$HOME/Documentos/GitHub/api_bank"
+VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
+INTERFAZ="wlan0"
+
+DB_NAME="mydatabase"
+DB_USER="markmur88"
+DB_PASS="Ptf8454Jd55"
+DB_HOST="localhost"
+
+
+
 # === OPCIONES DISPONIBLES PARA ./01_full.sh ===
 # -a  --all                Ejecuta todo sin confirmaciones interactivas
 # -s  --step               Modo paso a paso (requiere confirmar cada paso)
@@ -29,19 +99,8 @@ set -euo pipefail
 # ./01_full.sh -a -L -l -W -U               # Solo pruebas sin tocar backups ni usuarios:
 
 
-PROMPT_MODE=true
-OMIT_SYNC_REMOTE_DB=false
-OMIT_HEROKU=false
-OMIT_GUNICORN=false
-OMIT_CLEAN=false
-OMIT_JSON_LOCAL=false
-# OMIT_JSON_WEB=false
-OMIT_SYNC_LOCAL=false
-OMIT_ZIP_SQL=false
-OMIT_MAC=false
-OMIT_LOAD_LOCAL=false
-OMIT_LOAD_WEB=false
-OMIT_USER=false
+
+mkdir -p "$BACKUP_DIR"
 
 function usage() {
     echo "Uso: $0 [opciones]"
@@ -85,6 +144,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 
+
 confirmar() {
     [[ "$PROMPT_MODE" == false ]] && return 0
     echo
@@ -94,191 +154,150 @@ confirmar() {
     echo ""
 }
 
+clear
 
 
-
-# 🧱 Bloques del Script Maestro para Logging y Diagnóstico
-# 🔧 BLOQUE 1 — Inicialización, funciones y diagnóstico del entorno
-#     Define variables globales.
-#     Crea directorio y archivo de log.
-#     Declara funciones: log_info, log_ok, log_error, check_status, ejecutar, diagnostico_entorno.
-#     Ejecuta diagnóstico completo del sistema.
-PROMPT_MODE=true
-OMIT_SYNC_REMOTE_DB=false
-OMIT_HEROKU=false
-OMIT_GUNICORN=false
-OMIT_CLEAN=false
-OMIT_JSON_LOCAL=false
-# OMIT_JSON_WEB=false
-OMIT_SYNC_LOCAL=false
-OMIT_ZIP_SQL=false
-OMIT_MAC=false
-OMIT_LOAD_LOCAL=false
-OMIT_LOAD_WEB=false
-OMIT_USER=false
-
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
-HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
-HEROKU_ROOT2="$HOME/Documentos/GitHub/api_bank"
-VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
-LOGS_DIR="$HOME/Documentos/GitHub/api_bank_h2/logs"
-INTERFAZ="wlan0"
-
-DB_NAME="mydatabase"
-DB_USER="markmur88"
-DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
-REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
+# echo -e "\033[7;33m----------------------------------------------PUERTOS----------------------------------------------\033[0m"
+# if confirmar "Detener puertos abiertos"; then
+#     PUERTOS_OCUPADOS=0
+#     for PUERTO in 2222 8000 5000 8001 35729; do
+#         if lsof -i tcp:"$PUERTO" &>/dev/null; then
+#             PUERTOS_OCUPADOS=$((PUERTOS_OCUPADOS + 1))
+#             if confirmar "Cerrar procesos en puerto $PUERTO"; then
+#                 sudo fuser -k "${PUERTO}"/tcp || true
+#                 echo -e "\033[7;30m✅ Puerto $PUERTO liberado.\033[0m"
+#                 echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+#                 echo ""
+#             fi
+#         fi
+#     done
+#     if [ "$PUERTOS_OCUPADOS" -eq 0 ]; then
+#         echo -e "\033[7;31m🚫 No se encontraron procesos en los puertos definidos.\033[0m"
+#         echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+#         echo ""
+#     fi
+# fi
+# echo ""
+# echo ""
+# echo ""
+# sleep 3
+# clear
 
 
-# === Ruta del log ===
-
-LOG_FILE_SCRIPT="$LOGS_DIR/full_deploy_$(date +%Y%m%d_%H%M%S).log"
-
-# === Funciones de log ===
-log_info()    { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
-log_ok()      { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
-log_error()   { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
-
-check_status() {
-    local status=$?
-    if [ $status -ne 0 ]; then
-        log_error "Fallo al ejecutar: $1"
-        exit $status
-    else
-        log_ok "Éxito: $1"
-    fi
-}
-
-# === Ejecutar comando con log de stdout/stderr ===
-ejecutar() {
-    log_info "➡️ Ejecutando: $*"
-    "$@" >> "$LOG_FILE_SCRIPT" 2>&1
-    check_status "$*"
-}
-
-# === Diagnóstico del entorno ===
-diagnostico_entorno() {
-    {
-        echo -e "\n🔍 Diagnóstico del sistema - $(date)"
-        echo "🧠 RAM:" && free -h
-        echo -e "\n💾 Disco:" && df -h /
-        echo -e "\n🧮 CPU:" && top -bn1 | grep "Cpu(s)"
-        echo -e "\n🌐 Red:" && ip a | grep inet
-        echo -e "\n🔥 Procesos activos relevantes:"
-        ps aux | grep -E 'python|postgres|gunicorn' | grep -v grep
-        echo -e "\n✅ Fin diagnóstico\n"
-    } | tee -a "$LOG_FILE_SCRIPT"
-}
-
-# === Lanzar diagnóstico inicial ===
-diagnostico_entorno
+# echo -e "\033[7;33m--------------------------------------------CONTENEDORES-------------------------------------------\033[0m"
+# if confirmar "Detener contenedores Docker"; then
+#     PIDS=$(docker ps -q)
+#     if [ -n "$PIDS" ]; then
+#         docker stop $PIDS
+#         echo -e "\033[7;30m🐳 Contenedores detenidos.\033[0m"
+#         echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+#         echo ""
+#     else
+#         echo -e "\033[7;30m🐳 No hay contenedores.\033[0m"
+#         echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+#         echo ""
+#     fi
+# fi
+# echo ""
+# echo ""
+# echo ""
+# sleep 3
+# clear
 
 
-
-# 🛠 BLOQUE 2 — Actualización del sistema operativo
-#     Ejecuta:
-#         sudo apt-get update
-#         sudo apt-get full-upgrade -y
-#         sudo apt-get autoremove -y
-#         sudo apt-get clean
-#     Toda salida se guarda en log.
 echo -e "\033[7;33m----------------------------------------------SISTEMA----------------------------------------------\033[0m"
-log_info "🛠️  BLOQUE: Actualización del sistema operativo"
-
 if confirmar "Actualizar sistema"; then
-    ejecutar sudo apt-get update
-    ejecutar sudo apt-get full-upgrade -y
-    ejecutar sudo apt-get autoremove -y
-    ejecutar sudo apt-get clean
-    log_ok "🔄 Sistema actualizado correctamente"
+    sudo apt-get update && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y && sudo apt-get clean
     echo -e "\033[7;30m🔄 Sistema actualizado.\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "❎ Usuario omitió la actualización del sistema"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
-# 💾 BLOQUE 3 — Respaldo JSON local con dumpdata
-#     Usa manage.py dumpdata para guardar bdd_local.json
-#     Se exporta DATABASE_URL
-#     Se registra resultado y salida completa.
+
 echo -e "\033[7;33m------------------------------------------RESPALDOS LOCAL------------------------------------------\033[0m"
-log_info "💾 BLOQUE: Creación de respaldo JSON local"
-
 if [[ "$OMIT_JSON_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear bdd_local"); then
-    log_info "🗃️ Exportando datos desde PostgreSQL a bdd_local.json"
-    export DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}"
-
-    cd "$PROJECT_ROOT" || { log_error "❌ No se encontró el proyecto en $PROJECT_ROOT"; exit 1; }
-
-    ejecutar python3 manage.py dumpdata --indent 2 > bdd_local.json
-    log_ok "✅ Respaldo JSON creado exitosamente en $(realpath bdd_local.json)"
+    echo -e "\033[7;30m🚀 Creando respaldo de datos de local...\033[0m"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    python3 manage.py dumpdata --indent 2 > bdd_local.json
     echo -e "\033[7;30m✅ ¡Respaldo JSON Local creado!\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "📁 Respaldo JSON local omitido por configuración"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
-
-
-# 🐘 BLOQUE 4 — Configuración de entorno virtual y PostgreSQL
-#     Crea entorno virtual con python3 -m venv
-#     Activa entorno, instala requirements
-#     Activa y arranca PostgreSQL con systemctl
-#     Registra stdout/stderr de pip install, enable/start postgresql
 echo -e "\033[7;33m----------------------------------------------POSTGRES---------------------------------------------\033[0m"
-log_info "🐘 BLOQUE: Configuración del entorno virtual y PostgreSQL"
-
 if confirmar "Configurar venv y PostgreSQL"; then
-    log_info "🧪 Creando entorno virtual en $VENV_PATH"
-    ejecutar python3 -m venv "$VENV_PATH"
-
+    python3 -m venv "$VENV_PATH"
     source "$VENV_PATH/bin/activate"
-
-    ejecutar python3 -m pip install --upgrade pip
-
-    log_info "📦 Instalando dependencias desde requirements.txt"
-    ejecutar pip install -r "$PROJECT_ROOT/requirements.txt"
-
-    log_info "🔄 Habilitando y arrancando el servicio PostgreSQL"
-    ejecutar sudo systemctl enable postgresql
-    ejecutar sudo systemctl start postgresql
-
-    log_ok "🐍 Entorno virtual y PostgreSQL configurados correctamente"
+    pip install --upgrade pip
+    echo "📦 Instalando dependencias..."
+    echo ""
+    pip install -r "$PROJECT_ROOT/requirements.txt"
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    sudo systemctl enable postgresql
+    sudo systemctl start postgresql
     echo -e "\033[7;30m🐍 Entorno y PostgreSQL listos.\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "❎ Configuración de entorno y PostgreSQL omitida por el usuario"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
+# echo -e "\033[7;33m------------------------------------------------UFW------------------------------------------------\033[0m"
+# if confirmar "Configurar UFW"; then
+#     sudo ufw --force reset
+#     sudo ufw default deny incoming
+#     sudo ufw default allow outgoing
+#     sudo ufw allow 22/tcp
+#     sudo ufw allow 443/tcp
+#     sudo ufw allow 2222/tcp
+#     sudo ufw allow 8000/tcp
+#     sudo ufw allow 8443/tcp
+#     sudo ufw allow 5000/tcp
+#     sudo ufw allow 35729/tcp
+#     sudo ufw allow from 127.0.0.1 to any port 8001 proto tcp comment "Gunicorn local backend"
+#     sudo ufw deny 22/tcp comment "Bloquear SSH real en 22"
+#     sudo ufw enable
+#     echo -e "\033[7;30m🔐 Reglas de UFW aplicadas con éxito.\033[0m"
+#     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+#     echo ""
+# fi
+# echo ""
+# echo ""
+# echo ""
+# sleep 3
+# clear
 
 
-# 🔁 BLOQUE 5 — Resetear base de datos y crear usuario
-#     Crea usuario y base de datos si no existen
-#     Ejecuta bloques psql <<EOF, logueados con tee -a
-#     Borra base si ya existe y la vuelve a crear
 echo -e "\033[7;33m----------------------------------------------RESETEO----------------------------------------------\033[0m"
-log_info "🔁 BLOQUE: Reseteo de la base de datos y creación de usuario"
-
 if confirmar "Resetear base de datos y crear usuario en PostgreSQL"; then
-    export DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}"
-
-    log_info "🔍 Verificando y creando usuario PostgreSQL si no existe..."
-    sudo -u postgres psql <<EOF | tee -a "$LOG_FILE_SCRIPT"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    sudo -u postgres psql <<-EOF
 DO \$\$
 BEGIN
+    -- Verificar si el usuario ya existe
     IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = '${DB_USER}') THEN
         CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASS}';
     END IF;
 END
 \$\$;
 
+-- Asignar permisos al usuario
 ALTER USER ${DB_USER} WITH SUPERUSER;
 GRANT USAGE, CREATE ON SCHEMA public TO ${DB_USER};
 GRANT ALL PRIVILEGES ON SCHEMA public TO ${DB_USER};
@@ -286,159 +305,136 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO ${DB_USER};
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO ${DB_USER};
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO ${DB_USER};
 EOF
-
-    log_info "🧨 Verificando si existe la base de datos ${DB_NAME} para eliminarla..."
-    if sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname = '${DB_NAME}'" | grep -q 1; then
-        log_info "⚠️ La base ${DB_NAME} existe. Terminando conexiones y eliminándola..."
-        ejecutar sudo -u postgres psql -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '${DB_NAME}';"
-        ejecutar sudo -u postgres psql -c "DROP DATABASE ${DB_NAME};"
-    else
-        log_info "✅ La base de datos ${DB_NAME} no existe. Listo para crear."
-    fi
-
-    log_info "🚀 Creando nueva base de datos ${DB_NAME} y asignando permisos"
-    sudo -u postgres psql <<EOF | tee -a "$LOG_FILE_SCRIPT"
+sudo -u postgres psql -tAc "SELECT 1 FROM pg_database WHERE datname = '${DB_NAME}'" | grep -q 1
+if [ $? -eq 0 ]; then
+    echo "La base de datos ${DB_NAME} existe. Eliminándola..."
+    sudo -u postgres psql -c "SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '${DB_NAME}';"
+    sudo -u postgres psql -c "DROP DATABASE ${DB_NAME};"
+fi
+sudo -u postgres psql <<-EOF
 CREATE DATABASE ${DB_NAME};
 GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USER};
 GRANT CONNECT ON DATABASE ${DB_NAME} TO ${DB_USER};
 GRANT CREATE ON DATABASE ${DB_NAME} TO ${DB_USER};
 EOF
-
-    log_ok "🗃️ Base de datos y usuario listos para usar"
     echo -e "\033[7;30mBase de datos y usuario recreados.\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "❎ Usuario omitió el reseteo de base de datos"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
-
-
-# ⚙️ BLOQUE 6 — Migraciones de Django
-#     Borra __pycache__, *.pyc, migrations/*.py
-#     Ejecuta:
-#         makemigrations
-#         migrate
-#     Usa ejecutar y registra todo
 echo -e "\033[7;33m--------------------------------------------MIGRACIONES--------------------------------------------\033[0m"
-log_info "⚙️ BLOQUE: Limpieza, generación y aplicación de migraciones Django"
-
 if confirmar "Ejecutar migraciones"; then
-    cd "$PROJECT_ROOT" || { log_error "❌ No se encontró el proyecto en $PROJECT_ROOT"; exit 1; }
+    cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
-
-    log_info "🧹 Eliminando cachés de Python y migraciones anteriores"
-    find . -path "*/__pycache__" -type d -exec rm -rf {} + 2>> "$LOG_FILE_SCRIPT"
-    find . -name "*.pyc" -delete 2>> "$LOG_FILE_SCRIPT"
-    find . -path "*/migrations/*.py" -not -name "__init__.py" -delete 2>> "$LOG_FILE_SCRIPT"
-    find . -path "*/migrations/*.pyc" -delete 2>> "$LOG_FILE_SCRIPT"
-    log_ok "🧼 Cachés y migraciones antiguas eliminadas"
-
-    log_info "🔄 Generando nuevas migraciones..."
-    ejecutar python3 manage.py makemigrations
-
-    log_info "⏳ Aplicando migraciones a la base de datos..."
-    ejecutar python3 manage.py migrate
-
-    log_ok "✅ Migraciones aplicadas correctamente"
-    echo -e "\033[7;30m⏳ Migraciones a la base de datos completa.\033[0m"
+    echo "🧹 Eliminando cachés de Python y migraciones anteriores..."
+    find . -path "*/__pycache__" -type d -exec rm -rf {} +
+    find . -name "*.pyc" -delete
+    find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
+    find . -path "*/migrations/*.pyc" -delete
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "❎ Migraciones de Django omitidas por el usuario"
+    echo ""
+    echo "🔄 Generando migraciones de Django..."
+    python manage.py makemigrations
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""    
+    echo "⏳ Aplicando migraciones de la base de datos..."
+    python manage.py migrate
+    echo "⏳ Migraciones a la base de datos completa."
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
-
-
-# 👤 BLOQUE 7 — Creación de superusuario
-#     Usa manage.py createsuperuser
-#     Se ejecuta manualmente (sin output automático), pero se puede loguear con un aviso
 echo -e "\033[7;33m----------------------------------------------USUARIO----------------------------------------------\033[0m"
-log_info "👤 BLOQUE: Creación de superusuario Django"
-
 if [[ "$OMIT_USER" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear Super Usuario"); then
-    cd "$PROJECT_ROOT" || { log_error "❌ No se encontró el proyecto en $PROJECT_ROOT"; exit 1; }
-    source "$VENV_PATH/bin/activate"
-
-    log_info "🧑‍💻 Ejecutando createsuperuser (interactivo)..."
-    echo "👉 Por favor, completa los datos en pantalla (nombre, email, contraseña)."
-    python3 manage.py createsuperuser | tee -a "$LOG_FILE_SCRIPT"
-
-    if [ $? -eq 0 ]; then
-        log_ok "✅ Superusuario creado correctamente"
-    else
-        log_error "❌ Error al crear el superusuario"
-    fi
-
+    echo -e "\033[7;30m🚀 Creando usuario...\033[0m"
+    python3 manage.py createsuperuser
     echo -e "\033[7;30m✅ ¡Usuario creado!\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "👤 Creación de superusuario omitida por configuración"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
-
-
-# 📥 BLOQUE 8 — Carga de respaldo JSON local
-#     manage.py loaddata bdd_local.json
-#     Todo en log
 echo -e "\033[7;33m--------------------------------------------CARGAR LOCAL-------------------------------------------\033[0m"
-log_info "📥 BLOQUE: Carga de respaldo JSON local en la base de datos"
-
 if [[ "$OMIT_LOAD_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir bdd_local"); then
-    cd "$PROJECT_ROOT" || { log_error "❌ No se encontró el proyecto en $PROJECT_ROOT"; exit 1; }
-    source "$VENV_PATH/bin/activate"
-
-    export DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}"
-    log_info "📤 Cargando archivo JSON: $(realpath bdd_local.json)"
-
-    ejecutar python3 manage.py loaddata bdd_local.json
-
-    log_ok "✅ Datos restaurados correctamente desde bdd_local.json"
+    echo -e "\033[7;30m🚀 Subiendo respaldo de datos de local...\033[0m"
+    python3 manage.py loaddata bdd_local.json
     echo -e "\033[7;30m✅ ¡Subido JSON Local!\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "📂 Carga del respaldo JSON local omitida por configuración"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
 
 
-# 🧬 BLOQUE 9 — Sincronización local (rsync)
-#     Ejecuta rsync hacia HEROKU_ROOT y HEROKU_ROOT2
-#     Excluye archivos no deseados
-#     Actualiza DJANGO_ENV en base1.py
-#     Toda salida de rsync y python se guarda
+
+
+# echo -e "\033[7;33m----------------------------------------------PEM JWKS---------------------------------------------\033[0m"
+# if confirmar "Generar o cambiar PEM JWKS"; then
+#     echo -e "\033[7;30m🚀 Generando PEM...\033[0m"
+#     python3 manage.py genkey
+#     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+#     echo ""
+# fi
+# echo ""
+# echo ""
+# echo ""
+# sleep 3
+# clear
+
+
 echo -e "\033[7;33m----------------------------------------SINCRONIZACION LOCAL----------------------------------------\033[0m"
-log_info "🧬 BLOQUE: Sincronización local del proyecto vía rsync y actualización de DJANGO_ENV"
 
-# Exclusiones
 EXCLUDES=(
     "--exclude=.gitattributes"
     "--exclude=.git/"
     "--exclude=01_full.sh"
     "--exclude=02_full.sh"
-    "--exclude=*.json"
-    "--exclude=*.zip"
+    "--exclude=api_bank_heroku.txt"
+    "--exclude=auto_commit_sync.sh"
+    "--exclude=bdd_local.json"
+    "--exclude=bdd_web.json"
+    "--exclude=colores.sh"
+    "--exclude=cert.pem"
     "--exclude=*.db"
     "--exclude=*.sqlite3"
-    "--exclude=*.pyc"
-    "--exclude=*.pyo"
+    "--exclude=*.zip"
+    "--exclude=gunicorn.log"
+    "--exclude=honeypot.log"
     "--exclude=honeypot.py"
-    "--exclude=temp/"
+    "--exclude=honeypot_logs.csv"
+    "--exclude=iconos.sh"
+    "--exclude=livereload.log"
+    "--exclude=nohup.out"
+    "--exclude=privkey.pem"
     "--exclude=*local.py"
-    "--exclude=*.log"
+    "--exclude=temp/"
 )
-
-# Función para actualizar DJANGO_ENV
 actualizar_django_env() {
     local destino="$1"
-    log_info "🧾 Ajustando DJANGO_ENV en base1.py en $destino"
-    python3 <<EOF | tee -a "$LOG_FILE_SCRIPT"
+    echo "🌍 Actualizando DJANGO_ENV en base1.py de: $destino"
+    python3 <<EOF
 import os
 settings_path = os.path.join("$destino", "config", "settings", "base1.py")
 if os.path.exists(settings_path):
@@ -457,388 +453,342 @@ if os.path.exists(settings_path):
             f.writelines(new_lines)
         print("✅ DJANGO_ENV actualizado a 'production' en base1.py.")
     else:
-        print("⚠️ No se encontró DJANGO_ENV='local' para actualizar.")
+        print("⚠️ No se encontró 'DJANGO_ENV' con valor 'local' para actualizar.")
 else:
-    print("⚠️ No se encontró base1.py en el destino.")
+    print("⚠️ No se encontró base1.py para actualizar DJANGO_ENV.")
 EOF
 }
 
 if [[ "$OMIT_SYNC_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Sincronizas archivos locales"); then
     for destino in "$HEROKU_ROOT" "$HEROKU_ROOT2"; do
-        log_info "📂 Sincronizando archivos hacia: $destino"
-        ejecutar rsync -av "${EXCLUDES[@]}" "$PROJECT_ROOT/" "$destino/"
-
-        log_info "🧬 Sincronización completada. Ajustando entorno en $destino"
-        cd "$destino" || { log_error "❌ Error accediendo a $destino"; exit 1; }
+        echo -e "\033[7;30m🔄 Sincronizando archivos al destino: $destino\033[0m"
+        rsync -av "${EXCLUDES[@]}" "$PROJECT_ROOT/" "$destino/"
+        echo -e "\033[7;30m📂 Cambios enviados a $destino.\033[0m"
+        echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+        echo ""
+        cd "$destino"
         actualizar_django_env "$destino"
         cd "$PROJECT_ROOT"
         echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+        echo ""
     done
-else
-    log_info "🛑 Sincronización local omitida por configuración"
 fi
 
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
-
-# 🚀 BLOQUE 10 — Subida a GitHub y Heroku
-#     git add, git commit, git push
-#     git push heroku
-#     heroku auth:token
-#     Todo redirigido a log con ejecutar o tee
 echo -e "\033[7;33m-------------------------------------------SUBIR A HEROKU------------------------------------------\033[0m"
-log_info "🚀 BLOQUE: Deploy a GitHub + Heroku"
-
 if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir el proyecto a la web"); then
-    cd "$HEROKU_ROOT" || { log_error "❌ Error al acceder a $HEROKU_ROOT"; exit 1; }
-
-    log_info "📂 Preparando commit en GitHub (rama api-bank)"
-    ejecutar git add --all
-
-    echo -e "\033[7;30m📝 Por favor, ingresa el comentario del commit:\033[0m"
+    echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
+    cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    echo -e "\033[7;30mHaciendo git add...\033[0m"
+    git add --all
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    echo -e "\033[7;30mPor favor, ingrese el comentario del commit:\033[0m"
     read -p "✏️  Comentario: " COMENTARIO_COMMIT
-
     if [[ -z "$COMENTARIO_COMMIT" ]]; then
-        log_error "❌ No se puede continuar sin comentario de commit"
+        echo -e "\033[7;31m❌ No se puede continuar sin un comentario de commit.\033[0m"
         exit 1
     fi
-
-    log_info "✅ Commit con mensaje: $COMENTARIO_COMMIT"
-    git commit -m "$COMENTARIO_COMMIT" 2>&1 | tee -a "$LOG_FILE_SCRIPT"
-    check_status "git commit"
-
-    log_info "⬆️ Subiendo a GitHub..."
-    git push origin api-bank 2>&1 | tee -a "$LOG_FILE_SCRIPT"
-    check_status "git push origin api-bank"
-
-    sleep 5
-
+    echo -e "\033[7;30mHaciendo commit con el mensaje: \"$COMENTARIO_COMMIT\"...\033[0m"
+    git commit -m "$COMENTARIO_COMMIT"
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    echo -e "\033[7;30mHaciendo push a GitHub...\033[0m"
+    git push origin api-bank || { echo -e "\033[7;30m❌ Error al subir a GitHub\033[0m"; exit 0; }
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    sleep 20
     export HEROKU_API_KEY="HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6"
-    log_info "🔐 Autenticando con Heroku..."
-    echo "$HEROKU_API_KEY" | heroku auth:token > /dev/null 2>&1
-    check_status "heroku auth"
-
-    log_info "☁️ Haciendo deploy a Heroku..."
-    git push heroku api-bank:main 2>&1 | tee -a "$LOG_FILE_SCRIPT"
-    check_status "git push heroku"
-
+    echo "$HEROKU_API_KEY" | heroku auth:token
+    echo -e "\033[7;30mHaciendo push a Heroku...\033[0m"
+    git push heroku api-bank:main || { echo -e "\033[7;30m❌ Error en deploy\033[0m"; exit 0; }
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    sleep 20
     cd "$PROJECT_ROOT"
-    log_ok "✅ Proyecto desplegado con éxito en Heroku y GitHub"
-
     echo -e "\033[7;30m✅ ¡Deploy completado!\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "🚫 Deploy a GitHub y Heroku omitido por configuración"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
 
 
-# 🌐 BLOQUE 11 — Sincronización de base de datos con la nube
-#     Usa pg_dump, pv, psql
-#     Borra y resetea schema remoto
-#     Crea archivo .sql local
-#     Todo el flujo se registra con log_info + ejecutar
+
+
+
+
 echo -e "\033[7;33m---------------------------------------SINCRONIZACION BDD WEB--------------------------------------\033[0m"
-log_info "🌐 BLOQUE: Sincronización de base de datos local a nube remota PostgreSQL"
-
 if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir las bases de datos a la web"); then
-    DATE=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_FILE="${BACKUP_DIR}backup_${DATE}.sql"
+
+    echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m"
+    LOCAL_DB_NAME="mydatabase"
+    LOCAL_DB_USER="markmur88"
+    LOCAL_DB_HOST="localhost"
+    REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
+
     export PGPASSFILE="$HOME/.pgpass"
-    export PGUSER="$DB_USER"
-    export PGHOST="$DB_HOST"
+    export PGUSER="$LOCAL_DB_USER"
+    export PGHOST="$LOCAL_DB_HOST"
+
+    DATE=$(date +"%Y%m%d_%H%M%S")
+    BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
+    BACKUP_FILE="${BACKUP_DIR}backup_${DATE}.sql"
 
     if ! command -v pv > /dev/null 2>&1; then
-        log_error "❌ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv"
+        echo "⚠️ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv"
         exit 1
     fi
-
-    log_info "🧹 Reseteando base de datos remota (DROP SCHEMA)..."
-    echo "DROP SCHEMA public CASCADE; CREATE SCHEMA public;" | psql "$REMOTE_DB_URL" 2>&1 | tee -a "$LOG_FILE_SCRIPT"
-    check_status "DROP y CREATE SCHEMA remoto"
-
-    log_info "📦 Generando backup local con pg_dump..."
-    ejecutar pg_dump --no-owner --no-acl -U "$DB_USER" -h "$DB_HOST" -d "$DB_NAME" > "$BACKUP_FILE"
-    log_ok "📄 Backup SQL generado: $BACKUP_FILE"
-
-    log_info "📤 Subiendo backup a la base de datos remota con pv + psql..."
-    pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" >> "$LOG_FILE_SCRIPT" 2>&1
-    check_status "Importación a DB remota"
-
-    export DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}"
-    log_ok "✅ Sincronización completada correctamente"
-    echo -e "\033[7;30m✅ Sincronización completada con éxito: $BACKUP_FILE\033[0m"
+    echo -e "\033[7;30m🧹 Reseteando base de datos remota...\033[0m"
+    psql "$REMOTE_DB_URL" -q -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;" || { echo "❌ Error al resetear la DB remota. Abortando."; exit 1; }
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "🌐 Sincronización con base de datos remota omitida"
+    echo ""
+    echo -e "\033[7;30m📦 Generando backup local...\033[0m"
+    pg_dump --no-owner --no-acl -U "$LOCAL_DB_USER" -h "$LOCAL_DB_HOST" -d "$LOCAL_DB_NAME" > "$BACKUP_FILE" || { echo "❌ Error haciendo el backup local. Abortando."; exit 1; }
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    echo -e "\033[7;30m🌐 Importando backup en la base de datos remota...\033[0m"
+    pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" -q > /dev/null || { echo "❌ Error al importar el backup en la base de datos remota."; exit 1; }
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    echo -e "\033[7;30m✅ Sincronización completada con éxito: $BACKUP_FILE"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
 
 
-# 📦 BLOQUE 12 — Creación de archivo ZIP de respaldo
-#     Crea .zip con zip -r
-#     Usa timestamp + contador
-#     Puede incluir limpieza de backups antiguos por fecha
+
 echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
-log_info "📦 BLOQUE: Creación de archivo ZIP comprimido del proyecto"
-
 if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
     SOURCE="$PROJECT_ROOT/"
-    DEST="$HEROKU_ROOT"
+    DEST="$HOME/Documentos/GitHub/api_bank_heroku/"
     BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
 
+    # Obtener la fecha actual (solo día)
     TODAY=$(date +%Y%m%d)
-    COUNT=$(ls "$BACKUP_DIR" | grep "^${TODAY}__.*_backup_api_bank_h2[0-9]*\.zip$" | wc -l)
+
+    # Contar cuántos backups hay hoy y sumar 1 para el siguiente consecutivo
+    COUNT=$(ls "$BACKUP_DIR" | grep "^${TODAY}__.*_backup_api_bank_h2_H_[0-9]*\.zip$" | wc -l)
     SUFFIX=$((COUNT + 1))
+
+    # Timestamp con hora
     TIMESTAMP=$(date +%Y%m%d__%H-%M-%S)
-    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_h2${SUFFIX}.zip"
 
-    mkdir -p "$DEST" "$BACKUP_DIR"
+    # Nombre final del archivo
+    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_h2_H_${SUFFIX}.zip"
 
-    log_info "📁 Comenzando compresión del proyecto en $BACKUP_ZIP"
-
+    sudo mkdir -p "$DEST" "$BACKUP_DIR"
+    echo "📦 Creando archivo ZIP de respaldo..."
     (
-        cd "$(dirname "$SOURCE")" || { log_error "❌ No se pudo acceder a la carpeta fuente"; exit 1; }
-        zip -r "$BACKUP_ZIP" "$(basename "$SOURCE")" \
-            -x "*.git*" "*.zip" "*.sqlite3" "*.db" "*.pyc" "*.pyo" \
-            "*__pycache__*" "*temp/*" "*.log" "*local.py" 2>&1
-    ) | tee -a "$LOG_FILE_SCRIPT"
-    check_status "zip del proyecto"
-
-    log_ok "✅ ZIP creado exitosamente en: $BACKUP_ZIP"
+        cd "$(dirname "$SOURCE")"
+        sudo zip -r "$BACKUP_ZIP" "$(basename "$SOURCE")" --exclude=".git/" --exclude="*.zip" --exclude="__pycache__/" --exclude="*.sqlite3" --exclude="*.db" --exclude="*.pyc" --exclude="*.pyo"
+    )
+    echo ""
+    # echo "🔄 Sincronizando archivos al destino..."
+    # rsync -av --exclude=".gitattributes" --exclude="auto_commit_sync.sh" --exclude="manage.py" --exclude="*local.py" --exclude=".git/" --exclude="gunicorn.log" --exclude="honeypot_logs.csv" --exclude="token.md" --exclude="url_help.md" --exclude="honeypot.py" --exclude="URL_TOKEN.md" --exclude="01_full.sh" --exclude="05Gunicorn.sh" --exclude="*.zip" --exclude="*.db" --exclude="*.sqlite3" --exclude="temp/" "$SOURCE" "$DEST"
+    # echo ""
     echo -e "\033[7;30m✅ Respaldo ZIP creado en: $BACKUP_ZIP\033[0m"
+    # cd "$BACKUP_DIR" || exit 1
+    # TODAY=$(date +%Y%m%d)
+    # today_files=( $(ls -1t "${TODAY}__"*.zip 2>/dev/null) )
+    # for f in "${today_files[@]:10}"; do sudo rm -- "$f"; done
+    # dates=( $(ls -1 *.zip | grep -E '^[0-9]{8}__' | cut -c1-8 | grep -v "^$TODAY" | sort -u) )
+    # for d in "${dates[@]}"; do
+    #     files=( $(ls -1t "${d}__"*.zip) )
+    #     for f in "${files[@]:1}"; do sudo rm -- "$f"; done
+    # done
+    echo ""
+    echo "🧹 Archivos ZIP antiguos eliminados."
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "📦 Creación de archivo ZIP omitida por configuración"
+    echo ""
 fi
+echo ""
+echo ""
+echo ""
+sleep 1
+clear
 
 
 
 
-# 🧹 BLOQUE 13 — Limpieza de archivos .zip y .sql viejos
-#     Mantiene el primero y último por día, +10 más recientes de hoy
-#     Elimina lo demás
-#     Registra archivos borrados
 echo -e "\033[7;33m-----------------------------------------BORRANDO ZIP Y SQL----------------------------------------\033[0m"
-log_info "🧹 BLOQUE: Limpieza de respaldos antiguos (.zip y .sql)"
-
 if [[ "$OMIT_CLEAN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Limpiar respaldos antiguos"); then
-    cd "$BACKUP_DIR" || { log_error "❌ No se pudo acceder al directorio $BACKUP_DIR"; exit 1; }
-
+    echo -e "\033[7;30mLimpiando respaldos antiguos...\033[0m"
+    echo ""
+    cd "$BACKUP_DIR"
     mapfile -t files < <(ls -1tr *.zip *.sql 2>/dev/null)
     declare -A first last all keep
-
     for f in "${files[@]}"; do
-        d=${f:10:8}  # Extrae fecha del nombre
+        d=${f:10:8}
         all["$d"]+="$f;"
         [[ -z "${first[$d]:-}" ]] && first[$d]=$f
         last[$d]=$f
     done
-
     today=$(date +%Y%m%d)
     for d in "${!first[@]}"; do keep["${first[$d]}"]=1; done
     for d in "${!last[@]}";  do keep["${last[$d]}"]=1;  done
-
     today_files=(); for f in "${files[@]}"; do [[ "${f:10:8}" == "$today" ]] && today_files+=("$f"); done
     n=${#today_files[@]}; s=$(( n>10 ? n-10 : 0 ))
     for ((i=s;i<n;i++)); do keep["${today_files[i]}"]=1; done
-
     for f in "${files[@]}"; do
         if [[ -z "${keep[$f]:-}" ]]; then 
-            log_info "🗑️ Eliminando respaldo obsoleto: $f"
-            rm -f "$f" && log_ok "✅ Archivo eliminado: $f"
-            echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a "$LOG_FILE_SCRIPT"
-        else
-            log_info "📁 Conservando respaldo: $f"
+            rm -f "$f" && echo -e "\033[7;30m🗑️ Eliminado $f.\033[0m"
+            echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+            echo ""
         fi
     done
-
     cd - >/dev/null
-else
-    log_info "🧹 Limpieza de respaldos omitida por configuración"
 fi
+echo ""
+echo ""
+echo ""
+sleep 3
+clear
 
 
 
-
-# 🎭 BLOQUE 14 — Cambio de MAC address (opcional)
-#     Usa macchanger para interfaz como wlan0
-#     Redirigido al log
-echo -e "\033[7;33m---------------------------------------------CAMBIO MAC--------------------------------------------\033[0m"
-log_info "🎭 BLOQUE: Cambio de dirección MAC en interfaz $INTERFAZ"
-
-if [[ "$OMIT_MAC" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Cambiar MAC de la interfaz $INTERFAZ"); then
-    if ! command -v macchanger > /dev/null 2>&1; then
-        log_error "❌ El comando 'macchanger' no está instalado. Instálalo con: sudo apt install macchanger"
-        exit 1
-    fi
-
-    log_info "🛑 Bajando interfaz $INTERFAZ"
-    ejecutar sudo ip link set "$INTERFAZ" down
-
-    MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
-    MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
-
-    log_info "🔄 MAC anterior: $MAC_ANTERIOR"
-    log_info "✨ Nueva MAC asignada: $MAC_NUEVA"
-
-    log_info "🔼 Subiendo interfaz $INTERFAZ"
-    ejecutar sudo ip link set "$INTERFAZ" up
-
-    log_ok "✅ Dirección MAC cambiada correctamente en $INTERFAZ"
-    echo -e "\033[7;30m🔍 MAC anterior: $MAC_ANTERIOR\033[0m"
-    echo -e "\033[7;30m🎉 MAC asignada: $MAC_NUEVA\033[0m"
-    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo "" | tee -a "$LOG_FILE_SCRIPT"
-else
-    log_info "🎭 Cambio de MAC omitido por configuración"
-fi
+# echo -e "\033[7;33m---------------------------------------------CAMBIO MAC--------------------------------------------\033[0m"
+# if [[ "$OMIT_MAC" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Cambiar MAC de la interfaz $INTERFAZ"); then
+#     echo -e "\033[7;30mCambiando MAC de la interfaz $INTERFAZ\033[0m"
+#     sudo ip link set "$INTERFAZ" down
+#     MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
+#     MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
+#     sudo ip link set "$INTERFAZ" up
+#     echo -e "\033[7;30m🔍 MAC anterior: $MAC_ANTERIOR\033[0m"
+#     echo -e "\033[7;30m🎉 MAC asignada: $MAC_NUEVA\033[0m"
+#     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+#     echo ""
+# fi
+# echo ""
+# echo ""
+# echo ""
+# sleep 3
+# clear
 
 
+#!/bin/bash
 
-
-# 🔒 BLOQUE 15 — Arranque de Gunicorn, honeypot y livereload
-#     Ejecuta 3 procesos con nohup
-#     Usa firefox para abrir URLs
-#     Registra PID de procesos y abre puerto
-#     Salida a gunicorn.log, honeypot.log, livereload.log y LOG_FILE_SCRIPT
 echo -e "\033[7;33m----------------------------------------------GUNICORN---------------------------------------------\033[0m"
-log_info "🔒 BLOQUE: Inicio de Gunicorn, Honeypot y Livereload"
 
+# === CONFIGURACIÓN ===
 PUERTOS=(8001 5000 35729)
 URL_LOCAL="http://localhost:5000"
 URL_GUNICORN="http://0.0.0.0:8000"
+URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 
+# === FUNCIONES ===
 liberar_puertos() {
     for port in "${PUERTOS[@]}"; do
-        if lsof -i :"$port" > /dev/null 2>&1; then
-            log_info "🔌 Liberando puerto $port"
-            kill $(lsof -t -i :"$port") >> "$LOG_FILE_SCRIPT" 2>&1 || true
-            log_ok "✅ Puerto $port liberado"
+        if lsof -i :$port > /dev/null; then
+            echo -e "\033[1;34m🔌 Liberando puerto $port...\033[0m"
+            kill $(lsof -t -i :$port) 2>/dev/null || true
         fi
     done
 }
 
 limpiar_y_salir() {
-    log_info "🧹 Deteniendo servicios..."
+    echo -e "\n\033[1;33m🧹 Deteniendo todos los servicios...\033[0m"
     pids=$(jobs -p)
     [ -n "$pids" ] && kill $pids 2>/dev/null
-    [ -n "${FIREFOX_PID:-}" ] && kill "$FIREFOX_PID" 2>/dev/null || true
+    [ -n "$FIREFOX_PID" ] && kill "$FIREFOX_PID" 2>/dev/null || true
     liberar_puertos
-    log_ok "✅ Todos los procesos detenidos correctamente"
+    echo -e "\033[1;32m✅ Todos los servicios detenidos.\033[0m"
     echo -e "$LOGO_SEP\n"
     exit 0
 }
 
 iniciar_entorno() {
-    cd "$PROJECT_ROOT" || { log_error "❌ No se pudo acceder al proyecto"; exit 1; }
+    cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
-    export DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}"
-    ejecutar python manage.py collectstatic --noinput
+    python manage.py collectstatic --noinput
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
 }
 
+# === INICIO GUNICORN + HONEYPOT ===
 if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then
+    echo -e "\033[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...\033[0m"
     trap limpiar_y_salir SIGINT
     liberar_puertos
     iniciar_entorno
 
-    log_info "🚀 Lanzando Gunicorn..."
-    nohup gunicorn config.wsgi:application --workers 3 --bind 0.0.0.0:8001 --keep-alive 2 > gunicorn.log 2>&1 &
-    log_ok "✅ Gunicorn iniciado en :8001 (PID $!)"
-
-    log_info "🕵️‍♂️ Lanzando honeypot SSH..."
-    nohup python honeypot.py > honeypot.log 2>&1 &
-    log_ok "✅ Honeypot iniciado (PID $!)"
-
-    log_info "👨‍🔬 Lanzando livereload..."
-    nohup livereload --host 0.0.0.0 --port 35729 static/ -t templates/ > livereload.log 2>&1 &
-    log_ok "✅ Livereload iniciado en :35729 (PID $!)"
-
+    nohup gunicorn config.wsgi:application --workers 3 --bind 0.0.0.0:8001 --keep-alive 2 > gunicorn.log 2>&1 < /dev/null &
+    nohup python honeypot.py > honeypot.log 2>&1 < /dev/null &
+    nohup livereload --host 0.0.0.0 --port 35729 static/ -t templates/ > livereload.log 2>&1 < /dev/null &
+    
     sleep 3
-    firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" &
-    FIREFOX_PID=$!
+    firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN"
 
-    log_ok "🌐 Navegador lanzado en $URL_LOCAL y $URL_GUNICORN"
     echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"
     echo -e "$LOGO_SEP\n"
     while true; do sleep 3; done
-else
-    log_info "🔒 Arranque de servicios omitido por configuración"
 fi
+echo -e "\n\n\n"
+sleep 3
+clear
 
 
 
 
-# 🌍 BLOQUE 16 — Abrir web de Heroku
-#     Lanza firefox con URL_HEROKU
-#     Se registra evento y PID
+# === ABRIR WEB HEROKU ===
 echo -e "\033[7;33m---------------------------------------------CARGAR WEB--------------------------------------------\033[0m"
-log_info "🌍 BLOQUE: Apertura de web Heroku en navegador"
-
-URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
 
 if [[ "$OMIT_LOAD_WEB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Abrir web Heroku"); then
+    echo -e "\033[7;30m🌐 Abriendo web de Heroku...\033[0m"
     trap limpiar_y_salir SIGINT
     liberar_puertos
     iniciar_entorno
 
-    log_info "🌐 Abriendo navegador con URL Heroku: $URL_HEROKU"
     firefox --new-window "$URL_HEROKU" &
     FIREFOX_PID=$!
-    log_ok "🧭 Navegador lanzado (PID $FIREFOX_PID)"
 
     echo -e "\033[7;30m🚧 Web Heroku activa. Ctrl+C para cerrar.\033[0m"
     echo -e "$LOGO_SEP\n"
-
-    # === Notificación de escritorio ===
-    notify-send "API_BANK_H2" "✅ Proyecto desplegado correctamente
-
-🌍 Local:
-$URL_LOCAL
-
-🚀 Producción:
-$URL_HEROKU
-
-📦 Backup SQL: $BACKUP_FILE
-🔖 Commit: $COMENTARIO_COMMIT
-🗜️ ZIP: $BACKUP_ZIP
-
-🧾 Log: $LOG_FILE_SCRIPT" || log_info "📭 Notificación omitida: notify-send no disponible"
-
     while true; do sleep 3; done
-else
-    log_info "🌍 Apertura de navegador Heroku omitida por configuración"
 fi
 
+echo -e "\n\n\n"
+sleep 3
+clear
 
 
 
-# 🔔 BLOQUE 17 — Notificación final con notify-send
-#     Muestra éxito del deploy
-#     Incluye URLs y resumen
-#     El mensaje final también se guarda en log
-echo -e "\033[7;33m------------------------------------------NOTIFICACIÓN FINAL----------------------------------------\033[0m"
-log_info "🔔 BLOQUE: Notificación final del proceso de despliegue"
 
-notify-send "API_BANK_H2" "✅ Proyecto iniciado correctamente
 
-🌐 Accesos:
-- Local: $URL_LOCAL
-- Producción: $URL_HEROKU
+# === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
+URL="$URL_LOCAL"
 
-📦 Respaldo SQL: $BACKUP_FILE
-🗜️ ZIP: $BACKUP_ZIP
-🔖 Commit: $COMENTARIO_COMMIT
+notify-send "API_BANK_H2_H" "✅ Proyecto iniciado correctamente en:
+$URL
+$URL_HEROKU
+🏁 ¡Todo completado con éxito!
+✅ Sincronización completada con éxito: $BACKUP_FILE
+📦 Commit con el mensaje: $COMENTARIO_COMMIT
+✅ Respaldo ZIP creado en: $BACKUP_ZIP"
 
-🧾 Log completo:
-$LOG_FILE_SCRIPT" || log_info "📭 notify-send no disponible en este entorno"
+log_ok "🎉 Script finalizado sin errores."
+log_info "🗂 Log disponible en: $LOG_FILE_SCRIPT"
 
-log_ok "🏁 Script completado con éxito. Log guardado en: $LOG_FILE_SCRIPT"
-echo -e "\033[1;32m🏁 ¡Todo completado con éxito!\033[0m"
-echo -e "\033[1;34m🧾 Log disponible en: $LOG_FILE_SCRIPT\033[0m"
+
+

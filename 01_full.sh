@@ -1,19 +1,80 @@
 #!/usr/bin/env bash
 set -euo pipefail
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+
+echo "🔐 Solicitando acceso sudo..."
+if sudo -v; then
+    while true; do
+        sudo -v
+        sleep 60
+    done &
+
+    SUDO_KEEP_ALIVE_PID=$!
+    trap 'kill $SUDO_KEEP_ALIVE_PID' EXIT
+else
+    echo "❌ No se pudo obtener acceso sudo. Abortando."
+    exit 1
+fi
+
+COMENTARIO_COMMIT=""
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2_H           ║
+# ║  Automatización total: setup, backups, deploy, limpieza y seguridad       ║
+# ║  Soporte para 30 combinaciones de despliegue con alias `d_*`              ║
+# ║  Ejecuta `deploy_menu` para selección interactiva con FZF                 ║
+# ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros           ║
+# ║  Autor: markmur88                                                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+
+# === VARIABLES DE PROYECTO ===
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2_H"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 HEROKU_ROOT2="$HOME/Documentos/GitHub/coretransapi"
 VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
 INTERFAZ="wlan0"
-
-
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 LOGS_DIR="$PROJECT_ROOT/logs"
 LOG_FILE_SCRIPT="$LOGS_DIR/full_deploy_$(date +%Y%m%d_%H%M%S).log"
-# === FUNCIONES UTILITARIAS ===
-log_info()    { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
-log_ok()      { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
-log_error()   { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
+
+# === FLAGS DE CONTROL DE BLOQUES ===
+PROMPT_MODE=true
+OMIT_SYNC_REMOTE_DB=false
+OMIT_HEROKU=false
+OMIT_GUNICORN=false
+OMIT_CLEAN=false
+OMIT_JSON_LOCAL=false
+OMIT_SYNC_LOCAL=false
+OMIT_DOKER=false
+OMIT_SYS=false
+OMIT_ZIP_SQL=false
+OMIT_MAC=false
+OMIT_PEM=false
+OMIT_PORTS=false
+OMIT_MIG=false
+OMIT_PGSQL=false
+OMIT_RUN_LOCAL=false
+OMIT_RUN_WEB=false
+OMIT_UFW=false
+OMIT_USER=false
+OMIT_VERIF_TRANSF=false
+DEBUG_MODE=false
+
+# === CREDENCIALES BASE DE DATOS ===
+DB_NAME="mydatabase"
+DB_USER="markmur88"
+DB_PASS="Ptf8454Jd55"
+DB_HOST="localhost"
+
+# === FORMATO DE COLORES ===
+RESET='\033[0m'
+AZUL='\033[1;34m'
+VERDE='\033[1;32m'
+ROJO='\033[1;31m'
+AMARILLO='\033[1;33m'
+
+log_info()    { echo -e "${AZUL}[INFO] $1${RESET}" | tee -a "$LOG_FILE_SCRIPT"; }
+log_ok()      { echo -e "${VERDE}[OK]   $1${RESET}" | tee -a "$LOG_FILE_SCRIPT"; }
+log_error()   { echo -e "${ROJO}[ERR]  $1${RESET}" | tee -a "$LOG_FILE_SCRIPT"; }
+
 check_status() {
     local status=$?
     if [ $status -ne 0 ]; then
@@ -23,11 +84,181 @@ check_status() {
         log_ok "Éxito: $1"
     fi
 }
+
 ejecutar() {
     log_info "➡️ Ejecutando: $*"
     "$@" >> "$LOG_FILE_SCRIPT" 2>&1
     check_status "$*"
 }
+
+usage() {
+    echo -e ""
+    echo -e "\033[7;34m                                ➤ SCRIPT MAESTRO DE DESPLIEGUE: api_bank_h2_H\033[0m"
+    echo -e "\033[1;37mUso:\033[0m ./01_full.sh [opciones]"
+    echo -e ""
+
+    echo -e "\033[1;36m OPCIONES GENERALES\033[0m"
+    echo -e "  \033[1;33m-a\033[0m, \033[1;33m--all\033[0m                Ejecuta todo automáticamente sin confirmaciones"
+    echo -e "  \033[1;33m-s\033[0m, \033[1;33m--step\033[0m               Modo paso a paso con confirmación por bloque"
+    echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m              Muestra las variables de entorno antes de ejecutar"
+    echo -e ""
+
+    echo -e "\033[1;36m BLOQUES OMITIBLES INDIVIDUALMENTE\033[0m"
+    echo -e "  \033[1;33m-B\033[0m, \033[1;33m--omit-bdd\033[0m           Omitir sincronización con la base de datos remota"
+    echo -e "  \033[1;33m-H\033[0m, \033[1;33m--omit-heroku\033[0m        Omitir deploy y push a Heroku"
+    echo -e "  \033[1;33m-G\033[0m, \033[1;33m--omit-gunicorn\033[0m      Omitir arranque de Gunicorn y servicios locales"
+    echo -e "  \033[1;33m-C\033[0m, \033[1;33m--omit-clean\033[0m         Omitir limpieza de respaldos antiguos"
+    echo -e "  \033[1;33m-D\033[0m, \033[1;33m--omit-docker\033[0m        Omitir detener containers Docker"
+    echo -e "  \033[1;33m-P\033[0m, \033[1;33m--omit-ports\033[0m         Omitir detener puertos"
+    echo -e "  \033[1;33m-Y\033[0m, \033[1;33m--omit-sys\033[0m           Omitir actualizar sistema"
+    echo -e "  \033[1;33m-Z\033[0m, \033[1;33m--omit-zip\033[0m           Omitir creación de ZIP y SQL"
+    echo -e ""
+
+    echo -e "\033[1;36m RESPALDOS Y CARGAS DE DATOS\033[0m"
+    echo -e "  \033[1;33m-L\033[0m, \033[1;33m--omit-local\033[0m         Omitir creación de JSON de respaldo local"
+    echo -e "  \033[1;33m-I\033[0m, \033[1;33m--omit-migra\033[0m         Omitir migraciones"
+    echo -e "  \033[1;33m-Q\033[0m, \033[1;33m--omit-pgsql\033[0m         Omitir reseteo postgres"
+    echo -e "  \033[1;33m-L\033[0m, \033[1;33m--omit-local\033[0m         Omitir creación de JSON de respaldo local"
+    echo -e "  \033[1;33m-S\033[0m, \033[1;33m--omit-sync\033[0m          Omitir sincronización entre carpetas"
+    echo -e "  \033[1;33m-l\033[0m, \033[1;33m--omit-load-local\033[0m    Omitir carga de JSON local al sistema"
+    echo -e "  \033[1;33m-w\033[0m, \033[1;33m--omit-web\033[0m           Omitir apertura del navegador con el entorno web"
+    echo -e ""
+
+    echo -e "\033[1;36m USUARIO Y VERIFICACIÓN\033[0m"
+    echo -e "  \033[1;33m-U\033[0m, \033[1;33m--omit-create-user\033[0m   Omitir creación del superusuario de Django"
+    echo -e "  \033[1;33m-V\033[0m, \033[1;33m--omit-verif-trans\033[0m   Omitir verificación de archivos de transferencia"
+    echo -e ""
+
+    echo -e "\033[1;36m OTROS\033[0m"
+    echo -e "  \033[1;33m-M\033[0m, \033[1;33m--omit-mac\033[0m           Omitir cambio de dirección MAC aleatoria"
+    echo -e "  \033[1;33m-x\033[0m, \033[1;33m--omit-ufw\033[0m           Omitir configuración del firewall (UFW)"
+    echo -e "  \033[1;33m-p\033[0m, \033[1;33m--omit-pem\033[0m           Omitir generar archivos PEM"
+    echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m               Mostrar esta ayuda y salir"
+    echo -e ""
+
+    echo -e "\033[1;36m EJEMPLOS COMBINADOS\033[0m"
+    echo -e "  \033[1;36mdeploy_menu\033[0m   ➤ Menú interactivo con FZF para seleccionar despliegue"
+    echo -e ""
+}
+
+# === PARSEO DE ARGUMENTOS ===
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -a|--all)               PROMPT_MODE=false ;;
+        -s|--step)              PROMPT_MODE=true ;;
+        -B|--omit-bdd)          OMIT_SYNC_REMOTE_DB=true ;;
+        -H|--omit-heroku)       OMIT_HEROKU=true ;;
+        -G|--omit-gunicorn)     OMIT_GUNICORN=true ;;
+        -L|--omit-local)        OMIT_JSON_LOCAL=true ;;
+        -S|--omit-sync)         OMIT_SYNC_LOCAL=true ;;
+        -D|--omit-docker)       OMIT_DOKER=true ;;
+        -P|--omit-ports)        OMIT_PORTS=true ;;
+        -Y|--omit-sys)          OMIT_SYS=true ;;
+        -Z|--omit-zip)          OMIT_ZIP_SQL=true ;;
+        -M|--omit-mac)          OMIT_MAC=true ;;
+        -p|--omit-pem)          OMIT_PEM=true ;;    
+        -x|--omit-ufw)          OMIT_UFW=true ;;
+        -U|--omit-create-user)  OMIT_USER=true ;;
+        -l|--omit-load-local)   OMIT_RUN_LOCAL=true ;;
+        -w|--omit-web)          OMIT_RUN_WEB=true ;;
+        -C|--omit-clean)        OMIT_CLEAN=true ;;
+        -V|--omit-verif-trans)  OMIT_VERIF_TRANSF=true ;;
+        -d|--debug)             DEBUG_MODE=true ;;
+        -h|--help)              usage; exit 0 ;;
+        *)
+            echo -e "\033[1;31m❌ Opción desconocida:\033[0m $1"
+            usage
+            exit 1
+            ;;
+    esac
+    shift
+done
+
+# === FUNCIÓN CONFIRMAR ===
+confirmar() {
+    [[ "$PROMPT_MODE" == false ]] && return 0
+    echo
+    printf "\033[1;34m🔷 ¿Confirmas: %s? (s/n):\033[0m " "$1"
+    read -r resp
+    [[ "$resp" =~ ^[sS]$ || -z "$resp" ]]
+    echo ""
+}
+
+# === SOLICITAR COMENTARIO PARA COMMIT SI NO SE OMITE HEROKU ===
+if [[ "$OMIT_HEROKU" == false ]]; then
+    echo -e "\033[1;30m🔐 Se solicitarán privilegios sudo para operaciones posteriores...[0m"
+    sudo -v
+
+    if [[ -z "${COMENTARIO_COMMIT:-}" ]]; then
+        echo -e "\033[7;30m✏️ Ingrese el comentario del commit (se usará más adelante):\033[0m"
+        read -rp "📝 Comentario: " COMENTARIO_COMMIT
+        if [[ -z "$COMENTARIO_COMMIT" ]]; then
+            echo -e "\033[1;31m❌ Comentario vacío. Abortando ejecución.\033[0m"
+            exit 1
+        fi
+    else
+        echo -e "\033[1;32m📝 Usando comentario exportado: \033[0m$COMENTARIO_COMMIT"
+    fi
+    export COMENTARIO_COMMIT
+fi
+
+
+
+if [[ "${DEBUG_MODE:-false}" == true ]]; then
+    echo "=== VARIABLES ACTUALES ==="
+    env | grep -E "DB_|PROJECT_ROOT|HEROKU_ROOT|OMIT_|PROMPT_|INTERFAZ"
+    echo "=========================="
+fi
+
+
+
+# === FUNCIONES PROFESIONALES ===
+verificar_vpn_segura() {
+    if ip a show proton0 &>/dev/null; then
+        log_ok "VPN (proton0) activa. Conexión segura."
+    elif ip a show tun0 &>/dev/null; then
+        log_ok "VPN (tun0) activa. Conexión segura."
+    else
+        log_error "❌ No hay VPN activa (ni proton0 ni tun0). Abortando despliegues sensibles."
+        exit 1
+    fi
+}
+
+rotar_logs_si_grandes() {
+    for file in "$LOGS_DIR"/*.log; do
+        [[ ! -f "$file" ]] && continue
+        size=$(du -m "$file" | cut -f1)
+        if [[ "$size" -ge 10 ]]; then
+            ts=$(date +%Y%m%d_%H%M%S)
+            mv "$file" "$file.$ts"
+            touch "$file"
+            log_info "🌀 Log $file archivado por tamaño (>$size MB)"
+        fi
+    done
+}
+
+verificar_configuracion_segura() {
+    archivo_env="$PROJECT_ROOT/.env"
+    if grep -q "DEBUG=True" "$archivo_env"; then
+        log_error "❌ DEBUG está activo en producción. Revisa tu .env"
+        exit 1
+    fi
+    if grep -q "localhost" "$archivo_env"; then
+        log_error "❌ ALLOWED_HOSTS contiene 'localhost'. No es seguro para producción."
+        exit 1
+    fi
+    if ! grep -q "SECRET_KEY=" "$archivo_env"; then
+        log_error "❌ SECRET_KEY no está configurado en .env"
+        exit 1
+    fi
+    log_ok "✔️ Configuración .env validada."
+}
+
+ver_ip_publica() {
+    local ip=$(curl -s ifconfig.me || echo "N/D")
+    echo -e "\033[1;36m🌐 IP pública actual: $ip\033[0m"
+}
+
 diagnostico_entorno() {
     echo -e "\n\033[1;35m🔍 Diagnóstico del Sistema:\033[0m"
     echo "🧠 Memoria RAM:"
@@ -48,112 +279,15 @@ diagnostico_entorno() {
 }
 # === LLAMAR AL DIAGNÓSTICO TEMPRANO ===
 diagnostico_entorno
-PROMPT_MODE=true
-OMIT_SYNC_REMOTE_DB=false
-OMIT_HEROKU=false
-OMIT_GUNICORN=false
-OMIT_CLEAN=false
-OMIT_JSON_LOCAL=false
-# OMIT_JSON_WEB=false
-OMIT_SYNC_LOCAL=false
-OMIT_ZIP_SQL=false
-OMIT_MAC=false
-OMIT_LOAD_LOCAL=false
-OMIT_LOAD_WEB=false
-OMIT_USER=false
 
-DB_NAME="mydatabase"
-DB_USER="markmur88"
-DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
-
-# === OPCIONES DISPONIBLES PARA ./01_full.sh ===
-# -a  --all                Ejecuta todo sin confirmaciones interactivas
-# -s  --step               Modo paso a paso (requiere confirmar cada paso)
-# -B  --omit-bdd           Omite sincronización de la base de datos remota
-# -H  --omit-heroku        Omite sincronización o deploy en Heroku
-# -G  --omit-gunicorn      Omite reinicio del servidor Gunicorn
-# -L  --omit-local         Omite generación de respaldos JSON locales
-# -W  --omit-web           Omite generación de respaldos JSON web
-# -S  --omit-sync          Omite sincronización de respaldos locales
-# -Z  --omit-zip           Omite creación de archivo ZIP del respaldo SQL
-# -U  --omit-create-user   Omite creación del usuario
-# -l  --omit-load-local    Omite carga de respaldo local
-# -w  --omit-load-web      Omite carga de respaldo web
-# -M  --omit-mac           Omite comandos específicos para macOS
-# -C  --omit-clean         Omite limpieza de archivos temporales
-# === COMBINACIONES RECOMENDADAS ===
-# ./01_full.sh -a                           # Todo automático
-# ./01_full.sh -a -W -L -Z                  # Todo excepto respaldos
-# ./01_full.sh -a -U -w                     # Sin creación de usuario ni carga web
-# ./01_full.sh -s -B -H -G                  # Modo paso a paso sin despliegue remoto
-# ./01_full.sh -a -H -C -G -W -Z -U         # Desarrollo local, sin deploy ni limpieza
-# ./01_full.sh -a -H -G -U -W               # Solo sincronizar y cargar backups locales
-# ./01_full.sh -a -W -L                     # Solo compresión y carga sin generar respaldos
-# ./01_full.sh -a -H -C -G -W -Z -U         # Desarrollo local sin limpieza ni despliegue
-# ./01_full.sh -a -L -l -W -U               # Solo pruebas sin tocar backups ni usuarios:
-
-# mkdir -p "$BACKUP_DIR"
-function usage() {
-    echo "Uso: $0 [opciones]"
-    echo
-    echo "Opciones:"
-    echo "  -a, --all                   Ejecuta todos los pasos automáticamente"
-    echo "  -s, --step                  Ejecuta paso a paso con confirmación"
-    echo "  -B, --omit-bdd              Omitir sincronización de la base de datos remota"
-    echo "  -H, --omit-heroku           Omitir despliegue en Heroku"
-    echo "  -G, --omit-gunicorn         Omitir arranque del servidor Gunicorn"
-    echo "  -L, --omit-local            Omitir crear de JSON local"
-    # echo "  -W, --omit-web              Omitir crear de JSON web"
-    echo "  -S, --omit-sync             Omitir sincronización de archivos locales"
-    echo "  -Z, --omit-zip              Omitir compresión de archivos"
-    echo "  -M, --omit-mac              Omitir ajustes específicos para macOS"
-    echo "  -U, --omit-create-user      Omitir crear usuario"
-    echo "  -l, --omit-load-local       Omitir subir JSON local"
-    echo "  -w, --omit-web              Omitir abrir web Heroku"
-    echo "  -C, --omit-clean            Omitir limpieza de archivos temporales"
-    echo "  -h, --help                  Mostrar esta ayuda y salir"
-    echo
-}
-while [[ $# -gt 0 ]]; do
-    case "$1" in
-        -a|--all) PROMPT_MODE=false; shift ;;
-        -s|--step) PROMPT_MODE=true; shift ;;
-        -B|--omit-bdd) OMIT_SYNC_REMOTE_DB=true; shift ;;
-        -H|--omit-heroku) OMIT_HEROKU=true; shift ;;
-        -G|--omit-gunicorn) OMIT_GUNICORN=true; shift ;;
-        -L|--omit-local) OMIT_JSON_LOCAL=true; shift ;;
-        # -W|--omit-web) OMIT_JSON_WEB=true; shift ;;
-        -S|--omit-sync) OMIT_SYNC_LOCAL=true; shift ;;
-        -Z|--omit-zip) OMIT_ZIP_SQL=true; shift ;;
-        -U|--omit-create-user) OMIT_USER=true; shift ;;
-        -l|--omit-load-local) OMIT_LOAD_LOCAL=true; shift ;;
-        -w|--omit-web) OMIT_LOAD_WEB=true; shift ;;
-        -M|--omit-mac) OMIT_MAC=true; shift ;;
-        -C|--omit-clean) OMIT_CLEAN=true; shift ;;
-        -h|--help) usage; exit 0 ;;
-        *) echo "Opción desconocida: $1"; usage; exit 1 ;;
-    esac
-done
-confirmar() {
-    [[ "$PROMPT_MODE" == false ]] && return 0
-    echo
-    printf "\033[1;34m🔷 ¿Confirmas: %s? (s/n):\033[0m " "$1"
-    read -r resp
-    [[ "$resp" =~ ^[sS]$ || -z "$resp" ]]
-    echo ""
-}
-# confirmar() {
-#     [[ "$PROMPT_MODE" == false ]] && return 0
-#     echo
-#     printf "\033[1;34m🔷 ¿Confirmas: %s? (s/n, 15s para cancelar):\033[0m " "$1"
-#     read -t 15 -r resp || resp="n"
-#     [[ "$resp" =~ ^[sS]$ ]]
-#     echo ""
-# }
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
 echo -e "\033[7;33m----------------------------------------------SISTEMA----------------------------------------------\033[0m"
-if confirmar "Actualizar sistema"; then
+if [[ "$OMIT_SYS" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Actualizar sistema"); then
     sudo apt-get update && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y && sudo apt-get clean
     echo -e "\033[7;30m🔄 Sistema actualizado.\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -168,9 +302,9 @@ sleep 3
 echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
 if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
     echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
-    bash $HOME/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
+    bash $HOME/Documentos/GitHub/api_bank_h2_H/scripts/15_zip_backup.sh
     
-    # PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+    # PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2_H"
     # PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
     # BACKUP_DIR="$PROJECT_BASE_DIR/backup"
     # mkdir -p "$BACKUP_DIR"
@@ -196,9 +330,10 @@ echo ""
 echo ""
 echo ""
 sleep 3
+# clear
 
 echo -e "\033[7;33m----------------------------------------------PUERTOS----------------------------------------------\033[0m"
-if confirmar "Detener puertos abiertos"; then
+if [[ "$OMIT_PORTS" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Detener puertos abiertos"); then
     PUERTOS_OCUPADOS=0
     for PUERTO in 2222 8000 5000 8001 35729; do
         if lsof -i tcp:"$PUERTO" &>/dev/null; then
@@ -225,7 +360,7 @@ sleep 3
 # clear
 
 echo -e "\033[7;33m--------------------------------------------CONTENEDORES-------------------------------------------\033[0m"
-if confirmar "Detener contenedores Docker"; then
+if [[ "$OMIT_DOKER" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Detener contenedores Docker"); then
     PIDS=$(docker ps -q)
     if [ -n "$PIDS" ]; then
         docker stop $PIDS
@@ -254,28 +389,6 @@ if [[ "$OMIT_JSON_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confir
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
 fi
-echo ""
-echo ""
-echo ""
-sleep 3
-# clear
-
-echo -e "\033[7;33m----------------------------------------------POSTGRES---------------------------------------------\033[0m"
-if confirmar "Configurar venv y PostgreSQL"; then
-    python3 -m venv "$VENV_PATH"
-    source "$VENV_PATH/bin/activate"
-    pip install --upgrade pip
-    echo "📦 Instalando dependencias..."
-    echo ""
-    pip install -r "$PROJECT_ROOT/requirements.txt"
-    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo ""
-    sudo systemctl enable postgresql
-    sudo systemctl start postgresql
-    echo -e "\033[7;30m🐍 Entorno y PostgreSQL listos.\033[0m"
-    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo ""
-fi
 
 echo ""
 echo ""
@@ -284,7 +397,7 @@ sleep 3
 # clear
 
 echo -e "\033[7;33m------------------------------------------------UFW------------------------------------------------\033[0m"
-if confirmar "Configurar UFW"; then
+if [[ "$OMIT_UFW" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Configurar venv y PostgreSQL"); then
     sudo ufw --force reset
     sudo ufw default deny incoming
     sudo ufw default allow outgoing
@@ -336,8 +449,22 @@ echo ""
 sleep 3
 # clear
 
-echo -e "\033[7;33m----------------------------------------------RESETEO----------------------------------------------\033[0m"
-if confirmar "Resetear base de datos y crear usuario en PostgreSQL"; then
+echo -e "\033[7;33m----------------------------------------------POSTGRES---------------------------------------------\033[0m"
+if [[ "$OMIT_PGSQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Configurar venv y PostgreSQL"); then
+    python3 -m venv "$VENV_PATH"
+    source "$VENV_PATH/bin/activate"
+    pip install --upgrade pip
+    echo "📦 Instalando dependencias..."
+    echo ""
+    pip install -r "$PROJECT_ROOT/requirements.txt"
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+    sudo systemctl enable postgresql
+    sudo systemctl start postgresql
+    echo -e "\033[7;30m🐍 Entorno y PostgreSQL listos.\033[0m"
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+
     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
     sudo -u postgres psql <<-EOF
 DO \$\$
@@ -380,7 +507,7 @@ sleep 3
 # clear
 
 echo -e "\033[7;33m--------------------------------------------MIGRACIONES--------------------------------------------\033[0m"
-if confirmar "Ejecutar migraciones"; then
+if [[ "$OMIT_MIG" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Ejecutar migraciones"); then
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
     echo "🧹 Eliminando cachés de Python y migraciones anteriores..."
@@ -403,14 +530,32 @@ if confirmar "Ejecutar migraciones"; then
     python manage.py collectstatic --noinput
     echo "⏳ Migraciones a la base de datos completa."
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+
 fi
-echo ""
 
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
+
+
+echo -e "\033[7;33m--------------------------------------------CARGAR LOCAL-------------------------------------------\033[0m"
+if [[ "$OMIT_RUN_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir bdd_local"); then
+    echo -e "\033[7;30m🚀 Subiendo respaldo de datos de local...\033[0m"
+    python3 manage.py loaddata bdd_local.json
+    echo -e "\033[7;30m✅ ¡Subido JSON Local!\033[0m"
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+fi
+
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
+
 
 echo -e "\033[7;33m----------------------------------------------USUARIO----------------------------------------------\033[0m"
 if [[ "$OMIT_USER" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear Super Usuario"); then
@@ -427,33 +572,33 @@ echo ""
 sleep 3
 # clear
 
-echo -e "\033[7;33m--------------------------------------------CARGAR LOCAL-------------------------------------------\033[0m"
-if [[ "$OMIT_LOAD_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir bdd_local"); then
-    echo -e "\033[7;30m🚀 Subiendo respaldo de datos de local...\033[0m"
-    python3 manage.py loaddata bdd_local.json
-    echo -e "\033[7;30m✅ ¡Subido JSON Local!\033[0m"
-    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo ""
-fi
-
-echo ""
-echo ""
-echo ""
-sleep 3
-# clear
 
 # echo -e "\033[7;33m----------------------------------------------PEM JWKS---------------------------------------------\033[0m"
-# if confirmar "Generar o cambiar PEM JWKS"; then
+# if [[ "$OMIT_PEM" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Generar PEM JWKS"); then
 #     echo -e "\033[7;30m🚀 Generando PEM...\033[0m"
 #     python3 manage.py genkey
 #     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 #     echo ""
 # fi
+
 # echo ""
 # echo ""
 # echo ""
 # sleep 3
 # # clear
+
+echo -e "\033[7;33m--------------------------------------VERIFICAR TRANSFERENCIAS-------------------------------------\033[0m"
+if [[ "$OMIT_VERIF_TRANSF" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Verificar archivos transferencias"); then
+    echo -e "\033[7;30m🚀 Verificando logs transferencias...\033[0m"
+    python manage.py verificar_transferencias --fix -c -j
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+fi
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
 echo -e "\033[7;33m----------------------------------------SINCRONIZACION COMPLETA----------------------------------------\033[0m"
 EXCLUDES=(
@@ -535,6 +680,8 @@ echo ""
 sleep 3
 # clear
 
+verificar_vpn_segura
+verificar_configuracion_segura
 
 echo -e "\033[7;33m-------------------------------------------SUBIR A HEROKU------------------------------------------\033[0m"
 if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir el proyecto a la web"); then
@@ -563,7 +710,7 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     # Crear carpeta keys/ si no existe
     mkdir -p keys
     # Ruta esperada del archivo
-    PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
+    PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2_H/schemas/keys/ecdsa_private_key.pem"
     # Verificar existencia de la clave privada
     if [[ ! -f "$PEM_PATH" ]]; then
         echo -e "\033[7;33m⚠️  Clave privada no encontrada. Generando clave ECDSA P-256...\033[0m"
@@ -626,12 +773,6 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     echo ""
 fi
 
-echo ""
-echo ""
-echo ""
-sleep 3
-# clear
-
 
 
 echo -e "\033[7;33m-----------------------------------------BORRANDO ZIP Y SQL----------------------------------------\033[0m"
@@ -674,21 +815,27 @@ sleep 3
 echo -e "\033[7;33m---------------------------------------------CAMBIO MAC--------------------------------------------\033[0m"
 if [[ "$OMIT_MAC" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Cambiar MAC de la interfaz $INTERFAZ"); then
     echo -e "\033[7;30mCambiando MAC de la interfaz $INTERFAZ\033[0m"
+    ver_ip_publica
     sudo ip link set "$INTERFAZ" down
     MAC_ANTERIOR=$(sudo macchanger -s "$INTERFAZ" | awk '/Current MAC:/ {print $3}')
     MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
     sudo ip link set "$INTERFAZ" up
+    ver_ip_publica
     echo -e "\033[7;30m🔍 MAC anterior: $MAC_ANTERIOR\033[0m"
     echo -e "\033[7;30m🎉 MAC asignada: $MAC_NUEVA\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
 fi
 
+
 echo ""
 echo ""
 echo ""
 sleep 3
 # clear
+
+verificar_vpn_segura
+rotar_logs_si_grandes
 
 echo -e "\033[7;33m----------------------------------------------GUNICORN---------------------------------------------\033[0m"
 # === CONFIGURACIÓN ===
@@ -745,9 +892,11 @@ echo ""
 sleep 3
 # clear
 
+verificar_vpn_segura
+
 # === ABRIR WEB HEROKU ===
 echo -e "\033[7;33m---------------------------------------------CARGAR WEB--------------------------------------------\033[0m"
-if [[ "$OMIT_LOAD_WEB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Abrir web Heroku"); then
+if [[ "$OMIT_RUN_WEB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Abrir web Heroku"); then
     echo -e "\033[7;30m🌐 Abriendo web de Heroku...\033[0m"
     trap limpiar_y_salir SIGINT
     liberar_puertos
@@ -768,7 +917,7 @@ sleep 3
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"
-notify-send "API_BANK_H2" "✅ Proyecto iniciado correctamente en:
+notify-send "api_bank_h2_H" "✅ Proyecto iniciado correctamente en:
 $URL
 $URL_HEROKU
 🏁 ¡Todo completado con éxito!

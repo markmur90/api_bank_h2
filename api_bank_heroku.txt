@@ -119,7 +119,3 @@ https://apibank2-d42d7ed0d036.herokuapp.com/dashboard/
 https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/authorize/
 
 https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/
-
-
-
-./master.sh --env=local -drcfmtkpxglzyvnhoq

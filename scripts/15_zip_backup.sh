@@ -3,7 +3,7 @@ set -euo pipefail
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2_H"
 PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
 BACKUP_DIR="$PROJECT_BASE_DIR/backup"
 LOG_DIR="$PROJECT_DIR/logs"
@@ -83,7 +83,26 @@ log_info "🧩 Iniciando compresión del proyecto completo..."
 
 cd "$PROJECT_BASE_DIR" || { log_error "No se pudo acceder al directorio base del proyecto"; exit 1; }
 
-zip -r9 "$ZIP_FINAL" "$(basename "$PROJECT_DIR")" -x "$(basename "$PROJECT_DIR")/servers/*" >> "$LOG_FILE" 2>&1
+EXCLUDES=(
+#   "$(basename "$PROJECT_DIR")/logs/*"
+  "$(basename "$PROJECT_DIR")/temp/*"
+  "$(basename "$PROJECT_DIR")/venv/*"
+#   "$(basename "$PROJECT_DIR")/__pycache__/*"
+#   "$(basename "$PROJECT_DIR")/migrations/*"
+#   "$(basename "$PROJECT_DIR")/servers/*"
+#   "$(basename "$PROJECT_DIR")/staticfiles/*"
+#   "$(basename "$PROJECT_DIR")/media/*"
+#   "$(basename "$PROJECT_DIR")/schemas/keys/*"
+  "$(basename "$PROJECT_DIR")/*.sqlite3"
+#   "$(basename "$PROJECT_DIR")/*.pyc"
+#   "$(basename "$PROJECT_DIR")/*.log"
+  "$(basename "$PROJECT_DIR")/*.zip"
+  "$(basename "$PROJECT_DIR")/*.sql"
+  "$(basename "$PROJECT_DIR")/.DS_Store"
+#   "$(basename "$PROJECT_DIR")/.env"
+)
+
+zip -r9 "$ZIP_FINAL" "$(basename "$PROJECT_DIR")" "${EXCLUDES[@]/#/-x}" >> "$LOG_FILE" 2>&1
 
 check_and_log "Proyecto comprimido exitosamente en: $ZIP_FINAL" "Error al comprimir el proyecto"
 
