@@ -1,6 +1,0 @@
-timestamp,ip,port,protocol,info
-2025-05-16T06:16:58.753851,127.0.0.1,8000,HTTP,GET / HTTP/1.1
-2025-05-16T06:17:04.548268,127.0.0.1,8000,HTTP,GET /static/css/bootstrap.min.css HTTP/1.1
-2025-05-16T06:17:04.549212,127.0.0.1,8000,HTTP,GET /static/js/bootstrap.bundle.min.js HTTP/1.1
-2025-05-16T06:17:04.614613,127.0.0.1,8000,HTTP,GET /static/images/background.png HTTP/1.1
-2025-05-16T06:17:04.678512,127.0.0.1,8000,HTTP,GET /static/favicon.ico HTTP/1.1

@@ -1,9 +1,0 @@
-[Unit]
-Description=Gunicorn socket for coretransapi
-PartOf=gunicorn.service
-
-[Socket]
-ListenStream=/run/gunicorn.sock
-
-[Install]
-WantedBy=sockets.target
