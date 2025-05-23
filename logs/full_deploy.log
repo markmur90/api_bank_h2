@@ -1,2 +1,5 @@
 [1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
 [1;31m[ERR]  ❌ SECRET_KEY no está configurado en .env[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m

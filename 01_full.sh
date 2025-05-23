@@ -612,9 +612,9 @@ actualizar_django_env() {
     entorno_base=$(basename "$destino")
     local nuevo_valor_env
     case "$entorno_base" in
-        local)
-            nuevo_valor_env="local"
-            ;;
+        # local)
+        #     nuevo_valor_env="local"
+        #     ;;
         heroku)
             nuevo_valor_env="heroku"
             ;;
@@ -702,44 +702,44 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     heroku config:set DB_AUTH_URL=https://simulator-api.db.com:443/gw/dbapi/authorize
     heroku config:set DB_API_URL=https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer
     heroku config:set DB_SCOPE=sepa_credit_transfers
-    heroku config:set API_ORIGIN=https://simulator-api.db.com
+    heroku config:set API_ORIGIN=https://api.db.com
     heroku config:set TIMEOUT_REQUEST=3600
     heroku config:set DISABLE_COLLECTSTATIC=1
-    heroku config:set PRIVATE_KEY_B64="$(cat ghost.key.b64)"
-    echo -e "\033[7;36m🔐 Verificando y generando clave privada JWT...\033[0m"
-    # Crear carpeta keys/ si no existe
-    mkdir -p keys
-    # Ruta esperada del archivo
-    PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
-    # Verificar existencia de la clave privada
-    if [[ ! -f "$PEM_PATH" ]]; then
-        echo -e "\033[7;33m⚠️  Clave privada no encontrada. Generando clave ECDSA P-256...\033[0m"
-        openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out "$PEM_PATH"
-        echo -e "\033[7;32m✅ Clave privada generada en $PEM_PATH\033[0m"
-    else
-        echo -e "\033[7;32m🔎 Clave privada ya existente.\033[0m"
-    fi
-    # Validar contenido del archivo
-    if ! grep -q "BEGIN PRIVATE KEY" "$PEM_PATH"; then
-        echo -e "\033[7;31m❌ Error: El archivo $PEM_PATH no contiene una clave privada válida.\033[0m"
-        exit 1
-    fi
-    # Configurar PRIVATE_KEY_PATH si aún no está en Heroku
-    if [[ -z "$(heroku config:get PRIVATE_KEY_PATH)" ]]; then
-        echo -e "\033[7;36m🔧 Configurando PRIVATE_KEY_PATH en Heroku...\033[0m"
-        heroku config:set PRIVATE_KEY_PATH="$PEM_PATH"
-    else
-        echo -e "\033[7;32m✅ PRIVATE_KEY_PATH ya está configurado en Heroku.\033[0m"
-    fi
-    # Configurar PRIVATE_KEY_KID si aún no está
-    if [[ -z "$(heroku config:get PRIVATE_KEY_KID)" ]]; then
-        echo -e "\033[7;36m🔑 Generando PRIVATE_KEY_KID aleatorio...\033[0m"
-        PRIVATE_KEY_KID=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(32)))")
-        heroku config:set PRIVATE_KEY_KID="$PRIVATE_KEY_KID"
-        echo -e "\033[7;32m✅ PRIVATE_KEY_KID generado y configurado correctamente\033[0m"
-    else
-        echo -e "\033[7;32m✅ PRIVATE_KEY_KID ya está configurado en Heroku.\033[0m"
-    fi
+    # heroku config:set PRIVATE_KEY_B64="$(cat ghost.key.b64)"
+    # echo -e "\033[7;36m🔐 Verificando y generando clave privada JWT...\033[0m"
+    # # Crear carpeta keys/ si no existe
+    # mkdir -p keys
+    # # Ruta esperada del archivo
+    # PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
+    # # Verificar existencia de la clave privada
+    # if [[ ! -f "$PEM_PATH" ]]; then
+    #     echo -e "\033[7;33m⚠️  Clave privada no encontrada. Generando clave ECDSA P-256...\033[0m"
+    #     openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out "$PEM_PATH"
+    #     echo -e "\033[7;32m✅ Clave privada generada en $PEM_PATH\033[0m"
+    # else
+    #     echo -e "\033[7;32m🔎 Clave privada ya existente.\033[0m"
+    # fi
+    # # Validar contenido del archivo
+    # if ! grep -q "BEGIN PRIVATE KEY" "$PEM_PATH"; then
+    #     echo -e "\033[7;31m❌ Error: El archivo $PEM_PATH no contiene una clave privada válida.\033[0m"
+    #     exit 1
+    # fi
+    # # Configurar PRIVATE_KEY_PATH si aún no está en Heroku
+    # if [[ -z "$(heroku config:get PRIVATE_KEY_PATH)" ]]; then
+    #     echo -e "\033[7;36m🔧 Configurando PRIVATE_KEY_PATH en Heroku...\033[0m"
+    #     heroku config:set PRIVATE_KEY_PATH="$PEM_PATH"
+    # else
+    #     echo -e "\033[7;32m✅ PRIVATE_KEY_PATH ya está configurado en Heroku.\033[0m"
+    # fi
+    # # Configurar PRIVATE_KEY_KID si aún no está
+    # if [[ -z "$(heroku config:get PRIVATE_KEY_KID)" ]]; then
+    #     echo -e "\033[7;36m🔑 Generando PRIVATE_KEY_KID aleatorio...\033[0m"
+    #     PRIVATE_KEY_KID=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(32)))")
+    #     heroku config:set PRIVATE_KEY_KID="$PRIVATE_KEY_KID"
+    #     echo -e "\033[7;32m✅ PRIVATE_KEY_KID generado y configurado correctamente\033[0m"
+    # else
+    #     echo -e "\033[7;32m✅ PRIVATE_KEY_KID ya está configurado en Heroku.\033[0m"
+    # fi
     heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/
     echo -e "\033[7;30mHaciendo git add...\033[0m"
     git add --all
@@ -873,7 +873,8 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     nohup python honeypot.py > "$LOGS_DIR/honeypot.log" 2>&1 < /dev/null &
     nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOGS_DIR/livereload.log" 2>&1 < /dev/null &   
     sleep 3
-    firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN"
+    firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" --new-tab "$URL_HEROKU" &
+    FIREFOX_PID=$!
     echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"
     echo -e "$LOGO_SEP\n"
     while true; do sleep 3; done
@@ -888,26 +889,26 @@ sleep 3
 
 verificar_vpn_segura
 
-# === ABRIR WEB HEROKU ===
-echo -e "\033[7;33m---------------------------------------------CARGAR WEB--------------------------------------------\033[0m"
-if [[ "$OMIT_RUN_WEB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Abrir web Heroku"); then
-    echo -e "\033[7;30m🌐 Abriendo web de Heroku...\033[0m"
-    trap limpiar_y_salir SIGINT
-    liberar_puertos
-    iniciar_entorno
-    firefox --new-window "$URL_HEROKU" &
-    FIREFOX_PID=$!
-    echo -e "\033[7;30m🚧 Web Heroku activa. Ctrl+C para cerrar.\033[0m"
-    echo -e "$LOGO_SEP\n"
-    while true; do sleep 3; done
-fi
-echo ""
+# # === ABRIR WEB HEROKU ===
+# echo -e "\033[7;33m---------------------------------------------CARGAR WEB--------------------------------------------\033[0m"
+# if [[ "$OMIT_RUN_WEB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Abrir web Heroku"); then
+#     echo -e "\033[7;30m🌐 Abriendo web de Heroku...\033[0m"
+#     trap limpiar_y_salir SIGINT
+#     liberar_puertos
+#     iniciar_entorno
+#     firefox --new-window "$URL_HEROKU" &
+#     FIREFOX_PID=$!
+#     echo -e "\033[7;30m🚧 Web Heroku activa. Ctrl+C para cerrar.\033[0m"
+#     echo -e "$LOGO_SEP\n"
+#     while true; do sleep 3; done
+# fi
+# echo ""
 
-echo ""
-echo ""
-echo ""
-sleep 3
-# clear
+# echo ""
+# echo ""
+# echo ""
+# sleep 3
+# # clear
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"
