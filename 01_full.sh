@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+clear
+
+
+
 echo "🔐 Solicitando acceso sudo..."
 if sudo -v; then
     while true; do
@@ -17,6 +21,9 @@ fi
 
 COMENTARIO_COMMIT=""
 
+
+
+
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2           ║
 # ║  Automatización total: setup, backups, deploy, limpieza y seguridad       ║
@@ -26,6 +33,16 @@ COMENTARIO_COMMIT=""
 # ║  Autor: markmur88                                                         ║
 # ╚════════════════════════════════════════════════════════════════════════════╝
 
+# === CARGA DEL ENTORNO (.env) ===
+ENV_FILE=".env"
+if [[ -f "$ENV_FILE" ]]; then
+    export $(grep -v '^#' "$ENV_FILE" | xargs)
+    echo "🌍 Entorno cargado desde $ENV_FILE"
+else
+    echo "❌ Archivo .env no encontrado. Abortando..."
+    exit 1
+fi
+
 # === VARIABLES DE PROYECTO ===
 PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
@@ -34,6 +51,12 @@ VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
 INTERFAZ="wlan0"
 LOGS_DIR="$PROJECT_ROOT/logs"
 LOG_FILE_SCRIPT="$LOGS_DIR/full_deploy.log"
+
+# === CREDENCIALES BASE DE DATOS ===
+DB_NAME="mydatabase"
+DB_USER="markmur88"
+DB_PASS="Ptf8454Jd55"
+DB_HOST="localhost"
 
 # === FLAGS DE CONTROL DE BLOQUES ===
 PROMPT_MODE=true
@@ -58,12 +81,7 @@ OMIT_USER=false
 OMIT_VERIF_TRANSF=false
 DEBUG_MODE=false
 
-# === CREDENCIALES BASE DE DATOS ===
-DB_NAME="mydatabase"
-DB_USER="markmur88"
-DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
-REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
+
 
 # === FORMATO DE COLORES ===
 RESET='\033[0m'
@@ -278,7 +296,7 @@ diagnostico_entorno() {
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m\n"
 }
 # === LLAMAR AL DIAGNÓSTICO TEMPRANO ===
-diagnostico_entorno
+# diagnostico_entorno
 
 echo ""
 echo ""
@@ -451,14 +469,14 @@ sleep 3
 
 echo -e "\033[7;33m----------------------------------------------POSTGRES---------------------------------------------\033[0m"
 if [[ "$OMIT_PGSQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Configurar venv y PostgreSQL"); then
-    python3 -m venv "$VENV_PATH"
-    source "$VENV_PATH/bin/activate"
-    pip install --upgrade pip
-    echo "📦 Instalando dependencias..."
-    echo ""
-    pip install -r "$PROJECT_ROOT/requirements.txt"
-    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-    echo ""
+    # python3 -m venv "$VENV_PATH"
+    # source "$VENV_PATH/bin/activate"
+    # pip install --upgrade pip
+    # echo "📦 Instalando dependencias..."
+    # echo ""
+    # pip install -r "$PROJECT_ROOT/requirements.txt"
+    # echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    # echo ""
     sudo systemctl enable postgresql
     sudo systemctl start postgresql
     echo -e "\033[7;30m🐍 Entorno y PostgreSQL listos.\033[0m"
@@ -612,9 +630,9 @@ actualizar_django_env() {
     entorno_base=$(basename "$destino")
     local nuevo_valor_env
     case "$entorno_base" in
-        # local)
-        #     nuevo_valor_env="local"
-        #     ;;
+        api_bank_h2)
+            nuevo_valor_env="local"
+            ;;
         heroku)
             nuevo_valor_env="heroku"
             ;;
@@ -693,8 +711,8 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     # Configurar variable DJANGO_SETTINGS_MODULE
     echo -e "\033[7;36m🔧 Configurando DJANGO_SETTINGS_MODULE en Heroku...\033[0m"
     heroku config:set DJANGO_SETTINGS_MODULE=config.settings.production
-    CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
-    heroku config:set DJANGO_SECRET_KEY="$CLAVE_SEGURA"
+    # CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
+    heroku config:set DJANGO_SECRET_KEY=$SECRET_KEY
     heroku config:set DJANGO_DEBUG=False
     heroku config:set DJANGO_ALLOWED_HOSTS=*.herokuapp.com
     # heroku config:set DB_CLIENT_ID=tu-client-id-herokuPtf8454Jd55
@@ -787,7 +805,11 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     export PGPASSFILE="$HOME/.pgpass"
     export PGUSER="$DB_USER"
     export PGHOST="$DB_HOST"
-
+    DB_NAME="mydatabase"
+    DB_USER="markmur88"
+    DB_PASS="Ptf8454Jd55"
+    DB_HOST="localhost"
+    
     if ! command -v pv > /dev/null 2>&1; then
         log_error "❌ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv"
         exit 1
@@ -877,63 +899,140 @@ sleep 3
 verificar_vpn_segura
 rotar_logs_si_grandes
 
-echo -e "\033[7;33m----------------------------------------------GUNICORN---------------------------------------------\033[0m"
+
+#!/bin/bash
+set -euo pipefail
+
+echo -e "\033[7;33m---------------------------------------------- GUNICORN ----------------------------------------------\033[0m"
+
 # === CONFIGURACIÓN ===
 PUERTOS=(8001 5000 35729)
 URL_LOCAL="http://localhost:5000"
-URL_GUNICORN="http://0.0.0.0:8011"
+URL_GUNICORN="http://127.0.0.1:8001"
 URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+
 # === FUNCIONES ===
 liberar_puertos() {
     for port in "${PUERTOS[@]}"; do
-        if lsof -i :$port > /dev/null; then
+        if lsof -i :$port &>/dev/null; then
             echo -e "\033[1;34m🔌 Liberando puerto $port...\033[0m"
-            kill $(lsof -t -i :$port) 2>/dev/null || true
+            kill $(lsof -t -i :$port) &>/dev/null || true
         fi
     done
 }
+
 limpiar_y_salir() {
     echo -e "\n\033[1;33m🧹 Deteniendo todos los servicios...\033[0m"
-    pids=$(jobs -p)
-    [ -n "$pids" ] && kill $pids 2>/dev/null
-    [ -n "$FIREFOX_PID" ] && kill "$FIREFOX_PID" 2>/dev/null || true
+    pkill -f "gunicorn" &>/dev/null || true
+    pkill -f "honeypot.py" &>/dev/null || true
+    pkill -f "livereload" &>/dev/null || true
+    [ -n "${FIREFOX_PID:-}" ] && kill "$FIREFOX_PID" 2>/dev/null || true
     liberar_puertos
     echo -e "\033[1;32m✅ Todos los servicios detenidos.\033[0m"
     echo -e "$LOGO_SEP\n"
     exit 0
 }
+
 iniciar_entorno() {
+    echo -e "\033[1;36m📦 Activando entorno virtual y configuración...\033[0m"
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
-    python manage.py collectstatic --noinput
     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    python manage.py collectstatic --noinput
 }
+
+verificar_seguridad() {
+    if [[ "$ENVIRONMENT" != "local" ]]; then
+        echo -e "\033[1;31m🔒 Verificando conexión segura: VPN + Tor...\033[0m"
+        if ! curl --socks5-hostname 127.0.0.1:9050 https://check.torproject.org | grep -q "Congratulations"; then
+            echo -e "\033[1;31m❌ Error: No estás conectado por Tor. Abortando por seguridad.\033[0m"
+            exit 1
+        fi
+        echo -e "\033[1;32m✅ Tor activo. Entorno seguro.\033[0m"
+    fi
+}
+
 # === INICIO GUNICORN + HONEYPOT ===
-if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then
+if [[ "${OMIT_GUNICORN:-false}" == false ]] && ([[ "${PROMPT_MODE:-false}" == false ]] || confirmar "¿Iniciar Gunicorn, honeypot y livereload?"); then
     echo -e "\033[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...\033[0m"
     trap limpiar_y_salir SIGINT
+    verificar_seguridad
     liberar_puertos
     iniciar_entorno
+
+    echo -e "\033[1;34m🌀 Lanzando procesos...\033[0m"
     nohup "$VENV_PATH/bin/gunicorn" config.wsgi:application --workers 3 --bind 127.0.0.1:8001 --keep-alive 2 > "$LOGS_DIR/gunicorn_api.log" 2>&1 < /dev/null &
     nohup python honeypot.py > "$LOGS_DIR/honeypot.log" 2>&1 < /dev/null &
-    nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOGS_DIR/livereload.log" 2>&1 < /dev/null &   
+    nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOGS_DIR/livereload.log" 2>&1 < /dev/null &
+
     sleep 3
     firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" --new-tab "$URL_HEROKU" &
     FIREFOX_PID=$!
+
     echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"
     echo -e "$LOGO_SEP\n"
     while true; do sleep 3; done
 fi
-echo ""
 
-echo ""
-echo ""
-echo ""
-sleep 3
-# clear
 
-verificar_vpn_segura
+# echo -e "\033[7;33m----------------------------------------------GUNICORN---------------------------------------------\033[0m"
+# # === CONFIGURACIÓN ===
+# PUERTOS=(8001 5000 35729)
+# URL_LOCAL="http://localhost:5000"
+# URL_GUNICORN="http://0.0.0.0:8011"
+# URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
+# LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+# # === FUNCIONES ===
+# liberar_puertos() {
+#     for port in "${PUERTOS[@]}"; do
+#         if lsof -i :$port > /dev/null; then
+#             echo -e "\033[1;34m🔌 Liberando puerto $port...\033[0m"
+#             kill $(lsof -t -i :$port) 2>/dev/null || true
+#         fi
+#     done
+# }
+# limpiar_y_salir() {
+#     echo -e "\n\033[1;33m🧹 Deteniendo todos los servicios...\033[0m"
+#     pids=$(jobs -p)
+#     [ -n "$pids" ] && kill $pids 2>/dev/null
+#     [ -n "$FIREFOX_PID" ] && kill "$FIREFOX_PID" 2>/dev/null || true
+#     liberar_puertos
+#     echo -e "\033[1;32m✅ Todos los servicios detenidos.\033[0m"
+#     echo -e "$LOGO_SEP\n"
+#     exit 0
+# }
+# iniciar_entorno() {
+#     cd "$PROJECT_ROOT"
+#     source "$VENV_PATH/bin/activate"
+#     python manage.py collectstatic --noinput
+#     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+# }
+# # === INICIO GUNICORN + HONEYPOT ===
+# if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then
+#     echo -e "\033[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...\033[0m"
+#     trap limpiar_y_salir SIGINT
+#     liberar_puertos
+#     iniciar_entorno
+#     nohup "$VENV_PATH/bin/gunicorn" config.wsgi:application --workers 3 --bind 127.0.0.1:8001 --keep-alive 2 > "$LOGS_DIR/gunicorn_api.log" 2>&1 < /dev/null &
+#     nohup python honeypot.py > "$LOGS_DIR/honeypot.log" 2>&1 < /dev/null &
+#     nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOGS_DIR/livereload.log" 2>&1 < /dev/null &   
+#     sleep 3
+#     firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" --new-tab "$URL_HEROKU" &
+#     FIREFOX_PID=$!
+#     echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"
+#     echo -e "$LOGO_SEP\n"
+#     while true; do sleep 3; done
+# fi
+# echo ""
+
+# echo ""
+# echo ""
+# echo ""
+# sleep 3
+# # clear
+
+# verificar_vpn_segura
 
 # # === ABRIR WEB HEROKU ===
 # echo -e "\033[7;33m---------------------------------------------CARGAR WEB--------------------------------------------\033[0m"

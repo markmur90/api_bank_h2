@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 # Define entorno: 'local', 'heroku', 'production', etc.
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'local').lower()
+DJANGO_ENV = os.getenv("DJANGO_ENV", "local")
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env = environ.Env()
 env_path = BASE_DIR / f'.env.{DJANGO_ENV}'
