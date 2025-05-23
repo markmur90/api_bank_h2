@@ -119,7 +119,6 @@ usage() {
     echo -e "  \033[1;33m-L\033[0m, \033[1;33m--omit-local\033[0m         Omitir creación de JSON de respaldo local"
     echo -e "  \033[1;33m-I\033[0m, \033[1;33m--omit-migra\033[0m         Omitir migraciones"
     echo -e "  \033[1;33m-Q\033[0m, \033[1;33m--omit-pgsql\033[0m         Omitir reseteo postgres"
-    echo -e "  \033[1;33m-L\033[0m, \033[1;33m--omit-local\033[0m         Omitir creación de JSON de respaldo local"
     echo -e "  \033[1;33m-S\033[0m, \033[1;33m--omit-sync\033[0m          Omitir sincronización entre carpetas"
     echo -e "  \033[1;33m-l\033[0m, \033[1;33m--omit-load-local\033[0m    Omitir carga de JSON local al sistema"
     echo -e "  \033[1;33m-w\033[0m, \033[1;33m--omit-web\033[0m           Omitir apertura del navegador con el entorno web"
@@ -687,8 +686,6 @@ verificar_configuracion_segura
 echo -e "\033[7;33m-------------------------------------------SUBIR A HEROKU------------------------------------------\033[0m"
 if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir el proyecto a la web"); then
 
-    bash $PROJECT_ROOT/scripts/20_deploy_heroku.sh
-
     echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
     cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -709,6 +706,10 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     heroku config:set API_ORIGIN=https://api.db.com
     heroku config:set TIMEOUT_REQUEST=3600
     heroku config:set DISABLE_COLLECTSTATIC=1
+    source .env
+    heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 "$PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem")
+    heroku config:get PRIVATE_KEY_B64 | base64 -d | head
+
 
 
 
@@ -780,8 +781,6 @@ fi
 
 
 echo -e "\033[7;33m---------------------------------------SINCRONIZACION BDD WEB--------------------------------------\033[0m"
-log_info "🌐 BLOQUE: Sincronización de base de datos local a nube remota PostgreSQL"
-
 if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir las bases de datos a la web"); then
     DATE=$(date +"%Y%m%d_%H%M%S")
     BACKUP_FILE="${BACKUP_DIR}backup_${DATE}.sql"
@@ -811,8 +810,7 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     echo -e "\033[7;30m✅ Sincronización completada con éxito: $BACKUP_FILE\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
-else
-    log_info "🌐 Sincronización con base de datos remota omitida"
+
 fi
 
 
@@ -883,7 +881,7 @@ echo -e "\033[7;33m----------------------------------------------GUNICORN-------
 # === CONFIGURACIÓN ===
 PUERTOS=(8001 5000 35729)
 URL_LOCAL="http://localhost:5000"
-URL_GUNICORN="http://0.0.0.0:8000"
+URL_GUNICORN="http://0.0.0.0:8011"
 URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 # === FUNCIONES ===

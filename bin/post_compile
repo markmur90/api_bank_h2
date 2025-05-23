@@ -7,8 +7,8 @@ LOG_DIR="$PROJECT_ROOT/logs"
 LOG_FILE="$LOG_DIR/post_compile.log"
 DESTINO="$PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem"
 
-mkdir -p "$(dirname "$DESTINO")"
-mkdir -p "$LOG_DIR"
+mkdir -p ./schemas
+mkdir -p ./logs
 
 echo "🔐 Restaurando clave privada desde PRIVATE_KEY_B64..." | tee -a "$LOG_FILE"
 
