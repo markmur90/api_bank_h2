@@ -848,7 +848,7 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     log_info "📦 Generando backup local con pg_dump..."
     ejecutar pg_dump --no-owner --no-acl -U "$DB_USER" -h "$DB_HOST" -d "$DB_NAME" > "$BACKUP_FILE"
     log_ok "📄 Backup SQL generado: $BACKUP_FILE"
-
+    sleep 20
     log_info "📤 Subiendo backup a la base de datos remota con pv + psql..."
     pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" >> "$LOG_FILE_SCRIPT" 2>&1
     check_status "Importación a DB remota"
