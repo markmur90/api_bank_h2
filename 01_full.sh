@@ -429,6 +429,7 @@ if [[ "$OMIT_UFW" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Co
     sudo ufw allow 28080/tcp    # HTTPS
     sudo ufw allow 28081/tcp    # HTTPS
     sudo ufw allow 49222/tcp   # HTTPS NJALLA
+    sudo ufw allow out to any port 443 #PUSH
     # Gunicorn y PostgreSQL solo local
     sudo ufw allow from 127.0.0.1 to any port 8000
     sudo ufw allow from 127.0.0.1 to any port 8011
