@@ -786,7 +786,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Sub
     # CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
     heroku config:set DJANGO_SECRET_KEY=$SECRET_KEY
     heroku config:set DJANGO_DEBUG=False
-    heroku config:set DJANGO_ALLOWED_HOSTS=*.herokuapp.com
+    heroku config:set DJANGO_ALLOWED_HOSTS=apibank2-d42d7ed0d036.herokuapp.com
     # heroku config:set DB_CLIENT_ID=tu-client-id-herokuPtf8454Jd55
     # heroku config:set DB_CLIENT_SECRET=tu-client-secret-heroku
     heroku config:set DB_TOKEN_URL=https://simulator-api.db.com:443/gw/dbapi/token
