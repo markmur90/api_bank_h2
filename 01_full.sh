@@ -732,7 +732,7 @@ if os.path.exists(settings_path):
     new_lines = []
     for line in lines:
         if "DJANGO_ENV = os.getenv(" in line and "'local'" in line:
-            new_lines.append(line.replace("'local'", "'production'"))
+            new_lines.append(line.replace("'local'", "'heroku'"))
             updated = True
         else:
             new_lines.append(line)
@@ -748,7 +748,8 @@ EOF
 }
 
 if [[ "$DO_SYNC_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "¿Sincronizas archivos locales?"); then
-    for destino in "$HEROKU_ROOT" "$NJALLA_ROOT"; do
+    # for destino in "$HEROKU_ROOT" "$NJALLA_ROOT"; do
+    for destino in "$HEROKU_ROOT" ; do
         echo -e "\033[7;30m🔄 Sincronizando archivos al destino: $destino\033[0m"
         sudo rsync -av "${EXCLUDES[@]}" "$PROJECT_ROOT/" "$destino/"
         echo -e "\033[7;30m📂 Cambios enviados a $destino.\033[0m"
