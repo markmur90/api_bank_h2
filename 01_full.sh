@@ -719,12 +719,13 @@ EXCLUDES=(
     "--exclude=temp/"
     "--exclude=*.log"
 )
+
 actualizar_django_env() {
     local destino="$1"
-    log_info "🧾 Ajustando DJANGO_ENV en base1.py en $destino"
+    log_info "🧾 Ajustando DJANGO_ENV en __init__.py en $destino"
     python3 <<EOF | tee -a "$LOG_FILE_SCRIPT"
 import os
-settings_path = os.path.join("$destino", "config", "settings", "base1.py")
+settings_path = os.path.join("$destino", "config", "settings", "__init__.py")
 if os.path.exists(settings_path):
     with open(settings_path, "r", encoding="utf-8") as f:
         lines = f.readlines()
@@ -739,11 +740,11 @@ if os.path.exists(settings_path):
     if updated:
         with open(settings_path, "w", encoding="utf-8") as f:
             f.writelines(new_lines)
-        print("✅ DJANGO_ENV actualizado a 'production' en base1.py.")
+        print("✅ DJANGO_ENV actualizado a 'production' en __init__.py.")
     else:
         print("⚠️ No se encontró DJANGO_ENV='local' para actualizar.")
 else:
-    print("⚠️ No se encontró base1.py en el destino.")
+    print("⚠️ No se encontró __init__.py en el destino.")
 EOF
 }
 
@@ -799,7 +800,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Sub
     heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 schemas/keys/ecdsa_private_key.pem)
     heroku config:get PRIVATE_KEY_B64 | base64 -d | head
     heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/
-
+fi
 
 
 #     # heroku config:set PRIVATE_KEY_B64="$(cat ghost.key.b64)"
@@ -837,7 +838,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Sub
 #     # else
 #     #     echo -e "\033[7;32m✅ PRIVATE_KEY_KID ya está configurado en Heroku.\033[0m"
 #     # fi
-fi
+
 
 echo ""
 echo ""
