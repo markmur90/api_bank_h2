@@ -842,48 +842,50 @@ echo -e "\033[7;33m---------------------------------------SINCRONIZACION BDD WEB
 if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir las bases de datos a la web"); then
     DATE=$(date +"%Y%m%d_%H%M%S")
     BACKUP_FILE="${BACKUP_DIR}backup_${DATE}.sql"
-    export PGPASSFILE="$HOME/.pgpass"
-    export PGUSER="$DB_USER"
-    export PGHOST="$DB_HOST"
+
     DB_NAME="mydatabase"
     DB_USER="markmur88"
     DB_PASS="Ptf8454Jd55"
     DB_HOST="localhost"
+
+    export PGPASSFILE="$HOME/.pgpass"
+    export PGUSER="$DB_USER"
+    export PGHOST="$DB_HOST"
+
     REMOTE_DB_URL=postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra
     PROJECT_ROOT=/home/markmur88/Documentos/GitHub/api_bank_h2
     LOG_DIR=$PROJECT_ROOT/logs
     LOG_FILE_SCRIPT=$LOG_DIR/full_deploy.log
+
     if ! command -v pv > /dev/null 2>&1; then
-        log_error "❌ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv"
+        echo -e "\033[1;31m[ERR] ❌ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv\033[0m"
         exit 1
     fi
 
-    log_info "🧹 Reseteando base de datos remota (DROP SCHEMA)..."
-    echo "DROP SCHEMA public CASCADE; CREATE SCHEMA public;" | psql "$REMOTE_DB_URL" 2>&1 
-    check_status "DROP y CREATE SCHEMA remoto"
+    echo -e "\033[1;34m[INFO] 🧹 Reseteando base de datos remota (DROP SCHEMA)...\033[0m"
+    echo "DROP SCHEMA public CASCADE; CREATE SCHEMA public;" | psql "$REMOTE_DB_URL"
+    echo -e "\033[1;32m[OK]   ✅ DROP y CREATE SCHEMA remoto\033[0m"
 
-    log_info "📦 Generando backup local con pg_dump..."
-    ejecutar pg_dump --no-owner --no-acl -U "$DB_USER" -h "$DB_HOST" -d "$DB_NAME" > "$BACKUP_FILE"
-    log_ok "📄 Backup SQL generado: $BACKUP_FILE"
-    sleep 20
-    log_info "📤 Subiendo backup a la base de datos remota con pv + psql..."
-    # pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" >> "$LOG_FILE_SCRIPT" 2>&1
-    pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" 2>&1
-    check_status "Importación a DB remota"
+    echo -e "\033[1;34m[INFO] 📦 Generando backup local con pg_dump...\033[0m"
+    pg_dump --no-owner --no-acl -U "$DB_USER" -h "$DB_HOST" -d "$DB_NAME" > "$BACKUP_FILE"
+    echo -e "\033[1;32m[OK]   📄 Backup SQL generado: $BACKUP_FILE\033[0m"
+
+    sleep 5
+    echo -e "\033[1;34m[INFO] 📤 Subiendo backup a la base de datos remota con pv + psql...\033[0m"
+    pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL"
+    echo -e "\033[1;32m[OK]   ✅ Importación completada\033[0m"
 
     export DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}"
-    log_ok "✅ Sincronización completada correctamente"
+    echo -e "\033[1;32m✅ Sincronización completada correctamente\033[0m"
     echo -e "\033[7;30m✅ Sincronización completada con éxito: $BACKUP_FILE\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
-
 fi
 
 echo ""
 echo ""
 echo ""
 sleep 3
-# clear
 
 echo -e "\033[7;33m---------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI--------------------------------\033[0m"
 if [[ "$OMIT_DEPLOY_VPS" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "¿Desplegar api_bank_h2 en VPS Njalla?"); then
