@@ -1,9 +1,9 @@
-[2025-05-23 02:02:05 +0200] [48451] [INFO] Starting gunicorn 23.0.0
-[2025-05-23 02:02:05 +0200] [48451] [INFO] Listening at: http://127.0.0.1:8001 (48451)
-[2025-05-23 02:02:05 +0200] [48451] [INFO] Using worker: sync
-[2025-05-23 02:02:05 +0200] [48463] [INFO] Booting worker with pid: 48463
-[2025-05-23 02:02:05 +0200] [48464] [INFO] Booting worker with pid: 48464
-[2025-05-23 02:02:05 +0200] [48465] [INFO] Booting worker with pid: 48465
+[2025-05-23 02:14:18 +0200] [59495] [INFO] Starting gunicorn 23.0.0
+[2025-05-23 02:14:18 +0200] [59495] [INFO] Listening at: http://127.0.0.1:8001 (59495)
+[2025-05-23 02:14:18 +0200] [59495] [INFO] Using worker: sync
+[2025-05-23 02:14:18 +0200] [59499] [INFO] Booting worker with pid: 59499
+[2025-05-23 02:14:18 +0200] [59500] [INFO] Booting worker with pid: 59500
+[2025-05-23 02:14:18 +0200] [59504] [INFO] Booting worker with pid: 59504
 ERROR Error en /: home.html
 Traceback (most recent call last):
   File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
@@ -42,9 +42,47 @@ Traceback (most recent call last):
   File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: home.html
-WARNING Not Found: /favicon.ico
-[2025-05-23 02:04:46 +0200] [48451] [INFO] Handling signal: int
-[2025-05-23 02:04:46 +0200] [48465] [INFO] Worker exiting (pid: 48465)
-[2025-05-23 02:04:46 +0200] [48464] [INFO] Worker exiting (pid: 48464)
-[2025-05-23 02:04:46 +0200] [48463] [INFO] Worker exiting (pid: 48463)
-[2025-05-23 02:04:46 +0200] [48451] [INFO] Shutting down: Master
+ERROR Error en /: home.html
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/views.py", line 12, in get
+    return render(request, 'home.html')
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+ERROR Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/views.py", line 12, in get
+    return render(request, 'home.html')
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/markmur88/Documentos/Entorno/venvAPI/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html
+[2025-05-23 02:15:26 +0200] [59495] [INFO] Handling signal: int
+[2025-05-23 02:15:26 +0200] [59500] [INFO] Worker exiting (pid: 59500)
+[2025-05-23 02:15:26 +0200] [59499] [INFO] Worker exiting (pid: 59499)
+[2025-05-23 02:15:26 +0200] [59504] [INFO] Worker exiting (pid: 59504)
+[2025-05-23 02:15:27 +0200] [59495] [ERROR] Worker (pid:59504) was sent SIGTERM!
+[2025-05-23 02:15:27 +0200] [59495] [INFO] Shutting down: Master
