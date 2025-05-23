@@ -119,3 +119,17 @@ https://apibank2-d42d7ed0d036.herokuapp.com/dashboard/
 https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/authorize/
 
 https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/
+
+
+
+🔐 Solicitando acceso sudo...
+🌍 Entorno cargado desde .env
+============================= VARIABLES ACTUALES =============================
+INTERFAZ            =       wlan0
+SCRIPTS_DIR         =       $PROJECT_ROOT/scripts
+PRIVATE_KEY_PATH    =       $PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem
+SERVERS_DIR         =       $PROJECT_ROOT/servers
+CACHE_DIR           =       $PROJECT_ROOT/tmp
+PROJECT_ROOT        =       /home/markmur88/Documentos/GitHub/api_bank_h2
+LOG_DIR             =       $PROJECT_ROOT/logs
+==============================================================================

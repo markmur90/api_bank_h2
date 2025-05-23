@@ -1728,6 +1728,42 @@
   }
 },
 {
+  "model": "auth.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$XCLkZySQUlKJ349707fTxe$5JlHbYK7t/lGIJ1psyu4bfrTHcgiP3pe6yjWiCtCgDo=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "markmur88",
+    "first_name": "",
+    "last_name": "",
+    "email": "",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-23T20:26:05.776Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$58ZBS7AtbjN2PNodc6CJ6S$WScUWnjn4iantGVBDumsvP6HmJG2lNN+BUZzjUiiXr8=",
+    "last_login": null,
+    "is_superuser": true,
+    "username": "493069k1",
+    "first_name": "",
+    "last_name": "",
+    "email": "j.moltke@db.com",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-23T20:34:03.208Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
   "model": "contenttypes.contenttype",
   "pk": 1,
   "fields": {
@@ -2109,6 +2145,20 @@
   "fields": {
     "app_label": "gpt4",
     "model": "transfer"
+  }
+},
+{
+  "model": "gpt4.clavegenerada",
+  "pk": 1,
+  "fields": {
+    "fecha": "2025-05-23T20:34:08.815Z",
+    "usuario": "c40cd522-3d41-456d-a699-921e0573495b",
+    "estado": "CANCELADO",
+    "kid": null,
+    "path_privada": null,
+    "path_publica": null,
+    "path_jwks": null,
+    "mensaje_error": null
   }
 }
 ]

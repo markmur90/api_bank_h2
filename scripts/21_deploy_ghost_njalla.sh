@@ -1,42 +1,34 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$BASE_DIR" || exit 1
+# === Configuración local ===
+DIR_LOCAL="$HOME/Documentos/GitHub/api_bank_h2"
+BACKUP_DIR="$HOME/Documentos/GitHub/backup"
+source "$DIR_LOCAL/.env"
 
-source "$BASE_DIR/.env"
-
-LOG_FILE="$BASE_DIR/logs/master_run.log"
-
-log_info()  { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE"; }
-log_ok()    { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE"; }
-log_error() { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE"; }
-
+LOG_FILE="$DIR_LOCAL/logs/master_run.log"
 PASSPHRASE="${PASSPHRASE:-"##_//Ptf8454Jd55\\_##"}"
-
-log_info "🚀 Subiendo api_bank_h2 al VPS..."
-
-BACKUP_DIR="$BASE_DIR/backups"
-mkdir -p "$BACKUP_DIR"
-BACKUP_FILE="$BACKUP_DIR/api_bank_h2_backup_$(date +%Y%m%d_%H%M%S).tar.gz"
+DATE="$(date +%Y%m%d_%H%M%S)"
+BACKUP_FILE="$BACKUP_DIR/api_bank_h2_backup_$DATE.tar.gz"
 ENC_BACKUP_FILE="$BACKUP_FILE.enc"
 
-tar czf "$BACKUP_FILE" -C "$PROJECT_ROOT" .
+echo -e "\033[1;36m🚀 Subiendo api_bank_h2 al VPS...\033[0m"
 
-log_info "🔐 Cifrando backup antes de subir..."
+# === Empaquetar y cifrar backup ===
+tar czf "$BACKUP_FILE" -C "$DIR_LOCAL" .
+echo -e "\033[1;33m🔐 Cifrando backup antes de subir...\033[0m"
 openssl enc -aes-256-cbc -salt -pbkdf2 -pass pass:"$PASSPHRASE" -in "$BACKUP_FILE" -out "$ENC_BACKUP_FILE"
 
-log_info "📤 Transferencia cifrada vía rsync+ssh..."
-rsync -avz -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=yes" "$ENC_BACKUP_FILE" "root@$VPS_IP:$VPS_API_DIR/" >> "$LOG_FILE" 2>&1
+# === Transferencia segura ===
+echo -e "\033[1;34m📤 Transferencia cifrada vía rsync+ssh...\033[0m"
+rsync -avz -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=yes" "$ENC_BACKUP_FILE" "root@$VPS_IP:$VPS_API_DIR/"
+ENC_REMOTE_FILE="$VPS_API_DIR/$(basename "$ENC_BACKUP_FILE")"
+echo -e "\033[1;32m📦 Backup cifrado transferido\033[0m"
 
-log_ok "📦 Backup cifrado transferido"
-
-log_info "👤 Preparando usuario y entorno remoto..."
-
-# Bloque root: crear usuario y preparar directorio seguro
+# === Preparar usuario remoto ===
+echo -e "\033[1;36m👤 Preparando usuario y entorno remoto...\033[0m"
 ssh -i "$SSH_KEY" -o StrictHostKeyChecking=yes root@$VPS_IP bash <<EOF
 set -e
-
 if ! id "markmur88" &>/dev/null; then
     echo "➕ Creando usuario 'markmur88' con sudo..."
     adduser --disabled-password --gecos "" markmur88
@@ -49,21 +41,29 @@ else
 fi
 EOF
 
-log_info "⚙️ Desencriptando y desplegando como markmur88..."
-
+# === Despliegue final ===
+echo -e "\033[1;36m⚙️ Desencriptando y desplegando como markmur88...\033[0m"
 ssh -i "$SSH_KEY" -o StrictHostKeyChecking=yes markmur88@$VPS_IP bash <<EOF
 set -e
+export PASSPHRASE="${PASSPHRASE}"
 cd "$VPS_API_DIR"
 
-openssl enc -d -aes-256-cbc -pbkdf2 -pass pass:"$PASSPHRASE" -in "$(basename $ENC_BACKUP_FILE)" -out api_bank_h2_backup.tar.gz
+# Desencriptar y extraer
+openssl enc -d -aes-256-cbc -pbkdf2 -pass pass:"\$PASSPHRASE" -in "$ENC_REMOTE_FILE" -out api_bank_h2_backup.tar.gz
 tar xzf api_bank_h2_backup.tar.gz
-rm -f api_bank_h2_backup.tar.gz "$(basename $ENC_BACKUP_FILE)"
+rm -f api_bank_h2_backup.tar.gz "$ENC_REMOTE_FILE"
 
+# Entorno virtual
 python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
+if [[ ! -f "requirements.txt" ]]; then
+    echo "❌ requirements.txt no encontrado"
+    exit 1
+fi
 pip install -r requirements.txt
 
+# Configuración Gunicorn
 mkdir -p "$VPS_API_DIR/servers/gunicorn"
 
 cat > "$VPS_API_DIR/servers/gunicorn/gunicorn.socket" <<EOL
@@ -144,6 +144,11 @@ EOL
 sudo ln -sf /etc/nginx/sites-available/api.coretransapi.com /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
+
+# Permisos reforzados post-deploy
+chmod 600 .env || true
+chmod 700 venv || true
+chmod 660 servers/gunicorn/api.sock || true
 EOF
 
-log_ok "✅ Deploy api_bank_h2 en VPS completado."
+echo -e "\033[1;32m✅ Deploy api_bank_h2 en VPS completado.\033[0m"

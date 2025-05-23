@@ -56,7 +56,7 @@ DB_PASS="Ptf8454Jd55"
 DB_HOST="localhost"
 
 # === FLAGS DE CONTROL DE BLOQUES ===
-PROMPT_MODE=false
+PROMPT_MODE=true
 DEBUG_MODE=true # 00
 DO_SYS=true # 01
 DO_ZIP_SQL=true # 02
@@ -80,9 +80,7 @@ DO_CLEAN=true # 19
 DO_GUNICORN=true # 20
 DO_RUN_WEB=true # 21
 
-if [[ "$@" =~ -[Y-Zy-z] ]]; then
-    PROMPT_MODE=false
-fi
+
 
 # === FORMATO DE COLORES ===
 RESET='\033[0m'
@@ -118,46 +116,43 @@ usage() {
     echo -e ""
 
     echo -e "\033[1;36m OPCIONES GENERALES\033[0m"
-    echo -e "  \033[1;33m-a\033[0m, \033[1;33m--all\033[0m                  Ejecutar todos los bloques sin confirmación"
-    echo -e "  \033[1;33m-s\033[0m, \033[1;33m--step\033[0m                 Ejecutar paso a paso con confirmación por bloque"
-    echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m                Mostrar todas las variables antes de ejecutar"
+    echo -e "  \033[1;33m-a\033[0m, \033[1;33m--all\033[0m                  Ejecuta todo automáticamente sin confirmaciones"
+    echo -e "  \033[1;33m-s\033[0m, \033[1;33m--step\033[0m                 Modo paso a paso con confirmación por bloque"
+    echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m                Muestra las variables de entorno antes de ejecutar"
+    echo -e ""
+
+    echo -e "\033[1;36m BLOQUES OMITIBLES INDIVIDUALMENTE\033[0m"
+    echo -e "  \033[1;33m-B\033[0m, \033[1;33m--do-bdd\033[0m               Ejecutar sincronización con la base de datos remota"
+    echo -e "  \033[1;33m-H\033[0m, \033[1;33m--do-heroku\033[0m            Ejecutar deploy y push a Heroku"
+    echo -e "  \033[1;33m-u\033[0m, \033[1;33m--do-varher\033[0m            Ejecutar variables a Heroku"
+    echo -e "  \033[1;33m-G\033[0m, \033[1;33m--do-gunicorn\033[0m          Ejecutar arranque de Gunicorn y servicios locales"
+    echo -e "  \033[1;33m-C\033[0m, \033[1;33m--do-clean\033[0m             Ejecutar limpieza de respaldos antiguos"
+    echo -e "  \033[1;33m-D\033[0m, \033[1;33m--do-docker\033[0m            Ejecutar detener containers Docker"
+    echo -e "  \033[1;33m-P\033[0m, \033[1;33m--do-ports\033[0m             Ejecutar detener puertos"
+    echo -e "  \033[1;33m-Y\033[0m, \033[1;33m--do-sys\033[0m               Ejecutar actualizar sistema"
+    echo -e "  \033[1;33m-Z\033[0m, \033[1;33m--do-zip\033[0m               Ejecutar creación de ZIP y SQL"
+    echo -e ""
+
+    echo -e "\033[1;36m RESPALDOS Y CARGAS DE DATOS\033[0m"
+    echo -e "  \033[1;33m-L\033[0m, \033[1;33m--do-local\033[0m             Ejecutar creación de JSON de respaldo local"
+    echo -e "  \033[1;33m-I\033[0m, \033[1;33m--do-migra\033[0m             Ejecutar migraciones"
+    echo -e "  \033[1;33m-Q\033[0m, \033[1;33m--do-pgsql\033[0m             Ejecutar reseteo postgres"
+    echo -e "  \033[1;33m-S\033[0m, \033[1;33m--do-sync\033[0m              Ejecutar sincronización entre carpetas"
+    echo -e "  \033[1;33m-l\033[0m, \033[1;33m--do-load-local\033[0m        Ejecutar carga de JSON local al sistema"
+    echo -e "  \033[1;33m-w\033[0m, \033[1;33m--do-web\033[0m               Ejecutar apertura del navegador con el entorno web"
+    echo -e ""
+
+    echo -e "\033[1;36m USUARIO Y VERIFICACIÓN\033[0m"
+    echo -e "  \033[1;33m-U\033[0m, \033[1;33m--do-create-user\033[0m       Ejecutar creación del superusuario de Django"
+    echo -e "  \033[1;33m-V\033[0m, \033[1;33m--do-verif-trans\033[0m       Ejecutar verificación de archivos de transferencia"
+    echo -e ""
+
+    echo -e "\033[1;36m OTROS\033[0m"
+    echo -e "  \033[1;33m-M\033[0m, \033[1;33m--do-mac\033[0m               Ejecutar cambio de dirección MAC aleatoria"
+    echo -e "  \033[1;33m-x\033[0m, \033[1;33m--do-ufw\033[0m               Ejecutar configuración del firewall (UFW)"
+    echo -e "  \033[1;33m-p\033[0m, \033[1;33m--do-pem\033[0m               Ejecutar generar archivos PEM"
+    echo -e "  \033[1;33m-v\033[0m, \033[1;33m--do-vps\033[0m               Ejecutar hacer deploy vps njalla"
     echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m                 Mostrar esta ayuda y salir"
-    echo -e ""
-
-    echo -e "\033[1;36m SISTEMA Y ENTORNO\033[0m"
-    echo -e "  \033[1;33m-Y\033[0m, \033[1;33m--do-sys\033[0m               Actualizar y verificar sistema base"
-    echo -e "  \033[1;33m-P\033[0m, \033[1;33m--do-ports\033[0m             Liberar puertos usados"
-    echo -e "  \033[1;33m-D\033[0m, \033[1;33m--do-docker\033[0m            Detener contenedores Docker"
-    echo -e "  \033[1;33m-M\033[0m, \033[1;33m--do-mac\033[0m               Cambiar dirección MAC aleatoriamente"
-    echo -e "  \033[1;33m-x\033[0m, \033[1;33m--do-ufw\033[0m               Configurar firewall (UFW)"
-    echo -e "  \033[1;33m-C\033[0m, \033[1;33m--do-clean\033[0m             Limpiar respaldos antiguos"
-    echo -e ""
-
-    echo -e "\033[1;36m RESPALDOS Y MIGRACIONES\033[0m"
-    echo -e "  \033[1;33m-Z\033[0m, \033[1;33m--do-zip\033[0m               Crear ZIP y backup SQL"
-    echo -e "  \033[1;33m-Q\033[0m, \033[1;33m--do-pgsql\033[0m             Resetear PostgreSQL"
-    echo -e "  \033[1;33m-I\033[0m, \033[1;33m--do-migra\033[0m             Ejecutar migraciones Django"
-    echo -e ""
-
-    echo -e "\033[1;36m DATOS Y SINCRONIZACIÓN LOCAL\033[0m"
-    echo -e "  \033[1;33m-L\033[0m, \033[1;33m--do-local\033[0m             Generar JSON de respaldo local"
-    echo -e "  \033[1;33m-l\033[0m, \033[1;33m--do-load-local\033[0m        Cargar JSON local al sistema"
-    echo -e "  \033[1;33m-S\033[0m, \033[1;33m--do-sync\033[0m              Sincronizar carpetas locales (rsync)"
-    echo -e ""
-
-    echo -e "\033[1;36m USUARIO Y SEGURIDAD\033[0m"
-    echo -e "  \033[1;33m-U\033[0m, \033[1;33m--do-create-user\033[0m       Crear superusuario Django"
-    echo -e "  \033[1;33m-V\033[0m, \033[1;33m--do-verif-trans\033[0m       Verificar archivos de transferencia"
-    echo -e "  \033[1;33m-p\033[0m, \033[1;33m--do-pem\033[0m               Generar archivos PEM"
-    echo -e ""
-
-    echo -e "\033[1;36m DESPLIEGUE Y ENTORNOS REMOTOS\033[0m"
-    echo -e "  \033[1;33m-u\033[0m, \033[1;33m--do-varher\033[0m            Establecer variables de entorno Heroku"
-    echo -e "  \033[1;33m-H\033[0m, \033[1;33m--do-heroku\033[0m            Hacer deploy en Heroku"
-    echo -e "  \033[1;33m-B\033[0m, \033[1;33m--do-bdd\033[0m               Sincronizar base de datos remota"
-    echo -e "  \033[1;33m-v\033[0m, \033[1;33m--do-vps\033[0m               Hacer deploy en VPS (Njalla)"
-    echo -e "  \033[1;33m-G\033[0m, \033[1;33m--do-gunicorn\033[0m          Iniciar Gunicorn y servicios"
-    echo -e "  \033[1;33m-w\033[0m, \033[1;33m--do-web\033[0m               Abrir navegador con el entorno web"
     echo -e ""
 
     echo -e "\033[1;36m EJEMPLOS COMBINADOS\033[0m"
@@ -165,45 +160,51 @@ usage() {
     echo -e "  \033[1;33md_all\033[0m                      ➤ Ejecutar absolutamente todo sin confirmaciones"
     echo -e "  \033[1;33md_step\033[0m                     ➤ Ejecutar paso a paso, confirmando cada bloque"
     echo -e "  \033[1;33md_debug\033[0m                    ➤ Mostrar todas las variables antes de ejecutar"
+
     echo -e "\n  \033[1;33md_local\033[0m                    ➤ Despliegue local completo sin Heroku ni VPS"
     echo -e "  \033[1;33md_heroku\033[0m                   ➤ Sincronizar archivos y subir solo a Heroku"
     echo -e "  \033[1;33md_production\033[0m               ➤ Despliegue para VPS Njalla (sin Heroku)"
+
+    echo -e "\n  \033[1;33md_reset_full\033[0m               ➤ Reinstalación completa del entorno"
+    echo -e "  \033[1;33md_sync\033[0m                     ➤ Solo sincronizar archivos locales sin otras acciones"
+
+    echo -e "\n  \033[1;33md_push_heroku\033[0m              ➤ Ejecutar solo push a GitHub + Heroku"
+    echo -e "  \033[1;33md_njalla\033[0m                   ➤ Subida directa al VPS Njalla (coretransapi.com)"
+
+    echo -e "\n  \033[1;33mdeploy_menu\033[0m                ➤ Menú interactivo con FZF para seleccionar despliegue"
+
+    echo -e "\n\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m\n"
+
     echo -e ""
 }
-
 
 # === PARSEO DE ARGUMENTOS ===
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        --env=*)
-            ENVIRONMENT="${1#*=}"
-            export ENVIRONMENT
-            ;;
-        -a|--all)             PROMPT_MODE=true ;;
-        -s|--step)            PROMPT_MODE=false ;;
-        -B|--do-bdd)          DO_SYNC_REMOTE_DB=false ;;
-        -H|--do-heroku)       DO_HEROKU=false ;;
-        -u|--do-varher)       DO_VARHER=false ;;
-        -G|--do-gunicorn)     DO_GUNICORN=false ;;
-        -C|--do-clean)        DO_CLEAN=false ;;
-        -L|--do-local)        DO_JSON_LOCAL=false ;;
-        -S|--do-sync)         DO_SYNC_LOCAL=false ;;
-        -D|--do-docker)       DO_DOKER=false ;;
-        -P|--do-ports)        DO_PORTS=false ;;
-        -Y|--do-sys)          DO_SYS=false ;;
-        -Z|--do-zip)          DO_ZIP_SQL=false ;;
-        -M|--do-mac)          DO_MAC=false ;;
-        -I|--do-migra)        DO_MIG=false ;;
-        -Q|--do-pgsql)        DO_PGSQL=false ;;
-        -p|--do-pem)          DO_PEM=false ;;    
-        -x|--do-ufw)          DO_UFW=false ;;
-        -U|--do-create-user)  DO_USER=false ;;
-        -l|--do-load-local)   DO_RUN_LOCAL=false ;;
-        -w|--do-web)          DO_RUN_WEB=false ;;
-        -V|--do-verif-trans)  DO_VERIF_TRANSF=false ;;
-        -v|--do-vps)          DO_DEPLOY_VPS=false ;;
-        -d|--debug)           DEBUG_MODE=false ;;
-        --dry-run)            DRY_RUN=false ;;
+        -a|--all)             PROMPT_MODE=false ;;
+        -s|--step)            PROMPT_MODE=true ;;
+        -B|--do-bdd)          DO_SYNC_REMOTE_DB=true ;;
+        -H|--do-heroku)       DO_HEROKU=true ;;
+        -u|--do-varher)       DO_VARHER=true ;;
+        -G|--do-gunicorn)     DO_GUNICORN=true ;;
+        -C|--do-clean)        DO_CLEAN=true ;;
+        -L|--do-local)        DO_JSON_LOCAL=true ;;
+        -S|--do-sync)         DO_SYNC_LOCAL=true ;;
+        -D|--do-docker)       DO_DOKER=true ;;
+        -P|--do-ports)        DO_PORTS=true ;;
+        -Y|--do-sys)          DO_SYS=true ;;
+        -Z|--do-zip)          DO_ZIP_SQL=true ;;
+        -M|--do-mac)          DO_MAC=true ;;
+        -I|--do-migra)        DO_MIG=true ;;
+        -Q|--do-pgsql)        DO_PGSQL=true ;;
+        -p|--do-pem)          DO_PEM=true ;;    
+        -x|--do-ufw)          DO_UFW=true ;;
+        -U|--do-create-user)  DO_USER=true ;;
+        -l|--do-load-local)   DO_RUN_LOCAL=true ;;
+        -w|--do-web)          DO_RUN_WEB=true ;;
+        -V|--do-verif-trans)  DO_VERIF_TRANSF=true ;;
+        -v|--do-vps)          DO_DEPLOY_VPS=true ;;
+        -d|--debug)           DEBUG_MODE=true ;;
         -h|--help)            usage; exit 0 ;;
         *)
             echo -e "\033[1;31m❌ Opción desconocida:\033[0m $1"
@@ -214,46 +215,9 @@ while [[ $# -gt 0 ]]; do
     shift
 done
 
-# # === PARSEO DE ARGUMENTOS ===
-# while [[ $# -gt 0 ]]; do
-#     case "$1" in
-#         -a|--all)             PROMPT_MODE=false ;;
-#         -s|--step)            PROMPT_MODE=true ;;
-#         -B|--do-bdd)          DO_SYNC_REMOTE_DB=true ;;
-#         -H|--do-heroku)       DO_HEROKU=true ;;
-#         -u|--do-varher)       DO_VARHER=true ;;
-#         -G|--do-gunicorn)     DO_GUNICORN=true ;;
-#         -C|--do-clean)        DO_CLEAN=true ;;
-#         -L|--do-local)        DO_JSON_LOCAL=true ;;
-#         -S|--do-sync)         DO_SYNC_LOCAL=true ;;
-#         -D|--do-docker)       DO_DOKER=true ;;
-#         -P|--do-ports)        DO_PORTS=true ;;
-#         -Y|--do-sys)          DO_SYS=true ;;
-#         -Z|--do-zip)          DO_ZIP_SQL=true ;;
-#         -M|--do-mac)          DO_MAC=true ;;
-#         -I|--do-migra)        DO_MIG=true ;;
-#         -Q|--do-pgsql)        DO_PGSQL=true ;;
-#         -p|--do-pem)          DO_PEM=true ;;    
-#         -x|--do-ufw)          DO_UFW=true ;;
-#         -U|--do-create-user)  DO_USER=true ;;
-#         -l|--do-load-local)   DO_RUN_LOCAL=true ;;
-#         -w|--do-web)          DO_RUN_WEB=true ;;
-#         -V|--do-verif-trans)  DO_VERIF_TRANSF=true ;;
-#         -v|--do-vps)          DO_DEPLOY_VPS=true ;;
-#         -d|--debug)           DEBUG_MODE=true ;;
-#         -h|--help)            usage; exit 0 ;;
-#         *)
-#             echo -e "\033[1;31m❌ Opción desconocida:\033[0m $1"
-#             usage
-#             exit 1
-#             ;;
-#     esac
-#     shift
-# done
-
 # === FUNCIÓN CONFIRMAR ===
 confirmar() {
-    [[ "$PROMPT_MODE" == true ]] && return 0
+    [[ "$PROMPT_MODE" == false ]] && return 0
     echo
     printf "\033[1;34m🔷 ¿Confirmas: %s? (s/n):\033[0m " "$1"
     read -r resp
@@ -262,7 +226,7 @@ confirmar() {
 }
 
 # === SOLICITAR COMENTARIO PARA COMMIT SI NO SE OMITE HEROKU ===
-if [[ "$DO_HEROKU" == true ]]; then
+if [[ "$OMIT_HEROKU" == false ]]; then
     echo -e "\033[1;30m🔐 Se solicitarán privilegios sudo para operaciones posteriores...[0m"
     sudo -v
 
@@ -282,19 +246,10 @@ fi
 
 
 if [[ "${DEBUG_MODE:-false}" == true ]]; then
-    echo ""
-    echo -e "\033[1;36m============================= VARIABLES ACTUALES =============================\033[0m"
-    printf "%-20s =\t%s\n" "INTERFAZ"            "$INTERFAZ"
-    printf "%-20s =\t%s\n" "SCRIPTS_DIR"         "$PROJECT_ROOT/scripts"
-    printf "%-20s =\t%s\n" "PRIVATE_KEY_PATH"    "$PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem"
-    printf "%-20s =\t%s\n" "SERVERS_DIR"         "$PROJECT_ROOT/servers"
-    printf "%-20s =\t%s\n" "CACHE_DIR"           "$PROJECT_ROOT/tmp"
-    printf "%-20s =\t%s\n" "PROJECT_ROOT"        "$PROJECT_ROOT"
-    printf "%-20s =\t%s\n" "LOG_DIR"             "$PROJECT_ROOT/logs"
-    echo -e "\033[1;36m==============================================================================\033[0m"
-    echo ""
+    echo "=== VARIABLES ACTUALES ==="
+    env | grep -E "DB_|PROJECT_ROOT|HEROKU_ROOT|DO_|PROMPT_|INTERFAZ"
+    echo "=========================="
 fi
-
 
 
 
@@ -369,11 +324,11 @@ diagnostico_entorno() {
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m----------------------------------------------SISTEMA----------------------------------------------\033[0m"
-if [[ "$DO_SYS" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Actualizar sistema"); then
+if [[ "$DO_SYS" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Actualizar sistema"); then
     sudo apt-get update && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y && sudo apt-get clean
     echo -e "\033[7;30m🔄 Sistema actualizado.\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -383,11 +338,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
-if [[ "$DO_ZIP_SQL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Crear zip y sql"); then
+if [[ "$DO_ZIP_SQL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
     echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
     bash $HOME/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
     
@@ -416,11 +371,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m----------------------------------------------PUERTOS----------------------------------------------\033[0m"
-if [[ "$DO_PORTS" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Detener puertos abiertos"); then
+if [[ "$DO_PORTS" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Detener puertos abiertos"); then
     PUERTOS_OCUPADOS=0
     for PUERTO in 2222 8000 5000 8001 35729; do
         if lsof -i tcp:"$PUERTO" &>/dev/null; then
@@ -443,11 +398,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m--------------------------------------------CONTENEDORES-------------------------------------------\033[0m"
-if [[ "$DO_DOKER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Detener contenedores Docker"); then
+if [[ "$DO_DOKER" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Detener contenedores Docker"); then
     PIDS=$(docker ps -q)
     if [ -n "$PIDS" ]; then
         docker stop $PIDS
@@ -464,12 +419,12 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 
 echo -e "\033[7;33m---------------------------------------------CAMBIO MAC--------------------------------------------\033[0m"
-if [[ "$DO_MAC" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Cambiar MAC de la interfaz $INTERFAZ"); then
+if [[ "$DO_MAC" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Cambiar MAC de la interfaz $INTERFAZ"); then
     echo -e "\033[7;30mCambiando MAC de la interfaz $INTERFAZ\033[0m"
     ver_ip_publica
     sudo ip link set "$INTERFAZ" down
@@ -487,11 +442,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m------------------------------------------RESPALDOS LOCAL------------------------------------------\033[0m"
-if [[ "$DO_JSON_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Crear bdd_local"); then
+if [[ "$DO_JSON_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear bdd_local"); then
     echo -e "\033[7;30m🚀 Creando respaldo de datos de local...\033[0m"
     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
     python3 manage.py dumpdata --indent 2 > bdd_local.json
@@ -503,11 +458,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m------------------------------------------------UFW------------------------------------------------\033[0m"
-if [[ "$DO_UFW" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Configurar venv y PostgreSQL"); then
+if [[ "$DO_UFW" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Configurar venv y PostgreSQL"); then
     sudo ufw --force reset
     sudo ufw default deny incoming
     sudo ufw default allow outgoing
@@ -557,11 +512,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m----------------------------------------------POSTGRES---------------------------------------------\033[0m"
-if [[ "$DO_PGSQL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Configurar venv y PostgreSQL"); then
+if [[ "$DO_PGSQL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Configurar venv y PostgreSQL"); then
     # python3 -m venv "$VENV_PATH"
     # source "$VENV_PATH/bin/activate"
     # pip install --upgrade pip
@@ -614,11 +569,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m--------------------------------------------MIGRACIONES--------------------------------------------\033[0m"
-if [[ "$DO_MIG" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Ejecutar migraciones"); then
+if [[ "$DO_MIG" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Ejecutar migraciones"); then
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
     echo "🧹 Eliminando cachés de Python y migraciones anteriores..."
@@ -648,12 +603,12 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 
 echo -e "\033[7;33m--------------------------------------------CARGAR LOCAL-------------------------------------------\033[0m"
-if [[ "$DO_RUN_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Subir bdd_local"); then
+if [[ "$DO_RUN_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir bdd_local"); then
     echo -e "\033[7;30m🚀 Subiendo respaldo de datos de local...\033[0m"
     python3 manage.py loaddata bdd_local.json
     echo -e "\033[7;30m✅ ¡Subido JSON Local!\033[0m"
@@ -664,12 +619,12 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 
 echo -e "\033[7;33m----------------------------------------------USUARIO----------------------------------------------\033[0m"
-if [[ "$DO_USER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Crear Super Usuario"); then
+if [[ "$DO_USER" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear Super Usuario"); then
     echo -e "\033[7;30m🚀 Creando usuario...\033[0m"
     python3 manage.py createsuperuser
     echo -e "\033[7;30m✅ ¡Usuario creado!\033[0m"
@@ -680,12 +635,12 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 
 echo -e "\033[7;33m----------------------------------------------PEM JWKS---------------------------------------------\033[0m"
-if [[ "$DO_PEM" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Generar PEM JWKS"); then
+if [[ "$DO_PEM" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Generar PEM JWKS"); then
     echo -e "\033[7;30m🚀 Generando PEM...\033[0m"
     python3 manage.py genkey
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -695,11 +650,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m--------------------------------------VERIFICAR TRANSFERENCIAS-------------------------------------\033[0m"
-if [[ "$DO_VERIF_TRANSF" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Verificar archivos transferencias"); then
+if [[ "$DO_VERIF_TRANSF" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Verificar archivos transferencias"); then
     echo -e "\033[7;30m🚀 Verificando logs transferencias...\033[0m"
     python manage.py verificar_transferencias --fix -c -j
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -708,7 +663,7 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m----------------------------------------SINCRONIZACION COMPLETA----------------------------------------\033[0m"
@@ -747,7 +702,7 @@ else:
 EOF
 }
 
-if [[ "$DO_SYNC_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "¿Sincronizas archivos locales?"); then
+if [[ "$DO_SYNC_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "¿Sincronizas archivos locales?"); then
     for destino in "$HEROKU_ROOT" "$NJALLA_ROOT"; do
         echo -e "\033[7;30m🔄 Sincronizando archivos al destino: $destino\033[0m"
         sudo rsync -av "${EXCLUDES[@]}" "$PROJECT_ROOT/" "$destino/"
@@ -765,14 +720,14 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 verificar_vpn_segura
 verificar_configuracion_segura
 
 echo -e "\033[7;33m-----------------------------------------VARIABLES A HEROKU----------------------------------------\033[0m"
-if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Subir variables a Heroku"); then
+if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir variables a Heroku"); then
 
     echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
     cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
@@ -842,11 +797,11 @@ echo ""
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m-------------------------------------------SUBIR A HEROKU------------------------------------------\033[0m"
-if [[ "$DO_HEROKU" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Subir el proyecto a la web"); then
+if [[ "$DO_HEROKU" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir el proyecto a la web"); then
     echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
     cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -881,11 +836,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m---------------------------------------SINCRONIZACION BDD WEB--------------------------------------\033[0m"
-if [[ "$DO_SYNC_REMOTE_DB" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Subir las bases de datos a la web"); then
+if [[ "$DO_SYNC_REMOTE_DB" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir las bases de datos a la web"); then
 
     echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m"
     LOCAL_DB_NAME="mydatabase"
@@ -926,11 +881,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m---------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI--------------------------------\033[0m"
-if [[ "$DO_DEPLOY_VPS" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "¿Desplegar api_bank_h2 en VPS Njalla?"); then
+if [[ "$DO_DEPLOY_VPS" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "¿Desplegar api_bank_h2 en VPS Njalla?"); then
     echo -e "\n\033[1;36m🌐 Desplegando api_bank_h2 en VPS Njalla...\033[0m"
 
     if ! bash "${SCRIPTS_DIR}/21_deploy_ghost_njalla.sh" >> "$STARTUP_LOG" 2>&1; then
@@ -949,11 +904,11 @@ fi
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 echo -e "\033[7;33m-----------------------------------------BORRANDO ZIP Y SQL----------------------------------------\033[0m"
-if [[ "$DO_CLEAN" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Limpiar respaldos antiguos"); then
+if [[ "$DO_CLEAN" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Limpiar respaldos antiguos"); then
     echo -e "\033[7;30mLimpiando respaldos antiguos...\033[0m"
     echo ""
     BACKUP_DIR=$HOME/Documentos/GitHub/backup
@@ -986,7 +941,7 @@ echo ""
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 
@@ -1068,19 +1023,19 @@ if [[ "${DO_GUNICORN:-false}" == false ]] && ([[ "${PROMPT_MODE:-false}" == fals
     nohup python honeypot.py > "$LOG_DIR/honeypot.log" 2>&1 < /dev/null &
     nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOG_DIR/livereload.log" 2>&1 < /dev/null &
 
-    sleep 1
+    sleep 3
     firefox --new-window "$URL_LOCAL" --new-tab "$URL_NJALLA" --new-tab "$URL_HEROKU" &
     FIREFOX_PID=$!
 
     echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"
     echo -e "$LOGO_SEP\n"
-    while true; do sleep 1; done
+    while true; do sleep 3; done
 fi
 
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 # echo -e "\033[7;33m----------------------------------------------GUNICORN---------------------------------------------\033[0m"
@@ -1116,7 +1071,7 @@ sleep 1
 #     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
 # }
 # # === INICIO GUNICORN + HONEYPOT ===
-# if [[ "$DO_GUNICORN" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then
+# if [[ "$DO_GUNICORN" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then
 #     echo -e "\033[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...\033[0m"
 #     trap limpiar_y_salir SIGINT
 #     liberar_puertos
@@ -1124,26 +1079,26 @@ sleep 1
 #     nohup "$VENV_PATH/bin/gunicorn" config.wsgi:application --workers 3 --bind 127.0.0.1:8001 --keep-alive 2 > "$LOGS_DIR/gunicorn_api.log" 2>&1 < /dev/null &
 #     nohup python honeypot.py > "$LOGS_DIR/honeypot.log" 2>&1 < /dev/null &
 #     nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOGS_DIR/livereload.log" 2>&1 < /dev/null &   
-#     sleep 1
+#     sleep 3
 #     firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" --new-tab "$URL_HEROKU" &
 #     FIREFOX_PID=$!
 #     echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"
 #     echo -e "$LOGO_SEP\n"
-#     while true; do sleep 1; done
+#     while true; do sleep 3; done
 # fi
 # echo ""
 
 # echo ""
 # echo ""
 # echo ""
-# sleep 1
+# sleep 3
 # # clear
 
 # verificar_vpn_segura
 
 # # === ABRIR WEB HEROKU ===
 # echo -e "\033[7;33m---------------------------------------------CARGAR WEB--------------------------------------------\033[0m"
-# if [[ "$DO_RUN_WEB" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Abrir web Heroku"); then
+# if [[ "$DO_RUN_WEB" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Abrir web Heroku"); then
 #     echo -e "\033[7;30m🌐 Abriendo web de Heroku...\033[0m"
 #     trap limpiar_y_salir SIGINT
 #     liberar_puertos
@@ -1152,14 +1107,14 @@ sleep 1
 #     FIREFOX_PID=$!
 #     echo -e "\033[7;30m🚧 Web Heroku activa. Ctrl+C para cerrar.\033[0m"
 #     echo -e "$LOGO_SEP\n"
-#     while true; do sleep 1; done
+#     while true; do sleep 3; done
 # fi
 # echo ""
 
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep 3
 # clear
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
@@ -1167,4 +1122,8 @@ URL="$URL_LOCAL"
 notify-send "api_bank_h2" "✅ Proyecto iniciado correctamente en:
 $URL
 $URL_HEROKU
-🏁 ¡Todo completado con éxito!"
+🏁 ¡Todo completado con éxito!
+✅ Sincronización completada con éxito: $BACKUP_FILE
+📦 Commit con el mensaje: $COMENTARIO_COMMIT
+log_info "🗂 Log disponible en: $LOG_FILE_SCRIPT"
+
