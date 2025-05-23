@@ -3,10 +3,10 @@ set -euo pipefail
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
 BACKUP_DIR="$PROJECT_BASE_DIR/backup"
-LOG_DIR="$PROJECT_DIR/logs"
+LOG_DIR="$PROJECT_ROOT/logs"
 
 DATE=$(date +"%Y%m%d_%H%M%S")
 DATE_SHORT=$(date +"%Y%m%d")
@@ -49,17 +49,17 @@ check_and_log "Carpetas LOG y BACKUP verificadas/creadas" "No se pudo crear/veri
 
 log_info "📦 Preparando respaldo ZIP del proyecto..."
 
-if [ ! -d "$PROJECT_DIR" ]; then
-    log_error "Directorio del proyecto no encontrado: $PROJECT_DIR"
+if [ ! -d "$PROJECT_ROOT" ]; then
+    log_error "Directorio del proyecto no encontrado: $PROJECT_ROOT"
     exit 1
 fi
 
-if [ ! -d "$PROJECT_DIR/schemas" ]; then
+if [ ! -d "$PROJECT_ROOT/schemas" ]; then
     log_error "Directorio 'schemas/' no encontrado en el proyecto"
     exit 1
 fi
 
-if [ ! -d "$PROJECT_DIR/logs" ]; then
+if [ ! -d "$PROJECT_ROOT/logs" ]; then
     log_error "Directorio 'logs/' no encontrado en el proyecto"
     exit 1
 fi
@@ -84,25 +84,25 @@ log_info "🧩 Iniciando compresión del proyecto completo..."
 cd "$PROJECT_BASE_DIR" || { log_error "No se pudo acceder al directorio base del proyecto"; exit 1; }
 
 EXCLUDES=(
-#   "$(basename "$PROJECT_DIR")/logs/*"
-  "$(basename "$PROJECT_DIR")/temp/*"
-  "$(basename "$PROJECT_DIR")/venv/*"
-#   "$(basename "$PROJECT_DIR")/__pycache__/*"
-#   "$(basename "$PROJECT_DIR")/migrations/*"
-#   "$(basename "$PROJECT_DIR")/servers/*"
-#   "$(basename "$PROJECT_DIR")/staticfiles/*"
-#   "$(basename "$PROJECT_DIR")/media/*"
-#   "$(basename "$PROJECT_DIR")/schemas/keys/*"
-  "$(basename "$PROJECT_DIR")/*.sqlite3"
-#   "$(basename "$PROJECT_DIR")/*.pyc"
-#   "$(basename "$PROJECT_DIR")/*.log"
-  "$(basename "$PROJECT_DIR")/*.zip"
-  "$(basename "$PROJECT_DIR")/*.sql"
-  "$(basename "$PROJECT_DIR")/.DS_Store"
-#   "$(basename "$PROJECT_DIR")/.env"
+#   "$(basename "$PROJECT_ROOT")/logs/*"
+  "$(basename "$PROJECT_ROOT")/temp/*"
+  "$(basename "$PROJECT_ROOT")/venv/*"
+#   "$(basename "$PROJECT_ROOT")/__pycache__/*"
+#   "$(basename "$PROJECT_ROOT")/migrations/*"
+#   "$(basename "$PROJECT_ROOT")/servers/*"
+#   "$(basename "$PROJECT_ROOT")/staticfiles/*"
+#   "$(basename "$PROJECT_ROOT")/media/*"
+#   "$(basename "$PROJECT_ROOT")/schemas/keys/*"
+  "$(basename "$PROJECT_ROOT")/*.sqlite3"
+#   "$(basename "$PROJECT_ROOT")/*.pyc"
+#   "$(basename "$PROJECT_ROOT")/*.log"
+  "$(basename "$PROJECT_ROOT")/*.zip"
+  "$(basename "$PROJECT_ROOT")/*.sql"
+  "$(basename "$PROJECT_ROOT")/.DS_Store"
+#   "$(basename "$PROJECT_ROOT")/.env"
 )
 
-zip -r9 "$ZIP_FINAL" "$(basename "$PROJECT_DIR")" "${EXCLUDES[@]/#/-x}" >> "$LOG_FILE" 2>&1
+zip -r9 "$ZIP_FINAL" "$(basename "$PROJECT_ROOT")" "${EXCLUDES[@]/#/-x}" >> "$LOG_FILE" 2>&1
 
 check_and_log "Proyecto comprimido exitosamente en: $ZIP_FINAL" "Error al comprimir el proyecto"
 

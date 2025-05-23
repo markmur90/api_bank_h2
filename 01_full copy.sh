@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 
 # === FUNCIONES UTILITARIAS ===
-LOG_FILE_SCRIPT="$PROJECT_DIR/tmp/deploy_$(date +%Y%m%d_%H%M%S).log"
+LOG_FILE_SCRIPT="$PROJECT_ROOT/tmp/deploy_$(date +%Y%m%d_%H%M%S).log"
 
 log_info()    { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }
 log_ok()      { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE_SCRIPT"; }

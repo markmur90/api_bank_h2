@@ -1,11 +1,11 @@
 #!/bin/bash
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_DIR="$(realpath "$SCRIPT_DIR/..")"
+# SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# PROJECT_ROOT="$(realpath "$SCRIPT_DIR/..")"
 
-LOG_DIR="$PROJECT_DIR/logs"
+LOG_DIR="$PROJECT_ROOT/logs"
 LOG_FILE="$LOG_DIR/post_compile.log"
-DESTINO="$PROJECT_DIR/schemas/keys/ecdsa_private_key.pem"
+DESTINO="$PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem"
 
 mkdir -p "$(dirname "$DESTINO")"
 mkdir -p "$LOG_DIR"

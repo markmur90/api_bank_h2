@@ -48,13 +48,13 @@ heroku config:set API_ORIGIN=https://simulator-api.db.com --app "$HEROKU_APP"
 heroku config:set TIMEOUT_REQUEST=3600 --app "$HEROKU_APP"
 heroku config:set DISABLE_COLLECTSTATIC=1
 
-log_info "🔐 Validando clave privada..."
-PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
-mkdir -p keys
-[[ ! -f "$PEM_PATH" ]] && openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out "$PEM_PATH"
+# log_info "🔐 Validando clave privada..."
+# PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
+# mkdir -p keys
+# [[ ! -f "$PEM_PATH" ]] && openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out "$PEM_PATH"
 
-heroku config:set PRIVATE_KEY_PATH="$PEM_PATH" --app "$HEROKU_APP"
-heroku config:set PRIVATE_KEY_KID="$(openssl rand -hex 16)" --app "$HEROKU_APP"
+# heroku config:set PRIVATE_KEY_PATH="$PEM_PATH" --app "$HEROKU_APP"
+# heroku config:set PRIVATE_KEY_KID="$(openssl rand -hex 16)" --app "$HEROKU_APP"
 
 log_info "📦 Preparando commit a Git..."
 
