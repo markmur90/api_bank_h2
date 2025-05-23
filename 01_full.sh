@@ -59,6 +59,7 @@ DB_HOST="localhost"
 PROMPT_MODE=true
 OMIT_SYNC_REMOTE_DB=false
 OMIT_HEROKU=false
+OMIT_VARHER=false
 OMIT_GUNICORN=false
 OMIT_CLEAN=false
 OMIT_JSON_LOCAL=false
@@ -123,6 +124,7 @@ usage() {
     echo -e "\033[1;36m BLOQUES OMITIBLES INDIVIDUALMENTE\033[0m"
     echo -e "  \033[1;33m-B\033[0m, \033[1;33m--omit-bdd\033[0m           Omitir sincronización con la base de datos remota"
     echo -e "  \033[1;33m-H\033[0m, \033[1;33m--omit-heroku\033[0m        Omitir deploy y push a Heroku"
+    echo -e "  \033[1;33m-u\033[0m, \033[1;33m--omit-varher\033[0m        Omitir variables a Heroku"
     echo -e "  \033[1;33m-G\033[0m, \033[1;33m--omit-gunicorn\033[0m      Omitir arranque de Gunicorn y servicios locales"
     echo -e "  \033[1;33m-C\033[0m, \033[1;33m--omit-clean\033[0m         Omitir limpieza de respaldos antiguos"
     echo -e "  \033[1;33m-D\033[0m, \033[1;33m--omit-docker\033[0m        Omitir detener containers Docker"
@@ -183,6 +185,7 @@ while [[ $# -gt 0 ]]; do
         -s|--step)              PROMPT_MODE=true ;;
         -B|--omit-bdd)          OMIT_SYNC_REMOTE_DB=true ;;
         -H|--omit-heroku)       OMIT_HEROKU=true ;;
+        -u|--omit-varher)       OMIT_VARHER=true ;;
         -G|--omit-gunicorn)     OMIT_GUNICORN=true ;;
         -L|--omit-local)        OMIT_JSON_LOCAL=true ;;
         -S|--omit-sync)         OMIT_SYNC_LOCAL=true ;;
@@ -722,8 +725,8 @@ sleep 3
 verificar_vpn_segura
 verificar_configuracion_segura
 
-echo -e "\033[7;33m-------------------------------------------SUBIR A HEROKU------------------------------------------\033[0m"
-if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir el proyecto a la web"); then
+echo -e "\033[7;33m-----------------------------------------VARIABLES A HEROKU----------------------------------------\033[0m"
+if [[ "$OMIT_VARHER" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir variables a Heroku"); then
 
     echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
     cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
@@ -748,7 +751,7 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     set -a; source .env; set +a
     heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 schemas/keys/ecdsa_private_key.pem)
     heroku config:get PRIVATE_KEY_B64 | base64 -d | head
-
+    heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/
 
 
 
@@ -787,10 +790,22 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
 #     # else
 #     #     echo -e "\033[7;32m✅ PRIVATE_KEY_KID ya está configurado en Heroku.\033[0m"
 #     # fi
+fi
 
+echo ""
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
+echo -e "\033[7;33m-------------------------------------------SUBIR A HEROKU------------------------------------------\033[0m"
+if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir el proyecto a la web"); then
+    echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
+    cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
 
-    heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/
     echo -e "\033[7;30mHaciendo git add...\033[0m"
     git add --all
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -834,8 +849,10 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     DB_USER="markmur88"
     DB_PASS="Ptf8454Jd55"
     DB_HOST="localhost"
-    REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
-    
+    REMOTE_DB_URL=postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra
+    PROJECT_ROOT=/home/markmur88/Documentos/GitHub/api_bank_h2
+    LOG_DIR=$PROJECT_ROOT/logs
+    LOG_FILE_SCRIPT=$LOG_DIR/full_deploy.log
     if ! command -v pv > /dev/null 2>&1; then
         log_error "❌ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv"
         exit 1
@@ -850,7 +867,8 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     log_ok "📄 Backup SQL generado: $BACKUP_FILE"
     sleep 20
     log_info "📤 Subiendo backup a la base de datos remota con pv + psql..."
-    pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" >> "$LOG_FILE_SCRIPT" 2>&1
+    # pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" >> "$LOG_FILE_SCRIPT" 2>&1
+    pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" 2>&1
     check_status "Importación a DB remota"
 
     export DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}"
