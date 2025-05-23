@@ -3,8 +3,6 @@ set -euo pipefail
 
 clear
 
-
-
 echo "🔐 Solicitando acceso sudo..."
 if sudo -v; then
     while true; do
@@ -20,9 +18,6 @@ else
 fi
 
 COMENTARIO_COMMIT=""
-
-
-
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
 # ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2           ║
@@ -50,7 +45,9 @@ HEROKU_ROOT2="$HOME/Documentos/GitHub/coretransapi"
 VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
 INTERFAZ="wlan0"
 LOGS_DIR="$PROJECT_ROOT/logs"
-LOG_FILE_SCRIPT="$LOGS_DIR/full_deploy.log"
+LOG_FILE_SCRIPT=${LOGFILE:-"$LOGS_DIR/full_deploy.log"}
+STARTUP_LOG=${STARTUP_LOG:-"$LOGS_DIR/startup.log"}
+
 
 # === CREDENCIALES BASE DE DATOS ===
 DB_NAME="mydatabase"
@@ -78,6 +75,7 @@ OMIT_RUN_LOCAL=false
 OMIT_RUN_WEB=false
 OMIT_UFW=false
 OMIT_USER=false
+OMIT_DEPLOY_VPS=false
 OMIT_VERIF_TRANSF=false
 DEBUG_MODE=false
 
@@ -151,11 +149,30 @@ usage() {
     echo -e "  \033[1;33m-M\033[0m, \033[1;33m--omit-mac\033[0m           Omitir cambio de dirección MAC aleatoria"
     echo -e "  \033[1;33m-x\033[0m, \033[1;33m--omit-ufw\033[0m           Omitir configuración del firewall (UFW)"
     echo -e "  \033[1;33m-p\033[0m, \033[1;33m--omit-pem\033[0m           Omitir generar archivos PEM"
+    echo -e "  \033[1;33m-v\033[0m, \033[1;33m--omit-vps\033[0m           Omitir hacer deploy vps njalla"
     echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m               Mostrar esta ayuda y salir"
     echo -e ""
 
     echo -e "\033[1;36m EJEMPLOS COMBINADOS\033[0m"
-    echo -e "  \033[1;36mdeploy_menu\033[0m   ➤ Menú interactivo con FZF para seleccionar despliegue"
+    echo -e "  \033[1;33md_help\033[0m           ➤ Ver la ayuda completa del script"
+    echo -e "  \033[1;33md_all\033[0m            ➤ Ejecutar absolutamente todo sin confirmaciones"
+    echo -e "  \033[1;33md_step\033[0m           ➤ Ejecutar paso a paso, confirmando cada bloque"
+    echo -e "  \033[1;33md_debug\033[0m          ➤ Mostrar todas las variables antes de ejecutar"
+
+    echo -e "\n  \033[1;33md_local\033[0m          ➤ Despliegue local completo sin Heroku ni VPS"
+    echo -e "  \033[1;33md_heroku\033[0m         ➤ Sincronizar archivos y subir solo a Heroku"
+    echo -e "  \033[1;33md_production\033[0m     ➤ Despliegue para VPS Njalla (sin Heroku)"
+
+    echo -e "\n  \033[1;33md_reset_full\033[0m     ➤ Reinstalación completa del entorno"
+    echo -e "  \033[1;33md_sync\033[0m           ➤ Solo sincronizar archivos locales sin otras acciones"
+
+    echo -e "\n  \033[1;33md_push_heroku\033[0m    ➤ Ejecutar solo push a GitHub + Heroku"
+    echo -e "  \033[1;33md_njalla\033[0m          ➤ Subida directa al VPS Njalla (coretransapi.com)"
+
+    echo -e "\n  \033[1;33mdeploy_menu\033[0m      ➤ Menú interactivo con FZF para seleccionar despliegue"
+
+    echo -e "\n\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m\n"
+
     echo -e ""
 }
 
@@ -181,6 +198,7 @@ while [[ $# -gt 0 ]]; do
         -w|--omit-web)          OMIT_RUN_WEB=true ;;
         -C|--omit-clean)        OMIT_CLEAN=true ;;
         -V|--omit-verif-trans)  OMIT_VERIF_TRANSF=true ;;
+        -v|--omit-vps)          OMIT_DEPLOY_VPS=true ;;
         -d|--debug)             DEBUG_MODE=true ;;
         -h|--help)              usage; exit 0 ;;
         *)
@@ -311,6 +329,7 @@ if [[ "$OMIT_SYS" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Ac
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
 fi
+
 echo ""
 echo ""
 echo ""
@@ -592,19 +611,19 @@ sleep 3
 # clear
 
 
-# echo -e "\033[7;33m----------------------------------------------PEM JWKS---------------------------------------------\033[0m"
-# if [[ "$OMIT_PEM" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Generar PEM JWKS"); then
-#     echo -e "\033[7;30m🚀 Generando PEM...\033[0m"
-#     python3 manage.py genkey
-#     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-#     echo ""
-# fi
+echo -e "\033[7;33m----------------------------------------------PEM JWKS---------------------------------------------\033[0m"
+if [[ "$OMIT_PEM" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Generar PEM JWKS"); then
+    echo -e "\033[7;30m🚀 Generando PEM...\033[0m"
+    python3 manage.py genkey
+    echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+    echo ""
+fi
 
-# echo ""
-# echo ""
-# echo ""
-# sleep 3
-# # clear
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
 echo -e "\033[7;33m--------------------------------------VERIFICAR TRANSFERENCIAS-------------------------------------\033[0m"
 if [[ "$OMIT_VERIF_TRANSF" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Verificar archivos transferencias"); then
@@ -693,6 +712,7 @@ if [[ "$OMIT_SYNC_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confir
         echo ""
     done
 fi
+
 echo ""
 echo ""
 echo ""
@@ -725,7 +745,7 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     heroku config:set API_ORIGIN=https://api.db.com
     heroku config:set TIMEOUT_REQUEST=3600
     heroku config:set DISABLE_COLLECTSTATIC=1
-    source .env
+    set -a; source .env; set +a
     heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 schemas/keys/ecdsa_private_key.pem)
     heroku config:get PRIVATE_KEY_B64 | base64 -d | head
 
@@ -797,7 +817,11 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     echo ""
 fi
 
-
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
 echo -e "\033[7;33m---------------------------------------SINCRONIZACION BDD WEB--------------------------------------\033[0m"
 if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Subir las bases de datos a la web"); then
@@ -837,7 +861,34 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
 
 fi
 
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
+echo -e "\033[7;33m---------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI--------------------------------\033[0m"
+if [[ "$OMIT_DEPLOY_VPS" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "¿Desplegar api_bank_h2 en VPS Njalla?"); then
+    echo -e "\n\033[1;36m🌐 Desplegando api_bank_h2 en VPS Njalla...\033[0m"
+
+    if ! bash "${SCRIPTS_DIR}/21_deploy_ghost_njalla.sh" >> "$STARTUP_LOG" 2>&1; then
+        echo -e "\033[1;31m⚠️ Fallo en el primer intento de deploy. Ejecutando instalación de dependencias...\033[0m"
+        bash "${SCRIPTS_DIR}/vps_instalar_dependencias.sh" >> "$STARTUP_LOG" 2>&1
+        echo -e "\033[1;36m🔁 Reintentando despliegue...\033[0m"
+        if ! bash "${SCRIPTS_DIR}/21_deploy_ghost_njalla.sh" >> "$STARTUP_LOG" 2>&1; then
+            echo -e "\033[1;31m❌ Fallo final en despliegue remoto. Consulta logs en $STARTUP_LOG\033[0m"
+            exit 1
+        fi
+    fi
+
+    echo -e "\033[1;32m✅ Despliegue remoto al VPS completado.\033[0m"
+fi
+
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
 echo -e "\033[7;33m-----------------------------------------BORRANDO ZIP Y SQL----------------------------------------\033[0m"
 if [[ "$OMIT_CLEAN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Limpiar respaldos antiguos"); then
@@ -902,9 +953,6 @@ verificar_vpn_segura
 rotar_logs_si_grandes
 
 
-#!/bin/bash
-set -euo pipefail
-
 echo -e "\033[7;33m---------------------------------------------- GUNICORN ----------------------------------------------\033[0m"
 
 # === CONFIGURACIÓN ===
@@ -955,6 +1003,8 @@ verificar_seguridad() {
     fi
 }
 
+
+
 # === INICIO GUNICORN + HONEYPOT ===
 if [[ "${OMIT_GUNICORN:-false}" == false ]] && ([[ "${PROMPT_MODE:-false}" == false ]] || confirmar "¿Iniciar Gunicorn, honeypot y livereload?"); then
     echo -e "\033[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...\033[0m"
@@ -963,13 +1013,21 @@ if [[ "${OMIT_GUNICORN:-false}" == false ]] && ([[ "${PROMPT_MODE:-false}" == fa
     liberar_puertos
     iniciar_entorno
 
-    echo -e "\033[1;34m🌀 Lanzando procesos...\033[0m"
-    nohup "$VENV_PATH/bin/gunicorn" config.wsgi:application --workers 3 --bind 127.0.0.1:8001 --keep-alive 2 > "$LOGS_DIR/gunicorn_api.log" 2>&1 < /dev/null &
-    nohup python honeypot.py > "$LOGS_DIR/honeypot.log" 2>&1 < /dev/null &
-    nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOGS_DIR/livereload.log" 2>&1 < /dev/null &
+    echo -e "\n🔧 Configurando Gunicorn con systemd...\n"
+    {
+        bash "${SCRIPTS_DIR}/configurar_gunicorn.sh"
+        echo -e "✅ Gunicorn configurado correctamente.\n"
+    } >> "$STARTUP_LOG" 2>&1 || {
+        echo -e "\033[1;31m❌ Error al configurar Gunicorn. Consulta $STARTUP_LOG\033[0m"
+        exit 1
+    }
+
+    echo -e "\033[1;34m🌀 Lanzando servicios secundarios...\033[0m"
+    nohup python honeypot.py > "$LOG_DIR/honeypot.log" 2>&1 < /dev/null &
+    nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOG_DIR/livereload.log" 2>&1 < /dev/null &
 
     sleep 3
-    firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" --new-tab "$URL_HEROKU" &
+    firefox --new-window "$URL_LOCAL" --new-tab "https://api.coretransapi.com" --new-tab "$URL_HEROKU" &
     FIREFOX_PID=$!
 
     echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"
@@ -977,6 +1035,11 @@ if [[ "${OMIT_GUNICORN:-false}" == false ]] && ([[ "${PROMPT_MODE:-false}" == fa
     while true; do sleep 3; done
 fi
 
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
 # echo -e "\033[7;33m----------------------------------------------GUNICORN---------------------------------------------\033[0m"
 # # === CONFIGURACIÓN ===
@@ -1051,11 +1114,11 @@ fi
 # fi
 # echo ""
 
-# echo ""
-# echo ""
-# echo ""
-# sleep 3
-# # clear
+echo ""
+echo ""
+echo ""
+sleep 3
+# clear
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"
