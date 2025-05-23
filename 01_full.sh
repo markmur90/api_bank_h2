@@ -725,7 +725,7 @@ if [[ "$OMIT_HEROKU" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar 
     heroku config:set TIMEOUT_REQUEST=3600
     heroku config:set DISABLE_COLLECTSTATIC=1
     source .env
-    heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 "$PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem")
+    heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 schemas/keys/ecdsa_private_key.pem)
     heroku config:get PRIVATE_KEY_B64 | base64 -d | head
 
 

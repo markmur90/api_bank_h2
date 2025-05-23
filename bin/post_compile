@@ -1,53 +1,32 @@
-#!/bin/sh
+#!/bin/bash
 
-PROJECT_ROOT=$HOME/Documentos/GitHub/api_bank_h2
-LOG_DIR="$PROJECT_ROOT/logs"
+set -e
+APP_DIR="$(pwd)"
+LOG_DIR="$APP_DIR/logs"
+SCHEMAS_DIR="$APP_DIR/schemas"
+KEYS_DIR="$SCHEMAS_DIR/keys"
 LOG_FILE="$LOG_DIR/post_compile.log"
-DESTINO="$HOME/schemas/keys/ecdsa_private_key.pem"
 
-# mkdir -p "$(dirname "$DESTINO")"
-# mkdir -p "$LOG_DIR"
+mkdir -p "$LOG_DIR"
+mkdir -p "$KEYS_DIR"
 
+echo "🔧 Ejecutando script post_compile en $APP_DIR..." | tee -a "$LOG_FILE"
+
+# Restaurar clave privada desde la variable PRIVATE_KEY_B64
 echo "🔐 Restaurando clave privada desde PRIVATE_KEY_B64..." | tee -a "$LOG_FILE"
 
-STATUS="OK"
-
-if [ -n "$PRIVATE_KEY_B64" ]; then
-    echo "$PRIVATE_KEY_B64" | base64 -d > "$DESTINO" 2>>"$LOG_FILE"
-    if [ $? -eq 0 ]; then
-        chmod 600 "$DESTINO"
-        if grep -q "BEGIN PRIVATE KEY" "$DESTINO"; then
-            echo "✅ Clave restaurada correctamente en $DESTINO" | tee -a "$LOG_FILE"
-        else
-            echo "❌ Clave restaurada no válida (no contiene BEGIN PRIVATE KEY). Eliminando." | tee -a "$LOG_FILE"
-            rm -f "$DESTINO"
-            STATUS="INVALID"
-        fi
-    else
-        echo "❌ Error al decodificar PRIVATE_KEY_B64. Clave no restaurada." | tee -a "$LOG_FILE"
-        rm -f "$DESTINO"
-        STATUS="DECODE_ERROR"
-    fi
-else
-    echo "⚠️ PRIVATE_KEY_B64 no está definido. Clave no restaurada." | tee -a "$LOG_FILE"key pe
-    STATUS="UNDEFINED"
+if [ -z "$PRIVATE_KEY_B64" ]; then
+    echo "⚠ PRIVATE_KEY_B64 no está definido. Clave no restaurada." | tee -a "$LOG_FILE"
+    echo "🔒 Resultado post_compile: ⚠ VARIABLE PRIVATE_KEY_B64 NO DEFINIDA" | tee -a "$LOG_FILE"
+    exit 0
 fi
 
-# 🔍 Resultado final resumen
-echo ""
-case "$STATUS" in
-    "OK")
-        echo "🔒 Resultado post_compile: ✅ CLAVE OK" | tee -a "$LOG_FILE"
-        ;;
-    "INVALID")
-        echo "🔒 Resultado post_compile: ❌ CLAVE INVÁLIDA (no es PEM)" | tee -a "$LOG_FILE"
-        ;;
-    "DECODE_ERROR")
-        echo "🔒 Resultado post_compile: ❌ ERROR EN DECODIFICACIÓN" | tee -a "$LOG_FILE"
-        ;;
-    "UNDEFINED")
-        echo "🔒 Resultado post_compile: ⚠️ VARIABLE PRIVATE_KEY_B64 NO DEFINIDA" | tee -a "$LOG_FILE"
-        ;;
-esac
+PRIVATE_KEY_PATH="$KEYS_DIR/ecdsa_private_key.pem"
 
-echo ""
+echo "$PRIVATE_KEY_B64" | base64 -d > "$PRIVATE_KEY_PATH"
+chmod 600 "$PRIVATE_KEY_PATH"
+
+echo "✅ Clave privada restaurada en $PRIVATE_KEY_PATH" | tee -a "$LOG_FILE"
+echo "🔒 Resultado post_compile: OK" | tee -a "$LOG_FILE"
+
+exit 0
