@@ -13497,3 +13497,6 @@ ALTER TABLE ONLY public.transfers_sepa3
 [1;32m[OK]   Éxito: Importación a DB remota[0m
 [1;32m[OK]   ✅ Sincronización completada correctamente[0m
 [1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m

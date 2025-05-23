@@ -26,3 +26,6 @@ alias d_njalla='bash ./01_full.sh -a -B -H -G -Z -Y -U -l -w'
 
 # Menu interactivo
 alias deploy_menu='bash ./scripts/multi_master.sh'
+
+
+alias d_person='bash ./01_full.sh -a -L -U -V -v -u -p'
