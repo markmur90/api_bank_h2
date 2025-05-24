@@ -94,7 +94,6 @@ class Transfer(models.Model):
         ('ACCC', 'Concluida'),
         ('CANC', 'Cancelada'),
         ('PDNG', 'Pendiente'),
-        ('ERRO', 'Error'),
         ('CREA', 'Creada'),
     ], default='CREA')
     payment_identification = models.ForeignKey(PaymentIdentification, on_delete=models.CASCADE)

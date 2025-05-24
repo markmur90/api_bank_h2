@@ -1,4 +1,4 @@
-# filepath: $HOME/Documentos/GitHub/swiftapi3/api/core/middleware.py
+# filepath: /home/markmur88/Documentos/GitHub/swiftapi3/api/core/middleware.py
 from threading import local
 
 _user = local()
