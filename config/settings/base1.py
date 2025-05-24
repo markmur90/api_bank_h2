@@ -19,7 +19,7 @@ env.read_env(env_file)
 
 # 3. Variables críticas
 SECRET_KEY = env('SECRET_KEY')
-DEBUG      = env.bool('DEBUG', default=False)
+DEBUG      = env.bool('DEBUG', default=True)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
 
