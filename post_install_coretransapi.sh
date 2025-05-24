@@ -6,7 +6,7 @@ echo "🌐 Configurando entorno completo para VPS: coretransapi"
 # === Variables ===
 USUARIO="markmur88"
 PROYECTO="api_bank_h2"
-REPO_URL="git@github.com:markmur88/api_bank_h2.git"
+REPO_URL="git@github.com:markmur88/api_bank_heroku.git"
 PROYECTO_DIR="/home/$USUARIO/Documentos/GitHub/$PROYECTO"
 VENV_DIR="/home/$USUARIO/Documentos/Entorno/venvAPI"
 SSH_KEY="/root/.ssh/authorized_keys"

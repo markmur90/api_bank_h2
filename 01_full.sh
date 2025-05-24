@@ -1019,9 +1019,9 @@ echo ""
 sleep 1
 
 
-
-verificar_vpn_segura
-rotar_logs_si_grandes
+# verificar_vpn_segura
+# verificar_configuracion_segura
+# rotar_logs_si_grandes
 
 
 echo -e "\033[7;33m----------------------------------------------- GUNICORN ----------------------------------------------\033[0m"
