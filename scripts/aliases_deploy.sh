@@ -9,11 +9,11 @@ alias d_debug='bash ./01_full.sh -d'
 
 # Despliegues comunes
 
-alias d_local='bash ./01_full.sh -a -Y -P -D -M -x -Z -L -S -U -V -p -u -H -B -v'
-alias d_heroku='bash ./01_full.sh -a -L -U -V -p -u -v'
-alias d_varher='bash ./01_full.sh -a -L -U -V -p -v'
-alias d_njalla='bash ./01_full.sh -a -L -U -V -p -u -H -B'
-alias d_rsync='bash ./01_full.sh -a -Y -P -D -M -x -C -Z -Q -I -L -l -U -V -p -u -H -B -v -G -w'
+alias d_local='bash ./01_full.sh --env=local -a -Y -P -D -M -x -Z -C -L -S -U -V -p -u -H -B -v'
+alias d_heroku='bash ./01_full.sh --env=heroku -a -L -U -V -p -u -v -C'
+alias d_varher='bash ./01_full.sh --env=production -a -L -U -V -p -v -C'
+alias d_njalla='bash ./01_full.sh --env=production -a -L -U -V -p -u -H -B -C'
+alias d_rsync='bash ./01_full.sh --env=local -a -Y -P -D -M -x -C -Z -Q -I -L -l -U -V -p -u -H -B -v -G -w'
 
 
 
