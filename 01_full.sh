@@ -732,14 +732,14 @@ if os.path.exists(settings_path):
     new_lines = []
     for line in lines:
         if "DJANGO_ENV = os.getenv(" in line and 'local' in line:
-            new_lines.append(line.replace('local', 'production'))
+            new_lines.append(line.replace('local', 'heroku'))
             updated = True
         else:
             new_lines.append(line)
     if updated:
         with open(settings_path, "w", encoding="utf-8") as f:
             f.writelines(new_lines)
-        print("✅ DJANGO_ENV actualizado a 'production' en __init__.py.")
+        print("✅ DJANGO_ENV actualizado a 'heroku' en __init__.py.")
     else:
         print("⚠️ No se encontró DJANGO_ENV='local' para actualizar.")
 else:
