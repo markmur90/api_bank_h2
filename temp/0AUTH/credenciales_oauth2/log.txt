@@ -1,0 +1,6 @@
+[2025-05-12T08:51:29.588240+02:00] Clave privada ECDSA P-256 generada.
+[2025-05-12T08:51:29.588536+02:00] Clave pública generada.
+[2025-05-12T08:51:29.749441+02:00] Archivo JWKS generado.
+[2025-05-12T08:51:29.805268+02:00] JWT client_assertion generado.
+[2025-05-12T08:51:29.805474+02:00] Resumen generado y guardado.
+[2025-05-12T08:51:29.805639+02:00] Firma HMAC del log generada.

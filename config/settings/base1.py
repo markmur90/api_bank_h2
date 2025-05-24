@@ -1,26 +1,18 @@
 import os
 from pathlib import Path
 import environ
-from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
 
+env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-# 1. Creamos el lector de .env
-env = environ.Env()
+SECRET_KEY = env("SECRET_KEY", default=None)
+if not SECRET_KEY:
+    raise ValueError("🚨 SECRET_KEY no definida en entorno")
 
-# 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
-env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
-if not env_file.exists():
-    raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-env.read_env(env_file)
-
-# 3. Variables críticas
-SECRET_KEY = env('SECRET_KEY')
-DEBUG      = env.bool('DEBUG', default=True)
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+DEBUG = os.getenv("DJANGO_DEBUG", "True").lower() in ("true", "1", "yes")
+ALLOWED_HOSTS = [host.strip() for host in os.getenv("ALLOWED_HOSTS", "").split(",") if host.strip()]
 
 
 
@@ -101,11 +93,16 @@ INTERNAL_IPS = [
     # añade aquí la IP de tu máquina si usas Docker o VM
 ]
 
-# 5. Plantillas de base de datos
 DATABASES = {
-    'default': dj_database_url.config(default=env('DATABASE_URL'))
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": os.getenv("DB_NAME", "mydatabase"),
+        "USER": os.getenv("DB_USER", "markmur88"),
+        "PASSWORD": os.getenv("DB_PASS", "Ptf8454Jd55"),
+        "HOST": os.getenv("DB_HOST", "localhost"),
+        "PORT": os.getenv("DB_PORT", "5432"),
+    }
 }
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # 6. Resto de configuración (sin cambios)
@@ -133,13 +130,19 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL = False  # ⚠️ Desactívalo aquí
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://api.db.com",
     "https://simulator-api.db.com",
     "https://apibank2-d42d7ed0d036.herokuapp.com",
+    "https://api.coretransapi.com",
 ]
+CSRF_TRUSTED_ORIGINS = [
+    "https://api.coretransapi.com",
+    "https://apibank2-d42d7ed0d036.herokuapp.com",
+]
+
 
 # REST Framework y OAuth/JWT (sin cambios)
 from datetime import timedelta
@@ -153,39 +156,29 @@ REST_FRAMEWORK = {
 
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
+# === API Deutsche Bank ===
+ORIGIN = os.getenv("API_ORIGIN", "https://api.db.com")
+CLIENT_ID = os.getenv("DB_CLIENT_ID", "")
+CLIENT_SECRET = os.getenv("DB_CLIENT_SECRET", "")
+TOKEN_URL = os.getenv("DB_TOKEN_URL", "")
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN", "")
+AUTH_URL = os.getenv("DB_AUTH_URL", "")
+AUTHORIZE_URL = os.getenv("DB_AUTHORIZE_URL", "")
+API_URL = os.getenv("DB_API_URL", "")
+SCOPE = os.getenv("DB_SCOPE", "sepa_credit_transfers")
+TIMEOUT_REQUEST = int(os.getenv("TIMEOUT_REQUEST", 3600))
 
-
-CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
-CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
-
-ORIGIN = 'https://api.db.com'
-
-TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
-OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
-AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
-API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
-AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
-SCOPE = 'sepa_credit_transfers'
-TIMEOUT_REQUEST = 3600
-
-REDIRECT_URI = 'https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/'
-
-
-ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
-
+# Configuración OAuth2 integrada
 OAUTH2 = {
-    'CLIENT_ID': CLIENT_ID,
-    'CLIENT_SECRET': CLIENT_SECRET,
-    'ACCESS_TOKEN': ACCESS_TOKEN,
-    'ORIGIN': ORIGIN,
-    'OTP_URL': OTP_URL,
-    'AUTH_URL': AUTH_URL,
-    'API_URL': API_URL,
-    'TOKEN_URL': TOKEN_URL,
-    'AUTHORIZE_URL': AUTHORIZE_URL,
-    'REDIRECT_URI': REDIRECT_URI,
-    'SCOPE': SCOPE,
-    'TIMEOUT': TIMEOUT_REQUEST,
+    "CLIENT_ID": CLIENT_ID,
+    "CLIENT_SECRET": CLIENT_SECRET,
+    "SCOPE": SCOPE,
+    "AUTH_URL": AUTH_URL,
+    "AUTHORIZE_URL": AUTHORIZE_URL,
+    "TOKEN_URL": TOKEN_URL,
+    "ACCESS_TOKEN": ACCESS_TOKEN,
+    "REDIRECT_URI": os.getenv("OAUTH2_REDIRECT_URI", "http://localhost:8011/oauth2/callback/"),
+    "TIMEOUT_REQUEST": TIMEOUT_REQUEST,
 }
 
 SIMPLE_JWT = {
@@ -228,10 +221,9 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
-# Configure Django App for Heroku.
-import django_heroku
-django_heroku.settings(locals())
+PRIVATE_KEY_KID = '207230d7-f5f4-4bf1-929d-d17e5594ef98'
+PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'schemas', 'keys', 'ecdsa_private_key.pem')
 
 
-PRIVATE_KEY_KID = '7acb2cbe-00a6-4122-8f68-27d9235befbb'
-PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
+from config.utils.validar_entorno import validar_variables
+validar_variables()
