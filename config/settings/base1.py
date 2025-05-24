@@ -12,7 +12,7 @@ if not SECRET_KEY:
     raise ValueError("🚨 SECRET_KEY no definida en entorno")
 
 DEBUG = os.getenv("DJANGO_DEBUG", "True") == "True"
-ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", "localhost,0.0.0.0,api.coretransapi,127.0.0.1,apibank2-d42d7ed0d036.herokuapp").split(",")
+ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "").split(",")
 
 
 

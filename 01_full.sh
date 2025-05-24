@@ -785,7 +785,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Sub
     # CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
     heroku config:set DJANGO_SECRET_KEY=$SECRET_KEY
     heroku config:set DJANGO_DEBUG=False
-    heroku config:set DJANGO_ALLOWED_HOSTS=apibank2-d42d7ed0d036.herokuapp
+    heroku config:set DJANGO_ALLOWED_HOSTS=api.coretransapi.com,apibank2-d42d7ed0d036.herokuapp.com,127.0.0.1,0.0.0.0
     # heroku config:set DB_CLIENT_ID=tu-client-id-herokuPtf8454Jd55
     # heroku config:set DB_CLIENT_SECRET=tu-client-secret-heroku
     heroku config:set DB_TOKEN_URL=https://simulator-api.db.com:443/gw/dbapi/token
@@ -1049,7 +1049,7 @@ verificar_seguridad() {
 
 
 # === INICIO GUNICORN + HONEYPOT ===
-if [[ "${DO_GUNICORN:-false}" == false ]] && ([[ "${PROMPT_MODE:-false}" == false ]] || confirmar "¿Iniciar Gunicorn, honeypot y livereload?"); then
+if [[ "${DO_GUNICORN:-false}" == true ]] && ([[ "${PROMPT_MODE:-false}" == true ]] || confirmar "¿Iniciar Gunicorn, honeypot y livereload?"); then
     echo -e "\033[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...\033[0m"
     trap limpiar_y_salir SIGINT
     verificar_seguridad
@@ -1070,7 +1070,7 @@ if [[ "${DO_GUNICORN:-false}" == false ]] && ([[ "${PROMPT_MODE:-false}" == fals
     nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOG_DIR/livereload.log" 2>&1 < /dev/null &
 
     sleep 1
-    firefox --new-window "$URL_LOCAL" --new-tab "$URL_NJALLA" --new-tab "$URL_HEROKU" &
+    firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" --new-tab "$URL_NJALLA" --new-tab "$URL_HEROKU" &
     FIREFOX_PID=$!
 
     echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"
