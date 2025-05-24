@@ -157,7 +157,7 @@ OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 TIMEOUT_REQUEST = 3600
 CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
 CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
-ORIGIN = 'https://api-bank-2-749ee30aca65.herokuapp.com'
+ORIGIN = 'https://api.db.com'
 TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
 OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
 AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
@@ -169,18 +169,18 @@ SCOPE = 'sepa_credit_transfers'
 ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
 
 OAUTH2 = {
-    'CLIENT_ID': '766ae693-6297-47ea-b825-fd3d07dcf9b6',
-    'CLIENT_SECRET': 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ',
-    'ACCESS_TOKEN': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg',
-    'ORIGIN': 'https://apibank2-d42d7ed0d036.herokuapp.com',
-    'OTP_URL': 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single',
-    'AUTH_URL': 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges',
-    'API_URL': 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer',
-    'TOKEN_URL': 'https://simulator-api.db.com:443/gw/oidc/token',
-    'AUTHORIZE_URL': 'https://simulator-api.db.com:443/gw/oidc/authorize',
-    'REDIRECT_URI': 'https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/',
-    'SCOPE': 'sepa_credit_transfers',
-    'TIMEOUT': 3600,
+    'CLIENT_ID': CLIENT_ID,
+    'CLIENT_SECRET': CLIENT_SECRET,
+    'ACCESS_TOKEN': ACCESS_TOKEN,
+    'ORIGIN': ORIGIN,
+    'OTP_URL': OTP_URL,
+    'AUTH_URL': AUTH_URL,
+    'API_URL': API_URL,
+    'TOKEN_URL': TOKEN_URL,
+    'AUTHORIZE_URL': AUTHORIZE_URL,
+    'REDIRECT_URI': REDIRECT_URI,
+    'SCOPE': SCOPE,
+    'TIMEOUT': TIMEOUT_REQUEST,
 }
 
 SIMPLE_JWT = {
