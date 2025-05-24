@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
 env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
 if not env_file.exists():
     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
@@ -102,11 +102,22 @@ INTERNAL_IPS = [
 ]
 
 # 5. Plantillas de base de datos
-DATABASES = {
-    'default': dj_database_url.config(default=env('DATABASE_URL'))
-}
+# DATABASES = {
+#     'default': dj_database_url.config(default=env('DATABASE_URL'))
+# }
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+X_FRAME_OPTIONS = 'DENY'
 
+# Seguridad reforzada
+SECURE_HSTS_SECONDS = 31536000
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+SECURE_BROWSER_XSS_FILTER = True
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # 6. Resto de configuración (sin cambios)
 AUTH_PASSWORD_VALIDATORS = [
@@ -161,39 +172,12 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 
-
-CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
-CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
-
-ORIGIN = 'https://api.db.com'
-
-TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
-OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
-AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
-API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
-AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
-SCOPE = 'sepa_credit_transfers'
-TIMEOUT_REQUEST = 3600
-
-REDIRECT_URI = 'https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/'
-
-
-ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
+REDIRECT_URI="https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/"
 
 OAUTH2 = {
-    'CLIENT_ID': CLIENT_ID,
-    'CLIENT_SECRET': CLIENT_SECRET,
-    'ACCESS_TOKEN': ACCESS_TOKEN,
-    'ORIGIN': ORIGIN,
-    'OTP_URL': OTP_URL,
-    'AUTH_URL': AUTH_URL,
-    'API_URL': API_URL,
-    'TOKEN_URL': TOKEN_URL,
-    'AUTHORIZE_URL': AUTHORIZE_URL,
     'REDIRECT_URI': REDIRECT_URI,
-    'SCOPE': SCOPE,
-    'TIMEOUT': TIMEOUT_REQUEST,
 }
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
@@ -238,6 +222,8 @@ DEBUG_TOOLBAR_CONFIG = {
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 PRIVATE_KEY_KID = '7acb2cbe-00a6-4122-8f68-27d9235befbb'
