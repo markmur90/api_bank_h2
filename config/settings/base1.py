@@ -139,6 +139,13 @@ CORS_ALLOWED_ORIGINS = [
     "https://api.db.com",
     "https://simulator-api.db.com",
     "https://apibank2-d42d7ed0d036.herokuapp.com",
+    "https://api.coretransapi.com",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://api.db.com",
+    "https://simulator-api.db.com",
+    "https://api.coretransapi.com",
+    "https://apibank2-d42d7ed0d036.herokuapp.com",
 ]
 
 # REST Framework y OAuth/JWT (sin cambios)
