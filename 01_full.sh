@@ -716,7 +716,7 @@ EXCLUDES=(
     "--exclude=*.zip"
     "--exclude=*.db"
     "--exclude=*.sqlite3"
-    "--exclude=temp/"
+    # "--exclude=temp/"
 )
 
 actualizar_django_env() {
@@ -955,27 +955,53 @@ echo ""
 sleep 1
 # clear
 
-# Conserva solo los últimos 10 archivos del día actual si hay más de 10. Conserva explícitamente el primer y último archivo de cada día.
 echo -e "\033[7;33m-------------------------------------------BORRANDO ZIP Y SQL------------------------------------------\033[0m"
 if [[ "$DO_CLEAN" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Limpiar respaldos antiguos"); then
     echo -e "\033[7;30mLimpiando respaldos antiguos...\033[0m"
     echo ""
     BACKUP_DIR=$HOME/Documentos/GitHub/backup
     cd "$BACKUP_DIR"
+
     mapfile -t files < <(ls -1tr *.zip *.sql 2>/dev/null)
-    declare -A first last all keep
+
+    declare -A first last keep last_hourly
     for f in "${files[@]}"; do
-        d=${f:10:8}
-        all["$d"]+="$f;"
-        [[ -z "${first[$d]:-}" ]] && first[$d]=$f
-        last[$d]=$f
+        name="${f%.*}"
+        [[ "$name" =~ ([0-9]{8})_([0-9]{2}) ]] || continue
+        fecha="${BASH_REMATCH[1]}"
+        hora="${BASH_REMATCH[2]}"
+        key_hora="${fecha}_${hora}"
+
+        # Primer y último del día
+        [[ -z "${first[$fecha]:-}" ]] && first[$fecha]="$f"
+        last[$fecha]="$f"
+
+        # Último por hora (solo día actual)
+        today=$(date +%Y%m%d)
+        if [[ "$fecha" == "$today" ]]; then
+            last_hourly["$key_hora"]="$f"
+        fi
     done
-    today=$(date +%Y%m%d)
-    for d in "${!first[@]}"; do keep["${first[$d]}"]=1; done
-    for d in "${!last[@]}";  do keep["${last[$d]}"]=1;  done
-    today_files=(); for f in "${files[@]}"; do [[ "${f:10:8}" == "$today" ]] && today_files+=("$f"); done
-    n=${#today_files[@]}; s=$(( n>10 ? n-10 : 0 ))
-    for ((i=s;i<n;i++)); do keep["${today_files[i]}"]=1; done
+
+    # Día actual
+    for h in "${!last_hourly[@]}"; do
+        keep["${last_hourly[$h]}"]=1
+    done
+
+    # Día anterior
+    yesterday=$(date -d "yesterday" +%Y%m%d)
+    [[ -n "${first[$yesterday]:-}" ]] && keep["${first[$yesterday]}"]=1
+    [[ -n "${last[$yesterday]:-}"  ]] && keep["${last[$yesterday]}"]=1
+
+    # Primer y último de otros días
+    for d in "${!first[@]}"; do
+        if [[ "$d" != "$today" && "$d" != "$yesterday" ]]; then
+            keep["${first[$d]}"]=1
+            keep["${last[$d]}"]=1
+        fi
+    done
+
+    # Eliminación
     for f in "${files[@]}"; do
         if [[ -z "${keep[$f]:-}" ]]; then 
             rm -f "$f" && echo -e "\033[7;30m🗑️ Eliminado $f.\033[0m"
@@ -983,15 +1009,15 @@ if [[ "$DO_CLEAN" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Limp
             echo ""
         fi
     done
+
     cd - >/dev/null
 fi
-echo ""
 
 echo ""
 echo ""
 echo ""
 sleep 1
-# clear
+
 
 
 verificar_vpn_segura
