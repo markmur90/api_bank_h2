@@ -149,12 +149,12 @@ else
 fi
 
 if confirmar "Copiar proyecto y crear respaldo ZIP"; then
-    SOURCE="/home/markmur88/Documentos/GitHub/api_bank_heroku/"
-    DEST="/home/markmur88/Documentos/GitHub/api_bank_heroku/"
-    BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
+    SOURCE="$HOME/Documentos/GitHub/api_bank_h2/"
+    DEST="$HOME/Documentos/GitHub/api_bank_heroku/"
+    BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
     read -p "Campo adicional para el nombre del ZIP (opcional): " SUFFIX
     TIMESTAMP=$(date +%Y%m%d__%H-%M-%S)
-    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_heroku${SUFFIX}.zip"
+    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_h2${SUFFIX}.zip"
     sudo mkdir -p "$DEST" "$BACKUP_DIR"
     sudo cp -r "$SOURCE" "$DEST"
     sudo zip -r "$BACKUP_ZIP" "$SOURCE"
@@ -169,7 +169,7 @@ if confirmar "Sincronizar base de datos remota"; then
 
     # **🕒 Marca de tiempo para el backup**
     DATE=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
+    BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
     # Crear el directorio de backup si no existe
     BACKUP_FILE="${BACKUP_DIR}backup_$DATE.sql"
     if ! command -v pv > /dev/null 2>&1; then

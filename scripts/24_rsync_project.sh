@@ -40,6 +40,6 @@ sincronizar_proyecto() {
   log_ok "✅ Proyecto $nombre sincronizado en VPS ($destino)"
 }
 
-sincronizar_proyecto "$PROJECT_ROOT" "$VPS_API_DIR" "api_bank_heroku"
+sincronizar_proyecto "$PROJECT_ROOT" "$VPS_API_DIR" "api_bank_h2"
 # No sincronizamos ghost ya que descartado
 

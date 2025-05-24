@@ -44,8 +44,8 @@ def ssh_brute_force(ip, port, threads):
     lock = threading.Lock()
     creds = None  # inicialización correcta aquí
 
-    users_path = '/home/markmur88/Documentos/GitHub/api_bank_heroku/temp/scripts/automate/diccionarios/diccionarios/users'
-    passwords_path = '/home/markmur88/Documentos/GitHub/api_bank_heroku/temp/scripts/automate/diccionarios/diccionarios/passwords'
+    users_path = '$HOME/Documentos/GitHub/api_bank_h2/temp/scripts/automate/diccionarios/diccionarios/users'
+    passwords_path = '$HOME/Documentos/GitHub/api_bank_h2/temp/scripts/automate/diccionarios/diccionarios/passwords'
 
     with open(users_path) as u, open(passwords_path) as p:
         users = [line.strip() for line in u]

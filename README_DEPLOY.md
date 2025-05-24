@@ -1,13 +1,13 @@
-# 🚀 Despliegue Profesional - `api_bank_heroku` (VPS Njalla)
+# 🚀 Despliegue Profesional - `api_bank_h2` (VPS Njalla)
 
-Este documento describe cómo desplegar y mantener el proyecto `api_bank_heroku` en un entorno de producción seguro (VPS Njalla) usando `Gunicorn`, `Supervisor`, `Nginx` y entorno virtual Python.
+Este documento describe cómo desplegar y mantener el proyecto `api_bank_h2` en un entorno de producción seguro (VPS Njalla) usando `Gunicorn`, `Supervisor`, `Nginx` y entorno virtual Python.
 
 ---
 
 ## 📦 Estructura General
 
 ```
-api_bank_heroku/
+api_bank_h2/
 ├── .env.production
 ├── config/
 │   ├── settings/

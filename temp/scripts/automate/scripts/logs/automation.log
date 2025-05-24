@@ -1,11 +1,11 @@
 2025-03-02 19:06:47,750 - INFO - Iniciando script de automatización...
-2025-03-02 19:06:47,750 - ERROR - Error al cargar la configuración base: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+2025-03-02 19:06:47,750 - ERROR - Error al cargar la configuración base: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 2025-03-02 19:06:47,750 - ERROR - No se pudo cargar la configuración base. Verifica el archivo config_base.json.
 2025-03-02 19:07:43,541 - INFO - Iniciando script de automatización...
-2025-03-02 19:07:43,541 - ERROR - Error al cargar la configuración base: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+2025-03-02 19:07:43,541 - ERROR - Error al cargar la configuración base: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 2025-03-02 19:07:43,542 - ERROR - No se pudo cargar la configuración base. Verifica el archivo config_base.json.
 2025-03-02 19:15:18,277 - INFO - Iniciando script de automatización...
-2025-03-02 19:15:18,277 - ERROR - Error al cargar la configuración base: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+2025-03-02 19:15:18,277 - ERROR - Error al cargar la configuración base: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 2025-03-02 19:15:18,277 - ERROR - No se pudo cargar la configuración base. Verifica el archivo config_base.json.
 2025-03-02 19:37:38,096 - INFO - Iniciando script de automatización...
 2025-03-02 19:37:38,098 - INFO - Configuración base cargada correctamente.
@@ -14,24 +14,24 @@
 2025-03-02 19:40:17,769 - INFO - Iniciando script de automatización...
 2025-03-02 19:40:17,769 - INFO - Configuración base cargada correctamente.
 2025-03-02 19:40:17,771 - INFO - IPs generadas: ['193.150.166.0/255', '10.0.0.1/50']
-2025-03-02 19:40:17,771 - ERROR - Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/diccionarios/usuarios.txt'
-2025-03-02 19:40:17,773 - ERROR - Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/diccionarios/contraseñas.txt'
+2025-03-02 19:40:17,771 - ERROR - Error al leer el archivo $HOME/Documentos/automation_project/scripts/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/diccionarios/usuarios.txt'
+2025-03-02 19:40:17,773 - ERROR - Error al leer el archivo $HOME/Documentos/automation_project/scripts/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/diccionarios/contraseñas.txt'
 2025-03-02 19:40:17,781 - ERROR - ssh-keygen no está instalada.
 2025-03-02 19:40:17,781 - ERROR - Falta la herramienta: ssh-keygen. Instálala antes de continuar.
 2025-03-02 19:50:20,458 - INFO - Iniciando script de automatización...
 2025-03-02 19:50:20,459 - INFO - Configuración base cargada correctamente.
 2025-03-02 19:50:20,459 - INFO - Diccionarios combinados generados: {}
 2025-03-02 19:50:20,461 - INFO - IPs generadas: ['193.150.166.0/255', '10.0.0.1/50']
-2025-03-02 19:50:20,461 - ERROR - Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/diccionarios/usuarios.txt'
-2025-03-02 19:50:20,461 - ERROR - Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/diccionarios/contraseñas.txt'
+2025-03-02 19:50:20,461 - ERROR - Error al leer el archivo $HOME/Documentos/automation_project/scripts/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/diccionarios/usuarios.txt'
+2025-03-02 19:50:20,461 - ERROR - Error al leer el archivo $HOME/Documentos/automation_project/scripts/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/diccionarios/contraseñas.txt'
 2025-03-02 19:50:20,466 - ERROR - ssh-keygen no está instalada.
 2025-03-02 19:50:20,466 - ERROR - Falta la herramienta: ssh-keygen. Instálala antes de continuar.
 2025-03-02 19:51:45,793 - INFO - Iniciando script de automatización...
 2025-03-02 19:51:45,793 - INFO - Configuración base cargada correctamente.
 2025-03-02 19:51:45,793 - INFO - Diccionarios combinados generados: {}
 2025-03-02 19:51:45,795 - INFO - IPs generadas: ['193.150.166.0/255', '10.0.0.1/50']
-2025-03-02 19:51:45,795 - ERROR - Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt'
-2025-03-02 19:51:45,795 - ERROR - Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt'
+2025-03-02 19:51:45,795 - ERROR - Error al leer el archivo $HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt'
+2025-03-02 19:51:45,795 - ERROR - Error al leer el archivo $HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt'
 2025-03-02 19:51:45,799 - ERROR - ssh-keygen no está instalada.
 2025-03-02 19:51:45,799 - ERROR - Falta la herramienta: ssh-keygen. Instálala antes de continuar.
 2025-03-02 19:52:24,553 - INFO - Iniciando script de automatización...
@@ -62,15 +62,15 @@
 2025-03-02 19:59:57,564 - INFO - Configuración base cargada correctamente.
 2025-03-02 19:59:57,564 - INFO - Diccionarios combinados generados: {}
 2025-03-02 19:59:57,566 - INFO - IPs generadas: ['193.150.166.0/255', '10.0.0.1/50']
-2025-03-02 19:59:57,566 - ERROR - Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt'
-2025-03-02 19:59:57,567 - ERROR - Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt'
+2025-03-02 19:59:57,566 - ERROR - Error al leer el archivo $HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt'
+2025-03-02 19:59:57,567 - ERROR - Error al leer el archivo $HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt'
 2025-03-02 19:59:57,570 - ERROR - ssh-keygen no está instalada.
 2025-03-02 19:59:57,570 - ERROR - Falta la herramienta: ssh-keygen. Instálala antes de continuar.
 2025-03-02 20:47:12,593 - INFO - Iniciando script de automatización...
-2025-03-02 20:47:12,595 - ERROR - Error al cargar la configuración: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+2025-03-02 20:47:12,595 - ERROR - Error al cargar la configuración: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 2025-03-02 20:47:12,595 - ERROR - No se pudo cargar la configuración. Verifica el archivo config.json.
 2025-03-02 20:47:40,182 - INFO - Iniciando script de automatización...
-2025-03-02 20:47:40,182 - ERROR - Error al cargar la configuración: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+2025-03-02 20:47:40,182 - ERROR - Error al cargar la configuración: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 2025-03-02 20:47:40,182 - ERROR - No se pudo cargar la configuración. Verifica el archivo config.json.
 2025-03-02 20:48:25,518 - INFO - Iniciando script de automatización...
 2025-03-02 20:48:25,518 - INFO - Configuración cargada correctamente.

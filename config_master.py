@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 
 CONFIG_PATH = Path(__file__).resolve()
 BASE_DIR = CONFIG_PATH.parent
-PROJECT_NAME = "api_bank_heroku"
+PROJECT_NAME = "api_bank_h2"
 PROJECT_NAME_SOCK = "api"
 
 # Cargar .env

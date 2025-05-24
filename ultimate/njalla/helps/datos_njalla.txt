@@ -260,7 +260,7 @@ Genera un bloque gunicorn.socket y gunicorn.service para servir tu API con syste
 
 
 
-venvAPI┌──(venvAPI)─(markmur88㉿markmur88)-[~/…/api_bank_heroku/ultimate/njalla/scripts]
+venvAPI┌──(venvAPI)─(markmur88㉿markmur88)-[~/…/api_bank_h2/ultimate/njalla/scripts]
 └─$ ./setup_coretransact.sh  
 🔐 Iniciando configuración básica para VPS: coretransapi
 📤 Subiendo clave SSH...
@@ -481,7 +481,7 @@ Firewall is active and enabled on system startup
 Adding user `markmur88' ...
 Adding new group `markmur88' (1000) ...
 Adding new user `markmur88' (1000) with group `markmur88 (1000)' ...
-Creating home directory `/home/markmur88' ...
+Creating home directory `$HOME' ...
 Copying files from `/etc/skel' ...
 Try again? [y/N] Try again? [y/N] Try again? [y/N] Try again? [y/N] Changing the user information for markmur88
 Enter the new value, or press ENTER for the default
@@ -497,4 +497,4 @@ Use of uninitialized value $answer in chop at /usr/sbin/adduser line 766, <STDIN
 Use of uninitialized value $answer in pattern match (m//) at /usr/sbin/adduser line 767, <STDIN> line 3.
 Use of uninitialized value $answer in pattern match (m//) at /usr/sbin/adduser line 768, <STDIN> line 3.
 ✅ VPS coretransapi configurado correctamente.
-🛡️ Puedes conectarte con: ssh -i /home/markmur88/.ssh/vps_njalla_ed25519 -p 49222 root@IP_DEL_VPS
+🛡️ Puedes conectarte con: ssh -i $HOME/.ssh/vps_njalla_ed25519 -p 49222 root@IP_DEL_VPS

@@ -5,7 +5,7 @@ PROMPT_MODE=true
 OMIT_GUNICORN=false
 
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 BACKUP_DIR="$HOME/Documentos/GitHub/backup"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 VENV_PATH="$HOME/Documentos/Entorno/venvAPI"

@@ -16,4 +16,4 @@ curl -X POST \
   }' \
   http://193.150.166.1:22/
 
-// Relacionado con: /home/markmur88/Documentos/swif/docs/info/analisis/105-1
+// Relacionado con: $HOME/Documentos/swif/docs/info/analisis/105-1

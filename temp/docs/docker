@@ -207,7 +207,7 @@ docker start swift_app_container
 ngrok http 8000
 
 docker build -t swift_app .
-docker run --rm -it -v /home/markmur88/Documentos/GitHub/config:/home/app -p 8000:8000 --name swift_app_container swift_app
+docker run --rm -it -v $HOME/Documentos/GitHub/config:/home/app -p 8000:8000 --name swift_app_container swift_app
 
 # ngrok
 #Para ejecutar ngrok y exponer tu contenedor en el puerto 8000, sigue estos pasos:

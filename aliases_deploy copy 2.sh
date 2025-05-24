@@ -1,5 +1,5 @@
 # ╔═════════════════════════════════════════════════════════════╗
-# ║     ALIAS RESUMIDOS + MENÚ TUI PARA api_bank_heroku          ║
+# ║     ALIAS RESUMIDOS + MENÚ TUI PARA api_bank_h2          ║
 # ║  Ejecutar despliegues automatizados y personalizados        ║
 # ║  Usa `deploy_menu` para elegir visualmente con FZF         ║
 # ║  Usa `d_help` para ver ejemplos detallados con flags       ║
@@ -57,7 +57,7 @@ alias d_debug="./01_full.sh -d -s"
 alias d_local="./01_full.sh -a -p -U -I -Q -H -G"
 alias d_light="./01_full.sh -a -H -G"
 alias d_fast="./01_full.sh -a -L -U -V"
-alias d_help='sed -n "/EJEMPLOS COMBINADOS/,/FIN: EJEMPLOS COMBINADOS/p" ~/Documentos/GitHub/api_bank_heroku/01_full.sh | less -R'
+alias d_help='sed -n "/EJEMPLOS COMBINADOS/,/FIN: EJEMPLOS COMBINADOS/p" ~/Documentos/GitHub/api_bank_h2/01_full.sh | less -R'
 
 
 deploy_menu() {

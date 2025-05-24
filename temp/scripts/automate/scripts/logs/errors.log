@@ -1,36 +1,36 @@
-Error al cargar la configuración base: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+Error al cargar la configuración base: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 No se pudo cargar la configuración base. Verifica el archivo config_base.json.
-Error al cargar la configuración base: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+Error al cargar la configuración base: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 No se pudo cargar la configuración base. Verifica el archivo config_base.json.
-Error al cargar la configuración base: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+Error al cargar la configuración base: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 No se pudo cargar la configuración base. Verifica el archivo config_base.json.
-Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/diccionarios/usuarios.txt'
-Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/diccionarios/contraseñas.txt'
+Error al leer el archivo $HOME/Documentos/automation_project/scripts/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/diccionarios/usuarios.txt'
+Error al leer el archivo $HOME/Documentos/automation_project/scripts/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/diccionarios/contraseñas.txt'
 ssh-keygen no está instalada.
 Falta la herramienta: ssh-keygen. Instálala antes de continuar.
-Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/diccionarios/usuarios.txt'
-Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/diccionarios/contraseñas.txt'
+Error al leer el archivo $HOME/Documentos/automation_project/scripts/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/diccionarios/usuarios.txt'
+Error al leer el archivo $HOME/Documentos/automation_project/scripts/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/diccionarios/contraseñas.txt'
 ssh-keygen no está instalada.
 Falta la herramienta: ssh-keygen. Instálala antes de continuar.
-Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt'
-Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt'
-ssh-keygen no está instalada.
-Falta la herramienta: ssh-keygen. Instálala antes de continuar.
-ssh-keygen no está instalada.
-Falta la herramienta: ssh-keygen. Instálala antes de continuar.
+Error al leer el archivo $HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt'
+Error al leer el archivo $HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt'
 ssh-keygen no está instalada.
 Falta la herramienta: ssh-keygen. Instálala antes de continuar.
 ssh-keygen no está instalada.
 Falta la herramienta: ssh-keygen. Instálala antes de continuar.
 ssh-keygen no está instalada.
 Falta la herramienta: ssh-keygen. Instálala antes de continuar.
-Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt'
-Error al leer el archivo /home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt'
 ssh-keygen no está instalada.
 Falta la herramienta: ssh-keygen. Instálala antes de continuar.
-Error al cargar la configuración: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+ssh-keygen no está instalada.
+Falta la herramienta: ssh-keygen. Instálala antes de continuar.
+Error al leer el archivo $HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/usuarios.txt'
+Error al leer el archivo $HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/../diccionarios/diccionarios/contraseñas.txt'
+ssh-keygen no está instalada.
+Falta la herramienta: ssh-keygen. Instálala antes de continuar.
+Error al cargar la configuración: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 No se pudo cargar la configuración. Verifica el archivo config.json.
-Error al cargar la configuración: [Errno 2] No such file or directory: '/home/markmur88/Documentos/automation_project/scripts/config/config.json'
+Error al cargar la configuración: [Errno 2] No such file or directory: '$HOME/Documentos/automation_project/scripts/config/config.json'
 No se pudo cargar la configuración. Verifica el archivo config.json.
 ssh-keygen no está instalada.
 Falta la herramienta: ssh-keygen. Instálala antes de continuar.

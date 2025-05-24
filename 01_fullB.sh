@@ -117,12 +117,12 @@ OMIT_LOAD_LOCAL=false
 OMIT_LOAD_WEB=false
 OMIT_USER=false
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 HEROKU_ROOT2="$HOME/Documentos/GitHub/api_bank"
 VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
-LOGS_DIR="$HOME/Documentos/GitHub/api_bank_heroku/logs"
+LOGS_DIR="$HOME/Documentos/GitHub/api_bank_h2/logs"
 INTERFAZ="wlan0"
 
 DB_NAME="mydatabase"
@@ -592,10 +592,10 @@ if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar
     BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
 
     TODAY=$(date +%Y%m%d)
-    COUNT=$(ls "$BACKUP_DIR" | grep "^${TODAY}__.*_backup_api_bank_heroku[0-9]*\.zip$" | wc -l)
+    COUNT=$(ls "$BACKUP_DIR" | grep "^${TODAY}__.*_backup_api_bank_h2[0-9]*\.zip$" | wc -l)
     SUFFIX=$((COUNT + 1))
     TIMESTAMP=$(date +%Y%m%d__%H-%M-%S)
-    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_heroku${SUFFIX}.zip"
+    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_h2${SUFFIX}.zip"
 
     mkdir -p "$DEST" "$BACKUP_DIR"
 
@@ -797,7 +797,7 @@ if [[ "$OMIT_LOAD_WEB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     echo -e "$LOGO_SEP\n"
 
     # === Notificación de escritorio ===
-    notify-send "api_bank_heroku" "✅ Proyecto desplegado correctamente
+    notify-send "API_BANK_H2" "✅ Proyecto desplegado correctamente
 
 🌍 Local:
 $URL_LOCAL
@@ -826,7 +826,7 @@ fi
 echo -e "\033[7;33m------------------------------------------NOTIFICACIÓN FINAL----------------------------------------\033[0m"
 log_info "🔔 BLOQUE: Notificación final del proceso de despliegue"
 
-notify-send "api_bank_heroku" "✅ Proyecto iniciado correctamente
+notify-send "API_BANK_H2" "✅ Proyecto iniciado correctamente
 
 🌐 Accesos:
 - Local: $URL_LOCAL

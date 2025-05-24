@@ -7,7 +7,7 @@ echo "🔐 Iniciando configuración básica para VPS: coretransapi"
 USER=root
 IP_VPS="80.78.30.188"
 CLAVE_SSH="$HOME/.ssh/vps_njalla_ed25519"
-PROYECTO_DIR="/root/api_bank_heroku"
+PROYECTO_DIR="/root/api_bank_h2"
 REPO_GIT="git@github.com:markmur88/api_bank_heroku.git"
 VENV_DIR="/root/venvAPI"
 
@@ -81,7 +81,7 @@ python manage.py collectstatic --noinput
 echo "🔧 Creando servicio Gunicorn..."
 cat > /etc/systemd/system/gunicorn.service <<GEOF
 [Unit]
-Description=Gunicorn daemon para api_bank_heroku
+Description=Gunicorn daemon para api_bank_h2
 After=network.target
 
 [Service]
@@ -99,8 +99,8 @@ systemctl enable gunicorn
 systemctl start gunicorn
 
 echo "🌐 Configurando Nginx..."
-cp $PROYECTO_DIR/sripts/nginx.conf /etc/nginx/sites-available/api_bank_heroku.conf
-ln -sf /etc/nginx/sites-available/api_bank_heroku.conf /etc/nginx/sites-enabled/api_bank_heroku.conf
+cp $PROYECTO_DIR/sripts/nginx.conf /etc/nginx/sites-available/api_bank_h2.conf
+ln -sf /etc/nginx/sites-available/api_bank_h2.conf /etc/nginx/sites-enabled/api_bank_h2.conf
 rm -f /etc/nginx/sites-enabled/default
 
 echo "🔐 Solicitando certificado SSL con Certbot..."

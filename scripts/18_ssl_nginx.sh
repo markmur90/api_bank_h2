@@ -43,8 +43,8 @@ fi
 cd "$PROJECT_ROOT"
 source "$VENV_DIR/bin/activate"
 
-log_info "🔥 Iniciando Gunicorn para api_bank_heroku con bind a socket $SOCK_FILE..."
-nohup "$VENV_DIR/bin/gunicorn" config.wsgi:application --chdir "$PROJECT_ROOT" --bind "unix:$SOCK_FILE" --workers 3 --log-file "$GUNICORN_LOG" --error-logfile "$ERROR_LOG" &> "$LOG_DIR/gunicorn_api_bank_heroku.log" &
+log_info "🔥 Iniciando Gunicorn para api_bank_h2 con bind a socket $SOCK_FILE..."
+nohup "$VENV_DIR/bin/gunicorn" config.wsgi:application --chdir "$PROJECT_ROOT" --bind "unix:$SOCK_FILE" --workers 3 --log-file "$GUNICORN_LOG" --error-logfile "$ERROR_LOG" &> "$LOG_DIR/gunicorn_api_bank_h2.log" &
 
 sleep 3
 

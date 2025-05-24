@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 
-alias api='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/Documentos/Entorno/venvAPI/bin/activate" && clear && code .'
-alias BKapi='cd "$HOME/Documentos/GitHub/api_bank_heroku_BK" && source "$HOME/Documentos/Entorno/venvAPI/bin/activate" && clear && code .'
+alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/venvAPI/bin/activate" && clear && code .'
+alias BKapi='cd "$HOME/Documentos/GitHub/api_bank_h2_BK" && source "$HOME/Documentos/Entorno/venvAPI/bin/activate" && clear && code .'
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get update && sudo apt-get full-upgrade -y && sudo apt-get autotemove -y'
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 

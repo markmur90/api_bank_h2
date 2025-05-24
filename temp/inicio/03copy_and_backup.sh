@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # Ruta de origen y destino para la copia del proyecto
-SOURCE="$HOME/Documentos/GitHub/api_bank_heroku/"
-DEST="/home/markmur88/Documentos/GitHub/api_bank_heroku/"
+SOURCE="$HOME/Documentos/GitHub/api_bank_h2/"
+DEST="$HOME/Documentos/GitHub/api_bank_heroku/"
 
 # Ruta de destino para la copia de seguridad en formato ZIP
-BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
-BACKUP_ZIP="${BACKUP_DIR}$(date +%Y%m%d__%H-%M-%S)_backup_api_bank_heroku.zip"
+BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
+BACKUP_ZIP="${BACKUP_DIR}$(date +%Y%m%d__%H-%M-%S)_backup_api_bank_h2.zip"
 
 echo " "
 # Confirmar antes de proceder con la copia del proyecto
@@ -47,7 +47,7 @@ if [[ "$CONFIRM" == "s" ]]; then
         echo " "
         echo -e "\033[1mIngrese el campo adicional:\033[0m"
         read -r EXTRA_FIELD
-        BACKUP_ZIP="${BACKUP_DIR}$(date +%Y%m%d__%H-%M-%S)_backup_api_bank_heroku_${EXTRA_FIELD}.zip"
+        BACKUP_ZIP="${BACKUP_DIR}$(date +%Y%m%d__%H-%M-%S)_backup_api_bank_h2_${EXTRA_FIELD}.zip"
     fi
     echo " "
 

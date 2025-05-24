@@ -7,7 +7,7 @@ import requests
 import os
 
 # Definir el directorio base
-BASE_DIR = "/home/markmur88/Documentos/automation_project"
+BASE_DIR = "$HOME/Documentos/automation_project"
 KEYS_DIR = os.path.join(BASE_DIR, 'keys')
 os.makedirs(KEYS_DIR, exist_ok=True)
 

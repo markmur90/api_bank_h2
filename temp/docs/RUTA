@@ -11,7 +11,7 @@ docker run -d -p 5432:5432 conf3-frontend-1
 
 find /ruta/de/la/carpeta -type f exec chmod +x {} \;
 
-find /home/markmur88/Documentos/Docker/conf3 -type f exec chmod +x {} \;
+find $HOME/Documentos/Docker/conf3 -type f exec chmod +x {} \;
 
-find /home/markmur88/Documentos/Docker/conf3/ -type f -exec chmod +x {} \;
+find $HOME/Documentos/Docker/conf3/ -type f -exec chmod +x {} \;
 

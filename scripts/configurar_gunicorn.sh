@@ -4,7 +4,7 @@ set -e
 echo "⚙️ Configurando Gunicorn para dominio api.coretransapi.com..."
 
 # Rutas
-PROJECT_NAME="api_bank_heroku"
+PROJECT_NAME="api_bank_h2"
 USER="markmur88"
 VENV_PATH="/home/${USER}/Documentos/Entorno/venvAPI"
 PROJECT_DIR="/home/${USER}/Documentos/GitHub/${PROJECT_NAME}"
