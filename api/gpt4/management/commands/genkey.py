@@ -17,9 +17,9 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         keys_dir = Path(get_project_path("schemas/keys"))
-        logs_dir = Path(get_project_path("schemas/keys/logs"))
-        settings_path = Path(get_project_path("config/settings/base1.py"))
-        log_file = Path(get_project_path("schemas/keys/logs/clave_gen.log"))
+        logs_dir = Path(get_project_path("logs"))
+        settings_path = Path(get_project_path(".env"))
+        log_file = Path(get_project_path("logs/clave_gen.log"))
         usuario_path = Path(get_project_path("schemas/keys/client_id.key"))
 
         keys_dir.mkdir(parents=True, exist_ok=True)
@@ -98,7 +98,7 @@ class Command(BaseCommand):
                 with open(settings_path, "r", encoding="utf-8") as f:
                     lines = f.readlines()
 
-                key_path_line = "PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')\n"
+                key_path_line = "PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'schemas', 'keys', 'ecdsa_private_key.pem')\n"
                 kid_line = f"PRIVATE_KEY_KID = '{kid}'\n"
 
                 found_key_path = any("PRIVATE_KEY_PATH" in l for l in lines)

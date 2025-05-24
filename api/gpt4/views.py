@@ -9,8 +9,9 @@ from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import get_template
 from weasyprint import HTML
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_http_methods
 from django.urls import reverse
+from django.utils.timezone import now
 
 from api.gpt4.forms import ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm, DebtorAccountForm, DebtorForm, KidForm, ScaForm, SendTransferForm, TransferForm
 from api.gpt4.models import Creditor, CreditorAccount, CreditorAgent, Debtor, DebtorAccount, LogTransferencia, PaymentIdentification, Transfer
@@ -151,10 +152,10 @@ def create_transfer(request):
 
             registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia creada")
             generar_xml_pain001(transfer, transfer.payment_id)
-            registrar_log(transfer.payment_id, tipo_log='XML', extra_info="Archivo pain.001 generado")
+            # registrar_log(transfer.payment_id, tipo_log='XML', extra_info="Archivo pain.001 generado")
 
             generar_archivo_aml(transfer, transfer.payment_id)
-            registrar_log(transfer.payment_id, tipo_log='AML', extra_info="Archivo AML generado")
+            # registrar_log(transfer.payment_id, tipo_log='AML', extra_info="Archivo AML generado")
 
             messages.success(request, "Transferencia creada y XML/AML generados correctamente.")
             return redirect('dashboard')
@@ -440,7 +441,7 @@ def descargar_pdf(request, payment_id):
 
 
 # ==== OAUTH2 ====
-def oauth2_authorize(request):
+def oauth2_authorizeA(request):
     try:
         payment_id = request.GET.get('payment_id')
         if not payment_id:
@@ -485,12 +486,7 @@ def oauth2_authorize(request):
         messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
 
-
-
-
-
-
-def oauth2_callback(request):
+def oauth2_callbackA(request):
     try:
         if not request.session.get('oauth_in_progress', False):
             registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
@@ -559,6 +555,33 @@ def oauth2_callback(request):
         request.session['oauth_success'] = False
         messages.error(request, f"Error en el proceso de autorización: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html')
+
+
+def oauth2_authorize(request):
+    verifier, challenge = generate_pkce_pair()
+    state = uuid.uuid4().hex
+    request.session['pkce_verifier'] = verifier
+    request.session['oauth_state'] = state
+    return redirect(build_auth_url(state, challenge))
+
+def oauth2_callback(request):
+    error = request.GET.get('error')
+    if error:
+        messages.error(request, f"OAuth Error: {error}")
+        return redirect('dashboard')
+    code = request.GET.get('code')
+    state = request.GET.get('state')
+    if state != request.session.get('oauth_state'):
+        messages.error(request, "State mismatch en OAuth2.")
+        return redirect('dashboard')
+    verifier = request.session.pop('pkce_verifier', None)
+    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+    request.session['access_token'] = access_token
+    request.session['refresh_token'] = refresh_token
+    request.session['token_expires'] = time.time() + expires
+    messages.success(request, "Autorización completada.")
+    return redirect('dashboard')
+
 
 
 
@@ -655,7 +678,7 @@ def log_oauth_visual_inicio(request):
         metadata=metadata,
         request=request
     )
-    return JsonResponse({"status": "ok"})
+    return JsonResponse({"status": "RJCT"})
 
 
 
@@ -728,7 +751,9 @@ def send_transfer_view(request, payment_id):
                 request.session.pop('current_payment_id', None)
                 messages.success(request, "Transferencia enviada correctamente.")
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
+            
             except Exception as e:
+                
                 registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e), extra_info="Error enviando transferencia")
                 messages.error(request, str(e))
                 return redirect('transfer_detailGPT4', payment_id=payment_id)
@@ -739,3 +764,37 @@ def send_transfer_view(request, payment_id):
             return redirect('transfer_detailGPT4', payment_id=payment_id)
 
     return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def handle_notification(request):
+    try:
+        payload = request.body.decode('utf-8')
+        content_type = request.META.get('CONTENT_TYPE', 'application/json')
+        headers = {k: v for k, v in request.META.items() if k.startswith('HTTP_')}
+        registro = request.GET.get('registro') or request.headers.get('X-Request-Id') or f"AUTOLOG-{now().timestamp()}"
+
+        registrar_log(
+            registro=registro,
+            tipo_log='NOTIFICACION',
+            headers_enviados=headers,
+            request_body=payload,
+            extra_info="Notificación automática recibida en webhook"
+        )
+
+        LogTransferencia.objects.create(
+            registro=registro,
+            tipo_log='NOTIFICACION',
+            contenido=payload
+        )
+
+        return JsonResponse({'status': 'ok', 'mensaje': 'Notificación registrada'})
+    except Exception as e:
+        registrar_log(
+            registro='NOTIF_ERROR',
+            tipo_log='ERROR',
+            error=str(e),
+            extra_info="Error procesando notificación entrante"
+        )
+        return JsonResponse({'status': 'error', 'mensaje': str(e)}, status=500)

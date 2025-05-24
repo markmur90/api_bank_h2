@@ -1,0 +1,5 @@
+Docker
+
+Docker is known to work with Ubuntu 22.04 Images if you use the docker version shipped in by the distro:
+
+apt install docker.io docker-compose
