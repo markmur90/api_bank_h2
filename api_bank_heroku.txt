@@ -130,6 +130,6 @@ SCRIPTS_DIR         =       $PROJECT_ROOT/scripts
 PRIVATE_KEY_PATH    =       $PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem
 SERVERS_DIR         =       $PROJECT_ROOT/servers
 CACHE_DIR           =       $PROJECT_ROOT/tmp
-PROJECT_ROOT        =       /home/markmur88/Documentos/GitHub/api_bank_h2
+PROJECT_ROOT        =       /home/markmur88/Documentos/GitHub/api_bank_heroku
 LOG_DIR             =       $PROJECT_ROOT/logs
 ==============================================================================

@@ -15,7 +15,7 @@ OMIT_LOAD_LOCAL=false
 OMIT_LOAD_WEB=false
 OMIT_USER=false
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 VENV_PATH="$HOME/Documentos/Entorno/venvAPI"

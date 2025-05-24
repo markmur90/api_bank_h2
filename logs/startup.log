@@ -40,3 +40,6 @@ bash: $PROJECT_ROOT/scripts/configurar_gunicorn.sh: No existe el fichero o el di
 ❌ Error: el socket no fue creado.
 ✅ Gunicorn configurado correctamente.
 
+bash: $PROJECT_ROOT/scripts/configurar_gunicorn.sh: No existe el fichero o el directorio
+✅ Gunicorn configurado correctamente.
+

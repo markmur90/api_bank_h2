@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 
 LOGS_DIR="$PROJECT_ROOT/logs"
 
@@ -64,7 +64,7 @@ OMIT_LOAD_LOCAL=false
 OMIT_LOAD_WEB=false
 OMIT_USER=false
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 HEROKU_ROOT2="$HOME/Documentos/GitHub/api_bank"
@@ -596,14 +596,14 @@ if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar
     TODAY=$(date +%Y%m%d)
 
     # Contar cuántos backups hay hoy y sumar 1 para el siguiente consecutivo
-    COUNT=$(ls "$BACKUP_DIR" | grep "^${TODAY}__.*_backup_api_bank_h2[0-9]*\.zip$" | wc -l)
+    COUNT=$(ls "$BACKUP_DIR" | grep "^${TODAY}__.*_backup_api_bank_heroku[0-9]*\.zip$" | wc -l)
     SUFFIX=$((COUNT + 1))
 
     # Timestamp con hora
     TIMESTAMP=$(date +%Y%m%d__%H-%M-%S)
 
     # Nombre final del archivo
-    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_h2${SUFFIX}.zip"
+    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_heroku${SUFFIX}.zip"
 
     sudo mkdir -p "$DEST" "$BACKUP_DIR"
     echo "📦 Creando archivo ZIP de respaldo..."
@@ -786,7 +786,7 @@ clear
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"
 
-notify-send "API_BANK_H2" "✅ Proyecto iniciado correctamente en:
+notify-send "api_bank_heroku" "✅ Proyecto iniciado correctamente en:
 $URL
 $URL_HEROKU
 🏁 ¡Todo completado con éxito!

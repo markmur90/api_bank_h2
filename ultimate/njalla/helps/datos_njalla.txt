@@ -7,7 +7,15 @@ TBfeWqKSBvkQbvxTSxfMrXHe4n1gGmXPvR
 # =====================================
 
 
+# =====================================
+Binance:
+# =====================================
+USDT (TRC20)
+TQ6U5JZTqRFo9nstAWTq9dDJPm34dE872z
+# =====================================
+7bb9255617887b4afff368d9444549a88c734bdae4c01ea98484ca299219e1cb
 
+TQ6U5JZTqRFo9nstAWTq9dDJPm34dE872z
 # =====================================
 Monedero:
 # =====================================
@@ -252,7 +260,7 @@ Genera un bloque gunicorn.socket y gunicorn.service para servir tu API con syste
 
 
 
-venvAPI┌──(venvAPI)─(markmur88㉿markmur88)-[~/…/api_bank_h2/ultimate/njalla/scripts]
+venvAPI┌──(venvAPI)─(markmur88㉿markmur88)-[~/…/api_bank_heroku/ultimate/njalla/scripts]
 └─$ ./setup_coretransact.sh  
 🔐 Iniciando configuración básica para VPS: coretransapi
 📤 Subiendo clave SSH...

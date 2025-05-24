@@ -2,8 +2,8 @@
 set -e
 
 echo "🌐 Configuración de Nginx..."
-cp /root/api_bank_h2/nginx.conf /etc/nginx/sites-available/api_bank_h2.conf
-ln -sf /etc/nginx/sites-available/api_bank_h2.conf /etc/nginx/sites-enabled/api_bank_h2.conf
+cp /root/api_bank_heroku/nginx.conf /etc/nginx/sites-available/api_bank_heroku.conf
+ln -sf /etc/nginx/sites-available/api_bank_heroku.conf /etc/nginx/sites-enabled/api_bank_heroku.conf
 rm -f /etc/nginx/sites-enabled/default
 
 echo "🔐 Certificado SSL..."

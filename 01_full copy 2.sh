@@ -20,7 +20,7 @@ fi
 COMENTARIO_COMMIT=""
 
 # ╔════════════════════════════════════════════════════════════════════════════╗
-# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2           ║
+# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_heroku           ║
 # ║  Automatización total: setup, backups, deploy, limpieza y seguridad       ║
 # ║  Soporte para 30 combinaciones de despliegue con alias `d_*`              ║
 # ║  Ejecuta `deploy_menu` para selección interactiva con FZF                 ║
@@ -39,7 +39,7 @@ else
 fi
 
 # === VARIABLES DE PROYECTO ===
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 NJALLA_ROOT="$HOME/Documentos/GitHub/coretransapi"
 VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
@@ -111,7 +111,7 @@ ejecutar() {
 
 usage() {
     echo -e ""
-    echo -e "\033[7;34m                                ➤ SCRIPT MAESTRO DE DESPLIEGUE: api_bank_h2\033[0m"
+    echo -e "\033[7;34m                                ➤ SCRIPT MAESTRO DE DESPLIEGUE: api_bank_heroku\033[0m"
     echo -e "\033[1;37mUso:\033[0m ./01_full.sh [opciones]"
     echo -e ""
 
@@ -344,9 +344,9 @@ sleep 3
 echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
 if [[ "$DO_ZIP_SQL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
     echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
-    bash $HOME/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
+    bash $HOME/Documentos/GitHub/api_bank_heroku/scripts/15_zip_backup.sh
     
-    # PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+    # PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
     # PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
     # BACKUP_DIR="$PROJECT_BASE_DIR/backup"
     # mkdir -p "$BACKUP_DIR"
@@ -761,7 +761,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Su
 #     # # Crear carpeta keys/ si no existe
 #     # mkdir -p keys
 #     # # Ruta esperada del archivo
-#     # PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
+#     # PEM_PATH="$HOME/Documentos/GitHub/api_bank_heroku/schemas/keys/ecdsa_private_key.pem"
 #     # # Verificar existencia de la clave privada
 #     # if [[ ! -f "$PEM_PATH" ]]; then
 #     #     echo -e "\033[7;33m⚠️  Clave privada no encontrada. Generando clave ECDSA P-256...\033[0m"
@@ -885,8 +885,8 @@ sleep 3
 # clear
 
 echo -e "\033[7;33m---------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI--------------------------------\033[0m"
-if [[ "$DO_DEPLOY_VPS" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "¿Desplegar api_bank_h2 en VPS Njalla?"); then
-    echo -e "\n\033[1;36m🌐 Desplegando api_bank_h2 en VPS Njalla...\033[0m"
+if [[ "$DO_DEPLOY_VPS" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "¿Desplegar api_bank_heroku en VPS Njalla?"); then
+    echo -e "\n\033[1;36m🌐 Desplegando api_bank_heroku en VPS Njalla...\033[0m"
 
     if ! bash "${SCRIPTS_DIR}/21_deploy_ghost_njalla.sh" >> "$STARTUP_LOG" 2>&1; then
         echo -e "\033[1;31m⚠️ Fallo en el primer intento de deploy. Ejecutando instalación de dependencias...\033[0m"
@@ -1119,7 +1119,7 @@ sleep 3
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"
-notify-send "api_bank_h2" "✅ Proyecto iniciado correctamente en:
+notify-send "api_bank_heroku" "✅ Proyecto iniciado correctamente en:
 $URL
 $URL_HEROKU
 🏁 ¡Todo completado con éxito!

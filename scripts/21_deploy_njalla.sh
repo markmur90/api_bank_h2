@@ -29,7 +29,7 @@ log_info()  { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE"; }
 log_ok()    { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE"; }
 log_error() { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE"; }
 
-log_info "🚀 Sincronizando proyecto api_bank_h2 al VPS ($VPS_IP)..."
+log_info "🚀 Sincronizando proyecto api_bank_heroku al VPS ($VPS_IP)..."
 
 rsync -avz -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" \
   "$PROJECT_ROOT/" "$VPS_USER@$VPS_IP:$APP_DIR" >> "$LOG_FILE" 2>&1
@@ -56,7 +56,7 @@ mkdir -p logs
 # Crear/actualizar service y socket systemd para gunicorn
 sudo tee /etc/systemd/system/gunicorn.service > /dev/null <<EOL
 [Unit]
-Description=Gunicorn daemon for api_bank_h2
+Description=Gunicorn daemon for api_bank_heroku
 Requires=gunicorn.socket
 After=network.target
 
@@ -72,7 +72,7 @@ EOL
 
 sudo tee /etc/systemd/system/gunicorn.socket > /dev/null <<EOL
 [Unit]
-Description=Gunicorn socket for api_bank_h2
+Description=Gunicorn socket for api_bank_heroku
 PartOf=gunicorn.service
 
 [Socket]
@@ -86,7 +86,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now gunicorn.socket
 
 # Configurar nginx
-sudo tee /etc/nginx/sites-available/api_bank_h2 > /dev/null <<EOL
+sudo tee /etc/nginx/sites-available/api_bank_heroku > /dev/null <<EOL
 upstream coretransapi {
     server unix:/run/gunicorn.sock;
 }
@@ -122,7 +122,7 @@ server {
 }
 EOL
 
-sudo ln -sf /etc/nginx/sites-available/api_bank_h2 /etc/nginx/sites-enabled/api_bank_h2
+sudo ln -sf /etc/nginx/sites-available/api_bank_heroku /etc/nginx/sites-enabled/api_bank_heroku
 
 sudo nginx -t
 sudo systemctl reload nginx || sudo systemctl start nginx

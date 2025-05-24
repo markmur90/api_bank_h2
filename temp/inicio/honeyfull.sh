@@ -142,12 +142,12 @@ else
 fi
 
 if confirmar "Copiar proyecto y crear respaldo ZIP"; then
-    SOURCE="/home/markmur88/Documentos/GitHub/api_bank_h2/"
+    SOURCE="/home/markmur88/Documentos/GitHub/api_bank_heroku/"
     DEST="/home/markmur88/Documentos/GitHub/api_bank_heroku/"
     BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
     read -p "Campo adicional para el nombre del ZIP (opcional): " SUFFIX
     TIMESTAMP=$(date +%Y%m%d__%H-%M-%S)
-    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_h2${SUFFIX}.zip"
+    BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_heroku${SUFFIX}.zip"
     sudo mkdir -p "$DEST" "$BACKUP_DIR"
     sudo cp -r "$SOURCE" "$DEST"
     sudo zip -r "$BACKUP_ZIP" "$SOURCE"

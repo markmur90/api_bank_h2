@@ -1,17 +1,17 @@
 [Unit]
-Description=Gunicorn Daemon for api_bank_h2
+Description=Gunicorn Daemon for api_bank_heroku
 Requires=gunicorn.socket
 After=network.target
 
 [Service]
 User=markmur88
 Group=www-data
-WorkingDirectory=/home/markmur88/Documentos/GitHub/api_bank_h2
+WorkingDirectory=/home/markmur88/Documentos/GitHub/api_bank_heroku
 Environment="PATH=/home/markmur88/Documentos/Entorno/venvAPI/bin"
 ExecStart=/home/markmur88/Documentos/Entorno/venvAPI/bin/gunicorn \
           --access-logfile - \
           --workers 3 \
-          --bind unix:/home/markmur88/Documentos/GitHub/api_bank_h2/servers/gunicorn/api.sock \
+          --bind unix:/home/markmur88/Documentos/GitHub/api_bank_heroku/servers/gunicorn/api.sock \
           config.wsgi:application
 
 [Install]

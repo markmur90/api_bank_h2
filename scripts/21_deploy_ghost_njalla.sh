@@ -2,17 +2,17 @@
 set -euo pipefail
 
 # === Configuración local ===
-DIR_LOCAL="$HOME/Documentos/GitHub/api_bank_h2"
+DIR_LOCAL="$HOME/Documentos/GitHub/api_bank_heroku"
 BACKUP_DIR="$HOME/Documentos/GitHub/backup"
 source "$DIR_LOCAL/.env"
 
 LOG_FILE="$DIR_LOCAL/logs/master_run.log"
 PASSPHRASE="${PASSPHRASE:-"##_//Ptf8454Jd55\\_##"}"
 DATE="$(date +%Y%m%d_%H%M%S)"
-BACKUP_FILE="$BACKUP_DIR/api_bank_h2_backup_$DATE.tar.gz"
+BACKUP_FILE="$BACKUP_DIR/api_bank_heroku_backup_$DATE.tar.gz"
 ENC_BACKUP_FILE="$BACKUP_FILE.enc"
 
-echo -e "\033[1;36m🚀 Subiendo api_bank_h2 al VPS...\033[0m"
+echo -e "\033[1;36m🚀 Subiendo api_bank_heroku al VPS...\033[0m"
 
 # === Empaquetar y cifrar backup ===
 tar czf "$BACKUP_FILE" -C "$DIR_LOCAL" .
@@ -33,8 +33,8 @@ if ! id "markmur88" &>/dev/null; then
     echo "➕ Creando usuario 'markmur88' con sudo..."
     adduser --disabled-password --gecos "" markmur88
     usermod -aG sudo markmur88
-    mkdir -p /home/markmur88/api_bank_h2
-    chown -R markmur88:www-data /home/markmur88/api_bank_h2
+    mkdir -p /home/markmur88/api_bank_heroku
+    chown -R markmur88:www-data /home/markmur88/api_bank_heroku
     echo "✅ Usuario y directorio creados."
 else
     echo "✅ Usuario 'markmur88' ya existe."
@@ -49,9 +49,9 @@ export PASSPHRASE="${PASSPHRASE}"
 cd "$VPS_API_DIR"
 
 # Desencriptar y extraer
-openssl enc -d -aes-256-cbc -pbkdf2 -pass pass:"\$PASSPHRASE" -in "$ENC_REMOTE_FILE" -out api_bank_h2_backup.tar.gz
-tar xzf api_bank_h2_backup.tar.gz
-rm -f api_bank_h2_backup.tar.gz "$ENC_REMOTE_FILE"
+openssl enc -d -aes-256-cbc -pbkdf2 -pass pass:"\$PASSPHRASE" -in "$ENC_REMOTE_FILE" -out api_bank_heroku_backup.tar.gz
+tar xzf api_bank_heroku_backup.tar.gz
+rm -f api_bank_heroku_backup.tar.gz "$ENC_REMOTE_FILE"
 
 # Entorno virtual
 python3 -m venv venv
@@ -68,7 +68,7 @@ mkdir -p "$VPS_API_DIR/servers/gunicorn"
 
 cat > "$VPS_API_DIR/servers/gunicorn/gunicorn.socket" <<EOL
 [Unit]
-Description=Gunicorn Socket for api_bank_h2
+Description=Gunicorn Socket for api_bank_heroku
 PartOf=gunicorn.service
 
 [Socket]
@@ -83,7 +83,7 @@ EOL
 
 cat > "$VPS_API_DIR/servers/gunicorn/gunicorn.service" <<EOL
 [Unit]
-Description=Gunicorn Daemon for api_bank_h2
+Description=Gunicorn Daemon for api_bank_heroku
 Requires=gunicorn.socket
 After=network.target
 
@@ -109,7 +109,7 @@ sudo systemctl enable --now gunicorn.socket
 sudo systemctl start gunicorn.service
 
 # Configuración HTTPS con redirección desde HTTP
-sudo rm -f /etc/nginx/sites-enabled/api_bank_h2
+sudo rm -f /etc/nginx/sites-enabled/api_bank_heroku
 sudo tee /etc/nginx/sites-available/api.coretransapi.com > /dev/null <<EOL
 server {
     listen 80;
@@ -151,4 +151,4 @@ chmod 700 venv || true
 chmod 660 servers/gunicorn/api.sock || true
 EOF
 
-echo -e "\033[1;32m✅ Deploy api_bank_h2 en VPS completado.\033[0m"
+echo -e "\033[1;32m✅ Deploy api_bank_heroku en VPS completado.\033[0m"

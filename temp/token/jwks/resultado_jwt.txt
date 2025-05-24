@@ -27,7 +27,7 @@
 }
 
 🔐 2. Firmando JWT...
-/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/jwks/firmar_jwt.py:26: DeprecationWarning: 
+/home/markmur88/Documentos/GitHub/api_bank_heroku/schemas/jwks/firmar_jwt.py:26: DeprecationWarning: 
   header={"alg": "ES256", "kid": jwk_key.key_id},
 ✅ JWT firmado generado y guardado en 'client_assertion.jwt'
 
