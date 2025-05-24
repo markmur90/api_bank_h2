@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+if [[ "$1" != "production" ]]; then
+  echo "⚠️ Este script sólo debe ejecutarse en entorno de producción. Abortando."
+  exit 1
+fi
+
+
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$BASE_DIR" || exit 1
 

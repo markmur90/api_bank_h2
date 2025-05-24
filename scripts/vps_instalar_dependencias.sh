@@ -18,4 +18,9 @@ sudo apt install -y nginx curl git ufw fail2ban
 echo "🔐 Instalando Certbot para SSL..."
 sudo apt install -y certbot python3-certbot-nginx
 
+sudo systemctl enable gunicorn
+sudo systemctl restart gunicorn
+sudo systemctl restart nginx
+
+
 echo "✅ Dependencias instaladas correctamente."

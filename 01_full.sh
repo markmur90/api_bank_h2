@@ -784,7 +784,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Sub
     heroku config:set DJANGO_SETTINGS_MODULE=config.settings.production
     # CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
     heroku config:set DJANGO_SECRET_KEY=$SECRET_KEY
-    heroku config:set DJANGO_DEBUG=False
+    heroku config:set DJANGO_DEBUG=True
     heroku config:set DJANGO_ALLOWED_HOSTS=api.coretransapi.com,apibank2-d42d7ed0d036.herokuapp.com,127.0.0.1,0.0.0.0
     # heroku config:set DB_CLIENT_ID=tu-client-id-herokuPtf8454Jd55
     # heroku config:set DB_CLIENT_SECRET=tu-client-secret-heroku
@@ -934,15 +934,17 @@ echo -e "\033[7;33m-----------------------------------DEPLOY REMOTO A VPS - CORE
 if [[ "$DO_DEPLOY_VPS" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "¿Desplegar api_bank_h2 en VPS Njalla?"); then
     echo -e "\n\033[1;36m🌐 Desplegando api_bank_h2 en VPS Njalla...\033[0m"
 
-    if ! bash "${SCRIPTS_DIR}/21_deploy_ghost_njalla.sh" >> "$STARTUP_LOG" 2>&1; then
+    if ! bash "${SCRIPTS_DIR}/21_deploy_njalla.sh" "$DJANGO_ENV" >> "$STARTUP_LOG" 2>&1; then
         echo -e "\033[1;31m⚠️ Fallo en el primer intento de deploy. Ejecutando instalación de dependencias...\033[0m"
         bash "${SCRIPTS_DIR}/vps_instalar_dependencias.sh" >> "$STARTUP_LOG" 2>&1
         echo -e "\033[1;36m🔁 Reintentando despliegue...\033[0m"
-        if ! bash "${SCRIPTS_DIR}/21_deploy_ghost_njalla.sh" >> "$STARTUP_LOG" 2>&1; then
+        if ! bash "${SCRIPTS_DIR}/21_deploy_njalla.sh" "$DJANGO_ENV" >> "$STARTUP_LOG" 2>&1; then
             echo -e "\033[1;31m❌ Fallo final en despliegue remoto. Consulta logs en $STARTUP_LOG\033[0m"
             exit 1
         fi
     fi
+    echo -e "\n\033[1;36m🔍 Verificando headers de seguridad en producción...\033[0m"
+    bash "$SCRIPTS_DIR/verificar_https_headers.sh" || echo -e "\033[1;31m⚠️ Error al verificar headers\033[0m"
 
     echo -e "\033[1;32m✅ Despliegue remoto al VPS completado.\033[0m"
 fi
@@ -953,6 +955,7 @@ echo ""
 sleep 1
 # clear
 
+# Conserva solo los últimos 10 archivos del día actual si hay más de 10. Conserva explícitamente el primer y último archivo de cada día.
 echo -e "\033[7;33m-------------------------------------------BORRANDO ZIP Y SQL------------------------------------------\033[0m"
 if [[ "$DO_CLEAN" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Limpiar respaldos antiguos"); then
     echo -e "\033[7;30mLimpiando respaldos antiguos...\033[0m"
