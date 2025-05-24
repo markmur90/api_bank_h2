@@ -30,7 +30,7 @@ carga líquido ceniza amigo iris pie puerta deporte melena afición batuta moned
 
 4B7fF6GUcMt1JQhpZ7iVLkepvxFmQvXQs8TY7iGohk4f7yDDTZV1ezr5mpYHeoifkQWL7nynJt6dGh4CqHCv21D5K7om4bv
 # =====================================
-ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_ed25519 && ssh-add -l
+
 
 
 # =====================================
