@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 SECRET_KEY = env('SECRET_KEY')
 DEBUG = True
-ALLOWED_HOSTS = ['api.coretransapi.com']
+ALLOWED_HOSTS = ['api.coretransapi']
 
 DATABASES = {
     'default': env.db('DATABASE_URL')

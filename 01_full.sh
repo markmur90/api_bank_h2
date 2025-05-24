@@ -44,9 +44,9 @@ HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 NJALLA_ROOT="$HOME/Documentos/GitHub/coretransapi"
 VENV_PATH="$HOME/Documentos/Entorno/venvAPI"
 INTERFAZ="wlan0"
-LOGS_DIR="$PROJECT_ROOT/logs"
-LOG_FILE_SCRIPT=${LOGFILE:-"$LOGS_DIR/full_deploy.log"}
-STARTUP_LOG=${STARTUP_LOG:-"$LOGS_DIR/startup.log"}
+LOG_DIR="$PROJECT_ROOT/logs"
+LOG_FILE_SCRIPT="$LOG_DIR/full_deploy.log"
+STARTUP_LOG="$LOG_DIR/startup.log"
 
 
 # === CREDENCIALES BASE DE DATOS ===
@@ -311,7 +311,7 @@ verificar_vpn_segura() {
 }
 
 rotar_logs_si_grandes() {
-    for file in "$LOGS_DIR"/*.log; do
+    for file in "$LOG_DIR"/*.log; do
         [[ ! -f "$file" ]] && continue
         size=$(du -m "$file" | cut -f1)
         if [[ "$size" -ge 10 ]]; then
@@ -372,7 +372,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m----------------------------------------------SISTEMA----------------------------------------------\033[0m"
+echo -e "\033[7;33m------------------------------------------------SISTEMA------------------------------------------------\033[0m"
 if [[ "$DO_SYS" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Actualizar sistema"); then
     sudo apt-get update && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y && sudo apt-get clean
     echo -e "\033[7;30m🔄 Sistema actualizado.\033[0m"
@@ -386,7 +386,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
+echo -e "\033[7;33m----------------------------------------------------ZIP------------------------------------------------\033[0m"
 if [[ "$DO_ZIP_SQL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Crear zip y sql"); then
     echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
     bash $HOME/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
@@ -419,7 +419,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m----------------------------------------------PUERTOS----------------------------------------------\033[0m"
+echo -e "\033[7;33m------------------------------------------------PUERTOS------------------------------------------------\033[0m"
 if [[ "$DO_PORTS" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Detener puertos abiertos"); then
     PUERTOS_OCUPADOS=0
     for PUERTO in 2222 8000 5000 8001 35729; do
@@ -446,7 +446,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m--------------------------------------------CONTENEDORES-------------------------------------------\033[0m"
+echo -e "\033[7;33m----------------------------------------------CONTENEDORES---------------------------------------------\033[0m"
 if [[ "$DO_DOKER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Detener contenedores Docker"); then
     PIDS=$(docker ps -q)
     if [ -n "$PIDS" ]; then
@@ -468,7 +468,7 @@ sleep 1
 # clear
 
 
-echo -e "\033[7;33m---------------------------------------------CAMBIO MAC--------------------------------------------\033[0m"
+echo -e "\033[7;33m-----------------------------------------------CAMBIO MAC----------------------------------------------\033[0m"
 if [[ "$DO_MAC" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Cambiar MAC de la interfaz $INTERFAZ"); then
     echo -e "\033[7;30mCambiando MAC de la interfaz $INTERFAZ\033[0m"
     ver_ip_publica
@@ -490,7 +490,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m------------------------------------------RESPALDOS LOCAL------------------------------------------\033[0m"
+echo -e "\033[7;33m--------------------------------------------RESPALDOS LOCAL--------------------------------------------\033[0m"
 if [[ "$DO_JSON_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Crear bdd_local"); then
     echo -e "\033[7;30m🚀 Creando respaldo de datos de local...\033[0m"
     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
@@ -506,7 +506,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m------------------------------------------------UFW------------------------------------------------\033[0m"
+echo -e "\033[7;33m--------------------------------------------------UFW--------------------------------------------------\033[0m"
 if [[ "$DO_UFW" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Configurar venv y PostgreSQL"); then
     sudo ufw --force reset
     sudo ufw default deny incoming
@@ -560,7 +560,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m----------------------------------------------POSTGRES---------------------------------------------\033[0m"
+echo -e "\033[7;33m------------------------------------------------POSTGRES-----------------------------------------------\033[0m"
 if [[ "$DO_PGSQL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Configurar venv y PostgreSQL"); then
     # python3 -m venv "$VENV_PATH"
     # source "$VENV_PATH/bin/activate"
@@ -617,7 +617,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m--------------------------------------------MIGRACIONES--------------------------------------------\033[0m"
+echo -e "\033[7;33m----------------------------------------------MIGRACIONES----------------------------------------------\033[0m"
 if [[ "$DO_MIG" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Ejecutar migraciones"); then
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
@@ -652,7 +652,7 @@ sleep 1
 # clear
 
 
-echo -e "\033[7;33m--------------------------------------------CARGAR LOCAL-------------------------------------------\033[0m"
+echo -e "\033[7;33m----------------------------------------------CARGAR LOCAL---------------------------------------------\033[0m"
 if [[ "$DO_RUN_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Subir bdd_local"); then
     echo -e "\033[7;30m🚀 Subiendo respaldo de datos de local...\033[0m"
     python3 manage.py loaddata bdd_local.json
@@ -668,7 +668,7 @@ sleep 1
 # clear
 
 
-echo -e "\033[7;33m----------------------------------------------USUARIO----------------------------------------------\033[0m"
+echo -e "\033[7;33m------------------------------------------------USUARIO------------------------------------------------\033[0m"
 if [[ "$DO_USER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Crear Super Usuario"); then
     echo -e "\033[7;30m🚀 Creando usuario...\033[0m"
     python3 manage.py createsuperuser
@@ -684,7 +684,7 @@ sleep 1
 # clear
 
 
-echo -e "\033[7;33m----------------------------------------------PEM JWKS---------------------------------------------\033[0m"
+echo -e "\033[7;33m------------------------------------------------PEM JWKS-----------------------------------------------\033[0m"
 if [[ "$DO_PEM" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Generar PEM JWKS"); then
     echo -e "\033[7;30m🚀 Generando PEM...\033[0m"
     python3 manage.py genkey
@@ -698,7 +698,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m--------------------------------------VERIFICAR TRANSFERENCIAS-------------------------------------\033[0m"
+echo -e "\033[7;33m----------------------------------------VERIFICAR TRANSFERENCIAS---------------------------------------\033[0m"
 if [[ "$DO_VERIF_TRANSF" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Verificar archivos transferencias"); then
     echo -e "\033[7;30m🚀 Verificando logs transferencias...\033[0m"
     python manage.py verificar_transferencias --fix -c -j
@@ -717,7 +717,6 @@ EXCLUDES=(
     "--exclude=*.db"
     "--exclude=*.sqlite3"
     "--exclude=temp/"
-    "--exclude=*.log"
 )
 
 actualizar_django_env() {
@@ -732,8 +731,8 @@ if os.path.exists(settings_path):
     updated = False
     new_lines = []
     for line in lines:
-        if "DJANGO_ENV = os.getenv(" in line and "'local'" in line:
-            new_lines.append(line.replace("'local'", "'heroku'"))
+        if "DJANGO_ENV = os.getenv(" in line and 'local' in line:
+            new_lines.append(line.replace('local', 'production'))
             updated = True
         else:
             new_lines.append(line)
@@ -773,7 +772,7 @@ sleep 1
 verificar_vpn_segura
 verificar_configuracion_segura
 
-echo -e "\033[7;33m-----------------------------------------VARIABLES A HEROKU----------------------------------------\033[0m"
+echo -e "\033[7;33m-------------------------------------------VARIABLES A HEROKU------------------------------------------\033[0m"
 if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Subir variables a Heroku"); then
 
     echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
@@ -786,7 +785,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Sub
     # CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
     heroku config:set DJANGO_SECRET_KEY=$SECRET_KEY
     heroku config:set DJANGO_DEBUG=False
-    heroku config:set DJANGO_ALLOWED_HOSTS=apibank2-d42d7ed0d036.herokuapp.com
+    heroku config:set DJANGO_ALLOWED_HOSTS=apibank2-d42d7ed0d036.herokuapp
     # heroku config:set DB_CLIENT_ID=tu-client-id-herokuPtf8454Jd55
     # heroku config:set DB_CLIENT_SECRET=tu-client-secret-heroku
     heroku config:set DB_TOKEN_URL=https://simulator-api.db.com:443/gw/dbapi/token
@@ -847,7 +846,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m-------------------------------------------SUBIR A HEROKU------------------------------------------\033[0m"
+echo -e "\033[7;33m---------------------------------------------SUBIR A HEROKU--------------------------------------------\033[0m"
 if [[ "$DO_HEROKU" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Subir el proyecto a la web"); then
     echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m"
     cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
@@ -886,7 +885,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m---------------------------------------SINCRONIZACION BDD WEB--------------------------------------\033[0m"
+echo -e "\033[7;33m-----------------------------------------SINCRONIZACION BDD WEB----------------------------------------\033[0m"
 if [[ "$DO_SYNC_REMOTE_DB" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Subir las bases de datos a la web"); then
 
     echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m"
@@ -931,7 +930,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m---------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI--------------------------------\033[0m"
+echo -e "\033[7;33m-----------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI----------------------------------\033[0m"
 if [[ "$DO_DEPLOY_VPS" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "¿Desplegar api_bank_h2 en VPS Njalla?"); then
     echo -e "\n\033[1;36m🌐 Desplegando api_bank_h2 en VPS Njalla...\033[0m"
 
@@ -954,7 +953,7 @@ echo ""
 sleep 1
 # clear
 
-echo -e "\033[7;33m-----------------------------------------BORRANDO ZIP Y SQL----------------------------------------\033[0m"
+echo -e "\033[7;33m-------------------------------------------BORRANDO ZIP Y SQL------------------------------------------\033[0m"
 if [[ "$DO_CLEAN" == true ]] && ([[ "$PROMPT_MODE" == true ]] || confirmar "Limpiar respaldos antiguos"); then
     echo -e "\033[7;30mLimpiando respaldos antiguos...\033[0m"
     echo ""
@@ -996,7 +995,7 @@ verificar_vpn_segura
 rotar_logs_si_grandes
 
 
-echo -e "\033[7;33m---------------------------------------------- GUNICORN ----------------------------------------------\033[0m"
+echo -e "\033[7;33m----------------------------------------------- GUNICORN ----------------------------------------------\033[0m"
 
 # === CONFIGURACIÓN ===
 PUERTOS=(8001 5000 35729)
@@ -1123,9 +1122,9 @@ sleep 1
 #     trap limpiar_y_salir SIGINT
 #     liberar_puertos
 #     iniciar_entorno
-#     nohup "$VENV_PATH/bin/gunicorn" config.wsgi:application --workers 3 --bind 127.0.0.1:8001 --keep-alive 2 > "$LOGS_DIR/gunicorn_api.log" 2>&1 < /dev/null &
-#     nohup python honeypot.py > "$LOGS_DIR/honeypot.log" 2>&1 < /dev/null &
-#     nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOGS_DIR/livereload.log" 2>&1 < /dev/null &   
+#     nohup "$VENV_PATH/bin/gunicorn" config.wsgi:application --workers 3 --bind 127.0.0.1:8001 --keep-alive 2 > "$LOG_DIR/gunicorn_api.log" 2>&1 < /dev/null &
+#     nohup python honeypot.py > "$LOG_DIR/honeypot.log" 2>&1 < /dev/null &
+#     nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOG_DIR/livereload.log" 2>&1 < /dev/null &   
 #     sleep 1
 #     firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" --new-tab "$URL_HEROKU" &
 #     FIREFOX_PID=$!

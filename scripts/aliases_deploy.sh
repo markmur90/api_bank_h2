@@ -13,5 +13,7 @@ alias d_local='bash ./01_full.sh -a -Y -P -D -M -x -Z -L -S -U -V -p -u -H -B -v
 alias d_heroku='bash ./01_full.sh -a -L -U -V -p -u -v'
 alias d_varher='bash ./01_full.sh -a -L -U -V -p -v'
 alias d_njalla='bash ./01_full.sh -a -L -U -V -p -u -H -B'
-
 alias d_test='bash ./01_full.sh --dry-run -Y -Z -P -M -x -Q -I -l -G'
+
+
+alias d_rsync='bash ./01_full.sh -a -Y -P -D -M -x -C -Z -Q -I -L -l -U -V -p -u -H -B -v -G -w'
