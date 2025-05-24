@@ -5,7 +5,7 @@ from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
 
 
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # 1. Creamos el lector de .env
 env = environ.Env()
