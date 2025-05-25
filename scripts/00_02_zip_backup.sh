@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_BACKUP="$SCRIPT_DIR/logs/sistema/$(basename "$0" .sh)_.log"
+mkdir -p "$(dirname $LOG_BACKUP)"
+
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
 BACKUP_DIR="$PROJECT_BASE_DIR/backup/zip"
-LOG_DIR="$PROJECT_ROOT/logs"
 
 DATE=$(date +"%Y%m%d_%H%M%S")
 DATE_SHORT=$(date +"%Y%m%d")
 
-LOG_FILE="$LOG_DIR/master_run.log"
 
 CONSEC_GLOBAL_FILE="$HOME/.backup_zip_consecutivo_general"
 CONSEC_DAILY_FILE="$HOME/.backup_zip_consecutivo_diario_$DATE_SHORT"
@@ -22,9 +25,9 @@ VERDE='\033[1;32m'
 ROJO='\033[1;31m'
 AZUL='\033[1;34m'
 
-log_info()  { echo -e "${AZUL}[INFO] $1${RESET}" | tee -a "$LOG_FILE"; }
-log_ok()    { echo -e "${VERDE}[OK]   $1${RESET}" | tee -a "$LOG_FILE"; }
-log_error() { echo -e "${ROJO}[ERR]  $1${RESET}" | tee -a "$LOG_FILE"; }
+log_info()  { echo -e "${AZUL}[INFO] $1${RESET}" | tee -a "$LOG_BACKUP"; }
+log_ok()    { echo -e "${VERDE}[OK]   $1${RESET}" | tee -a "$LOG_BACKUP"; }
+log_error() { echo -e "${ROJO}[ERR]  $1${RESET}" | tee -a "$LOG_BACKUP"; }
 
 check_and_log() {
     if [ $? -eq 0 ]; then
@@ -44,7 +47,6 @@ fi
 
 source .env
 
-mkdir -p "$LOG_DIR" "$BACKUP_DIR"
 check_and_log "Carpetas LOG y BACKUP verificadas/creadas" "No se pudo crear/verificar carpetas LOG/BACKUP"
 
 log_info "📦 Preparando respaldo ZIP del proyecto..."
@@ -105,8 +107,8 @@ EXCLUDES=(
 #   "$(basename "$PROJECT_ROOT")/.env"
 )
 
-zip -r9 "$ZIP_FINAL" "$(basename "$PROJECT_ROOT")" "${EXCLUDES[@]/#/-x}" >> "$LOG_FILE" 2>&1
+zip -r9 "$ZIP_FINAL" "$(basename "$PROJECT_ROOT")" "${EXCLUDES[@]/#/-x}" >> "$LOG_BACKUP" 2>&1
 
 check_and_log "Proyecto comprimido exitosamente en: $ZIP_FINAL" "Error al comprimir el proyecto"
 
-log_ok "✅ Script finalizado correctamente. Log disponible en: $LOG_FILE"
+log_ok "✅ Script finalizado correctamente. Log disponible en: $LOG_BACKUP"

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+
+
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$BASE_DIR" || exit 1
 
@@ -11,9 +13,9 @@ else
   exit 1
 fi
 
-mkdir -p "$LOG_DIR" "$CACHE_DIR"
-LOG_FILE="$LOG_DIR/master_run.log"
-RED_LOG="$LOG_DIR/red.log"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_DEPLOY="$SCRIPT_DIR/logs/sistema/$(basename "$0" .sh)_.log"
+mkdir -p "$(dirname $LOG_DEPLOY)"
 
 INTERFAZ="${INTERFAZ:-eth0}"
 if ! ip link show "$INTERFAZ" >/dev/null 2>&1; then
@@ -85,7 +87,7 @@ CHECK=$(echo -e "$AUTH_CMD" | nc 127.0.0.1 9051 || true)
 
 if ! echo "$CHECK" | grep -q "250 OK"; then
   echo "❌ Error autenticando con Tor ControlPort:"
-  echo "$CHECK" | tee -a "$LOG_FILE"
+  echo "$CHECK" | tee -a "$LOG_DEPLOY"
   exit 1
 fi
 
@@ -93,7 +95,7 @@ sleep 5
 IP_TOR_DESPUES=$(get_ip_tor)
 echo "$IP_TOR_DESPUES" > "$CACHE_DIR/ip_tor_despues.txt"
 
-echo -e "\n\033[7;30m🔁 Cambiando MAC de la interfaz $INTERFAZ\033[0m" | tee -a "$RED_LOG"
+echo -e "\n\033[7;30m🔁 Cambiando MAC de la interfaz $INTERFAZ\033[0m" | tee -a "$LOG_DEPLOY"
 
 sudo ip link set "$INTERFAZ" up
 sleep 2
@@ -103,7 +105,7 @@ IP_ANTERIOR=$(ip -4 addr show "$INTERFAZ" | awk '/inet / {print $2}' | cut -d/ -
 echo "$MAC_ANTERIOR" > "$CACHE_DIR/mac_antes.txt"
 echo "$IP_ANTERIOR"  > "$CACHE_DIR/ip_antes.txt"
 
-sudo dhclient -r "$INTERFAZ" >> "$RED_LOG" 2>&1
+sudo dhclient -r "$INTERFAZ" >> "$LOG_DEPLOY" 2>&1
 sudo ip link set "$INTERFAZ" down
 
 MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
@@ -112,7 +114,7 @@ sleep 2
 
 renovar_ip() {
   local intento=$1
-  sudo HOSTNAME="ghost-$(tr -dc a-z0-9 </dev/urandom | head -c6)" dhclient -v "$INTERFAZ" >> "$RED_LOG" 2>&1
+  sudo HOSTNAME="ghost-$(tr -dc a-z0-9 </dev/urandom | head -c6)" dhclient -v "$INTERFAZ" >> "$LOG_DEPLOY" 2>&1
   sleep 4
   IP_ACTUAL=$(ip -4 addr show "$INTERFAZ" | awk '/inet / {print $2}' | cut -d/ -f1)
   echo "$IP_ACTUAL" > "$CACHE_DIR/ip_actual.txt"
@@ -121,7 +123,7 @@ renovar_ip() {
 renovar_ip 1
 
 if [ "$IP_ACTUAL" = "$IP_ANTERIOR" ]; then
-  echo "⚠ IP no ha cambiado tras el primer intento. Reintentando..." | tee -a "$RED_LOG"
+  echo "⚠ IP no ha cambiado tras el primer intento. Reintentando..." | tee -a "$LOG_DEPLOY"
   sudo ip link set "$INTERFAZ" down
   MAC_NUEVA=$(sudo macchanger -r "$INTERFAZ" | awk '/New MAC:/ {print $3}')
   sudo ip link set "$INTERFAZ" up
@@ -141,7 +143,7 @@ FECHA="$(date '+%Y-%m-%d %H:%M:%S')"
   echo "🧭 IP Tor anterior : $IP_TOR_ANTES"
   echo "🛰️ IP Tor actual   : $IP_TOR_DESPUES"
   echo "========================================="
-} | tee -a "$RED_LOG"
+} | tee -a "$LOG_DEPLOY"
 
 echo "✔️ Cambios de red y anonimato completados con éxito."
 
