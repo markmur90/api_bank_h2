@@ -7,7 +7,7 @@ echo ""
 
 # Verificar estado del entorno virtual
 echo "🧪 Verificando entorno virtual..."
-VENV="$HOME/Documentos/Entorno/venvAPI"
+VENV="$HOME/Documentos/Entorno/envAPP"
 if [[ -d "$VENV" ]]; then
     echo "✅ Entorno virtual encontrado: $VENV"
 else

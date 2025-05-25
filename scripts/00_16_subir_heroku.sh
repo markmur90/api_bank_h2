@@ -29,7 +29,7 @@ echo -e "\033[7;30mHaciendo push a Heroku...\033[0m"
 git push heroku api-bank:main || { echo -e "\033[7;30m❌ Error en deploy\033[0m"; exit 0; }
 echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 echo ""
-sleep 20
+sleep 3
 cd "$PROJECT_ROOT"
 echo -e "\033[7;30m✅ ¡Deploy completado!\033[0m"
 echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"

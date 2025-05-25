@@ -1,20 +1,31 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# === VARIABLES BASE ===
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+VENV_PATH="$HOME/Documentos/Entorno/envAPP"
+SCRIPTS_DIR="$PROJECT_ROOT/scripts"
+LOG_DIR="$PROJECT_ROOT/logs"
+CACHE_DIR="$PROJECT_ROOT/tmp"
+STARTUP_LOG="$LOG_DIR/startup_gunicorn.log"
+
+mkdir -p "$LOG_DIR" "$CACHE_DIR"
+
 # === CONFIGURACIÓN ===
 PUERTOS=(8000 5000 35729)
-URL_LOCAL="http://localhost:5000"
-URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
+URL_SSL_LOCAL="https://localhost:8443"
+URL_GUNICORN="http://127.0.0.1:8000"
 URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
 URL_NJALLA="https://api.coretransapi.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 
 # === FUNCIONES ===
+
 liberar_puertos() {
     for port in "${PUERTOS[@]}"; do
         if lsof -i :$port &>/dev/null; then
             echo -e "\033[1;34m🔌 Liberando puerto $port...\033[0m"
-            kill $(lsof -t -i :$port) &>/dev/null || true
+            sudo fuser -k "$port"/tcp || true
         fi
     done
 }
@@ -40,7 +51,7 @@ iniciar_entorno() {
 }
 
 verificar_seguridad() {
-    if [[ "$ENVIRONMENT" != "local" ]]; then
+    if [[ "${ENVIRONMENT:-local}" != "local" ]]; then
         echo -e "\033[1;31m🔒 Verificando conexión segura: VPN + Tor...\033[0m"
         if ! curl --socks5-hostname 127.0.0.1:9050 https://check.torproject.org | grep -q "Congratulations"; then
             echo -e "\033[1;31m❌ Error: No estás conectado por Tor. Abortando por seguridad.\033[0m"
@@ -50,11 +61,11 @@ verificar_seguridad() {
     fi
 }
 
+# === EJECUCIÓN PRINCIPAL ===
 
-
-# === INICIO GUNICORN + HONEYPOT ===
 echo -e "\033[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...\033[0m"
 trap limpiar_y_salir SIGINT
+
 verificar_seguridad
 liberar_puertos
 iniciar_entorno
@@ -73,7 +84,11 @@ nohup python honeypot.py > "$LOG_DIR/honeypot.log" 2>&1 < /dev/null &
 nohup livereload --host 127.0.0.1 --port 35729 static/ -t templates/ > "$LOG_DIR/livereload.log" 2>&1 < /dev/null &
 
 sleep 1
-firefox --new-window "$URL_LOCAL" --new-tab "$URL_GUNICORN" --new-tab "$URL_NJALLA" --new-tab "$URL_HEROKU" &
+
+firefox --new-window "$URL_SSL_LOCAL" \
+  --new-tab "$URL_GUNICORN" \
+  --new-tab "$URL_NJALLA" \
+  --new-tab "$URL_HEROKU" &
 FIREFOX_PID=$!
 
 echo -e "\033[7;30m🚧 Servicios activos. Ctrl+C para detener.\033[0m"

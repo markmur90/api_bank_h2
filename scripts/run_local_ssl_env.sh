@@ -2,7 +2,7 @@
 set -euo pipefail
 
 echo "🔐 Activando entorno virtual..."
-source "$HOME/Documentos/Entorno/venvAPI/bin/activate"
+source "$HOME/Documentos/Entorno/envAPP/bin/activate"
 
 echo "🌍 Estableciendo entorno local HTTPS con certificados autofirmados..."
 

@@ -11,7 +11,7 @@ After=network.target
 User=root
 Group=www-data
 WorkingDirectory=/root/api_bank_h2
-ExecStart=/root/venvAPI/bin/gunicorn --access-logfile - --workers 3 --bind unix:/root/api_bank_h2/api.sock config.wsgi:application
+ExecStart=/root/envAPP/bin/gunicorn --access-logfile - --workers 3 --bind unix:/root/api_bank_h2/api.sock config.wsgi:application
 
 [Install]
 WantedBy=multi-user.target

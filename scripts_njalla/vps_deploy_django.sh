@@ -6,8 +6,8 @@ cd /root
 git clone git@github.com:markmur88/api_bank_h2.git
 
 echo "🐍 Entorno virtual..."
-python3 -m venv /root/venvAPI
-source /root/venvAPI/bin/activate
+python3 -m venv /root/envAPP
+source /root/envAPP/bin/activate
 pip install --upgrade pip
 pip install -r /root/api_bank_h2/requirements.txt
 
@@ -18,6 +18,6 @@ sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE bankdb TO bankuser;"
 
 echo "⚙️ Django: migrate + static"
 cd /root/api_bank_h2
-source /root/venvAPI/bin/activate
+source /root/envAPP/bin/activate
 python manage.py migrate
 python manage.py collectstatic --noinput

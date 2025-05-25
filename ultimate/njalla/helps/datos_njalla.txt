@@ -268,7 +268,7 @@ Genera un bloque gunicorn.socket y gunicorn.service para servir tu API con syste
 
 
 
-venvAPI┌──(venvAPI)─(markmur88㉿markmur88)-[~/…/api_bank_h2/ultimate/njalla/scripts]
+envAPP┌──(envAPP)─(markmur88㉿markmur88)-[~/…/api_bank_h2/ultimate/njalla/scripts]
 └─$ ./setup_coretransact.sh  
 🔐 Iniciando configuración básica para VPS: coretransapi
 📤 Subiendo clave SSH...

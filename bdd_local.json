@@ -1728,24 +1728,6 @@
   }
 },
 {
-  "model": "auth.user",
-  "pk": 1,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$oPkrPNUclJWQb8qaRBdpZY$6R6avmKphgCEJohHOXC9h6WfnddaO54m24zAKIXUXtg=",
-    "last_login": null,
-    "is_superuser": true,
-    "username": "493069k1",
-    "first_name": "",
-    "last_name": "",
-    "email": "j.moltke@db.com",
-    "is_staff": true,
-    "is_active": true,
-    "date_joined": "2025-05-25T04:14:55.673Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
   "model": "contenttypes.contenttype",
   "pk": 1,
   "fields": {
