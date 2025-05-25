@@ -21,6 +21,7 @@ env.read_env(env_file)
 SECRET_KEY = env('SECRET_KEY')
 DEBUG      = env.bool('DEBUG', default=True)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+print(f"🌐 ALLOWED_HOSTS = {ALLOWED_HOSTS}")
 
 
 

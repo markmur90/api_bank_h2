@@ -2,16 +2,18 @@
 set -euo pipefail
 
 PUERTOS_OCUPADOS=0
+PUERTOS=(2222 8000 5000 8001 35729)
 
-for PUERTO in 2222 8000 5000 8001 35729; do
+echo -e "\033[7;34m🔎 Verificando puertos en uso...\033[0m"
+echo ""
+
+for PUERTO in "${PUERTOS[@]}"; do
     if lsof -i tcp:"$PUERTO" &>/dev/null; then
         PUERTOS_OCUPADOS=$((PUERTOS_OCUPADOS + 1))
-        if confirmar "Cerrar procesos en puerto $PUERTO"; then
-            sudo fuser -k "${PUERTO}"/tcp || true
-            echo -e "\033[7;30m✅ Puerto $PUERTO liberado.\033[0m"
-            echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-            echo ""
-        fi
+        sudo fuser -k "${PUERTO}"/tcp || true
+        echo -e "\033[7;30m✅ Puerto $PUERTO liberado.\033[0m"
+        echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
+        echo ""
     fi
 done
 

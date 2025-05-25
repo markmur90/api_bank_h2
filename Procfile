@@ -1,4 +1,4 @@
 release: python3 manage.py migrate
 release: python3 manage.py collectstatic --noinput
 
-web: gunicorn config.wsgi
+web: DJANGO_ENV=production gunicorn config.wsgi
