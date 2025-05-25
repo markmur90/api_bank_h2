@@ -1,4 +1,90 @@
-[2025-05-25 09:37:43 +0200] [318883] [INFO] Starting gunicorn 23.0.0
-[2025-05-25 09:37:43 +0200] [318883] [INFO] Listening at: http://0.0.0.0:8000 (318883)
-[2025-05-25 09:37:43 +0200] [318883] [INFO] Using worker: sync
-[2025-05-25 09:37:43 +0200] [318892] [INFO] Booting worker with pid: 318892
+[2025-05-25 11:02:28 +0200] [408388] [INFO] Starting gunicorn 23.0.0
+[2025-05-25 11:02:28 +0200] [408388] [INFO] Listening at: http://0.0.0.0:8000 (408388)
+[2025-05-25 11:02:28 +0200] [408388] [INFO] Using worker: sync
+[2025-05-25 11:02:28 +0200] [408390] [INFO] Booting worker with pid: 408390
+Error en /oauth2/callback/: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/views.py", line 578, in oauth2_callback
+    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+                                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/utils.py", line 896, in fetch_token_by_code
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Internal Server Error: /oauth2/callback/
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/views.py", line 578, in oauth2_callback
+    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+                                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/utils.py", line 896, in fetch_token_by_code
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Not Found: /favicon.ico
+Error en /oauth2/callback/: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/views.py", line 578, in oauth2_callback
+    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+                                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/utils.py", line 896, in fetch_token_by_code
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Internal Server Error: /oauth2/callback/
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/views.py", line 578, in oauth2_callback
+    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+                                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/utils.py", line 896, in fetch_token_by_code
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Error en /oauth2/callback/: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/views.py", line 578, in oauth2_callback
+    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+                                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/utils.py", line 896, in fetch_token_by_code
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Internal Server Error: /oauth2/callback/
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/views.py", line 578, in oauth2_callback
+    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
+                                           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/gpt4/utils.py", line 896, in fetch_token_by_code
+    resp.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/requests/models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 401 Client Error: Unauthorized for url: https://simulator-api.db.com:443/gw/oidc/token
+Not Found: /favicon.ico

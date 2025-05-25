@@ -98,6 +98,8 @@ TEMPLATES = [
 # 4. DEBUG_TOOLBAR_SETTINGS (opcional, pero recomendado)
 INTERNAL_IPS = [
     '127.0.0.1',
+    '0.0.0.0',
+    'localhost',
     '192.168.0.143'
     # añade aquí la IP de tu máquina si usas Docker o VM
 ]
@@ -106,12 +108,17 @@ INTERNAL_IPS = [
 # DATABASES = {
 #     'default': dj_database_url.config(default=env('DATABASE_URL'))
 # }
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", default=False)
+CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=False)
 SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=False)
 
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
+print(f"🔧 Entorno activo: {DJANGO_ENV}")
+print(f"🔐 DEBUG={DEBUG} | SSL_REDIRECT={SECURE_SSL_REDIRECT} | COOKIE_SECURE={SESSION_COOKIE_SECURE}")
+
+
+
+
 X_FRAME_OPTIONS = 'DENY'
 
 # Seguridad reforzada
@@ -189,7 +196,7 @@ AUTH_URL = env('AUTH_URL')
 API_URL = env('API_URL')
 AUTHORIZE_URL = env('AUTHORIZE_URL')
 SCOPE = env('SCOPE')
-TIMEOUT_REQUEST = env('TIMEOUT_REQUEST')
+TIMEOUT_REQUEST = 3600
 
 ACCESS_TOKEN = env('ACCESS_TOKEN')
 
@@ -206,8 +213,8 @@ OAUTH2 = {
     'AUTHORIZE_URL': AUTHORIZE_URL,
     'SCOPE': SCOPE,
     'REDIRECT_URI': REDIRECT_URI,
-    'TIMEOUT': TIMEOUT_REQUEST,
-    
+    'TIMEOUT_REQUEST': 3600,
+
 }
 
 
@@ -246,6 +253,9 @@ LOGGING = {
 }
 
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+LOGOUT_REDIRECT_URL = '/login/'
+
 SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

@@ -26,6 +26,12 @@ d_local_long() {
 eval "$SHELL" -ic 'd_ssl'
 }
 
+unalias d_local_short 2>/dev/null
+d_local_short() {
+    bash ./01_full.sh --env=local -l -Q -I -r "$@"
+# eval "$SHELL" -ic 'd_ssl'
+}
+
 unalias d_local 2>/dev/null
 d_local() {
     bash ./01_full.sh --env=local -l -C -Z -S -M -x -Q -I -r "$@"
