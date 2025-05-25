@@ -51,7 +51,7 @@ d_heroku_long() {
 
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=heroku -L -C -Z -B -H -S -Y -P -D -M -x -u -Q -I -V -r "$@"
+    bash ./01_full.sh --env=heroku -l -C -Z -B -H -S -Y -P -D -M -x -Q -I -V "$@"
 }
 
 # 🛡 Producción Njalla con todo
