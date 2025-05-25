@@ -121,3 +121,6 @@ class DebtorDeleteView(DeleteView):
     model = Debtor
     template_name = 'api/core/debtor_confirm_delete.html'
     success_url = reverse_lazy('debtor-list')
+    
+
+

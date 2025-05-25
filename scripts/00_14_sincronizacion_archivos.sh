@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
+mkdir -p "$(dirname $LOG_DEPLOY)"
+
 PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 NJALLA_ROOT="$HOME/Documentos/GitHub/coretransapi"
@@ -41,7 +46,7 @@ EXCLUDES=(
 actualizar_django_env() {
     local destino="$1"
     echo "🧾 Ajustando DJANGO_ENV en __init__.py en $destino"
-    python3 <<EOF | tee -a "$LOG_FILE_SCRIPT"
+    python3 <<EOF | tee -a "$LOG_DEPLOY"
 import os
 settings_path = os.path.join("$destino", "config", "settings", "__init__.py")
 if os.path.exists(settings_path):

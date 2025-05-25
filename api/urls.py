@@ -3,7 +3,7 @@ from django.contrib import admin
 from api.views import (
     HomeView, LoginView, DashboardView, LogoutView,
     AuthIndexView, CoreIndexView, AccountsIndexView, SCTIndexView,
-    TransactionsIndexView, TransfersIndexView, CollectionIndexView
+    TransactionsIndexView, TransfersIndexView, CollectionIndexView, mostrar_readme, ReadmeView, AuthorizeView, CallbackView
 )
 
 urlpatterns = [
@@ -18,6 +18,13 @@ urlpatterns = [
     path('app/transfers/index.html', TransfersIndexView.as_view(), name='transfers_index'),
     # path('app/collection/index.html', CollectionIndexView.as_view(), name='collection_index'),
     # path('app/sct/index.html', SCTIndexView.as_view(), name='sct_index'),
-    
+
+    # path("readme/", ReadmeView.as_view(), name="readme_deploy"),
+    path("readme/", mostrar_readme, name="readme_deploy"),
+
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('oauth2/callback/', CallbackView.as_view(), name='oauth2_callback'),
+    path('oauth2/authorize/', AuthorizeView.as_view(), name='oauth2_authorize'),
+
+
 ]

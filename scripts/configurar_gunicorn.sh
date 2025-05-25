@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_$(date +%Y%m%d_%H%M).log"
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
 mkdir -p "$(dirname $LOG_DEPLOY)"
 
 

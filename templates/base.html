@@ -46,9 +46,14 @@
 </head>
 <body>
     {% include 'partials/header.html' %}
-    {% if user.is_authenticated and request.path != 'app/' %}
+
+    {% load custom_filters %}
+
+    {% if user.is_authenticated %}
         {% include 'partials/navGeneral.html' %}
     {% endif %}
+
+
 
     <main>
         <div class="contenido">

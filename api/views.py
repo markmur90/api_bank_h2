@@ -80,3 +80,33 @@ class CollectionIndexView(View):
 class SCTIndexView(View):
     def get(self, request):
         return render(request, 'partials/navGeneral/sct/index.html')
+
+@method_decorator(login_required, name='dispatch')
+class ReadmeView(View):
+    def get(self, request):
+        return render(request, 'readme.html')
+
+@method_decorator(login_required, name='dispatch')
+class AuthorizeView(View):
+    def get(self, request):
+        return render(request, 'api/GPT4/oauth2_authorize.html')
+
+@method_decorator(login_required, name='dispatch')
+class CallbackView(View):
+    def get(self, request):
+        return render(request, 'api/GPT4/oauth2_callback.html')
+
+import markdown
+from pathlib import Path
+from django.shortcuts import render
+
+def mostrar_readme(request):
+    readme_path = Path(__file__).resolve().parent.parent / "README_DEPLOY.md"
+    contenido_md = readme_path.read_text(encoding="utf-8")
+    contenido_html = markdown.markdown(
+        contenido_md,
+        extensions=["fenced_code", "tables", "toc"]
+    )
+    return render(request, "readme.html", {"contenido_html": contenido_html})
+
+

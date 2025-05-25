@@ -2,6 +2,7 @@
 set -euo pipefail
 
 clear
+TIME_SLEEP=0
 
 echo "🔐 Solicitando acceso sudo..."
 if sudo -v; then
@@ -47,7 +48,6 @@ INTERFAZ="wlan0"
 LOG_DIR="$PROJECT_ROOT/logs"
 LOG_FILE_SCRIPT="$LOG_DIR/full_deploy.log"
 STARTUP_LOG="$LOG_DIR/startup.log"
-
 
 
 
@@ -347,7 +347,7 @@ ejecutar_si_activo() {
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 
@@ -357,7 +357,7 @@ ejecutar_si_activo "DO_SYS" "Actualizar sistema" "bash $SCRIPTS_DIR/00_01_sistem
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 
@@ -366,7 +366,7 @@ ejecutar_si_activo "DO_ZIP_SQL" "Crear zip y sql" "bash $SCRIPTS_DIR/00_02_zip_b
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 
@@ -375,7 +375,7 @@ ejecutar_si_activo "DO_PORTS" "Cerrar puertos" "bash $SCRIPTS_DIR/00_03_puertos.
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m----------------------------------------------CONTENEDORES---------------------------------------------\033[0m"
@@ -383,7 +383,7 @@ ejecutar_si_activo "DO_DOCKER" "Cerrar contenedores" "bash $SCRIPTS_DIR/00_04_co
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m-----------------------------------------------CAMBIO MAC----------------------------------------------\033[0m"
@@ -391,7 +391,7 @@ ejecutar_si_activo "DO_MAC" "Cambiar MAC" "bash $SCRIPTS_DIR/00_05_mac.sh"
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m--------------------------------------------------UFW--------------------------------------------------\033[0m"
@@ -399,7 +399,7 @@ ejecutar_si_activo "DO_UFW" "Configurar UFW" "bash $SCRIPTS_DIR/00_06_ufw.sh"
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m------------------------------------------------POSTGRES-----------------------------------------------\033[0m"
@@ -407,7 +407,7 @@ ejecutar_si_activo "DO_PGSQL" "Configurar PostgreSQL" "bash $SCRIPTS_DIR/00_07_p
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m----------------------------------------------MIGRACIONES----------------------------------------------\033[0m"
@@ -415,7 +415,7 @@ ejecutar_si_activo "DO_MIG" "Ejecutar migraciones" "bash $SCRIPTS_DIR/00_08_migr
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 
@@ -424,7 +424,7 @@ ejecutar_si_activo "DO_RUN_LOCAL" "Subir bdd_local" "bash $SCRIPTS_DIR/00_09_car
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m------------------------------------------------USUARIO------------------------------------------------\033[0m"
@@ -432,7 +432,7 @@ ejecutar_si_activo "DO_USER" "Crear Super Usuario" "bash $SCRIPTS_DIR/00_10_usua
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m--------------------------------------------RESPALDOS LOCAL--------------------------------------------\033[0m"
@@ -440,7 +440,7 @@ ejecutar_si_activo "DO_JSON_LOCAL" "Crear respaldo JSON local" "bash $SCRIPTS_DI
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m------------------------------------------------PEM JWKS-----------------------------------------------\033[0m"
@@ -448,7 +448,7 @@ ejecutar_si_activo "DO_PEM" "Generar PEM JWKS" "bash $SCRIPTS_DIR/00_12_pem.sh"
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m----------------------------------------VERIFICAR TRANSFERENCIAS---------------------------------------\033[0m"
@@ -456,7 +456,7 @@ ejecutar_si_activo "DO_VERIF_TRANSF" "Verificar Transferencias" "bash $SCRIPTS_D
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m----------------------------------------SINCRONIZACION COMPLETA----------------------------------------\033[0m"
@@ -464,7 +464,7 @@ ejecutar_si_activo "DO_SYNC_LOCAL" "Sincronizar Archivos Locales" "bash $SCRIPTS
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 verificar_vpn_segura
@@ -477,7 +477,7 @@ echo ""
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m---------------------------------------------SUBIR A HEROKU--------------------------------------------\033[0m"
@@ -485,7 +485,7 @@ ejecutar_si_activo "DO_HEROKU" "Subir el proyecto a la web" "bash $SCRIPTS_DIR/0
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m-----------------------------------------SINCRONIZACION BDD WEB----------------------------------------\033[0m"
@@ -493,7 +493,7 @@ ejecutar_si_activo "DO_SYNC_REMOTE_DB" "Sincronizar BDD Remota" "bash $SCRIPTS_D
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m-----------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI----------------------------------\033[0m"
@@ -501,7 +501,7 @@ ejecutar_si_activo "DO_DEPLOY_VPS" "Desplegar en VPS" "bash $SCRIPTS_DIR/00_18_d
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 # UNO POR HORA
@@ -510,7 +510,7 @@ ejecutar_si_activo "DO_CLEAN" "Limpiar respaldos" "bash $SCRIPTS_DIR/00_19_borra
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m------------------------------------------------- SSL -------------------------------------------------\033[0m"
@@ -518,7 +518,7 @@ ejecutar_si_activo "DO_CERT" "Generar Certificado" "bash $SCRIPTS_DIR/00_20_ssl.
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m-----------------------------------------ENTORNO LOCAL CON SSL----------------------------------------\033[0m"
@@ -530,7 +530,7 @@ ejecutar_si_activo "DO_LOCAL_SSL" "Iniciar entorno local con Gunicorn + SSL" "ba
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 echo -e "\033[7;33m----------------------------------------------- GUNICORN ----------------------------------------------\033[0m"
@@ -538,7 +538,7 @@ ejecutar_si_activo "DO_GUNICORN" "Iniciar Gunicorn, honeypot y livereload" "bash
 echo ""
 echo ""
 echo ""
-sleep 1
+sleep "$TIME_SLEEP"
 # clear
 
 URL_LOCAL="http://localhost:5000"

@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_$(date +%Y%m%d_%H%M).log"
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
 mkdir -p "$(dirname $LOG_DEPLOY)"
 
 
@@ -27,19 +27,18 @@ SECURE_SSL_REDIRECT=True \
 ALLOWED_HOSTS=apibank2-d42d7ed0d036.herokuapp.com,api.coretransapi.com \
 PRIVATE_KEY_KID="98a7f5c0-a4fb-4a1a-8b1d-ce5437e14a08" \
 PRIVATE_KEY_PATH=/app/schemas/keys/ecdsa_private_key.pem \
-CLIENT_ID="tu-client-id-heroku" \
-CLIENT_SECRET="tu-client-secret-heroku" \
+CLIENT_ID="766ae693-6297-47ea-b825-fd3d07dcf9b6" \
+CLIENT_SECRET="CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ" \
 ORIGIN="https://api.db.com" \
 TOKEN_URL="https://simulator-api.db.com:443/gw/dbapi/token" \
-OTP_URL="REEMPLAZAR_OTP_URL" \
+OTP_URL="https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single" \
 AUTH_URL="https://simulator-api.db.com:443/gw/dbapi/authorize" \
 API_URL="https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer" \
-AUTHORIZE_URL="REEMPLAZAR_AUTHORIZE_URL" \
+AUTHORIZE_URL="https://simulator-api.db.com:443/gw/oidc/authorize" \
 SCOPE="sepa_credit_transfers" \
 TIMEOUT_REQUEST=3600 \
-ACCESS_TOKEN="REEMPLAZAR_ACCESS_TOKEN" \
-JWT_SIGNING_KEY="REEMPLAZAR_JWT_SIGNING_KEY" \
-JWT_VERIFYING_KEY="REEMPLAZAR_JWT_VERIFYING_KEY" \
+JWT_SIGNING_KEY="app/keys/secret.key" \
+JWT_VERIFYING_KEY="app/keys/secret.key" \
 --app apibank2
 
 heroku restart --app apibank2

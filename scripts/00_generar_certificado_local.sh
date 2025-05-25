@@ -2,6 +2,9 @@
 set -euo pipefail
 
 echo -e "\033[1;36m🔐 Generando certificado SSL local autofirmado...\033[0m"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_SISTEMA="$SCRIPT_DIR/logs/sistema/$(basename "$0" .sh)_.log"
+mkdir -p "$(dirname $LOG_SISTEMA)"
 
 CERT_DIR="./certs"
 CERT_KEY="$CERT_DIR/desarrollo.key"

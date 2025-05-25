@@ -441,7 +441,7 @@ def descargar_pdf(request, payment_id):
 
 
 # ==== OAUTH2 ====
-def oauth2_authorizeA(request):
+def oauth2_authorize(request):
     try:
         payment_id = request.GET.get('payment_id')
         if not payment_id:
@@ -486,7 +486,7 @@ def oauth2_authorizeA(request):
         messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
 
-def oauth2_callbackA(request):
+def oauth2_callback(request):
     try:
         if not request.session.get('oauth_in_progress', False):
             registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
@@ -557,14 +557,14 @@ def oauth2_callbackA(request):
         return render(request, 'api/GPT4/oauth2_callback.html')
 
 
-def oauth2_authorize(request):
+def oauth2_authorizeB(request):
     verifier, challenge = generate_pkce_pair()
     state = uuid.uuid4().hex
     request.session['pkce_verifier'] = verifier
     request.session['oauth_state'] = state
     return redirect(build_auth_url(state, challenge))
 
-def oauth2_callback(request):
+def oauth2_callbackB(request):
     error = request.GET.get('error')
     if error:
         messages.error(request, f"OAuth Error: {error}")

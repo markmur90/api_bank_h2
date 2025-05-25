@@ -125,12 +125,12 @@ Este archivo documenta el uso de funciones Bash para automatizar el despliegue, 
 
 ## 🧪 Ejemplos de Uso
 
-```bash
-d_local                         # Ejecuta entorno local completo + SSL
-d_local --dry-run -d            # Simulación en modo debug
-d_heroku --do-cert              # Heroku + certificados
-d_njalla -a                     # Producción Njalla con todos los pasos
-```
+| Comando               | Parámetros            | Descripción                                  |
+|-----------------------|-----------------------|----------------------------------------------|
+| `api`             | —                     | Abrir api_bank_h2         |
+| `BKapi`| —                     | Abrir api_bank_h2_BK                     |
+| `api_heroku`| —                     | Abrir api_bank_heroku                     |
+| `update`  | —                     | Actualizar sistema                        |
 
 ---
 

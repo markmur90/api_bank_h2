@@ -6,6 +6,9 @@ if [[ "$1" != "production" ]]; then
   exit 1
 fi
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
+mkdir -p "$(dirname $LOG_DEPLOY)"
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$BASE_DIR" || exit 1
@@ -22,17 +25,15 @@ VPS_IP="${VPS_IP:-80.78.30.188}"
 SSH_KEY="${SSH_KEY:-$HOME/.ssh/id_ed25519}"
 APP_DIR="${VPS_API_DIR:-/home/$VPS_USER/api_bank}"
 
-LOG_FILE="$LOG_DIR/master_run.log"
-mkdir -p "$LOG_DIR"
 
-log_info()  { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE"; }
-log_ok()    { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE"; }
-log_error() { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE"; }
+log_info()  { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_DEPLOY"; }
+log_ok()    { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_DEPLOY"; }
+log_error() { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_DEPLOY"; }
 
 log_info "🚀 Sincronizando proyecto api_bank_h2 al VPS ($VPS_IP)..."
 
 rsync -avz -e "ssh -i $SSH_KEY -o StrictHostKeyChecking=yes -o UserKnownHostsFile=$HOME/.ssh/known_hosts" \
-  "$PROJECT_ROOT/" "$VPS_USER@$VPS_IP:$APP_DIR" >> "$LOG_FILE" 2>&1
+  "$PROJECT_ROOT/" "$VPS_USER@$VPS_IP:$APP_DIR" >> "$LOG_DEPLOY" 2>&1
 
 log_ok "📦 Proyecto sincronizado en VPS: $APP_DIR"
 

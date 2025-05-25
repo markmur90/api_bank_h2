@@ -1732,7 +1732,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$1000000$3GJc1Dy0xBewZ2swLT079g$zDWw+FVcIx+JFsxK5WKVtY1NnqjCx1Q7OUaUS8JjZk8=",
-    "last_login": null,
+    "last_login": "2025-05-25T20:56:02.829Z",
     "is_superuser": true,
     "username": "493069k1",
     "first_name": "",
@@ -2127,6 +2127,63 @@
   "fields": {
     "app_label": "gpt4",
     "model": "transfer"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "7t0fqlvacwdnzquyph9gc23984vbd59l",
+  "fields": {
+    "session_data": ".eJxVjEEOwiAQRe_C2pBCgU5duvcMZAZmpGpoUtqV8e7apAvd_vfef6mI21ri1niJU1ZnZdTpdyNMD647yHest1mnua7LRHpX9EGbvs6Zn5fD_Tso2Mq3puA5QRJHI_EILB4s9IgwmM6AZwnZ9EEMJXBicRByyUvOtkNPKKDeHwT6OQE:1uJIO2:BskXowx2rZb_NfqddasP2e1bfb72BivEr5mC6xIp2Fw",
+    "expire_date": "2025-05-25T21:56:02.896Z"
+  }
+},
+{
+  "model": "gpt4.debtor",
+  "pk": 1,
+  "fields": {
+    "name": "Claudia Klar",
+    "customer_id": "10020400400079945",
+    "postal_address_country": "DE",
+    "postal_address_street": "Große Bockenheimer Straße 19",
+    "postal_address_city": "60311 Frankfurt",
+    "mobile_phone_number": "+49170123456"
+  }
+},
+{
+  "model": "gpt4.debtoraccount",
+  "pk": 1,
+  "fields": {
+    "debtor": 1,
+    "iban": "DE00500700100200040224",
+    "currency": "EUR"
+  }
+},
+{
+  "model": "gpt4.creditor",
+  "pk": 1,
+  "fields": {
+    "name": "Tom Winter",
+    "postal_address_country": "DE",
+    "postal_address_street": "Augsburger Strasse 14a",
+    "postal_address_city": "80337 München"
+  }
+},
+{
+  "model": "gpt4.creditoraccount",
+  "pk": 1,
+  "fields": {
+    "creditor": 1,
+    "iban": "DE00500700100200043574",
+    "currency": "EUR"
+  }
+},
+{
+  "model": "gpt4.creditoragent",
+  "pk": 1,
+  "fields": {
+    "bic": "DEUTDEFFXXX",
+    "financial_institution_id": "DEUTDEFFXXX",
+    "other_information": "Deutsche Bank"
   }
 }
 ]
