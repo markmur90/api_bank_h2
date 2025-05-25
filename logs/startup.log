@@ -1,0 +1,81 @@
+⚠️ Este script sólo debe ejecutarse en entorno de producción. Abortando.
+🛠 Instalando dependencias en VPS...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Obj:1 http://security.debian.org/debian-security bullseye-security InRelease
+Obj:2 http://http.kali.org/kali kali-rolling InRelease
+Obj:3 https://dl.winehq.org/wine-builds/debian bullseye InRelease
+Obj:4 https://repo.protonvpn.com/debian stable InRelease
+Obj:5 https://packages.microsoft.com/repos/code stable InRelease
+Obj:6 https://download.docker.com/linux/debian bookworm InRelease
+Obj:7 http://deb.debian.org/debian bullseye InRelease
+Obj:8 http://deb.debian.org/debian bullseye-updates InRelease
+Obj:9 http://deb.debian.org/debian bullseye-backports InRelease
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+Todos los paquetes están actualizados.
+Warning: https://packages.microsoft.com/repos/code/dists/stable/InRelease: Policy will reject signature within a year, see --audit for details
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+Calculando la actualización...
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 0
+📦 Instalando Python y herramientas esenciales...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+python3 ya está en su versión más reciente (3.13.3-1).
+python3-pip ya está en su versión más reciente (25.1.1+dfsg-1).
+python3-venv ya está en su versión más reciente (3.13.3-1).
+build-essential ya está en su versión más reciente (12.12).
+libpq-dev ya está en su versión más reciente (17.5-1).
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 0
+🐘 Instalando PostgreSQL y cliente...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+postgresql ya está en su versión más reciente (17+264).
+postgresql-contrib ya está en su versión más reciente (17+264).
+postgresql-client ya está en su versión más reciente (17+264).
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 0
+🧱 Instalando Nginx y herramientas de red...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+nginx ya está en su versión más reciente (1.26.3-2).
+curl ya está en su versión más reciente (8.13.0-5).
+git ya está en su versión más reciente (1:2.47.2-0.1).
+ufw ya está en su versión más reciente (0.36.2-9).
+fail2ban ya está en su versión más reciente (1.1.0-8).
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 0
+🔐 Instalando Certbot para SSL...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+certbot ya está en su versión más reciente (2.11.0-1.1).
+python3-certbot-nginx ya está en su versión más reciente (2.9.0-1).
+Summary:
+  Upgrading: 0, Installing: 0, Removing: 0, Not Upgrading: 0
+✅ Dependencias instaladas correctamente.
+⚠️ Este script sólo debe ejecutarse en entorno de producción. Abortando.
