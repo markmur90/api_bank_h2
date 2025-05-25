@@ -1,0 +1,135 @@
+# DATOS DEUTSCHE
+
+Client_ID: c40cd522-3d41-456d-a699-921e0573495b
+Secret Client: CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ
+Authorization_Code
+Enforce_PKCE
+
+## USERS
+
+Name: Claudia Klar
+postal_address_country: DE
+postal_address_street: Große Bockenheimer Straße 19
+postal_address_city: 60311 Frankfurt
+IBAN: DE00500700100200040224
+Currency Code: EUR
+BIC: DEUTDEFFXXX
++49170123456
+ClaudiaKlar@example.com
+SecurityAccountID: 100204004000
+10020400400079945
+otpauth://totp/gluesim:100204004000001?secret=7G3DC4GV4J2YFPDS
+
+
+Name:  Tom Winter
+postal_address_country: DE
+postal_address_street: Augsburger Strasse 14a
+postal_address_city: 80337 München
+IBAN: DE00500700100200043574
+
+Currency Code: EUR
+BIC: DEUTDEFFXXX
+FKN+PIN: 10020433900062128
+OTP: otpauth://totp/gluesim:100204339000001?secret=6RIVNEFU2WWBXCMV
+
+Counterparty IBAN: DE10010000000000022137
+Transaction Code: 123
+Domain Code: BFWA
+Family Code: CCRD
+Sub Family Code: CWDL
+
+## CUENTA PROPIA
+
+Lo siento, algo salió mal.Vuelva a intentarlo más tarde o comuníquese con nosotros.
+v
+
+## BDD POSTGRES
+
+Usuario: ue2erdhkle4v0h
+Contraseña: pa1773a2b68d739e66a794acd529d1b60c016733f35be6884a9f541365d5922cf
+Servidor (host): ec2-63-33-30-239.eu-west-1.compute.amazonaws.com
+Puerto: 5432
+Base de datos: d9vb99r9t1m7kt
+
+USERS DEMO
+
+10020400400079945
+
+Edit: 
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/{payment_id}/edit/
+
+Create: 
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/create/
+
+Send: 
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/{payment_id}/send/
+
+SCA: 
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/{payment_id}/sca/
+
+Detail: 
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/{payment_id}/
+
+https://api-bank-2-749ee30aca65.herokuapp.com/dashboard/
+
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/oauth2/callback/
+
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/oauth2/authorize/
+
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/
+
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/{payment_id}/
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/{payment_id}/sca/
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/{payment_id}/send/
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/create/
+https://api-bank-2-749ee30aca65.herokuapp.com/app/gpt4/transfers/{payment_id}/edit/
+
+https://api-bank-2-749ee30aca65.herokuapp.com
+
+
+sudo certbot certonly --standalone -d api-bank-2-749ee30aca65.herokuapp.com
+
+
+Host
+    c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com
+Database
+    dd3ico8cqsq6ra
+User
+    u5n97bps7si3fm
+Port
+    5432
+Password
+    pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0
+URI
+    postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra
+Heroku CLI
+    heroku pg:psql postgresql-fluffy-83539 --app api-bank-2
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICWAIdCwqHwQdrsRj3h0Ggijau2QzuzUVsMk3d+F5nu8 markmur90@proton.me
+
+API_KEY = HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
+
+
+
+
+
+https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/
+https://apibank2-d42d7ed0d036.herokuapp.com/login/
+https://apibank2-d42d7ed0d036.herokuapp.com/dashboard/
+https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/authorize/
+
+https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/
+
+
+
+🔐 Solicitando acceso sudo...
+🌍 Entorno cargado desde .env
+============================= VARIABLES ACTUALES =============================
+INTERFAZ            =       wlan0
+SCRIPTS_DIR         =       $PROJECT_ROOT/scripts
+PRIVATE_KEY_PATH    =       $PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem
+SERVERS_DIR         =       $PROJECT_ROOT/servers
+CACHE_DIR           =       $PROJECT_ROOT/tmp
+PROJECT_ROOT        =       $HOME/Documentos/GitHub/api_bank_h2
+LOG_DIR             =       $PROJECT_ROOT/logs
+==============================================================================
