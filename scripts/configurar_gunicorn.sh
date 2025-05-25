@@ -1,7 +1,12 @@
 #!/bin/bash
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_$(date +%Y%m%d_%H%M).log"
+mkdir -p "$(dirname $LOG_DEPLOY)"
+
+
 set -e
-echo "⚙️ Configurando Gunicorn para dominio api.coretransapi.com..."
+echo "⚙️ Configurando Gunicorn para dominio api.coretransapi.com..." | tee -a $LOG_DEPLOY
 
 # Rutas
 PROJECT_NAME="api_bank_h2"
@@ -14,7 +19,7 @@ SERVICE_DIR="/etc/systemd/system"
 SUPERVISOR_CONF="${PROJECT_DIR}/servers/supervisor/conf.d/${PROJECT_NAME}.conf"
 
 # 1. Crear archivo gunicorn.socket
-echo "📦 Creando gunicorn.socket..."
+echo "📦 Creando gunicorn.socket..." | tee -a $LOG_DEPLOY
 cat > "${GUNICORN_DIR}/gunicorn.socket" <<EOF
 [Unit]
 Description=Gunicorn Socket for ${PROJECT_NAME}
@@ -31,7 +36,7 @@ WantedBy=sockets.target
 EOF
 
 # 2. Crear archivo gunicorn.service
-echo "📦 Creando gunicorn.service..."
+echo "📦 Creando gunicorn.service..." | tee -a $LOG_DEPLOY
 cat > "${GUNICORN_DIR}/gunicorn.service" <<EOF
 [Unit]
 Description=Gunicorn Daemon for ${PROJECT_NAME}
@@ -54,42 +59,42 @@ WantedBy=multi-user.target
 EOF
 
 # 3. Copiar servicios a systemd
-echo "🔄 Copiando servicios a ${SERVICE_DIR}..."
+echo "🔄 Copiando servicios a ${SERVICE_DIR}..." | tee -a $LOG_DEPLOY
 sudo cp "${GUNICORN_DIR}/gunicorn."* "${SERVICE_DIR}/"
 
 # 4. Recargar systemd y habilitar servicios
-echo "🧠 Recargando systemd..."
+echo "🧠 Recargando systemd..." | tee -a $LOG_DEPLOY
 sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
 
-echo "🚀 Habilitando y lanzando Gunicorn vía socket..."
+echo "🚀 Habilitando y lanzando Gunicorn vía socket..." | tee -a $LOG_DEPLOY
 sudo systemctl enable --now gunicorn.socket
 sudo systemctl start gunicorn.service
 
 # 5. Validar socket
 if sudo ss -ltn | grep -q "${SOCK_FILE}"; then
-    echo "✅ Socket creado correctamente en ${SOCK_FILE}"
+    echo "✅ Socket creado correctamente en ${SOCK_FILE}" | tee -a $LOG_DEPLOY
 else
-    echo "❌ Error: el socket no fue creado." >&2
+    echo "❌ Error: el socket no fue creado." >&2 | tee -a $LOG_DEPLOY
     exit 1
 fi
 
 # 6. Verificar configuración de Nginx
-echo "🔍 Verificando configuración de Nginx..."
+echo "🔍 Verificando configuración de Nginx..." | tee -a $LOG_DEPLOY
 if sudo nginx -t; then
-    echo "✅ nginx.conf válido. Reiniciando Nginx..."
+    echo "✅ nginx.conf válido. Reiniciando Nginx..." | tee -a $LOG_DEPLOY
     sudo systemctl restart nginx
 else
-    echo "❌ nginx.conf con errores. Revisa manualmente." >&2
+    echo "❌ nginx.conf con errores. Revisa manualmente." >&2 | tee -a $LOG_DEPLOY
     exit 1
 fi
 
 # 7. Eliminar configuración previa de Supervisor (si existe)
 if [[ -f "$SUPERVISOR_CONF" ]]; then
-    echo "🧹 Eliminando antigua configuración de Supervisor para Gunicorn..."
+    echo "🧹 Eliminando antigua configuración de Supervisor para Gunicorn..." | tee -a $LOG_DEPLOY
     rm -f "$SUPERVISOR_CONF"
     if command -v supervisorctl &>/dev/null; then
-        echo "🛑 Deteniendo proceso supervisado..."
+        echo "🛑 Deteniendo proceso supervisado..." | tee -a $LOG_DEPLOY
         supervisorctl stop "${PROJECT_NAME}" || true
         supervisorctl reread
         supervisorctl update
@@ -97,5 +102,5 @@ if [[ -f "$SUPERVISOR_CONF" ]]; then
 fi
 
 # 8. Confirmación final
-echo "🎉 Gunicorn y Nginx configurados correctamente con systemd y socket UNIX."
-echo "🌐 Visita: https://api.coretransapi.com"
+echo "🎉 Gunicorn y Nginx configurados correctamente con systemd y socket UNIX." | tee -a $LOG_DEPLOY
+echo "🌐 Visita: https://api.coretransapi.com" | tee -a $LOG_DEPLOY

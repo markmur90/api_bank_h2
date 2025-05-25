@@ -348,3 +348,50 @@ bound to 192.168.0.170 -- renewal in 42023 seconds.
 🧭 IP Tor anterior : 109.70.100.70
 🛰️ IP Tor actual   : 64.190.76.2
 =========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+Killed old client process
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/4a:1d:08:40:a5:f2
+Sending on   LPF/wlan0/4a:1d:08:40:a5:f2
+Sending on   Socket/fallback
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 4
+DHCPOFFER of 192.168.0.170 from 192.168.0.1
+DHCPREQUEST for 192.168.0.170 on wlan0 to 255.255.255.255 port 67
+DHCPREQUEST for 192.168.0.170 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.170 from 192.168.0.1
+Error: ipv4: Address already assigned.
+bound to 192.168.0.170 -- renewal in 37816 seconds.
+⚠ IP no ha cambiado tras el primer intento. Reintentando...
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/f6:b1:03:7e:de:a9
+Sending on   LPF/wlan0/f6:b1:03:7e:de:a9
+Sending on   Socket/fallback
+DHCPREQUEST for 192.168.0.170 on wlan0 to 255.255.255.255 port 67
+DHCPREQUEST for 192.168.0.170 on wlan0 to 255.255.255.255 port 67
+DHCPNAK from 192.168.0.1
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 6
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 9
+DHCPOFFER of 192.168.0.171 from 192.168.0.1
+DHCPREQUEST for 192.168.0.171 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.171 from 192.168.0.1
+bound to 192.168.0.171 -- renewal in 42261 seconds.
+
+=========================================
+📅 Fecha           : 2025-05-25 12:20:14
+🛰️ Interfaz        : wlan0
+🧭 MAC anterior    : 22:44:f4:87:c9:a2
+✨ MAC actual      : f6:b1:03:7e:de:a9
+🧭 IP anterior     : 192.168.0.170
+🛰️ IP actual       : 192.168.0.171
+🧭 IP Tor anterior : 185.42.170.203
+🛰️ IP Tor actual   : 109.70.100.6
+=========================================

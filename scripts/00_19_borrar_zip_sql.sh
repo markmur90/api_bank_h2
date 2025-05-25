@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo -e "\033[7;30mLimpiando respaldos antiguos...\033[0m"
-echo ""
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_BACKUP="$SCRIPT_DIR/logs/backup/$(basename "$0" .sh)_$(date +%Y%m%d_%H%M).log"
+mkdir -p "$(dirname $LOG_BACKUP)"
+
+
+echo -e "\033[7;30mLimpiando respaldos antiguos...\033[0m" | tee -a $LOG_BACKUP
+echo "" | tee -a $LOG_BACKUP
 
 limpiar_respaldo_por_hora() {
     local DIR="$1"
@@ -26,8 +31,8 @@ limpiar_respaldo_por_hora() {
     for f in "${files[@]}"; do
         if [[ -z "${keep[$f]:-}" ]]; then 
             rm -f "$f" && echo -e "\033[7;30m🗑️ Eliminado $f.\033[0m"
-            echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-            echo ""
+            echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_BACKUP
+            echo "" | tee -a $LOG_BACKUP
         fi
     done
 

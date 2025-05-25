@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_$(date +%Y%m%d_%H%M).log"
+mkdir -p "$(dirname $LOG_DEPLOY)"
+
+
+echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m" | tee -a $LOG_DEPLOY
 LOCAL_DB_NAME="mydatabase"
 LOCAL_DB_USER="markmur88"
 LOCAL_DB_HOST="localhost"
@@ -16,22 +21,22 @@ BACKUP_DIR="$HOME/Documentos/GitHub/backup/sql/"
 BACKUP_FILE="${BACKUP_DIR}backup_${DATE}.sql"
 
 if ! command -v pv > /dev/null 2>&1; then
-    echo "⚠️ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv"
+    echo "⚠️ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv" | tee -a $LOG_DEPLOY
     exit 1
 fi
-echo -e "\033[7;30m🧹 Reseteando base de datos remota...\033[0m"
+echo -e "\033[7;30m🧹 Reseteando base de datos remota...\033[0m" | tee -a $LOG_DEPLOY
 psql "$REMOTE_DB_URL" -q -c "DROP SCHEMA public CASCADE; CREATE SCHEMA public;" || { echo "❌ Error al resetear la DB remota. Abortando."; exit 1; }
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-echo ""
-echo -e "\033[7;30m📦 Generando backup local...\033[0m"
+echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
+echo "" | tee -a $LOG_DEPLOY
+echo -e "\033[7;30m📦 Generando backup local...\033[0m" | tee -a $LOG_DEPLOY
 pg_dump --no-owner --no-acl -U "$LOCAL_DB_USER" -h "$LOCAL_DB_HOST" -d "$LOCAL_DB_NAME" > "$BACKUP_FILE" || { echo "❌ Error haciendo el backup local. Abortando."; exit 1; }
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-echo ""
-echo -e "\033[7;30m🌐 Importando backup en la base de datos remota...\033[0m"
+echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
+echo "" | tee -a $LOG_DEPLOY
+echo -e "\033[7;30m🌐 Importando backup en la base de datos remota...\033[0m" | tee -a $LOG_DEPLOY
 pv "$BACKUP_FILE" | psql "$REMOTE_DB_URL" -q > /dev/null || { echo "❌ Error al importar el backup en la base de datos remota."; exit 1; }
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-echo ""
-echo -e "\033[7;30m✅ Sincronización completada con éxito: $BACKUP_FILE"
+echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
+echo "" | tee -a $LOG_DEPLOY
+echo -e "\033[7;30m✅ Sincronización completada con éxito: $BACKUP_FILE" | tee -a $LOG_DEPLOY
 export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
-echo ""
+echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
+echo "" | tee -a $LOG_DEPLOY
