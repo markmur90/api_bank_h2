@@ -6,40 +6,40 @@ Copyright 2004-2022 Internet Systems Consortium.
 All rights reserved.
 For info, please visit https://www.isc.org/software/dhcp/
 
-Listening on LPF/wlan0/56:48:96:f2:17:c9
-Sending on   LPF/wlan0/56:48:96:f2:17:c9
+Listening on LPF/wlan0/5a:b8:ac:50:7f:3d
+Sending on   LPF/wlan0/5a:b8:ac:50:7f:3d
 Sending on   Socket/fallback
-DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 3
-DHCPOFFER of 192.168.0.175 from 192.168.0.1
-DHCPREQUEST for 192.168.0.175 on wlan0 to 255.255.255.255 port 67
-DHCPACK of 192.168.0.175 from 192.168.0.1
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 4
+DHCPOFFER of 192.168.0.176 from 192.168.0.1
+DHCPREQUEST for 192.168.0.176 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.176 from 192.168.0.1
 Error: ipv4: Address already assigned.
-bound to 192.168.0.175 -- renewal in 37977 seconds.
+bound to 192.168.0.176 -- renewal in 32482 seconds.
 ⚠ IP no ha cambiado tras el primer intento. Reintentando...
 Internet Systems Consortium DHCP Client 4.4.3-P1
 Copyright 2004-2022 Internet Systems Consortium.
 All rights reserved.
 For info, please visit https://www.isc.org/software/dhcp/
 
-Listening on LPF/wlan0/6e:14:59:b9:d4:38
-Sending on   LPF/wlan0/6e:14:59:b9:d4:38
+Listening on LPF/wlan0/8a:86:92:96:64:46
+Sending on   LPF/wlan0/8a:86:92:96:64:46
 Sending on   Socket/fallback
-DHCPREQUEST for 192.168.0.175 on wlan0 to 255.255.255.255 port 67
-DHCPREQUEST for 192.168.0.175 on wlan0 to 255.255.255.255 port 67
-DHCPNAK from 192.168.0.1
-DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 3
-DHCPOFFER of 192.168.0.176 from 192.168.0.1
 DHCPREQUEST for 192.168.0.176 on wlan0 to 255.255.255.255 port 67
-DHCPACK of 192.168.0.176 from 192.168.0.1
-bound to 192.168.0.176 -- renewal in 38567 seconds.
+DHCPREQUEST for 192.168.0.176 on wlan0 to 255.255.255.255 port 67
+DHCPNAK from 192.168.0.1
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 5
+DHCPOFFER of 192.168.0.177 from 192.168.0.1
+DHCPREQUEST for 192.168.0.177 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.177 from 192.168.0.1
+bound to 192.168.0.177 -- renewal in 39454 seconds.
 
 =========================================
-📅 Fecha           : 2025-05-25 23:47:27
+📅 Fecha           : 2025-05-25 23:57:53
 🛰️ Interfaz        : wlan0
-🧭 MAC anterior    : c6:44:db:56:68:a1
-✨ MAC actual      : 6e:14:59:b9:d4:38
-🧭 IP anterior     : 192.168.0.175
-🛰️ IP actual       : 192.168.0.176
-🧭 IP Tor anterior : 185.220.101.21
-🛰️ IP Tor actual   : 109.70.100.65
+🧭 MAC anterior    : 6e:14:59:b9:d4:38
+✨ MAC actual      : 8a:86:92:96:64:46
+🧭 IP anterior     : 192.168.0.176
+🛰️ IP actual       : 192.168.0.177
+🧭 IP Tor anterior : 45.90.185.108
+🛰️ IP Tor actual   : 185.246.188.74
 =========================================

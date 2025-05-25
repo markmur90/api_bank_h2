@@ -3,7 +3,7 @@ set -euo pipefail
 
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_BACKUP="$SCRIPT_DIR/logs/sistema/$(basename "$0" .sh)_.log"
+LOG_BACKUP="$SCRIPT_DIR/logs/backup/$(basename "$0" .sh)_.log"
 mkdir -p "$(dirname $LOG_BACKUP)"
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
