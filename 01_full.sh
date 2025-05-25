@@ -522,6 +522,10 @@ sleep 1
 # clear
 
 echo -e "\033[7;33m-----------------------------------------ENTORNO LOCAL CON SSL----------------------------------------\033[0m"
+if [[ "$DO_LOCAL_SSL" == true && "$DO_GUNICORN" == true ]]; then
+    echo -e "\033[1;31m❌ No puedes ejecutar DO_LOCAL_SSL y DO_GUNICORN al mismo tiempo.\033[0m"
+    exit 1
+fi
 ejecutar_si_activo "DO_LOCAL_SSL" "Iniciar entorno local con Gunicorn + SSL" "bash $SCRIPTS_DIR/00_21_local_ssl.sh"
 echo ""
 echo ""

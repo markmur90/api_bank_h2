@@ -7,7 +7,7 @@ VENV_PATH="$HOME/Documentos/Entorno/envAPP"
 SCRIPTS_DIR="$PROJECT_ROOT/scripts"
 LOG_DIR="$PROJECT_ROOT/logs"
 CACHE_DIR="$PROJECT_ROOT/tmp"
-STARTUP_LOG="$LOG_DIR/startup_gunicorn.log"
+nohup STARTUP_LOG="$LOG_DIR/startup_gunicorn.log" > logs/gunicorn_default.log 2>&1 &
 
 mkdir -p "$LOG_DIR" "$CACHE_DIR"
 
@@ -32,7 +32,7 @@ liberar_puertos() {
 
 limpiar_y_salir() {
     echo -e "\n\033[1;33m🧹 Deteniendo todos los servicios...\033[0m"
-    pkill -f "gunicorn" &>/dev/null || true
+nohup pkill -f "gunicorn" &>/dev/null || true > logs/gunicorn_default.log 2>&1 &
     pkill -f "honeypot.py" &>/dev/null || true
     pkill -f "livereload" &>/dev/null || true
     [ -n "${FIREFOX_PID:-}" ] && kill "$FIREFOX_PID" 2>/dev/null || true
@@ -72,7 +72,7 @@ iniciar_entorno
 
 echo -e "\n🔧 Configurando Gunicorn con systemd...\n"
 {
-    bash "${SCRIPTS_DIR}/configurar_gunicorn.sh"
+nohup bash "${SCRIPTS_DIR}/configurar_gunicorn.sh" > logs/gunicorn_default.log 2>&1 &
     echo -e "✅ Gunicorn configurado correctamente.\n"
 } >> "$STARTUP_LOG" 2>&1 || {
     echo -e "\033[1;31m❌ Error al configurar Gunicorn. Consulta $STARTUP_LOG\033[0m"

@@ -22,6 +22,9 @@ EXCLUDES=(
     # "--exclude=bdd_local.json"
     "--exclude=config_master.py"
     "--exclude=gunicorn.log"
+    "--exclude=base0.py"
+    "--exclude=local_old.py"
+    "--exclude=production_old.py"
     "--exclude=honey*"
     "--exclude=livereload.log"
     "--exclude=master.sh"
@@ -30,7 +33,7 @@ EXCLUDES=(
     "--exclude=post_install_coretransapi.sh"
     "--exclude=setup_coretransact.sh"
     "--exclude=sync.sh"
-    "--exclude=config/"
+    # "--exclude=config/"
 
 
 )

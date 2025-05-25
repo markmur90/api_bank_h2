@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework.authtoken',
     'markdownify',
+    'sslserver',
 
     'api.transfers',
     'api.core',
@@ -106,7 +107,9 @@ INTERNAL_IPS = [
 #     'default': dj_database_url.config(default=env('DATABASE_URL'))
 # }
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-SECURE_SSL_REDIRECT = True
+
+SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=False)
+
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 X_FRAME_OPTIONS = 'DENY'
@@ -174,9 +177,40 @@ OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 REDIRECT_URI="https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/"
 
+
+CLIENT_ID = env('CLIENT_ID')
+CLIENT_SECRET = env('CLIENT_SECRET')
+
+ORIGIN = env('ORIGIN')
+
+TOKEN_URL = env('TOKEN_URL')
+OTP_URL = env('OTP_URL')
+AUTH_URL = env('AUTH_URL')
+API_URL = env('API_URL')
+AUTHORIZE_URL = env('AUTHORIZE_URL')
+SCOPE = env('SCOPE')
+TIMEOUT_REQUEST = env('TIMEOUT_REQUEST')
+
+ACCESS_TOKEN = env('ACCESS_TOKEN')
+
+
 OAUTH2 = {
+    'CLIENT_ID': CLIENT_ID,
+    'CLIENT_SECRET': CLIENT_SECRET,
+    'ACCESS_TOKEN': ACCESS_TOKEN,
+    'ORIGIN': ORIGIN,
+    'OTP_URL': OTP_URL,
+    'AUTH_URL': AUTH_URL,
+    'API_URL': API_URL,
+    'TOKEN_URL': TOKEN_URL,
+    'AUTHORIZE_URL': AUTHORIZE_URL,
+    'SCOPE': SCOPE,
     'REDIRECT_URI': REDIRECT_URI,
+    'TIMEOUT': TIMEOUT_REQUEST,
+    
 }
+
+
 
 
 SIMPLE_JWT = {

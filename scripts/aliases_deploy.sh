@@ -25,10 +25,11 @@ d_local_long() {
     bash ./01_full.sh --env=local --do-sys --do-zip --do-ports --do-docker --do-mac --do-ufw --do-clean --do-json-local --do-sync-local --do-sync-remote-db --do-run_local --do-user --do-run-web --do-pem --do-heroku --do-varher --do-verif-transf --do-deploy-vps --do-local-ssl "$@"
 eval "$SHELL" -ic 'd_ssl'
 }
+
 unalias d_local 2>/dev/null
 d_local() {
-    bash ./01_full.sh --env=local -P -D -M -x -C -Z -Q -I -L -S -V -p -u -H -B -E "$@"
-eval "$SHELL" -ic 'd_ssl'
+    bash ./01_full.sh --env=local -l -C -Z -S -M -x -Q -I -r "$@"
+# eval "$SHELL" -ic 'd_ssl'
 }
 
 # 🔒 Local con modo dry-run (solo pruebas)
@@ -36,6 +37,7 @@ unalias d_local_dry_long 2>/dev/null
 d_local_dry_long() {
     bash ./01_full.sh --env=local --dry-run --do-sys --do-zip --do-clean --do-json-local --do-sync-local --do-user --do-run-web "$@"
 }
+
 unalias d_local_dry 2>/dev/null
 d_local_dry() {
     bash ./01_full.sh --env=local --dry-run -P -C -Q -I -U -V "$@"
@@ -46,9 +48,10 @@ unalias d_heroku_long 2>/dev/null
 d_heroku_long() {
     bash ./01_full.sh --env=heroku --do-sys --do-zip --do-clean --do-heroku --do-user --do-run-web --do-pem --do-ufw "$@"
 }
+
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=heroku -P -C -u -U -V -p -x "$@"
+    bash ./01_full.sh --env=heroku -L -C -Z -B -H -S -Y -P -D -M -x -u -Q -I -V -r "$@"
 }
 
 # 🛡 Producción Njalla con todo
