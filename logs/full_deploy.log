@@ -13680,3 +13680,45 @@ ALTER TABLE ONLY public.transfers_sepa3
 ⚠️ No se encontró DJANGO_ENV='local' para actualizar.
 [1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
 [1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;34m[INFO] 🧾 Ajustando DJANGO_ENV en __init__.py en /home/markmur88/Documentos/GitHub/api_bank_heroku[0m
+⚠️ No se encontró DJANGO_ENV='local' para actualizar.
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;34m[INFO] 🧾 Ajustando DJANGO_ENV en __init__.py en /home/markmur88/Documentos/GitHub/api_bank_heroku[0m
+⚠️ No se encontró DJANGO_ENV='local' para actualizar.
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;34m[INFO] 🧾 Ajustando DJANGO_ENV en __init__.py en /home/markmur88/Documentos/GitHub/api_bank_heroku[0m
+⚠️ No se encontró DJANGO_ENV='local' para actualizar.
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;34m[INFO] 🧾 Ajustando DJANGO_ENV en __init__.py en /home/markmur88/Documentos/GitHub/api_bank_heroku[0m
+⚠️ No se encontró DJANGO_ENV='local' para actualizar.
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;34m[INFO] 🧾 Ajustando DJANGO_ENV en __init__.py en /home/markmur88/Documentos/GitHub/api_bank_heroku[0m
+⚠️ No se encontró DJANGO_ENV='local' para actualizar.
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;34m[INFO] 🧾 Ajustando DJANGO_ENV en __init__.py en /home/markmur88/Documentos/GitHub/api_bank_heroku[0m
+⚠️ No se encontró DJANGO_ENV='local' para actualizar.
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;34m[INFO] 🧾 Ajustando DJANGO_ENV en __init__.py en /home/markmur88/Documentos/GitHub/api_bank_heroku[0m
+⚠️ No se encontró DJANGO_ENV='local' para actualizar.
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
+[1;32m[OK]   VPN (proton0) activa. Conexión segura.[0m
+[1;32m[OK]   ✔️ Configuración .env validada.[0m
