@@ -22,7 +22,8 @@ SECRET_KEY = env('SECRET_KEY')
 DEBUG      = env.bool('DEBUG', default=False)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 
-
+# REDIRECT_URI = 'https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/'
+REDIRECT_URI = env('REDIRECT_URI', default='https://0.0.0.0:8000/oauth2/callback/')
 
 
 # 4. Apps y middleware (sin cambios)
@@ -155,7 +156,6 @@ REST_FRAMEWORK = {
 
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
-REDIRECT_URI = 'https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/'
 
 ORIGIN = 'https://api.db.com'
 
