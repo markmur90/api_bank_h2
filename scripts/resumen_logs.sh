@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-LOG_FILE="./scripts/logs/01_full_deploy/${SCRIPT_NAME%.sh}_.log"
+LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
 echo -e "📊 Resumen de ejecución de scripts:"
 echo -e "═════════════════════════════════════════════════════════════════"
 printf "%-40s | %-19s | %-30s\n" "Script" "Fecha" "Último estado"
