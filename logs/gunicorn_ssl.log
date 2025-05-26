@@ -1,4 +1,42 @@
-[2025-05-26 21:21:01 +0200] [105829] [INFO] Starting gunicorn 23.0.0
-[2025-05-26 21:21:01 +0200] [105829] [INFO] Listening at: http://0.0.0.0:8000 (105829)
-[2025-05-26 21:21:01 +0200] [105829] [INFO] Using worker: sync
-[2025-05-26 21:21:01 +0200] [105843] [INFO] Booting worker with pid: 105843
+[2025-05-26 21:48:20 +0200] [131762] [INFO] Starting gunicorn 23.0.0
+[2025-05-26 21:48:20 +0200] [131762] [INFO] Listening at: http://0.0.0.0:8000 (131762)
+[2025-05-26 21:48:20 +0200] [131762] [INFO] Using worker: sync
+[2025-05-26 21:48:20 +0200] [131786] [INFO] Booting worker with pid: 131786
+Unauthorized: /login/
+Error en /signup/: signup.html
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/views.py", line 139, in signup_view
+    return render(request, "signup.html")
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: signup.html
+Internal Server Error: /signup/
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/decorators.py", line 192, in _view_wrapper
+    result = _process_exception(request, e)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/decorators.py", line 190, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/views.py", line 139, in signup_view
+    return render(request, "signup.html")
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: signup.html
+Not Found: /favicon.ico
