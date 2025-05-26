@@ -27,15 +27,15 @@ ad_local() {
 }
 unalias d_local 2>/dev/null
 d_local() {
-    bash ./01_full.sh --env=local -C -Z -S -Q -I -U "$@"
+    bash ./01_full.sh --env=local -C -Z -S -Q -I -l "$@"
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=production -C -Z -S -Q -I -U -u -H "$@"
+    bash ./01_full.sh --env=production -C -Z -S -Q -I -l -u -H "$@"
 }
 unalias d_njalla 2>/dev/null
 d_njalla() {
-    bash ./01_full.sh --env=production -C -Z -S -Q -I -U -u -H -v "$@"
+    bash ./01_full.sh --env=production -C -Z -S -Q -I -l -u -H -v "$@"
 }
 
 

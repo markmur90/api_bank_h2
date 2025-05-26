@@ -240,6 +240,17 @@ server {
 
 ---
 
+## 🧑‍💼 USERS — Datos Técnicos de Prueba
+
+| Nombre        | País | Dirección                          | Ciudad        | IBAN                  | BIC           | Código Moneda | Identificadores Adicionales                            |
+|---------------|------|------------------------------------|---------------|------------------------|---------------|----------------|--------------------------------------------------------|
+| Claudia Klar  | DE   | Große Bockenheimer Straße 19       | Frankfurt     | `DE00 5007 0010 0200 0402 24` | DEUTDEFFXXX   | EUR            | `SecurityAccountID: 100204004000`<br>`OTP:` [`gluesim`](otpauth://totp/gluesim:100204004000001?secret=7G3DC4GV4J2YFPDS) |
+| Tom Winter    | DE   | Augsburger Strasse 14a             | München       | `DE00 5007 0010 0200 0435 74` | DEUTDEFFXXX   | EUR            | `FKN+PIN: 10020433900062128`<br>`OTP:` [`gluesim`](otpauth://totp/gluesim:100204339000001?secret=6RIVNEFU2WWBXCMV)<br>`Counterparty IBAN:` `DE10 0100 0000 0000 0221 37`<br>`Transaction Code:` 123<br>`Domain Code:` BFWA<br>`Family Code:` CCRD<br>`Sub Family Code:` CWDL |
+
+> 🛡️ Estos datos son utilizados únicamente con fines de simulación y pruebas automatizadas. No se recomienda emplearlos en producción sin cifrado, validación y control de acceso.
+
+---
+
 ## 📌 Recomendaciones
 
 - Utilizar claves cifradas y backup en USB offline.

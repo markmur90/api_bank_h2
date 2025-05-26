@@ -1,44 +1,28 @@
 {
-  "timestamp": "2025-05-14 01:38:44",
-  "accion": "inicio_autorizacion",
-  "estado": "exito",
+  "timestamp": "2025-05-26 22:51:01",
+  "accion": "AUTORIZACION_VISUAL_INICIADA",
+  "estado": "ok",
   "metadata": {
-    "state": "f1e069b346f54cf591b2ecc5c5dfe6a9",
-    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=f1e069b346f54cf591b2ecc5c5dfe6a9&code_challenge_method=S256&code_challenge=z5jcE5BnVDDmbKVOKfZJp8xhmx3wmtAXaeaTgNil0X0",
-    "code_challenge": "z5jcE5BnVDDmbKVOKfZJp8xhmx3wmtAXaeaTgNil0X0"
+    "payment_id": "SIN_ID",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-26T20:51:01.668Z",
+    "timestamp_unix_ms": 1748292661668,
+    "session_id": "o4gakhu2jvxai1e3hjfjr5sy8gw1vze6"
   },
   "error": null
 }
 {
-  "timestamp": "2025-05-14 01:38:44",
-  "accion": "inicio_autorizacion",
-  "estado": "exito",
+  "timestamp": "2025-05-26 22:51:01",
+  "accion": "AUTORIZACION_VISUAL_INICIADA",
+  "estado": "ok",
   "metadata": {
-    "state": "f1e069b346f54cf591b2ecc5c5dfe6a9",
-    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=f1e069b346f54cf591b2ecc5c5dfe6a9&code_challenge_method=S256&code_challenge=z5jcE5BnVDDmbKVOKfZJp8xhmx3wmtAXaeaTgNil0X0",
-    "code_challenge": "z5jcE5BnVDDmbKVOKfZJp8xhmx3wmtAXaeaTgNil0X0"
-  },
-  "error": null
-}
-{
-  "timestamp": "2025-05-14 01:39:31",
-  "accion": "inicio_autorizacion",
-  "estado": "exito",
-  "metadata": {
-    "state": "d4d6f0edc00e474e82b4b4202667ce54",
-    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=d4d6f0edc00e474e82b4b4202667ce54&code_challenge_method=S256&code_challenge=1hIgdfgTVq1Wx7El2rPrqpRbxH8_CnzgB0pK9_qr3Bo",
-    "code_challenge": "1hIgdfgTVq1Wx7El2rPrqpRbxH8_CnzgB0pK9_qr3Bo"
-  },
-  "error": null
-}
-{
-  "timestamp": "2025-05-14 01:39:31",
-  "accion": "inicio_autorizacion",
-  "estado": "exito",
-  "metadata": {
-    "state": "d4d6f0edc00e474e82b4b4202667ce54",
-    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=766ae693-6297-47ea-b825-fd3d07dcf9b6&redirect_uri=https://apibank2-d42d7ed0d036.herokuapp.com/app/gpt4/oauth2/callback/&scope=sepa_credit_transfers&state=d4d6f0edc00e474e82b4b4202667ce54&code_challenge_method=S256&code_challenge=1hIgdfgTVq1Wx7El2rPrqpRbxH8_CnzgB0pK9_qr3Bo",
-    "code_challenge": "1hIgdfgTVq1Wx7El2rPrqpRbxH8_CnzgB0pK9_qr3Bo"
+    "payment_id": "SIN_ID",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-26T20:51:01.668Z",
+    "timestamp_unix_ms": 1748292661668,
+    "session_id": "o4gakhu2jvxai1e3hjfjr5sy8gw1vze6"
   },
   "error": null
 }

@@ -1731,16 +1731,34 @@
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$1000000$3GJc1Dy0xBewZ2swLT079g$zDWw+FVcIx+JFsxK5WKVtY1NnqjCx1Q7OUaUS8JjZk8=",
-    "last_login": "2025-05-25T20:56:02.829Z",
+    "password": "pbkdf2_sha256$1000000$dubBThvRzrpdJDJTblSUmn$U1q4MJUfQRdkxptPgIWRkTTwQMATOWDt0ZkqlJXEzB0=",
+    "last_login": null,
     "is_superuser": true,
+    "username": "markmur88",
+    "first_name": "",
+    "last_name": "",
+    "email": "markmur88@proton.me",
+    "is_staff": true,
+    "is_active": true,
+    "date_joined": "2025-05-26T20:11:17.998Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "auth.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$1000000$XFl9CAusJce5Zn2IWrTN9h$y50GkWzT3HJU2oGt+pBWB53PDoK0xQz0feR0ABRkoqI=",
+    "last_login": "2025-05-26T20:56:50.033Z",
+    "is_superuser": false,
     "username": "493069k1",
     "first_name": "",
     "last_name": "",
-    "email": "j.moltke@db.com",
-    "is_staff": true,
+    "email": "",
+    "is_staff": false,
     "is_active": true,
-    "date_joined": "2025-05-25T07:04:30.679Z",
+    "date_joined": "2025-05-26T20:33:14.056Z",
     "groups": [],
     "user_permissions": []
   }
@@ -2131,10 +2149,18 @@
 },
 {
   "model": "sessions.session",
-  "pk": "7t0fqlvacwdnzquyph9gc23984vbd59l",
+  "pk": "bcryqgz57y9rbzo58ma2l57pf2ayprnn",
   "fields": {
-    "session_data": ".eJxVjEEOwiAQRe_C2pBCgU5duvcMZAZmpGpoUtqV8e7apAvd_vfef6mI21ri1niJU1ZnZdTpdyNMD647yHest1mnua7LRHpX9EGbvs6Zn5fD_Tso2Mq3puA5QRJHI_EILB4s9IgwmM6AZwnZ9EEMJXBicRByyUvOtkNPKKDeHwT6OQE:1uJIO2:BskXowx2rZb_NfqddasP2e1bfb72BivEr5mC6xIp2Fw",
-    "expire_date": "2025-05-25T21:56:02.896Z"
+    "session_data": ".eJxVjDsOwyAQBe9CHSEM5pcyvc-AdmEJTiKQjF1FuXuE5CJp38y8Nwtw7CUcnbawJnZlkl1-N4T4pDpAekC9Nx5b3bcV-VD4STtfWqLX7XT_Dgr0MupssiKQQjuYk9ZWZgJCa7yfBJJDm1FN3srkTI5Cg5mlMtpmQdYgePb5Avh-OBc:1uJesM:aA18fIiyUVVig2XM9cYOxr8HP04i2ZCzvoUevA6MK_Y",
+    "expire_date": "2025-05-26T21:26:50.346Z"
+  }
+},
+{
+  "model": "sessions.session",
+  "pk": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+  "fields": {
+    "session_data": ".eJxVjEsOwjAMBe-SNYqSNKE2S_Y9Q-TYDi2gVupnhbg7VOoCtm9m3stk2tY-b4vOeRBzMcGcfrdC_NBxB3Kn8TZZnsZ1HordFXvQxXaT6PN6uH8HPS39t_ZNqwkgFs8M9ewEnLQYA6JTKILAmjSg58IRJdXS-FoJglMkpbYx7w_fyjhO:1uJerN:6t9TsbYBJHAiOFDe4KoiRcDOsYCSrUc52B50vjTXK4A",
+    "expire_date": "2025-05-26T21:25:49.119Z"
   }
 },
 {
@@ -2142,7 +2168,7 @@
   "pk": 1,
   "fields": {
     "name": "Claudia Klar",
-    "customer_id": "10020400400079945",
+    "customer_id": "27CDBFRDE17BEH",
     "postal_address_country": "DE",
     "postal_address_street": "Große Bockenheimer Straße 19",
     "postal_address_city": "60311 Frankfurt",
@@ -2184,6 +2210,146 @@
     "bic": "DEUTDEFFXXX",
     "financial_institution_id": "DEUTDEFFXXX",
     "other_information": "Deutsche Bank"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 1,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:42\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:42.045Z\",\n    \"timestamp_unix_ms\": 1748292582045,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
+    "created_at": "2025-05-26T20:49:42.046Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 2,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:42\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:42.045Z\",\n    \"timestamp_unix_ms\": 1748292582045,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
+    "created_at": "2025-05-26T20:49:42.049Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 3,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:44\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:44.881Z\",\n    \"timestamp_unix_ms\": 1748292584881,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
+    "created_at": "2025-05-26T20:49:44.881Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 4,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:44\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:44.881Z\",\n    \"timestamp_unix_ms\": 1748292584881,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
+    "created_at": "2025-05-26T20:49:44.883Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 5,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:48\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:48.556Z\",\n    \"timestamp_unix_ms\": 1748292588556,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
+    "created_at": "2025-05-26T20:49:48.557Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 6,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:48\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:48.556Z\",\n    \"timestamp_unix_ms\": 1748292588556,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
+    "created_at": "2025-05-26T20:49:48.571Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 7,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:51\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:51.226Z\",\n    \"timestamp_unix_ms\": 1748292591226,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
+    "created_at": "2025-05-26T20:49:51.227Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 8,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:51\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:51.226Z\",\n    \"timestamp_unix_ms\": 1748292591226,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
+    "created_at": "2025-05-26T20:49:51.241Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 9,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:54\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:54.052Z\",\n    \"timestamp_unix_ms\": 1748292594052,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
+    "created_at": "2025-05-26T20:49:54.053Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 10,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:54\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:54.052Z\",\n    \"timestamp_unix_ms\": 1748292594052,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
+    "created_at": "2025-05-26T20:49:54.055Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 11,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:57\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:57.015Z\",\n    \"timestamp_unix_ms\": 1748292597015,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
+    "created_at": "2025-05-26T20:49:57.015Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 12,
+  "fields": {
+    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
+    "tipo_log": "AUTH",
+    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:57\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:57.015Z\",\n    \"timestamp_unix_ms\": 1748292597015,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
+    "created_at": "2025-05-26T20:49:57.024Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 13,
+  "fields": {
+    "registro": "o4gakhu2jvxai1e3hjfjr5sy8gw1vze6",
+    "tipo_log": "AUTH",
+    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:51:01\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"127.0.0.1\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:51:01.668Z\",\n    \"timestamp_unix_ms\": 1748292661668,\n    \"session_id\": \"o4gakhu2jvxai1e3hjfjr5sy8gw1vze6\"\n  },\n  \"error\": null\n}",
+    "created_at": "2025-05-26T20:51:01.671Z"
+  }
+},
+{
+  "model": "gpt4.logtransferencia",
+  "pk": 14,
+  "fields": {
+    "registro": "o4gakhu2jvxai1e3hjfjr5sy8gw1vze6",
+    "tipo_log": "AUTH",
+    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:51:02\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"127.0.0.1\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:51:01.668Z\",\n    \"timestamp_unix_ms\": 1748292661668,\n    \"session_id\": \"o4gakhu2jvxai1e3hjfjr5sy8gw1vze6\"\n}\n\n",
+    "created_at": "2025-05-26T20:51:02.042Z"
   }
 }
 ]
