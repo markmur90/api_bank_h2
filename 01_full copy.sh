@@ -788,7 +788,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Su
     heroku config:set TIMEOUT_REQUEST=3600
     heroku config:set DISABLE_COLLECTSTATIC=1
     set -a; source .env; set +a
-    heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 schemas/keys/ecdsa_private_key.pem)
+    heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 keys/ecdsa_private_key.pem)
     heroku config:get PRIVATE_KEY_B64 | base64 -d | head
     heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/
 fi

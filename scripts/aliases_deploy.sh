@@ -5,6 +5,7 @@ unalias d_ssl 2>/dev/null
 ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_ed25519
 
 # === ACCESOS DIRECTOS AL PROYECTO ===
+
 alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && code .'
 alias BKapi='cd "$HOME/Documentos/GitHub/api_bank_h2_BK" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && code .'
 alias api_heroku='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && code .'
@@ -20,6 +21,14 @@ alias d_menu='bash ./01_full.sh --menu'
 alias d_status='bash ./scripts/diagnostico_entorno.sh'
 
 # 🌐 Local (versión completa y versión corta)
+unalias ad_local 2>/dev/null
+ad_local() {
+    cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && d_local && code . "$@"
+}
+unalias ad_short_local 2>/dev/null
+ad_short_local() {
+    cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && d_local_short && code . "$@"
+}
 unalias d_local_short 2>/dev/null
 d_local_short() {
     bash ./01_full.sh --env=local -l -Q -I "$@"
@@ -35,7 +44,7 @@ d_local_dry() {
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=production -l -C -Z -B -H -S -Y -P -D -M -x -Q -I -V "$@"
+    bash ./01_full.sh --env=production -C -Z -H -u -S -Y -P -D -M -x -Q -I -V "$@"
 }
 unalias d_njalla 2>/dev/null
 d_njalla() {

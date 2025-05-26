@@ -59,7 +59,7 @@
 </style>
 
 {% if user.is_authenticated %}
-
+<div class="container mt-5">
   <div class="container-fluid">
     <h1 class="text-center mb-4 display-5 fw-bold">Panel de Control</h1>
 
@@ -124,18 +124,16 @@
         </div>
       </div>
     </div>
-
-
-
-
   </div>
+
+  <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
+</div>
 {% else %}
-  <div class="container text-center mt-5">
-    <h1 class="display-4">Bienvenido al Panel de Control</h1>
-    <p class="lead">Por favor, inicia sesión para acceder a tus transferencias.</p>
-    <a href="{% url 'login' %}" class="btn btn-primary btn-lg">Iniciar Sesión</a>
+<div class="container mt-5">
+  <div class="alert alert-warning">
+    <p>No has iniciado sesión.</p>
   </div>
-
+  <a href="{% url 'login' %}" class="btn btn-primary">Ir al Login</a>
+</div>
 {% endif %}
-
 {% endblock %}

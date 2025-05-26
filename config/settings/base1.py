@@ -25,6 +25,10 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 # REDIRECT_URI = 'https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/'
 REDIRECT_URI = env('REDIRECT_URI', default='https://0.0.0.0:8000/oauth2/callback/')
 
+ORIGIN = 'https://simulator-api.db.com'
+
+CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
+CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
 
 # 4. Apps y middleware (sin cambios)
 INSTALLED_APPS = [
@@ -157,10 +161,7 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 
-ORIGIN = 'https://api.db.com'
 
-CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
-CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
 
 TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
 OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
@@ -203,10 +204,18 @@ SIMPLE_JWT = {
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
+
     "formatters": {
-        "verbose": {"format": "{levelname} {asctime} {module} {message}", "style": "{"},
-        "simple": {"format": "{levelname} {message}", "style": "{"},
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{"
+        },
+        "simple": {
+            "format": "{levelname} {message}",
+            "style": "{"
+        },
     },
+
     "handlers": {
         "file": {
             "level": "WARNING",
@@ -214,15 +223,36 @@ LOGGING = {
             "filename": BASE_DIR / "logs" / "errors.log",
             "formatter": "verbose",
         },
-        "console": {"level": "INFO", "class": "logging.StreamHandler", "formatter": "simple"},
+        "console": {
+            "level": "INFO",
+            "class": "logging.StreamHandler",
+            "formatter": "simple"
+        },
     },
+
+    'root': {
+        'handlers': ['console'],
+        'level': 'ERROR',
+    },
+
     "loggers": {
-        "django": {"handlers": ["file", "console"], "level": "WARNING", "propagate": True},
-        "bank_services": {"handlers": ["file", "console"], "level": "INFO", "propagate": False},
+        "django": {
+            "handlers": ["file", "console"],
+            "level": "WARNING",
+            "propagate": True
+        },
+        "bank_services": {
+            "handlers": ["file", "console"],
+            "level": "INFO",
+            "propagate": False
+        },
     },
 }
 
+
 LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
+
 SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

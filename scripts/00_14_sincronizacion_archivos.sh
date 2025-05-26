@@ -30,32 +30,10 @@ EXCLUDES=(
     "--exclude=*.zip"
     "--exclude=*.db"
     "--exclude=*.sqlite3"
-    # "--exclude=bin/"
-    # "--exclude=scripts/"
-    # "--exclude=scripts_njalla/"
-    # "--exclude=servers/"
-    # "--exclude=tmp/"
-    # "--exclude=temp/"
-    "--exclude=.env.heroku"
-    # "--exclude=01_full.sh"
-    # "--exclude=bdd_local.json"
-    "--exclude=config_master.py"
     "--exclude=.vscode/"
-    "--exclude=gunicorn.log"
     "--exclude=base0.py"
     "--exclude=local_old.py"
     "--exclude=production_old.py"
-    "--exclude=honey*"
-    "--exclude=livereload.log"
-    "--exclude=master.sh"
-    "--exclude=multi_master.sh"
-    "--exclude=nginx.conf"
-    "--exclude=post_install_coretransapi.sh"
-    "--exclude=setup_coretransact.sh"
-    "--exclude=sync.sh"
-    # "--exclude=config/settings/__init__.py"
-
-
 )
 
 actualizar_django_env() {

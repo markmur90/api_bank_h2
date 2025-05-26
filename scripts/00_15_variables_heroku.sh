@@ -33,4 +33,17 @@ echo -e "\033[7;36m🔧 Configurando DJANGO_SETTINGS_MODULE en Heroku...\033[0m"
 # heroku config:set $(cat .env.production | xargs) --app apibank2
 heroku config:set DISABLE_COLLECTSTATIC=1 --app apibank2
 
+set -a; source .env; set +a
+
+heroku config:set PRIVATE_KEY_PATH=keys/ecdsa_private_key.pem
+heroku config:set PRIVATE_KEY_KID=keys/secret.key
+heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 keys/ecdsa_private_key.pem)
+
+heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/
+
+heroku config:set CREATE_SUPERUSER=true
+heroku config:set DJANGO_SUPERUSER_USERNAME=493069k1
+heroku config:set DJANGO_SUPERUSER_EMAIL=j.moltke@db.com
+heroku config:set DJANGO_SUPERUSER_PASSWORD=bar1588623
+
 heroku restart --app apibank2
