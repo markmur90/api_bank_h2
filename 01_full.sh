@@ -45,7 +45,7 @@ HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 NJALLA_ROOT="$HOME/Documentos/GitHub/coretransapi"
 VENV_PATH="$HOME/Documentos/Entorno/envAPP"
 INTERFAZ="wlan0"
-LOG_DIR="$PROJECT_ROOT/logs"
+LOG_DIR="$PROJECT_ROOT/scripts/logs/01_full_deploy"
 LOG_FILE_SCRIPT="$LOG_DIR/full_deploy.log"
 STARTUP_LOG="$LOG_DIR/startup.log"
 
