@@ -25,7 +25,8 @@ echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m" | tee -a $LOG
 LOCAL_DB_NAME="mydatabase"
 LOCAL_DB_USER="markmur88"
 LOCAL_DB_HOST="localhost"
-REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
+
+DATABASE_URL="postgres://u22qfesn1ol61g:p633435fd268a16298ff6b2b83e47e7091ae5cb79d80ad13e03a6aff1262cc2ae@c7pvjrnjs0e7al.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/ddo6kmmjfftuav"
 
 export PGPASSFILE="$HOME/.pgpass"
 export PGUSER="$LOCAL_DB_USER"

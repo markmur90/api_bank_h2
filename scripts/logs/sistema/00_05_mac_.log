@@ -358,3 +358,48 @@ bound to 192.168.0.184 -- renewal in 34211 seconds.
 🧭 IP Tor anterior : 45.84.107.97
 🛰️ IP Tor actual   : 91.208.75.3
 =========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+Killed old client process
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/6a:53:e8:e7:cc:aa
+Sending on   LPF/wlan0/6a:53:e8:e7:cc:aa
+Sending on   Socket/fallback
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 8
+DHCPOFFER of 192.168.0.184 from 192.168.0.1
+DHCPREQUEST for 192.168.0.184 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.184 from 192.168.0.1
+Error: ipv4: Address already assigned.
+bound to 192.168.0.184 -- renewal in 37300 seconds.
+⚠ IP no ha cambiado tras el primer intento. Reintentando...
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/ee:5b:c1:ca:f1:c6
+Sending on   LPF/wlan0/ee:5b:c1:ca:f1:c6
+Sending on   Socket/fallback
+DHCPREQUEST for 192.168.0.184 on wlan0 to 255.255.255.255 port 67
+DHCPREQUEST for 192.168.0.184 on wlan0 to 255.255.255.255 port 67
+DHCPNAK from 192.168.0.1
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 6
+DHCPOFFER of 192.168.0.185 from 192.168.0.1
+DHCPREQUEST for 192.168.0.185 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.185 from 192.168.0.1
+bound to 192.168.0.185 -- renewal in 38400 seconds.
+
+=========================================
+📅 Fecha           : 2025-05-26 07:10:02
+🛰️ Interfaz        : wlan0
+🧭 MAC anterior    : 46:8b:1a:3d:c5:65
+✨ MAC actual      : ee:5b:c1:ca:f1:c6
+🧭 IP anterior     : 192.168.0.184
+🛰️ IP actual       : 192.168.0.185
+🧭 IP Tor anterior : 91.208.75.3
+🛰️ IP Tor actual   : 185.220.101.106
+=========================================
