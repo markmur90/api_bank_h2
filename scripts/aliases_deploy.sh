@@ -44,7 +44,7 @@ d_local_dry() {
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=production -C -Z -H -u -S -Y -P -D -M -x -Q -I -V "$@"
+    bash ./01_full.sh --env=production -C -Z -H -u -S -x -Q -I -r "$@"
 }
 unalias d_njalla 2>/dev/null
 d_njalla() {
