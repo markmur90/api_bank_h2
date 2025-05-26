@@ -781,7 +781,7 @@ fi
 echo -e "\033[7;33m---------------------------------------------CARGAR WEB--------------------------------------------\033[0m"
 log_info "🌍 BLOQUE: Apertura de web Heroku en navegador"
 
-URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
+URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 
 if [[ "$OMIT_LOAD_WEB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Abrir web Heroku"); then
     trap limpiar_y_salir SIGINT

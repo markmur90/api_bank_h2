@@ -42,7 +42,7 @@ Ubicados en el directorio `scripts/`, estos scripts automatizan el setup del VPS
 
 ## 📡 Configuración DNS Njalla
 
-- Crear un registro A para `api.coretransapi.com` apuntando a `80.78.30.188`.
+- Crear un registro A para `apih.coretransapi.com` apuntando a `80.78.30.188`.
 - TTL: `3600`
 - Activar DNSSEC y configurar glue records si aplica.
 
@@ -53,14 +53,14 @@ Ubicados en el directorio `scripts/`, estos scripts automatizan el setup del VPS
 Certbot se encargará de emitir los certificados:
 
 ```bash
-certbot --nginx -d api.coretransapi.com
+certbot --nginx -d apih.coretransapi.com
 ```
 
 Los certificados estarán en:
 
 ```nginx
-ssl_certificate /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
-ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
+ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
 ```
 
 ---
@@ -70,7 +70,7 @@ ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
 ```nginx
 server {
     listen 80;
-    server_name api.coretransapi.com;
+    server_name apih.coretransapi.com;
 
     location / {
         return 301 https://$host$request_uri;
@@ -79,10 +79,10 @@ server {
 
 server {
     listen 443 ssl;
-    server_name api.coretransapi.com;
+    server_name apih.coretransapi.com;
 
-    ssl_certificate /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
 
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;

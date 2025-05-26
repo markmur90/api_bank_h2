@@ -1,7 +1,7 @@
 
 
 
-ORIGIN = "https://apibank2-d42d7ed0d036.herokuapp.com"
+ORIGIN = "https://apibank2-54644cdf263f.herokuapp.com"
 
 TOKEN_URL = 'https://api.db.com:443/gw/oidc/token'
 OTP_URL = 'https://api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'

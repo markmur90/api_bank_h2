@@ -109,16 +109,16 @@ upstream coretransapi {
 
 server {
     listen 80;
-    server_name api.coretransapi.com;
+    server_name apih.coretransapi.com;
     return 301 https://\$host\$request_uri;
 }
 
 server {
     listen 443 ssl;
-    server_name api.coretransapi.com;
+    server_name apih.coretransapi.com;
 
-    ssl_certificate /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
 
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
@@ -146,8 +146,8 @@ sudo systemctl reload nginx || sudo systemctl start nginx
 log_ok "✅ Configuración nginx recargada"
 
 # Certbot para SSL (solo si no existe certificado)
-if [ ! -d "/etc/letsencrypt/live/api.coretransapi.com" ]; then
-  sudo certbot --nginx -d api.coretransapi.com --non-interactive --agree-tos -m tu-email@dominio.com
+if [ ! -d "/etc/letsencrypt/live/apih.coretransapi.com" ]; then
+  sudo certbot --nginx -d apih.coretransapi.com --non-interactive --agree-tos -m tu-email@dominio.com
 fi
 
 log_ok "✅ Certificado SSL configurado"

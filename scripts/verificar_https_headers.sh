@@ -16,7 +16,7 @@ trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecu
 
 set -e
 
-URL="https://api.coretransapi.com"
+URL="https://apih.coretransapi.com"
 
 echo "🌐 Verificando headers HTTPS en: $URL"
 echo "==========================================="

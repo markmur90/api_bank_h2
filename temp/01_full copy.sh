@@ -695,7 +695,7 @@ echo -e "\033[7;33m----------------------------------------------GUNICORN-------
 PUERTOS=(8001 5000 35729)
 URL_LOCAL="http://localhost:5000"
 URL_GUNICORN="http://0.0.0.0:8000"
-URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
+URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 
 # === FUNCIONES ===

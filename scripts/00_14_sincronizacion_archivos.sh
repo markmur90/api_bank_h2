@@ -40,6 +40,7 @@ EXCLUDES=(
     # "--exclude=01_full.sh"
     # "--exclude=bdd_local.json"
     "--exclude=config_master.py"
+    "--exclude=.vscode/"
     "--exclude=gunicorn.log"
     "--exclude=base0.py"
     "--exclude=local_old.py"
@@ -52,7 +53,7 @@ EXCLUDES=(
     "--exclude=post_install_coretransapi.sh"
     "--exclude=setup_coretransact.sh"
     "--exclude=sync.sh"
-    # "--exclude=config/"
+    "--exclude=config/settings/__init__.py"
 
 
 )

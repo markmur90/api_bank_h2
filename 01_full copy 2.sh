@@ -543,8 +543,8 @@ sleep 1
 
 URL_LOCAL="http://localhost:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
-URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
-URL_NJALLA="https://api.coretransapi.com/"
+URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
+URL_NJALLA="https://apih.coretransapi.com/"
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"

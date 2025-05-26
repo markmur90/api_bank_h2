@@ -113,12 +113,12 @@ API_KEY = HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 
 
 
-https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/
-https://apibank2-d42d7ed0d036.herokuapp.com/login/
-https://apibank2-d42d7ed0d036.herokuapp.com/dashboard/
-https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/authorize/
+https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/
+https://apibank2-54644cdf263f.herokuapp.com/login/
+https://apibank2-54644cdf263f.herokuapp.com/dashboard/
+https://apibank2-54644cdf263f.herokuapp.com/oauth2/authorize/
 
-https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/
+https://apibank2-54644cdf263f.herokuapp.com/oauth2/
 
 
 

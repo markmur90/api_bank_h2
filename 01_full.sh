@@ -75,7 +75,6 @@ DO_SYNC_REMOTE_DB=false
 DO_DEPLOY_VPS=false
 DO_CLEAN=false
 DO_GUNICORN=false
-DO_RUN_WEB=false
 DO_LOCAL_SSL=false
 DO_CERT=false
 
@@ -133,21 +132,26 @@ usage() {
     echo -e "\033[1;33mOPCIONES DISPONIBLES:\033[0m"
     echo -e "  \033[1;33m-a\033[0m, \033[1;33m--all\033[0m               Ejecutar sin confirmaciones interactivas"
     echo -e "  \033[1;33m-s\033[0m, \033[1;33m--step\033[0m              Activar modo paso a paso (pregunta todo)"
-    echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m              Mostrar diagnóstico y variables actuales"
-    echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m               Mostrar esta ayuda y salir"
+    echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m             Mostrar diagnóstico y variables actuales"
+    echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m              Mostrar esta ayuda y salir"
 
     echo -e "\n\033[1;33mTAREAS DE DESARROLLO LOCAL:\033[0m"
-    echo -e "  \033[1;33m-L\033[0m, \033[1;33m--do-local\033[0m          Cargar archivos locales .json/.env"
-    echo -e "  \033[1;33m-l\033[0m, \033[1;33m--do-load-local\033[0m     Ejecutar entorno local estándar"
-    echo -e "  \033[1;33m-r\033[0m, \033[1;33m--do-local-ssl\033[0m      Ejecutar entorno local con SSL (Gunicorn + Nginx 8443) 🚀"
+    echo -e "  \033[1;33m-L\033[0m, \033[1;33m--do-local\033[0m          Descargar archivos locales .json/.env"
+    echo -e "  \033[1;33m-l\033[0m, \033[1;33m--do-load-local\033[0m     Subir archivos locales .json/.env"
+    echo -e "  \033[1;33m-Q\033[0m, \033[1;33m--do-pgsql\033[0m          Configurar PostgreSQL local"
+    echo -e "  \033[1;33m-I\033[0m, \033[1;33m--do-migra\033[0m          Aplicar migraciones Django"
+    echo -e "  \033[1;33m-U\033[0m, \033[1;33m--do-create-user\033[0m    Crear usuario del sistema"
 
-    echo -e "\n\033[1;33mBACKUPS Y DEPLOY:\033[0m"
+    echo -e "\n\033[1;33mBACKUPS:\033[0m"
     echo -e "  \033[1;33m-C\033[0m, \033[1;33m--do-clean\033[0m          Limpiar respaldos antiguos"
     echo -e "  \033[1;33m-Z\033[0m, \033[1;33m--do-zip\033[0m            Generar backups ZIP + SQL"
+
+    echo -e "\n\033[1;33mDEPLOY:\033[0m"
+    echo -e "  \033[1;33m-S\033[0m, \033[1;33m--do-sync\033[0m           Sincronizar archivos locales"
     echo -e "  \033[1;33m-B\033[0m, \033[1;33m--do-bdd\033[0m            Sincronizar BDD remota"
     echo -e "  \033[1;33m-H\033[0m, \033[1;33m--do-heroku\033[0m         Desplegar a Heroku"
+    echo -e "  \033[1;33m-u\033[0m, \033[1;33m--do-varher\033[0m         Configurar variables Heroku"
     echo -e "  \033[1;33m-v\033[0m, \033[1;33m--do-vps\033[0m            Desplegar a VPS (Njalla)"
-    echo -e "  \033[1;33m-S\033[0m, \033[1;33m--do-sync\033[0m           Sincronizar archivos locales"
 
     echo -e "\n\033[1;33mENTORNO Y CONFIGURACIÓN:\033[0m"
     echo -e "  \033[1;33m-Y\033[0m, \033[1;33m--do-sys\033[0m            Actualizar sistema y dependencias"
@@ -155,16 +159,11 @@ usage() {
     echo -e "  \033[1;33m-M\033[0m, \033[1;33m--do-mac\033[0m            Cambiar MAC aleatoria"
     echo -e "  \033[1;33m-x\033[0m, \033[1;33m--do-ufw\033[0m            Configurar firewall UFW"
     echo -e "  \033[1;33m-p\033[0m, \033[1;33m--do-pem\033[0m            Generar claves PEM locales"
-    echo -e "  \033[1;33m-U\033[0m, \033[1;33m--do-create-user\033[0m    Crear usuario del sistema"
-    echo -e "  \033[1;33m-u\033[0m, \033[1;33m--do-varher\033[0m         Configurar variables Heroku"
-
-    echo -e "\n\033[1;33mPOSTGRES Y MIGRACIONES:\033[0m"
-    echo -e "  \033[1;33m-Q\033[0m, \033[1;33m--do-pgsql\033[0m          Configurar PostgreSQL local"
-    echo -e "  \033[1;33m-I\033[0m, \033[1;33m--do-migra\033[0m          Aplicar migraciones Django"
+    echo -e "  \033[1;33m-E\033[0m, \033[1;33m--do-cert\033[0m           Generar certificados SSL locales"
 
     echo -e "\n\033[1;33mEJECUCIÓN Y TESTING:\033[0m"
+    echo -e "  \033[1;33m-r\033[0m, \033[1;33m--do-local-ssl\033[0m      Ejecutar entorno local con SSL (Gunicorn + Nginx 8443) 🚀"
     echo -e "  \033[1;33m-G\033[0m, \033[1;33m--do-gunicorn\033[0m       Ejecutar Gunicorn"
-    echo -e "  \033[1;33m-w\033[0m, \033[1;33m--do-web\033[0m            Abrir navegador automáticamente"
     echo -e "  \033[1;33m-V\033[0m, \033[1;33m--do-verif-trans\033[0m    Verificar transferencias SEPA"
 }
 
@@ -194,7 +193,6 @@ while [[ $# -gt 0 ]]; do
         -x|--do-ufw)          DO_UFW=true ;;
         -U|--do-create-user)  DO_USER=true ;;
         -l|--do-load-local)   DO_RUN_LOCAL=true ;;
-        -w|--do-web)          DO_RUN_WEB=true ;;
         -V|--do-verif-trans)  DO_VERIF_TRANSF=true ;;
         -v|--do-vps)          DO_DEPLOY_VPS=true ;;
         -d|--debug)           DEBUG_MODE=true ;;
@@ -543,8 +541,8 @@ sleep "$TIME_SLEEP"
 
 URL_LOCAL="http://localhost:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
-URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
-URL_NJALLA="https://api.coretransapi.com/"
+URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
+URL_NJALLA="https://apih.coretransapi.com/"
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"

@@ -1,20 +1,5 @@
-#!/usr/bin/env bash
-set -euo pipefail
-
-SCRIPT_NAME="$(basename "$0")"
-LOG_FILE="./logs/${SCRIPT_NAME%.sh}_.log"
-
-mkdir -p "$(dirname "$LOG_FILE")"
-
-{
-echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
-echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═════════════════════════════════════════════════════════════"
-} | tee -a "$LOG_FILE"
-
-trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
-
 unalias d_ssl 2>/dev/null
+#!/usr/bin/env bash
 
 # === CLAVES SSH ===
 ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_ed25519
@@ -40,42 +25,31 @@ d_local_long() {
     bash ./01_full.sh --env=local --do-sys --do-zip --do-ports --do-docker --do-mac --do-ufw --do-clean --do-json-local --do-sync-local --do-sync-remote-db --do-run_local --do-user --do-run-web --do-pem --do-heroku --do-varher --do-verif-transf --do-deploy-vps --do-local-ssl "$@"
 eval "$SHELL" -ic 'd_ssl'
 }
-
 unalias d_local_short 2>/dev/null
 d_local_short() {
-    bash ./01_full.sh --env=local -l -Q -I -r "$@"
+    bash ./01_full.sh --env=local -l -Q -I "$@"
 # eval "$SHELL" -ic 'd_ssl'
 }
-
 unalias d_local 2>/dev/null
 d_local() {
     bash ./01_full.sh --env=local -l -C -Z -S -M -x -Q -I -r "$@"
-# eval "$SHELL" -ic 'd_ssl'
 }
-
-# 🔒 Local con modo dry-run (solo pruebas)
 unalias d_local_dry_long 2>/dev/null
 d_local_dry_long() {
     bash ./01_full.sh --env=local --dry-run --do-sys --do-zip --do-clean --do-json-local --do-sync-local --do-user --do-run-web "$@"
 }
-
 unalias d_local_dry 2>/dev/null
 d_local_dry() {
     bash ./01_full.sh --env=local --dry-run -P -C -Q -I -U -V "$@"
 }
-
-# 🛰 Heroku completo
 unalias d_heroku_long 2>/dev/null
 d_heroku_long() {
     bash ./01_full.sh --env=heroku --do-sys --do-zip --do-clean --do-heroku --do-user --do-run-web --do-pem --do-ufw "$@"
 }
-
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=production -l -C -Z -B -H -S -Y -P -D -M -x -Q -I -V -u "$@"
+    bash ./01_full.sh --env=production -l -C -Z -B -H -S -Y -P -D -M -x -Q -I -V "$@"
 }
-
-# 🛡 Producción Njalla con todo
 unalias d_njalla_long 2>/dev/null
 d_njalla_long() {
     bash ./01_full.sh --env=production --do-sys --do-zip --do-clean --do-varher --do-user --do-run-web --do-heroku --do-verif-transf --do-deploy-vps "$@"
@@ -84,8 +58,6 @@ unalias d_njalla 2>/dev/null
 d_njalla() {
     bash ./01_full.sh --env=production -P -C -H -U -V -u -B -v "$@"
 }
-
-# 🔒 Producción (solo variables importantes)
 unalias d_production_vars_long 2>/dev/null
 d_production_vars_long() {
     bash ./01_full.sh --env=production --do-sys --do-zip --do-clean --do-varher --do-user --do-run-web "$@"
@@ -94,8 +66,6 @@ unalias d_production_vars 2>/dev/null
 d_production_vars() {
     bash ./01_full.sh --env=production -P -C -H -U -V "$@"
 }
-
-# 🧪 Producción mínima (despliegue y ejecución web solamente)
 unalias d_prod_min_long 2>/dev/null
 d_prod_min_long() {
     bash ./01_full.sh --env=production --do-deploy-vps --do-run-web "$@"
@@ -104,12 +74,6 @@ unalias d_prod_min 2>/dev/null
 d_prod_min() {
     bash ./01_full.sh --env=production -v -V "$@"
 }
-
-# 🌐 Local con HTTPS (certificado dev)
-alias d_local_ssl='bash ./scripts/run_local_ssl_env.sh'
-
-# 🔑 SSL para pruebas (con certificado autofirmado)
-alias d_ssl='python manage.py runsslserver --certificate certs/desarrollo.crt --key certs/desarrollo.key'
 
 
 

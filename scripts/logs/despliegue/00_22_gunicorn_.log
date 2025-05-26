@@ -1,0 +1,55 @@
+[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...[0m
+[1;36m📦 Activando entorno virtual y configuración...[0m
+
+🔧 Configurando Gunicorn con systemd...
+
+✅ Gunicorn configurado correctamente.
+
+[1;34m🌀 Lanzando servicios secundarios...[0m
+[7;30m🚧 Servicios activos. Ctrl+C para detener.[0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+
+[1;33m🧹 Deteniendo todos los servicios...[0m
+[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...[0m
+[1;34m🔌 Liberando puerto 8443...[0m
+[1;36m📦 Activando entorno virtual y configuración...[0m
+
+🔧 Configurando Gunicorn con systemd...
+
+✅ Gunicorn configurado correctamente.
+
+[1;34m🌀 Lanzando servicios secundarios...[0m
+[7;30m🚧 Servicios activos. Ctrl+C para detener.[0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+
+[1;33m🧹 Deteniendo todos los servicios...[0m
+[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...[0m
+[1;34m🔌 Liberando puerto 35729...[0m
+[1;36m📦 Activando entorno virtual y configuración...[0m
+
+🔧 Configurando Gunicorn con systemd...
+
+✅ Gunicorn configurado correctamente.
+
+[1;34m🌀 Lanzando servicios secundarios...[0m
+[7;30m🚧 Servicios activos. Ctrl+C para detener.[0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+
+[1;33m🧹 Deteniendo todos los servicios...[0m
+[7;30m🚀 Iniciando Gunicorn, honeypot y livereload...[0m
+[1;34m🔌 Liberando puerto 35729...[0m
+[1;36m📦 Activando entorno virtual y configuración...[0m
+
+🔧 Configurando Gunicorn con systemd...
+
+✅ Gunicorn configurado correctamente.
+
+[1;34m🌀 Lanzando servicios secundarios...[0m
+[7;30m🚧 Servicios activos. Ctrl+C para detener.[0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+
+[1;33m🧹 Deteniendo todos los servicios...[0m

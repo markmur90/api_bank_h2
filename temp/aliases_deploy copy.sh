@@ -45,7 +45,7 @@ else
     echo -e "\033[1;32m✅ Certbot está instalado.\033[0m"
 fi
 # Comprobar certificados para el dominio
-DOMINIO=\"api.coretransapi.com\"
+DOMINIO=\"apih.coretransapi.com\"
 CERT_PATH=\"/etc/letsencrypt/live/\$DOMINIO/fullchain.pem\"
 if [[ -f \"\$CERT_PATH\" ]]; then
     echo -e \"\n📜 Certificado encontrado para \$DOMINIO:\"

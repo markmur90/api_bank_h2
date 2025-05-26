@@ -22,7 +22,7 @@ mkdir -p "$(dirname $LOG_DEPLOY)"
 
 
 set -e
-echo "⚙️ Configurando Gunicorn para dominio api.coretransapi.com..." | tee -a $LOG_DEPLOY
+echo "⚙️ Configurando Gunicorn para dominio apih.coretransapi.com..." | tee -a $LOG_DEPLOY
 
 # Rutas
 PROJECT_NAME="api_bank_h2"
@@ -119,4 +119,4 @@ fi
 
 # 8. Confirmación final
 echo "🎉 Gunicorn y Nginx configurados correctamente con systemd y socket UNIX." | tee -a $LOG_DEPLOY
-echo "🌐 Visita: https://api.coretransapi.com" | tee -a $LOG_DEPLOY
+echo "🌐 Visita: https://apih.coretransapi.com" | tee -a $LOG_DEPLOY

@@ -106,29 +106,11 @@ INTERNAL_IPS = [
 ]
 
 # 5. Plantillas de base de datos
-# DATABASES = {
-#     'default': dj_database_url.config(default=env('DATABASE_URL'))
-# }
-
-SESSION_COOKIE_SECURE = env.bool("SESSION_COOKIE_SECURE", default=False)
-CSRF_COOKIE_SECURE = env.bool("CSRF_COOKIE_SECURE", default=False)
-SECURE_SSL_REDIRECT = env.bool("SECURE_SSL_REDIRECT", default=False)
-
-print(f"🔧 Entorno activo: {DJANGO_ENV}")
-print(f"🔐 DEBUG={DEBUG} | SSL_REDIRECT={SECURE_SSL_REDIRECT} | COOKIE_SECURE={SESSION_COOKIE_SECURE}")
+DATABASES = {
+    'default': dj_database_url.config(default=env('DATABASE_URL'))
+}
 
 
-
-
-X_FRAME_OPTIONS = 'DENY'
-
-# Seguridad reforzada
-SECURE_HSTS_SECONDS = 31536000
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
 
 # 6. Resto de configuración (sin cambios)
 AUTH_PASSWORD_VALIDATORS = [
@@ -160,14 +142,14 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://api.db.com",
     "https://simulator-api.db.com",
-    "https://apibank2-d42d7ed0d036.herokuapp.com",
-    "https://api.coretransapi.com",
+    "https://apibank2-54644cdf263f.herokuapp.com",
+    "https://apih.coretransapi.com",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "https://api.db.com",
     "https://simulator-api.db.com",
-    "https://api.coretransapi.com",
-    "https://apibank2-d42d7ed0d036.herokuapp.com",
+    "https://apih.coretransapi.com",
+    "https://apibank2-54644cdf263f.herokuapp.com",
 ]
 
 # REST Framework y OAuth/JWT (sin cambios)
@@ -183,7 +165,7 @@ REST_FRAMEWORK = {
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 
-REDIRECT_URI="https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/"
+REDIRECT_URI="https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/"
 
 
 CLIENT_ID = env('CLIENT_ID')

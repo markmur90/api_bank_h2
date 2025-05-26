@@ -1,4 +1,68 @@
-[2025-05-26 01:16:43 +0200] [1305937] [INFO] Starting gunicorn 23.0.0
-[2025-05-26 01:16:43 +0200] [1305937] [INFO] Listening at: http://0.0.0.0:8000 (1305937)
-[2025-05-26 01:16:43 +0200] [1305937] [INFO] Using worker: sync
-[2025-05-26 01:16:43 +0200] [1306147] [INFO] Booting worker with pid: 1306147
+[2025-05-26 01:30:43 +0200] [1903567] [INFO] Starting gunicorn 23.0.0
+[2025-05-26 01:30:43 +0200] [1903567] [INFO] Listening at: http://0.0.0.0:8000 (1903567)
+[2025-05-26 01:30:43 +0200] [1903567] [INFO] Using worker: sync
+[2025-05-26 01:30:43 +0200] [1903773] [INFO] Booting worker with pid: 1903773
+[2025-05-26 02:07:38 +0200] [1903567] [INFO] Handling signal: hup
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/logging/__init__.py", line 1153, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedWriter name='<stderr>'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/logging/__init__.py", line 1153, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+    self.reap_workers()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/arbiter.py", line 553, in reap_workers
+    self.log.error(msg)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/glogging.py", line 271, in error
+    self.error_log.error(msg, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1548, in error
+    self._log(ERROR, msg, args, **kwargs)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1664, in _log
+    self.handle(record)
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1680, in handle
+    self.callHandlers(record)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1736, in callHandlers
+    hdlr.handle(record)
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1026, in handle
+    self.emit(record)
+    ~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1158, in emit
+    self.handleError(record)
+    ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1074, in handleError
+    sys.stderr.write('--- Logging error ---\n')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedWriter name='<stderr>'>
+Call stack:
+  File "/home/markmur88/Documentos/Entorno/envAPP/bin/gunicorn", line 8, in <module>
+    sys.exit(run())
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/app/wsgiapp.py", line 66, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/app/base.py", line 235, in run
+    super().run()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/app/base.py", line 71, in run
+    Arbiter(self).run()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/arbiter.py", line 222, in run
+    self.log.info("Handling signal: %s", signame)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/glogging.py", line 277, in info
+    self.error_log.info(msg, *args, **kwargs)
+Message: 'Handling signal: %s'
+Arguments: ('hup',)
+[2025-05-26 02:07:41 +0200] [1903567] [INFO] Hang up: Master
+[2025-05-26 02:07:42 +0200] [1903567] [INFO] Handling signal: term
+[2025-05-26 02:07:42 +0200] [2995748] [INFO] Booting worker with pid: 2995748
+[2025-05-26 02:08:12 +0200] [1903567] [INFO] Shutting down: Master

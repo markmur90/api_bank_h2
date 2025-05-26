@@ -5,7 +5,7 @@ import os
 from datetime import datetime
 
 app = Flask(__name__)
-TARGET_API = "https://apibank2-d42d7ed0d036.herokuapp.com"
+TARGET_API = "https://apibank2-54644cdf263f.herokuapp.com"
 LOG_FILE = 'honeypot_h_logs.csv'
 
 def write_log(data):

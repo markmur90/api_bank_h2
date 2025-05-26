@@ -752,7 +752,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Su
     set -a; source .env; set +a
     heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 schemas/keys/ecdsa_private_key.pem)
     heroku config:get PRIVATE_KEY_B64 | base64 -d | head
-    heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/
+    heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/
 
 
 
@@ -955,8 +955,8 @@ echo -e "\033[7;33m---------------------------------------------- GUNICORN -----
 PUERTOS=(8001 5000 35729)
 URL_LOCAL="http://localhost:5000"
 URL_GUNICORN="http://127.0.0.1:8001"
-URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
-URL_NJALLA="https://api.coretransapi.com/"
+URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
+URL_NJALLA="https://apih.coretransapi.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 
 # === FUNCIONES ===
@@ -1043,7 +1043,7 @@ sleep 3
 # PUERTOS=(8001 5000 35729)
 # URL_LOCAL="http://localhost:5000"
 # URL_GUNICORN="http://0.0.0.0:8011"
-# URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
+# URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 # LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 # # === FUNCIONES ===
 # liberar_puertos() {

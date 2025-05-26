@@ -110,10 +110,10 @@ sudo systemctl start gunicorn.service
 
 # Configuración HTTPS con redirección desde HTTP
 sudo rm -f /etc/nginx/sites-enabled/api_bank_h2
-sudo tee /etc/nginx/sites-available/api.coretransapi.com > /dev/null <<EOL
+sudo tee /etc/nginx/sites-available/apih.coretransapi.com > /dev/null <<EOL
 server {
     listen 80;
-    server_name api.coretransapi.com;
+    server_name apih.coretransapi.com;
 
     location / {
         return 301 https://\$host\$request_uri;
@@ -122,10 +122,10 @@ server {
 
 server {
     listen 443 ssl;
-    server_name api.coretransapi.com;
+    server_name apih.coretransapi.com;
 
-    ssl_certificate /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
 
@@ -141,7 +141,7 @@ server {
 }
 EOL
 
-sudo ln -sf /etc/nginx/sites-available/api.coretransapi.com /etc/nginx/sites-enabled/
+sudo ln -sf /etc/nginx/sites-available/apih.coretransapi.com /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl reload nginx
 

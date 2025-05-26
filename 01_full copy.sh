@@ -777,7 +777,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Su
     # CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
     heroku config:set DJANGO_SECRET_KEY=$SECRET_KEY
     heroku config:set DJANGO_DEBUG=True
-    heroku config:set DJANGO_ALLOWED_HOSTS=api.coretransapi.com,apibank2-d42d7ed0d036.herokuapp.com,127.0.0.1,0.0.0.0
+    heroku config:set DJANGO_ALLOWED_HOSTS=apih.coretransapi.com,apibank2-54644cdf263f.herokuapp.com,127.0.0.1,0.0.0.0
     # heroku config:set DB_CLIENT_ID=tu-client-id-herokuPtf8454Jd55
     # heroku config:set DB_CLIENT_SECRET=tu-client-secret-heroku
     heroku config:set DB_TOKEN_URL=https://simulator-api.db.com:443/gw/dbapi/token
@@ -790,7 +790,7 @@ if [[ "$DO_VARHER" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Su
     set -a; source .env; set +a
     heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 schemas/keys/ecdsa_private_key.pem)
     heroku config:get PRIVATE_KEY_B64 | base64 -d | head
-    heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-d42d7ed0d036.herokuapp.com/oauth2/callback/
+    heroku config:set OAUTH2_REDIRECT_URI=https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/
 fi
 
 
@@ -1108,8 +1108,8 @@ echo -e "\033[7;33m----------------------------------------------- GUNICORN ----
 PUERTOS=(8000 5000 35729)
 URL_LOCAL="http://localhost:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
-URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
-URL_NJALLA="https://api.coretransapi.com/"
+URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
+URL_NJALLA="https://apih.coretransapi.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 
 # === FUNCIONES ===
@@ -1196,7 +1196,7 @@ sleep 1
 # PUERTOS=(8001 5000 35729)
 # URL_LOCAL="http://localhost:5000"
 # URL_GUNICORN="http://0.0.0.0:8011"
-# URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
+# URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 # LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 # # === FUNCIONES ===
 # liberar_puertos() {

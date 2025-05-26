@@ -132,8 +132,8 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     sleep 1
 
     firefox --new-tab  http://localhost:5000 --new-tab http://0.0.0.0:8000
-    # firefox --new-tab http://0.0.0.0:8000 --new-tab http://localhost:5000 --new-tab https://apibank2-d42d7ed0d036.herokuapp.com/
-    # firefox --new-tab http://0.0.0.0:8000 --new-tab https://apibank2-d42d7ed0d036.herokuapp.com &
+    # firefox --new-tab http://0.0.0.0:8000 --new-tab http://localhost:5000 --new-tab https://apibank2-54644cdf263f.herokuapp.com/
+    # firefox --new-tab http://0.0.0.0:8000 --new-tab https://apibank2-54644cdf263f.herokuapp.com &
     # gunicorn --certfile=cert.pem --keyfile=privkey.pem --bind 0.0.0.0:8443 config.wsgi:application
 
     # firefox --new-tab http://0.0.0.0:8000 &

@@ -35,8 +35,8 @@ mkdir -p "$LOG_DIR" "$CACHE_DIR"
 PUERTOS=(8000 5000 35729)
 URL_SSL_LOCAL="https://localhost:8443"
 URL_GUNICORN="http://127.0.0.1:8000"
-URL_HEROKU="https://apibank2-d42d7ed0d036.herokuapp.com/"
-URL_NJALLA="https://api.coretransapi.com/"
+URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
+URL_NJALLA="https://apih.coretransapi.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 
 # === FUNCIONES ===
