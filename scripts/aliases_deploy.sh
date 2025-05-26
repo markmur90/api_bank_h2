@@ -25,38 +25,17 @@ unalias ad_local 2>/dev/null
 ad_local() {
     cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && d_local && code . "$@"
 }
-unalias ad_short_local 2>/dev/null
-ad_short_local() {
-    cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && d_local_short && code . "$@"
-}
-unalias d_local_short 2>/dev/null
-d_local_short() {
-    bash ./01_full.sh --env=local -l -Q -I "$@"
-# eval "$SHELL" -ic 'd_ssl'
-}
 unalias d_local 2>/dev/null
 d_local() {
-    bash ./01_full.sh --env=local -l -C -Z -S -M -x -Q -I -r "$@"
-}
-unalias d_local_dry 2>/dev/null
-d_local_dry() {
-    bash ./01_full.sh --env=local --dry-run -P -C -Q -I -U -V "$@"
+    bash ./01_full.sh --env=local -C -Z -S -Q -I -U "$@"
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=production -C -Z -H -S -Q -I "$@"
+    bash ./01_full.sh --env=production -C -Z -S -Q -I -U -u -H "$@"
 }
 unalias d_njalla 2>/dev/null
 d_njalla() {
-    bash ./01_full.sh --env=production -P -C -H -U -V -u -B -v "$@"
-}
-unalias d_production_vars 2>/dev/null
-d_production_vars() {
-    bash ./01_full.sh --env=production -P -C -H -U -V "$@"
-}
-unalias d_prod_min 2>/dev/null
-d_prod_min() {
-    bash ./01_full.sh --env=production -v -V "$@"
+    bash ./01_full.sh --env=production -C -Z -S -Q -I -U -u -H -v "$@"
 }
 
 
