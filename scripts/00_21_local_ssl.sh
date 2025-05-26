@@ -48,11 +48,11 @@ if sudo lsof -i :8443 | grep -q LISTEN; then
     fi
 
     echo "🚀 Ejecutando Gunicorn como backend en http://0.0.0.0:8000" | tee -a $LOG_DEPLOY
-nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > logs/gunicorn_ssl.log 2>&1 &
+nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > scripts/logs/01_full_deploy/gunicorn_ssl.log 2>&1 &
 else
     echo "🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443" | tee -a $LOG_DEPLOY
     echo "🔐 Certificado: $CERT_CRT" | tee -a $LOG_DEPLOY
-nohup gunicorn config.wsgi:application \ > logs/gunicorn_ssl.log 2>&1 &
+nohup gunicorn config.wsgi:application \ > scripts/logs/01_full_deploy/gunicorn_ssl.log 2>&1 &
       --certfile="$CERT_CRT" \
       --keyfile="$CERT_KEY" \
       --bind 0.0.0.0:8443
