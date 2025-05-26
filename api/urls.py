@@ -1,7 +1,7 @@
 from django.urls import path, include
 from django.contrib import admin
 from api.views import (
-    HomeView, LoginView, DashboardView, LogoutView,
+    DashboardView, HomeView, LoginView, LogoutView,
     AuthIndexView, CoreIndexView, AccountsIndexView, SCTIndexView,
     TransactionsIndexView, TransfersIndexView, CollectionIndexView, mostrar_readme, ReadmeView, AuthorizeView, CallbackView
 )
@@ -22,7 +22,7 @@ urlpatterns = [
     # path("readme/", ReadmeView.as_view(), name="readme_deploy"),
     path("readme/", mostrar_readme, name="readme_deploy"),
 
-    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('dashboard/', DashboardView, name='dashboard'),
     path('oauth2/callback/', CallbackView.as_view(), name='oauth2_callback'),
     path('oauth2/authorize/', AuthorizeView.as_view(), name='oauth2_authorize'),
 

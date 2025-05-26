@@ -6,6 +6,8 @@ from django.utils.decorators import method_decorator
 from api.authentication.serializers import JWTTokenSerializer
 from django.urls import reverse
 from api.gpt4.models import Creditor, Transfer
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 class HomeView(View):
     def get(self, request):
@@ -31,15 +33,11 @@ class LoginView(View):
 
         return render(request, 'login.html', {'error': 'Credenciales inválidas'})
     
-@method_decorator(login_required, name='dispatch')
-class DashboardView(View):
-    def get(self, request):
-        creditors = Creditor.objects.all()
-        transfers = Transfer.objects.all()
-        return render(request, 'dashboard.html', {
-            'creditors': creditors,
-            'transfers': transfers
-        })
+
+
+@login_required
+def DashboardView(request):
+    return render(request, 'dashboard.html', {'user': request.user})
 
 class LogoutView(View):
     def get(self, request):

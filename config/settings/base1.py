@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
 env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
 if not env_file.exists():
     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
@@ -19,9 +19,8 @@ env.read_env(env_file)
 
 # 3. Variables críticas
 SECRET_KEY = env('SECRET_KEY')
-DEBUG      = env.bool('DEBUG', default=True)
+DEBUG      = env.bool('DEBUG', default=False)
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
-print(f"🌐 ALLOWED_HOSTS = {ALLOWED_HOSTS}")
 
 
 
@@ -43,7 +42,6 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework.authtoken',
     'markdownify',
-    'sslserver',
 
     'api.transfers',
     'api.core',
@@ -99,8 +97,7 @@ TEMPLATES = [
 # 4. DEBUG_TOOLBAR_SETTINGS (opcional, pero recomendado)
 INTERNAL_IPS = [
     '127.0.0.1',
-    '0.0.0.0',
-    'localhost',
+    '0.0.0.0'
     '192.168.0.143'
     # añade aquí la IP de tu máquina si usas Docker o VM
 ]
@@ -109,7 +106,7 @@ INTERNAL_IPS = [
 DATABASES = {
     'default': dj_database_url.config(default=env('DATABASE_URL'))
 }
-
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # 6. Resto de configuración (sin cambios)
@@ -142,14 +139,8 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "https://api.db.com",
     "https://simulator-api.db.com",
-    "https://apibank2-54644cdf263f.herokuapp.com",
+    "https://apibank2-54644cdf263f.herokuapp.com.com",
     "https://apih.coretransapi.com",
-]
-CSRF_TRUSTED_ORIGINS = [
-    "https://api.db.com",
-    "https://simulator-api.db.com",
-    "https://apih.coretransapi.com",
-    "https://apibank2-54644cdf263f.herokuapp.com",
 ]
 
 # REST Framework y OAuth/JWT (sin cambios)
@@ -164,51 +155,47 @@ REST_FRAMEWORK = {
 
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
+REDIRECT_URI = 'https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/'
 
-REDIRECT_URI="https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/"
+ORIGIN = 'https://api.db.com'
 
+CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
+CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
 
-CLIENT_ID = env('CLIENT_ID')
-CLIENT_SECRET = env('CLIENT_SECRET')
-
-ORIGIN = env('ORIGIN')
-
-TOKEN_URL = env('TOKEN_URL')
-OTP_URL = env('OTP_URL')
-AUTH_URL = env('AUTH_URL')
-API_URL = env('API_URL')
-AUTHORIZE_URL = env('AUTHORIZE_URL')
-SCOPE = env('SCOPE')
+TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
+OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
+AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
+API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
+AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
+SCOPE = 'sepa_credit_transfers'
 TIMEOUT_REQUEST = 3600
 
-ACCESS_TOKEN = env('ACCESS_TOKEN')
+ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
 
+JWT_SIGNING_KEY='Ptf8454Jd55'
+JWT_VERIFYING_KEY='Ptf8454Jd55'
 
 OAUTH2 = {
-    'CLIENT_ID': CLIENT_ID,
-    'CLIENT_SECRET': CLIENT_SECRET,
-    'ACCESS_TOKEN': ACCESS_TOKEN,
-    'ORIGIN': ORIGIN,
-    'OTP_URL': OTP_URL,
-    'AUTH_URL': AUTH_URL,
-    'API_URL': API_URL,
-    'TOKEN_URL': TOKEN_URL,
-    'AUTHORIZE_URL': AUTHORIZE_URL,
-    'SCOPE': SCOPE,
-    'REDIRECT_URI': REDIRECT_URI,
-    'TIMEOUT_REQUEST': 3600,
-
+    'CLIENT_ID': 'CLIENT_ID',
+    'CLIENT_SECRET': 'CLIENT_SECRET',
+    'ACCESS_TOKEN': 'ACCESS_TOKEN',
+    'ORIGIN': 'ORIGIN',
+    'OTP_URL': 'OTP_URL',
+    'AUTH_URL': 'AUTH_URL',
+    'API_URL': 'API_URL',
+    'TOKEN_URL': 'TOKEN_URL',
+    'AUTHORIZE_URL': 'AUTHORIZE_URL',
+    'REDIRECT_URI': 'REDIRECT_URI',
+    'SCOPE': 'SCOPE',
+    'TIMEOUT': 3600,
 }
-
-
-
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ALGORITHM": "HS256",
-    "SIGNING_KEY": env('JWT_SIGNING_KEY', default=''),
-    "VERIFYING_KEY": env('JWT_VERIFYING_KEY', default=''),
+    "SIGNING_KEY": 'JWT_SIGNING_KEY',
+    "VERIFYING_KEY": 'JWT_VERIFYING_KEY',
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
 
@@ -236,10 +223,7 @@ LOGGING = {
 }
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/dashboard/'
-LOGOUT_REDIRECT_URL = '/login/'
-
-SESSION_COOKIE_AGE = 3600
+SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 DEBUG_TOOLBAR_CONFIG = {
@@ -250,8 +234,6 @@ DEBUG_TOOLBAR_CONFIG = {
 import django_heroku
 django_heroku.settings(locals())
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-
-PRIVATE_KEY_KID = '7acb2cbe-00a6-4122-8f68-27d9235befbb'
+PRIVATE_KEY_KID = '0697a08c-2596-4545-ae01-8f0c68e93e6f'
 PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
