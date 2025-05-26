@@ -249,7 +249,7 @@ if [[ "${DEBUG_MODE:-false}" == true ]]; then
     printf "%-20s =\t%s\n" "SERVERS_DIR"         "$PROJECT_ROOT/servers"
     printf "%-20s =\t%s\n" "CACHE_DIR"           "$PROJECT_ROOT/tmp"
     printf "%-20s =\t%s\n" "PROJECT_ROOT"        "$PROJECT_ROOT"
-    printf "%-20s =\t%s\n" "LOG_DIR"             "$PROJECT_ROOT/logs"
+    printf "%-20s =\t%s\n" "LOG_DIR"             "$LOG_DIR"
     echo -e "\033[1;36m==============================================================================\033[0m"
     echo ""
 fi
