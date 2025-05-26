@@ -469,15 +469,6 @@ verificar_vpn_segura
 verificar_configuracion_segura
 rotar_logs_si_grandes
 
-echo -e "\033[7;33m-------------------------------------------VARIABLES A HEROKU------------------------------------------\033[0m"
-ejecutar_si_activo "DO_VARHER" "Subir variables a Heroku" "bash $SCRIPTS_DIR/00_15_variables_heroku.sh"
-echo ""
-echo ""
-echo ""
-echo ""
-sleep "$TIME_SLEEP"
-# clear
-
 echo -e "\033[7;33m---------------------------------------------SUBIR A HEROKU--------------------------------------------\033[0m"
 ejecutar_si_activo "DO_HEROKU" "Subir el proyecto a la web" "bash $SCRIPTS_DIR/00_16_subir_heroku.sh"
 echo ""
@@ -488,6 +479,15 @@ sleep "$TIME_SLEEP"
 
 echo -e "\033[7;33m-----------------------------------------SINCRONIZACION BDD WEB----------------------------------------\033[0m"
 ejecutar_si_activo "DO_SYNC_REMOTE_DB" "Sincronizar BDD Remota" "bash $SCRIPTS_DIR/00_17_sincronizar_bdd.sh"
+echo ""
+echo ""
+echo ""
+sleep "$TIME_SLEEP"
+# clear
+
+echo -e "\033[7;33m-------------------------------------------VARIABLES A HEROKU------------------------------------------\033[0m"
+ejecutar_si_activo "DO_VARHER" "Subir variables a Heroku" "bash $SCRIPTS_DIR/00_15_variables_heroku.sh"
+echo ""
 echo ""
 echo ""
 echo ""
