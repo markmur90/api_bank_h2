@@ -35,11 +35,11 @@ d_local() {
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    d_env && bash ./01_full.sh --env=production -S -Q -I -U -u -H -B "$@"
+    d_env && bash ./01_full.sh --env=production -S -Q -I -U -u -H -B -E "$@"
 }
 unalias d_njalla 2>/dev/null
 d_njalla() {
-    d_env && bash ./01_full.sh --env=production -S -Q -I -U -u -H -B -v "$@"
+    d_env && bash ./01_full.sh --env=production -S -Q -I -U -u -H -B -E -v "$@"
 }
 unalias d_pgm 2>/dev/null
 d_pgm() {
