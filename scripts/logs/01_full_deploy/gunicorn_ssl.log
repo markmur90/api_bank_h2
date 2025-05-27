@@ -1,0 +1,102 @@
+[2025-05-27 03:38:32 +0200] [174024] [INFO] Starting gunicorn 23.0.0
+[2025-05-27 03:38:32 +0200] [174024] [INFO] Listening at: http://0.0.0.0:8000 (174024)
+[2025-05-27 03:38:32 +0200] [174024] [INFO] Using worker: sync
+[2025-05-27 03:38:32 +0200] [174053] [INFO] Booting worker with pid: 174053
+[2025-05-27 04:44:15 +0200] [174024] [INFO] Handling signal: hup
+--- Logging error ---
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/logging/__init__.py", line 1153, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedWriter name='<stderr>'>
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.13/logging/__init__.py", line 1153, in emit
+    stream.write(msg + self.terminator)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/arbiter.py", line 241, in handle_chld
+    self.reap_workers()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/arbiter.py", line 553, in reap_workers
+    self.log.error(msg)
+    ~~~~~~~~~~~~~~^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/glogging.py", line 271, in error
+    self.error_log.error(msg, *args, **kwargs)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1548, in error
+    self._log(ERROR, msg, args, **kwargs)
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1664, in _log
+    self.handle(record)
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1680, in handle
+    self.callHandlers(record)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1736, in callHandlers
+    hdlr.handle(record)
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1026, in handle
+    self.emit(record)
+    ~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1158, in emit
+    self.handleError(record)
+    ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/usr/lib/python3.13/logging/__init__.py", line 1074, in handleError
+    sys.stderr.write('--- Logging error ---\n')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: reentrant call inside <_io.BufferedWriter name='<stderr>'>
+Call stack:
+  File "/home/markmur88/Documentos/Entorno/envAPP/bin/gunicorn", line 8, in <module>
+    sys.exit(run())
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/app/wsgiapp.py", line 66, in run
+    WSGIApplication("%(prog)s [OPTIONS] [APP_MODULE]", prog=prog).run()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/app/base.py", line 235, in run
+    super().run()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/app/base.py", line 71, in run
+    Arbiter(self).run()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/arbiter.py", line 222, in run
+    self.log.info("Handling signal: %s", signame)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/glogging.py", line 277, in info
+    self.error_log.info(msg, *args, **kwargs)
+Message: 'Handling signal: %s'
+Arguments: ('hup',)
+[2025-05-27 04:44:20 +0200] [174024] [INFO] Hang up: Master
+[2025-05-27 04:44:21 +0200] [174024] [INFO] Handling signal: term
+[2025-05-27 04:44:21 +0200] [209196] [INFO] Booting worker with pid: 209196
+Invalid line:   # instant_sepa_credit_transfers
+Invalid line:   # read_additional_personal_data
+Invalid line:   # read_credit_card_transactions
+Invalid line:   # read_accounts_list
+Invalid line:   # read_addresses
+Invalid line:   # age_certificate
+Invalid line:   # read_security_accounts_list
+Invalid line:   # bulk_sepa_credit_transfers
+Invalid line:   # read_transactions
+Invalid line:   # verify_customer
+Invalid line:   # investments_orders_status_notification
+Invalid line:   # read_security_transactions
+Invalid line:   # offline_access
+Invalid line:   # income_analysis
+Invalid line:   # investments_report
+Invalid line:   # read_accounts
+Invalid line:   # openid
+Invalid line:   # read_ownership_information
+Invalid line:   # sepa_direct_debit_core
+Invalid line:   # sepa_credit_transfers
+Invalid line:   # read_additional_organization_data
+Invalid line:   # verify_account_ownership
+Invalid line:   # rent_analysis
+Invalid line:   # read_partners_legi
+Invalid line:   # transaction_notifications
+Invalid line:   # read_credit_cards_list_with_details
+Invalid line:   # read_check_information
+Invalid line:   # read_customer_data
+Invalid line:   # read_legal_representatives_data
+Invalid line:   # read_performances
+Invalid line:   # read_assets
+Invalid line:   # order_securities
+Invalid line:   # sepa_direct_debit_B2B
+Invalid line:   # read_partners
+[2025-05-27 04:44:51 +0200] [174024] [INFO] Shutting down: Master

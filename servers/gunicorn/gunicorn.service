@@ -1,0 +1,18 @@
+[Unit]
+Description=Gunicorn Daemon for api_bank_h2
+Requires=gunicorn.socket
+After=network.target
+
+[Service]
+User=markmur88
+Group=www-data
+WorkingDirectory=/home/markmur88/Documentos/GitHub/api_bank_h2
+Environment="PATH=/home/markmur88/Documentos/Entorno/envAPP/bin"
+ExecStart=/home/markmur88/Documentos/Entorno/envAPP/bin/gunicorn \
+          --access-logfile - \
+          --workers 3 \
+          --bind unix:/home/markmur88/Documentos/GitHub/api_bank_h2/servers/gunicorn/api.sock \
+          config.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
