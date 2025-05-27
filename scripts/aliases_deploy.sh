@@ -31,7 +31,7 @@ d_env() {
 }
 unalias d_local 2>/dev/null
 d_local() {
-    d_env && bash ./01_full.sh --env=local -S -Q -I -U "$@"
+    d_env && bash ./01_full.sh --env=local -Q -I -U -E "$@"
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
