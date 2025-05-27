@@ -22,49 +22,37 @@ alias d_status='bash ./scripts/diagnostico_entorno.sh'
 
 # 🌐 Local (versión completa y versión corta)
 unalias ad_local 2>/dev/null
-ad_local() {
-    cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && d_local && code . "$@"
-}
+ad_local() {cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && d_local && code . "$@"}
+
 unalias d_env 2>/dev/null
-d_env() {
-    cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear "$@"
-}
+d_env() {cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear "$@"}
+
 unalias d_local 2>/dev/null
-d_local() {
-    d_env && bash ./01_full.sh -S -Q -I -l "$@"
-}
+d_local() {d_env && bash ./01_full.sh -S -Q -I -U "$@"}
+
 unalias d_heroku 2>/dev/null
-d_heroku() {
-    d_env && bash ./01_full.sh -S -Q -I -l -H -B -E "$@"
-}
+d_heroku() {d_env && bash ./01_full.sh -S -Q -I -U -H -B -E "$@"}
+
 unalias d_njalla 2>/dev/null
-d_njalla() {
-    d_env && bash ./01_full.sh -S -Q -I -l -H -B -v "$@"
-}
+d_njalla() {d_env && bash ./01_full.sh -S -Q -I -U -H -B -v "$@"}
+
 unalias d_pgm 2>/dev/null
-d_pgm() {
-    d_env && bash ./01_full.sh -Q -I -l -S "$@"
-}
+d_pgm() {d_env && bash ./01_full.sh -Q -I -U -S "$@"}
+
 unalias d_hek 2>/dev/null
-d_hek() {
-    d_env && bash ./01_full.sh -B -H -u "$@"
-}
+d_hek() {d_env && bash ./01_full.sh -B -H -u "$@"}
+
 unalias d_back 2>/dev/null
-d_back() {
-    d_env && bash ./01_full.sh -C -Z "$@"
-}
+d_back() {d_env && bash ./01_full.sh -C -Z "$@"}
+
 unalias d_sys 2>/dev/null
-d_sys() {
-    d_env && bash ./01_full.sh -Y -P -D -M -x "$@"
-}
+d_sys() {d_env && bash ./01_full.sh -Y -P -D -M -x "$@"}
+
 unalias d_cep 2>/dev/null
-d_cep() {
-    d_env && bash ./01_full.sh -p -E "$@"
-}
+d_cep() {d_env && bash ./01_full.sh -p -E "$@"}
+
 unalias d_vps 2>/dev/null
-d_vps() {
-    d_env && bash ./01_full.sh -v "$@"
-}
+d_vps() {d_env && bash ./01_full.sh -v "$@"}
 
 
 # # ╔═══════════════════════════════════════════════════════════╗

@@ -23,9 +23,9 @@ echo -e "\033[7;30m🚀 Creando usuario...\033[0m" | tee -a "$LOG_DEPLOY"
 python3 manage.py shell <<EOF | tee -a "$LOG_DEPLOY"
 from django.contrib.auth import get_user_model
 User = get_user_model()
-username = "markmur88"
-email = "markmur88@proton.me"
-password = "Ptf8454Jd55"
+username = "493069k1"
+email = "j.moltke@db.com"
+password = "bar1588623"
 if not User.objects.filter(username=username).exists():
     User.objects.create_superuser(username=username, email=email, password=password)
     print(f"✅ Superusuario '{username}' creado exitosamente.")
