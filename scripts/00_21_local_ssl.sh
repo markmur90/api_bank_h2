@@ -7,6 +7,7 @@ LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 {
+echo ""
 echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
 echo -e "📄 Script: $SCRIPT_NAME"
 echo -e "═════════════════════════════════════════════════════════════"
@@ -27,8 +28,8 @@ source "$HOME/Documentos/Entorno/envAPP/bin/activate"
 PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2"
 cd "$PROJECT_DIR"
 
-CERT_CRT="certs/desarrollo.crt"
-CERT_KEY="certs/desarrollo.key"
+CERT_CRT="schemas/certs/desarrollo.crt"
+CERT_KEY="schemas/certs/desarrollo.key"
 
 if [[ ! -f "$CERT_CRT" || ! -f "$CERT_KEY" ]]; then
     echo "⚠️ Certificados no encontrados. Generando nuevos..." | tee -a $LOG_DEPLOY

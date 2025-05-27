@@ -7,6 +7,7 @@ LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
 mkdir -p "$(dirname "$LOG_FILE")"
 
 {
+echo ""
 echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
 echo -e "📄 Script: $SCRIPT_NAME"
 echo -e "═════════════════════════════════════════════════════════════"

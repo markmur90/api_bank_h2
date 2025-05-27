@@ -1,4 +1,12 @@
-[2025-05-27 05:03:42 +0200] [19035] [INFO] Starting gunicorn 23.0.0
-[2025-05-27 05:03:42 +0200] [19035] [INFO] Listening at: http://0.0.0.0:8011 (19035)
-[2025-05-27 05:03:42 +0200] [19035] [INFO] Using worker: sync
-[2025-05-27 05:03:42 +0200] [19042] [INFO] Booting worker with pid: 19042
+[2025-05-27 05:19:29 +0200] [33963] [INFO] Starting gunicorn 23.0.0
+[2025-05-27 05:19:29 +0200] [33963] [ERROR] Connection in use: ('0.0.0.0', 8011)
+[2025-05-27 05:19:29 +0200] [33963] [ERROR] connection to ('0.0.0.0', 8011) failed: [Errno 98] Address already in use
+[2025-05-27 05:19:30 +0200] [33963] [ERROR] Connection in use: ('0.0.0.0', 8011)
+[2025-05-27 05:19:30 +0200] [33963] [ERROR] connection to ('0.0.0.0', 8011) failed: [Errno 98] Address already in use
+[2025-05-27 05:19:31 +0200] [33963] [ERROR] Connection in use: ('0.0.0.0', 8011)
+[2025-05-27 05:19:31 +0200] [33963] [ERROR] connection to ('0.0.0.0', 8011) failed: [Errno 98] Address already in use
+[2025-05-27 05:19:32 +0200] [33963] [ERROR] Connection in use: ('0.0.0.0', 8011)
+[2025-05-27 05:19:32 +0200] [33963] [ERROR] connection to ('0.0.0.0', 8011) failed: [Errno 98] Address already in use
+[2025-05-27 05:19:33 +0200] [33963] [ERROR] Connection in use: ('0.0.0.0', 8011)
+[2025-05-27 05:19:33 +0200] [33963] [ERROR] connection to ('0.0.0.0', 8011) failed: [Errno 98] Address already in use
+[2025-05-27 05:19:34 +0200] [33963] [ERROR] Can't connect to ('0.0.0.0', 8011)
