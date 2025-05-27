@@ -1,5 +1,0 @@
-[2025-05-26 21:59:52 +0200] [144436] [INFO] Starting gunicorn 23.0.0
-[2025-05-26 21:59:52 +0200] [144436] [INFO] Listening at: http://0.0.0.0:8000 (144436)
-[2025-05-26 21:59:52 +0200] [144436] [INFO] Using worker: sync
-[2025-05-26 21:59:52 +0200] [144458] [INFO] Booting worker with pid: 144458
-Unauthorized: /login/
