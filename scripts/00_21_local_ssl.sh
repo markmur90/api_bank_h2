@@ -28,8 +28,8 @@ source "$HOME/Documentos/Entorno/envAPP/bin/activate"
 PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2"
 cd "$PROJECT_DIR"
 
-CERT_CRT="schemas/certs/desarrollo.crt"
-CERT_KEY="schemas/certs/desarrollo.key"
+CERT_CRT="$PROJECT_DIR/schemas/certs/desarrollo.crt"
+CERT_KEY="$PROJECT_DIR/schemas/certs/desarrollo.key"
 
 if [[ ! -f "$CERT_CRT" || ! -f "$CERT_KEY" ]]; then
     echo "⚠️ Certificados no encontrados. Generando nuevos..." | tee -a $LOG_DEPLOY
@@ -49,11 +49,11 @@ if sudo lsof -i :8443 | grep -q LISTEN; then
     fi
 
     echo "🚀 Ejecutando Gunicorn como backend en http://0.0.0.0:8000" | tee -a $LOG_DEPLOY
-nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > scripts/logs/01_full_deploy/gunicorn_ssl.log 2>&1 &
+nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > scripts/logs/01_full_deploy/full_deploy.log 2>&1 &
 else
     echo "🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443" | tee -a $LOG_DEPLOY
     echo "🔐 Certificado: $CERT_CRT" | tee -a $LOG_DEPLOY
-nohup gunicorn config.wsgi:application \ > scripts/logs/01_full_deploy/gunicorn_ssl.log 2>&1 &
+nohup gunicorn config.wsgi:application \ > scripts/logs/01_full_deploy/full_deploy.log 2>&1 &
       --certfile="$CERT_CRT" \
       --keyfile="$CERT_KEY" \
       --bind 0.0.0.0:8443
