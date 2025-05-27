@@ -523,7 +523,7 @@ pausa_y_limpiar
 
 # === 23 ===
 echo -e "\033[7;34m-------------------------------------------- DEPLOY COMPLETO ------------------------------------------\033[0m" 
-echo "----------------------------DEPLOY COMPLETO----------------------------" >> "$LOG_DEPLOY"
+echo -e "----------------------------DEPLOY COMPLETO----------------------------\n\n\n" >> "$LOG_DEPLOY"
 URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"

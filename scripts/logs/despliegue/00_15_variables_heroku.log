@@ -1,0 +1,38 @@
+
+📅 Fecha de ejecución: 2025-05-28 01:13:24
+📄 Script: 00_15_variables_heroku.sh
+═════════════════════════════════════════════════════════════
+[7;30m🚀 Subiendo variables de entorno a Heroku (apibank2)...[0m
+DISABLE_COLLECTSTATIC: 1
+🔑 Clave privada existente detectada en /home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem
+PRIVATE_KEY_B64: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR0hBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ1ArWHMxSG9rT1BtbFJxWWkKVUtVa2hrYjdKa1lyY3k0amQxblV4Vm83VC8raFJBTkNBQVNoUnVBZDhwaHYzcUF2RVQ4cWczWXpyOWlRTDh6bwp5WkxJay9tQ1lXVTg5YVd5NDdjVm45WWRxNDU1VGRQUzArRjdxSzdnV0xYR3NycU01WjcrR0VxeQotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tCg==
+
+📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_heroku/.env.production...
+
+Setting DEBUG and restarting apibank2...
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+ ›   Warning: Release command executing: this config change will not be 
+ ›   available until the command succeeds. Use `heroku releases:output` to view
+ ›    the log.
+ ›
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DEBUG and restarting apibank2... done, v147
+DEBUG: False
+✅ OK: DEBUG=True
+
+❌ Error en línea 69: "((success++))"
+Abortando ejecución.
