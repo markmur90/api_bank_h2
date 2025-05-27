@@ -322,3 +322,15 @@
 
 [1;34m🧠 Consejo:[0m Abre https://127.0.0.1:8000 en tu navegador y acepta el riesgo para continuar.
 
+[1;36m🔐 Generando certificado SSL local autofirmado...[0m
+🔐 Activando entorno virtual...
+
+[1;32m✅ Certificado generado en:[0m
+   📄 Clave privada: [1;33m/home/markmur88/Documentos/GitHub/api_bank_h2/certs/desarrollo.key[0m
+   📄 Certificado  : [1;33m/home/markmur88/Documentos/GitHub/api_bank_h2/certs/desarrollo.crt[0m
+
+[1;36m🌐 Para usarlo en django-sslserver:[0m
+   python manage.py runsslserver --certificate /home/markmur88/Documentos/GitHub/api_bank_h2/certs/desarrollo.crt --key /home/markmur88/Documentos/GitHub/api_bank_h2/certs/desarrollo.key
+
+[1;34m🧠 Consejo:[0m Abre https://127.0.0.1:8000 en tu navegador y acepta el riesgo para continuar.
+

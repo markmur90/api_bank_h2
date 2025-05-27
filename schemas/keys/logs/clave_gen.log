@@ -148,3 +148,13 @@
   },
   "kid": "3609ad5a-b0c4-4865-87ca-7039dc58fb9d"
 }
+{
+  "timestamp": "2025-05-28T00:18:01.997793",
+  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+  "archivos": {
+    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem",
+    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_public_key.pem",
+    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
+  },
+  "kid": "c5fe10ea-32d9-4fac-9eb0-39d3ad4679c0"
+}
