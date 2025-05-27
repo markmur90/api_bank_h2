@@ -1,24 +1,28 @@
+
 from .base1 import *
 
-from pathlib import Path
-import environ
+DEBUG = True
+SECRET_KEY = "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw"
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+DJANGO_ENV = 'local'
+ENVIRONMENT = 'local'
 
-# 1. Creamos el lector de .env
-env = environ.Env()
+DATABASE_URL = 'postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase'
+DATABASES = {
+    'default': dj_database_url.parse(DATABASE_URL)
+}
 
-# 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-# DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
-# env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
-# if not env_file.exists():
-#     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-# env.read_env(env_file)
+SESSION_COOKIE_SECURE = False
+CSRF_COOKIE_SECURE = False
+SECURE_SSL_REDIRECT = False
 
-
-# 3. Variables críticas
-SECRET_KEY = env('SECRET_KEY')
-DEBUG      = env.bool('DEBUG', default=True)
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
+USE_OAUTH2_UI = True
+REDIRECT_URI = 'http://0.0.0.0:8000/oauth2/callback/'
+ORIGIN = 'http://localhost:8000'
 
 
+OAUTH2.update({
+    "REDIRECT_URI": REDIRECT_URI,
+    "ORIGIN": ORIGIN,
+})

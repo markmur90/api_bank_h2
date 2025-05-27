@@ -1,30 +1,23 @@
+
 from .base1 import *
 
-from pathlib import Path
-import environ
+DEBUG = False
+ALLOWED_HOSTS = ['apibank2-54644cdf263f.herokuapp.com', 'apih.coretransapi.com']
+SECRET_KEY = "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw"
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+ENVIRONMENT = 'production'
+DJANGO_ENV = 'production'
 
-# 1. Creamos el lector de .env
-env = environ.Env()
+DATABASE_URL = "postgres://u22qfesn1ol61g:p633435fd268a16298ff6b2b83e47e7091ae5cb79d80ad13e03a6aff1262cc2ae@c7pvjrnjs0e7al.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/ddo6kmmjfftuav"
+DATABASES = {
+    'default': dj_database_url.parse(DATABASE_URL)
+}
 
-# 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-# DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
-# env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
-# if not env_file.exists():
-#     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-# env.read_env(env_file)
+USE_OAUTH2_UI = True
+REDIRECT_URI = 'https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/'
+ORIGIN = 'https://apibank2-54644cdf263f.herokuapp.com'
 
-# 3. Variables críticas
-SECRET_KEY = env('SECRET_KEY')
-DEBUG      = env.bool('DEBUG', default=False)
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
-
-
-
-
-
-
-
-
-
+OAUTH2.update({
+    "REDIRECT_URI": REDIRECT_URI,
+    "ORIGIN": ORIGIN,
+})

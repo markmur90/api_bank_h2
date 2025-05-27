@@ -38,10 +38,10 @@ heroku config:set DJANGO_SUPERUSER_EMAIL=markmur88@proton.me --app "$HEROKU_APP"
 heroku config:set DJANGO_SUPERUSER_PASSWORD=Ptf8454Jd55 --app "$HEROKU_APP"
 
 # 🔐 Generar SECRET_KEY aleatoria
-CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
-heroku config:set DJANGO_SECRET_KEY="$CLAVE_SEGURA" --app "$HEROKU_APP"
-heroku config:set DJANGO_DEBUG=False --app "$HEROKU_APP"
-heroku config:set DJANGO_ALLOWED_HOSTS=*.herokuapp.com --app "$HEROKU_APP"
+# CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
+# heroku config:set DJANGO_SECRET_KEY="$CLAVE_SEGURA" --app "$HEROKU_APP"
+# heroku config:set DJANGO_DEBUG=False --app "$HEROKU_APP"
+# heroku config:set DJANGO_ALLOWED_HOSTS=*.herokuapp.com --app "$HEROKU_APP"
 
 # 🔐 Claves privadas
 mkdir -p keys

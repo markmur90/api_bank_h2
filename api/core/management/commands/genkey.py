@@ -19,9 +19,9 @@ class Command(BaseCommand):
         keys_dir = Path(get_project_path("schemas/keys"))
         logs_dir = Path(get_project_path("schemas/keys/logs"))
         env_files = [
-            Path(get_project_path(".env")),
-            Path(get_project_path(".env.production")),
-            Path(get_project_path(".env.development")),
+            Path(get_project_path("config/settings/base1.py")),
+            Path(get_project_path("config/settings/local.py")),
+            Path(get_project_path("config/settings/production.py")),
         ]
         log_file = Path(get_project_path("schemas/keys/logs/clave_gen.log"))
         usuario_path = Path(get_project_path("schemas/keys/client_id.key"))
@@ -104,8 +104,8 @@ class Command(BaseCommand):
                     with open(env_file, "r", encoding="utf-8") as f:
                         lines = f.readlines()
 
-                    key_path_line = "PRIVATE_KEY_PATH=schemas/keys/private_key.pem\n"
-                    kid_line = f"PRIVATE_KEY_KID='{kid}'\n"
+                    key_path_line = "PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'schemas/keys/private_key.pem')\n"
+                    kid_line = f"PRIVATE_KEY_KID = '{kid}'\n"
 
                     found_key_path = any("PRIVATE_KEY_PATH" in l for l in lines)
                     found_kid = any("PRIVATE_KEY_KID" in l for l in lines)

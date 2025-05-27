@@ -38,6 +38,7 @@ EXCLUDES=(
     "--exclude=.codesandbox/"
     "--exclude=.devcontainer/"
     "--exclude=.github/"
+    "--exclude=.env*"
 )
 
 actualizar_django_env() {
