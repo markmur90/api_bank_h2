@@ -1,50 +1,10 @@
 {
-  "timestamp": "2025-05-27T08:22:14.358213",
+  "timestamp": "2025-05-27T09:20:04.582598",
   "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
   "archivos": {
     "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
     "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
     "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
   },
-  "kid": "bccb455e-9c68-43aa-a84d-434caa2cfbf3"
-}
-{
-  "timestamp": "2025-05-27T08:23:16.314205",
-  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
-  "archivos": {
-    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
-    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
-    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
-  },
-  "kid": "c7c44e83-f696-4290-95db-8626e5055363"
-}
-{
-  "timestamp": "2025-05-27T08:25:15.852821",
-  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
-  "archivos": {
-    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
-    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
-    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
-  },
-  "kid": "3910739c-3768-4379-b8b2-39b53be34693"
-}
-{
-  "timestamp": "2025-05-27T08:44:56.869031",
-  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
-  "archivos": {
-    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
-    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
-    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
-  },
-  "kid": "583bacff-9f44-4d2a-8a5f-167478c8741b"
-}
-{
-  "timestamp": "2025-05-27T08:56:36.974012",
-  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
-  "archivos": {
-    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
-    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
-    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
-  },
-  "kid": "d4089d61-ceb7-4405-a21e-43207075c65a"
+  "kid": "a407864d-7af3-43c6-9f6c-95375173f4ba"
 }

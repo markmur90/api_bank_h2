@@ -42,7 +42,7 @@ EXCLUDES=(
 
 actualizar_django_env() {
     local destino="$1"
-    echo "🧾 Ajustando DJANGO_ENV en __init__.py en $destino"
+    echo "🧾 Ajustando DJANGO_ENV en base1.py en $destino"
     python3 <<EOF | tee -a "$LOG_DEPLOY"
 import os
 settings_path = os.path.join("$destino", "config", "settings", "base1.py")

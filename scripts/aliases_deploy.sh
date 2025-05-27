@@ -35,7 +35,7 @@ d_pgmigrate() {
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=production -Q -I -U -C -Z -S -B -H -u -Y -P -D -M -x -p -E -r "$@"
+    bash ./01_full.sh --env=production -C -Z -S -Q -I -U -u -H "$@"
 }
 unalias d_njalla 2>/dev/null
 d_njalla() {

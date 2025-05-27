@@ -28,7 +28,7 @@ echo -e "\033[7;30m🚀 Subiendo variables de entorno a Heroku ($HEROKU_APP)...\
 cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a $HEROKU_ROOT\033[0m"; exit 1; }
 
 # 🔐 Django settings
-heroku config:set DJANGO_SETTINGS_MODULE=config.settings.production --app "$HEROKU_APP"
+# heroku config:set DJANGO_SETTINGS_MODULE=config.settings.production --app "$HEROKU_APP"
 heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP"
 
 # 👤 Superusuario automático
@@ -59,7 +59,6 @@ heroku config:set PRIVATE_KEY_B64="$PRIVATE_KEY_B64" --app "$HEROKU_APP"
 echo -e "\033[7;30m📤 Cargando variables esenciales desde $ENV_FILE...\033[0m" | tee -a "$LOG_DEPLOY"
 
 declare -a VARS=(
-  DJANGO_ENV
   CLIENT_ID
   CLIENT_SECRET
   AUTHORIZE_URL
