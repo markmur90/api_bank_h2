@@ -444,7 +444,7 @@ pausa_y_limpiar
 
 # === 13 ===
 echo -e "\033[7;33m----------------------------------------VERIFICAR TRANSFERENCIAS---------------------------------------\033[0m" 
-echo "-----------------------VERIFICAR TRANSFERENCIAS-------------------------" | tee -a $LOG_DEPLOY
+echo "-----------------------VERIFICAR TRANSFERENCIAS------------------------" | tee -a $LOG_DEPLOY
 ejecutar_si_activo "DO_VERIF_TRANSF" "Verificar Transferencias" "bash $SCRIPTS_DIR/00_13_verificar_transferencias.sh"
 echo -e "\n\n"
 pausa_y_limpiar
