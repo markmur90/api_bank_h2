@@ -350,7 +350,7 @@ sleep "$TIME_SLEEP"
 # clear
 
 
-
+# === 01 ===
 echo -e "\033[7;33m------------------------------------------------SISTEMA------------------------------------------------\033[0m"
 ejecutar_si_activo "DO_SYS" "Actualizar sistema" "bash $SCRIPTS_DIR/00_01_sistema.sh"
 echo ""
@@ -359,7 +359,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
-
+# === 02 ===
 echo -e "\033[7;33m----------------------------------------------------ZIP------------------------------------------------\033[0m"
 ejecutar_si_activo "DO_ZIP_SQL" "Crear zip y sql" "bash $SCRIPTS_DIR/00_02_zip_backup.sh"
 echo ""
@@ -368,7 +368,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
-
+# === 03 ===
 echo -e "\033[7;33m------------------------------------------------PUERTOS------------------------------------------------\033[0m"
 ejecutar_si_activo "DO_PORTS" "Cerrar puertos" "bash $SCRIPTS_DIR/00_03_puertos.sh"
 echo ""
@@ -377,6 +377,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 04 ===
 echo -e "\033[7;33m----------------------------------------------CONTENEDORES---------------------------------------------\033[0m"
 ejecutar_si_activo "DO_DOCKER" "Cerrar contenedores" "bash $SCRIPTS_DIR/00_04_container.sh"
 echo ""
@@ -385,6 +386,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 05 ===
 echo -e "\033[7;33m-----------------------------------------------CAMBIO MAC----------------------------------------------\033[0m"
 ejecutar_si_activo "DO_MAC" "Cambiar MAC" "bash $SCRIPTS_DIR/00_05_mac.sh"
 echo ""
@@ -393,6 +395,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 06 ===
 echo -e "\033[7;33m--------------------------------------------------UFW--------------------------------------------------\033[0m"
 ejecutar_si_activo "DO_UFW" "Configurar UFW" "bash $SCRIPTS_DIR/00_06_ufw.sh"
 echo ""
@@ -401,6 +404,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 07 ===
 echo -e "\033[7;33m------------------------------------------------POSTGRES-----------------------------------------------\033[0m"
 ejecutar_si_activo "DO_PGSQL" "Configurar PostgreSQL" "bash $SCRIPTS_DIR/00_07_postgres.sh"
 echo ""
@@ -409,6 +413,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 08 ===
 echo -e "\033[7;33m----------------------------------------------MIGRACIONES----------------------------------------------\033[0m"
 ejecutar_si_activo "DO_MIG" "Ejecutar migraciones" "bash $SCRIPTS_DIR/00_08_migraciones.sh"
 echo ""
@@ -417,7 +422,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
-
+# === 09 ===
 echo -e "\033[7;33m----------------------------------------------CARGAR LOCAL---------------------------------------------\033[0m"
 ejecutar_si_activo "DO_RUN_LOCAL" "Subir bdd_local" "bash $SCRIPTS_DIR/00_09_cargar_json.sh"
 echo ""
@@ -426,6 +431,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 10 ===
 echo -e "\033[7;33m------------------------------------------------USUARIO------------------------------------------------\033[0m"
 ejecutar_si_activo "DO_USER" "Crear Super Usuario" "bash $SCRIPTS_DIR/00_10_usuario.sh"
 echo ""
@@ -434,6 +440,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 11 ===
 echo -e "\033[7;33m--------------------------------------------RESPALDOS LOCAL--------------------------------------------\033[0m"
 ejecutar_si_activo "DO_JSON_LOCAL" "Crear respaldo JSON local" "bash $SCRIPTS_DIR/00_11_hacer_json.sh"
 echo ""
@@ -442,6 +449,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 12 ===
 echo -e "\033[7;33m------------------------------------------------PEM JWKS-----------------------------------------------\033[0m"
 ejecutar_si_activo "DO_PEM" "Generar PEM JWKS" "bash $SCRIPTS_DIR/00_12_pem.sh"
 echo ""
@@ -450,6 +458,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 13 ===
 echo -e "\033[7;33m----------------------------------------VERIFICAR TRANSFERENCIAS---------------------------------------\033[0m"
 ejecutar_si_activo "DO_VERIF_TRANSF" "Verificar Transferencias" "bash $SCRIPTS_DIR/00_13_verificar_transferencias.sh"
 echo ""
@@ -458,6 +467,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 14 ===
 echo -e "\033[7;33m----------------------------------------SINCRONIZACION COMPLETA----------------------------------------\033[0m"
 ejecutar_si_activo "DO_SYNC_LOCAL" "Sincronizar Archivos Locales" "bash $SCRIPTS_DIR/00_14_sincronizacion_archivos.sh"
 echo ""
@@ -470,6 +480,7 @@ verificar_vpn_segura
 verificar_configuracion_segura
 rotar_logs_si_grandes
 
+# === 15 ===
 echo -e "\033[7;33m---------------------------------------------SUBIR A HEROKU--------------------------------------------\033[0m"
 ejecutar_si_activo "DO_HEROKU" "Subir el proyecto a la web" "bash $SCRIPTS_DIR/00_16_subir_heroku.sh"
 echo ""
@@ -478,6 +489,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 16 ===
 echo -e "\033[7;33m-----------------------------------------SINCRONIZACION BDD WEB----------------------------------------\033[0m"
 ejecutar_si_activo "DO_SYNC_REMOTE_DB" "Sincronizar BDD Remota" "bash $SCRIPTS_DIR/00_17_sincronizar_bdd.sh"
 echo ""
@@ -486,6 +498,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 17 ===
 echo -e "\033[7;33m-------------------------------------------VARIABLES A HEROKU------------------------------------------\033[0m"
 ejecutar_si_activo "DO_VARHER" "Subir variables a Heroku" "bash $SCRIPTS_DIR/00_15_variables_heroku.sh"
 echo ""
@@ -495,6 +508,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 18 ===
 echo -e "\033[7;33m-----------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI----------------------------------\033[0m"
 ejecutar_si_activo "DO_DEPLOY_VPS" "Desplegar en VPS" "bash $SCRIPTS_DIR/00_18_deploy_njalla.sh"
 echo ""
@@ -503,7 +517,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
-# UNO POR HORA
+# === 19 ===
 echo -e "\033[7;33m-------------------------------------------BORRANDO ZIP Y SQL------------------------------------------\033[0m"
 ejecutar_si_activo "DO_CLEAN" "Limpiar respaldos" "bash $SCRIPTS_DIR/00_19_borrar_zip_sql.sh"
 echo ""
@@ -512,6 +526,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 20 ===
 echo -e "\033[7;33m------------------------------------------------- SSL -------------------------------------------------\033[0m"
 ejecutar_si_activo "DO_CERT" "Generar Certificado" "bash $SCRIPTS_DIR/00_20_ssl.sh"
 echo ""
@@ -520,6 +535,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 21 ===
 echo -e "\033[7;33m-----------------------------------------ENTORNO LOCAL CON SSL----------------------------------------\033[0m"
 if [[ "$DO_LOCAL_SSL" == true && "$DO_GUNICORN" == true ]]; then
     echo -e "\033[1;31m❌ No puedes ejecutar DO_LOCAL_SSL y DO_GUNICORN al mismo tiempo.\033[0m"
@@ -532,6 +548,7 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 22 ===
 echo -e "\033[7;33m----------------------------------------------- GUNICORN ----------------------------------------------\033[0m"
 ejecutar_si_activo "DO_GUNICORN" "Iniciar Gunicorn, honeypot y livereload" "bash $SCRIPTS_DIR/00_22_gunicorn.sh"
 echo ""
@@ -540,6 +557,8 @@ echo ""
 sleep "$TIME_SLEEP"
 # clear
 
+# === 23 ===
+echo -e "\033[7;33m--------------------------------------------- DEPLOY COMPLETO -------------------------------------------\033[0m"
 URL_LOCAL="http://localhost:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
