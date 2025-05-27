@@ -47,7 +47,7 @@ d_pgm() {
 }
 unalias d_hek 2>/dev/null
 d_hek() {
-    d_env && bash ./01_full.sh -B -H "$@"
+    d_env && bash ./01_full.sh -B -H -u "$@"
 }
 unalias d_back 2>/dev/null
 d_back() {
