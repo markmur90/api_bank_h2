@@ -1731,16 +1731,16 @@
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$1000000$BAIUCYsjx1x3wGbKauxtpy$Ha4/Iuu1rLiEqoUKzOjApVLXPRG+58/Ry9hYNiGXV90=",
+    "password": "pbkdf2_sha256$1000000$0z9nW8PUPWsxkYan1tJ1ts$2r5e2gwoTauOgDHRJtFFk2DhzYX1rj2oQDuOCIGNbO4=",
     "last_login": null,
     "is_superuser": true,
-    "username": "markmur88",
+    "username": "493069k1",
     "first_name": "",
     "last_name": "",
-    "email": "markmur88@proton.me",
+    "email": "j.moltke@db.com",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2025-05-27T09:53:29.357Z",
+    "date_joined": "2025-05-27T10:26:45.022Z",
     "groups": [],
     "user_permissions": []
   }
@@ -2127,48 +2127,6 @@
   "fields": {
     "app_label": "gpt4",
     "model": "transfer"
-  }
-},
-{
-  "model": "gpt4.clavegenerada",
-  "pk": 1,
-  "fields": {
-    "fecha": "2025-05-27T09:49:35.093Z",
-    "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
-    "estado": "EXITO",
-    "kid": "61fea7e4-1bf7-4ad8-b155-d0391ec82075",
-    "mensaje_error": null,
-    "path_privada": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
-    "path_publica": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
-    "path_jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
-  }
-},
-{
-  "model": "gpt4.clavegenerada",
-  "pk": 2,
-  "fields": {
-    "fecha": "2025-05-27T09:50:03.356Z",
-    "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
-    "estado": "EXITO",
-    "kid": "cd2f65f0-efad-4629-8856-eed38f20fa5b",
-    "mensaje_error": null,
-    "path_privada": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
-    "path_publica": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
-    "path_jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
-  }
-},
-{
-  "model": "gpt4.clavegenerada",
-  "pk": 3,
-  "fields": {
-    "fecha": "2025-05-27T09:53:40.139Z",
-    "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
-    "estado": "EXITO",
-    "kid": "7ed9e904-a421-4d49-8e9d-4a453b2d63c8",
-    "mensaje_error": null,
-    "path_privada": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
-    "path_publica": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
-    "path_jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
   }
 }
 ]

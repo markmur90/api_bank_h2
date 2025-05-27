@@ -3,6 +3,8 @@ set -euo pipefail
 
 SCRIPT_NAME="$(basename "$0")"
 LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
+LOG_FILE="./scripts/logs/01_full_deploy/${SCRIPT_NAME%.sh}_.log"
+LOG_DETALLE="./scripts/logs/00_20_ssl_detalle.log"
 
 mkdir -p "$(dirname "$LOG_FILE")"
 

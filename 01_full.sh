@@ -528,7 +528,7 @@ sleep "$TIME_SLEEP"
 
 # === 20 ===
 echo -e "\033[7;33m------------------------------------------------- SSL -------------------------------------------------\033[0m"
-ejecutar_si_activo "DO_CERT" "Generar Certificado" "bash $SCRIPTS_DIR/00_20_ssl.sh"
+ejecutar_si_activo "DO_CERT" "Generar Certificado" "bash $SCRIPTS_DIR/00_20_ssl2.sh"
 echo ""
 echo ""
 echo ""
