@@ -536,7 +536,7 @@ sleep "$TIME_SLEEP"
 # clear
 
 # === 21 ===
-echo -e "\033[7;33m-----------------------------------------ENTORNO LOCAL CON SSL----------------------------------------\033[0m"
+echo -e "\033[7;33m-----------------------------------------ENTORNO LOCAL CON SSL-----------------------------------------\033[0m"
 if [[ "$DO_LOCAL_SSL" == true && "$DO_GUNICORN" == true ]]; then
     echo -e "\033[1;31m❌ No puedes ejecutar DO_LOCAL_SSL y DO_GUNICORN al mismo tiempo.\033[0m"
     exit 1
@@ -558,7 +558,7 @@ sleep "$TIME_SLEEP"
 # clear
 
 # === 23 ===
-echo -e "\033[7;33m--------------------------------------------- DEPLOY COMPLETO -------------------------------------------\033[0m"
+echo -e "\033[7;34m-------------------------------------------- DEPLOY COMPLETO ------------------------------------------\033[0m"
 URL_LOCAL="http://localhost:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"

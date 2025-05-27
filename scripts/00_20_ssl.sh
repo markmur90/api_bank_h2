@@ -33,7 +33,7 @@ CERT_DIR="$PROJECT_DIR/schemas/certs"
 CERT_KEY="$CERT_DIR/desarrollo.key"
 CERT_CRT="$CERT_DIR/desarrollo.crt"
 
-mkdir -p "$CERT_DIR"
+# mkdir -p "$CERT_DIR"
 
 SUBJECT="/C=ES/ST=Local/L=Localhost/O=Desarrollo/OU=Django/CN=localhost"
 

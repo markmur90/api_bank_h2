@@ -25,23 +25,46 @@ unalias ad_local 2>/dev/null
 ad_local() {
     cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && d_local && code . "$@"
 }
+unalias d_env 2>/dev/null
+d_env() {
+    cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear "$@"
+}
 unalias d_local 2>/dev/null
 d_local() {
-    bash ./01_full.sh --env=local -C -Z -S -Q -I -l "$@"
-}
-unalias d_pgmigrate 2>/dev/null
-d_pgmigrate() {
-    bash ./01_full.sh --env=local -Q -I -U "$@"
+    d_env && bash ./01_full.sh --env=local -S -Q -I -U "$@"
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    bash ./01_full.sh --env=production -C -Z -S -Q -I -U -u -H "$@"
+    d_env && bash ./01_full.sh --env=production -S -Q -I -U -u -H -B "$@"
 }
 unalias d_njalla 2>/dev/null
 d_njalla() {
-    bash ./01_full.sh --env=production -C -Z -S -Q -I -l -u -H -v "$@"
+    d_env && bash ./01_full.sh --env=production -S -Q -I -U -u -H -B -v "$@"
 }
-
+unalias d_pgm 2>/dev/null
+d_pgm() {
+    d_env && bash ./01_full.sh -Q -I -U -S "$@"
+}
+unalias d_hek 2>/dev/null
+d_hek() {
+    d_env && bash ./01_full.sh -B -H "$@"
+}
+unalias d_back 2>/dev/null
+d_back() {
+    d_env && bash ./01_full.sh -C -Z "$@"
+}
+unalias d_sys 2>/dev/null
+d_sys() {
+    d_env && bash ./01_full.sh -Y -P -D -M -x "$@"
+}
+unalias d_cep 2>/dev/null
+d_cep() {
+    d_env && bash ./01_full.sh -p -E "$@"
+}
+unalias d_vps 2>/dev/null
+d_vps() {
+    d_env && bash ./01_full.sh -v "$@"
+}
 
 
 # # ╔═══════════════════════════════════════════════════════════╗
