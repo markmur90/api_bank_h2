@@ -13,7 +13,7 @@ mkdir -p "$KEYS_DIR"
 echo "🔧 Ejecutando script post_compile en $APP_DIR..." | tee -a "$LOG_FILE"
 
 # Ruta final de la clave
-PRIVATE_KEY_PATH="$KEYS_DIR/ecdsa_private_key.pem"
+PRIVATE_KEY_PATH="$KEYS_DIR/private_key.pem"
 
 # Comprobar si la variable está definida
 if [ -z "$PRIVATE_KEY_B64" ]; then

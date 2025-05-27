@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework.authtoken',
     'markdownify',
+    'sslserver',
 
     'api.transfers',
     'api.core',
@@ -284,5 +285,5 @@ django_heroku.settings(locals())
 
 
 
-PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
-PRIVATE_KEY_KID = '16dacd62-25af-491b-846e-eca790e40441'
+
+

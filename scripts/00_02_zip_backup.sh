@@ -67,20 +67,20 @@ check_and_log "Carpetas LOG y BACKUP verificadas/creadas" "No se pudo crear/veri
 
 log_info "📦 Preparando respaldo ZIP del proyecto..."
 
-if [ ! -d "$PROJECT_ROOT" ]; then
-    log_error "Directorio del proyecto no encontrado: $PROJECT_ROOT"
-    exit 1
-fi
+# if [ ! -d "$PROJECT_ROOT" ]; then
+#     log_error "Directorio del proyecto no encontrado: $PROJECT_ROOT"
+#     exit 1
+# fi
 
-if [ ! -d "$PROJECT_ROOT/schemas" ]; then
-    log_error "Directorio 'schemas/' no encontrado en el proyecto"
-    exit 1
-fi
+# if [ ! -d "$PROJECT_ROOT/schemas" ]; then
+#     log_error "Directorio 'schemas/' no encontrado en el proyecto"
+#     exit 1
+# fi
 
-if [ ! -d "$PROJECT_ROOT/logs" ]; then
-    log_error "Directorio 'logs/' no encontrado en el proyecto"
-    exit 1
-fi
+# if [ ! -d "$PROJECT_ROOT/logs" ]; then
+#     log_error "Directorio 'logs/' no encontrado en el proyecto"
+#     exit 1
+# fi
 
 if [ ! -f "$CONSEC_GLOBAL_FILE" ]; then echo "0" > "$CONSEC_GLOBAL_FILE"; fi
 CONSEC_GLOBAL=$(<"$CONSEC_GLOBAL_FILE")
@@ -102,25 +102,16 @@ log_info "🧩 Iniciando compresión del proyecto completo..."
 cd "$PROJECT_BASE_DIR" || { log_error "No se pudo acceder al directorio base del proyecto"; exit 1; }
 
 EXCLUDES=(
-#   "$(basename "$PROJECT_ROOT")/logs/*"
-#   "$(basename "$PROJECT_ROOT")/temp/*"
-  "$(basename "$PROJECT_ROOT")/venv/*"
-#   "$(basename "$PROJECT_ROOT")/__pycache__/*"
-#   "$(basename "$PROJECT_ROOT")/migrations/*"
-#   "$(basename "$PROJECT_ROOT")/servers/*"
-#   "$(basename "$PROJECT_ROOT")/staticfiles/*"
-#   "$(basename "$PROJECT_ROOT")/media/*"
-#   "$(basename "$PROJECT_ROOT")/schemas/keys/*"
+  "$(basename "$PROJECT_ROOT")/__pycache__/*"
+  "$(basename "$PROJECT_ROOT")/migrations/*"
   "$(basename "$PROJECT_ROOT")/*.sqlite3"
-#   "$(basename "$PROJECT_ROOT")/*.pyc"
-#   "$(basename "$PROJECT_ROOT")/*.log"
+  "$(basename "$PROJECT_ROOT")/*.pyc"
   "$(basename "$PROJECT_ROOT")/*.conf"
   "$(basename "$PROJECT_ROOT")/*.service"
   "$(basename "$PROJECT_ROOT")/*.sock"
-#   "$(basename "$PROJECT_ROOT")/*.zip"
+  "$(basename "$PROJECT_ROOT")/*.zip"
   "$(basename "$PROJECT_ROOT")/*.sql"
   "$(basename "$PROJECT_ROOT")/.DS_Store"
-#   "$(basename "$PROJECT_ROOT")/.env"
 )
 
 zip -r9 "$ZIP_FINAL" "$(basename "$PROJECT_ROOT")" "${EXCLUDES[@]/#/-x}" >> "$LOG_BACKUP" 2>&1

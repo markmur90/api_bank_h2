@@ -22,7 +22,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
 mkdir -p "$(dirname $LOG_DEPLOY)"
 
-CERT_DIR="./certs"
+CERT_DIR="./schemas/certs"
 CERT_KEY="$CERT_DIR/desarrollo.key"
 CERT_CRT="$CERT_DIR/desarrollo.crt"
 

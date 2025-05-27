@@ -246,7 +246,7 @@ if [[ "${DEBUG_MODE:-false}" == true ]]; then
     echo -e "\033[1;36m============================= VARIABLES ACTUALES =============================\033[0m"
     printf "%-20s =\t%s\n" "INTERFAZ"            "$INTERFAZ"
     printf "%-20s =\t%s\n" "SCRIPTS_DIR"         "$PROJECT_ROOT/scripts"
-    printf "%-20s =\t%s\n" "PRIVATE_KEY_PATH"    "$PROJECT_ROOT/schemas/keys/ecdsa_private_key.pem"
+    printf "%-20s =\t%s\n" "PRIVATE_KEY_PATH"    "$PROJECT_ROOT/schemas/keys/private_key.pem"
     printf "%-20s =\t%s\n" "SERVERS_DIR"         "$PROJECT_ROOT/servers"
     printf "%-20s =\t%s\n" "CACHE_DIR"           "$PROJECT_ROOT/tmp"
     printf "%-20s =\t%s\n" "PROJECT_ROOT"        "$PROJECT_ROOT"

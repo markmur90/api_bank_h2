@@ -15,89 +15,51 @@ echo -e "═══════════════════════�
 
 trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
 
-set -euo pipefail
-
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
-mkdir -p "$(dirname $LOG_DEPLOY)"
-
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/${SCRIPT_NAME%.sh}_.log"
+mkdir -p "$(dirname "$LOG_DEPLOY")"
 
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
-
-echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m" | tee -a $LOG_DEPLOY
-cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
-echo "" | tee -a $LOG_DEPLOY
-
-
-
-
-# Configurar variable DJANGO_SETTINGS_MODULE
-echo -e "\033[7;36m🔧 Configurando DJANGO_SETTINGS_MODULE en Heroku...\033[0m" | tee -a $LOG_DEPLOY
-
-
-
-# # 🔐 Django settings
-# heroku config:set DJANGO_SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw"
-# heroku config:set DJANGO_DEBUG=False
-# heroku config:set DJANGO_ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com"
-# heroku config:set USE_OAUTH2_UI=False
-# heroku config:set CLIENT_ID="7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7"
-# heroku config:set CLIENT_SECRET="L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw"
-# heroku config:set ACCESS_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg"
-# heroku config:set AUTHORIZE_URL="https://simulator-api.db.com/gw/oidc/authorize"
-# heroku config:set TOKEN_URL="https://simulator-api.db.com/gw/oidc/token"
-# heroku config:set SCOPE="openid sepa:transfer sepa_credit_transfers"
-# heroku config:set ORIGIN="https://apibank2-54644cdf263f.herokuapp.com"
-# heroku config:set REDIRECT_URI="https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/"
-# heroku config:set OAUTH2_REDIRECT_URI="https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/"
-# # ⏱️ Timeouts
-# heroku config:set TIMEOUT_REQUEST=3600
-# heroku config:set TIMEOUT=3600
-# # 🌍 Entorno (si usas selector dinámico en base1.py)
-# heroku config:set DJANGO_ENV=production
-
-# # 🏦 API Banco
-# heroku config:set API_URL="https://simulator-api.db.com/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer"
-# heroku config:set AUTH_URL="https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges"
-# heroku config:set OTP_URL="https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single"
-
-
-# 🔐 Heroku settings
-heroku config:set DJANGO_SETTINGS_MODULE=config.settings.production --app apibank2
-heroku config:set DISABLE_COLLECTSTATIC=1 --app apibank2
-heroku config:set CREATE_SUPERUSER=true
-heroku config:set DJANGO_SUPERUSER_USERNAME=markmur88
-heroku config:set DJANGO_SUPERUSER_EMAIL=markmur88@proton.me
-heroku config:set DJANGO_SUPERUSER_PASSWORD=Ptf8454Jd55
-set -a; source .env; set +a
-heroku config:set PRIVATE_KEY_PATH=schemas/keys/private_key.pem
-heroku config:set PRIVATE_KEY_KID=schemas/keys/secret.key
-heroku config:set PRIVATE_KEY_B64=$(base64 -w 0 schemas/keys/private_key.pem)
-
-# 🔑 JWT (si usas `client_assertion`)
-heroku config:set JWT_KID="98a7f5c0-a4fb-4a1a-8b1d-ce5437e14a08"
-heroku config:set JWT_KEY_PATH="schemas/keys/private_key.pem"
-
-
-
-
+HEROKU_APP="${1:-apibank2}"
 ENV_FILE=".env.production"
+PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem"
 
-if [[ $# -ne 1 ]]; then
-  echo "❌ Uso: $0 <nombre-app-heroku>"
-  exit 1
-fi
+echo -e "\033[7;30m🚀 Subiendo variables de entorno a Heroku ($HEROKU_APP)...\033[0m" | tee -a "$LOG_DEPLOY"
+cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a $HEROKU_ROOT\033[0m"; exit 1; }
 
-HEROKU_APP="$1"
+# 🔐 Django settings
+heroku config:set DJANGO_SETTINGS_MODULE=config.settings.production --app "$HEROKU_APP"
+heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP"
 
-echo "📤 Cargando variables esenciales desde $ENV_FILE a Heroku app: $HEROKU_APP"
+# 👤 Superusuario automático
+heroku config:set CREATE_SUPERUSER=true --app "$HEROKU_APP"
+heroku config:set DJANGO_SUPERUSER_USERNAME=markmur88 --app "$HEROKU_APP"
+heroku config:set DJANGO_SUPERUSER_EMAIL=markmur88@proton.me --app "$HEROKU_APP"
+heroku config:set DJANGO_SUPERUSER_PASSWORD=Ptf8454Jd55 --app "$HEROKU_APP"
+
+# 🔐 Generar SECRET_KEY aleatoria
+CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
+heroku config:set DJANGO_SECRET_KEY="$CLAVE_SEGURA" --app "$HEROKU_APP"
+heroku config:set DJANGO_DEBUG=False --app "$HEROKU_APP"
+heroku config:set DJANGO_ALLOWED_HOSTS=*.herokuapp.com --app "$HEROKU_APP"
+
+# 🔐 Claves privadas
+mkdir -p keys
+[[ ! -f "$PEM_PATH" ]] && {
+  echo "🔐 Generando clave privada..."
+  openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out "$PEM_PATH"
+}
+
+heroku config:set PRIVATE_KEY_PATH="schemas/keys/private_key.pem" --app "$HEROKU_APP"
+heroku config:set PRIVATE_KEY_KID="$(openssl rand -hex 16)" --app "$HEROKU_APP"
+PRIVATE_KEY_B64=$(base64 -w 0 "$PEM_PATH")
+heroku config:set PRIVATE_KEY_B64="$PRIVATE_KEY_B64" --app "$HEROKU_APP"
+
+# 📤 Variables desde archivo .env.production
+echo -e "\033[7;30m📤 Cargando variables esenciales desde $ENV_FILE...\033[0m" | tee -a "$LOG_DEPLOY"
 
 declare -a VARS=(
   DJANGO_ENV
-  DEBUG
-  SECRET_KEY
-  ALLOWED_HOSTS
   CLIENT_ID
   CLIENT_SECRET
   AUTHORIZE_URL
@@ -112,8 +74,6 @@ declare -a VARS=(
   TIMEOUT
   TIMEOUT_REQUEST
   ACCESS_TOKEN
-  JWT_SIGNING_KEY
-  JWT_VERIFYING_KEY
 )
 
 for VAR in "${VARS[@]}"; do
@@ -122,10 +82,9 @@ for VAR in "${VARS[@]}"; do
     echo "🔧 Seteando $VAR=*****"
     heroku config:set "$VAR=$VALUE" --app "$HEROKU_APP"
   else
-    echo "⚠️  Variable $VAR no encontrada en $ENV_FILE, se omite."
+    echo "⚠️  $VAR no definida en $ENV_FILE, se omite."
   fi
 done
 
-heroku restart --app apibank2
-
-echo "✅ Variables configuradas correctamente en Heroku."
+heroku restart --app "$HEROKU_APP"
+echo "✅ Variables configuradas y Heroku reiniciado correctamente."

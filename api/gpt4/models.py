@@ -189,25 +189,28 @@ class LogTransferencia(models.Model):
     
     
 class ClaveGenerada(models.Model):
-    ESTADOS = [
-        ('EXITO', 'Éxito'),
-        ('CANCELADO', 'Cancelado por el usuario'),
-        ('ERROR', 'Error durante la ejecución'),
-    ]
-
     fecha = models.DateTimeField(auto_now_add=True)
-    usuario = models.CharField(max_length=50)
-    estado = models.CharField(max_length=10, choices=ESTADOS)
-    kid = models.CharField(max_length=64, blank=True, null=True)
-    path_privada = models.CharField(max_length=200, blank=True, null=True)
-    path_publica = models.CharField(max_length=200, blank=True, null=True)
-    path_jwks = models.CharField(max_length=200, blank=True, null=True)
+    usuario = models.CharField(max_length=150)
+    estado = models.CharField(max_length=20, choices=[
+        ('EXITO', 'Éxito'),
+        ('ERROR', 'Error'),
+        ('CANCELADO', 'Cancelado'),
+    ])
+    kid = models.CharField(max_length=100, blank=True, null=True)
     mensaje_error = models.TextField(blank=True, null=True)
+    path_privada = models.TextField(blank=True, null=True)
+    path_publica = models.TextField(blank=True, null=True)
+    path_jwks = models.TextField(blank=True, null=True)
 
     class Meta:
-        verbose_name = "Clave ECDSA Generada"
-        verbose_name_plural = "Claves ECDSA Generadas"
+        ordering = ['-fecha']
+        indexes = [
+            models.Index(fields=['usuario']),
+            models.Index(fields=['kid']),
+        ]
+        verbose_name = 'Clave generada'
+        verbose_name_plural = 'Claves generadas'
 
     def __str__(self):
-        return f"{self.fecha.strftime('%Y-%m-%d %H:%M')} - {self.usuario} - {self.estado}"
+        return f"{self.usuario} [{self.estado}] {self.kid or ''}"
 

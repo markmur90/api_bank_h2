@@ -15,7 +15,7 @@ else
   exit 1
 fi
 
-HEROKU_APP="apibank2-d42d7ed0d036"
+HEROKU_APP="apibank2-d42"
 HEROKU_REMOTE="heroku"
 HEROKU_BRANCH="api-bank"
 REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"

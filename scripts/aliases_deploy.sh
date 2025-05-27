@@ -29,6 +29,10 @@ unalias d_local 2>/dev/null
 d_local() {
     bash ./01_full.sh --env=local -C -Z -S -Q -I -l "$@"
 }
+unalias d_pgmigrate 2>/dev/null
+d_pgmigrate() {
+    bash ./01_full.sh --env=local -Q -I -U "$@"
+}
 unalias d_heroku 2>/dev/null
 d_heroku() {
     bash ./01_full.sh --env=production -C -Z -S -Q -I -l -u -H "$@"

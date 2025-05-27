@@ -18,7 +18,11 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         keys_dir = Path(get_project_path("schemas/keys"))
         logs_dir = Path(get_project_path("schemas/keys/logs"))
-        settings_path = Path(get_project_path("config/settings/base1.py"))
+        env_files = [
+            Path(get_project_path(".env")),
+            Path(get_project_path(".env.production")),
+            Path(get_project_path(".env.development")),
+        ]
         log_file = Path(get_project_path("schemas/keys/logs/clave_gen.log"))
         usuario_path = Path(get_project_path("schemas/keys/client_id.key"))
 
@@ -33,8 +37,8 @@ class Command(BaseCommand):
             raise ValueError("El archivo client_id.key está vacío. No se puede continuar sin un usuario válido.")
 
         files = {
-            "private": keys_dir / "ecdsa_private_key.pem",
-            "public":  keys_dir / "ecdsa_public_key.pem",
+            "private": keys_dir / "private_key.pem",
+            "public":  keys_dir / "public_key.pem",
             "jwks":    keys_dir / "jwks_public.json"
         }
 
@@ -94,30 +98,32 @@ class Command(BaseCommand):
             )
             self.stdout.write(self.style.SUCCESS("📥 Registro guardado en la base de datos."))
 
-            if settings_path.exists():
-                with open(settings_path, "r", encoding="utf-8") as f:
-                    lines = f.readlines()
+            for env_file in env_files:
 
-                key_path_line = "PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')\n"
-                kid_line = f"PRIVATE_KEY_KID = '{kid}'\n"
+                if env_file.exists():
+                    with open(env_file, "r", encoding="utf-8") as f:
+                        lines = f.readlines()
 
-                found_key_path = any("PRIVATE_KEY_PATH" in l for l in lines)
-                found_kid = any("PRIVATE_KEY_KID" in l for l in lines)
+                    key_path_line = "PRIVATE_KEY_PATH=schemas/keys/private_key.pem\n"
+                    kid_line = f"PRIVATE_KEY_KID='{kid}'\n"
 
-                if found_key_path:
-                    lines = [key_path_line if "PRIVATE_KEY_PATH" in l else l for l in lines]
-                else:
-                    lines.append("\n" + key_path_line)
+                    found_key_path = any("PRIVATE_KEY_PATH" in l for l in lines)
+                    found_kid = any("PRIVATE_KEY_KID" in l for l in lines)
 
-                if found_kid:
-                    lines = [kid_line if "PRIVATE_KEY_KID" in l else l for l in lines]
-                else:
-                    lines.append(kid_line)
+                    if found_key_path:
+                        lines = [key_path_line if "PRIVATE_KEY_PATH" in l else l for l in lines]
+                    else:
+                        lines.append("\n" + key_path_line)
 
-                with open(settings_path, "w", encoding="utf-8") as f:
-                    f.writelines(lines)
+                    if found_kid:
+                        lines = [kid_line if "PRIVATE_KEY_KID" in l else l for l in lines]
+                    else:
+                        lines.append(kid_line)
 
-                self.stdout.write(self.style.SUCCESS(f"🛠️ base1.py actualizado con ruta y KID."))
+                    with open(env_file, "w", encoding="utf-8") as f:
+                        f.writelines(lines)
+
+                    self.stdout.write(self.style.SUCCESS(f"🛠️ base1.py actualizado con ruta y KID."))
 
             else:
                 self.stdout.write(self.style.WARNING("⚠️ No se encontró base1.py para actualizar KID."))
