@@ -25,7 +25,7 @@ mkdir -p "$(dirname $LOG_DEPLOY)"
 echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m" | tee -a $LOG_DEPLOY
 LOCAL_DB_NAME="mydatabase"
 LOCAL_DB_USER="markmur88"
-LOCAL_DB_HOST="0.0.0.0"
+LOCAL_DB_HOST="localhost"
 
 REMOTE_DB_URL="postgres://u22qfesn1ol61g:p633435fd268a16298ff6b2b83e47e7091ae5cb79d80ad13e03a6aff1262cc2ae@c7pvjrnjs0e7al.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/ddo6kmmjfftuav"
 
