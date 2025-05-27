@@ -67,7 +67,7 @@ INTERFAZ="wlan0"
 DB_NAME="mydatabase"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
+DB_HOST="0.0.0.0"
 
 
 
@@ -222,7 +222,7 @@ clear
 echo -e "\033[7;33m------------------------------------------RESPALDOS LOCAL------------------------------------------\033[0m"
 if [[ "$OMIT_JSON_LOCAL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear bdd_local"); then
     echo -e "\033[7;30m🚀 Creando respaldo de datos de local...\033[0m"
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     python3 manage.py dumpdata --indent 2 > bdd_local.json
     echo -e "\033[7;30m✅ ¡Respaldo JSON Local creado!\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -286,7 +286,7 @@ clear
 
 echo -e "\033[7;33m----------------------------------------------RESETEO----------------------------------------------\033[0m"
 if confirmar "Resetear base de datos y crear usuario en PostgreSQL"; then
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     sudo -u postgres psql <<-EOF
 DO \$\$
 BEGIN
@@ -537,7 +537,7 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m"
     LOCAL_DB_NAME="mydatabase"
     LOCAL_DB_USER="markmur88"
-    LOCAL_DB_HOST="localhost"
+    LOCAL_DB_HOST="0.0.0.0"
     REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
 
     export PGPASSFILE="$HOME/.pgpass"
@@ -565,7 +565,7 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
     echo -e "\033[7;30m✅ Sincronización completada con éxito: $BACKUP_FILE"
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
 fi
@@ -693,7 +693,7 @@ echo -e "\033[7;33m----------------------------------------------GUNICORN-------
 
 # === CONFIGURACIÓN ===
 PUERTOS=(8001 5000 35729)
-URL_LOCAL="http://localhost:5000"
+URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="http://0.0.0.0:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -723,7 +723,7 @@ iniciar_entorno() {
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
     python manage.py collectstatic --noinput
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
 }
 
 # === INICIO GUNICORN + HONEYPOT ===

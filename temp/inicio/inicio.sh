@@ -62,7 +62,7 @@ if confirmar "Actualizar el sistema"; then
 fi
 
 if confirmar "Configurar entorno Python y PostgreSQL"; then
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     python3 -m venv "$HOME/Documentos/Entorno/envAPP"
     source "$HOME/Documentos/Entorno/envAPP/bin/activate"
     sudo systemctl enable postgresql
@@ -164,7 +164,7 @@ fi
 if confirmar "Sincronizar base de datos remota"; then
     LOCAL_DB_NAME="mydatabase"
     LOCAL_DB_USER="markmur88"
-    LOCAL_DB_HOST="localhost"
+    LOCAL_DB_HOST="0.0.0.0"
     REMOTE_DB_URL="postgres://ue2erdhkle4v0h:pa1773a2b68d739e66a794acd529d1b60c016733f35be6884a9f541365d5922cf@ec2-63-33-30-239.eu-west-1.compute.amazonaws.com:5432/d9vb99r9t1m7kt"
 
     # **🕒 Marca de tiempo para el backup**
@@ -208,7 +208,7 @@ fi
 
 if confirmar "Iniciar Gunicorn y honeypot simultáneamente"; then
     python3 manage.py collectstatic --noinput
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > gunicorn.log 2>&1 &
     echo -e "\033[1;32mGunicorn y honeypot en marcha.\033[0m"
 fi
@@ -417,7 +417,7 @@ echo "[+] Esperando a que los servicios inicien"
 sleep 5
 docker compose ps
 echo "[+] Honeypot desplegado"
-echo "[+] Accede al visor en: http://localhost:5000"
+echo "[+] Accede al visor en: http://0.0.0.0:5000"
 echo "[+] Puedes iniciar el bloqueador con: docker exec -it cowrie-web python3 blocker.py"
 
 echo -e "\033[1;32mGunicorn y honeypot en marcha.\033[0m"

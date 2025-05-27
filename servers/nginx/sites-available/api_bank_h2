@@ -4,7 +4,7 @@ upstream api_bank_h2 {
 
 server {
     listen 443 ssl;
-    server_name localhost;
+    server_name 0.0.0.0;
 
     ssl_certificate     $HOME/Documentos/GitHub/api_bank_h2/servers/ssl/api_bank_h2/ghost.crt;
     ssl_certificate_key $HOME/Documentos/GitHub/api_bank_h2/servers/ssl/api_bank_h2/ghost.key;
@@ -70,6 +70,6 @@ server {
 
 server {
     listen 80 default_server;
-    server_name localhost;
+    server_name 0.0.0.0;
     return 301 https://$host$request_uri;
 }

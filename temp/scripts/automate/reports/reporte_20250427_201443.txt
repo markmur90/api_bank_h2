@@ -21,7 +21,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-04-27 20:14:
 4 packets transmitted, 4 received, 0% packet loss, time 3058ms
 rtt min/avg/max/mdev = 0.042/0.089/0.110/0.027 ms
     nmap: Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-27 20:14 -05
-Nmap scan report for localhost (127.0.0.1)
+Nmap scan report for 0.0.0.0 (127.0.0.1)
 Host is up (0.00011s latency).
 
 PORT     STATE SERVICE
@@ -54,7 +54,7 @@ Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2025-04-27 20:14:
 4 packets transmitted, 4 received, 0% packet loss, time 3058ms
 rtt min/avg/max/mdev = 0.042/0.089/0.110/0.027 ms
     nmap: Starting Nmap 7.95 ( https://nmap.org ) at 2025-04-27 20:14 -05
-Nmap scan report for localhost (127.0.0.1)
+Nmap scan report for 0.0.0.0 (127.0.0.1)
 Host is up (0.00011s latency).
 
 PORT     STATE SERVICE

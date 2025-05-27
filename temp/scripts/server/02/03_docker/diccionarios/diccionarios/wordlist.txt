@@ -134,7 +134,7 @@ DEUT0587373854812645693746539
 Usar curl
 "valor"}' \
 Usar nc (netcat)
-"valor"}' | nc localhost 8080
+"valor"}' | nc 0.0.0.0 8080
 "iniciar_sesion"}
 "iniciar_sesion"}' \
 "iniciar_sesion"}' | nc 193.150.166.1 3000

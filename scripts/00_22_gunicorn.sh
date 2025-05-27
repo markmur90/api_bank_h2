@@ -34,7 +34,7 @@ mkdir -p "$LOG_DIR" "$CACHE_DIR"
 
 # === CONFIGURACIÓN ===
 PUERTOS=(8000 5000 35729)
-URL_SSL_LOCAL="https://localhost:8443"
+URL_SSL_LOCAL="https://0.0.0.0:8443"
 URL_GUNICORN="http://127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 URL_NJALLA="https://apih.coretransapi.com/"
@@ -67,7 +67,7 @@ iniciar_entorno() {
     echo -e "\033[1;36m📦 Activando entorno virtual y configuración...\033[0m" | tee -a $LOG_DEPLOY
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     python manage.py collectstatic --noinput
 }
 

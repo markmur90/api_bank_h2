@@ -88,7 +88,7 @@ ACCESS_TOKEN = {
 # Definición de las variables requeridas
 PORT_DB = 5432  # Cambia este valor según sea necesario
 PORT_HY = 8080  # Cambia este valor según sea necesario
-URL_DB = "http://localhost:5432"  # Cambia este valor según sea necesario
-URL_HY = "http://localhost:8080"  # Cambia este valor según sea necesario
+URL_DB = "http://0.0.0.0:5432"  # Cambia este valor según sea necesario
+URL_HY = "http://0.0.0.0:8080"  # Cambia este valor según sea necesario
 
 

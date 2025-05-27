@@ -128,7 +128,7 @@ INTERFAZ="wlan0"
 DB_NAME="mydatabase"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
+DB_HOST="0.0.0.0"
 REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
 
 
@@ -711,7 +711,7 @@ echo -e "\033[7;33m----------------------------------------------GUNICORN-------
 log_info "🔒 BLOQUE: Inicio de Gunicorn, Honeypot y Livereload"
 
 PUERTOS=(8001 5000 35729)
-URL_LOCAL="http://localhost:5000"
+URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="http://0.0.0.0:8000"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 

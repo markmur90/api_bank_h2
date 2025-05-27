@@ -1,28 +1,9 @@
-from datetime import timedelta
 import os
 from pathlib import Path
-import environ
-from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
-
+from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# 1. Creamos el lector de .env
-env = environ.Env()
-
-# 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
-env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
-if not env_file.exists():
-    raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-env.read_env(env_file)
-
-# 3. Variables críticas
-SECRET_KEY = env('SECRET_KEY')
-DEBUG      = env.bool('DEBUG', default=True)
-ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -84,10 +65,6 @@ TEMPLATES = [
 
 INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '192.168.0.143']
 
-# 5. Plantillas de base de datos
-DATABASES = {
-    'default': dj_database_url.config(default=env('DATABASE_URL'))
-}
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -130,45 +107,6 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
 }
-
-OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
-
-
-REDIRECT_URI = env('REDIRECT_URI')
-
-CLIENT_ID = env('CLIENT_ID')
-CLIENT_SECRET = env('CLIENT_SECRET')
-
-ORIGIN = env('ORIGIN')
-
-TOKEN_URL = env('TOKEN_URL')
-OTP_URL = env('OTP_URL')
-AUTH_URL = env('AUTH_URL')
-API_URL = env('API_URL')
-AUTHORIZE_URL = env('AUTHORIZE_URL')
-SCOPE = env('SCOPE')
-TIMEOUT_REQUEST = env('TIMEOUT_REQUEST')
-
-ACCESS_TOKEN = env('ACCESS_TOKEN')
-
-
-OAUTH2 = {
-    'CLIENT_ID': CLIENT_ID,
-    'CLIENT_SECRET': CLIENT_SECRET,
-    'ACCESS_TOKEN': ACCESS_TOKEN,
-    'ORIGIN': ORIGIN,
-    'OTP_URL': OTP_URL,
-    'AUTH_URL': AUTH_URL,
-    'API_URL': API_URL,
-    'TOKEN_URL': TOKEN_URL,
-    'AUTHORIZE_URL': AUTHORIZE_URL,
-    'SCOPE': SCOPE,
-    'REDIRECT_URI': REDIRECT_URI,
-    'TIMEOUT': TIMEOUT_REQUEST,
-    
-}
-
-
 
 JWT_SIGNING_KEY = 'Ptf8454Jd55'
 JWT_VERIFYING_KEY = 'Ptf8454Jd55'
@@ -235,10 +173,32 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
+CLIENT_ID = '7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7'
+CLIENT_SECRET = 'L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw'
+TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
+OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
+AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
+API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
+AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
+SCOPE = 'sepa_credit_transfers'
+TIMEOUT_REQUEST = '3600'
+
+ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
+
+PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'schemas/keys/private_key.pem')
+PRIVATE_KEY_KID = '7ed9e904-a421-4d49-8e9d-4a453b2d63c8'
+
+OAUTH2 = {
+    "CLIENT_ID": CLIENT_ID,
+    "CLIENT_SECRET": CLIENT_SECRET,
+    "AUTHORIZE_URL": AUTHORIZE_URL,
+    "AUTH_URL": AUTH_URL,
+    "TOKEN_URL": TOKEN_URL,
+    "SCOPE": SCOPE,
+    "TIMEOUT": TIMEOUT_REQUEST,
+    "TIMEOUT_REQUEST": TIMEOUT_REQUEST,
+}
 
 
 import django_heroku
 django_heroku.settings(locals())
-
-PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
-PRIVATE_KEY_KID = 'a6607f9e-ca0d-4f09-8f6e-002dba90abce'

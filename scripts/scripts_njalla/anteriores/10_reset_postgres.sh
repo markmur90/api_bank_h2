@@ -20,7 +20,7 @@ fi
 DB_NAME="${DB_NAME:-mydatabase}"
 DB_USER="${DB_USER:-markmur88}"
 DB_PASS="${DB_PASS:-Ptf8454Jd55}"
-DB_HOST="${DB_HOST:-localhost}"
+DB_HOST="${DB_HOST:-0.0.0.0}"
 
 # Preparar log
 mkdir -p "$LOG_DIR"

@@ -95,12 +95,12 @@ DATABASE_PSQL = {
         'NAME': 'swiftapi',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'localhost',
+        'HOST': '0.0.0.0',
         'PORT': '5432',
     }
 }
 
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgresql:postgresql@localhost:5432/swiftapi")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgresql:postgresql@0.0.0.0:5432/swiftapi")
 DATABASES_DJ = {"default": dj_database_url.config(default=DATABASE_URL)}
 DATABASES = DATABASE_PSQL
 
@@ -161,11 +161,11 @@ SIMPLE_JWT = {
 }
 
 # Bank API configurations
-DEUTSCHE_BANK_API_URL = "http://localhost:8080"
+DEUTSCHE_BANK_API_URL = "http://0.0.0.0:8080"
 DEUTSCHE_BANK_CLIENT_ID = "SE0IWHFHJFHB848R9E0R9FRUFBCJHW0W9FHF008E88W0457338ASKH64880"
 DEUTSCHE_BANK_CLIENT_SECRET = "H858hfhg0ht40588hhfjpfhhd9944940jf"
 
-MEMO_BANK_API_URL = "http://localhost:8000"
+MEMO_BANK_API_URL = "http://0.0.0.0:8000"
 MEMO_BANK_CLIENT_ID = "SE0IWHFHJFHB848R9E0R9FRUFBCJHW0W9FHF008E88W0457338ASKH64880"
 MEMO_BANK_CLIENT_SECRET = "H858hfhg0ht40588hhfjpfhhd9944940jf"
 

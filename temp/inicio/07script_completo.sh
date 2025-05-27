@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
 
 INTERFAZ="wlan0"
 
@@ -24,6 +24,6 @@ if confirmar "Puesta en marcha de Gunicorn y apertura en Mozilla"; then
     python3 manage.py collectstatic --noinput
     nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > gunicorn.log 2>&1 &
     echo -e "\033[1;34m🌐 Abriendo Mozilla...\033[0m"
-    mozilla --new-tab http://localhost:5000 --new-tab http://localhost:8000 &
+    mozilla --new-tab http://0.0.0.0:5000 --new-tab http://0.0.0.0:8000 &
     echo -e "\033[32m✅ Gunicorn y navegador listos.\033[0m"
 fi

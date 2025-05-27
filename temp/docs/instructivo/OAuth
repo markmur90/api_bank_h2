@@ -11,7 +11,7 @@ User: Selecciona un usuario (puede ser el superusuario).
 Client type: Selecciona Confidential.
 Authorization grant type: Selecciona Authorization code.
 Name: Pon un nombre descriptivo, como API Client.
-Redirect URIs: Deja este campo en blanco o usa https://localhost:8000/oauth2/callback.
+Redirect URIs: Deja este campo en blanco o usa https://0.0.0.0:8000/oauth2/callback.
 Client ID y Client Secret: Estos se generarán automáticamente.
 
 Opción 2: Usar la consola
@@ -21,7 +21,7 @@ python manage.py create_oauth2_client \
     --name="API Client" \
     --client-type="confidential" \
     --grant-type="authorization-code" \
-    --redirect-uri="https://localhost:8000/oauth2/callback"
+    --redirect-uri="https://0.0.0.0:8000/oauth2/callback"
 
 Esto generará un Client ID y un Client Secret, que necesitarás para obtener el token.
 
@@ -40,7 +40,7 @@ scope: read_transactions (o los scopes que necesites).
 redirect_uri: La URI de redirección que configuraste en el cliente.
 Ejemplo de URL completa: 
 
-https://127.0.0.1:8000/o/authorize/?client_id=XXPTsod975lcMt1zPalRunuvGhaSEeo4Ic3bcCJZ&response_type=code&scope=read_transactions&redirect_uri=https://localhost:8000/oauth2/callback
+https://127.0.0.1:8000/o/authorize/?client_id=XXPTsod975lcMt1zPalRunuvGhaSEeo4Ic3bcCJZ&response_type=code&scope=read_transactions&redirect_uri=https://0.0.0.0:8000/oauth2/callback
 
 Cuando el usuario acceda a esta URL, se le pedirá que inicie sesión y autorice la aplicación. Después de la autorización, se redirigirá a la redirect_uri con un código de autorización en la URL.
 
@@ -58,7 +58,7 @@ Ejemplo de solicitud usando curl:
 curl -X POST \
     -d "grant_type=authorization_code" \
     -d "code=<authorization_code>" \
-    -d "redirect_uri=https://localhost:8000/oauth2/callback" \
+    -d "redirect_uri=https://0.0.0.0:8000/oauth2/callback" \
     -d "client_id=<client_id>" \
     -d "client_secret=<client_secret>" \
     https://127.0.0.1:8000/o/token/

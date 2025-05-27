@@ -210,5 +210,5 @@ docker compose up -d --build
 # docker exec -it cowrie-web python3 /web/blocker.py
 
 echo "[+] Honeypot desplegado."
-echo "[+] Accede al visor en: http://localhost:5000"
+echo "[+] Accede al visor en: http://0.0.0.0:5000"
 echo "[+] Puedes iniciar el bloqueador con: docker exec -it cowrie-web python3 /app/blocker.py"

@@ -140,7 +140,7 @@ RUN service postgresql start && \
 USER root
 CMD service postgresql start && \
     su - markmur88 -c "cd /home/app && /home/app/.venv/bin/python /home/app/manage.py runserver 0.0.0.0:8000" & \
-    su - markmur88 -c "cd /home/app && ngrok http http://localhost:8000"
+    su - markmur88 -c "cd /home/app && ngrok http http://0.0.0.0:8000"
 
 
 
@@ -251,7 +251,7 @@ Account                       tu-email@example.com
 Version                       2.x.x
 Region                        United States (us)
 Web Interface                 http://127.0.0.1:4040
-Forwarding                    https://abcd1234.ngrok.io -> http://localhost:8000
+Forwarding                    https://abcd1234.ngrok.io -> http://0.0.0.0:8000
 
 
 #Copia la URL pública (por ejemplo, https://abcd1234.ngrok.io) y úsala para acceder a tu aplicación.

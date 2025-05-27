@@ -172,5 +172,5 @@ cd /opt/honeypot
 docker compose up -d --build
 
 echo "[+] Honeypot desplegado."
-echo "[+] Accede al visor en: http://localhost:5000"
+echo "[+] Accede al visor en: http://0.0.0.0:5000"
 echo "[+] Puedes iniciar el bloqueador con: docker exec -it cowrie-web python3 /app/blocker.py"

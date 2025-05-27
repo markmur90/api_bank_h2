@@ -9,7 +9,7 @@ def enviar_alerta(asunto, mensaje):
     msg["From"] = "sistema@banco.com"
     msg["To"] = ALERTA_CORREO
     try:
-        with smtplib.SMTP("localhost") as server:
+        with smtplib.SMTP("0.0.0.0") as server:
             server.send_message(msg)
     except Exception as e:
         print(f"No se pudo enviar correo: {e}")

@@ -60,12 +60,12 @@ docker-compose up --build -d
 echo ""
 
 
-echo "⏳ Esperando a que http://localhost:5000 esté disponible..."
-until curl -s http://localhost:5000 >/dev/null; do
+echo "⏳ Esperando a que http://0.0.0.0:5000 esté disponible..."
+until curl -s http://0.0.0.0:5000 >/dev/null; do
   sleep 1
 done
 
-URL="http://localhost:5000"
+URL="http://0.0.0.0:5000"
 echo "✅ Servicio listo. Abriendo navegador en $URL"
 
 if command -v xdg-open >/dev/null; then

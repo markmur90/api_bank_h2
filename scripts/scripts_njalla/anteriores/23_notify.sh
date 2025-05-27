@@ -25,7 +25,7 @@ log_info()  { echo -e "\033[1;34m[INFO] $1\033[0m" | tee -a "$LOG_FILE"; }
 log_info "📢 Enviando notificación final..."
 
 # Definir URLs conocidas
-URL_LOCAL="http://localhost:5000"
+URL_LOCAL="http://0.0.0.0:5000"
 URL_HEROKU="https://${PROJECT_NAME}.herokuapp.com"
 
 # Variables opcionales

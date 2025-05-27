@@ -14,7 +14,7 @@ INTERFAZ="wlan0"
 DB_NAME="mydatabase"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
+DB_HOST="0.0.0.0"
 
 # === OPCIONES DISPONIBLES PARA ./01_full.sh ===
 # -a  --all                Ejecuta todo sin confirmaciones interactivas
@@ -86,7 +86,7 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
     python manage.py collectstatic --noinput
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     # Función para limpiar y salir
     cleanup() {
         echo -e "\n\033[1;33mDeteniendo todos los servicios...\033[0m"
@@ -131,13 +131,13 @@ if [[ "$OMIT_GUNICORN" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirma
         > livereload.log 2>&1 < /dev/null &
     sleep 1
 
-    firefox --new-tab  http://localhost:5000 --new-tab http://0.0.0.0:8000
-    # firefox --new-tab http://0.0.0.0:8000 --new-tab http://localhost:5000 --new-tab https://apibank2-54644cdf263f.herokuapp.com/
+    firefox --new-tab  http://0.0.0.0:5000 --new-tab http://0.0.0.0:8000
+    # firefox --new-tab http://0.0.0.0:8000 --new-tab http://0.0.0.0:5000 --new-tab https://apibank2-54644cdf263f.herokuapp.com/
     # firefox --new-tab http://0.0.0.0:8000 --new-tab https://apibank2-54644cdf263f.herokuapp.com &
     # gunicorn --certfile=cert.pem --keyfile=privkey.pem --bind 0.0.0.0:8443 config.wsgi:application
 
     # firefox --new-tab http://0.0.0.0:8000 &
-    # firefox --new-window --width=400 --height=400 http://localhost:5000 &
+    # firefox --new-window --width=400 --height=400 http://0.0.0.0:5000 &
 
     echo -e "\033[7;30m🚧 Gunicorn, honeypot y livereload están activos. Presiona Ctrl+C para detenerlos.\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"

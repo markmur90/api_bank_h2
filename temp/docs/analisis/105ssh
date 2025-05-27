@@ -21,9 +21,9 @@ Ejemplo:
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"clave": "valor"}' \
-  http://localhost:8080/ruta
+  http://0.0.0.0:8080/ruta
 
-    http://localhost:8080/ruta: Aquí asumo que el servidor está escuchando en el puerto 8080 y tiene una ruta específica (/ruta).
+    http://0.0.0.0:8080/ruta: Aquí asumo que el servidor está escuchando en el puerto 8080 y tiene una ruta específica (/ruta).
 
     Si el servidor no es HTTP, sino un servicio personalizado que espera JSON crudo, podrías necesitar ajustar el comando.
 
@@ -33,9 +33,9 @@ Si el servidor no es HTTP y simplemente espera recibir JSON crudo a través de u
 
 Ejemplo:
 
-echo '{"clave": "valor"}' | nc localhost 8080
+echo '{"clave": "valor"}' | nc 0.0.0.0 8080
 
-    localhost: Es la dirección del servidor (puedes cambiarla por una IP si es necesario).
+    0.0.0.0: Es la dirección del servidor (puedes cambiarla por una IP si es necesario).
 
     8080: Es el puerto en el que el servidor está escuchando.
 
@@ -53,13 +53,13 @@ Copy
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"usuario": "493069k1", "accion": "iniciar_sesion"}' \
-  http://localhost:3000
+  http://0.0.0.0:3000
 
 Con nc:
 bash
 Copy
 
-echo '{"usuario": "493069k1", "accion": "iniciar_sesion"}' | nc localhost 3000
+echo '{"usuario": "493069k1", "accion": "iniciar_sesion"}' | nc 0.0.0.0 3000
 
 4. Procesar la respuesta
 
@@ -70,13 +70,13 @@ Copy
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"usuario": "493069k1", "accion": "iniciar_sesion"}' \
-  http://localhost:3000
+  http://0.0.0.0:3000
 
 O con nc:
 bash
 Copy
 
-echo '{"usuario": "493069k1", "accion": "iniciar_sesion"}' | nc localhost 3000
+echo '{"usuario": "493069k1", "accion": "iniciar_sesion"}' | nc 0.0.0.0 3000
 
 Si la respuesta es JSON, puedes usar jq para formatearla:
 bash
@@ -85,7 +85,7 @@ Copy
 curl -X POST \
   -H "Content-Type: application/json" \
   -d '{"usuario": "493069k1", "accion": "iniciar_sesion"}' \
-  http://localhost:3000 | jq
+  http://0.0.0.0:3000 | jq
 
 5. Si el servidor no es HTTP
 

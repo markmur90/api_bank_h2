@@ -4,7 +4,7 @@ set -euo pipefail
 # Configura tus credenciales locales y remotas
 LOCAL_DB_NAME="mydatabase"
 LOCAL_DB_USER="markmur88"
-LOCAL_DB_HOST="localhost"
+LOCAL_DB_HOST="0.0.0.0"
 REMOTE_DB_URL="postgres://ue2erdhkle4v0h:pa1773a2b68d739e66a794acd529d1b60c016733f35be6884a9f541365d5922cf@ec2-63-33-30-239.eu-west-1.compute.amazonaws.com:5432/d9vb99r9t1m7kt"
 
 # **🕒 Marca de tiempo para el backup**

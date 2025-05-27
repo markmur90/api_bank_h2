@@ -109,7 +109,7 @@ redirect_uri 	Required, if the 'redirect_uri' parameter was included in the auth
 
 Let's take a look at an example:
 
-POST https://simulator-api.db.com/gw/oidc/token Authorization: Basic UzZ3...Pc25IUzZ3 Content-Type: application/x-www-form-urlencoded grant_type=authorization_code&code=aeLiAN&redirect_uri=http://localhost:8080/oauth2-client-webapp/redirect
+POST https://simulator-api.db.com/gw/oidc/token Authorization: Basic UzZ3...Pc25IUzZ3 Content-Type: application/x-www-form-urlencoded grant_type=authorization_code&code=aeLiAN&redirect_uri=http://0.0.0.0:8080/oauth2-client-webapp/redirect
 
 6. Deliver the access token to your application backend
 
@@ -253,7 +253,7 @@ code_verifier 	Required. Your generated code verifier from step one. Has to be a
 
 Let's take a look at an example:
 
-POST https://simulator-api.db.com/gw/oidc/token Content-Type: application/x-www-form-urlencoded grant_type=authorization_code&code=aeLiAN&redirect_uri=http://localhost:8080/oauth2-client-webapp/redirect&code_verifier=<your_generated_code_verifier>
+POST https://simulator-api.db.com/gw/oidc/token Content-Type: application/x-www-form-urlencoded grant_type=authorization_code&code=aeLiAN&redirect_uri=http://0.0.0.0:8080/oauth2-client-webapp/redirect&code_verifier=<your_generated_code_verifier>
 
 7. Deliver the access token to your application
 

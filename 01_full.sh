@@ -559,7 +559,7 @@ sleep "$TIME_SLEEP"
 
 # === 23 ===
 echo -e "\033[7;34m-------------------------------------------- DEPLOY COMPLETO ------------------------------------------\033[0m"
-URL_LOCAL="http://localhost:5000"
+URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 URL_NJALLA="https://apih.coretransapi.com/"

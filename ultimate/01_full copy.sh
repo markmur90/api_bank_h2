@@ -53,7 +53,7 @@ STARTUP_LOG="$LOG_DIR/startup.log"
 DB_NAME="mydatabase"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
+DB_HOST="0.0.0.0"
 
 # === FLAGS DE CONTROL DE BLOQUES ===
 PROMPT_MODE=false
@@ -284,8 +284,8 @@ verificar_configuracion_segura() {
         log_error "❌ DEBUG está activo en producción. Revisa tu .env"
         exit 1
     fi
-    if grep -q "localhost" "$archivo_env"; then
-        log_error "❌ ALLOWED_HOSTS contiene 'localhost'. No es seguro para producción."
+    if grep -q "0.0.0.0" "$archivo_env"; then
+        log_error "❌ ALLOWED_HOSTS contiene '0.0.0.0'. No es seguro para producción."
         exit 1
     fi
     if ! grep -q "SECRET_KEY=" "$archivo_env"; then
@@ -532,7 +532,7 @@ if [[ "$DO_PGSQL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Con
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
 
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     sudo -u postgres psql <<-EOF
 DO \$\$
 BEGIN
@@ -642,7 +642,7 @@ sleep 1
 echo -e "\033[7;33m--------------------------------------------RESPALDOS LOCAL--------------------------------------------\033[0m"
 if [[ "$DO_JSON_LOCAL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear bdd_local"); then
     echo -e "\033[7;30m🚀 Creando respaldo de datos de local...\033[0m"
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     python3 manage.py dumpdata --indent 2 > bdd_local.json
     echo -e "\033[7;30m✅ ¡Respaldo JSON Local creado!\033[0m"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -883,7 +883,7 @@ if [[ "$DO_SYNC_REMOTE_DB" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confi
     echo -e "\033[7;30mSubiendo las bases de datos a la web...\033[0m"
     LOCAL_DB_NAME="mydatabase"
     LOCAL_DB_USER="markmur88"
-    LOCAL_DB_HOST="localhost"
+    LOCAL_DB_HOST="0.0.0.0"
     REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
 
     export PGPASSFILE="$HOME/.pgpass"
@@ -911,7 +911,7 @@ if [[ "$DO_SYNC_REMOTE_DB" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confi
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
     echo -e "\033[7;30m✅ Sincronización completada con éxito: $BACKUP_FILE"
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
 fi
@@ -1088,7 +1088,7 @@ sleep 1
 
 echo -e "\033[7;33m-----------------------------------------ENTORNO LOCAL CON SSL----------------------------------------\033[0m"
 if [[ "$DO_LOCAL_SSL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar entorno local con Gunicorn + SSL"); then
-    echo -e "\033[1;36m🌐 Levantando entorno local en https://localhost:8443...\033[0m"
+    echo -e "\033[1;36m🌐 Levantando entorno local en https://0.0.0.0:8443...\033[0m"
     bash ./scripts/run_local_ssl_env.sh || {
         echo -e "\033[1;31m❌ Error al ejecutar entorno local SSL.\033[0m"
         exit 1
@@ -1106,7 +1106,7 @@ sleep 1
 echo -e "\033[7;33m----------------------------------------------- GUNICORN ----------------------------------------------\033[0m"
 # === CONFIGURACIÓN ===
 PUERTOS=(8000 5000 35729)
-URL_LOCAL="http://localhost:5000"
+URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 URL_NJALLA="https://apih.coretransapi.com/"
@@ -1138,7 +1138,7 @@ iniciar_entorno() {
     echo -e "\033[1;36m📦 Activando entorno virtual y configuración...\033[0m"
     cd "$PROJECT_ROOT"
     source "$VENV_PATH/bin/activate"
-    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+    export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
     python manage.py collectstatic --noinput
 }
 
@@ -1194,7 +1194,7 @@ sleep 1
 # echo -e "\033[7;33m----------------------------------------------GUNICORN---------------------------------------------\033[0m"
 # # === CONFIGURACIÓN ===
 # PUERTOS=(8001 5000 35729)
-# URL_LOCAL="http://localhost:5000"
+# URL_LOCAL="http://0.0.0.0:5000"
 # URL_GUNICORN="http://0.0.0.0:8011"
 # URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 # LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
@@ -1221,7 +1221,7 @@ sleep 1
 #     cd "$PROJECT_ROOT"
 #     source "$VENV_PATH/bin/activate"
 #     python manage.py collectstatic --noinput
-#     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+#     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
 # }
 # # === INICIO GUNICORN + HONEYPOT ===
 # if [[ "$DO_GUNICORN" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Iniciar Gunicorn, honeypot y livereload"); then

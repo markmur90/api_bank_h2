@@ -18,7 +18,7 @@ if [[ ! -f "$CERT_CRT" || ! -f "$CERT_KEY" ]]; then
     mkdir -p "$CERT_DIR"
     openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
         -keyout "$CERT_KEY" -out "$CERT_CRT" \
-        -subj "/C=ES/ST=Madrid/L=Madrid/O=API Bank Dev/OU=IT/CN=localhost"
+        -subj "/C=ES/ST=Madrid/L=Madrid/O=API Bank Dev/OU=IT/CN=0.0.0.0"
 fi
 
 echo "🚀 Ejecutando Django en modo SSL con runsslserver..."

@@ -277,14 +277,14 @@ Este documento resume cómo configurar correctamente el sistema OAuth2 de una ap
 ## ✅ En desarrollo/sandbox (`.env.development`)
 ```dotenv
 DJANGO_DEBUG=True
-DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1
+DJANGO_ALLOWED_HOSTS=0.0.0.0,127.0.0.1
 USE_OAUTH2_UI=False
 
 CLIENT_ID=dummy-client-id
 CLIENT_SECRET=dummy-client-secret
 AUTHORIZE_URL=https://simulator-api.db.com/gw/oidc/authorize
 TOKEN_URL=https://simulator-api.db.com/gw/oidc/token
-REDIRECT_URI=http://localhost:8000/oauth2/callback/
+REDIRECT_URI=http://0.0.0.0:8000/oauth2/callback/
 SCOPE=openid sepa:transfer
 TIMEOUT_REQUEST=10
 
@@ -622,7 +622,7 @@ DJANGO_DEBUG=False
 DJANGO_DB_NAME='nombre_db'
 DJANGO_DB_USER='nombre_usuario'
 DJANGO_DB_PASSWORD='contraseña'
-DJANGO_DB_HOST='localhost'
+DJANGO_DB_HOST='0.0.0.0'
 
 ###### Luego modifica tu settings.py para usar estas variables:
 

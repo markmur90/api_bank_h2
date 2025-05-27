@@ -27,7 +27,7 @@ log_ok()    { echo -e "\033[1;32m[OK]   $1\033[0m" | tee -a "$LOG_FILE"; }
 log_error() { echo -e "\033[1;31m[ERR]  $1\033[0m" | tee -a "$LOG_FILE"; }
 
 # Definir URLs locales
-URL_LOCAL="http://localhost:5000"
+URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="http://127.0.0.1:8001"
 
 # Puertos que podrían estar ocupados
@@ -66,7 +66,7 @@ python manage.py collectstatic --noinput >> "$LOG_FILE" 2>&1
 DB_NAME="mydatabase"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
+DB_HOST="0.0.0.0"
 export DATABASE_URL="postgres://${DB_USER}:${DB_PASS}@${DB_HOST}:5432/${DB_NAME}"
 
 nohup "$VENV_DIR/bin/gunicorn" config.wsgi:application --workers 3 --bind 127.0.0.1:8001 --keep-alive 2 \

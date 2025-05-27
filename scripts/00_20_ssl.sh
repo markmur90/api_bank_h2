@@ -37,13 +37,13 @@ CERT_CRT="$CERT_DIR/desarrollo.crt"
 
 # mkdir -p "$CERT_DIR"
 
-SUBJECT="/C=ES/ST=Local/L=Localhost/O=Desarrollo/OU=Django/CN=localhost"
+SUBJECT="/C=ES/ST=Local/L=0.0.0.0/O=Desarrollo/OU=Django/CN=0.0.0.0"
 
 openssl req -x509 -nodes -days 1825 -newkey rsa:2048 \
     -keyout "$CERT_KEY" \
     -out "$CERT_CRT" \
     -subj "$SUBJECT" \
-    -addext "subjectAltName=DNS:localhost,IP:0.0.0.0"
+    -addext "subjectAltName=DNS:0.0.0.0,IP:0.0.0.0"
 
 echo -e "\n\033[1;32m✅ Certificado generado en:\033[0m" | tee -a $LOG_DEPLOY
 echo -e "   📄 Clave privada: \033[1;33m$CERT_KEY\033[0m" | tee -a $LOG_DEPLOY

@@ -107,8 +107,8 @@ DATABASE_PSQL = {
         'NAME': 'swiftapi',       # Nombre de la base de datos
         'USER': 'postgres',           # Nombre de usuario
         'PASSWORD': 'postgres',   # Contraseña del usuario
-        # Host de la base de datos (usar 'localhost' si está en la misma máquina)
-        'HOST': 'localhost',
+        # Host de la base de datos (usar '0.0.0.0' si está en la misma máquina)
+        'HOST': '0.0.0.0',
         # Puerto de PostgreSQL (por defecto es 5432)
         'PORT': '5432',
     }
@@ -117,7 +117,7 @@ DATABASE_PSQL = {
 import dj_database_url
 
 # Define DATABASE_URL desde el entorno o usa un valor predeterminado
-DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgresql:postgresql@localhost:5432/swiftapi")
+DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://postgresql:postgresql@0.0.0.0:5432/swiftapi")
 
 # Configura la base de datos usando dj_database_url
 DATABASES_DJ = {
@@ -208,12 +208,12 @@ SIMPLE_JWT = {
 }
 
 # Deutsche Bank Sandbox
-DEUTSCHE_BANK_API_URL = "http://localhost:8080"
+DEUTSCHE_BANK_API_URL = "http://0.0.0.0:8080"
 DEUTSCHE_BANK_CLIENT_ID = "SE0IWHFHJFHB848R9E0R9FRUFBCJHW0W9FHF008E88W0457338ASKH64880"
 DEUTSCHE_BANK_CLIENT_SECRET = "H858hfhg0ht40588hhfjpfhhd9944940jf"
 
 # Memo Bank Sandbox
-MEMO_BANK_API_URL = "http://localhost:8000"
+MEMO_BANK_API_URL = "http://0.0.0.0:8000"
 MEMO_BANK_CLIENT_ID = "SE0IWHFHJFHB848R9E0R9FRUFBCJHW0W9FHF008E88W0457338ASKH64880"
 MEMO_BANK_CLIENT_SECRET = "H858hfhg0ht40588hhfjpfhhd9944940jf"
 
@@ -262,10 +262,10 @@ LOGGING = {
 
 # USE_SANDBOX = os.getenv("USE_SANDBOX", "True") == "True"
 
-# DEUTSCHE_BANK_API_URL = "https://0.0.0.0:8080" if not USE_SANDBOX else "http://localhost:8000"
+# DEUTSCHE_BANK_API_URL = "https://0.0.0.0:8080" if not USE_SANDBOX else "http://0.0.0.0:8000"
 
 # INTERNAL_IPS = [
-#     "localhost",
+#     "0.0.0.0",
 #     "0.0.0.0",
 # ]
 

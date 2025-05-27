@@ -24,7 +24,7 @@ INTERFAZ="wlan0"
 DB_NAME="mydatabase"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
-DB_HOST="localhost"
+DB_HOST="0.0.0.0"
 
 ### === OPCIONES DISPONIBLES PARA ./01_full.sh === ###
 echo "🟢 Iniciando: OPCIONES DISPONIBLES PARA ./01_full.sh"

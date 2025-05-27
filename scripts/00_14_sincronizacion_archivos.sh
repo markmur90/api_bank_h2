@@ -46,7 +46,7 @@ actualizar_django_env() {
     echo "🧾 Ajustando DJANGO_ENV en base1.py en $destino"
     python3 <<EOF | tee -a "$LOG_DEPLOY"
 import os
-settings_path = os.path.join("$destino", "config", "settings", "base1.py")
+settings_path = os.path.join("$destino", "config", "settings", "__init__.py")
 if os.path.exists(settings_path):
     with open(settings_path, "r", encoding="utf-8") as f:
         lines = f.readlines()

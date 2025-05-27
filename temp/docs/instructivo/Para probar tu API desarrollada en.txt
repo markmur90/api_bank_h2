@@ -75,7 +75,7 @@ En settings.py, agrega:
 python
 Copiar
 Editar
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '193.150.166.0']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '193.150.166.0']
 Si quieres permitir cualquier IP (no recomendado en producción):
 
 python
@@ -3253,7 +3253,7 @@ En settings.py, agrega:
 python
 Copiar
 Editar
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '193.150.166.0']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '193.150.166.0']
 Si quieres permitir cualquier IP (no recomendado en producción):
 
 python

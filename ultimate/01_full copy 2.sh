@@ -290,8 +290,8 @@ verificar_configuracion_segura() {
         log_error "❌ DEBUG está activo en producción. Revisa tu .env"
         exit 1
     fi
-    if grep -q "localhost" "$archivo_env"; then
-        log_error "❌ ALLOWED_HOSTS contiene 'localhost'. No es seguro para producción."
+    if grep -q "0.0.0.0" "$archivo_env"; then
+        log_error "❌ ALLOWED_HOSTS contiene '0.0.0.0'. No es seguro para producción."
         exit 1
     fi
     if ! grep -q "SECRET_KEY=" "$archivo_env"; then
@@ -541,7 +541,7 @@ echo ""
 sleep 1
 # clear
 
-URL_LOCAL="http://localhost:5000"
+URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 URL_NJALLA="https://apih.coretransapi.com/"

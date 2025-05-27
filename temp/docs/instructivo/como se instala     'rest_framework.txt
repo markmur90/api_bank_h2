@@ -152,7 +152,7 @@ a. Usar una herramienta de desarrollo como Postman o cURL
 Puedes autenticarte y probar tu JWT en la admin usando herramientas de desarrollo, por ejemplo, Postman o cURL, agregando el encabezado Authorization con el valor Bearer <tu_token> en las solicitudes.
 
 Usar Postman:
-Abre la interfaz de administración de Django (por ejemplo, http://localhost:8000/admin).
+Abre la interfaz de administración de Django (por ejemplo, http://0.0.0.0:8000/admin).
 Usa el encabezado Authorization con el valor Bearer <tu_token> en las peticiones a la admin.
 b. Incluir el token en el encabezado de la solicitud del navegador (no recomendado para producción)
 En algunos casos, puedes hacerlo temporalmente en el navegador mediante herramientas de desarrollador (DevTools). Abre las herramientas de desarrollador en tu navegador y sigue estos pasos:
