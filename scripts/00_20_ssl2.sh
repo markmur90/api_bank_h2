@@ -21,7 +21,7 @@ exec > >(tee -a "$LOG_DETALLE") 2>&1
 trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_DETALLE"; exit 1' ERR
 
 echo -e "🔐 Activando entorno virtual..."
-source ./venv/bin/activate
+# source ./venv/bin/activate
 
 CERT_CRT="./schemas/certs/desarrollo.crt"
 CERT_KEY="./schemas/certs/desarrollo.key"
