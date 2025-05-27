@@ -21,7 +21,7 @@ mkdir -p "$(dirname "$LOG_DEPLOY")"
 
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 HEROKU_APP="${1:-apibank2}"
-ENV_FILE=".env.production"
+ENV_FILE="$HEROKU_ROOT/.env.production"
 PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem"
 
 echo -e "\033[7;30m🚀 Subiendo variables de entorno a Heroku ($HEROKU_APP)...\033[0m" | tee -a "$LOG_DEPLOY"

@@ -38,3 +38,13 @@
   },
   "kid": "583bacff-9f44-4d2a-8a5f-167478c8741b"
 }
+{
+  "timestamp": "2025-05-27T08:56:36.974012",
+  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+  "archivos": {
+    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
+    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
+    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
+  },
+  "kid": "d4089d61-ceb7-4405-a21e-43207075c65a"
+}
