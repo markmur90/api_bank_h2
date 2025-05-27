@@ -28,31 +28,31 @@ unalias d_env 2>/dev/null
 d_env() {cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear "$@"}
 
 unalias d_local 2>/dev/null
-d_local() {d_env && bash ./01_full.sh --env=local -S -Q -I -U -E -p "$@"}
+d_local() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -U -E -p "$@"}
 
 unalias d_heroku 2>/dev/null
-d_heroku() {d_env && bash ./01_full.sh --env=local -S -Q -I -U -H -B -E -p "$@"}
+d_heroku() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -U -H -B -E -p "$@"}
 
 unalias d_njalla 2>/dev/null
-d_njalla() {d_env && bash ./01_full.sh --env=local -S -Q -I -U -H -B -E -p -v "$@"}
+d_njalla() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -U -H -B -E -p -v "$@"}
 
-unalias d_pgm 2>/dev/null
-d_pgm() {d_env && bash ./01_full.sh --env=local -Q -I -U -S -E -p "$@"}
+# unalias d_pgm 2>/dev/null
+# d_pgm() {d_env && bash ./01_full.sh --env=local -Z -C -Q -I -U -S -E -p "$@"}
 
-unalias d_hek 2>/dev/null
-d_hek() {d_env && bash ./01_full.sh --env=local -B -H -u "$@"}
+# unalias d_hek 2>/dev/null
+# d_hek() {d_env && bash ./01_full.sh --env=local -B -H -u "$@"}
 
-unalias d_back 2>/dev/null
-d_back() {d_env && bash ./01_full.sh --env=local -C -Z "$@"}
+# unalias d_back 2>/dev/null
+# d_back() {d_env && bash ./01_full.sh --env=local -C -Z "$@"}
 
-unalias d_sys 2>/dev/null
-d_sys() {d_env && bash ./01_full.sh --env=local -Y -P -D -M -x "$@"}
+# unalias d_sys 2>/dev/null
+# d_sys() {d_env && bash ./01_full.sh --env=local -Y -P -D -M -x "$@"}
 
-unalias d_cep 2>/dev/null
-d_cep() {d_env && bash ./01_full.sh --env=local -p -E "$@"}
+# unalias d_cep 2>/dev/null
+# d_cep() {d_env && bash ./01_full.sh --env=local -p -E "$@"}
 
-unalias d_vps 2>/dev/null
-d_vps() {d_env && bash ./01_full.sh --env=local -v "$@"}
+# unalias d_vps 2>/dev/null
+# d_vps() {d_env && bash ./01_full.sh --env=local -v "$@"}
 
 
 # # ╔═══════════════════════════════════════════════════════════╗
