@@ -1,13 +1,4 @@
-📅 Fecha de ejecución: 2025-05-28 00:29:38
+📅 Fecha de ejecución: 2025-05-28 00:47:01
 📄 Script: 00_20_ssl.sh
 ═════════════════════════════════════════════════════════════
 🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443
-[2025-05-28 00:29:39 +0200] [251650] [INFO] Starting gunicorn 23.0.0
-[2025-05-28 00:29:39 +0200] [251650] [INFO] Listening at: https://0.0.0.0:8443 (251650)
-[2025-05-28 00:29:39 +0200] [251650] [INFO] Using worker: sync
-[2025-05-28 00:29:39 +0200] [251652] [INFO] Booting worker with pid: 251652
-[2025-05-28 00:29:39 +0200] [251653] [INFO] Booting worker with pid: 251653
-[2025-05-28 00:29:39 +0200] [251660] [INFO] Booting worker with pid: 251660
-
-❌ Error en línea 45: "tee -a "$LOG_FILE" "$PROCESS_LOG""
-Abortando ejecución.
