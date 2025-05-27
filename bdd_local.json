@@ -1335,288 +1335,288 @@
   "model": "auth.permission",
   "pk": 149,
   "fields": {
-    "name": "Can add Clave ECDSA Generada",
+    "name": "Can add client id",
     "content_type": 38,
-    "codename": "add_clavegenerada"
+    "codename": "add_clientid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 150,
   "fields": {
-    "name": "Can change Clave ECDSA Generada",
+    "name": "Can change client id",
     "content_type": 38,
-    "codename": "change_clavegenerada"
+    "codename": "change_clientid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 151,
   "fields": {
-    "name": "Can delete Clave ECDSA Generada",
+    "name": "Can delete client id",
     "content_type": 38,
-    "codename": "delete_clavegenerada"
+    "codename": "delete_clientid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 152,
   "fields": {
-    "name": "Can view Clave ECDSA Generada",
+    "name": "Can view client id",
     "content_type": 38,
-    "codename": "view_clavegenerada"
+    "codename": "view_clientid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 153,
   "fields": {
-    "name": "Can add client id",
+    "name": "Can add creditor",
     "content_type": 39,
-    "codename": "add_clientid"
+    "codename": "add_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 154,
   "fields": {
-    "name": "Can change client id",
+    "name": "Can change creditor",
     "content_type": 39,
-    "codename": "change_clientid"
+    "codename": "change_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 155,
   "fields": {
-    "name": "Can delete client id",
+    "name": "Can delete creditor",
     "content_type": 39,
-    "codename": "delete_clientid"
+    "codename": "delete_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 156,
   "fields": {
-    "name": "Can view client id",
+    "name": "Can view creditor",
     "content_type": 39,
-    "codename": "view_clientid"
+    "codename": "view_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 157,
   "fields": {
-    "name": "Can add creditor",
+    "name": "Can add creditor agent",
     "content_type": 40,
-    "codename": "add_creditor"
+    "codename": "add_creditoragent"
   }
 },
 {
   "model": "auth.permission",
   "pk": 158,
   "fields": {
-    "name": "Can change creditor",
+    "name": "Can change creditor agent",
     "content_type": 40,
-    "codename": "change_creditor"
+    "codename": "change_creditoragent"
   }
 },
 {
   "model": "auth.permission",
   "pk": 159,
   "fields": {
-    "name": "Can delete creditor",
+    "name": "Can delete creditor agent",
     "content_type": 40,
-    "codename": "delete_creditor"
+    "codename": "delete_creditoragent"
   }
 },
 {
   "model": "auth.permission",
   "pk": 160,
   "fields": {
-    "name": "Can view creditor",
+    "name": "Can view creditor agent",
     "content_type": 40,
-    "codename": "view_creditor"
+    "codename": "view_creditoragent"
   }
 },
 {
   "model": "auth.permission",
   "pk": 161,
   "fields": {
-    "name": "Can add creditor agent",
+    "name": "Can add debtor",
     "content_type": 41,
-    "codename": "add_creditoragent"
+    "codename": "add_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 162,
   "fields": {
-    "name": "Can change creditor agent",
+    "name": "Can change debtor",
     "content_type": 41,
-    "codename": "change_creditoragent"
+    "codename": "change_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 163,
   "fields": {
-    "name": "Can delete creditor agent",
+    "name": "Can delete debtor",
     "content_type": 41,
-    "codename": "delete_creditoragent"
+    "codename": "delete_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 164,
   "fields": {
-    "name": "Can view creditor agent",
+    "name": "Can view debtor",
     "content_type": 41,
-    "codename": "view_creditoragent"
+    "codename": "view_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 165,
   "fields": {
-    "name": "Can add debtor",
+    "name": "Can add kid",
     "content_type": 42,
-    "codename": "add_debtor"
+    "codename": "add_kid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 166,
   "fields": {
-    "name": "Can change debtor",
+    "name": "Can change kid",
     "content_type": 42,
-    "codename": "change_debtor"
+    "codename": "change_kid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 167,
   "fields": {
-    "name": "Can delete debtor",
+    "name": "Can delete kid",
     "content_type": 42,
-    "codename": "delete_debtor"
+    "codename": "delete_kid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 168,
   "fields": {
-    "name": "Can view debtor",
+    "name": "Can view kid",
     "content_type": 42,
-    "codename": "view_debtor"
+    "codename": "view_kid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 169,
   "fields": {
-    "name": "Can add kid",
+    "name": "Can add Log de Transferencia",
     "content_type": 43,
-    "codename": "add_kid"
+    "codename": "add_logtransferencia"
   }
 },
 {
   "model": "auth.permission",
   "pk": 170,
   "fields": {
-    "name": "Can change kid",
+    "name": "Can change Log de Transferencia",
     "content_type": 43,
-    "codename": "change_kid"
+    "codename": "change_logtransferencia"
   }
 },
 {
   "model": "auth.permission",
   "pk": 171,
   "fields": {
-    "name": "Can delete kid",
+    "name": "Can delete Log de Transferencia",
     "content_type": 43,
-    "codename": "delete_kid"
+    "codename": "delete_logtransferencia"
   }
 },
 {
   "model": "auth.permission",
   "pk": 172,
   "fields": {
-    "name": "Can view kid",
+    "name": "Can view Log de Transferencia",
     "content_type": 43,
-    "codename": "view_kid"
+    "codename": "view_logtransferencia"
   }
 },
 {
   "model": "auth.permission",
   "pk": 173,
   "fields": {
-    "name": "Can add Log de Transferencia",
+    "name": "Can add payment identification",
     "content_type": 44,
-    "codename": "add_logtransferencia"
+    "codename": "add_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 174,
   "fields": {
-    "name": "Can change Log de Transferencia",
+    "name": "Can change payment identification",
     "content_type": 44,
-    "codename": "change_logtransferencia"
+    "codename": "change_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 175,
   "fields": {
-    "name": "Can delete Log de Transferencia",
+    "name": "Can delete payment identification",
     "content_type": 44,
-    "codename": "delete_logtransferencia"
+    "codename": "delete_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 176,
   "fields": {
-    "name": "Can view Log de Transferencia",
+    "name": "Can view payment identification",
     "content_type": 44,
-    "codename": "view_logtransferencia"
+    "codename": "view_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 177,
   "fields": {
-    "name": "Can add payment identification",
+    "name": "Can add Clave generada",
     "content_type": 45,
-    "codename": "add_paymentidentification"
+    "codename": "add_clavegenerada"
   }
 },
 {
   "model": "auth.permission",
   "pk": 178,
   "fields": {
-    "name": "Can change payment identification",
+    "name": "Can change Clave generada",
     "content_type": 45,
-    "codename": "change_paymentidentification"
+    "codename": "change_clavegenerada"
   }
 },
 {
   "model": "auth.permission",
   "pk": 179,
   "fields": {
-    "name": "Can delete payment identification",
+    "name": "Can delete Clave generada",
     "content_type": 45,
-    "codename": "delete_paymentidentification"
+    "codename": "delete_clavegenerada"
   }
 },
 {
   "model": "auth.permission",
   "pk": 180,
   "fields": {
-    "name": "Can view payment identification",
+    "name": "Can view Clave generada",
     "content_type": 45,
-    "codename": "view_paymentidentification"
+    "codename": "view_clavegenerada"
   }
 },
 {
@@ -1731,7 +1731,7 @@
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$1000000$dubBThvRzrpdJDJTblSUmn$U1q4MJUfQRdkxptPgIWRkTTwQMATOWDt0ZkqlJXEzB0=",
+    "password": "pbkdf2_sha256$1000000$BAIUCYsjx1x3wGbKauxtpy$Ha4/Iuu1rLiEqoUKzOjApVLXPRG+58/Ry9hYNiGXV90=",
     "last_login": null,
     "is_superuser": true,
     "username": "markmur88",
@@ -1740,25 +1740,7 @@
     "email": "markmur88@proton.me",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2025-05-26T20:11:17.998Z",
-    "groups": [],
-    "user_permissions": []
-  }
-},
-{
-  "model": "auth.user",
-  "pk": 2,
-  "fields": {
-    "password": "pbkdf2_sha256$1000000$XFl9CAusJce5Zn2IWrTN9h$y50GkWzT3HJU2oGt+pBWB53PDoK0xQz0feR0ABRkoqI=",
-    "last_login": "2025-05-26T20:56:50.033Z",
-    "is_superuser": false,
-    "username": "493069k1",
-    "first_name": "",
-    "last_name": "",
-    "email": "",
-    "is_staff": false,
-    "is_active": true,
-    "date_joined": "2025-05-26T20:33:14.056Z",
+    "date_joined": "2025-05-27T09:53:29.357Z",
     "groups": [],
     "user_permissions": []
   }
@@ -2064,7 +2046,7 @@
   "pk": 38,
   "fields": {
     "app_label": "gpt4",
-    "model": "clavegenerada"
+    "model": "clientid"
   }
 },
 {
@@ -2072,7 +2054,7 @@
   "pk": 39,
   "fields": {
     "app_label": "gpt4",
-    "model": "clientid"
+    "model": "creditor"
   }
 },
 {
@@ -2080,7 +2062,7 @@
   "pk": 40,
   "fields": {
     "app_label": "gpt4",
-    "model": "creditor"
+    "model": "creditoragent"
   }
 },
 {
@@ -2088,7 +2070,7 @@
   "pk": 41,
   "fields": {
     "app_label": "gpt4",
-    "model": "creditoragent"
+    "model": "debtor"
   }
 },
 {
@@ -2096,7 +2078,7 @@
   "pk": 42,
   "fields": {
     "app_label": "gpt4",
-    "model": "debtor"
+    "model": "kid"
   }
 },
 {
@@ -2104,7 +2086,7 @@
   "pk": 43,
   "fields": {
     "app_label": "gpt4",
-    "model": "kid"
+    "model": "logtransferencia"
   }
 },
 {
@@ -2112,7 +2094,7 @@
   "pk": 44,
   "fields": {
     "app_label": "gpt4",
-    "model": "logtransferencia"
+    "model": "paymentidentification"
   }
 },
 {
@@ -2120,7 +2102,7 @@
   "pk": 45,
   "fields": {
     "app_label": "gpt4",
-    "model": "paymentidentification"
+    "model": "clavegenerada"
   }
 },
 {
@@ -2148,208 +2130,45 @@
   }
 },
 {
-  "model": "sessions.session",
-  "pk": "bcryqgz57y9rbzo58ma2l57pf2ayprnn",
-  "fields": {
-    "session_data": ".eJxVjDsOwyAQBe9CHSEM5pcyvc-AdmEJTiKQjF1FuXuE5CJp38y8Nwtw7CUcnbawJnZlkl1-N4T4pDpAekC9Nx5b3bcV-VD4STtfWqLX7XT_Dgr0MupssiKQQjuYk9ZWZgJCa7yfBJJDm1FN3srkTI5Cg5mlMtpmQdYgePb5Avh-OBc:1uJesM:aA18fIiyUVVig2XM9cYOxr8HP04i2ZCzvoUevA6MK_Y",
-    "expire_date": "2025-05-26T21:26:50.346Z"
-  }
-},
-{
-  "model": "sessions.session",
-  "pk": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-  "fields": {
-    "session_data": ".eJxVjEsOwjAMBe-SNYqSNKE2S_Y9Q-TYDi2gVupnhbg7VOoCtm9m3stk2tY-b4vOeRBzMcGcfrdC_NBxB3Kn8TZZnsZ1HordFXvQxXaT6PN6uH8HPS39t_ZNqwkgFs8M9ewEnLQYA6JTKILAmjSg58IRJdXS-FoJglMkpbYx7w_fyjhO:1uJerN:6t9TsbYBJHAiOFDe4KoiRcDOsYCSrUc52B50vjTXK4A",
-    "expire_date": "2025-05-26T21:25:49.119Z"
-  }
-},
-{
-  "model": "gpt4.debtor",
+  "model": "gpt4.clavegenerada",
   "pk": 1,
   "fields": {
-    "name": "Claudia Klar",
-    "customer_id": "27CDBFRDE17BEH",
-    "postal_address_country": "DE",
-    "postal_address_street": "Große Bockenheimer Straße 19",
-    "postal_address_city": "60311 Frankfurt",
-    "mobile_phone_number": "+49170123456"
+    "fecha": "2025-05-27T09:49:35.093Z",
+    "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+    "estado": "EXITO",
+    "kid": "61fea7e4-1bf7-4ad8-b155-d0391ec82075",
+    "mensaje_error": null,
+    "path_privada": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
+    "path_publica": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
+    "path_jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
   }
 },
 {
-  "model": "gpt4.debtoraccount",
-  "pk": 1,
-  "fields": {
-    "debtor": 1,
-    "iban": "DE00500700100200040224",
-    "currency": "EUR"
-  }
-},
-{
-  "model": "gpt4.creditor",
-  "pk": 1,
-  "fields": {
-    "name": "Tom Winter",
-    "postal_address_country": "DE",
-    "postal_address_street": "Augsburger Strasse 14a",
-    "postal_address_city": "80337 München"
-  }
-},
-{
-  "model": "gpt4.creditoraccount",
-  "pk": 1,
-  "fields": {
-    "creditor": 1,
-    "iban": "DE00500700100200043574",
-    "currency": "EUR"
-  }
-},
-{
-  "model": "gpt4.creditoragent",
-  "pk": 1,
-  "fields": {
-    "bic": "DEUTDEFFXXX",
-    "financial_institution_id": "DEUTDEFFXXX",
-    "other_information": "Deutsche Bank"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 1,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:42\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:42.045Z\",\n    \"timestamp_unix_ms\": 1748292582045,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
-    "created_at": "2025-05-26T20:49:42.046Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
+  "model": "gpt4.clavegenerada",
   "pk": 2,
   "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:42\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:42.045Z\",\n    \"timestamp_unix_ms\": 1748292582045,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
-    "created_at": "2025-05-26T20:49:42.049Z"
+    "fecha": "2025-05-27T09:50:03.356Z",
+    "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+    "estado": "EXITO",
+    "kid": "cd2f65f0-efad-4629-8856-eed38f20fa5b",
+    "mensaje_error": null,
+    "path_privada": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
+    "path_publica": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
+    "path_jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
   }
 },
 {
-  "model": "gpt4.logtransferencia",
+  "model": "gpt4.clavegenerada",
   "pk": 3,
   "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:44\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:44.881Z\",\n    \"timestamp_unix_ms\": 1748292584881,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
-    "created_at": "2025-05-26T20:49:44.881Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 4,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:44\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:44.881Z\",\n    \"timestamp_unix_ms\": 1748292584881,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
-    "created_at": "2025-05-26T20:49:44.883Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 5,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:48\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:48.556Z\",\n    \"timestamp_unix_ms\": 1748292588556,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
-    "created_at": "2025-05-26T20:49:48.557Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 6,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:48\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:48.556Z\",\n    \"timestamp_unix_ms\": 1748292588556,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
-    "created_at": "2025-05-26T20:49:48.571Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 7,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:51\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:51.226Z\",\n    \"timestamp_unix_ms\": 1748292591226,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
-    "created_at": "2025-05-26T20:49:51.227Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 8,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:51\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:51.226Z\",\n    \"timestamp_unix_ms\": 1748292591226,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
-    "created_at": "2025-05-26T20:49:51.241Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 9,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:54\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:54.052Z\",\n    \"timestamp_unix_ms\": 1748292594052,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
-    "created_at": "2025-05-26T20:49:54.053Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 10,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:54\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:54.052Z\",\n    \"timestamp_unix_ms\": 1748292594052,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
-    "created_at": "2025-05-26T20:49:54.055Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 11,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:49:57\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:57.015Z\",\n    \"timestamp_unix_ms\": 1748292597015,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n  },\n  \"error\": null\n}",
-    "created_at": "2025-05-26T20:49:57.015Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 12,
-  "fields": {
-    "registro": "mr6iazwl3r9qg1j5tocqhyns74xpyyoa",
-    "tipo_log": "AUTH",
-    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:49:57\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"149.88.24.195\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:49:57.015Z\",\n    \"timestamp_unix_ms\": 1748292597015,\n    \"session_id\": \"mr6iazwl3r9qg1j5tocqhyns74xpyyoa\"\n}\n\n",
-    "created_at": "2025-05-26T20:49:57.024Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 13,
-  "fields": {
-    "registro": "o4gakhu2jvxai1e3hjfjr5sy8gw1vze6",
-    "tipo_log": "AUTH",
-    "contenido": "{\n  \"timestamp\": \"2025-05-26 22:51:01\",\n  \"accion\": \"AUTORIZACION_VISUAL_INICIADA\",\n  \"estado\": \"ok\",\n  \"metadata\": {\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"127.0.0.1\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:51:01.668Z\",\n    \"timestamp_unix_ms\": 1748292661668,\n    \"session_id\": \"o4gakhu2jvxai1e3hjfjr5sy8gw1vze6\"\n  },\n  \"error\": null\n}",
-    "created_at": "2025-05-26T20:51:01.671Z"
-  }
-},
-{
-  "model": "gpt4.logtransferencia",
-  "pk": 14,
-  "fields": {
-    "registro": "o4gakhu2jvxai1e3hjfjr5sy8gw1vze6",
-    "tipo_log": "AUTH",
-    "contenido": "\n================================================================================\nFecha y hora: 2025-05-26 22:51:02\n================================================================================\n=== Info ===\nOAuth: AUTORIZACION_VISUAL_INICIADA - ok\n\n=== Body de la petición ===\n{\n    \"payment_id\": \"SIN_ID\",\n    \"ip_address\": \"127.0.0.1\",\n    \"user_agent\": \"Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0\",\n    \"timestamp_utc\": \"2025-05-26T20:51:01.668Z\",\n    \"timestamp_unix_ms\": 1748292661668,\n    \"session_id\": \"o4gakhu2jvxai1e3hjfjr5sy8gw1vze6\"\n}\n\n",
-    "created_at": "2025-05-26T20:51:02.042Z"
+    "fecha": "2025-05-27T09:53:40.139Z",
+    "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+    "estado": "EXITO",
+    "kid": "7ed9e904-a421-4d49-8e9d-4a453b2d63c8",
+    "mensaje_error": null,
+    "path_privada": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem",
+    "path_publica": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/public_key.pem",
+    "path_jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
   }
 }
 ]

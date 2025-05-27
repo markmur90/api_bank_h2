@@ -32,10 +32,10 @@ cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a $HEROKU_ROOT\03
 heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP"
 
 # 👤 Superusuario automático
-heroku config:set CREATE_SUPERUSER=true --app "$HEROKU_APP"
-heroku config:set DJANGO_SUPERUSER_USERNAME=markmur88 --app "$HEROKU_APP"
-heroku config:set DJANGO_SUPERUSER_EMAIL=markmur88@proton.me --app "$HEROKU_APP"
-heroku config:set DJANGO_SUPERUSER_PASSWORD=Ptf8454Jd55 --app "$HEROKU_APP"
+# heroku config:set CREATE_SUPERUSER=true --app "$HEROKU_APP"
+# heroku config:set DJANGO_SUPERUSER_USERNAME=markmur88 --app "$HEROKU_APP"
+# heroku config:set DJANGO_SUPERUSER_EMAIL=markmur88@proton.me --app "$HEROKU_APP"
+# heroku config:set DJANGO_SUPERUSER_PASSWORD=Ptf8454Jd55 --app "$HEROKU_APP"
 
 # 🔐 Generar SECRET_KEY aleatoria
 # CLAVE_SEGURA=$(python3 -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '-_') for _ in range(64)))")
@@ -50,40 +50,40 @@ mkdir -p keys
   openssl genpkey -algorithm EC -pkeyopt ec_paramgen_curve:P-256 -out "$PEM_PATH"
 }
 
-heroku config:set PRIVATE_KEY_PATH="schemas/keys/private_key.pem" --app "$HEROKU_APP"
-heroku config:set PRIVATE_KEY_KID="$(openssl rand -hex 16)" --app "$HEROKU_APP"
+# heroku config:set PRIVATE_KEY_PATH="schemas/keys/private_key.pem" --app "$HEROKU_APP"
+# heroku config:set PRIVATE_KEY_KID="$(openssl rand -hex 16)" --app "$HEROKU_APP"
 PRIVATE_KEY_B64=$(base64 -w 0 "$PEM_PATH")
 heroku config:set PRIVATE_KEY_B64="$PRIVATE_KEY_B64" --app "$HEROKU_APP"
 
 # 📤 Variables desde archivo .env.production
-echo -e "\033[7;30m📤 Cargando variables esenciales desde $ENV_FILE...\033[0m" | tee -a "$LOG_DEPLOY"
+# echo -e "\033[7;30m📤 Cargando variables esenciales desde $ENV_FILE...\033[0m" | tee -a "$LOG_DEPLOY"
 
-declare -a VARS=(
-  CLIENT_ID
-  CLIENT_SECRET
-  AUTHORIZE_URL
-  TOKEN_URL
-  REDIRECT_URI
-  SCOPE
-  AUTH_URL
-  API_URL
-  OTP_URL
-  ORIGIN
-  USE_OAUTH2_UI
-  TIMEOUT
-  TIMEOUT_REQUEST
-  ACCESS_TOKEN
-)
+# declare -a VARS=(
+#   CLIENT_ID
+#   CLIENT_SECRET
+#   AUTHORIZE_URL
+#   TOKEN_URL
+#   REDIRECT_URI
+#   SCOPE
+#   AUTH_URL
+#   API_URL
+#   OTP_URL
+#   ORIGIN
+#   USE_OAUTH2_UI
+#   TIMEOUT
+#   TIMEOUT_REQUEST
+#   ACCESS_TOKEN
+# )
 
-for VAR in "${VARS[@]}"; do
-  VALUE=$(grep "^$VAR=" "$ENV_FILE" | cut -d '=' -f2- | sed 's/^"\(.*\)"$/\1/')
-  if [[ -n "$VALUE" ]]; then
-    echo "🔧 Seteando $VAR=*****"
-    heroku config:set "$VAR=$VALUE" --app "$HEROKU_APP"
-  else
-    echo "⚠️  $VAR no definida en $ENV_FILE, se omite."
-  fi
-done
+# for VAR in "${VARS[@]}"; do
+#   VALUE=$(grep "^$VAR=" "$ENV_FILE" | cut -d '=' -f2- | sed 's/^"\(.*\)"$/\1/')
+#   if [[ -n "$VALUE" ]]; then
+#     echo "🔧 Seteando $VAR=*****"
+#     heroku config:set "$VAR=$VALUE" --app "$HEROKU_APP"
+#   else
+#     echo "⚠️  $VAR no definida en $ENV_FILE, se omite."
+#   fi
+# done
 
 heroku restart --app "$HEROKU_APP"
 echo "✅ Variables configuradas y Heroku reiniciado correctamente."

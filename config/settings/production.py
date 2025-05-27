@@ -21,3 +21,5 @@ OAUTH2.update({
     "REDIRECT_URI": REDIRECT_URI,
     "ORIGIN": ORIGIN,
 })
+PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'schemas/keys/private_key.pem')
+PRIVATE_KEY_KID = '7ed9e904-a421-4d49-8e9d-4a453b2d63c8'

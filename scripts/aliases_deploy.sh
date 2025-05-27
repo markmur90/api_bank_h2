@@ -31,19 +31,19 @@ d_env() {
 }
 unalias d_local 2>/dev/null
 d_local() {
-    d_env && bash ./01_full.sh --env=local -Q -I -U -E "$@"
+    d_env && bash ./01_full.sh -S -Q -I -l "$@"
 }
 unalias d_heroku 2>/dev/null
 d_heroku() {
-    d_env && bash ./01_full.sh --env=production -S -Q -I -U -u -H -B -E "$@"
+    d_env && bash ./01_full.sh -S -Q -I -l -u -H -B "$@"
 }
 unalias d_njalla 2>/dev/null
 d_njalla() {
-    d_env && bash ./01_full.sh --env=production -S -Q -I -U -u -H -B -E -v "$@"
+    d_env && bash ./01_full.sh -S -Q -I -l -u -H -B -v "$@"
 }
 unalias d_pgm 2>/dev/null
 d_pgm() {
-    d_env && bash ./01_full.sh -Q -I -U -S "$@"
+    d_env && bash ./01_full.sh -Q -I -l -S "$@"
 }
 unalias d_hek 2>/dev/null
 d_hek() {
