@@ -73,3 +73,11 @@ DEBUG: True
 
 ❌ Error en línea 69: "((success++))"
 Abortando ejecución.
+
+📅 Fecha de ejecución: 2025-05-28 01:29:05
+📄 Script: 00_15_variables_heroku.sh
+═════════════════════════════════════════════════════════════
+[7;30m🚀 Subiendo variables de entorno a Heroku (apibank2)...[0m
+
+❌ Error en línea 30: "tee -a "$LOG_DEPLOY""
+Abortando ejecución.
