@@ -1,0 +1,51 @@
+
+================================================================================
+Fecha y hora: 2025-05-26 23:29:46
+================================================================================
+=== Info ===
+OAuth: AUTORIZACION_VISUAL_INICIADA - ok
+
+=== Body de la petición ===
+{
+    "payment_id": "SIN_ID",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-26T21:29:45.882Z",
+    "timestamp_unix_ms": 1748294985882,
+    "session_id": "5u4da5xkcoo8hy175b8g5037upmsv1dp"
+}
+
+
+================================================================================
+Fecha y hora: 2025-05-26 23:29:50
+================================================================================
+=== Info ===
+OAuth: AUTORIZACION_VISUAL_INICIADA - ok
+
+=== Body de la petición ===
+{
+    "payment_id": "SIN_ID",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-26T21:29:50.081Z",
+    "timestamp_unix_ms": 1748294990081,
+    "session_id": "5u4da5xkcoo8hy175b8g5037upmsv1dp"
+}
+
+
+================================================================================
+Fecha y hora: 2025-05-26 23:29:54
+================================================================================
+=== Info ===
+OAuth: AUTORIZACION_VISUAL_INICIADA - ok
+
+=== Body de la petición ===
+{
+    "payment_id": "SIN_ID",
+    "ip_address": "127.0.0.1",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
+    "timestamp_utc": "2025-05-26T21:29:54.176Z",
+    "timestamp_unix_ms": 1748294994176,
+    "session_id": "5u4da5xkcoo8hy175b8g5037upmsv1dp"
+}
+

@@ -441,16 +441,29 @@ def descargar_pdf(request, payment_id):
 
 
 # ==== OAUTH2 ====
+
+from django.conf import settings
+from django.shortcuts import redirect, render
+from django.contrib import messages
+from api.gpt4.reg_log import registrar_log, registrar_log_oauth
+from api.gpt4.models import Transfer
+from api.gpt4.reg_log import generate_pkce_pair, build_auth_url, fetch_token_by_code
+
 def oauth2_authorize(request):
+    if not settings.USE_OAUTH2_UI:
+        registrar_log_oauth("flujo_bloqueado", "entorno_sin_ui", request=request)
+        messages.warning(request, "Autorización OAuth deshabilitada en este entorno.")
+        return redirect("dashboard")
+
     try:
         payment_id = request.GET.get('payment_id')
         if not payment_id:
             registrar_log_oauth("inicio_autorizacion", "error", {"error": "Falta payment_id"}, "OAuth2 requiere un payment_id", request=request)
-            registrar_log(registro="SIN_ID", tipo_log="ERROR", error="OAuth2 requiere un payment_id", extra_info="Falta payment_id en GET")
+            registrar_log("SIN_ID", tipo_log="ERROR", error="OAuth2 requiere un payment_id", extra_info="Falta payment_id en GET")
             messages.error(request, "Debes iniciar autorización desde una transferencia específica.")
             return redirect('dashboard')
 
-        transfer = get_object_or_404(Transfer, payment_id=payment_id)
+        transfer = Transfer.objects.get(payment_id=payment_id)
         verifier, challenge = generate_pkce_pair()
         state = uuid.uuid4().hex
         request.session.update({
@@ -462,13 +475,12 @@ def oauth2_authorize(request):
         })
 
         auth_url = build_auth_url(state, challenge)
-
         registrar_log_oauth("inicio_autorizacion", "exito", {
             "state": state,
             "auth_url": auth_url,
-            "code_challenge": challenge
+            "code_challenge": challenge,
+            "payment_id": payment_id
         }, request=request)
-
         registrar_log(payment_id, tipo_log="AUTH", request_body={
             "verifier": verifier,
             "challenge": challenge,
@@ -477,16 +489,22 @@ def oauth2_authorize(request):
 
         return render(request, 'api/GPT4/oauth2_authorize.html', {
             'auth_url': auth_url,
-            'payment_id': payment_id,
+            'payment_id': payment_id
         })
 
     except Exception as e:
         registrar_log_oauth("inicio_autorizacion", "error", None, str(e), request=request)
-        registrar_log(registro="SIN_ID", tipo_log="ERROR", error=str(e), extra_info="Excepción en oauth2_authorize")
+        registrar_log("SIN_ID", tipo_log="ERROR", error=str(e), extra_info="Excepción en oauth2_authorize")
         messages.error(request, f"Error iniciando autorización OAuth2: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html', {'auth_url': None})
 
+
 def oauth2_callback(request):
+    if not settings.USE_OAUTH2_UI:
+        registrar_log_oauth("callback", "bloqueado", {"razon": "entorno_sin_ui"}, request=request)
+        messages.warning(request, "Callback OAuth deshabilitado en este entorno.")
+        return redirect("dashboard")
+
     try:
         if not request.session.get('oauth_in_progress', False):
             registrar_log_oauth("callback", "fallo", {"razon": "flujo_no_iniciado"}, request=request)
@@ -495,22 +513,19 @@ def oauth2_callback(request):
             return redirect('dashboard')
 
         request.session['oauth_in_progress'] = False
-        error = request.GET.get('error')
 
-        if error:
-            error_desc = request.GET.get('error_description', '')
+        if 'error' in request.GET:
             registrar_log_oauth("callback", "fallo", {
-                "error": error,
-                "error_description": error_desc,
+                "error": request.GET.get('error'),
+                "error_description": request.GET.get('error_description', ''),
                 "params": dict(request.GET)
             }, request=request)
-            registrar_log("SIN_ID", tipo_log="ERROR", error=f"{error} - {error_desc}", extra_info="Error en callback OAuth")
-            messages.error(request, f"Error en autorización: {error} - {error_desc}")
+            registrar_log("SIN_ID", tipo_log="ERROR", error="OAuth error", extra_info=f"{request.GET}")
+            messages.error(request, f"Error en autorización: {request.GET.get('error')}")
             return render(request, 'api/GPT4/oauth2_callback.html')
 
         state = request.GET.get('state')
         session_state = request.session.get('oauth_state')
-
         if state != session_state:
             registrar_log_oauth("callback", "fallo", {
                 "razon": "state_mismatch",
@@ -523,7 +538,6 @@ def oauth2_callback(request):
 
         code = request.GET.get('code')
         verifier = request.session.pop('pkce_verifier', None)
-
         registrar_log_oauth("callback", "procesando", {
             "code": code,
             "state": state
@@ -555,34 +569,6 @@ def oauth2_callback(request):
         request.session['oauth_success'] = False
         messages.error(request, f"Error en el proceso de autorización: {str(e)}")
         return render(request, 'api/GPT4/oauth2_callback.html')
-
-
-def oauth2_authorizeB(request):
-    verifier, challenge = generate_pkce_pair()
-    state = uuid.uuid4().hex
-    request.session['pkce_verifier'] = verifier
-    request.session['oauth_state'] = state
-    return redirect(build_auth_url(state, challenge))
-
-def oauth2_callbackB(request):
-    error = request.GET.get('error')
-    if error:
-        messages.error(request, f"OAuth Error: {error}")
-        return redirect('dashboard')
-    code = request.GET.get('code')
-    state = request.GET.get('state')
-    if state != request.session.get('oauth_state'):
-        messages.error(request, "State mismatch en OAuth2.")
-        return redirect('dashboard')
-    verifier = request.session.pop('pkce_verifier', None)
-    access_token, refresh_token, expires = fetch_token_by_code(code, verifier)
-    request.session['access_token'] = access_token
-    request.session['refresh_token'] = refresh_token
-    request.session['token_expires'] = time.time() + expires
-    messages.success(request, "Autorización completada.")
-    return redirect('dashboard')
-
-
 
 
 

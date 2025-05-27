@@ -25,10 +25,9 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=[])
 # REDIRECT_URI = 'https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/'
 REDIRECT_URI = env('REDIRECT_URI', default='https://0.0.0.0:8000/oauth2/callback/')
 
-ORIGIN = 'https://simulator-api.db.com'
+USE_OAUTH2_UI = env.bool("USE_OAUTH2_UI", default=False)
 
-CLIENT_ID = '766ae693-6297-47ea-b825-fd3d07dcf9b6'
-CLIENT_SECRET = 'CCGiHIEQZmMjxS8JXCzt8a8nSKLXKDoVy3a61ZWD2jIaFfcDMq7ekmsLaog3fjpzqVpXj-4piqSoiln7dqKwuQ'
+
 
 # 4. Apps y middleware (sin cambios)
 INSTALLED_APPS = [
@@ -163,33 +162,51 @@ OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 
 
-TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
-OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
-AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
-API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
-AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
-SCOPE = 'sepa_credit_transfers'
-TIMEOUT_REQUEST = 3600
-
-ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
-
 JWT_SIGNING_KEY='Ptf8454Jd55'
 JWT_VERIFYING_KEY='Ptf8454Jd55'
 
+# OAUTH2 = {
+#     'CLIENT_ID': 'CLIENT_ID',
+#     'CLIENT_SECRET': 'CLIENT_SECRET',
+#     'ACCESS_TOKEN': 'ACCESS_TOKEN',
+#     'ORIGIN': 'ORIGIN',
+#     'OTP_URL': 'OTP_URL',
+#     'AUTH_URL': 'AUTH_URL',
+#     'API_URL': 'API_URL',
+#     'TOKEN_URL': 'TOKEN_URL',
+#     'AUTHORIZE_URL': 'AUTHORIZE_URL',
+#     'REDIRECT_URI': 'REDIRECT_URI',
+#     'SCOPE': 'SCOPE',
+#     'TIMEOUT': 3600,
+# }
+
+TIMEOUT = 3600  # 1 hora en segundos
+TIMEOUT_REQUEST = TIMEOUT  # 1 hora en segundos
+
+ORIGIN = env("ORIGIN")
+CLIENT_ID = env("CLIENT_ID")
+CLIENT_SECRET = env("CLIENT_SECRET")
+ACCESS_TOKEN = env("ACCESS_TOKEN")
+AUTHORIZE_URL = env("AUTHORIZE_URL")
+AUTH_URL = env("AUTH_URL")
+API_URL = env("API_URL")
+OTP_URL = env("OTP_URL")
+TOKEN_URL = env("TOKEN_URL")
+REDIRECT_URI = env("REDIRECT_URI")
+SCOPE = env("SCOPE")
+
 OAUTH2 = {
-    'CLIENT_ID': 'CLIENT_ID',
-    'CLIENT_SECRET': 'CLIENT_SECRET',
-    'ACCESS_TOKEN': 'ACCESS_TOKEN',
-    'ORIGIN': 'ORIGIN',
-    'OTP_URL': 'OTP_URL',
-    'AUTH_URL': 'AUTH_URL',
-    'API_URL': 'API_URL',
-    'TOKEN_URL': 'TOKEN_URL',
-    'AUTHORIZE_URL': 'AUTHORIZE_URL',
-    'REDIRECT_URI': 'REDIRECT_URI',
-    'SCOPE': 'SCOPE',
-    'TIMEOUT': 3600,
+    "CLIENT_ID": CLIENT_ID,
+    "CLIENT_SECRET": CLIENT_SECRET,
+    "AUTHORIZE_URL": AUTHORIZE_URL,
+    "AUTH_URL": AUTH_URL,
+    "TOKEN_URL": TOKEN_URL,
+    "REDIRECT_URI": REDIRECT_URI,
+    "SCOPE": SCOPE,
+    "TIMEOUT": TIMEOUT_REQUEST,
+    "TIMEOUT_REQUEST": TIMEOUT_REQUEST,
 }
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
@@ -265,5 +282,5 @@ import django_heroku
 django_heroku.settings(locals())
 
 
-PRIVATE_KEY_KID = '0697a08c-2596-4545-ae01-8f0c68e93e6f'
+PRIVATE_KEY_KID = 'd48e842e-8303-43b3-9c6a-65d12a90ddbc'
 PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')

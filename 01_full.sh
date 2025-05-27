@@ -156,6 +156,7 @@ usage() {
     echo -e "\n\033[1;33mENTORNO Y CONFIGURACIÓN:\033[0m"
     echo -e "  \033[1;33m-Y\033[0m, \033[1;33m--do-sys\033[0m            Actualizar sistema y dependencias"
     echo -e "  \033[1;33m-P\033[0m, \033[1;33m--do-ports\033[0m          Cerrar puertos abiertos conflictivos"
+    echo -e "  \033[1;33m-D\033[0m, \033[1;33m--do-docker\033[0m         Cerrar contenedores abiertos conflictivos"
     echo -e "  \033[1;33m-M\033[0m, \033[1;33m--do-mac\033[0m            Cambiar MAC aleatoria"
     echo -e "  \033[1;33m-x\033[0m, \033[1;33m--do-ufw\033[0m            Configurar firewall UFW"
     echo -e "  \033[1;33m-p\033[0m, \033[1;33m--do-pem\033[0m            Generar claves PEM locales"
