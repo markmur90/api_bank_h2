@@ -1,6 +1,6 @@
 🔐 Activando entorno virtual...
 🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443
-[2025-05-27 23:12:17 +0200] [80316] [DEBUG] Current configuration:
+[2025-05-27 23:21:29 +0200] [87765] [DEBUG] Current configuration:
   config: ./gunicorn.conf.py
   wsgi_app: None
   bind: ['0.0.0.0:8443']
@@ -60,22 +60,22 @@
   default_proc_name: api.wsgi:application
   pythonpath: None
   paste: None
-  on_starting: <function OnStarting.on_starting at 0x7f4338a868e0>
-  on_reload: <function OnReload.on_reload at 0x7f4338a86a20>
-  when_ready: <function WhenReady.when_ready at 0x7f4338a86b60>
-  pre_fork: <function Prefork.pre_fork at 0x7f4338a86d40>
-  post_fork: <function Postfork.post_fork at 0x7f4338a86e80>
-  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7f4338a86fc0>
-  worker_int: <function WorkerInt.worker_int at 0x7f4338a87100>
-  worker_abort: <function WorkerAbort.worker_abort at 0x7f4338a87240>
-  pre_exec: <function PreExec.pre_exec at 0x7f4338a87380>
-  pre_request: <function PreRequest.pre_request at 0x7f4338a874c0>
-  post_request: <function PostRequest.post_request at 0x7f4338a87560>
-  child_exit: <function ChildExit.child_exit at 0x7f4338a876a0>
-  worker_exit: <function WorkerExit.worker_exit at 0x7f4338a877e0>
-  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7f4338a87920>
-  on_exit: <function OnExit.on_exit at 0x7f4338a87a60>
-  ssl_context: <function NewSSLContext.ssl_context at 0x7f4338a87c40>
+  on_starting: <function OnStarting.on_starting at 0x7fd81d74a8e0>
+  on_reload: <function OnReload.on_reload at 0x7fd81d74aa20>
+  when_ready: <function WhenReady.when_ready at 0x7fd81d74ab60>
+  pre_fork: <function Prefork.pre_fork at 0x7fd81d74ad40>
+  post_fork: <function Postfork.post_fork at 0x7fd81d74ae80>
+  post_worker_init: <function PostWorkerInit.post_worker_init at 0x7fd81d74afc0>
+  worker_int: <function WorkerInt.worker_int at 0x7fd81d74b100>
+  worker_abort: <function WorkerAbort.worker_abort at 0x7fd81d74b240>
+  pre_exec: <function PreExec.pre_exec at 0x7fd81d74b380>
+  pre_request: <function PreRequest.pre_request at 0x7fd81d74b4c0>
+  post_request: <function PostRequest.post_request at 0x7fd81d74b560>
+  child_exit: <function ChildExit.child_exit at 0x7fd81d74b6a0>
+  worker_exit: <function WorkerExit.worker_exit at 0x7fd81d74b7e0>
+  nworkers_changed: <function NumWorkersChanged.nworkers_changed at 0x7fd81d74b920>
+  on_exit: <function OnExit.on_exit at 0x7fd81d74ba60>
+  ssl_context: <function NewSSLContext.ssl_context at 0x7fd81d74bc40>
   proxy_protocol: False
   proxy_allow_ips: ['127.0.0.1', '::1']
   keyfile: ./schemas/certs/desarrollo.key
@@ -94,12 +94,12 @@
   casefold_http_method: False
   forwarder_headers: ['SCRIPT_NAME', 'PATH_INFO']
   header_map: drop
-[2025-05-27 23:12:17 +0200] [80316] [INFO] Starting gunicorn 23.0.0
-[2025-05-27 23:12:17 +0200] [80316] [DEBUG] Arbiter booted
-[2025-05-27 23:12:17 +0200] [80316] [INFO] Listening at: https://0.0.0.0:8443 (80316)
-[2025-05-27 23:12:17 +0200] [80316] [INFO] Using worker: sync
-[2025-05-27 23:12:17 +0200] [80317] [INFO] Booting worker with pid: 80317
-[2025-05-27 23:12:17 +0200] [80317] [ERROR] Exception in worker process
+[2025-05-27 23:21:29 +0200] [87765] [INFO] Starting gunicorn 23.0.0
+[2025-05-27 23:21:29 +0200] [87765] [DEBUG] Arbiter booted
+[2025-05-27 23:21:29 +0200] [87765] [INFO] Listening at: https://0.0.0.0:8443 (87765)
+[2025-05-27 23:21:29 +0200] [87765] [INFO] Using worker: sync
+[2025-05-27 23:21:29 +0200] [87766] [INFO] Booting worker with pid: 87766
+[2025-05-27 23:21:29 +0200] [87766] [ERROR] Exception in worker process
 Traceback (most recent call last):
   File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/gunicorn/arbiter.py", line 608, in spawn_worker
     worker.init_process()
@@ -128,11 +128,11 @@ Traceback (most recent call last):
   File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
   File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
 ModuleNotFoundError: No module named 'api.wsgi'
-[2025-05-27 23:12:17 +0200] [80317] [INFO] Worker exiting (pid: 80317)
-[2025-05-27 23:12:17 +0200] [80316] [DEBUG] 1 workers
-[2025-05-27 23:12:17 +0200] [80316] [ERROR] Worker (pid:80317) exited with code 3
-[2025-05-27 23:12:17 +0200] [80316] [ERROR] Shutting down: Master
-[2025-05-27 23:12:17 +0200] [80316] [ERROR] Reason: Worker failed to boot.
+[2025-05-27 23:21:29 +0200] [87766] [INFO] Worker exiting (pid: 87766)
+[2025-05-27 23:21:29 +0200] [87765] [DEBUG] 1 workers
+[2025-05-27 23:21:29 +0200] [87765] [ERROR] Worker (pid:87766) exited with code 3
+[2025-05-27 23:21:29 +0200] [87765] [ERROR] Shutting down: Master
+[2025-05-27 23:21:29 +0200] [87765] [ERROR] Reason: Worker failed to boot.
 
 ❌ Error en línea 30: "gunicorn api.wsgi:application --certfile="$CERT_CRT" --keyfile="$CERT_KEY" --bind 0.0.0.0:8443 --log-level=debug"
 Abortando ejecución.

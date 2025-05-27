@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_NAME="$(basename "$0")"
-LOG_FILE="./logs/${SCRIPT_NAME%.sh}_.log"
+LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
 
 mkdir -p "$(dirname "$LOG_FILE")"
 
