@@ -5,39 +5,56 @@
 <style>
   .custom-card {
     border-radius: 1rem;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     background: linear-gradient(135deg, #fff 0%, #f1f3f5 100%);
     border: none;
-    transition: transform .3s, box-shadow .3s;
-  }
-  .custom-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
   }
   .custom-card-header {
     background: linear-gradient(45deg, #4b555e, #8b99a7);
     color: #fff;
     font-weight: 600;
-    font-size: 1.3rem;
-    padding: 1rem 1.5rem;
+    font-size: 1.2rem;
+    padding: 0.75rem 1.2rem;
     border-top-left-radius: 1rem;
     border-top-right-radius: 1rem;
   }
   .custom-card-body {
-    padding: 1.5rem;
+    padding: 1.2rem;
+  }
+  .table-sm td, .table-sm th {
+    padding: 0.3rem 0.5rem !important;
+    font-size: 0.88rem;
+  }
+  .btn-editar {
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+  }
+  .btn-editar:hover {
+    background-color: #357ab7;
+    color: white;
+  }
+  .btn-eliminar {
+    background-color: #6f42c1;
+    color: white;
+    border: none;
+  }
+  .btn-eliminar:hover {
+    background-color: #5936a2;
+    color: white;
   }
 </style>
 
-<div class="container mt-5">
+<div class="container mt-4">
   <div class="card custom-card">
     <div class="custom-card-header">
       📦 Configuraciones API
     </div>
     <div class="custom-card-body">
-      <a href="{% url 'crear_configuracion' %}" class="btn btn-primary mb-3">➕ Nueva configuración</a>
+      <a href="{% url 'crear_configuracion' %}" class="btn btn-sm btn-primary mb-3">➕ Nueva configuración</a>
       <div class="table-responsive">
-        <table class="table table-bordered table-hover align-middle">
-          <thead class="table-dark">
+        <table class="table table-sm table-bordered table-hover align-middle">
+          <thead class="table-dark text-center">
             <tr>
               <th>Entorno</th>
               <th>Nombre</th>
@@ -51,11 +68,11 @@
               <tr>
                 <td>{{ config.entorno }}</td>
                 <td>{{ config.nombre }}</td>
-                <td>{{ config.valor|truncatechars:80 }}</td>
-                <td>{{ config.activo|yesno:"✅,❌" }}</td>
-                <td>
-                  <a href="{% url 'editar_configuracion' config.pk %}" class="btn btn-sm btn-warning">✏️ Editar</a>
-                  <a href="{% url 'eliminar_configuracion' config.pk %}" class="btn btn-sm btn-danger">🗑 Eliminar</a>
+                <td style="max-width: 250px;" class="text-truncate">{{ config.valor|truncatechars:80 }}</td>
+                <td class="text-center">{{ config.activo|yesno:"✅,❌" }}</td>
+                <td class="text-center">
+                  <a href="{% url 'editar_configuracion' config.pk %}" class="btn btn-sm btn-editar">✏️</a>
+                  <a href="{% url 'eliminar_configuracion' config.pk %}" class="btn btn-sm btn-eliminar">🗑</a>
                 </td>
               </tr>
             {% empty %}
