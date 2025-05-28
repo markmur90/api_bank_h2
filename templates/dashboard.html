@@ -59,7 +59,7 @@
 </style>
 
 {% if user.is_authenticated %}
-<div class="container mt-5">
+
   <div class="container-fluid">
     <h1 class="text-center mb-4 display-5 fw-bold">Panel de Control</h1>
 
@@ -124,14 +124,21 @@
         </div>
       </div>
     </div>
+
+
+
+
   </div>
-</div>
-{% else %}
-<div class="container mt-5">
-  <div class="alert alert-warning">
-    <p>No has iniciado sesión.</p>
-  </div>
-  <a href="{% url 'login' %}" class="btn btn-primary">Ir al Login</a>
+
+  
+    <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
+  {% else %}
+    <div class="alert alert-warning">
+      <p>No has iniciado sesión.</p>
+    </div>
+    <a href="{% url 'login' %}" class="btn btn-primary">Ir al Login</a>
+  {% endif %}
 </div>
 {% endif %}
+
 {% endblock %}

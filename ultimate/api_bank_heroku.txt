@@ -19,24 +19,116 @@ ClaudiaKlar@example.com
 SecurityAccountID: 100204004000
 10020400400079945
 otpauth://totp/gluesim:100204004000001?secret=7G3DC4GV4J2YFPDS
+############################
+############################
+############################
 
+Name: 
+Baroness Anna Meyer
+
+postal_address_country: 
+DE
+
+postal_address_street: 
+Frankfurter Allee 11
+
+postal_address_city: 
+10247 Berlin
+
+IBAN: 
+DE00500700100200044824
+
+Currency Code: 
+EUR
+
+BIC: 
+DEUTDEFFXXX
+
+Phone:
++49 170 123456
+ 069 1234567
+
+Mail:
+AnnaMeyer@example.com
+
+SecurityAccountID: 
+10020446400020681
+100 2044640 00 20681
+
+100.95 saldo
+700 x mes
+otpauth://totp/gluesim:100204464000001?secret=6XANMMKKWU32XN3G
+
+############################
+############################
+############################
+
+Name: 
+Baroness Anna Meyer
+
+postal_address_country: 
+DE
+
+postal_address_street: 
+Frankfurter Allee 11
+
+postal_address_city: 
+10247 Berlin
+
+IBAN: 
+DE00500700100200044824
+
+Currency Code: 
+EUR
+
+BIC: 
+DEUTDEFFXXX
+
+Phone:
++49 170 123456
+ 069 1234567
+
+Mail:
+AnnaMeyer@example.com
+
+Investments
+SecurityAccountID: 
+10020446400020681
+100 2044640 00 20681
+
+100.95 saldo
+700 x mes
+otpauth://totp/gluesim:100204464000001?secret=6XANMMKKWU32XN3G
+
+############################
+############################
+############################
 
 Name:  Tom Winter
 postal_address_country: DE
 postal_address_street: Augsburger Strasse 14a
 postal_address_city: 80337 München
-IBAN: DE00500700100200043574
+IBAN: DE00500700100200044874
 
 Currency Code: EUR
 BIC: DEUTDEFFXXX
-FKN+PIN: 10020433900062128
-OTP: otpauth://totp/gluesim:100204339000001?secret=6RIVNEFU2WWBXCMV
+FKN+PIN: 10020446900014432
+100 2044690 00 14432
+OTP: otpauth://totp/gluesim:100204469000001?secret=ZHEZZYWZJ4R5K2RE
 
-Counterparty IBAN: DE10010000000000022137
-Transaction Code: 123
-Domain Code: BFWA
-Family Code: CCRD
-Sub Family Code: CWDL
+TomWinter@example.com
++49 170 123456
+ 069 1234567
+
+
+1400.95
+7000 x mes
+
+SecurityAccountID
+100204469000
+
+
+
 
 ## CUENTA PROPIA
 

@@ -4,7 +4,7 @@ set -euo pipefail
 SCRIPT_NAME="$(basename "$0")"
 LOG_DEPLOY="./scripts/logs/01_full_deploy/full_deploy.log"
 
-
+clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
 DO_CLEAR=true
 TIME_SLEEP=0
@@ -392,7 +392,7 @@ echo "-----------------------------------CAMBIO MAC--------------------------" >
 ejecutar_si_activo "DO_MAC" "Cambiar MAC" "bash $SCRIPTS_DIR/00_05_mac.sh"
 echo -e "\n\n"
 pausa_y_limpiar
-
+verificar_vpn_segura
 # === 06 ===
 echo -e "\033[7;33m--------------------------------------------------UFW--------------------------------------------------\033[0m" 
 echo "--------------------------------------UFW------------------------------" >> "$LOG_DEPLOY"
