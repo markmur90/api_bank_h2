@@ -1,15 +1,15 @@
-📅 Fecha de ejecución: 2025-05-28 02:31:31
+📅 Fecha de ejecución: 2025-05-28 02:39:17
 📄 Script: 00_20_ssl.sh
 ═════════════════════════════════════════════════════════════
-[2025-05-28 02:31:33 +0200] [2909788] [INFO] Starting gunicorn 23.0.0
-[2025-05-28 02:31:33 +0200] [2909788] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 02:31:33 +0200] [2909788] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 02:31:34 +0200] [2909788] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 02:31:34 +0200] [2909788] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 02:31:35 +0200] [2909788] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 02:31:35 +0200] [2909788] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 02:31:36 +0200] [2909788] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 02:31:36 +0200] [2909788] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 02:31:37 +0200] [2909788] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 02:31:37 +0200] [2909788] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 02:31:38 +0200] [2909788] [ERROR] Can't connect to ('0.0.0.0', 8443)
+[2025-05-28 02:39:18 +0200] [3115280] [INFO] Starting gunicorn 23.0.0
+[2025-05-28 02:39:18 +0200] [3115280] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 02:39:18 +0200] [3115280] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 02:39:19 +0200] [3115280] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 02:39:19 +0200] [3115280] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 02:39:20 +0200] [3115280] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 02:39:20 +0200] [3115280] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 02:39:21 +0200] [3115280] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 02:39:21 +0200] [3115280] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 02:39:22 +0200] [3115280] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 02:39:22 +0200] [3115280] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 02:39:23 +0200] [3115280] [ERROR] Can't connect to ('0.0.0.0', 8443)

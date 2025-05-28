@@ -837,3 +837,46 @@ bound to 192.168.0.132 -- renewal in 37520 seconds.
 🧭 IP Tor anterior : 185.220.101.103
 🛰️ IP Tor actual   : 45.84.107.17
 =========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/ee:4f:6c:7c:45:0c
+Sending on   LPF/wlan0/ee:4f:6c:7c:45:0c
+Sending on   Socket/fallback
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 6
+DHCPOFFER of 192.168.0.135 from 192.168.0.1
+DHCPREQUEST for 192.168.0.135 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.135 from 192.168.0.1
+bound to 192.168.0.135 -- renewal in 34458 seconds.
+⚠ IP no ha cambiado tras el primer intento. Reintentando...
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/ee:57:92:ee:23:ee
+Sending on   LPF/wlan0/ee:57:92:ee:23:ee
+Sending on   Socket/fallback
+DHCPREQUEST for 192.168.0.135 on wlan0 to 255.255.255.255 port 67
+DHCPREQUEST for 192.168.0.135 on wlan0 to 255.255.255.255 port 67
+DHCPNAK from 192.168.0.1
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 5
+DHCPOFFER of 192.168.0.177 from 192.168.0.1
+DHCPREQUEST for 192.168.0.177 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.177 from 192.168.0.1
+bound to 192.168.0.177 -- renewal in 33293 seconds.
+
+=========================================
+📅 Fecha           : 2025-05-28 02:47:27
+🛰️ Interfaz        : wlan0
+🧭 MAC anterior    : c0:e4:34:95:bd:5b
+✨ MAC actual      : ee:57:92:ee:23:ee
+🧭 IP anterior     : 192.168.0.135
+🛰️ IP actual       : 192.168.0.177
+🧭 IP Tor anterior : 185.40.4.29
+🛰️ IP Tor actual   : 185.220.100.243
+=========================================
