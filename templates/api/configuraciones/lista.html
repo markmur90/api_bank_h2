@@ -2,35 +2,69 @@
 {% block title %}Configuraciones API{% endblock %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2 class="mb-4">📦 Configuraciones API</h2>
-    <a href="{% url 'crear_configuracion' %}" class="btn btn-primary mb-3">➕ Nueva configuración</a>
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
+<style>
+  .custom-card {
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg, #fff 0%, #f1f3f5 100%);
+    border: none;
+    transition: transform .3s, box-shadow .3s;
+  }
+  .custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+  }
+  .custom-card-header {
+    background: linear-gradient(45deg, #4b555e, #8b99a7);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding: 1rem 1.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+  }
+  .custom-card-body {
+    padding: 1.5rem;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="card custom-card">
+    <div class="custom-card-header">
+      📦 Configuraciones API
+    </div>
+    <div class="custom-card-body">
+      <a href="{% url 'crear_configuracion' %}" class="btn btn-primary mb-3">➕ Nueva configuración</a>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+          <thead class="table-dark">
             <tr>
-                <th>Entorno</th>
-                <th>Nombre</th>
-                <th>Valor</th>
-                <th>Activo</th>
-                <th>Acciones</th>
+              <th>Entorno</th>
+              <th>Nombre</th>
+              <th>Valor</th>
+              <th>Activo</th>
+              <th>Acciones</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             {% for config in configuraciones %}
-            <tr>
+              <tr>
                 <td>{{ config.entorno }}</td>
                 <td>{{ config.nombre }}</td>
                 <td>{{ config.valor|truncatechars:80 }}</td>
                 <td>{{ config.activo|yesno:"✅,❌" }}</td>
                 <td>
-                    <a href="{% url 'editar_configuracion' config.pk %}" class="btn btn-sm btn-warning">✏️ Editar</a>
-                    <a href="{% url 'eliminar_configuracion' config.pk %}" class="btn btn-sm btn-danger">🗑 Eliminar</a>
+                  <a href="{% url 'editar_configuracion' config.pk %}" class="btn btn-sm btn-warning">✏️ Editar</a>
+                  <a href="{% url 'eliminar_configuracion' config.pk %}" class="btn btn-sm btn-danger">🗑 Eliminar</a>
                 </td>
-            </tr>
+              </tr>
             {% empty %}
-            <tr><td colspan="5" class="text-center">No hay configuraciones registradas.</td></tr>
+              <tr><td colspan="5" class="text-center">No hay configuraciones registradas.</td></tr>
             {% endfor %}
-        </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}
