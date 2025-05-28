@@ -60,8 +60,6 @@ else
   echo "⚠️  Archivo $PEM_PATH no encontrado. Saltando PRIVATE_KEY_B64." | tee -a "$LOG_DEPLOY"
 fi
 
-echo -e "\n📦 Total de variables cargadas: $success" | tee -a "$LOG_DEPLOY"
-
 # === Push a GitHub y Heroku ===
 echo -e "\n🚀 Subiendo el proyecto a Heroku y GitHub...\n" | tee -a "$LOG_DEPLOY"
 cd "$HEROKU_ROOT" || { echo "❌ Error al acceder a $HEROKU_ROOT"; exit 1; }
