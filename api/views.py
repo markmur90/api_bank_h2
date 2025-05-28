@@ -94,12 +94,12 @@ def cambiar_entorno(request, entorno):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-# @login_required
-# def dashboard_view(request):
-#     transferencias = Transfer.objects.all()
-#     return render(request, 'dashboard.html', {
-#         'transferencias': transferencias
-#     })
+@login_required
+def dashboard_view(request):
+    transfers = Transfer.objects.all()
+    return render(request, 'dashboard.html', {
+        'transfers': transfers
+    })
 
 @method_decorator(login_required, name='dispatch')
 class DashboardView(View):

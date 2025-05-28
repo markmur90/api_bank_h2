@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.contrib import admin
 from api.views import (
     DashboardView, HomeView, AuthIndexView, CoreIndexView, AccountsIndexView, SCTIndexView,
-    TransactionsIndexView, TransfersIndexView, CollectionIndexView, cambiar_entorno, login_view, logout_view, mostrar_readme, ReadmeView, AuthorizeView, CallbackView, signup_view
+    TransactionsIndexView, TransfersIndexView, CollectionIndexView, cambiar_entorno, login_view, logout_view, mostrar_readme, ReadmeView, AuthorizeView, CallbackView, signup_view, dashboard_view
 )
 
 urlpatterns = [
