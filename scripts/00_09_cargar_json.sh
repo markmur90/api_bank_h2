@@ -22,8 +22,21 @@ LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
 mkdir -p "$(dirname $LOG_DEPLOY)"
 
 
-echo -e "\033[7;30m🚀 Subiendo respaldo de datos de local...\033[0m" | tee -a $LOG_DEPLOY
-python3 manage.py loaddata bdd_local.json
+# echo -e "\033[7;30m🚀 Subiendo respaldo de datos de local...\033[0m" | tee -a $LOG_DEPLOY
+# python3 manage.py loaddata bdd_local.json
+
+
+echo -e "\033[7;30m🚀 Restaurando base de datos desde respaldo SQL...\033[0m" | tee -a "$LOG_DEPLOY"
+
+BACKUP_DIR_SQL="$HOME/Documentos/GitHub/backup/sql"
+export PGPASSWORD="Ptf8454Jd55"
+psql -U markmur88 -h 127.0.0.1 -p 5432 -d mydatabase \
+  < "$BACKUP_DIR_SQL/backup_local.sql" 2>>"$LOG_DEPLOY"
+unset PGPASSWORD
+echo -e "\033[7;32m✅ Restauración SQL completada.\033[0m" | tee -a "$LOG_DEPLOY"
+
+
+
 echo -e "\033[7;30m✅ ¡Subido JSON Local!\033[0m" | tee -a $LOG_DEPLOY
 echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
 echo "" | tee -a $LOG_DEPLOY

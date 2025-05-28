@@ -29,7 +29,7 @@ limpiar_respaldo_por_hora() {
     local DIR="$1"
     cd "$DIR" || exit 1
 
-    mapfile -t files < <(ls -1tr *.zip *.sql 2>/dev/null)
+    mapfile -t files < <(ls -1tr *.zip 2>/dev/null)
 
     declare -A keep_per_hour
     for f in "${files[@]}"; do

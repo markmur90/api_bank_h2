@@ -14,15 +14,16 @@
           </a>
         </li>
 
-        <form method="get" action="{% url 'cambiar_entorno' request.session.entorno_actual|default:'produccion' %}" class="d-flex align-items-center">
-            <select name="entorno" class="form-select form-select-sm me-2" onchange="location.href=this.value;">
-                {% for opt in 'local','sandbox','produccion' %}
-                    <option value="{% url 'cambiar_entorno' opt %}" {% if request.session.entorno_actual == opt %}selected{% endif %}>
-                        {{ opt|title }}
-                    </option>
-                {% endfor %}
-            </select>
+        <form method="get" class="d-flex align-items-center">
+          <select name="entorno" class="form-select form-select-sm me-2" onchange="location.href=this.value;">
+            {% for opt in entornos %}
+              <option value="{% url 'cambiar_entorno' opt %}" {% if opt == entorno_actual %}selected{% endif %}>
+                {{ opt|title }}
+              </option>
+            {% endfor %}
+          </select>
         </form>
+
 
         <li class="nav-item">
           <a class="nav-link" href="{% url 'list_logsGPT4' %}">

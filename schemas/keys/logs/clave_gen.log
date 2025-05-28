@@ -318,3 +318,43 @@
   },
   "kid": "23caa91a-f7e3-4122-9098-a08cc4b24aa8"
 }
+{
+  "timestamp": "2025-05-28T09:06:29.445293",
+  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+  "archivos": {
+    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem",
+    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_public_key.pem",
+    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
+  },
+  "kid": "cc529f3b-7da1-4722-9a11-d4a9ee5f2bb5"
+}
+{
+  "timestamp": "2025-05-28T09:17:59.683763",
+  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+  "archivos": {
+    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem",
+    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_public_key.pem",
+    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
+  },
+  "kid": "afacf13f-5237-4108-ac85-b377486f6d03"
+}
+{
+  "timestamp": "2025-05-28T09:22:40.755179",
+  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+  "archivos": {
+    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem",
+    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_public_key.pem",
+    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
+  },
+  "kid": "1181254b-9d59-45cf-8040-f01fff91bdcd"
+}
+{
+  "timestamp": "2025-05-28T09:25:29.499869",
+  "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+  "archivos": {
+    "private": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem",
+    "public": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_public_key.pem",
+    "jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
+  },
+  "kid": "c1e74cc2-f714-4f80-ae71-699bc3dc5060"
+}

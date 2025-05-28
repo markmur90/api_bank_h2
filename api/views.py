@@ -88,10 +88,21 @@ def mostrar_readme(request):
 
 # ============================================================================
 
+def cambiar_entorno(request, entorno):
+    if entorno in ['local', 'produccion']:
+        request.session['entorno_actual'] = entorno
+    return redirect(request.META.get('HTTP_REFERER', '/'))
+
+
 @login_required
 def dashboard_view(request):
     transferencias = Transfer.objects.all()
-    return render(request, 'dashboard.html', {'transferencias': transferencias})
+    
+    entornos = ['local', 'produccion']
+    return render(request, 'dashboard.html', {
+        'entornos': entornos,
+        'transferencias': transferencias
+    })
 
 
 def logout_view(request):
@@ -164,7 +175,3 @@ def login_view(request):
     return render(request, "login.html")
 
 
-def cambiar_entorno(request, entorno):
-    if entorno in ['local', 'produccion', 'sandbox']:
-        request.session['entorno_actual'] = entorno
-    return redirect(request.META.get('HTTP_REFERER', '/'))

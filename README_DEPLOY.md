@@ -6,70 +6,70 @@ Este archivo documenta el uso de funciones Bash para automatizar el despliegue, 
 
 ## 🧩 VARIABLES DE CONTROL
 
-| Parámetro(s)                  | Variable interna         | Descripción                                                             |
-|------------------------------|---------------------------|-------------------------------------------------------------------------|
-| `-a` \| `--all`              | `PROMPT_MODE=false`       | Ejecutar todos los pasos sin confirmaciones                             |
-| `-s` \| `--step`             | `PROMPT_MODE=true`        | Modo paso a paso                                                        |
-| `-W` \| `--dry-run`          | `DRY_RUN=true`            | Modo simulación: no realiza acciones destructivas                       |
-| `-d` \| `--debug`            | `DEBUG_MODE=true`         | Activa modo diagnóstico extendido                                       |
+| Parámetro(s)           | Variable interna      | Descripción                                       |
+| ----------------------- | --------------------- | -------------------------------------------------- |
+| `-a` \| `--all`     | `PROMPT_MODE=false` | Ejecutar todos los pasos sin confirmaciones        |
+| `-s` \| `--step`    | `PROMPT_MODE=true`  | Modo paso a paso                                   |
+| `-W` \| `--dry-run` | `DRY_RUN=true`      | Modo simulación: no realiza acciones destructivas |
+| `-d` \| `--debug`   | `DEBUG_MODE=true`   | Activa modo diagnóstico extendido                 |
 
 ---
 
 ## 🧰 TAREAS DE DESARROLLO LOCAL
 
-| Parámetro(s)                  | Variable interna         | Descripción                                                             |
-|------------------------------|---------------------------|-------------------------------------------------------------------------|
-| `-L` \| `--do-local`         | `DO_JSON_LOCAL=true`      | Cargar archivos locales `.json` y `.env`                                |
-| `-l` \| `--do-load-local`    | `DO_RUN_LOCAL=true`       | Ejecutar entorno local estándar                                         |
-| `-r` \| `--do-local-ssl`     | `DO_LOCAL_SSL=true`       | Ejecutar entorno local con SSL (Gunicorn + Nginx 8443)                  |
+| Parámetro(s)                 | Variable interna       | Descripción                                           |
+| ----------------------------- | ---------------------- | ------------------------------------------------------ |
+| `-L` \| `--do-local`      | `DO_JSON_LOCAL=true` | Cargar archivos locales `.json` y `.env`           |
+| `-l` \| `--do-load-local` | `DO_RUN_LOCAL=true`  | Ejecutar entorno local estándar                       |
+| `-r` \| `--do-local-ssl`  | `DO_LOCAL_SSL=true`  | Ejecutar entorno local con SSL (Gunicorn + Nginx 8443) |
 
 ---
 
 ## 💾 BACKUPS Y DEPLOY
 
-| Parámetro(s)                  | Variable interna             | Descripción                                                           |
-|------------------------------|-------------------------------|-----------------------------------------------------------------------|
-| `-C` \| `--do-clean`         | `DO_CLEAN=true`               | Limpiar respaldos antiguos                                            |
-| `-Z` \| `--do-zip`           | `DO_ZIP_SQL=true`             | Generar backups ZIP + SQL                                             |
-| `-B` \| `--do-bdd`           | `DO_SYNC_REMOTE_DB=true`      | Sincronizar BDD remota                                                |
-| `-H` \| `--do-heroku`        | `DO_HEROKU=true`              | Desplegar a Heroku                                                    |
-| `-v` \| `--do-vps`           | `DO_DEPLOY_VPS=true`          | Desplegar a VPS (Njalla)                                              |
-| `-S` \| `--do-sync`          | `DO_SYNC_LOCAL=true`          | Sincronizar archivos locales                                          |
+| Parámetro(s)             | Variable interna           | Descripción                 |
+| ------------------------- | -------------------------- | ---------------------------- |
+| `-C` \| `--do-clean`  | `DO_CLEAN=true`          | Limpiar respaldos antiguos   |
+| `-Z` \| `--do-zip`    | `DO_ZIP_SQL=true`        | Generar backups ZIP + SQL    |
+| `-B` \| `--do-bdd`    | `DO_SYNC_REMOTE_DB=true` | Sincronizar BDD remota       |
+| `-H` \| `--do-heroku` | `DO_HEROKU=true`         | Desplegar a Heroku           |
+| `-v` \| `--do-vps`    | `DO_DEPLOY_VPS=true`     | Desplegar a VPS (Njalla)     |
+| `-S` \| `--do-sync`   | `DO_SYNC_LOCAL=true`     | Sincronizar archivos locales |
 
 ---
 
 ## 🛠 ENTORNO Y CONFIGURACIÓN
 
-| Parámetro(s)                  | Variable interna         | Descripción                                                             |
-|------------------------------|---------------------------|-------------------------------------------------------------------------|
-| `-Y` \| `--do-sys`           | `DO_SYS=true`             | Actualizar sistema y dependencias                                      |
-| `-P` \| `--do-ports`         | `DO_PORTS=true`           | Cerrar puertos abiertos conflictivos                                   |
-| `-D` \| `--do-docker`        | `DO_DOCKER=true`          | Diagnóstico y soporte Docker                                           |
-| `-M` \| `--do-mac`           | `DO_MAC=true`             | Cambiar dirección MAC aleatoria                                        |
-| `-x` \| `--do-ufw`           | `DO_UFW=true`             | Configurar firewall UFW                                                |
-| `-p` \| `--do-pem`           | `DO_PEM=true`             | Generar claves PEM locales                                             |
-| `-U` \| `--do-create-user`   | `DO_USER=true`            | Crear usuario del sistema                                              |
-| `-u` \| `--do-varher`        | `DO_VARHER=true`          | Configurar variables Heroku                                            |
+| Parámetro(s)                  | Variable interna   | Descripción                         |
+| ------------------------------ | ------------------ | ------------------------------------ |
+| `-Y` \| `--do-sys`         | `DO_SYS=true`    | Actualizar sistema y dependencias    |
+| `-P` \| `--do-ports`       | `DO_PORTS=true`  | Cerrar puertos abiertos conflictivos |
+| `-D` \| `--do-docker`      | `DO_DOCKER=true` | Diagnóstico y soporte Docker        |
+| `-M` \| `--do-mac`         | `DO_MAC=true`    | Cambiar dirección MAC aleatoria     |
+| `-x` \| `--do-ufw`         | `DO_UFW=true`    | Configurar firewall UFW              |
+| `-p` \| `--do-pem`         | `DO_PEM=true`    | Generar claves PEM locales           |
+| `-U` \| `--do-create-user` | `DO_USER=true`   | Crear usuario del sistema            |
+| `-u` \| `--do-varher`      | `DO_VARHER=true` | Configurar variables Heroku          |
 
 ---
 
 ## 🗃️ POSTGRES Y MIGRACIONES
 
-| Parámetro(s)                  | Variable interna         | Descripción                                                             |
-|------------------------------|---------------------------|-------------------------------------------------------------------------|
-| `-Q` \| `--do-pgsql`         | `DO_PGSQL=true`           | Configurar conexión PostgreSQL                                          |
-| `-I` \| `--do-migra`         | `DO_MIG=true`             | Aplicar migraciones Django                                              |
+| Parámetro(s)            | Variable interna  | Descripción                    |
+| ------------------------ | ----------------- | ------------------------------- |
+| `-Q` \| `--do-pgsql` | `DO_PGSQL=true` | Configurar conexión PostgreSQL |
+| `-I` \| `--do-migra` | `DO_MIG=true`   | Aplicar migraciones Django      |
 
 ---
 
 ## 🌐 EJECUCIÓN Y TESTING
 
-| Parámetro(s)                  | Variable interna             | Descripción                                                           |
-|------------------------------|-------------------------------|-----------------------------------------------------------------------|
-| `-G` \| `--do-gunicorn`      | `DO_GUNICORN=true`            | Ejecutar Gunicorn como servidor                                       |
-| `-w` \| `--do-web`           | `DO_RUN_WEB=true`             | Abrir navegador tras despliegue                                       |
-| `-V` \| `--do-verif-trans`   | `DO_VERIF_TRANSF=true`        | Verificar transferencias SEPA                                         |
-| `-E` \| `--do-cert`          | `DO_CERT=true`                | Generar certificados autofirmados                                     |
+| Parámetro(s)                  | Variable interna         | Descripción                      |
+| ------------------------------ | ------------------------ | --------------------------------- |
+| `-G` \| `--do-gunicorn`    | `DO_GUNICORN=true`     | Ejecutar Gunicorn como servidor   |
+| `-w` \| `--do-web`         | `DO_RUN_WEB=true`      | Abrir navegador tras despliegue   |
+| `-V` \| `--do-verif-trans` | `DO_VERIF_TRANSF=true` | Verificar transferencias SEPA     |
+| `-E` \| `--do-cert`        | `DO_CERT=true`         | Generar certificados autofirmados |
 
 ---
 
@@ -77,60 +77,60 @@ Este archivo documenta el uso de funciones Bash para automatizar el despliegue, 
 
 ### Funciones generales
 
-| Comando        | Parámetros     | Descripción                                            |
-|----------------|----------------|--------------------------------------------------------|
-| `d_help`       | `--help`       | Muestra ayuda del script maestro                      |
-| `d_step`       | `-s`           | Ejecuta paso a paso                                   |
-| `d_all`        | `-a`           | Ejecuta todos los bloques disponibles                 |
-| `d_debug`      | `-d`           | Activa modo debug                                     |
-| `d_menu`       | `--menu`       | Muestra menú interactivo con FZF                      |
-| `d_status`     | —              | Diagnóstico completo del entorno actual               |
+| Comando      | Parámetros | Descripción                             |
+| ------------ | ----------- | ---------------------------------------- |
+| `d_help`   | `--help`  | Muestra ayuda del script maestro         |
+| `d_step`   | `-s`      | Ejecuta paso a paso                      |
+| `d_all`    | `-a`      | Ejecuta todos los bloques disponibles    |
+| `d_debug`  | `-d`      | Activa modo debug                        |
+| `d_menu`   | `--menu`  | Muestra menú interactivo con FZF        |
+| `d_status` | —          | Diagnóstico completo del entorno actual |
 
 ---
 
 ## 🌐 Entorno Local
 
-| Comando             | Parámetros                                                       | Descripción                                      |
-|---------------------|------------------------------------------------------------------|--------------------------------------------------|
-| `d_local`           | `-P -D -M -x -C -Z -Q -I -L -S -V -p -u -H -B -v -E`              | Versión resumida de despliegue local + SSL      |
-| `d_local_long`      | `--do-*` largo para cada acción                                 | Versión larga, explícita, con todas las acciones|
-| `d_local_dry`       | `--dry-run -P -C -Q -I -U -V`                                    | Simulación del despliegue local                 |
-| `d_local_dry_long`  | `--dry-run --do-*` largo                                        | Simulación con todos los pasos largos           |
-| `d_local_ssl`       | —                                                               | Ejecuta entorno local HTTPS (Nginx + Gunicorn)  |
-| `d_ssl`             | —                                                               | Servidor HTTPS para desarrollo (runsslserver)   |
+| Comando              | Parámetros                                            | Descripción                                       |
+| -------------------- | ------------------------------------------------------ | -------------------------------------------------- |
+| `d_local`          | `-P -D -M -x -C -Z -Q -I -L -S -V -p -u -H -B -v -E` | Versión resumida de despliegue local + SSL        |
+| `d_local_long`     | `--do-*` largo para cada acción                     | Versión larga, explícita, con todas las acciones |
+| `d_local_dry`      | `--dry-run -P -C -Q -I -U -V`                        | Simulación del despliegue local                   |
+| `d_local_dry_long` | `--dry-run --do-*` largo                             | Simulación con todos los pasos largos             |
+| `d_local_ssl`      | —                                                     | Ejecuta entorno local HTTPS (Nginx + Gunicorn)     |
+| `d_ssl`            | —                                                     | Servidor HTTPS para desarrollo (runsslserver)      |
 
 ---
 
 ## ☁️ Entorno Heroku
 
-| Comando         | Parámetros                         | Descripción                              |
-|-----------------|------------------------------------|------------------------------------------|
-| `d_heroku`      | `-P -C -u -U -V -p -x`             | Despliegue completo en Heroku            |
-| `d_heroku_long` | `--do-*` largo                    | Versión detallada del despliegue Heroku  |
+| Comando           | Parámetros              | Descripción                             |
+| ----------------- | ------------------------ | ---------------------------------------- |
+| `d_heroku`      | `-P -C -u -U -V -p -x` | Despliegue completo en Heroku            |
+| `d_heroku_long` | `--do-*` largo         | Versión detallada del despliegue Heroku |
 
 ---
 
 ## 🛡 Entorno Producción (Njalla / VPS)
 
-| Comando                   | Parámetros                              | Descripción                                           |
-|---------------------------|-----------------------------------------|-------------------------------------------------------|
-| `d_njalla`                | `-P -C -H -U -V -u -B -v`                | Despliegue total en producción con verificación       |
-| `d_njalla_long`           | `--do-*` largo                         | Versión completa detallada para producción Njalla     |
-| `d_production_vars`       | `-P -C -H -U -V`                         | Solo pasos críticos de producción                     |
-| `d_production_vars_long`  | `--do-*` largo                         | Versión larga de pasos críticos                       |
-| `d_prod_min`              | `-v -V`                                  | Despliegue mínimo: deploy y ejecución web             |
-| `d_prod_min_long`         | `--do-deploy-vps --do-run-web`         | Versión explícita del despliegue mínimo               |
+| Comando                    | Parámetros                      | Descripción                                        |
+| -------------------------- | -------------------------------- | --------------------------------------------------- |
+| `d_njalla`               | `-P -C -H -U -V -u -B -v`      | Despliegue total en producción con verificación   |
+| `d_njalla_long`          | `--do-*` largo                 | Versión completa detallada para producción Njalla |
+| `d_production_vars`      | `-P -C -H -U -V`               | Solo pasos críticos de producción                 |
+| `d_production_vars_long` | `--do-*` largo                 | Versión larga de pasos críticos                   |
+| `d_prod_min`             | `-v -V`                        | Despliegue mínimo: deploy y ejecución web         |
+| `d_prod_min_long`        | `--do-deploy-vps --do-run-web` | Versión explícita del despliegue mínimo          |
 
 ---
 
 ## 🧪 Ejemplos de Uso
 
-| Comando               | Parámetros            | Descripción                                  |
-|-----------------------|-----------------------|----------------------------------------------|
-| `api`             | —                     | Abrir api_bank_h2         |
-| `BKapi`| —                     | Abrir api_bank_h2_BK                     |
-| `api_heroku`| —                     | Abrir api_bank_heroku                     |
-| `update`  | —                     | Actualizar sistema                        |
+| Comando        | Parámetros | Descripción          |
+| -------------- | ----------- | --------------------- |
+| `api`        | —          | Abrir api_bank_h2     |
+| `BKapi`      | —          | Abrir api_bank_h2_BK  |
+| `api_heroku` | —          | Abrir api_bank_heroku |
+| `update`     | —          | Actualizar sistema    |
 
 ---
 
@@ -169,15 +169,15 @@ Así tendrás acceso inmediato a todas las funciones.
 
 Ubicados en el directorio `scripts/`, estos scripts automatizan el setup del VPS:
 
-| Script                                 | Función                                      |
-|----------------------------------------|----------------------------------------------|
-| `setup_coretransact.sh`               | Script maestro de configuración inicial      |
-| `vps_instalar_dependencias.sh`        | Instala dependencias necesarias              |
-| `vps_configurar_ssh.sh`               | Configura claves y puerto SSH                |
-| `vps_configurar_sistema.sh`           | Timezone, hostname y usuario                 |
-| `vps_deploy_django.sh`                | Clonación y despliegue de Django             |
-| `vps_configurar_gunicorn.sh`          | Configura Gunicorn para Django               |
-| `vps_configurar_nginx.sh`             | Configura Nginx con SSL                      |
+| Script                           | Función                                 |
+| -------------------------------- | ---------------------------------------- |
+| `setup_coretransact.sh`        | Script maestro de configuración inicial |
+| `vps_instalar_dependencias.sh` | Instala dependencias necesarias          |
+| `vps_configurar_ssh.sh`        | Configura claves y puerto SSH            |
+| `vps_configurar_sistema.sh`    | Timezone, hostname y usuario             |
+| `vps_deploy_django.sh`         | Clonación y despliegue de Django        |
+| `vps_configurar_gunicorn.sh`   | Configura Gunicorn para Django           |
+| `vps_configurar_nginx.sh`      | Configura Nginx con SSL                  |
 
 ---
 
@@ -242,17 +242,17 @@ server {
 
 ## 🧑‍💼 USERS — Datos Técnicos de Prueba
 
-| Nombre        | País | Dirección                          | Ciudad        | IBAN                  | BIC           | Código Moneda | Identificadores Adicionales                            |
-|---------------|------|------------------------------------|---------------|------------------------|---------------|----------------|--------------------------------------------------------|
-| Claudia Klar  | DE   | Große Bockenheimer Straße 19       | Frankfurt     | `DE00 5007 0010 0200 0402 24` | DEUTDEFFXXX   | EUR            | `SecurityAccountID: 100204004000`  |
-| Tom Winter    | DE   | Augsburger Strasse 14a             | München       | `DE00 5007 0010 0200 0435 74` | DEUTDEFFXXX   | EUR            | `FKN+PIN: 10020433900062128`  |
-|               |      |                                    |               |                                |               |                | `OTP:` [`gluesim`](otpauth://totp/gluesim:100204004000001?secret=7G3DC4GV4J2YFPDS) |
-|               |      |                                    |               |                                |               |                | `OTP:` [`gluesim`](otpauth://totp/gluesim:100204339000001?secret=6RIVNEFU2WWBXCMV) |
-|               |      |                                    |               |                                |               |                | `Counterparty IBAN:` `DE10 0100 0000 0000 0221 37` |
-|               |      |                                    |               |                                |               |                | `Transaction Code:` 123 |
-|               |      |                                    |               |                                |               |                | `Domain Code:` BFWA |
-|               |      |                                    |               |                                |               |                | `Family Code:` CCRD |
-|               |      |                                    |               |                                |               |                | `Sub Family Code:` CWDL |
+| Nombre       | País | Dirección                     | Ciudad    | IBAN                            | BIC         | Código Moneda | Identificadores Adicionales                                                         |
+| ------------ | ----- | ------------------------------ | --------- | ------------------------------- | ----------- | -------------- | ----------------------------------------------------------------------------------- |
+| Claudia Klar | DE    | Große Bockenheimer Straße 19 | Frankfurt | `DE00 5007 0010 0200 0402 24` | DEUTDEFFXXX | EUR            | `SecurityAccountID: 100204004000`                                                 |
+| Tom Winter   | DE    | Augsburger Strasse 14a         | München  | `DE00 5007 0010 0200 0435 74` | DEUTDEFFXXX | EUR            | `FKN+PIN: 10020433900062128`                                                      |
+|              |       |                                |           |                                 |             |                | `OTP:` [`gluesim`](otpauth://totp/gluesim:100204004000001?secret=7G3DC4GV4J2YFPDS) |
+|              |       |                                |           |                                 |             |                | `OTP:` [`gluesim`](otpauth://totp/gluesim:100204339000001?secret=6RIVNEFU2WWBXCMV) |
+|              |       |                                |           |                                 |             |                | `Counterparty IBAN:` `DE10 0100 0000 0000 0221 37`                              |
+|              |       |                                |           |                                 |             |                | `Transaction Code:` 123                                                           |
+|              |       |                                |           |                                 |             |                | `Domain Code:` BFWA                                                               |
+|              |       |                                |           |                                 |             |                | `Family Code:` CCRD                                                               |
+|              |       |                                |           |                                 |             |                | `Sub Family Code:` CWDL                                                           |
 
 > 🛡️ Estos datos son utilizados únicamente con fines de simulación y pruebas automatizadas. No se recomienda emplearlos en producción sin cifrado, validación y control de acceso.
 
@@ -275,6 +275,7 @@ Este documento resume cómo configurar correctamente el sistema OAuth2 de una ap
 ## 📦 VARIABLES DE ENTORNO REQUERIDAS
 
 ## ✅ En desarrollo/sandbox (`.env.development`)
+
 ```dotenv
 DJANGO_DEBUG=True
 DJANGO_ALLOWED_HOSTS=0.0.0.0,127.0.0.1
@@ -293,6 +294,7 @@ AUTH_URL=https://simulator-api.db.com/gw/dbapi/authorization/v1/authorizations
 ```
 
 ### ✅ En producción Heroku
+
 Configura con:
 
 ```bash
@@ -328,11 +330,13 @@ https://api.coretransapi.com/oauth2/callback/
 ## 🌐 CONFIGURAR DOMINIO PERSONALIZADO EN HEROKU
 
 ### A. Agregar dominio
+
 ```bash
 heroku domains:add api.coretransapi.com
 ```
 
 ### B. Configurar DNS
+
 En el proveedor DNS, apunta:
 
 ```
@@ -340,6 +344,7 @@ api.coretransapi.com → <tu-app>.herokudns.com
 ```
 
 ### C. HTTPS automático
+
 ```bash
 heroku certs:auto:enable
 ```
@@ -377,8 +382,6 @@ Esto incluye:
 
 ---
 
-
-
 Guía detallada paso a paso
 Requisitos previos
 
@@ -390,8 +393,6 @@ Requisitos previos
 ## **Proceso principal**
 
 ---
-
-
 
 ### **1 Preparar tu proyecto Django**
 
@@ -569,8 +570,6 @@ sudo ufw status
 
 ---
 
-
-
 ## **Mantenimiento y actualizaciones**
 
 ### **Actualizar tu aplicación**
@@ -666,8 +665,6 @@ SESSION_CACHE_ALIAS = 'default'
 
 ---
 
-
-
 ## **Configuración avanzada de Nginx**
 
 ###### Optimización de rendimiento
@@ -725,8 +722,6 @@ server {
 
 ---
 
-
-
 ## **Mantenimiento y actualizaciones**
 
 ### **Actualizar tu aplicación**
@@ -760,8 +755,6 @@ sudo crontab -e
 0 2 * * * sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
 
 ---
-
-
 
 ## **Solución de problemas comunes**
 

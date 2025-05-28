@@ -56,17 +56,17 @@ heroku config:set ENVIRONMENT=production --app "$HEROKU_APP" | tee -a "$LOG_DEPL
 # done < "$ENV_FILE"
 
 # === Subida de clave privada codificada ===
-if [[ -f "$PEM_PATH" ]]; then
-  echo -e "\n🔑 Clave privada detectada en $PEM_PATH" | tee -a "$LOG_DEPLOY"
-  PRIVATE_KEY_B64=$(base64 -w 0 "$PEM_PATH")
-  if heroku config:set PRIVATE_KEY_B64="$PRIVATE_KEY_B64" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
-    echo "✅ Clave privada codificada subida como PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
-  else
-    echo "⚠️  Error al subir PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
-  fi
-else
-  echo "⚠️  Archivo $PEM_PATH no encontrado. Saltando PRIVATE_KEY_B64." | tee -a "$LOG_DEPLOY"
-fi
+# if [[ -f "$PEM_PATH" ]]; then
+#   echo -e "\n🔑 Clave privada detectada en $PEM_PATH" | tee -a "$LOG_DEPLOY"
+#   PRIVATE_KEY_B64=$(base64 -w 0 "$PEM_PATH")
+#   if heroku config:set PRIVATE_KEY_B64="$PRIVATE_KEY_B64" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
+#     echo "✅ Clave privada codificada subida como PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
+#   else
+#     echo "⚠️  Error al subir PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
+#   fi
+# else
+#   echo "⚠️  Archivo $PEM_PATH no encontrado. Saltando PRIVATE_KEY_B64." | tee -a "$LOG_DEPLOY"
+# fi
 
 # === Push a GitHub y Heroku ===
 echo -e "\n🚀 Subiendo el proyecto a Heroku y GitHub...\n" | tee -a "$LOG_DEPLOY"
