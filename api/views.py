@@ -97,12 +97,10 @@ def cambiar_entorno(request, entorno):
 @login_required
 def dashboard_view(request):
     transferencias = Transfer.objects.all()
-    
-    entornos = ['local', 'produccion']
     return render(request, 'dashboard.html', {
-        'entornos': entornos,
         'transferencias': transferencias
     })
+
 
 
 def logout_view(request):

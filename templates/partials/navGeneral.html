@@ -14,8 +14,8 @@
           </a>
         </li>
 
-        <form method="get" class="d-flex align-items-center">
-          <select name="entorno" class="form-select form-select-sm me-2" onchange="location.href=this.value;">
+        <form method="get">
+          <select name="entorno" class="form-select form-select-sm" onchange="location.href=this.value;">
             {% for opt in entornos %}
               <option value="{% url 'cambiar_entorno' opt %}" {% if opt == entorno_actual %}selected{% endif %}>
                 {{ opt|title }}
