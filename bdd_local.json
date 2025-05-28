@@ -1731,8 +1731,8 @@
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$1000000$0z9nW8PUPWsxkYan1tJ1ts$2r5e2gwoTauOgDHRJtFFk2DhzYX1rj2oQDuOCIGNbO4=",
-    "last_login": null,
+    "password": "pbkdf2_sha256$1000000$WyrJwVFSbyYeMmcxfspKxB$V+LkhxVwjZml+jbNBJx3RoAkOHK4n/qE10e8zX5B2Lo=",
+    "last_login": "2025-05-28T03:38:19.769Z",
     "is_superuser": true,
     "username": "493069k1",
     "first_name": "",
@@ -1740,7 +1740,7 @@
     "email": "j.moltke@db.com",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2025-05-27T10:26:45.022Z",
+    "date_joined": "2025-05-28T03:35:04.448Z",
     "groups": [],
     "user_permissions": []
   }
@@ -2127,6 +2127,69 @@
   "fields": {
     "app_label": "gpt4",
     "model": "transfer"
+  }
+},
+{
+  "model": "gpt4.debtor",
+  "pk": 1,
+  "fields": {
+    "name": "Baroness Anna Meyer",
+    "customer_id": "10020400400079945",
+    "postal_address_country": "DE",
+    "postal_address_street": "Frankfurter Allee 11",
+    "postal_address_city": "10247 Berlin",
+    "mobile_phone_number": "+49170123456"
+  }
+},
+{
+  "model": "gpt4.debtoraccount",
+  "pk": 1,
+  "fields": {
+    "debtor": 1,
+    "iban": "DE00500700100200044824",
+    "currency": "EUR"
+  }
+},
+{
+  "model": "gpt4.creditor",
+  "pk": 1,
+  "fields": {
+    "name": "Tom Winter",
+    "postal_address_country": "DE",
+    "postal_address_street": "Augsburger Strasse 14a",
+    "postal_address_city": "80337 München"
+  }
+},
+{
+  "model": "gpt4.creditoraccount",
+  "pk": 1,
+  "fields": {
+    "creditor": 1,
+    "iban": "DE00500700100200044874",
+    "currency": "EUR"
+  }
+},
+{
+  "model": "gpt4.creditoragent",
+  "pk": 1,
+  "fields": {
+    "bic": "DEUTDEFFXXX",
+    "financial_institution_id": "DEUTDEFFXXX",
+    "other_information": "Deutsche Bank"
+  }
+},
+{
+  "model": "gpt4.clavegenerada",
+  "pk": 1,
+  "fields": {
+    "fecha": "2025-05-28T03:36:31.448Z",
+    "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+    "estado": "EXITO",
+    "kid": "12acc28e-1605-447b-9978-13a9e5a966c6",
+    "mensaje_error": null,
+    "path_privada": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem",
+    "path_publica": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_public_key.pem",
+    "path_jwks": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/jwks_public.json"
   }
 }
 ]

@@ -27,11 +27,14 @@ ad_local() {cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos
 unalias d_env 2>/dev/null
 d_env() {cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear "$@"}
 
+unalias d_mig 2>/dev/null
+d_mig() {d_env && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && python3 manage.py runserver 8002 "$@"}
+
 unalias d_local 2>/dev/null
-d_local() {d_env && bash ./01_full.sh --env=local -Y -P -D -M -x -Z -C -S -Q -I -U -E -p "$@"}
+d_local() {d_env && bash ./01_full.sh --env=local -Y -P -D -M -x -Z -C -S -Q -I -l -E -p "$@"}
 
 unalias d_heroku 2>/dev/null
-d_heroku() {d_env && bash ./01_full.sh --env=local -Y -P -D -M -x -Z -C -S -Q -I -U -H -B -E -p "$@"}
+d_heroku() {d_env && bash ./01_full.sh --env=local -Y -P -D -M -x -Z -C -S -Q -I -l -H -B -E -p "$@"}
 
 unalias d_njalla 2>/dev/null
 d_njalla() {d_env && bash ./01_full.sh --env=local -Y -P -D -M -x -Z -C -S -Q -I -U -H -B -E -p -v "$@"}

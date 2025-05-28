@@ -1,25 +1,15 @@
-📅 Fecha de ejecución: 2025-05-28 03:07:59
+📅 Fecha de ejecución: 2025-05-28 05:13:11
 📄 Script: 00_20_ssl.sh
 ═════════════════════════════════════════════════════════════
-[2025-05-28 03:07:59 +0200] [3869439] [INFO] Starting gunicorn 23.0.0
-[2025-05-28 03:07:59 +0200] [3869439] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 03:07:59 +0200] [3869439] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 03:08:00 +0200] [3869439] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 03:08:00 +0200] [3869439] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 03:08:01 +0200] [3869439] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 03:08:01 +0200] [3869439] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 03:08:02 +0200] [3869439] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 03:08:02 +0200] [3869439] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 03:08:03 +0200] [3869439] [ERROR] Connection in use: ('0.0.0.0', 8443)
-[2025-05-28 03:08:03 +0200] [3869439] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
-[2025-05-28 03:08:04 +0200] [3869439] [ERROR] Can't connect to ('0.0.0.0', 8443)
-[2025-05-28 03:26:17 +0200] [266073] [INFO] Handling signal: hup
-[2025-05-28 03:26:17 +0200] [266073] [INFO] Hang up: Master
-[2025-05-28 03:26:17 +0200] [266073] [ERROR] Worker (pid:266098) was sent SIGHUP!
-[2025-05-28 03:26:17 +0200] [266073] [ERROR] Worker (pid:266101) was sent SIGHUP!
-[2025-05-28 03:26:17 +0200] [266073] [ERROR] Worker (pid:266100) was sent SIGHUP!
-[2025-05-28 03:26:17 +0200] [41810] [INFO] Booting worker with pid: 41810
-[2025-05-28 03:26:17 +0200] [41811] [INFO] Booting worker with pid: 41811
-[2025-05-28 03:26:17 +0200] [266073] [INFO] Handling signal: term
-[2025-05-28 03:26:17 +0200] [41812] [INFO] Booting worker with pid: 41812
-[2025-05-28 03:26:47 +0200] [266073] [INFO] Shutting down: Master
+[2025-05-28 05:13:11 +0200] [56601] [INFO] Starting gunicorn 23.0.0
+[2025-05-28 05:13:11 +0200] [56601] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 05:13:11 +0200] [56601] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 05:13:12 +0200] [56601] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 05:13:12 +0200] [56601] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 05:13:13 +0200] [56601] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 05:13:13 +0200] [56601] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 05:13:14 +0200] [56601] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 05:13:14 +0200] [56601] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 05:13:15 +0200] [56601] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 05:13:15 +0200] [56601] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 05:13:16 +0200] [56601] [ERROR] Can't connect to ('0.0.0.0', 8443)

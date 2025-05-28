@@ -90,7 +90,9 @@ def mostrar_readme(request):
 
 @login_required
 def dashboard_view(request):
-    return render(request, 'dashboard.html', {'user': request.user})
+    transferencias = Transfer.objects.all()
+    return render(request, 'dashboard.html', {'transferencias': transferencias})
+
 
 def logout_view(request):
     username = request.user.username if request.user.is_authenticated else "desconocido"

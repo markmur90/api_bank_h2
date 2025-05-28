@@ -125,20 +125,14 @@
       </div>
     </div>
 
-
-
-
   </div>
 
-  
-    <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
-  {% else %}
-    <div class="alert alert-warning">
-      <p>No has iniciado sesión.</p>
-    </div>
-    <a href="{% url 'login' %}" class="btn btn-primary">Ir al Login</a>
-  {% endif %}
-</div>
+  <a href="{% url 'logout' %}" class="btn btn-danger">Cerrar sesión</a>
+{% else %}
+  <div class="alert alert-warning">
+    <p>No has iniciado sesión.</p>
+  </div>
+  <a href="{% url 'login' %}" class="btn btn-primary">Ir al Login</a>
 {% endif %}
 
 {% endblock %}
