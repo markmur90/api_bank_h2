@@ -4,7 +4,7 @@ from pathlib import Path
 import environ
 from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
-
+from django.apps import apps
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -15,11 +15,17 @@ env = environ.Env()
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
 
 # Cargar dinámicamente variables desde la BD
-try:
-    from api.configuraciones_api.loader import cargar_variables_entorno
-    cargar_variables_entorno(DJANGO_ENV)
-except Exception as e:
-    print(f"⚠️  Configuración dinámica no aplicada: {e}")
+def intentar_cargar_variables(entorno):
+    if not apps.ready:
+        print("⚠️ Django apps aún no están listas. Configuración dinámica omitida.")
+        return
+    try:
+        from api.configuraciones_api.loader import cargar_variables_entorno
+        cargar_variables_entorno(entorno)
+    except Exception as e:
+        print(f"⚠️  Configuración dinámica no aplicada: {e}")
+
+intentar_cargar_variables(DJANGO_ENV)
 
 env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
 if not env_file.exists():
@@ -72,6 +78,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'api.core.middleware.CurrentUserMiddleware',
 ]
+MIDDLEWARE.insert(0, 'api.middleware.configuracion_entorno.ConfiguracionPorSesionMiddleware')
 
 ROOT_URLCONF = 'config.urls'
 WSGI_APPLICATION = 'config.wsgi.application'
@@ -251,4 +258,4 @@ import django_heroku
 django_heroku.settings(locals())
 
 PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
-PRIVATE_KEY_KID = '440244d8-fa86-492a-b0ea-baec21ee0707'
+PRIVATE_KEY_KID = '23caa91a-f7e3-4122-9098-a08cc4b24aa8'
