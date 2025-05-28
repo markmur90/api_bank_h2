@@ -46,7 +46,18 @@ DATE=$(date +"%Y%m%d_%H%M%S")
 BACKUP_DIR="$HOME/Documentos/GitHub/backup/sql/"
 BACKUP_FILE="${BACKUP_DIR}backup_local.sql"
 
+if ! command -v pv > /dev/null 2>&1; then
+    echo "⚠️ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv" | tee -a $LOG_DEPLOY
+    exit 1
+fi
+
 DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
+
+
+
+# dropdb -U usuario mydatabase
+# createdb -U usuario mydatabase
+
 
 echo -e "\033[7;30m🌐 Importando backup en la base de datos remota...\033[0m" | tee -a $LOG_DEPLOY
 # echo -e "\033[7;30m📦 Generando backup local...\033[0m" | tee -a $LOG_DEPLOY
