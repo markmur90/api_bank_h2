@@ -57,6 +57,8 @@ urlpatterns = [
     # path('app/sepa_payment/', include('api.sepa_payment.urls')),
     path('app/gpt3/', include('api.gpt3.urls')),
     path('app/gpt4/', include('api.gpt4.urls')),
+    
+
     # path('app/gpt/', include('api.gpt.urls')),
     path('', include('api.urls')),
 ]

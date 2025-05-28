@@ -471,1259 +471,1295 @@
   "model": "auth.permission",
   "pk": 53,
   "fields": {
-    "name": "Can add sepa transaction",
+    "name": "Can add configuracion api",
     "content_type": 14,
-    "codename": "add_sepatransaction"
+    "codename": "add_configuracionapi"
   }
 },
 {
   "model": "auth.permission",
   "pk": 54,
   "fields": {
-    "name": "Can change sepa transaction",
+    "name": "Can change configuracion api",
     "content_type": 14,
-    "codename": "change_sepatransaction"
+    "codename": "change_configuracionapi"
   }
 },
 {
   "model": "auth.permission",
   "pk": 55,
   "fields": {
-    "name": "Can delete sepa transaction",
+    "name": "Can delete configuracion api",
     "content_type": 14,
-    "codename": "delete_sepatransaction"
+    "codename": "delete_configuracionapi"
   }
 },
 {
   "model": "auth.permission",
   "pk": 56,
   "fields": {
-    "name": "Can view sepa transaction",
+    "name": "Can view configuracion api",
     "content_type": 14,
-    "codename": "view_sepatransaction"
+    "codename": "view_configuracionapi"
   }
 },
 {
   "model": "auth.permission",
   "pk": 57,
   "fields": {
-    "name": "Can add transfer",
+    "name": "Can add sepa transaction",
     "content_type": 15,
-    "codename": "add_transfer"
+    "codename": "add_sepatransaction"
   }
 },
 {
   "model": "auth.permission",
   "pk": 58,
   "fields": {
-    "name": "Can change transfer",
+    "name": "Can change sepa transaction",
     "content_type": 15,
-    "codename": "change_transfer"
+    "codename": "change_sepatransaction"
   }
 },
 {
   "model": "auth.permission",
   "pk": 59,
   "fields": {
-    "name": "Can delete transfer",
+    "name": "Can delete sepa transaction",
     "content_type": 15,
-    "codename": "delete_transfer"
+    "codename": "delete_sepatransaction"
   }
 },
 {
   "model": "auth.permission",
   "pk": 60,
   "fields": {
-    "name": "Can view transfer",
+    "name": "Can view sepa transaction",
     "content_type": 15,
-    "codename": "view_transfer"
+    "codename": "view_sepatransaction"
   }
 },
 {
   "model": "auth.permission",
   "pk": 61,
   "fields": {
-    "name": "Can add sep a2",
+    "name": "Can add transfer",
     "content_type": 16,
-    "codename": "add_sepa2"
+    "codename": "add_transfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 62,
   "fields": {
-    "name": "Can change sep a2",
+    "name": "Can change transfer",
     "content_type": 16,
-    "codename": "change_sepa2"
+    "codename": "change_transfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 63,
   "fields": {
-    "name": "Can delete sep a2",
+    "name": "Can delete transfer",
     "content_type": 16,
-    "codename": "delete_sepa2"
+    "codename": "delete_transfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 64,
   "fields": {
-    "name": "Can view sep a2",
+    "name": "Can view transfer",
     "content_type": 16,
-    "codename": "view_sepa2"
+    "codename": "view_transfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 65,
   "fields": {
-    "name": "Can add sep a3",
+    "name": "Can add sep a2",
     "content_type": 17,
-    "codename": "add_sepa3"
+    "codename": "add_sepa2"
   }
 },
 {
   "model": "auth.permission",
   "pk": 66,
   "fields": {
-    "name": "Can change sep a3",
+    "name": "Can change sep a2",
     "content_type": 17,
-    "codename": "change_sepa3"
+    "codename": "change_sepa2"
   }
 },
 {
   "model": "auth.permission",
   "pk": 67,
   "fields": {
-    "name": "Can delete sep a3",
+    "name": "Can delete sep a2",
     "content_type": 17,
-    "codename": "delete_sepa3"
+    "codename": "delete_sepa2"
   }
 },
 {
   "model": "auth.permission",
   "pk": 68,
   "fields": {
-    "name": "Can view sep a3",
+    "name": "Can view sep a2",
     "content_type": 17,
-    "codename": "view_sepa3"
+    "codename": "view_sepa2"
   }
 },
 {
   "model": "auth.permission",
   "pk": 69,
   "fields": {
-    "name": "Can add error response",
+    "name": "Can add sep a3",
     "content_type": 18,
-    "codename": "add_errorresponse"
+    "codename": "add_sepa3"
   }
 },
 {
   "model": "auth.permission",
   "pk": 70,
   "fields": {
-    "name": "Can change error response",
+    "name": "Can change sep a3",
     "content_type": 18,
-    "codename": "change_errorresponse"
+    "codename": "change_sepa3"
   }
 },
 {
   "model": "auth.permission",
   "pk": 71,
   "fields": {
-    "name": "Can delete error response",
+    "name": "Can delete sep a3",
     "content_type": 18,
-    "codename": "delete_errorresponse"
+    "codename": "delete_sepa3"
   }
 },
 {
   "model": "auth.permission",
   "pk": 72,
   "fields": {
-    "name": "Can view error response",
+    "name": "Can view sep a3",
     "content_type": 18,
-    "codename": "view_errorresponse"
+    "codename": "view_sepa3"
   }
 },
 {
   "model": "auth.permission",
   "pk": 73,
   "fields": {
-    "name": "Can add message",
+    "name": "Can add error response",
     "content_type": 19,
-    "codename": "add_message"
+    "codename": "add_errorresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 74,
   "fields": {
-    "name": "Can change message",
+    "name": "Can change error response",
     "content_type": 19,
-    "codename": "change_message"
+    "codename": "change_errorresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 75,
   "fields": {
-    "name": "Can delete message",
+    "name": "Can delete error response",
     "content_type": 19,
-    "codename": "delete_message"
+    "codename": "delete_errorresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 76,
   "fields": {
-    "name": "Can view message",
+    "name": "Can view error response",
     "content_type": 19,
-    "codename": "view_message"
+    "codename": "view_errorresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 77,
   "fields": {
-    "name": "Can add transaction status",
+    "name": "Can add message",
     "content_type": 20,
-    "codename": "add_transactionstatus"
+    "codename": "add_message"
   }
 },
 {
   "model": "auth.permission",
   "pk": 78,
   "fields": {
-    "name": "Can change transaction status",
+    "name": "Can change message",
     "content_type": 20,
-    "codename": "change_transactionstatus"
+    "codename": "change_message"
   }
 },
 {
   "model": "auth.permission",
   "pk": 79,
   "fields": {
-    "name": "Can delete transaction status",
+    "name": "Can delete message",
     "content_type": 20,
-    "codename": "delete_transactionstatus"
+    "codename": "delete_message"
   }
 },
 {
   "model": "auth.permission",
   "pk": 80,
   "fields": {
-    "name": "Can view transaction status",
+    "name": "Can view message",
     "content_type": 20,
-    "codename": "view_transactionstatus"
+    "codename": "view_message"
   }
 },
 {
   "model": "auth.permission",
   "pk": 81,
   "fields": {
-    "name": "Can add iban",
+    "name": "Can add transaction status",
     "content_type": 21,
-    "codename": "add_iban"
+    "codename": "add_transactionstatus"
   }
 },
 {
   "model": "auth.permission",
   "pk": 82,
   "fields": {
-    "name": "Can change iban",
+    "name": "Can change transaction status",
     "content_type": 21,
-    "codename": "change_iban"
+    "codename": "change_transactionstatus"
   }
 },
 {
   "model": "auth.permission",
   "pk": 83,
   "fields": {
-    "name": "Can delete iban",
+    "name": "Can delete transaction status",
     "content_type": 21,
-    "codename": "delete_iban"
+    "codename": "delete_transactionstatus"
   }
 },
 {
   "model": "auth.permission",
   "pk": 84,
   "fields": {
-    "name": "Can view iban",
+    "name": "Can view transaction status",
     "content_type": 21,
-    "codename": "view_iban"
+    "codename": "view_transactionstatus"
   }
 },
 {
   "model": "auth.permission",
   "pk": 85,
   "fields": {
-    "name": "Can add debtor",
+    "name": "Can add iban",
     "content_type": 22,
-    "codename": "add_debtor"
+    "codename": "add_iban"
   }
 },
 {
   "model": "auth.permission",
   "pk": 86,
   "fields": {
-    "name": "Can change debtor",
+    "name": "Can change iban",
     "content_type": 22,
-    "codename": "change_debtor"
+    "codename": "change_iban"
   }
 },
 {
   "model": "auth.permission",
   "pk": 87,
   "fields": {
-    "name": "Can delete debtor",
+    "name": "Can delete iban",
     "content_type": 22,
-    "codename": "delete_debtor"
+    "codename": "delete_iban"
   }
 },
 {
   "model": "auth.permission",
   "pk": 88,
   "fields": {
-    "name": "Can view debtor",
+    "name": "Can view iban",
     "content_type": 22,
-    "codename": "view_debtor"
+    "codename": "view_iban"
   }
 },
 {
   "model": "auth.permission",
   "pk": 89,
   "fields": {
-    "name": "Can add status response",
+    "name": "Can add debtor",
     "content_type": 23,
-    "codename": "add_statusresponse"
+    "codename": "add_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 90,
   "fields": {
-    "name": "Can change status response",
+    "name": "Can change debtor",
     "content_type": 23,
-    "codename": "change_statusresponse"
+    "codename": "change_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 91,
   "fields": {
-    "name": "Can delete status response",
+    "name": "Can delete debtor",
     "content_type": 23,
-    "codename": "delete_statusresponse"
+    "codename": "delete_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 92,
   "fields": {
-    "name": "Can view status response",
+    "name": "Can view debtor",
     "content_type": 23,
-    "codename": "view_statusresponse"
+    "codename": "view_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 93,
   "fields": {
-    "name": "Can add payment response",
+    "name": "Can add status response",
     "content_type": 24,
-    "codename": "add_paymentresponse"
+    "codename": "add_statusresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 94,
   "fields": {
-    "name": "Can change payment response",
+    "name": "Can change status response",
     "content_type": 24,
-    "codename": "change_paymentresponse"
+    "codename": "change_statusresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 95,
   "fields": {
-    "name": "Can delete payment response",
+    "name": "Can delete status response",
     "content_type": 24,
-    "codename": "delete_paymentresponse"
+    "codename": "delete_statusresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 96,
   "fields": {
-    "name": "Can view payment response",
+    "name": "Can view status response",
     "content_type": 24,
-    "codename": "view_paymentresponse"
+    "codename": "view_statusresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 97,
   "fields": {
-    "name": "Can add custom user",
+    "name": "Can add payment response",
     "content_type": 25,
-    "codename": "add_customuser"
+    "codename": "add_paymentresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 98,
   "fields": {
-    "name": "Can change custom user",
+    "name": "Can change payment response",
     "content_type": 25,
-    "codename": "change_customuser"
+    "codename": "change_paymentresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 99,
   "fields": {
-    "name": "Can delete custom user",
+    "name": "Can delete payment response",
     "content_type": 25,
-    "codename": "delete_customuser"
+    "codename": "delete_paymentresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 100,
   "fields": {
-    "name": "Can view custom user",
+    "name": "Can view payment response",
     "content_type": 25,
-    "codename": "view_customuser"
+    "codename": "view_paymentresponse"
   }
 },
 {
   "model": "auth.permission",
   "pk": 101,
   "fields": {
-    "name": "Can add account",
+    "name": "Can add custom user",
     "content_type": 26,
-    "codename": "add_account"
+    "codename": "add_customuser"
   }
 },
 {
   "model": "auth.permission",
   "pk": 102,
   "fields": {
-    "name": "Can change account",
+    "name": "Can change custom user",
     "content_type": 26,
-    "codename": "change_account"
+    "codename": "change_customuser"
   }
 },
 {
   "model": "auth.permission",
   "pk": 103,
   "fields": {
-    "name": "Can delete account",
+    "name": "Can delete custom user",
     "content_type": 26,
-    "codename": "delete_account"
+    "codename": "delete_customuser"
   }
 },
 {
   "model": "auth.permission",
   "pk": 104,
   "fields": {
-    "name": "Can view account",
+    "name": "Can view custom user",
     "content_type": 26,
-    "codename": "view_account"
+    "codename": "view_customuser"
   }
 },
 {
   "model": "auth.permission",
   "pk": 105,
   "fields": {
-    "name": "Can add address",
+    "name": "Can add account",
     "content_type": 27,
-    "codename": "add_address"
+    "codename": "add_account"
   }
 },
 {
   "model": "auth.permission",
   "pk": 106,
   "fields": {
-    "name": "Can change address",
+    "name": "Can change account",
     "content_type": 27,
-    "codename": "change_address"
+    "codename": "change_account"
   }
 },
 {
   "model": "auth.permission",
   "pk": 107,
   "fields": {
-    "name": "Can delete address",
+    "name": "Can delete account",
     "content_type": 27,
-    "codename": "delete_address"
+    "codename": "delete_account"
   }
 },
 {
   "model": "auth.permission",
   "pk": 108,
   "fields": {
-    "name": "Can view address",
+    "name": "Can view account",
     "content_type": 27,
-    "codename": "view_address"
+    "codename": "view_account"
   }
 },
 {
   "model": "auth.permission",
   "pk": 109,
   "fields": {
-    "name": "Can add financial institution",
+    "name": "Can add address",
     "content_type": 28,
-    "codename": "add_financialinstitution"
+    "codename": "add_address"
   }
 },
 {
   "model": "auth.permission",
   "pk": 110,
   "fields": {
-    "name": "Can change financial institution",
+    "name": "Can change address",
     "content_type": 28,
-    "codename": "change_financialinstitution"
+    "codename": "change_address"
   }
 },
 {
   "model": "auth.permission",
   "pk": 111,
   "fields": {
-    "name": "Can delete financial institution",
+    "name": "Can delete address",
     "content_type": 28,
-    "codename": "delete_financialinstitution"
+    "codename": "delete_address"
   }
 },
 {
   "model": "auth.permission",
   "pk": 112,
   "fields": {
-    "name": "Can view financial institution",
+    "name": "Can view address",
     "content_type": 28,
-    "codename": "view_financialinstitution"
+    "codename": "view_address"
   }
 },
 {
   "model": "auth.permission",
   "pk": 113,
   "fields": {
-    "name": "Can add group header",
+    "name": "Can add financial institution",
     "content_type": 29,
-    "codename": "add_groupheader"
+    "codename": "add_financialinstitution"
   }
 },
 {
   "model": "auth.permission",
   "pk": 114,
   "fields": {
-    "name": "Can change group header",
+    "name": "Can change financial institution",
     "content_type": 29,
-    "codename": "change_groupheader"
+    "codename": "change_financialinstitution"
   }
 },
 {
   "model": "auth.permission",
   "pk": 115,
   "fields": {
-    "name": "Can delete group header",
+    "name": "Can delete financial institution",
     "content_type": 29,
-    "codename": "delete_groupheader"
+    "codename": "delete_financialinstitution"
   }
 },
 {
   "model": "auth.permission",
   "pk": 116,
   "fields": {
-    "name": "Can view group header",
+    "name": "Can view financial institution",
     "content_type": 29,
-    "codename": "view_groupheader"
+    "codename": "view_financialinstitution"
   }
 },
 {
   "model": "auth.permission",
   "pk": 117,
   "fields": {
-    "name": "Can add instructed amount",
+    "name": "Can add group header",
     "content_type": 30,
-    "codename": "add_instructedamount"
+    "codename": "add_groupheader"
   }
 },
 {
   "model": "auth.permission",
   "pk": 118,
   "fields": {
-    "name": "Can change instructed amount",
+    "name": "Can change group header",
     "content_type": 30,
-    "codename": "change_instructedamount"
+    "codename": "change_groupheader"
   }
 },
 {
   "model": "auth.permission",
   "pk": 119,
   "fields": {
-    "name": "Can delete instructed amount",
+    "name": "Can delete group header",
     "content_type": 30,
-    "codename": "delete_instructedamount"
+    "codename": "delete_groupheader"
   }
 },
 {
   "model": "auth.permission",
   "pk": 120,
   "fields": {
-    "name": "Can view instructed amount",
+    "name": "Can view group header",
     "content_type": 30,
-    "codename": "view_instructedamount"
+    "codename": "view_groupheader"
   }
 },
 {
   "model": "auth.permission",
   "pk": 121,
   "fields": {
-    "name": "Can add payment identification",
+    "name": "Can add instructed amount",
     "content_type": 31,
-    "codename": "add_paymentidentification"
+    "codename": "add_instructedamount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 122,
   "fields": {
-    "name": "Can change payment identification",
+    "name": "Can change instructed amount",
     "content_type": 31,
-    "codename": "change_paymentidentification"
+    "codename": "change_instructedamount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 123,
   "fields": {
-    "name": "Can delete payment identification",
+    "name": "Can delete instructed amount",
     "content_type": 31,
-    "codename": "delete_paymentidentification"
+    "codename": "delete_instructedamount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 124,
   "fields": {
-    "name": "Can view payment identification",
+    "name": "Can view instructed amount",
     "content_type": 31,
-    "codename": "view_paymentidentification"
+    "codename": "view_instructedamount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 125,
   "fields": {
-    "name": "Can add creditor",
+    "name": "Can add payment identification",
     "content_type": 32,
-    "codename": "add_creditor"
+    "codename": "add_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 126,
   "fields": {
-    "name": "Can change creditor",
+    "name": "Can change payment identification",
     "content_type": 32,
-    "codename": "change_creditor"
+    "codename": "change_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 127,
   "fields": {
-    "name": "Can delete creditor",
+    "name": "Can delete payment identification",
     "content_type": 32,
-    "codename": "delete_creditor"
+    "codename": "delete_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 128,
   "fields": {
-    "name": "Can view creditor",
+    "name": "Can view payment identification",
     "content_type": 32,
-    "codename": "view_creditor"
+    "codename": "view_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 129,
   "fields": {
-    "name": "Can add debtor",
+    "name": "Can add creditor",
     "content_type": 33,
-    "codename": "add_debtor"
+    "codename": "add_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 130,
   "fields": {
-    "name": "Can change debtor",
+    "name": "Can change creditor",
     "content_type": 33,
-    "codename": "change_debtor"
+    "codename": "change_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 131,
   "fields": {
-    "name": "Can delete debtor",
+    "name": "Can delete creditor",
     "content_type": 33,
-    "codename": "delete_debtor"
+    "codename": "delete_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 132,
   "fields": {
-    "name": "Can view debtor",
+    "name": "Can view creditor",
     "content_type": 33,
-    "codename": "view_debtor"
+    "codename": "view_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 133,
   "fields": {
-    "name": "Can add bulk transfer",
+    "name": "Can add debtor",
     "content_type": 34,
-    "codename": "add_bulktransfer"
+    "codename": "add_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 134,
   "fields": {
-    "name": "Can change bulk transfer",
+    "name": "Can change debtor",
     "content_type": 34,
-    "codename": "change_bulktransfer"
+    "codename": "change_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 135,
   "fields": {
-    "name": "Can delete bulk transfer",
+    "name": "Can delete debtor",
     "content_type": 34,
-    "codename": "delete_bulktransfer"
+    "codename": "delete_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 136,
   "fields": {
-    "name": "Can view bulk transfer",
+    "name": "Can view debtor",
     "content_type": 34,
-    "codename": "view_bulktransfer"
+    "codename": "view_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 137,
   "fields": {
-    "name": "Can add payment information",
+    "name": "Can add bulk transfer",
     "content_type": 35,
-    "codename": "add_paymentinformation"
+    "codename": "add_bulktransfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 138,
   "fields": {
-    "name": "Can change payment information",
+    "name": "Can change bulk transfer",
     "content_type": 35,
-    "codename": "change_paymentinformation"
+    "codename": "change_bulktransfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 139,
   "fields": {
-    "name": "Can delete payment information",
+    "name": "Can delete bulk transfer",
     "content_type": 35,
-    "codename": "delete_paymentinformation"
+    "codename": "delete_bulktransfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 140,
   "fields": {
-    "name": "Can view payment information",
+    "name": "Can view bulk transfer",
     "content_type": 35,
-    "codename": "view_paymentinformation"
+    "codename": "view_bulktransfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 141,
   "fields": {
-    "name": "Can add credit transfers details",
+    "name": "Can add payment information",
     "content_type": 36,
-    "codename": "add_credittransfersdetails"
+    "codename": "add_paymentinformation"
   }
 },
 {
   "model": "auth.permission",
   "pk": 142,
   "fields": {
-    "name": "Can change credit transfers details",
+    "name": "Can change payment information",
     "content_type": 36,
-    "codename": "change_credittransfersdetails"
+    "codename": "change_paymentinformation"
   }
 },
 {
   "model": "auth.permission",
   "pk": 143,
   "fields": {
-    "name": "Can delete credit transfers details",
+    "name": "Can delete payment information",
     "content_type": 36,
-    "codename": "delete_credittransfersdetails"
+    "codename": "delete_paymentinformation"
   }
 },
 {
   "model": "auth.permission",
   "pk": 144,
   "fields": {
-    "name": "Can view credit transfers details",
+    "name": "Can view payment information",
     "content_type": 36,
-    "codename": "view_credittransfersdetails"
+    "codename": "view_paymentinformation"
   }
 },
 {
   "model": "auth.permission",
   "pk": 145,
   "fields": {
-    "name": "Can add sepa credit transfer",
+    "name": "Can add credit transfers details",
     "content_type": 37,
-    "codename": "add_sepacredittransfer"
+    "codename": "add_credittransfersdetails"
   }
 },
 {
   "model": "auth.permission",
   "pk": 146,
   "fields": {
-    "name": "Can change sepa credit transfer",
+    "name": "Can change credit transfers details",
     "content_type": 37,
-    "codename": "change_sepacredittransfer"
+    "codename": "change_credittransfersdetails"
   }
 },
 {
   "model": "auth.permission",
   "pk": 147,
   "fields": {
-    "name": "Can delete sepa credit transfer",
+    "name": "Can delete credit transfers details",
     "content_type": 37,
-    "codename": "delete_sepacredittransfer"
+    "codename": "delete_credittransfersdetails"
   }
 },
 {
   "model": "auth.permission",
   "pk": 148,
   "fields": {
-    "name": "Can view sepa credit transfer",
+    "name": "Can view credit transfers details",
     "content_type": 37,
-    "codename": "view_sepacredittransfer"
+    "codename": "view_credittransfersdetails"
   }
 },
 {
   "model": "auth.permission",
   "pk": 149,
   "fields": {
-    "name": "Can add client id",
+    "name": "Can add sepa credit transfer",
     "content_type": 38,
-    "codename": "add_clientid"
+    "codename": "add_sepacredittransfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 150,
   "fields": {
-    "name": "Can change client id",
+    "name": "Can change sepa credit transfer",
     "content_type": 38,
-    "codename": "change_clientid"
+    "codename": "change_sepacredittransfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 151,
   "fields": {
-    "name": "Can delete client id",
+    "name": "Can delete sepa credit transfer",
     "content_type": 38,
-    "codename": "delete_clientid"
+    "codename": "delete_sepacredittransfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 152,
   "fields": {
-    "name": "Can view client id",
+    "name": "Can view sepa credit transfer",
     "content_type": 38,
-    "codename": "view_clientid"
+    "codename": "view_sepacredittransfer"
   }
 },
 {
   "model": "auth.permission",
   "pk": 153,
   "fields": {
-    "name": "Can add creditor",
+    "name": "Can add client id",
     "content_type": 39,
-    "codename": "add_creditor"
+    "codename": "add_clientid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 154,
   "fields": {
-    "name": "Can change creditor",
+    "name": "Can change client id",
     "content_type": 39,
-    "codename": "change_creditor"
+    "codename": "change_clientid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 155,
   "fields": {
-    "name": "Can delete creditor",
+    "name": "Can delete client id",
     "content_type": 39,
-    "codename": "delete_creditor"
+    "codename": "delete_clientid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 156,
   "fields": {
-    "name": "Can view creditor",
+    "name": "Can view client id",
     "content_type": 39,
-    "codename": "view_creditor"
+    "codename": "view_clientid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 157,
   "fields": {
-    "name": "Can add creditor agent",
+    "name": "Can add creditor",
     "content_type": 40,
-    "codename": "add_creditoragent"
+    "codename": "add_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 158,
   "fields": {
-    "name": "Can change creditor agent",
+    "name": "Can change creditor",
     "content_type": 40,
-    "codename": "change_creditoragent"
+    "codename": "change_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 159,
   "fields": {
-    "name": "Can delete creditor agent",
+    "name": "Can delete creditor",
     "content_type": 40,
-    "codename": "delete_creditoragent"
+    "codename": "delete_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 160,
   "fields": {
-    "name": "Can view creditor agent",
+    "name": "Can view creditor",
     "content_type": 40,
-    "codename": "view_creditoragent"
+    "codename": "view_creditor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 161,
   "fields": {
-    "name": "Can add debtor",
+    "name": "Can add creditor agent",
     "content_type": 41,
-    "codename": "add_debtor"
+    "codename": "add_creditoragent"
   }
 },
 {
   "model": "auth.permission",
   "pk": 162,
   "fields": {
-    "name": "Can change debtor",
+    "name": "Can change creditor agent",
     "content_type": 41,
-    "codename": "change_debtor"
+    "codename": "change_creditoragent"
   }
 },
 {
   "model": "auth.permission",
   "pk": 163,
   "fields": {
-    "name": "Can delete debtor",
+    "name": "Can delete creditor agent",
     "content_type": 41,
-    "codename": "delete_debtor"
+    "codename": "delete_creditoragent"
   }
 },
 {
   "model": "auth.permission",
   "pk": 164,
   "fields": {
-    "name": "Can view debtor",
+    "name": "Can view creditor agent",
     "content_type": 41,
-    "codename": "view_debtor"
+    "codename": "view_creditoragent"
   }
 },
 {
   "model": "auth.permission",
   "pk": 165,
   "fields": {
-    "name": "Can add kid",
+    "name": "Can add debtor",
     "content_type": 42,
-    "codename": "add_kid"
+    "codename": "add_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 166,
   "fields": {
-    "name": "Can change kid",
+    "name": "Can change debtor",
     "content_type": 42,
-    "codename": "change_kid"
+    "codename": "change_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 167,
   "fields": {
-    "name": "Can delete kid",
+    "name": "Can delete debtor",
     "content_type": 42,
-    "codename": "delete_kid"
+    "codename": "delete_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 168,
   "fields": {
-    "name": "Can view kid",
+    "name": "Can view debtor",
     "content_type": 42,
-    "codename": "view_kid"
+    "codename": "view_debtor"
   }
 },
 {
   "model": "auth.permission",
   "pk": 169,
   "fields": {
-    "name": "Can add Log de Transferencia",
+    "name": "Can add kid",
     "content_type": 43,
-    "codename": "add_logtransferencia"
+    "codename": "add_kid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 170,
   "fields": {
-    "name": "Can change Log de Transferencia",
+    "name": "Can change kid",
     "content_type": 43,
-    "codename": "change_logtransferencia"
+    "codename": "change_kid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 171,
   "fields": {
-    "name": "Can delete Log de Transferencia",
+    "name": "Can delete kid",
     "content_type": 43,
-    "codename": "delete_logtransferencia"
+    "codename": "delete_kid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 172,
   "fields": {
-    "name": "Can view Log de Transferencia",
+    "name": "Can view kid",
     "content_type": 43,
-    "codename": "view_logtransferencia"
+    "codename": "view_kid"
   }
 },
 {
   "model": "auth.permission",
   "pk": 173,
   "fields": {
-    "name": "Can add payment identification",
+    "name": "Can add Log de Transferencia",
     "content_type": 44,
-    "codename": "add_paymentidentification"
+    "codename": "add_logtransferencia"
   }
 },
 {
   "model": "auth.permission",
   "pk": 174,
   "fields": {
-    "name": "Can change payment identification",
+    "name": "Can change Log de Transferencia",
     "content_type": 44,
-    "codename": "change_paymentidentification"
+    "codename": "change_logtransferencia"
   }
 },
 {
   "model": "auth.permission",
   "pk": 175,
   "fields": {
-    "name": "Can delete payment identification",
+    "name": "Can delete Log de Transferencia",
     "content_type": 44,
-    "codename": "delete_paymentidentification"
+    "codename": "delete_logtransferencia"
   }
 },
 {
   "model": "auth.permission",
   "pk": 176,
   "fields": {
-    "name": "Can view payment identification",
+    "name": "Can view Log de Transferencia",
     "content_type": 44,
-    "codename": "view_paymentidentification"
+    "codename": "view_logtransferencia"
   }
 },
 {
   "model": "auth.permission",
   "pk": 177,
   "fields": {
-    "name": "Can add Clave generada",
+    "name": "Can add payment identification",
     "content_type": 45,
-    "codename": "add_clavegenerada"
+    "codename": "add_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 178,
   "fields": {
-    "name": "Can change Clave generada",
+    "name": "Can change payment identification",
     "content_type": 45,
-    "codename": "change_clavegenerada"
+    "codename": "change_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 179,
   "fields": {
-    "name": "Can delete Clave generada",
+    "name": "Can delete payment identification",
     "content_type": 45,
-    "codename": "delete_clavegenerada"
+    "codename": "delete_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 180,
   "fields": {
-    "name": "Can view Clave generada",
+    "name": "Can view payment identification",
     "content_type": 45,
-    "codename": "view_clavegenerada"
+    "codename": "view_paymentidentification"
   }
 },
 {
   "model": "auth.permission",
   "pk": 181,
   "fields": {
-    "name": "Can add creditor account",
+    "name": "Can add Clave generada",
     "content_type": 46,
-    "codename": "add_creditoraccount"
+    "codename": "add_clavegenerada"
   }
 },
 {
   "model": "auth.permission",
   "pk": 182,
   "fields": {
-    "name": "Can change creditor account",
+    "name": "Can change Clave generada",
     "content_type": 46,
-    "codename": "change_creditoraccount"
+    "codename": "change_clavegenerada"
   }
 },
 {
   "model": "auth.permission",
   "pk": 183,
   "fields": {
-    "name": "Can delete creditor account",
+    "name": "Can delete Clave generada",
     "content_type": 46,
-    "codename": "delete_creditoraccount"
+    "codename": "delete_clavegenerada"
   }
 },
 {
   "model": "auth.permission",
   "pk": 184,
   "fields": {
-    "name": "Can view creditor account",
+    "name": "Can view Clave generada",
     "content_type": 46,
-    "codename": "view_creditoraccount"
+    "codename": "view_clavegenerada"
   }
 },
 {
   "model": "auth.permission",
   "pk": 185,
   "fields": {
-    "name": "Can add debtor account",
+    "name": "Can add creditor account",
     "content_type": 47,
-    "codename": "add_debtoraccount"
+    "codename": "add_creditoraccount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 186,
   "fields": {
-    "name": "Can change debtor account",
+    "name": "Can change creditor account",
     "content_type": 47,
-    "codename": "change_debtoraccount"
+    "codename": "change_creditoraccount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 187,
   "fields": {
-    "name": "Can delete debtor account",
+    "name": "Can delete creditor account",
     "content_type": 47,
-    "codename": "delete_debtoraccount"
+    "codename": "delete_creditoraccount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 188,
   "fields": {
-    "name": "Can view debtor account",
+    "name": "Can view creditor account",
     "content_type": 47,
-    "codename": "view_debtoraccount"
+    "codename": "view_creditoraccount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 189,
   "fields": {
-    "name": "Can add transfer",
+    "name": "Can add debtor account",
     "content_type": 48,
-    "codename": "add_transfer"
+    "codename": "add_debtoraccount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 190,
   "fields": {
-    "name": "Can change transfer",
+    "name": "Can change debtor account",
     "content_type": 48,
-    "codename": "change_transfer"
+    "codename": "change_debtoraccount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 191,
   "fields": {
-    "name": "Can delete transfer",
+    "name": "Can delete debtor account",
     "content_type": 48,
-    "codename": "delete_transfer"
+    "codename": "delete_debtoraccount"
   }
 },
 {
   "model": "auth.permission",
   "pk": 192,
   "fields": {
-    "name": "Can view transfer",
+    "name": "Can view debtor account",
     "content_type": 48,
+    "codename": "view_debtoraccount"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 193,
+  "fields": {
+    "name": "Can add transfer",
+    "content_type": 49,
+    "codename": "add_transfer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 194,
+  "fields": {
+    "name": "Can change transfer",
+    "content_type": 49,
+    "codename": "change_transfer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 195,
+  "fields": {
+    "name": "Can delete transfer",
+    "content_type": 49,
+    "codename": "delete_transfer"
+  }
+},
+{
+  "model": "auth.permission",
+  "pk": 196,
+  "fields": {
+    "name": "Can view transfer",
+    "content_type": 49,
     "codename": "view_transfer"
   }
 },
@@ -1731,8 +1767,8 @@
   "model": "auth.user",
   "pk": 1,
   "fields": {
-    "password": "pbkdf2_sha256$1000000$WyrJwVFSbyYeMmcxfspKxB$V+LkhxVwjZml+jbNBJx3RoAkOHK4n/qE10e8zX5B2Lo=",
-    "last_login": "2025-05-28T03:38:19.769Z",
+    "password": "pbkdf2_sha256$1000000$Nud81cxPlSlyCupZFvwdhd$VAucGZXCJsFOJoxQ3E3xxfTal2v1c3GHiWW0ywP/eSo=",
+    "last_login": null,
     "is_superuser": true,
     "username": "493069k1",
     "first_name": "",
@@ -1740,7 +1776,7 @@
     "email": "j.moltke@db.com",
     "is_staff": true,
     "is_active": true,
-    "date_joined": "2025-05-28T03:35:04.448Z",
+    "date_joined": "2025-05-28T04:50:01.912Z",
     "groups": [],
     "user_permissions": []
   }
@@ -1853,8 +1889,8 @@
   "model": "contenttypes.contenttype",
   "pk": 14,
   "fields": {
-    "app_label": "transfers",
-    "model": "sepatransaction"
+    "app_label": "api.configuraciones_api",
+    "model": "configuracionapi"
   }
 },
 {
@@ -1862,7 +1898,7 @@
   "pk": 15,
   "fields": {
     "app_label": "transfers",
-    "model": "transfer"
+    "model": "sepatransaction"
   }
 },
 {
@@ -1870,7 +1906,7 @@
   "pk": 16,
   "fields": {
     "app_label": "transfers",
-    "model": "sepa2"
+    "model": "transfer"
   }
 },
 {
@@ -1878,15 +1914,15 @@
   "pk": 17,
   "fields": {
     "app_label": "transfers",
-    "model": "sepa3"
+    "model": "sepa2"
   }
 },
 {
   "model": "contenttypes.contenttype",
   "pk": 18,
   "fields": {
-    "app_label": "core",
-    "model": "errorresponse"
+    "app_label": "transfers",
+    "model": "sepa3"
   }
 },
 {
@@ -1894,7 +1930,7 @@
   "pk": 19,
   "fields": {
     "app_label": "core",
-    "model": "message"
+    "model": "errorresponse"
   }
 },
 {
@@ -1902,7 +1938,7 @@
   "pk": 20,
   "fields": {
     "app_label": "core",
-    "model": "transactionstatus"
+    "model": "message"
   }
 },
 {
@@ -1910,7 +1946,7 @@
   "pk": 21,
   "fields": {
     "app_label": "core",
-    "model": "iban"
+    "model": "transactionstatus"
   }
 },
 {
@@ -1918,7 +1954,7 @@
   "pk": 22,
   "fields": {
     "app_label": "core",
-    "model": "debtor"
+    "model": "iban"
   }
 },
 {
@@ -1926,7 +1962,7 @@
   "pk": 23,
   "fields": {
     "app_label": "core",
-    "model": "statusresponse"
+    "model": "debtor"
   }
 },
 {
@@ -1934,12 +1970,20 @@
   "pk": 24,
   "fields": {
     "app_label": "core",
-    "model": "paymentresponse"
+    "model": "statusresponse"
   }
 },
 {
   "model": "contenttypes.contenttype",
   "pk": 25,
+  "fields": {
+    "app_label": "core",
+    "model": "paymentresponse"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 26,
   "fields": {
     "app_label": "authentication",
     "model": "customuser"
@@ -1947,7 +1991,7 @@
 },
 {
   "model": "contenttypes.contenttype",
-  "pk": 26,
+  "pk": 27,
   "fields": {
     "app_label": "gpt3",
     "model": "account"
@@ -1955,7 +1999,7 @@
 },
 {
   "model": "contenttypes.contenttype",
-  "pk": 27,
+  "pk": 28,
   "fields": {
     "app_label": "gpt3",
     "model": "address"
@@ -1963,7 +2007,7 @@
 },
 {
   "model": "contenttypes.contenttype",
-  "pk": 28,
+  "pk": 29,
   "fields": {
     "app_label": "gpt3",
     "model": "financialinstitution"
@@ -1971,7 +2015,7 @@
 },
 {
   "model": "contenttypes.contenttype",
-  "pk": 29,
+  "pk": 30,
   "fields": {
     "app_label": "gpt3",
     "model": "groupheader"
@@ -1979,7 +2023,7 @@
 },
 {
   "model": "contenttypes.contenttype",
-  "pk": 30,
+  "pk": 31,
   "fields": {
     "app_label": "gpt3",
     "model": "instructedamount"
@@ -1987,18 +2031,10 @@
 },
 {
   "model": "contenttypes.contenttype",
-  "pk": 31,
-  "fields": {
-    "app_label": "gpt3",
-    "model": "paymentidentification"
-  }
-},
-{
-  "model": "contenttypes.contenttype",
   "pk": 32,
   "fields": {
     "app_label": "gpt3",
-    "model": "creditor"
+    "model": "paymentidentification"
   }
 },
 {
@@ -2006,7 +2042,7 @@
   "pk": 33,
   "fields": {
     "app_label": "gpt3",
-    "model": "debtor"
+    "model": "creditor"
   }
 },
 {
@@ -2014,7 +2050,7 @@
   "pk": 34,
   "fields": {
     "app_label": "gpt3",
-    "model": "bulktransfer"
+    "model": "debtor"
   }
 },
 {
@@ -2022,7 +2058,7 @@
   "pk": 35,
   "fields": {
     "app_label": "gpt3",
-    "model": "paymentinformation"
+    "model": "bulktransfer"
   }
 },
 {
@@ -2030,7 +2066,7 @@
   "pk": 36,
   "fields": {
     "app_label": "gpt3",
-    "model": "credittransfersdetails"
+    "model": "paymentinformation"
   }
 },
 {
@@ -2038,15 +2074,15 @@
   "pk": 37,
   "fields": {
     "app_label": "gpt3",
-    "model": "sepacredittransfer"
+    "model": "credittransfersdetails"
   }
 },
 {
   "model": "contenttypes.contenttype",
   "pk": 38,
   "fields": {
-    "app_label": "gpt4",
-    "model": "clientid"
+    "app_label": "gpt3",
+    "model": "sepacredittransfer"
   }
 },
 {
@@ -2054,7 +2090,7 @@
   "pk": 39,
   "fields": {
     "app_label": "gpt4",
-    "model": "creditor"
+    "model": "clientid"
   }
 },
 {
@@ -2062,7 +2098,7 @@
   "pk": 40,
   "fields": {
     "app_label": "gpt4",
-    "model": "creditoragent"
+    "model": "creditor"
   }
 },
 {
@@ -2070,7 +2106,7 @@
   "pk": 41,
   "fields": {
     "app_label": "gpt4",
-    "model": "debtor"
+    "model": "creditoragent"
   }
 },
 {
@@ -2078,7 +2114,7 @@
   "pk": 42,
   "fields": {
     "app_label": "gpt4",
-    "model": "kid"
+    "model": "debtor"
   }
 },
 {
@@ -2086,7 +2122,7 @@
   "pk": 43,
   "fields": {
     "app_label": "gpt4",
-    "model": "logtransferencia"
+    "model": "kid"
   }
 },
 {
@@ -2094,7 +2130,7 @@
   "pk": 44,
   "fields": {
     "app_label": "gpt4",
-    "model": "paymentidentification"
+    "model": "logtransferencia"
   }
 },
 {
@@ -2102,7 +2138,7 @@
   "pk": 45,
   "fields": {
     "app_label": "gpt4",
-    "model": "clavegenerada"
+    "model": "paymentidentification"
   }
 },
 {
@@ -2110,7 +2146,7 @@
   "pk": 46,
   "fields": {
     "app_label": "gpt4",
-    "model": "creditoraccount"
+    "model": "clavegenerada"
   }
 },
 {
@@ -2118,7 +2154,7 @@
   "pk": 47,
   "fields": {
     "app_label": "gpt4",
-    "model": "debtoraccount"
+    "model": "creditoraccount"
   }
 },
 {
@@ -2126,66 +2162,542 @@
   "pk": 48,
   "fields": {
     "app_label": "gpt4",
+    "model": "debtoraccount"
+  }
+},
+{
+  "model": "contenttypes.contenttype",
+  "pk": 49,
+  "fields": {
+    "app_label": "gpt4",
     "model": "transfer"
   }
 },
 {
-  "model": "gpt4.debtor",
+  "model": "api.configuraciones_api.configuracionapi",
   "pk": 1,
   "fields": {
-    "name": "Baroness Anna Meyer",
-    "customer_id": "10020400400079945",
-    "postal_address_country": "DE",
-    "postal_address_street": "Frankfurter Allee 11",
-    "postal_address_city": "10247 Berlin",
-    "mobile_phone_number": "+49170123456"
+    "entorno": "production",
+    "nombre": "DEBUG",
+    "valor": "False",
+    "descripcion": "",
+    "activo": true
   }
 },
 {
-  "model": "gpt4.debtoraccount",
-  "pk": 1,
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 2,
   "fields": {
-    "debtor": 1,
-    "iban": "DE00500700100200044824",
-    "currency": "EUR"
+    "entorno": "production",
+    "nombre": "ALLOWED_HOSTS",
+    "valor": "apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com",
+    "descripcion": "",
+    "activo": true
   }
 },
 {
-  "model": "gpt4.creditor",
-  "pk": 1,
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 3,
   "fields": {
-    "name": "Tom Winter",
-    "postal_address_country": "DE",
-    "postal_address_street": "Augsburger Strasse 14a",
-    "postal_address_city": "80337 München"
+    "entorno": "production",
+    "nombre": "SECRET_KEY",
+    "valor": "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw",
+    "descripcion": "",
+    "activo": true
   }
 },
 {
-  "model": "gpt4.creditoraccount",
-  "pk": 1,
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 4,
   "fields": {
-    "creditor": 1,
-    "iban": "DE00500700100200044874",
-    "currency": "EUR"
+    "entorno": "production",
+    "nombre": "ENVIRONMENT",
+    "valor": "production",
+    "descripcion": "",
+    "activo": true
   }
 },
 {
-  "model": "gpt4.creditoragent",
-  "pk": 1,
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 5,
   "fields": {
-    "bic": "DEUTDEFFXXX",
-    "financial_institution_id": "DEUTDEFFXXX",
-    "other_information": "Deutsche Bank"
+    "entorno": "production",
+    "nombre": "DJANGO_ENV",
+    "valor": "production",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 6,
+  "fields": {
+    "entorno": "production",
+    "nombre": "USE_OAUTH2_UI",
+    "valor": "True",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 7,
+  "fields": {
+    "entorno": "production",
+    "nombre": "REDIRECT_URI",
+    "valor": "https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 8,
+  "fields": {
+    "entorno": "production",
+    "nombre": "ORIGIN",
+    "valor": "https://apibank2-54644cdf263f.herokuapp.com",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 9,
+  "fields": {
+    "entorno": "production",
+    "nombre": "CLIENT_ID",
+    "valor": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 10,
+  "fields": {
+    "entorno": "production",
+    "nombre": "CLIENT_SECRET",
+    "valor": "L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 11,
+  "fields": {
+    "entorno": "production",
+    "nombre": "TOKEN_URL",
+    "valor": "https://simulator-api.db.com:443/gw/oidc/token",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 12,
+  "fields": {
+    "entorno": "production",
+    "nombre": "OTP_URL",
+    "valor": "https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 13,
+  "fields": {
+    "entorno": "production",
+    "nombre": "AUTH_URL",
+    "valor": "https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 14,
+  "fields": {
+    "entorno": "production",
+    "nombre": "API_URL",
+    "valor": "https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 15,
+  "fields": {
+    "entorno": "production",
+    "nombre": "AUTHORIZE_URL",
+    "valor": "https://simulator-api.db.com:443/gw/oidc/authorize",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 16,
+  "fields": {
+    "entorno": "production",
+    "nombre": "SCOPE",
+    "valor": "sepa_credit_transfers",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 17,
+  "fields": {
+    "entorno": "production",
+    "nombre": "TIMEOUT",
+    "valor": "3600",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 18,
+  "fields": {
+    "entorno": "production",
+    "nombre": "TIMEOUT_REQUEST",
+    "valor": "3600",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 19,
+  "fields": {
+    "entorno": "production",
+    "nombre": "PRIVATE_KEY_PATH",
+    "valor": "schemas/keys/private_key.pem",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 20,
+  "fields": {
+    "entorno": "production",
+    "nombre": "PRIVATE_KEY_KID",
+    "valor": "57c43e75-3a34-4ef2-8d2b-04f1b117f881",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 21,
+  "fields": {
+    "entorno": "local",
+    "nombre": "DEBUG",
+    "valor": "True",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 22,
+  "fields": {
+    "entorno": "local",
+    "nombre": "SECURE_SSL_REDIRECT",
+    "valor": "False",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 23,
+  "fields": {
+    "entorno": "local",
+    "nombre": "SECRET_KEY",
+    "valor": "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 24,
+  "fields": {
+    "entorno": "local",
+    "nombre": "ALLOWED_HOSTS",
+    "valor": "127.0.0.1,0.0.0.0",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 25,
+  "fields": {
+    "entorno": "local",
+    "nombre": "DJANGO_ENV",
+    "valor": "local",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 26,
+  "fields": {
+    "entorno": "local",
+    "nombre": "ENVIRONMENT",
+    "valor": "local",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 27,
+  "fields": {
+    "entorno": "local",
+    "nombre": "DATABASE_URL",
+    "valor": "postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 28,
+  "fields": {
+    "entorno": "local",
+    "nombre": "SESSION_COOKIE_SECURE",
+    "valor": "False",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 29,
+  "fields": {
+    "entorno": "local",
+    "nombre": "CSRF_COOKIE_SECURE",
+    "valor": "False",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 30,
+  "fields": {
+    "entorno": "local",
+    "nombre": "USE_OAUTH2_UI",
+    "valor": "True",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 31,
+  "fields": {
+    "entorno": "local",
+    "nombre": "REDIRECT_URI",
+    "valor": "http://0.0.0.0:8000/oauth2/callback/",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 32,
+  "fields": {
+    "entorno": "local",
+    "nombre": "ORIGIN",
+    "valor": "http://0.0.0.0:8000",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 33,
+  "fields": {
+    "entorno": "local",
+    "nombre": "CLIENT_ID",
+    "valor": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 34,
+  "fields": {
+    "entorno": "local",
+    "nombre": "CLIENT_SECRET",
+    "valor": "L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 35,
+  "fields": {
+    "entorno": "local",
+    "nombre": "TOKEN_URL",
+    "valor": "https://simulator-api.db.com:443/gw/oidc/token",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 36,
+  "fields": {
+    "entorno": "local",
+    "nombre": "OTP_URL",
+    "valor": "https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 37,
+  "fields": {
+    "entorno": "local",
+    "nombre": "AUTH_URL",
+    "valor": "https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 38,
+  "fields": {
+    "entorno": "local",
+    "nombre": "API_URL",
+    "valor": "https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 39,
+  "fields": {
+    "entorno": "local",
+    "nombre": "AUTHORIZE_URL",
+    "valor": "https://simulator-api.db.com:443/gw/oidc/authorize",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 40,
+  "fields": {
+    "entorno": "local",
+    "nombre": "SCOPE",
+    "valor": "sepa_credit_transfers",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 41,
+  "fields": {
+    "entorno": "local",
+    "nombre": "TIMEOUT_REQUEST",
+    "valor": "3600",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 42,
+  "fields": {
+    "entorno": "local",
+    "nombre": "TIMEOUT",
+    "valor": "3600",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 43,
+  "fields": {
+    "entorno": "local",
+    "nombre": "ACCESS_TOKEN",
+    "valor": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 44,
+  "fields": {
+    "entorno": "local",
+    "nombre": "JWT_SIGNING_KEY",
+    "valor": "clave",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 45,
+  "fields": {
+    "entorno": "local",
+    "nombre": "JWT_VERIFYING_KEY",
+    "valor": "clave",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 46,
+  "fields": {
+    "entorno": "local",
+    "nombre": "PRIVATE_KEY_PATH",
+    "valor": "schemas/keys/private_key.pem",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "api.configuraciones_api.configuracionapi",
+  "pk": 47,
+  "fields": {
+    "entorno": "local",
+    "nombre": "PRIVATE_KEY_KID",
+    "valor": "57c43e75-3a34-4ef2-8d2b-04f1b117f881",
+    "descripcion": "",
+    "activo": true
   }
 },
 {
   "model": "gpt4.clavegenerada",
   "pk": 1,
   "fields": {
-    "fecha": "2025-05-28T03:36:31.448Z",
+    "fecha": "2025-05-28T04:51:38.796Z",
     "usuario": "7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",
     "estado": "EXITO",
-    "kid": "12acc28e-1605-447b-9978-13a9e5a966c6",
+    "kid": "6c277147-c6bb-4014-86bc-d18e6a0a3303",
     "mensaje_error": null,
     "path_privada": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem",
     "path_publica": "/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_public_key.pem",

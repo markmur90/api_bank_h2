@@ -31,21 +31,29 @@ command -v heroku >/dev/null || { echo "❌ Heroku CLI no está instalado." | te
 echo -e "\n🔧 Desactivando collectstatic en Heroku..." | tee -a "$LOG_DEPLOY"
 heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
-# === Carga de variables desde .env.production ===
-echo -e "\n📤 Cargando variables desde $ENV_FILE..." | tee -a "$LOG_DEPLOY"
-[[ -f "$ENV_FILE" ]] || { echo "❌ Archivo $ENV_FILE no encontrado." | tee -a "$LOG_DEPLOY"; exit 1; }
+heroku config:set DEBUG=False --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
-success=0
-while IFS='=' read -r key value; do
-  [[ -z "${key// }" || "${key:0:1}" == "#" ]] && continue
-  value="${value%\"}"
-  value="${value#\"}"
-  if heroku config:set "$key=$value" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
-    echo "✅ $key cargada correctamente" | tee -a "$LOG_DEPLOY"
-  else
-    echo "⚠️  Error al cargar $key" | tee -a "$LOG_DEPLOY"
-  fi
-done < "$ENV_FILE"
+heroku config:set SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set DJANGO_ENV=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set ENVIRONMENT=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+
+
+# # === Carga de variables desde .env.production ===
+# echo -e "\n📤 Cargando variables desde $ENV_FILE..." | tee -a "$LOG_DEPLOY"
+# [[ -f "$ENV_FILE" ]] || { echo "❌ Archivo $ENV_FILE no encontrado." | tee -a "$LOG_DEPLOY"; exit 1; }
+
+# success=0
+# while IFS='=' read -r key value; do
+#   [[ -z "${key// }" || "${key:0:1}" == "#" ]] && continue
+#   value="${value%\"}"
+#   value="${value#\"}"
+#   if heroku config:set "$key=$value" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
+#     echo "✅ $key cargada correctamente" | tee -a "$LOG_DEPLOY"
+#   else
+#     echo "⚠️  Error al cargar $key" | tee -a "$LOG_DEPLOY"
+#   fi
+# done < "$ENV_FILE"
 
 # === Subida de clave privada codificada ===
 if [[ -f "$PEM_PATH" ]]; then

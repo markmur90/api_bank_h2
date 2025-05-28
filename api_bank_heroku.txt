@@ -160,7 +160,7 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICWAIdCwqHwQdrsRj3h0Ggijau2QzuzUVsMk3d+F5nu8
 
 API_KEY = HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 
-
+tengo este error [ ] y mi archivo env está escrito así [ ] 
 
 
 

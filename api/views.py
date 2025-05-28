@@ -163,3 +163,8 @@ def login_view(request):
 
     return render(request, "login.html")
 
+
+def cambiar_entorno(request, entorno):
+    if entorno in ['local', 'produccion', 'sandbox']:
+        request.session['entorno_actual'] = entorno
+    return redirect(request.META.get('HTTP_REFERER', '/'))

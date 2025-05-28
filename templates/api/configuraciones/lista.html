@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Configuraciones API{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">📦 Configuraciones API</h2>
+    <a href="{% url 'crear_configuracion' %}" class="btn btn-primary mb-3">➕ Nueva configuración</a>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Entorno</th>
+                <th>Nombre</th>
+                <th>Valor</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for config in configuraciones %}
+            <tr>
+                <td>{{ config.entorno }}</td>
+                <td>{{ config.nombre }}</td>
+                <td>{{ config.valor|truncatechars:80 }}</td>
+                <td>{{ config.activo|yesno:"✅,❌" }}</td>
+                <td>
+                    <a href="{% url 'editar_configuracion' config.pk %}" class="btn btn-sm btn-warning">✏️ Editar</a>
+                    <a href="{% url 'eliminar_configuracion' config.pk %}" class="btn btn-sm btn-danger">🗑 Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5" class="text-center">No hay configuraciones registradas.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

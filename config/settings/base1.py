@@ -13,10 +13,19 @@ env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
+
+# Cargar dinámicamente variables desde la BD
+try:
+    from api.configuraciones_api.loader import cargar_variables_entorno
+    cargar_variables_entorno(DJANGO_ENV)
+except Exception as e:
+    print(f"⚠️  Configuración dinámica no aplicada: {e}")
+
 env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.development')
 if not env_file.exists():
     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
 env.read_env(env_file)
+
 
 # 3. Variables críticas
 SECRET_KEY = env('SECRET_KEY')
@@ -41,7 +50,8 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'markdownify',
     'sslserver',
-
+    
+    'api.configuraciones_api',
     'api.transfers',
     'api.core',
     'api.authentication',
@@ -241,4 +251,4 @@ import django_heroku
 django_heroku.settings(locals())
 
 PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
-PRIVATE_KEY_KID = '656cc884-f92d-4602-bbf6-a55a3df6b595'
+PRIVATE_KEY_KID = '440244d8-fa86-492a-b0ea-baec21ee0707'

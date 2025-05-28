@@ -2,7 +2,7 @@ from django.urls import path, include
 from django.contrib import admin
 from api.views import (
     HomeView, AuthIndexView, CoreIndexView, AccountsIndexView, SCTIndexView,
-    TransactionsIndexView, TransfersIndexView, CollectionIndexView, dashboard_view, login_view, logout_view, mostrar_readme, ReadmeView, AuthorizeView, CallbackView, signup_view
+    TransactionsIndexView, TransfersIndexView, CollectionIndexView, cambiar_entorno, dashboard_view, login_view, logout_view, mostrar_readme, ReadmeView, AuthorizeView, CallbackView, signup_view
 )
 
 urlpatterns = [
@@ -30,5 +30,6 @@ urlpatterns = [
     path('signup/', signup_view, name='signup'),
     path('dashboard/', dashboard_view, name='dashboard'),
     
-
+    path('configuraciones/', include('api.configuraciones_api.urls')),
+    path('cambiar-entorno/<str:entorno>/', cambiar_entorno, name='cambiar_entorno'),
 ]

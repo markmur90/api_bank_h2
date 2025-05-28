@@ -188,19 +188,39 @@ class LogTransferencia(models.Model):
         return f"{self.tipo_log} - {self.registro} - {self.created_at.strftime('%Y-%m-%d %H:%M:%S')}"
     
     
+from django.db import models
+from django.core.files.base import ContentFile
+from django.utils import timezone
+
 class ClaveGenerada(models.Model):
-    fecha = models.DateTimeField(auto_now_add=True)
-    usuario = models.CharField(max_length=150)
-    estado = models.CharField(max_length=20, choices=[
-        ('EXITO', 'Éxito'),
-        ('ERROR', 'Error'),
-        ('CANCELADO', 'Cancelado'),
-    ])
+    ESTADOS = [
+        ("EXITO", "Éxito"),
+        ("ERROR", "Error"),
+        ("CANCELADO", "Cancelado"),
+    ]
+
+    usuario = models.CharField(max_length=255)
+    estado = models.CharField(max_length=10, choices=ESTADOS)
+    fecha = models.DateTimeField(default=timezone.now)
+
     kid = models.CharField(max_length=100, blank=True, null=True)
+
+    path_privada = models.CharField(max_length=500, blank=True, null=True)
+    path_publica = models.CharField(max_length=500, blank=True, null=True)
+    path_jwks = models.CharField(max_length=500, blank=True, null=True)
+
+    clave_privada = models.TextField(blank=True, null=True)
+    clave_publica = models.TextField(blank=True, null=True)
+    jwks = models.JSONField(blank=True, null=True)
+
+    archivo_privado = models.FileField(upload_to='claves/', blank=True, null=True)
+    archivo_publico = models.FileField(upload_to='claves/', blank=True, null=True)
+    archivo_jwks = models.FileField(upload_to='claves/', blank=True, null=True)
+
     mensaje_error = models.TextField(blank=True, null=True)
-    path_privada = models.TextField(blank=True, null=True)
-    path_publica = models.TextField(blank=True, null=True)
-    path_jwks = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.usuario} - {self.estado} - {self.kid}"
 
     class Meta:
         ordering = ['-fecha']
@@ -211,6 +231,4 @@ class ClaveGenerada(models.Model):
         verbose_name = 'Clave generada'
         verbose_name_plural = 'Claves generadas'
 
-    def __str__(self):
-        return f"{self.usuario} [{self.estado}] {self.kid or ''}"
 

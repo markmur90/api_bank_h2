@@ -1,15 +1,16 @@
 import json
 import uuid
-import getpass
 from datetime import datetime
 from pathlib import Path
 from django.core.management.base import BaseCommand
+from django.core.files.base import ContentFile
 from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.primitives import serialization
 from jwcrypto import jwk
 
 from api.gpt4.models import ClaveGenerada
 from api.gpt4.utils_core import get_project_path
+from api.configuraciones_api.models import ConfiguracionAPI
 
 
 class Command(BaseCommand):
@@ -34,8 +35,8 @@ class Command(BaseCommand):
 
         files = {
             "private": keys_dir / "ecdsa_private_key.pem",
-            "public":  keys_dir / "ecdsa_public_key.pem",
-            "jwks":    keys_dir / "jwks_public.json"
+            "public": keys_dir / "ecdsa_public_key.pem",
+            "jwks": keys_dir / "jwks_public.json"
         }
 
         try:
@@ -84,21 +85,46 @@ class Command(BaseCommand):
                 lf.write(json.dumps(log_entry, indent=2) + "\n")
             self.stdout.write(self.style.SUCCESS(f"📝 Log escrito en: {log_file}"))
 
-            ClaveGenerada.objects.create(
+            # Preparar contenido para guardar
+            private_pem_str = private_pem.decode()
+            public_pem_str = public_pem.decode()
+            jwks_data = json.loads(files["jwks"].read_text(encoding="utf-8"))
+
+            # Guardar en ClaveGenerada
+            registro = ClaveGenerada(
                 usuario=usuario,
                 estado="EXITO",
                 kid=kid,
                 path_privada=str(files["private"]),
                 path_publica=str(files["public"]),
-                path_jwks=str(files["jwks"])
+                path_jwks=str(files["jwks"]),
+                clave_privada=private_pem_str,
+                clave_publica=public_pem_str,
+                jwks=jwks_data
             )
-            self.stdout.write(self.style.SUCCESS("📥 Registro guardado en la base de datos."))
 
+            registro.archivo_privado.save(f"priv_{kid}.pem", ContentFile(private_pem))
+            registro.archivo_publico.save(f"pub_{kid}.pem", ContentFile(public_pem))
+            registro.archivo_jwks.save(f"jwks_{kid}.json", ContentFile(json.dumps(jwks_data, indent=2)))
+            registro.save()
+
+            # Guardar variables en ConfiguracionAPI
+            def guardar_en_configuracion_api(nombre, valor, entorno='produccion'):
+                ConfiguracionAPI.objects.update_or_create(
+                    nombre=nombre,
+                    entorno=entorno,
+                    defaults={'valor': valor, 'activo': True}
+                )
+
+            guardar_en_configuracion_api('PRIVATE_KEY_PATH', str(files["private"]))
+            guardar_en_configuracion_api('PRIVATE_KEY_KID', kid)
+
+            # Actualizar settings/base1.py
             if settings_path.exists():
                 with open(settings_path, "r", encoding="utf-8") as f:
                     lines = f.readlines()
 
-                key_path_line = "PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')\n"
+                key_path_line = f"PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')\n"
                 kid_line = f"PRIVATE_KEY_KID = '{kid}'\n"
 
                 found_key_path = any("PRIVATE_KEY_PATH" in l for l in lines)
@@ -118,7 +144,6 @@ class Command(BaseCommand):
                     f.writelines(lines)
 
                 self.stdout.write(self.style.SUCCESS(f"🛠️ base1.py actualizado con ruta y KID."))
-
             else:
                 self.stdout.write(self.style.WARNING("⚠️ No se encontró base1.py para actualizar KID."))
 
@@ -129,11 +154,10 @@ class Command(BaseCommand):
 
         jwks_data = json.loads(files["jwks"].read_text(encoding="utf-8"))
         jwks_keys = jwks_data.get("keys", [])
-
         jwks_kids = [k.get("kid") for k in jwks_keys]
+
         if kid not in jwks_kids:
             raise ValueError(f"❌ El KID '{kid}' no aparece en el JWKS generado.")
-
         if len(jwks_keys) > 1:
             raise ValueError(f"⚠️ JWKS contiene múltiples claves ({len(jwks_keys)}). Solo debe haber una clave activa.")
 
