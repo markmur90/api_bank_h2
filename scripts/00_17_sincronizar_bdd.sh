@@ -29,13 +29,13 @@ LOCAL_DB_HOST="localhost"
 
 REMOTE_DB_URL="postgres://u22qfesn1ol61g:p633435fd268a16298ff6b2b83e47e7091ae5cb79d80ad13e03a6aff1262cc2ae@c7pvjrnjs0e7al.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/ddo6kmmjfftuav"
 
-# export PGPASSFILE="$HOME/.pgpass"
-# export PGUSER="$LOCAL_DB_USER"
-# export PGHOST="$LOCAL_DB_HOST"
+export PGPASSFILE="$HOME/.pgpass"
+export PGUSER="$LOCAL_DB_USER"
+export PGHOST="$LOCAL_DB_HOST"
 
-# DATE=$(date +"%Y%m%d_%H%M%S")
-# BACKUP_DIR="$HOME/Documentos/GitHub/backup/sql/"
-# BACKUP_FILE="${BACKUP_DIR}backup_local.sql"
+DATE=$(date +"%Y%m%d_%H%M%S")
+BACKUP_DIR="$HOME/Documentos/GitHub/backup/sql/"
+BACKUP_FILE="${BACKUP_DIR}backup_local.sql"
 
 if ! command -v pv > /dev/null 2>&1; then
     echo "⚠️ La herramienta 'pv' no está instalada. Instálala con: sudo apt install pv" | tee -a $LOG_DEPLOY
