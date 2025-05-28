@@ -34,7 +34,7 @@ unalias d_local 2>/dev/null
 d_local() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l -r "$@"}
 
 unalias d_heroku 2>/dev/null
-d_heroku() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l -H -B -r "$@"}
+d_heroku() {d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -r "$@"}
 
 unalias d_njalla 2>/dev/null
 d_njalla() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l -H -B -v -r "$@"}
