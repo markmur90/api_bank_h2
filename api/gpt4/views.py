@@ -784,3 +784,4 @@ def handle_notification(request):
             extra_info="Error procesando notificación entrante"
         )
         return JsonResponse({'status': 'error', 'mensaje': str(e)}, status=500)
+

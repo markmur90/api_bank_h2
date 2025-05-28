@@ -43,6 +43,9 @@
     background-color: #5936a2;
     color: white;
   }
+  .valor-max-width {
+    max-width: 250px;
+  }
 </style>
 
 <div class="container mt-4">
@@ -65,7 +68,7 @@
           </thead>
           <tbody>
             {% for config in configuraciones %}
-              <tr>
+                <td class="text-truncate valor-max-width">{{ config.valor|truncatechars:80 }}</td>
                 <td>{{ config.entorno }}</td>
                 <td>{{ config.nombre }}</td>
                 <td style="max-width: 250px;" class="text-truncate">{{ config.valor|truncatechars:80 }}</td>

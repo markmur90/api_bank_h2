@@ -94,14 +94,22 @@ def cambiar_entorno(request, entorno):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-@login_required
-def dashboard_view(request):
-    transferencias = Transfer.objects.all()
-    return render(request, 'dashboard.html', {
-        'transferencias': transferencias
-    })
+# @login_required
+# def dashboard_view(request):
+#     transferencias = Transfer.objects.all()
+#     return render(request, 'dashboard.html', {
+#         'transferencias': transferencias
+#     })
 
-
+@method_decorator(login_required, name='dispatch')
+class DashboardView(View):
+    def get(self, request):
+        creditors = Creditor.objects.all()
+        transfers = Transfer.objects.all()
+        return render(request, 'dashboard.html', {
+            'creditors': creditors,
+            'transfers': transfers
+        })
 
 def logout_view(request):
     username = request.user.username if request.user.is_authenticated else "desconocido"
