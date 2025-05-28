@@ -21,6 +21,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
 mkdir -p "$(dirname $LOG_DEPLOY)"
 
+LOCAL_DB_NAME="mydatabase"
+LOCAL_DB_USER="markmur88"
+LOCAL_DB_HOST="localhost"
 
 export PGPASSFILE="$HOME/.pgpass"
 export PGUSER="$LOCAL_DB_USER"

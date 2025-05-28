@@ -49,6 +49,8 @@ BACKUP_FILE="${BACKUP_DIR}backup_local.sql"
 DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
 
 echo -e "\033[7;30m🌐 Importando backup en la base de datos remota...\033[0m" | tee -a $LOG_DEPLOY
+# echo -e "\033[7;30m📦 Generando backup local...\033[0m" | tee -a $LOG_DEPLOY
+# pg_dump --no-owner --no-acl -U "$LOCAL_DB_USER" -h "$LOCAL_DB_HOST" -d "$LOCAL_DB_NAME" > "$BACKUP_FILE" || { echo "❌ Error haciendo el backup local. Abortando."; exit 1; }
 pv "$BACKUP_FILE" | psql "$DATABASE_URL" -q > /dev/null || { echo "❌ Error al importar el backup en la base de datos remota."; exit 1; }
 
 echo -e "\033[7;32m✅ Restauración SQL completada.\033[0m" | tee -a "$LOG_DEPLOY"
