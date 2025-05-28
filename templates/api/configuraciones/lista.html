@@ -71,7 +71,7 @@
                 <td class="text-truncate valor-max-width">{{ config.valor|truncatechars:80 }}</td>
                 <td>{{ config.entorno }}</td>
                 <td>{{ config.nombre }}</td>
-                <td style="max-width: 250px;" class="text-truncate">{{ config.valor|truncatechars:80 }}</td>
+                <td class="text-truncate valor-max-width">{{ config.valor|truncatechars:80 }}</td>
                 <td class="text-center">{{ config.activo|yesno:"✅,❌" }}</td>
                 <td class="text-center">
                   <a href="{% url 'editar_configuracion' config.pk %}" class="btn btn-sm btn-editar">✏️</a>
