@@ -2,56 +2,89 @@
 set -euo pipefail
 
 SCRIPT_NAME="$(basename "$0")"
-LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
+ENV_FILE="$PROJECT_ROOT/.env.production"
+HEROKU_APP="${1:-apibank2}"
+PEM_PATH="$PROJECT_ROOT/schemas/keys/private_key.pem"
 
-mkdir -p "$(dirname "$LOG_FILE")"
+LOG_FILE="$SCRIPT_DIR/logs/01_full_deploy/full_deploy.log"
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/${SCRIPT_NAME%.sh}.log"
+mkdir -p "$(dirname "$LOG_FILE")" "$(dirname "$LOG_DEPLOY")"
+
+COMENTARIO_COMMIT="${COMENTARIO_COMMIT:-Actualización automática $(date '+%Y-%m-%d %H:%M:%S')}"
 
 {
-echo ""
-echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
-echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═════════════════════════════════════════════════════════════"
-} | tee -a "$LOG_FILE"
+  echo ""
+  echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
+  echo -e "📄 Script: $SCRIPT_NAME"
+  echo -e "═════════════════════════════════════════════════════════════"
+} | tee -a "$LOG_FILE" "$LOG_DEPLOY"
 
-trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
+trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE" "$LOG_DEPLOY"; exit 1' ERR
 
-set -euo pipefail
+# === Validación de Heroku CLI ===
+command -v heroku >/dev/null || { echo "❌ Heroku CLI no está instalado." | tee -a "$LOG_DEPLOY"; exit 1; }
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
-mkdir -p "$(dirname $LOG_DEPLOY)"
+# === Desactivamos collectstatic ===
+echo -e "\n🔧 Desactivando collectstatic en Heroku..." | tee -a "$LOG_DEPLOY"
+heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
+# === Carga de variables desde .env.production ===
+echo -e "\n📤 Cargando variables desde $ENV_FILE..." | tee -a "$LOG_DEPLOY"
+[[ -f "$ENV_FILE" ]] || { echo "❌ Archivo $ENV_FILE no encontrado." | tee -a "$LOG_DEPLOY"; exit 1; }
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+success=0
+while IFS='=' read -r key value; do
+  [[ -z "${key// }" || "${key:0:1}" == "#" ]] && continue
+  value="${value%\"}"
+  value="${value#\"}"
+  if heroku config:set "$key=$value" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
+    echo "✅ $key cargada correctamente" | tee -a "$LOG_DEPLOY"
+  else
+    echo "⚠️  Error al cargar $key" | tee -a "$LOG_DEPLOY"
+  fi
+done < "$ENV_FILE"
 
-HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
+# === Subida de clave privada codificada ===
+if [[ -f "$PEM_PATH" ]]; then
+  echo -e "\n🔑 Clave privada detectada en $PEM_PATH" | tee -a "$LOG_DEPLOY"
+  PRIVATE_KEY_B64=$(base64 -w 0 "$PEM_PATH")
+  if heroku config:set PRIVATE_KEY_B64="$PRIVATE_KEY_B64" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
+    echo "✅ Clave privada codificada subida como PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
+  else
+    echo "⚠️  Error al subir PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
+  fi
+else
+  echo "⚠️  Archivo $PEM_PATH no encontrado. Saltando PRIVATE_KEY_B64." | tee -a "$LOG_DEPLOY"
+fi
 
-echo -e "\033[7;30m🚀 Subiendo el proyecto a Heroku y GitHub...\033[0m" | tee -a $LOG_DEPLOY
-cd "$HEROKU_ROOT" || { echo -e "\033[7;30m❌ Error al acceder a "$HEROKU_ROOT"\033[0m"; exit 0; }
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
-echo "" | tee -a $LOG_DEPLOY
+echo -e "\n📦 Total de variables cargadas: $success" | tee -a "$LOG_DEPLOY"
 
-echo -e "\033[7;30mHaciendo git add...\033[0m" | tee -a $LOG_DEPLOY
+# === Push a GitHub y Heroku ===
+echo -e "\n🚀 Subiendo el proyecto a Heroku y GitHub...\n" | tee -a "$LOG_DEPLOY"
+cd "$HEROKU_ROOT" || { echo "❌ Error al acceder a $HEROKU_ROOT"; exit 1; }
+
+echo -e "📦 Haciendo git add..." | tee -a "$LOG_DEPLOY"
 git add --all
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
-echo "" | tee -a $LOG_DEPLOY
-echo -e "\033[7;30mHaciendo commit con el mensaje: \"$COMENTARIO_COMMIT\"...\033[0m" | tee -a $LOG_DEPLOY
-git commit -m "$COMENTARIO_COMMIT"
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
-echo "" | tee -a $LOG_DEPLOY
-echo -e "\033[7;30mHaciendo push a GitHub...\033[0m" | tee -a $LOG_DEPLOY
-git push origin api-bank || { echo -e "\033[7;30m❌ Error al subir a GitHub\033[0m"; exit 0; }
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
-echo "" | tee -a $LOG_DEPLOY
+
+echo -e "📝 Commit con mensaje: $COMENTARIO_COMMIT" | tee -a "$LOG_DEPLOY"
+git commit -m "$COMENTARIO_COMMIT" || echo "ℹ️  Sin cambios para commitear." | tee -a "$LOG_DEPLOY"
+
+echo -e "🌐 Push a GitHub..." | tee -a "$LOG_DEPLOY"
+git push origin api-bank || { echo "❌ Error al subir a GitHub"; exit 1; }
+
 sleep 3
 export HEROKU_API_KEY="HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6"
-echo "$HEROKU_API_KEY" | heroku auth:token | tee -a $LOG_DEPLOY
-echo -e "\033[7;30mHaciendo push a Heroku...\033[0m" | tee -a $LOG_DEPLOY
-git push heroku api-bank:main || { echo -e "\033[7;30m❌ Error en deploy\033[0m"; exit 0; }
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
-echo "" | tee -a $LOG_DEPLOY
+echo "$HEROKU_API_KEY" | heroku auth:token | tee -a "$LOG_DEPLOY"
+
+echo -e "☁️  Push a Heroku..." | tee -a "$LOG_DEPLOY"
+git push heroku api-bank:main || { echo "❌ Error en deploy a Heroku"; exit 1; }
+
 sleep 3
+heroku restart --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+echo -e "✅ Heroku reiniciado correctamente." | tee -a "$LOG_DEPLOY"
+
 cd "$PROJECT_ROOT"
-echo -e "\033[7;30m✅ ¡Deploy completado!\033[0m" | tee -a $LOG_DEPLOY
-echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
-echo "" | tee -a $LOG_DEPLOY
+echo -e "\n🎉 ✅ ¡Deploy completado con éxito!" | tee -a "$LOG_DEPLOY"

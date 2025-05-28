@@ -1,0 +1,33 @@
+
+📅 Fecha de ejecución: 2025-05-28 02:23:55
+📄 Script: 00_16_subir_heroku.sh
+═════════════════════════════════════════════════════════════
+
+🔧 Desactivando collectstatic en Heroku...
+DISABLE_COLLECTSTATIC: 1
+
+📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_h2/.env.production...
+Setting DEBUG and restarting apibank2...
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... done, v151
+DEBUG: False
+✅ DEBUG cargada correctamente
+
+❌ Error en línea 45: "((success++))"
+Abortando ejecución.

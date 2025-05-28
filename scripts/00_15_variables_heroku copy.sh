@@ -78,5 +78,4 @@ echo "✅ Variables aplicadas con éxito: $success" | tee -a "$LOG_DEPLOY"
 echo "❌ Variables con error: $fail" | tee -a "$LOG_DEPLOY"
 echo "📋 Log completo: $LOG_DEPLOY" | tee -a "$LOG_DEPLOY"
 
-heroku restart --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
-echo "✅ Heroku reiniciado correctamente." | tee -a "$LOG_DEPLOY"
+

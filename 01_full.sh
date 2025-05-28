@@ -360,7 +360,7 @@ pausa_y_limpiar
 
 # === 01 ===
 echo -e "\033[7;33m------------------------------------------------SISTEMA------------------------------------------------\033[0m"
-echo "------------------------------------SISTEMA----------------------------" >> "$LOG_DEPLOY"
+echo -e "\n\n\n------------------------------------SISTEMA----------------------------" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_SYS" "Actualizar sistema" "bash $SCRIPTS_DIR/00_01_sistema.sh"
 echo -e "\n\n"
 pausa_y_limpiar
@@ -461,24 +461,24 @@ verificar_configuracion_segura
 rotar_logs_si_grandes
 
 # === 15 ===
+echo -e "\033[7;33m-------------------------------------------VARIABLES A HEROKU------------------------------------------\033[0m" 
+echo "---------------------------VARIABLES A HEROKU--------------------------" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_VARHER" "Subir variables a Heroku" "bash $SCRIPTS_DIR/00_15_variables_heroku.sh"
+echo ""
+echo -e "\n\n"
+pausa_y_limpiar
+
+# === 16 ===
 echo -e "\033[7;33m---------------------------------------------SUBIR A HEROKU--------------------------------------------\033[0m" 
 echo "-----------------------------SUBIR A HEROKU----------------------------" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_HEROKU" "Subir el proyecto a la web" "bash $SCRIPTS_DIR/00_16_subir_heroku.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
-# === 16 ===
+# === 17 ===
 echo -e "\033[7;33m-----------------------------------------SINCRONIZACION BDD WEB----------------------------------------\033[0m" 
 echo "-------------------------SINCRONIZACION BDD WEB------------------------" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_SYNC_REMOTE_DB" "Sincronizar BDD Remota" "bash $SCRIPTS_DIR/00_17_sincronizar_bdd.sh"
-echo -e "\n\n"
-pausa_y_limpiar
-
-# === 17 ===
-echo -e "\033[7;33m-------------------------------------------VARIABLES A HEROKU------------------------------------------\033[0m" 
-echo "---------------------------VARIABLES A HEROKU--------------------------" >> "$LOG_DEPLOY"
-ejecutar_si_activo "DO_VARHER" "Subir variables a Heroku" "bash $SCRIPTS_DIR/00_15_variables_heroku.sh"
-echo ""
 echo -e "\n\n"
 pausa_y_limpiar
 
