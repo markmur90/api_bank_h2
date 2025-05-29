@@ -19,3 +19,4 @@ OAUTH2.update({
     "ORIGIN": ORIGIN,
 })
 
+DATABASE_URL="postgres://u22qfesn1ol61g:p633435fd268a16298ff6b2b83e47e7091ae5cb79d80ad13e03a6aff1262cc2ae@c7pvjrnjs0e7al.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/ddo6kmmjfftuav"

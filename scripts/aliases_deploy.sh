@@ -22,10 +22,13 @@ alias d_status='bash ./scripts/diagnostico_entorno.sh'
 
 # 🌐 Local (versión completa y versión corta)
 unalias ad_local 2>/dev/null
-ad_local() {cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && d_local && code . "$@"}
+ad_local() {cd "$HOME/Documentos/GitHub/api_bank_h2" && clear && code . "$@"}
+
+unalias ad_heroku 2>/dev/null
+ad_heroku() {cd "$HOME/Documentos/GitHub/api_bank_heroku" && clear && code . "$@"}
 
 unalias d_env 2>/dev/null
-d_env() {cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear "$@"}
+d_env() {source "$HOME/Documentos/Entorno/envAPP/bin/activate" "$@"}
 
 unalias d_mig 2>/dev/null
 d_mig() {d_env && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && python3 manage.py runserver 8002 "$@"}
@@ -40,22 +43,22 @@ unalias d_njalla 2>/dev/null
 d_njalla() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l -H -B -v -r "$@"}
 
 unalias d_pgm 2>/dev/null
-d_pgm() {d_env && bash ./01_full.sh --env=local -Q -I -l -r "$@"}
+d_pgm() {d_env && bash ./01_full.sh -Q -I -l -r "$@"}
 
 unalias d_hek 2>/dev/null
-d_hek() {d_env && bash ./01_full.sh --env=local -B -H -u "$@"}
+d_hek() {d_env && bash ./01_full.sh -B -H "$@"}
 
 unalias d_back 2>/dev/null
-d_back() {d_env && bash ./01_full.sh --env=local -C -Z "$@"}
+d_back() {d_env && bash ./01_full.sh -C -Z "$@"}
 
 unalias d_sys 2>/dev/null
-d_sys() {d_env && bash ./01_full.sh --env=local -Y -P -D -M -x "$@"}
+d_sys() {d_env && bash ./01_full.sh -Y -P -D -M -x "$@"}
 
 unalias d_cep 2>/dev/null
-d_cep() {d_env && bash ./01_full.sh --env=local -p -E "$@"}
+d_cep() {d_env && bash ./01_full.sh -p -E "$@"}
 
 unalias d_vps 2>/dev/null
-d_vps() {d_env && bash ./01_full.sh --env=local -v "$@"}
+d_vps() {d_env && bash ./01_full.sh -v "$@"}
 
 
 

@@ -37,7 +37,7 @@ LOG_DEPLOY="./scripts/logs/01_full_deploy/full_deploy.log"
 
 clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
-DO_CLEAR=true
+DO_CLEAR=false
 TIME_SLEEP=1
 
 pausa_y_limpiar() {

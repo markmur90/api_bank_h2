@@ -16,3 +16,5 @@ OAUTH2.update({
     "REDIRECT_URI": REDIRECT_URI,
     "ORIGIN": ORIGIN,
 })
+
+DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
