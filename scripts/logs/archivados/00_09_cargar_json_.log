@@ -1,0 +1,1264 @@
+[7;30m🚀 Subiendo respaldo de datos de local...[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🚀 Subiendo respaldo de datos de local...[0m
+[7;30m🚀 Subiendo respaldo de datos de local...[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🚀 Subiendo respaldo de datos de local...[0m
+[7;30m🚀 Subiendo respaldo de datos de local...[0m
+[7;30m🚀 Restaurando base de datos desde respaldo SQL...[0m
+[7;30m🚀 Restaurando base de datos desde respaldo SQL...[0m
+[7;30m🚀 Restaurando base de datos desde respaldo SQL...[0m
+ERROR:  la relación «auth_group» ya existe
+ERROR:  la relación «auth_group_id_seq» ya existe
+ERROR:  la relación «auth_group_permissions» ya existe
+ERROR:  la relación «auth_group_permissions_id_seq» ya existe
+ERROR:  la relación «auth_permission» ya existe
+ERROR:  la relación «auth_permission_id_seq» ya existe
+ERROR:  la relación «auth_user» ya existe
+ERROR:  la relación «auth_user_groups» ya existe
+ERROR:  la relación «auth_user_groups_id_seq» ya existe
+ERROR:  la relación «auth_user_id_seq» ya existe
+ERROR:  la relación «auth_user_user_permissions» ya existe
+ERROR:  la relación «auth_user_user_permissions_id_seq» ya existe
+ERROR:  la relación «authentication_customuser» ya existe
+ERROR:  la relación «authentication_customuser_groups» ya existe
+ERROR:  la relación «authentication_customuser_groups_id_seq» ya existe
+ERROR:  la relación «authentication_customuser_id_seq» ya existe
+ERROR:  la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la relación «authentication_customuser_user_permissions_id_seq» ya existe
+ERROR:  la relación «authtoken_token» ya existe
+ERROR:  la relación «configuraciones_api_configuracionapi» ya existe
+ERROR:  la relación «configuraciones_api_configuracionapi_id_seq» ya existe
+ERROR:  la relación «core_debtor» ya existe
+ERROR:  la relación «core_errorresponse» ya existe
+ERROR:  la relación «core_errorresponse_messageId_seq» ya existe
+ERROR:  la relación «core_iban» ya existe
+ERROR:  la relación «core_message» ya existe
+ERROR:  la relación «core_message_message_id_seq» ya existe
+ERROR:  la relación «core_paymentresponse» ya existe
+ERROR:  la relación «core_paymentresponse_id_seq» ya existe
+ERROR:  la relación «core_statusresponse» ya existe
+ERROR:  la relación «core_statusresponse_id_seq» ya existe
+ERROR:  la relación «core_transactionstatus» ya existe
+ERROR:  la relación «core_transactionstatus_id_seq» ya existe
+ERROR:  la relación «django_admin_log» ya existe
+ERROR:  la relación «django_admin_log_id_seq» ya existe
+ERROR:  la relación «django_content_type» ya existe
+ERROR:  la relación «django_content_type_id_seq» ya existe
+ERROR:  la relación «django_migrations» ya existe
+ERROR:  la relación «django_migrations_id_seq» ya existe
+ERROR:  la relación «django_session» ya existe
+ERROR:  la relación «gpt3_account» ya existe
+ERROR:  la relación «gpt3_account_id_seq» ya existe
+ERROR:  la relación «gpt3_address» ya existe
+ERROR:  la relación «gpt3_address_id_seq» ya existe
+ERROR:  la relación «gpt3_bulktransfer» ya existe
+ERROR:  la relación «gpt3_bulktransfer_id_seq» ya existe
+ERROR:  la relación «gpt3_creditor» ya existe
+ERROR:  la relación «gpt3_creditor_id_seq» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_id_seq» ya existe
+ERROR:  la relación «gpt3_debtor» ya existe
+ERROR:  la relación «gpt3_debtor_id_seq» ya existe
+ERROR:  la relación «gpt3_financialinstitution» ya existe
+ERROR:  la relación «gpt3_financialinstitution_id_seq» ya existe
+ERROR:  la relación «gpt3_groupheader» ya existe
+ERROR:  la relación «gpt3_groupheader_id_seq» ya existe
+ERROR:  la relación «gpt3_instructedamount» ya existe
+ERROR:  la relación «gpt3_instructedamount_id_seq» ya existe
+ERROR:  la relación «gpt3_paymentidentification» ya existe
+ERROR:  la relación «gpt3_paymentidentification_id_seq» ya existe
+ERROR:  la relación «gpt3_paymentinformation» ya existe
+ERROR:  la relación «gpt3_paymentinformation_id_seq» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_id_seq» ya existe
+ERROR:  la relación «gpt4_clavegenerada» ya existe
+ERROR:  la relación «gpt4_clavegenerada_id_seq» ya existe
+ERROR:  la relación «gpt4_clientid» ya existe
+ERROR:  la relación «gpt4_creditor» ya existe
+ERROR:  la relación «gpt4_creditor_id_seq» ya existe
+ERROR:  la relación «gpt4_creditoraccount» ya existe
+ERROR:  la relación «gpt4_creditoraccount_id_seq» ya existe
+ERROR:  la relación «gpt4_creditoragent» ya existe
+ERROR:  la relación «gpt4_creditoragent_id_seq» ya existe
+ERROR:  la relación «gpt4_debtor» ya existe
+ERROR:  la relación «gpt4_debtor_id_seq» ya existe
+ERROR:  la relación «gpt4_debtoraccount» ya existe
+ERROR:  la relación «gpt4_debtoraccount_id_seq» ya existe
+ERROR:  la relación «gpt4_kid» ya existe
+ERROR:  la relación «gpt4_logtransferencia» ya existe
+ERROR:  la relación «gpt4_logtransferencia_id_seq» ya existe
+ERROR:  la relación «gpt4_paymentidentification» ya existe
+ERROR:  la relación «gpt4_paymentidentification_id_seq» ya existe
+ERROR:  la relación «gpt4_transfer» ya existe
+ERROR:  la relación «gpt4_transfer_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_application» ya existe
+ERROR:  la relación «oauth2_provider_application_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_grant» ya existe
+ERROR:  la relación «oauth2_provider_grant_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_id_seq» ya existe
+ERROR:  la relación «transfers_sepa2» ya existe
+ERROR:  la relación «transfers_sepa2_id_seq» ya existe
+ERROR:  la relación «transfers_sepa3» ya existe
+ERROR:  la relación «transfers_sepa3_id_seq» ya existe
+ERROR:  la relación «transfers_sepatransaction» ya existe
+ERROR:  la relación «transfers_sepatransaction_id_seq» ya existe
+ERROR:  la relación «transfers_transfer» ya existe
+ERROR:  llave duplicada viola restricción de unicidad «auth_permission_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY auth_permission, línea 1
+ERROR:  llave duplicada viola restricción de unicidad «django_content_type_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY django_content_type, línea 1
+ERROR:  llave duplicada viola restricción de unicidad «django_migrations_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY django_migrations, línea 1
+ERROR:  la relación «auth_group_name_key» ya existe
+ERROR:  la relación «auth_group_permissions_group_id_permission_id_0cd325b0_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_group_permissions»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_group»
+ERROR:  la relación «auth_permission_content_type_id_codename_01ab375a_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_permission»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user_groups»
+ERROR:  la relación «auth_user_groups_user_id_group_id_94350c0c_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user_user_permissions»
+ERROR:  la relación «auth_user_user_permissions_user_id_permission_id_14a6b632_uniq» ya existe
+ERROR:  la relación «auth_user_username_key» ya existe
+ERROR:  la relación «authentication_customuse_customuser_id_group_id_8a637646_uniq» ya existe
+ERROR:  la relación «authentication_customuse_customuser_id_permission_923704b1_uniq» ya existe
+ERROR:  la relación «authentication_customuser_email_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser_groups»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser_user_permissions»
+ERROR:  la relación «authentication_customuser_username_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authtoken_token»
+ERROR:  la relación «authtoken_token_user_id_key» ya existe
+ERROR:  la relación «configuraciones_api_conf_entorno_nombre_4b5e5df1_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «configuraciones_api_configuracionapi»
+ERROR:  la relación «core_debtor_iban_id_key» ya existe
+ERROR:  la relación «core_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_debtor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_errorresponse»
+ERROR:  la relación «core_iban_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_iban»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_message»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_paymentresponse»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_statusresponse»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_transactionstatus»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_admin_log»
+ERROR:  la relación «django_content_type_app_label_model_76bd3d3b_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_content_type»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_migrations»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_session»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_account»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_address»
+ERROR:  la relación «gpt3_bulktransfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_bulktransfer»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_creditor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_credittransfersdetails»
+ERROR:  la relación «gpt3_debtor_customer_id_key» ya existe
+ERROR:  la relación «gpt3_debtor_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_debtor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_financialinstitution»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_groupheader»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_instructedamount»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_paymentidentification»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_paymentinformation»
+ERROR:  la relación «gpt3_sepacredittransfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_sepacredittransfer»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_clavegenerada»
+ERROR:  la relación «gpt4_clientid_clientId_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_clientid»
+ERROR:  la relación «gpt4_creditor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditor»
+ERROR:  la relación «gpt4_creditor_postal_address_street_key» ya existe
+ERROR:  la relación «gpt4_creditoraccount_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditoraccount»
+ERROR:  la relación «gpt4_creditoragent_bic_key» ya existe
+ERROR:  la relación «gpt4_creditoragent_financial_institution_id_key» ya existe
+ERROR:  la relación «gpt4_creditoragent_other_information_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditoragent»
+ERROR:  la relación «gpt4_debtor_customer_id_key» ya existe
+ERROR:  la relación «gpt4_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_debtor»
+ERROR:  la relación «gpt4_debtor_postal_address_city_key» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_street_key» ya existe
+ERROR:  la relación «gpt4_debtoraccount_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_debtoraccount»
+ERROR:  la relación «gpt4_kid_kid_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_kid»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_logtransferencia»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_paymentidentification»
+ERROR:  la relación «gpt4_transfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_transfer»
+ERROR:  la relación «oauth2_provider_accesstoken_id_token_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_accesstoken»
+ERROR:  la relación «oauth2_provider_accesstoken_source_refresh_token_id_key» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_token_checksum_85319a26_uniq» ya existe
+ERROR:  la relación «oauth2_provider_application_client_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_application»
+ERROR:  la relación «oauth2_provider_grant_code_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_grant»
+ERROR:  la relación «oauth2_provider_idtoken_jti_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_idtoken»
+ERROR:  la relación «oauth2_provider_refreshtoken_access_token_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_refreshtoken»
+ERROR:  la relación «oauth2_provider_refreshtoken_token_revoked_af8a5134_uniq» ya existe
+ERROR:  la relación «transfers_sepa2_custom_id_key» ya existe
+ERROR:  la relación «transfers_sepa2_end_to_end_id_key» ya existe
+ERROR:  la relación «transfers_sepa2_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepa2»
+ERROR:  la relación «transfers_sepa3_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepa3»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepatransaction»
+ERROR:  la relación «transfers_sepatransaction_transaction_id_key» ya existe
+ERROR:  la relación «transfers_transfer_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_transfer»
+ERROR:  la relación «auth_group_name_a6ea08ec_like» ya existe
+ERROR:  la relación «auth_group_permissions_group_id_b120cbf9» ya existe
+ERROR:  la relación «auth_group_permissions_permission_id_84c5c92e» ya existe
+ERROR:  la relación «auth_permission_content_type_id_2f476e4b» ya existe
+ERROR:  la relación «auth_user_groups_group_id_97559544» ya existe
+ERROR:  la relación «auth_user_groups_user_id_6a12ed8b» ya existe
+ERROR:  la relación «auth_user_user_permissions_permission_id_1fbb5f2c» ya existe
+ERROR:  la relación «auth_user_user_permissions_user_id_a95ead1b» ya existe
+ERROR:  la relación «auth_user_username_6821ab7c_like» ya existe
+ERROR:  la relación «authentication_customuser__customuser_id_33d2a5f7» ya existe
+ERROR:  la relación «authentication_customuser__permission_id_e47332af» ya existe
+ERROR:  la relación «authentication_customuser_email_a127f886_like» ya existe
+ERROR:  la relación «authentication_customuser_groups_customuser_id_a7d1343c» ya existe
+ERROR:  la relación «authentication_customuser_groups_group_id_c5ef1d10» ya existe
+ERROR:  la relación «authentication_customuser_username_3dffdf84_like» ya existe
+ERROR:  la relación «authtoken_token_key_10f0b77e_like» ya existe
+ERROR:  la relación «core_debtor_created_by_id_7dc64213» ya existe
+ERROR:  la relación «core_debtor_name_b6c3e4c6_like» ya existe
+ERROR:  la relación «core_iban_created_by_id_bd6d179a» ya existe
+ERROR:  la relación «core_iban_iban_84caffba_like» ya existe
+ERROR:  la relación «core_paymentresponse_payment_id_id_7dbdef17» ya existe
+ERROR:  la relación «core_paymentresponse_transaction_status_id_b6d357f3» ya existe
+ERROR:  la relación «core_statusresponse_code_id_afee82cb» ya existe
+ERROR:  la relación «django_admin_log_content_type_id_c4bce8eb» ya existe
+ERROR:  la relación «django_admin_log_user_id_c564eba6» ya existe
+ERROR:  la relación «django_session_expire_date_a5c62663» ya existe
+ERROR:  la relación «django_session_session_key_c0390e0f_like» ya existe
+ERROR:  la relación «gpt3_bulktransfer_group_header_id_9e13c7fd» ya existe
+ERROR:  la relación «gpt3_bulktransfer_payment_id_7951d535_like» ya existe
+ERROR:  la relación «gpt3_creditor_postal_address_id_c3fe4bdd» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_account_id_edfee0e4» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_agent_id_307e38d8» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_id_c2e3bb00» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_instructed_amount_id_565e82d1» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_payment_identification_id_b212326b» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_payment_information_id_73990371» ya existe
+ERROR:  la relación «gpt3_debtor_customer_id_f150da57_like» ya existe
+ERROR:  la relación «gpt3_debtor_debtor_name_31c06933_like» ya existe
+ERROR:  la relación «gpt3_debtor_postal_address_id_27b92747» ya existe
+ERROR:  la relación «gpt3_paymentinformation_bulk_id_b9376a56» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_account_id_a9f8fa70» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_agent_id_e4143698» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_id_be16dc7a» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_account_id_b4e44e68» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_agent_id_5770bbb2» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_id_cd53570b» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_debtor_account_id_ba04d35d» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_debtor_id_defce29b» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_instructed_amount_id_0a3b9c40» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_payment_id_c9688bb4_like» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_payment_identification_id_c053176b» ya existe
+ERROR:  la relación «gpt4_claveg_kid_b6f50a_idx» ya existe
+ERROR:  la relación «gpt4_claveg_usuario_3d0c46_idx» ya existe
+ERROR:  la relación «gpt4_clientid_clientId_2ff93cd3_like» ya existe
+ERROR:  la relación «gpt4_clientid_codigo_05d7cdcf_like» ya existe
+ERROR:  la relación «gpt4_creditor_name_bf92021a_like» ya existe
+ERROR:  la relación «gpt4_creditor_postal_address_street_d2ef64c2_like» ya existe
+ERROR:  la relación «gpt4_creditoraccount_creditor_id_c83bfa94» ya existe
+ERROR:  la relación «gpt4_creditoraccount_iban_9e946bfe_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_bic_13526fc8_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_financial_institution_id_8613ec2b_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_other_information_93df8244_like» ya existe
+ERROR:  la relación «gpt4_debtor_customer_id_f98db95c_like» ya existe
+ERROR:  la relación «gpt4_debtor_name_e2b615fd_like» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_city_1955a33c_like» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_street_fdc08321_like» ya existe
+ERROR:  la relación «gpt4_debtoraccount_debtor_id_1df483ce» ya existe
+ERROR:  la relación «gpt4_debtoraccount_iban_91e63d1f_like» ya existe
+ERROR:  la relación «gpt4_kid_codigo_d23b90c9_like» ya existe
+ERROR:  la relación «gpt4_kid_kid_954aa63d_like» ya existe
+ERROR:  la relación «gpt4_transfer_client_id_d2c1b8e3» ya existe
+ERROR:  la relación «gpt4_transfer_client_id_d2c1b8e3_like» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_account_id_90b37354» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_agent_id_1a980781» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_id_0cb87fa0» ya existe
+ERROR:  la relación «gpt4_transfer_debtor_account_id_5b771f23» ya existe
+ERROR:  la relación «gpt4_transfer_debtor_id_0dce2b00» ya existe
+ERROR:  la relación «gpt4_transfer_kid_id_69d5b9d8» ya existe
+ERROR:  la relación «gpt4_transfer_kid_id_69d5b9d8_like» ya existe
+ERROR:  la relación «gpt4_transfer_payment_id_16823cd3_like» ya existe
+ERROR:  la relación «gpt4_transfer_payment_identification_id_ec6bbdd2» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_application_id_b22886e1» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_token_checksum_85319a26_like» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_user_id_6e4c9a65» ya existe
+ERROR:  la relación «oauth2_provider_application_client_id_03f0cc84_like» ya existe
+ERROR:  la relación «oauth2_provider_application_client_secret_53133678» ya existe
+ERROR:  la relación «oauth2_provider_application_client_secret_53133678_like» ya existe
+ERROR:  la relación «oauth2_provider_application_user_id_79829054» ya existe
+ERROR:  la relación «oauth2_provider_grant_application_id_81923564» ya existe
+ERROR:  la relación «oauth2_provider_grant_code_49ab4ddf_like» ya existe
+ERROR:  la relación «oauth2_provider_grant_user_id_e8f62af8» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_application_id_08c5ff4f» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_user_id_dd512b59» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_application_id_2d1c311b» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_user_id_da837fce» ya existe
+ERROR:  la relación «transfers_sepa2_created_by_id_da6e7492» ya existe
+ERROR:  la relación «transfers_sepa3_created_by_id_bb359bd3» ya existe
+ERROR:  la relación «transfers_sepatransaction_transaction_id_06a7eabb_like» ya existe
+ERROR:  la relación «transfers_transfer_idempotency_key_d2e1aade_like» ya existe
+ERROR:  la restricción «auth_group_permissio_permission_id_84c5c92e_fk_auth_perm» para la relación «auth_group_permissions» ya existe
+ERROR:  la restricción «auth_group_permissions_group_id_b120cbf9_fk_auth_group_id» para la relación «auth_group_permissions» ya existe
+ERROR:  la restricción «auth_permission_content_type_id_2f476e4b_fk_django_co» para la relación «auth_permission» ya existe
+ERROR:  la restricción «auth_user_groups_group_id_97559544_fk_auth_group_id» para la relación «auth_user_groups» ya existe
+ERROR:  la restricción «auth_user_groups_user_id_6a12ed8b_fk_auth_user_id» para la relación «auth_user_groups» ya existe
+ERROR:  la restricción «auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm» para la relación «auth_user_user_permissions» ya existe
+ERROR:  la restricción «auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id» para la relación «auth_user_user_permissions» ya existe
+ERROR:  la restricción «authentication_custo_customuser_id_33d2a5f7_fk_authentic» para la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la restricción «authentication_custo_customuser_id_a7d1343c_fk_authentic» para la relación «authentication_customuser_groups» ya existe
+ERROR:  la restricción «authentication_custo_group_id_c5ef1d10_fk_auth_grou» para la relación «authentication_customuser_groups» ya existe
+ERROR:  la restricción «authentication_custo_permission_id_e47332af_fk_auth_perm» para la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la restricción «authtoken_token_user_id_35299eff_fk_auth_user_id» para la relación «authtoken_token» ya existe
+ERROR:  la restricción «core_debtor_created_by_id_7dc64213_fk_authentic» para la relación «core_debtor» ya existe
+ERROR:  la restricción «core_debtor_iban_id_ac5873ed_fk_core_iban_id» para la relación «core_debtor» ya existe
+ERROR:  la restricción «core_iban_created_by_id_bd6d179a_fk_authentic» para la relación «core_iban» ya existe
+ERROR:  la restricción «core_paymentresponse_payment_id_id_7dbdef17_fk_transfers» para la relación «core_paymentresponse» ya existe
+ERROR:  la restricción «core_paymentresponse_transaction_status_i_b6d357f3_fk_core_tran» para la relación «core_paymentresponse» ya existe
+ERROR:  la restricción «core_statusresponse_code_id_afee82cb_fk_core_tran» para la relación «core_statusresponse» ya existe
+ERROR:  la restricción «django_admin_log_content_type_id_c4bce8eb_fk_django_co» para la relación «django_admin_log» ya existe
+ERROR:  la restricción «django_admin_log_user_id_c564eba6_fk_auth_user_id» para la relación «django_admin_log» ya existe
+ERROR:  la restricción «gpt3_bulktransfer_group_header_id_9e13c7fd_fk_gpt3_grou» para la relación «gpt3_bulktransfer» ya existe
+ERROR:  la restricción «gpt3_creditor_postal_address_id_c3fe4bdd_fk_gpt3_address_id» para la relación «gpt3_creditor» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_account_id_edfee0e4_fk_gpt3_acco» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_agent_id_307e38d8_fk_gpt3_fina» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_id_c2e3bb00_fk_gpt3_cred» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_instructed_amount_id_565e82d1_fk_gpt3_inst» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_payment_identificati_b212326b_fk_gpt3_paym» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_payment_information__73990371_fk_gpt3_paym» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_debtor_postal_address_id_27b92747_fk_gpt3_address_id» para la relación «gpt3_debtor» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_bulk_id_b9376a56_fk_gpt3_bulk» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_debtor_account_id_a9f8fa70_fk_gpt3_acco» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_debtor_agent_id_e4143698_fk_gpt3_fina» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformation_debtor_id_be16dc7a_fk_gpt3_debtor_id» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_account_id_b4e44e68_fk_gpt3_acco» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_agent_id_5770bbb2_fk_gpt3_fina» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_id_cd53570b_fk_gpt3_cred» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_debtor_account_id_ba04d35d_fk_gpt3_acco» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_instructed_amount_id_0a3b9c40_fk_gpt3_inst» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_payment_identificati_c053176b_fk_gpt3_paym» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittransfer_debtor_id_defce29b_fk_gpt3_debtor_id» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt4_creditoraccount_creditor_id_c83bfa94_fk_gpt4_creditor_id» para la relación «gpt4_creditoraccount» ya existe
+ERROR:  la restricción «gpt4_debtoraccount_debtor_id_1df483ce_fk_gpt4_debtor_id» para la relación «gpt4_debtoraccount» ya existe
+ERROR:  la restricción «gpt4_transfer_client_id_d2c1b8e3_fk_gpt4_clientid_codigo» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_account_id_90b37354_fk_gpt4_cred» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_agent_id_1a980781_fk_gpt4_cred» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_id_0cb87fa0_fk_gpt4_creditor_id» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_debtor_account_id_5b771f23_fk_gpt4_debt» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_debtor_id_0dce2b00_fk_gpt4_debtor_id» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_kid_id_69d5b9d8_fk_gpt4_kid_codigo» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_payment_identificati_ec6bbdd2_fk_gpt4_paym» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «oauth2_provider_acce_application_id_b22886e1_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_acce_id_token_id_85db651b_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_acce_source_refresh_token_e66fbc72_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_accesstoken_user_id_6e4c9a65_fk_auth_user_id» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_application_user_id_79829054_fk_auth_user_id» para la relación «oauth2_provider_application» ya existe
+ERROR:  la restricción «oauth2_provider_gran_application_id_81923564_fk_oauth2_pr» para la relación «oauth2_provider_grant» ya existe
+ERROR:  la restricción «oauth2_provider_grant_user_id_e8f62af8_fk_auth_user_id» para la relación «oauth2_provider_grant» ya existe
+ERROR:  la restricción «oauth2_provider_idto_application_id_08c5ff4f_fk_oauth2_pr» para la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la restricción «oauth2_provider_idtoken_user_id_dd512b59_fk_auth_user_id» para la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refr_access_token_id_775e84e8_fk_oauth2_pr» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refr_application_id_2d1c311b_fk_oauth2_pr» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refreshtoken_user_id_da837fce_fk_auth_user_id» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «transfers_sepa2_created_by_id_da6e7492_fk_authentic» para la relación «transfers_sepa2» ya existe
+ERROR:  la restricción «transfers_sepa3_created_by_id_bb359bd3_fk_authentic» para la relación «transfers_sepa3» ya existe
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🚀 Restaurando base de datos desde respaldo SQL...[0m
+ERROR:  la relación «auth_group» ya existe
+ERROR:  la relación «auth_group_id_seq» ya existe
+ERROR:  la relación «auth_group_permissions» ya existe
+ERROR:  la relación «auth_group_permissions_id_seq» ya existe
+ERROR:  la relación «auth_permission» ya existe
+ERROR:  la relación «auth_permission_id_seq» ya existe
+ERROR:  la relación «auth_user» ya existe
+ERROR:  la relación «auth_user_groups» ya existe
+ERROR:  la relación «auth_user_groups_id_seq» ya existe
+ERROR:  la relación «auth_user_id_seq» ya existe
+ERROR:  la relación «auth_user_user_permissions» ya existe
+ERROR:  la relación «auth_user_user_permissions_id_seq» ya existe
+ERROR:  la relación «authentication_customuser» ya existe
+ERROR:  la relación «authentication_customuser_groups» ya existe
+ERROR:  la relación «authentication_customuser_groups_id_seq» ya existe
+ERROR:  la relación «authentication_customuser_id_seq» ya existe
+ERROR:  la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la relación «authentication_customuser_user_permissions_id_seq» ya existe
+ERROR:  la relación «authtoken_token» ya existe
+ERROR:  la relación «configuraciones_api_configuracionapi» ya existe
+ERROR:  la relación «configuraciones_api_configuracionapi_id_seq» ya existe
+ERROR:  la relación «core_debtor» ya existe
+ERROR:  la relación «core_errorresponse» ya existe
+ERROR:  la relación «core_errorresponse_messageId_seq» ya existe
+ERROR:  la relación «core_iban» ya existe
+ERROR:  la relación «core_message» ya existe
+ERROR:  la relación «core_message_message_id_seq» ya existe
+ERROR:  la relación «core_paymentresponse» ya existe
+ERROR:  la relación «core_paymentresponse_id_seq» ya existe
+ERROR:  la relación «core_statusresponse» ya existe
+ERROR:  la relación «core_statusresponse_id_seq» ya existe
+ERROR:  la relación «core_transactionstatus» ya existe
+ERROR:  la relación «core_transactionstatus_id_seq» ya existe
+ERROR:  la relación «django_admin_log» ya existe
+ERROR:  la relación «django_admin_log_id_seq» ya existe
+ERROR:  la relación «django_content_type» ya existe
+ERROR:  la relación «django_content_type_id_seq» ya existe
+ERROR:  la relación «django_migrations» ya existe
+ERROR:  la relación «django_migrations_id_seq» ya existe
+ERROR:  la relación «django_session» ya existe
+ERROR:  la relación «gpt3_account» ya existe
+ERROR:  la relación «gpt3_account_id_seq» ya existe
+ERROR:  la relación «gpt3_address» ya existe
+ERROR:  la relación «gpt3_address_id_seq» ya existe
+ERROR:  la relación «gpt3_bulktransfer» ya existe
+ERROR:  la relación «gpt3_bulktransfer_id_seq» ya existe
+ERROR:  la relación «gpt3_creditor» ya existe
+ERROR:  la relación «gpt3_creditor_id_seq» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_id_seq» ya existe
+ERROR:  la relación «gpt3_debtor» ya existe
+ERROR:  la relación «gpt3_debtor_id_seq» ya existe
+ERROR:  la relación «gpt3_financialinstitution» ya existe
+ERROR:  la relación «gpt3_financialinstitution_id_seq» ya existe
+ERROR:  la relación «gpt3_groupheader» ya existe
+ERROR:  la relación «gpt3_groupheader_id_seq» ya existe
+ERROR:  la relación «gpt3_instructedamount» ya existe
+ERROR:  la relación «gpt3_instructedamount_id_seq» ya existe
+ERROR:  la relación «gpt3_paymentidentification» ya existe
+ERROR:  la relación «gpt3_paymentidentification_id_seq» ya existe
+ERROR:  la relación «gpt3_paymentinformation» ya existe
+ERROR:  la relación «gpt3_paymentinformation_id_seq» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_id_seq» ya existe
+ERROR:  la relación «gpt4_clavegenerada» ya existe
+ERROR:  la relación «gpt4_clavegenerada_id_seq» ya existe
+ERROR:  la relación «gpt4_clientid» ya existe
+ERROR:  la relación «gpt4_creditor» ya existe
+ERROR:  la relación «gpt4_creditor_id_seq» ya existe
+ERROR:  la relación «gpt4_creditoraccount» ya existe
+ERROR:  la relación «gpt4_creditoraccount_id_seq» ya existe
+ERROR:  la relación «gpt4_creditoragent» ya existe
+ERROR:  la relación «gpt4_creditoragent_id_seq» ya existe
+ERROR:  la relación «gpt4_debtor» ya existe
+ERROR:  la relación «gpt4_debtor_id_seq» ya existe
+ERROR:  la relación «gpt4_debtoraccount» ya existe
+ERROR:  la relación «gpt4_debtoraccount_id_seq» ya existe
+ERROR:  la relación «gpt4_kid» ya existe
+ERROR:  la relación «gpt4_logtransferencia» ya existe
+ERROR:  la relación «gpt4_logtransferencia_id_seq» ya existe
+ERROR:  la relación «gpt4_paymentidentification» ya existe
+ERROR:  la relación «gpt4_paymentidentification_id_seq» ya existe
+ERROR:  la relación «gpt4_transfer» ya existe
+ERROR:  la relación «gpt4_transfer_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_application» ya existe
+ERROR:  la relación «oauth2_provider_application_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_grant» ya existe
+ERROR:  la relación «oauth2_provider_grant_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_id_seq» ya existe
+ERROR:  la relación «transfers_sepa2» ya existe
+ERROR:  la relación «transfers_sepa2_id_seq» ya existe
+ERROR:  la relación «transfers_sepa3» ya existe
+ERROR:  la relación «transfers_sepa3_id_seq» ya existe
+ERROR:  la relación «transfers_sepatransaction» ya existe
+ERROR:  la relación «transfers_sepatransaction_id_seq» ya existe
+ERROR:  la relación «transfers_transfer» ya existe
+ERROR:  llave duplicada viola restricción de unicidad «auth_permission_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY auth_permission, línea 1
+ERROR:  llave duplicada viola restricción de unicidad «django_content_type_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY django_content_type, línea 1
+ERROR:  llave duplicada viola restricción de unicidad «django_migrations_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY django_migrations, línea 1
+ERROR:  la relación «auth_group_name_key» ya existe
+ERROR:  la relación «auth_group_permissions_group_id_permission_id_0cd325b0_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_group_permissions»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_group»
+ERROR:  la relación «auth_permission_content_type_id_codename_01ab375a_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_permission»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user_groups»
+ERROR:  la relación «auth_user_groups_user_id_group_id_94350c0c_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user_user_permissions»
+ERROR:  la relación «auth_user_user_permissions_user_id_permission_id_14a6b632_uniq» ya existe
+ERROR:  la relación «auth_user_username_key» ya existe
+ERROR:  la relación «authentication_customuse_customuser_id_group_id_8a637646_uniq» ya existe
+ERROR:  la relación «authentication_customuse_customuser_id_permission_923704b1_uniq» ya existe
+ERROR:  la relación «authentication_customuser_email_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser_groups»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser_user_permissions»
+ERROR:  la relación «authentication_customuser_username_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authtoken_token»
+ERROR:  la relación «authtoken_token_user_id_key» ya existe
+ERROR:  la relación «configuraciones_api_conf_entorno_nombre_4b5e5df1_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «configuraciones_api_configuracionapi»
+ERROR:  la relación «core_debtor_iban_id_key» ya existe
+ERROR:  la relación «core_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_debtor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_errorresponse»
+ERROR:  la relación «core_iban_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_iban»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_message»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_paymentresponse»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_statusresponse»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_transactionstatus»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_admin_log»
+ERROR:  la relación «django_content_type_app_label_model_76bd3d3b_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_content_type»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_migrations»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_session»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_account»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_address»
+ERROR:  la relación «gpt3_bulktransfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_bulktransfer»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_creditor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_credittransfersdetails»
+ERROR:  la relación «gpt3_debtor_customer_id_key» ya existe
+ERROR:  la relación «gpt3_debtor_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_debtor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_financialinstitution»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_groupheader»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_instructedamount»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_paymentidentification»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_paymentinformation»
+ERROR:  la relación «gpt3_sepacredittransfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_sepacredittransfer»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_clavegenerada»
+ERROR:  la relación «gpt4_clientid_clientId_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_clientid»
+ERROR:  la relación «gpt4_creditor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditor»
+ERROR:  la relación «gpt4_creditor_postal_address_street_key» ya existe
+ERROR:  la relación «gpt4_creditoraccount_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditoraccount»
+ERROR:  la relación «gpt4_creditoragent_bic_key» ya existe
+ERROR:  la relación «gpt4_creditoragent_financial_institution_id_key» ya existe
+ERROR:  la relación «gpt4_creditoragent_other_information_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditoragent»
+ERROR:  la relación «gpt4_debtor_customer_id_key» ya existe
+ERROR:  la relación «gpt4_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_debtor»
+ERROR:  la relación «gpt4_debtor_postal_address_city_key» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_street_key» ya existe
+ERROR:  la relación «gpt4_debtoraccount_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_debtoraccount»
+ERROR:  la relación «gpt4_kid_kid_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_kid»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_logtransferencia»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_paymentidentification»
+ERROR:  la relación «gpt4_transfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_transfer»
+ERROR:  la relación «oauth2_provider_accesstoken_id_token_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_accesstoken»
+ERROR:  la relación «oauth2_provider_accesstoken_source_refresh_token_id_key» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_token_checksum_85319a26_uniq» ya existe
+ERROR:  la relación «oauth2_provider_application_client_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_application»
+ERROR:  la relación «oauth2_provider_grant_code_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_grant»
+ERROR:  la relación «oauth2_provider_idtoken_jti_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_idtoken»
+ERROR:  la relación «oauth2_provider_refreshtoken_access_token_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_refreshtoken»
+ERROR:  la relación «oauth2_provider_refreshtoken_token_revoked_af8a5134_uniq» ya existe
+ERROR:  la relación «transfers_sepa2_custom_id_key» ya existe
+ERROR:  la relación «transfers_sepa2_end_to_end_id_key» ya existe
+ERROR:  la relación «transfers_sepa2_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepa2»
+ERROR:  la relación «transfers_sepa3_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepa3»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepatransaction»
+ERROR:  la relación «transfers_sepatransaction_transaction_id_key» ya existe
+ERROR:  la relación «transfers_transfer_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_transfer»
+ERROR:  la relación «auth_group_name_a6ea08ec_like» ya existe
+ERROR:  la relación «auth_group_permissions_group_id_b120cbf9» ya existe
+ERROR:  la relación «auth_group_permissions_permission_id_84c5c92e» ya existe
+ERROR:  la relación «auth_permission_content_type_id_2f476e4b» ya existe
+ERROR:  la relación «auth_user_groups_group_id_97559544» ya existe
+ERROR:  la relación «auth_user_groups_user_id_6a12ed8b» ya existe
+ERROR:  la relación «auth_user_user_permissions_permission_id_1fbb5f2c» ya existe
+ERROR:  la relación «auth_user_user_permissions_user_id_a95ead1b» ya existe
+ERROR:  la relación «auth_user_username_6821ab7c_like» ya existe
+ERROR:  la relación «authentication_customuser__customuser_id_33d2a5f7» ya existe
+ERROR:  la relación «authentication_customuser__permission_id_e47332af» ya existe
+ERROR:  la relación «authentication_customuser_email_a127f886_like» ya existe
+ERROR:  la relación «authentication_customuser_groups_customuser_id_a7d1343c» ya existe
+ERROR:  la relación «authentication_customuser_groups_group_id_c5ef1d10» ya existe
+ERROR:  la relación «authentication_customuser_username_3dffdf84_like» ya existe
+ERROR:  la relación «authtoken_token_key_10f0b77e_like» ya existe
+ERROR:  la relación «core_debtor_created_by_id_7dc64213» ya existe
+ERROR:  la relación «core_debtor_name_b6c3e4c6_like» ya existe
+ERROR:  la relación «core_iban_created_by_id_bd6d179a» ya existe
+ERROR:  la relación «core_iban_iban_84caffba_like» ya existe
+ERROR:  la relación «core_paymentresponse_payment_id_id_7dbdef17» ya existe
+ERROR:  la relación «core_paymentresponse_transaction_status_id_b6d357f3» ya existe
+ERROR:  la relación «core_statusresponse_code_id_afee82cb» ya existe
+ERROR:  la relación «django_admin_log_content_type_id_c4bce8eb» ya existe
+ERROR:  la relación «django_admin_log_user_id_c564eba6» ya existe
+ERROR:  la relación «django_session_expire_date_a5c62663» ya existe
+ERROR:  la relación «django_session_session_key_c0390e0f_like» ya existe
+ERROR:  la relación «gpt3_bulktransfer_group_header_id_9e13c7fd» ya existe
+ERROR:  la relación «gpt3_bulktransfer_payment_id_7951d535_like» ya existe
+ERROR:  la relación «gpt3_creditor_postal_address_id_c3fe4bdd» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_account_id_edfee0e4» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_agent_id_307e38d8» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_id_c2e3bb00» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_instructed_amount_id_565e82d1» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_payment_identification_id_b212326b» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_payment_information_id_73990371» ya existe
+ERROR:  la relación «gpt3_debtor_customer_id_f150da57_like» ya existe
+ERROR:  la relación «gpt3_debtor_debtor_name_31c06933_like» ya existe
+ERROR:  la relación «gpt3_debtor_postal_address_id_27b92747» ya existe
+ERROR:  la relación «gpt3_paymentinformation_bulk_id_b9376a56» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_account_id_a9f8fa70» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_agent_id_e4143698» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_id_be16dc7a» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_account_id_b4e44e68» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_agent_id_5770bbb2» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_id_cd53570b» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_debtor_account_id_ba04d35d» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_debtor_id_defce29b» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_instructed_amount_id_0a3b9c40» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_payment_id_c9688bb4_like» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_payment_identification_id_c053176b» ya existe
+ERROR:  la relación «gpt4_claveg_kid_b6f50a_idx» ya existe
+ERROR:  la relación «gpt4_claveg_usuario_3d0c46_idx» ya existe
+ERROR:  la relación «gpt4_clientid_clientId_2ff93cd3_like» ya existe
+ERROR:  la relación «gpt4_clientid_codigo_05d7cdcf_like» ya existe
+ERROR:  la relación «gpt4_creditor_name_bf92021a_like» ya existe
+ERROR:  la relación «gpt4_creditor_postal_address_street_d2ef64c2_like» ya existe
+ERROR:  la relación «gpt4_creditoraccount_creditor_id_c83bfa94» ya existe
+ERROR:  la relación «gpt4_creditoraccount_iban_9e946bfe_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_bic_13526fc8_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_financial_institution_id_8613ec2b_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_other_information_93df8244_like» ya existe
+ERROR:  la relación «gpt4_debtor_customer_id_f98db95c_like» ya existe
+ERROR:  la relación «gpt4_debtor_name_e2b615fd_like» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_city_1955a33c_like» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_street_fdc08321_like» ya existe
+ERROR:  la relación «gpt4_debtoraccount_debtor_id_1df483ce» ya existe
+ERROR:  la relación «gpt4_debtoraccount_iban_91e63d1f_like» ya existe
+ERROR:  la relación «gpt4_kid_codigo_d23b90c9_like» ya existe
+ERROR:  la relación «gpt4_kid_kid_954aa63d_like» ya existe
+ERROR:  la relación «gpt4_transfer_client_id_d2c1b8e3» ya existe
+ERROR:  la relación «gpt4_transfer_client_id_d2c1b8e3_like» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_account_id_90b37354» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_agent_id_1a980781» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_id_0cb87fa0» ya existe
+ERROR:  la relación «gpt4_transfer_debtor_account_id_5b771f23» ya existe
+ERROR:  la relación «gpt4_transfer_debtor_id_0dce2b00» ya existe
+ERROR:  la relación «gpt4_transfer_kid_id_69d5b9d8» ya existe
+ERROR:  la relación «gpt4_transfer_kid_id_69d5b9d8_like» ya existe
+ERROR:  la relación «gpt4_transfer_payment_id_16823cd3_like» ya existe
+ERROR:  la relación «gpt4_transfer_payment_identification_id_ec6bbdd2» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_application_id_b22886e1» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_token_checksum_85319a26_like» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_user_id_6e4c9a65» ya existe
+ERROR:  la relación «oauth2_provider_application_client_id_03f0cc84_like» ya existe
+ERROR:  la relación «oauth2_provider_application_client_secret_53133678» ya existe
+ERROR:  la relación «oauth2_provider_application_client_secret_53133678_like» ya existe
+ERROR:  la relación «oauth2_provider_application_user_id_79829054» ya existe
+ERROR:  la relación «oauth2_provider_grant_application_id_81923564» ya existe
+ERROR:  la relación «oauth2_provider_grant_code_49ab4ddf_like» ya existe
+ERROR:  la relación «oauth2_provider_grant_user_id_e8f62af8» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_application_id_08c5ff4f» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_user_id_dd512b59» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_application_id_2d1c311b» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_user_id_da837fce» ya existe
+ERROR:  la relación «transfers_sepa2_created_by_id_da6e7492» ya existe
+ERROR:  la relación «transfers_sepa3_created_by_id_bb359bd3» ya existe
+ERROR:  la relación «transfers_sepatransaction_transaction_id_06a7eabb_like» ya existe
+ERROR:  la relación «transfers_transfer_idempotency_key_d2e1aade_like» ya existe
+ERROR:  la restricción «auth_group_permissio_permission_id_84c5c92e_fk_auth_perm» para la relación «auth_group_permissions» ya existe
+ERROR:  la restricción «auth_group_permissions_group_id_b120cbf9_fk_auth_group_id» para la relación «auth_group_permissions» ya existe
+ERROR:  la restricción «auth_permission_content_type_id_2f476e4b_fk_django_co» para la relación «auth_permission» ya existe
+ERROR:  la restricción «auth_user_groups_group_id_97559544_fk_auth_group_id» para la relación «auth_user_groups» ya existe
+ERROR:  la restricción «auth_user_groups_user_id_6a12ed8b_fk_auth_user_id» para la relación «auth_user_groups» ya existe
+ERROR:  la restricción «auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm» para la relación «auth_user_user_permissions» ya existe
+ERROR:  la restricción «auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id» para la relación «auth_user_user_permissions» ya existe
+ERROR:  la restricción «authentication_custo_customuser_id_33d2a5f7_fk_authentic» para la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la restricción «authentication_custo_customuser_id_a7d1343c_fk_authentic» para la relación «authentication_customuser_groups» ya existe
+ERROR:  la restricción «authentication_custo_group_id_c5ef1d10_fk_auth_grou» para la relación «authentication_customuser_groups» ya existe
+ERROR:  la restricción «authentication_custo_permission_id_e47332af_fk_auth_perm» para la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la restricción «authtoken_token_user_id_35299eff_fk_auth_user_id» para la relación «authtoken_token» ya existe
+ERROR:  la restricción «core_debtor_created_by_id_7dc64213_fk_authentic» para la relación «core_debtor» ya existe
+ERROR:  la restricción «core_debtor_iban_id_ac5873ed_fk_core_iban_id» para la relación «core_debtor» ya existe
+ERROR:  la restricción «core_iban_created_by_id_bd6d179a_fk_authentic» para la relación «core_iban» ya existe
+ERROR:  la restricción «core_paymentresponse_payment_id_id_7dbdef17_fk_transfers» para la relación «core_paymentresponse» ya existe
+ERROR:  la restricción «core_paymentresponse_transaction_status_i_b6d357f3_fk_core_tran» para la relación «core_paymentresponse» ya existe
+ERROR:  la restricción «core_statusresponse_code_id_afee82cb_fk_core_tran» para la relación «core_statusresponse» ya existe
+ERROR:  la restricción «django_admin_log_content_type_id_c4bce8eb_fk_django_co» para la relación «django_admin_log» ya existe
+ERROR:  la restricción «django_admin_log_user_id_c564eba6_fk_auth_user_id» para la relación «django_admin_log» ya existe
+ERROR:  la restricción «gpt3_bulktransfer_group_header_id_9e13c7fd_fk_gpt3_grou» para la relación «gpt3_bulktransfer» ya existe
+ERROR:  la restricción «gpt3_creditor_postal_address_id_c3fe4bdd_fk_gpt3_address_id» para la relación «gpt3_creditor» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_account_id_edfee0e4_fk_gpt3_acco» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_agent_id_307e38d8_fk_gpt3_fina» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_id_c2e3bb00_fk_gpt3_cred» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_instructed_amount_id_565e82d1_fk_gpt3_inst» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_payment_identificati_b212326b_fk_gpt3_paym» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_payment_information__73990371_fk_gpt3_paym» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_debtor_postal_address_id_27b92747_fk_gpt3_address_id» para la relación «gpt3_debtor» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_bulk_id_b9376a56_fk_gpt3_bulk» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_debtor_account_id_a9f8fa70_fk_gpt3_acco» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_debtor_agent_id_e4143698_fk_gpt3_fina» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformation_debtor_id_be16dc7a_fk_gpt3_debtor_id» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_account_id_b4e44e68_fk_gpt3_acco» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_agent_id_5770bbb2_fk_gpt3_fina» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_id_cd53570b_fk_gpt3_cred» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_debtor_account_id_ba04d35d_fk_gpt3_acco» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_instructed_amount_id_0a3b9c40_fk_gpt3_inst» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_payment_identificati_c053176b_fk_gpt3_paym» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittransfer_debtor_id_defce29b_fk_gpt3_debtor_id» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt4_creditoraccount_creditor_id_c83bfa94_fk_gpt4_creditor_id» para la relación «gpt4_creditoraccount» ya existe
+ERROR:  la restricción «gpt4_debtoraccount_debtor_id_1df483ce_fk_gpt4_debtor_id» para la relación «gpt4_debtoraccount» ya existe
+ERROR:  la restricción «gpt4_transfer_client_id_d2c1b8e3_fk_gpt4_clientid_codigo» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_account_id_90b37354_fk_gpt4_cred» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_agent_id_1a980781_fk_gpt4_cred» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_id_0cb87fa0_fk_gpt4_creditor_id» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_debtor_account_id_5b771f23_fk_gpt4_debt» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_debtor_id_0dce2b00_fk_gpt4_debtor_id» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_kid_id_69d5b9d8_fk_gpt4_kid_codigo» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_payment_identificati_ec6bbdd2_fk_gpt4_paym» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «oauth2_provider_acce_application_id_b22886e1_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_acce_id_token_id_85db651b_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_acce_source_refresh_token_e66fbc72_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_accesstoken_user_id_6e4c9a65_fk_auth_user_id» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_application_user_id_79829054_fk_auth_user_id» para la relación «oauth2_provider_application» ya existe
+ERROR:  la restricción «oauth2_provider_gran_application_id_81923564_fk_oauth2_pr» para la relación «oauth2_provider_grant» ya existe
+ERROR:  la restricción «oauth2_provider_grant_user_id_e8f62af8_fk_auth_user_id» para la relación «oauth2_provider_grant» ya existe
+ERROR:  la restricción «oauth2_provider_idto_application_id_08c5ff4f_fk_oauth2_pr» para la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la restricción «oauth2_provider_idtoken_user_id_dd512b59_fk_auth_user_id» para la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refr_access_token_id_775e84e8_fk_oauth2_pr» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refr_application_id_2d1c311b_fk_oauth2_pr» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refreshtoken_user_id_da837fce_fk_auth_user_id» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «transfers_sepa2_created_by_id_da6e7492_fk_authentic» para la relación «transfers_sepa2» ya existe
+ERROR:  la restricción «transfers_sepa3_created_by_id_bb359bd3_fk_authentic» para la relación «transfers_sepa3» ya existe
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🚀 Restaurando base de datos desde respaldo SQL...[0m
+ERROR:  la relación «auth_group» ya existe
+ERROR:  la relación «auth_group_id_seq» ya existe
+ERROR:  la relación «auth_group_permissions» ya existe
+ERROR:  la relación «auth_group_permissions_id_seq» ya existe
+ERROR:  la relación «auth_permission» ya existe
+ERROR:  la relación «auth_permission_id_seq» ya existe
+ERROR:  la relación «auth_user» ya existe
+ERROR:  la relación «auth_user_groups» ya existe
+ERROR:  la relación «auth_user_groups_id_seq» ya existe
+ERROR:  la relación «auth_user_id_seq» ya existe
+ERROR:  la relación «auth_user_user_permissions» ya existe
+ERROR:  la relación «auth_user_user_permissions_id_seq» ya existe
+ERROR:  la relación «authentication_customuser» ya existe
+ERROR:  la relación «authentication_customuser_groups» ya existe
+ERROR:  la relación «authentication_customuser_groups_id_seq» ya existe
+ERROR:  la relación «authentication_customuser_id_seq» ya existe
+ERROR:  la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la relación «authentication_customuser_user_permissions_id_seq» ya existe
+ERROR:  la relación «authtoken_token» ya existe
+ERROR:  la relación «configuraciones_api_configuracionapi» ya existe
+ERROR:  la relación «configuraciones_api_configuracionapi_id_seq» ya existe
+ERROR:  la relación «core_debtor» ya existe
+ERROR:  la relación «core_errorresponse» ya existe
+ERROR:  la relación «core_errorresponse_messageId_seq» ya existe
+ERROR:  la relación «core_iban» ya existe
+ERROR:  la relación «core_message» ya existe
+ERROR:  la relación «core_message_message_id_seq» ya existe
+ERROR:  la relación «core_paymentresponse» ya existe
+ERROR:  la relación «core_paymentresponse_id_seq» ya existe
+ERROR:  la relación «core_statusresponse» ya existe
+ERROR:  la relación «core_statusresponse_id_seq» ya existe
+ERROR:  la relación «core_transactionstatus» ya existe
+ERROR:  la relación «core_transactionstatus_id_seq» ya existe
+ERROR:  la relación «django_admin_log» ya existe
+ERROR:  la relación «django_admin_log_id_seq» ya existe
+ERROR:  la relación «django_content_type» ya existe
+ERROR:  la relación «django_content_type_id_seq» ya existe
+ERROR:  la relación «django_migrations» ya existe
+ERROR:  la relación «django_migrations_id_seq» ya existe
+ERROR:  la relación «django_session» ya existe
+ERROR:  la relación «gpt3_account» ya existe
+ERROR:  la relación «gpt3_account_id_seq» ya existe
+ERROR:  la relación «gpt3_address» ya existe
+ERROR:  la relación «gpt3_address_id_seq» ya existe
+ERROR:  la relación «gpt3_bulktransfer» ya existe
+ERROR:  la relación «gpt3_bulktransfer_id_seq» ya existe
+ERROR:  la relación «gpt3_creditor» ya existe
+ERROR:  la relación «gpt3_creditor_id_seq» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_id_seq» ya existe
+ERROR:  la relación «gpt3_debtor» ya existe
+ERROR:  la relación «gpt3_debtor_id_seq» ya existe
+ERROR:  la relación «gpt3_financialinstitution» ya existe
+ERROR:  la relación «gpt3_financialinstitution_id_seq» ya existe
+ERROR:  la relación «gpt3_groupheader» ya existe
+ERROR:  la relación «gpt3_groupheader_id_seq» ya existe
+ERROR:  la relación «gpt3_instructedamount» ya existe
+ERROR:  la relación «gpt3_instructedamount_id_seq» ya existe
+ERROR:  la relación «gpt3_paymentidentification» ya existe
+ERROR:  la relación «gpt3_paymentidentification_id_seq» ya existe
+ERROR:  la relación «gpt3_paymentinformation» ya existe
+ERROR:  la relación «gpt3_paymentinformation_id_seq» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_id_seq» ya existe
+ERROR:  la relación «gpt4_clavegenerada» ya existe
+ERROR:  la relación «gpt4_clavegenerada_id_seq» ya existe
+ERROR:  la relación «gpt4_clientid» ya existe
+ERROR:  la relación «gpt4_creditor» ya existe
+ERROR:  la relación «gpt4_creditor_id_seq» ya existe
+ERROR:  la relación «gpt4_creditoraccount» ya existe
+ERROR:  la relación «gpt4_creditoraccount_id_seq» ya existe
+ERROR:  la relación «gpt4_creditoragent» ya existe
+ERROR:  la relación «gpt4_creditoragent_id_seq» ya existe
+ERROR:  la relación «gpt4_debtor» ya existe
+ERROR:  la relación «gpt4_debtor_id_seq» ya existe
+ERROR:  la relación «gpt4_debtoraccount» ya existe
+ERROR:  la relación «gpt4_debtoraccount_id_seq» ya existe
+ERROR:  la relación «gpt4_kid» ya existe
+ERROR:  la relación «gpt4_logtransferencia» ya existe
+ERROR:  la relación «gpt4_logtransferencia_id_seq» ya existe
+ERROR:  la relación «gpt4_paymentidentification» ya existe
+ERROR:  la relación «gpt4_paymentidentification_id_seq» ya existe
+ERROR:  la relación «gpt4_transfer» ya existe
+ERROR:  la relación «gpt4_transfer_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_application» ya existe
+ERROR:  la relación «oauth2_provider_application_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_grant» ya existe
+ERROR:  la relación «oauth2_provider_grant_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_id_seq» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_id_seq» ya existe
+ERROR:  la relación «transfers_sepa2» ya existe
+ERROR:  la relación «transfers_sepa2_id_seq» ya existe
+ERROR:  la relación «transfers_sepa3» ya existe
+ERROR:  la relación «transfers_sepa3_id_seq» ya existe
+ERROR:  la relación «transfers_sepatransaction» ya existe
+ERROR:  la relación «transfers_sepatransaction_id_seq» ya existe
+ERROR:  la relación «transfers_transfer» ya existe
+ERROR:  llave duplicada viola restricción de unicidad «auth_permission_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY auth_permission, línea 1
+ERROR:  llave duplicada viola restricción de unicidad «django_content_type_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY django_content_type, línea 1
+ERROR:  llave duplicada viola restricción de unicidad «django_migrations_pkey»
+DETALLE:  Ya existe la llave (id)=(1).
+CONTEXTO:  COPY django_migrations, línea 1
+ERROR:  la relación «auth_group_name_key» ya existe
+ERROR:  la relación «auth_group_permissions_group_id_permission_id_0cd325b0_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_group_permissions»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_group»
+ERROR:  la relación «auth_permission_content_type_id_codename_01ab375a_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_permission»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user_groups»
+ERROR:  la relación «auth_user_groups_user_id_group_id_94350c0c_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «auth_user_user_permissions»
+ERROR:  la relación «auth_user_user_permissions_user_id_permission_id_14a6b632_uniq» ya existe
+ERROR:  la relación «auth_user_username_key» ya existe
+ERROR:  la relación «authentication_customuse_customuser_id_group_id_8a637646_uniq» ya existe
+ERROR:  la relación «authentication_customuse_customuser_id_permission_923704b1_uniq» ya existe
+ERROR:  la relación «authentication_customuser_email_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser_groups»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authentication_customuser_user_permissions»
+ERROR:  la relación «authentication_customuser_username_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «authtoken_token»
+ERROR:  la relación «authtoken_token_user_id_key» ya existe
+ERROR:  la relación «configuraciones_api_conf_entorno_nombre_4b5e5df1_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «configuraciones_api_configuracionapi»
+ERROR:  la relación «core_debtor_iban_id_key» ya existe
+ERROR:  la relación «core_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_debtor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_errorresponse»
+ERROR:  la relación «core_iban_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_iban»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_message»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_paymentresponse»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_statusresponse»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «core_transactionstatus»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_admin_log»
+ERROR:  la relación «django_content_type_app_label_model_76bd3d3b_uniq» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_content_type»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_migrations»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «django_session»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_account»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_address»
+ERROR:  la relación «gpt3_bulktransfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_bulktransfer»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_creditor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_credittransfersdetails»
+ERROR:  la relación «gpt3_debtor_customer_id_key» ya existe
+ERROR:  la relación «gpt3_debtor_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_debtor»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_financialinstitution»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_groupheader»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_instructedamount»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_paymentidentification»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_paymentinformation»
+ERROR:  la relación «gpt3_sepacredittransfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt3_sepacredittransfer»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_clavegenerada»
+ERROR:  la relación «gpt4_clientid_clientId_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_clientid»
+ERROR:  la relación «gpt4_creditor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditor»
+ERROR:  la relación «gpt4_creditor_postal_address_street_key» ya existe
+ERROR:  la relación «gpt4_creditoraccount_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditoraccount»
+ERROR:  la relación «gpt4_creditoragent_bic_key» ya existe
+ERROR:  la relación «gpt4_creditoragent_financial_institution_id_key» ya existe
+ERROR:  la relación «gpt4_creditoragent_other_information_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_creditoragent»
+ERROR:  la relación «gpt4_debtor_customer_id_key» ya existe
+ERROR:  la relación «gpt4_debtor_name_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_debtor»
+ERROR:  la relación «gpt4_debtor_postal_address_city_key» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_street_key» ya existe
+ERROR:  la relación «gpt4_debtoraccount_iban_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_debtoraccount»
+ERROR:  la relación «gpt4_kid_kid_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_kid»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_logtransferencia»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_paymentidentification»
+ERROR:  la relación «gpt4_transfer_payment_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «gpt4_transfer»
+ERROR:  la relación «oauth2_provider_accesstoken_id_token_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_accesstoken»
+ERROR:  la relación «oauth2_provider_accesstoken_source_refresh_token_id_key» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_token_checksum_85319a26_uniq» ya existe
+ERROR:  la relación «oauth2_provider_application_client_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_application»
+ERROR:  la relación «oauth2_provider_grant_code_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_grant»
+ERROR:  la relación «oauth2_provider_idtoken_jti_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_idtoken»
+ERROR:  la relación «oauth2_provider_refreshtoken_access_token_id_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «oauth2_provider_refreshtoken»
+ERROR:  la relación «oauth2_provider_refreshtoken_token_revoked_af8a5134_uniq» ya existe
+ERROR:  la relación «transfers_sepa2_custom_id_key» ya existe
+ERROR:  la relación «transfers_sepa2_end_to_end_id_key» ya existe
+ERROR:  la relación «transfers_sepa2_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepa2»
+ERROR:  la relación «transfers_sepa3_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepa3»
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_sepatransaction»
+ERROR:  la relación «transfers_sepatransaction_transaction_id_key» ya existe
+ERROR:  la relación «transfers_transfer_idempotency_key_key» ya existe
+ERROR:  no se permiten múltiples llaves primarias para la tabla «transfers_transfer»
+ERROR:  la relación «auth_group_name_a6ea08ec_like» ya existe
+ERROR:  la relación «auth_group_permissions_group_id_b120cbf9» ya existe
+ERROR:  la relación «auth_group_permissions_permission_id_84c5c92e» ya existe
+ERROR:  la relación «auth_permission_content_type_id_2f476e4b» ya existe
+ERROR:  la relación «auth_user_groups_group_id_97559544» ya existe
+ERROR:  la relación «auth_user_groups_user_id_6a12ed8b» ya existe
+ERROR:  la relación «auth_user_user_permissions_permission_id_1fbb5f2c» ya existe
+ERROR:  la relación «auth_user_user_permissions_user_id_a95ead1b» ya existe
+ERROR:  la relación «auth_user_username_6821ab7c_like» ya existe
+ERROR:  la relación «authentication_customuser__customuser_id_33d2a5f7» ya existe
+ERROR:  la relación «authentication_customuser__permission_id_e47332af» ya existe
+ERROR:  la relación «authentication_customuser_email_a127f886_like» ya existe
+ERROR:  la relación «authentication_customuser_groups_customuser_id_a7d1343c» ya existe
+ERROR:  la relación «authentication_customuser_groups_group_id_c5ef1d10» ya existe
+ERROR:  la relación «authentication_customuser_username_3dffdf84_like» ya existe
+ERROR:  la relación «authtoken_token_key_10f0b77e_like» ya existe
+ERROR:  la relación «core_debtor_created_by_id_7dc64213» ya existe
+ERROR:  la relación «core_debtor_name_b6c3e4c6_like» ya existe
+ERROR:  la relación «core_iban_created_by_id_bd6d179a» ya existe
+ERROR:  la relación «core_iban_iban_84caffba_like» ya existe
+ERROR:  la relación «core_paymentresponse_payment_id_id_7dbdef17» ya existe
+ERROR:  la relación «core_paymentresponse_transaction_status_id_b6d357f3» ya existe
+ERROR:  la relación «core_statusresponse_code_id_afee82cb» ya existe
+ERROR:  la relación «django_admin_log_content_type_id_c4bce8eb» ya existe
+ERROR:  la relación «django_admin_log_user_id_c564eba6» ya existe
+ERROR:  la relación «django_session_expire_date_a5c62663» ya existe
+ERROR:  la relación «django_session_session_key_c0390e0f_like» ya existe
+ERROR:  la relación «gpt3_bulktransfer_group_header_id_9e13c7fd» ya existe
+ERROR:  la relación «gpt3_bulktransfer_payment_id_7951d535_like» ya existe
+ERROR:  la relación «gpt3_creditor_postal_address_id_c3fe4bdd» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_account_id_edfee0e4» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_agent_id_307e38d8» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_creditor_id_c2e3bb00» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_instructed_amount_id_565e82d1» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_payment_identification_id_b212326b» ya existe
+ERROR:  la relación «gpt3_credittransfersdetails_payment_information_id_73990371» ya existe
+ERROR:  la relación «gpt3_debtor_customer_id_f150da57_like» ya existe
+ERROR:  la relación «gpt3_debtor_debtor_name_31c06933_like» ya existe
+ERROR:  la relación «gpt3_debtor_postal_address_id_27b92747» ya existe
+ERROR:  la relación «gpt3_paymentinformation_bulk_id_b9376a56» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_account_id_a9f8fa70» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_agent_id_e4143698» ya existe
+ERROR:  la relación «gpt3_paymentinformation_debtor_id_be16dc7a» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_account_id_b4e44e68» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_agent_id_5770bbb2» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_creditor_id_cd53570b» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_debtor_account_id_ba04d35d» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_debtor_id_defce29b» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_instructed_amount_id_0a3b9c40» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_payment_id_c9688bb4_like» ya existe
+ERROR:  la relación «gpt3_sepacredittransfer_payment_identification_id_c053176b» ya existe
+ERROR:  la relación «gpt4_claveg_kid_b6f50a_idx» ya existe
+ERROR:  la relación «gpt4_claveg_usuario_3d0c46_idx» ya existe
+ERROR:  la relación «gpt4_clientid_clientId_2ff93cd3_like» ya existe
+ERROR:  la relación «gpt4_clientid_codigo_05d7cdcf_like» ya existe
+ERROR:  la relación «gpt4_creditor_name_bf92021a_like» ya existe
+ERROR:  la relación «gpt4_creditor_postal_address_street_d2ef64c2_like» ya existe
+ERROR:  la relación «gpt4_creditoraccount_creditor_id_c83bfa94» ya existe
+ERROR:  la relación «gpt4_creditoraccount_iban_9e946bfe_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_bic_13526fc8_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_financial_institution_id_8613ec2b_like» ya existe
+ERROR:  la relación «gpt4_creditoragent_other_information_93df8244_like» ya existe
+ERROR:  la relación «gpt4_debtor_customer_id_f98db95c_like» ya existe
+ERROR:  la relación «gpt4_debtor_name_e2b615fd_like» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_city_1955a33c_like» ya existe
+ERROR:  la relación «gpt4_debtor_postal_address_street_fdc08321_like» ya existe
+ERROR:  la relación «gpt4_debtoraccount_debtor_id_1df483ce» ya existe
+ERROR:  la relación «gpt4_debtoraccount_iban_91e63d1f_like» ya existe
+ERROR:  la relación «gpt4_kid_codigo_d23b90c9_like» ya existe
+ERROR:  la relación «gpt4_kid_kid_954aa63d_like» ya existe
+ERROR:  la relación «gpt4_transfer_client_id_d2c1b8e3» ya existe
+ERROR:  la relación «gpt4_transfer_client_id_d2c1b8e3_like» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_account_id_90b37354» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_agent_id_1a980781» ya existe
+ERROR:  la relación «gpt4_transfer_creditor_id_0cb87fa0» ya existe
+ERROR:  la relación «gpt4_transfer_debtor_account_id_5b771f23» ya existe
+ERROR:  la relación «gpt4_transfer_debtor_id_0dce2b00» ya existe
+ERROR:  la relación «gpt4_transfer_kid_id_69d5b9d8» ya existe
+ERROR:  la relación «gpt4_transfer_kid_id_69d5b9d8_like» ya existe
+ERROR:  la relación «gpt4_transfer_payment_id_16823cd3_like» ya existe
+ERROR:  la relación «gpt4_transfer_payment_identification_id_ec6bbdd2» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_application_id_b22886e1» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_token_checksum_85319a26_like» ya existe
+ERROR:  la relación «oauth2_provider_accesstoken_user_id_6e4c9a65» ya existe
+ERROR:  la relación «oauth2_provider_application_client_id_03f0cc84_like» ya existe
+ERROR:  la relación «oauth2_provider_application_client_secret_53133678» ya existe
+ERROR:  la relación «oauth2_provider_application_client_secret_53133678_like» ya existe
+ERROR:  la relación «oauth2_provider_application_user_id_79829054» ya existe
+ERROR:  la relación «oauth2_provider_grant_application_id_81923564» ya existe
+ERROR:  la relación «oauth2_provider_grant_code_49ab4ddf_like» ya existe
+ERROR:  la relación «oauth2_provider_grant_user_id_e8f62af8» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_application_id_08c5ff4f» ya existe
+ERROR:  la relación «oauth2_provider_idtoken_user_id_dd512b59» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_application_id_2d1c311b» ya existe
+ERROR:  la relación «oauth2_provider_refreshtoken_user_id_da837fce» ya existe
+ERROR:  la relación «transfers_sepa2_created_by_id_da6e7492» ya existe
+ERROR:  la relación «transfers_sepa3_created_by_id_bb359bd3» ya existe
+ERROR:  la relación «transfers_sepatransaction_transaction_id_06a7eabb_like» ya existe
+ERROR:  la relación «transfers_transfer_idempotency_key_d2e1aade_like» ya existe
+ERROR:  la restricción «auth_group_permissio_permission_id_84c5c92e_fk_auth_perm» para la relación «auth_group_permissions» ya existe
+ERROR:  la restricción «auth_group_permissions_group_id_b120cbf9_fk_auth_group_id» para la relación «auth_group_permissions» ya existe
+ERROR:  la restricción «auth_permission_content_type_id_2f476e4b_fk_django_co» para la relación «auth_permission» ya existe
+ERROR:  la restricción «auth_user_groups_group_id_97559544_fk_auth_group_id» para la relación «auth_user_groups» ya existe
+ERROR:  la restricción «auth_user_groups_user_id_6a12ed8b_fk_auth_user_id» para la relación «auth_user_groups» ya existe
+ERROR:  la restricción «auth_user_user_permi_permission_id_1fbb5f2c_fk_auth_perm» para la relación «auth_user_user_permissions» ya existe
+ERROR:  la restricción «auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id» para la relación «auth_user_user_permissions» ya existe
+ERROR:  la restricción «authentication_custo_customuser_id_33d2a5f7_fk_authentic» para la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la restricción «authentication_custo_customuser_id_a7d1343c_fk_authentic» para la relación «authentication_customuser_groups» ya existe
+ERROR:  la restricción «authentication_custo_group_id_c5ef1d10_fk_auth_grou» para la relación «authentication_customuser_groups» ya existe
+ERROR:  la restricción «authentication_custo_permission_id_e47332af_fk_auth_perm» para la relación «authentication_customuser_user_permissions» ya existe
+ERROR:  la restricción «authtoken_token_user_id_35299eff_fk_auth_user_id» para la relación «authtoken_token» ya existe
+ERROR:  la restricción «core_debtor_created_by_id_7dc64213_fk_authentic» para la relación «core_debtor» ya existe
+ERROR:  la restricción «core_debtor_iban_id_ac5873ed_fk_core_iban_id» para la relación «core_debtor» ya existe
+ERROR:  la restricción «core_iban_created_by_id_bd6d179a_fk_authentic» para la relación «core_iban» ya existe
+ERROR:  la restricción «core_paymentresponse_payment_id_id_7dbdef17_fk_transfers» para la relación «core_paymentresponse» ya existe
+ERROR:  la restricción «core_paymentresponse_transaction_status_i_b6d357f3_fk_core_tran» para la relación «core_paymentresponse» ya existe
+ERROR:  la restricción «core_statusresponse_code_id_afee82cb_fk_core_tran» para la relación «core_statusresponse» ya existe
+ERROR:  la restricción «django_admin_log_content_type_id_c4bce8eb_fk_django_co» para la relación «django_admin_log» ya existe
+ERROR:  la restricción «django_admin_log_user_id_c564eba6_fk_auth_user_id» para la relación «django_admin_log» ya existe
+ERROR:  la restricción «gpt3_bulktransfer_group_header_id_9e13c7fd_fk_gpt3_grou» para la relación «gpt3_bulktransfer» ya existe
+ERROR:  la restricción «gpt3_creditor_postal_address_id_c3fe4bdd_fk_gpt3_address_id» para la relación «gpt3_creditor» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_account_id_edfee0e4_fk_gpt3_acco» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_agent_id_307e38d8_fk_gpt3_fina» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_creditor_id_c2e3bb00_fk_gpt3_cred» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_instructed_amount_id_565e82d1_fk_gpt3_inst» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_payment_identificati_b212326b_fk_gpt3_paym» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_credittransfers_payment_information__73990371_fk_gpt3_paym» para la relación «gpt3_credittransfersdetails» ya existe
+ERROR:  la restricción «gpt3_debtor_postal_address_id_27b92747_fk_gpt3_address_id» para la relación «gpt3_debtor» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_bulk_id_b9376a56_fk_gpt3_bulk» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_debtor_account_id_a9f8fa70_fk_gpt3_acco» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformat_debtor_agent_id_e4143698_fk_gpt3_fina» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_paymentinformation_debtor_id_be16dc7a_fk_gpt3_debtor_id» para la relación «gpt3_paymentinformation» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_account_id_b4e44e68_fk_gpt3_acco» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_agent_id_5770bbb2_fk_gpt3_fina» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_creditor_id_cd53570b_fk_gpt3_cred» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_debtor_account_id_ba04d35d_fk_gpt3_acco» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_instructed_amount_id_0a3b9c40_fk_gpt3_inst» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittrans_payment_identificati_c053176b_fk_gpt3_paym» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt3_sepacredittransfer_debtor_id_defce29b_fk_gpt3_debtor_id» para la relación «gpt3_sepacredittransfer» ya existe
+ERROR:  la restricción «gpt4_creditoraccount_creditor_id_c83bfa94_fk_gpt4_creditor_id» para la relación «gpt4_creditoraccount» ya existe
+ERROR:  la restricción «gpt4_debtoraccount_debtor_id_1df483ce_fk_gpt4_debtor_id» para la relación «gpt4_debtoraccount» ya existe
+ERROR:  la restricción «gpt4_transfer_client_id_d2c1b8e3_fk_gpt4_clientid_codigo» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_account_id_90b37354_fk_gpt4_cred» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_agent_id_1a980781_fk_gpt4_cred» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_creditor_id_0cb87fa0_fk_gpt4_creditor_id» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_debtor_account_id_5b771f23_fk_gpt4_debt» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_debtor_id_0dce2b00_fk_gpt4_debtor_id» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_kid_id_69d5b9d8_fk_gpt4_kid_codigo» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «gpt4_transfer_payment_identificati_ec6bbdd2_fk_gpt4_paym» para la relación «gpt4_transfer» ya existe
+ERROR:  la restricción «oauth2_provider_acce_application_id_b22886e1_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_acce_id_token_id_85db651b_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_acce_source_refresh_token_e66fbc72_fk_oauth2_pr» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_accesstoken_user_id_6e4c9a65_fk_auth_user_id» para la relación «oauth2_provider_accesstoken» ya existe
+ERROR:  la restricción «oauth2_provider_application_user_id_79829054_fk_auth_user_id» para la relación «oauth2_provider_application» ya existe
+ERROR:  la restricción «oauth2_provider_gran_application_id_81923564_fk_oauth2_pr» para la relación «oauth2_provider_grant» ya existe
+ERROR:  la restricción «oauth2_provider_grant_user_id_e8f62af8_fk_auth_user_id» para la relación «oauth2_provider_grant» ya existe
+ERROR:  la restricción «oauth2_provider_idto_application_id_08c5ff4f_fk_oauth2_pr» para la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la restricción «oauth2_provider_idtoken_user_id_dd512b59_fk_auth_user_id» para la relación «oauth2_provider_idtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refr_access_token_id_775e84e8_fk_oauth2_pr» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refr_application_id_2d1c311b_fk_oauth2_pr» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «oauth2_provider_refreshtoken_user_id_da837fce_fk_auth_user_id» para la relación «oauth2_provider_refreshtoken» ya existe
+ERROR:  la restricción «transfers_sepa2_created_by_id_da6e7492_fk_authentic» para la relación «transfers_sepa2» ya existe
+ERROR:  la restricción «transfers_sepa3_created_by_id_bb359bd3_fk_authentic» para la relación «transfers_sepa3» ya existe
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[7;30m🌐 Importando backup en la base de datos remota...[0m
+[7;32m✅ Restauración SQL completada.[0m
+[7;30m✅ ¡Subido JSON Local![0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
