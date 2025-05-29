@@ -1,4 +1,384 @@
-[2025-05-29 10:04:51 +0200] [564075] [INFO] Starting gunicorn 23.0.0
-[2025-05-29 10:04:51 +0200] [564075] [INFO] Listening at: http://0.0.0.0:8000 (564075)
-[2025-05-29 10:04:51 +0200] [564075] [INFO] Using worker: sync
-[2025-05-29 10:04:51 +0200] [564137] [INFO] Booting worker with pid: 564137
+[2025-05-29 10:29:36 +0200] [598072] [INFO] Starting gunicorn 23.0.0
+[2025-05-29 10:29:36 +0200] [598072] [INFO] Listening at: http://0.0.0.0:8000 (598072)
+[2025-05-29 10:29:36 +0200] [598072] [INFO] Using worker: sync
+[2025-05-29 10:29:36 +0200] [598127] [INFO] Booting worker with pid: 598127
+Internal Server Error: /cambiar-entorno/local/
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.OperationalError: SSL connection has been closed unexpectedly
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/core/middleware.py", line 14, in __call__
+    _user.value = request.user if request.user.is_authenticated else None
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 39, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 19, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 304, in get_user
+    user_id = _get_user_session_key(request)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 95, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 629, in get
+    num = len(clone)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 1935, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 235, in execute
+    return self._record(super().execute, sql, params)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 160, in _record
+    return method(sql, params)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.OperationalError: SSL connection has been closed unexpectedly
+
+Internal Server Error: /cambiar-entorno/local/
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/base/base.py", line 298, in _cursor
+    return self._prepare_cursor(self.create_cursor(name))
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/postgresql/base.py", line 429, in create_cursor
+    cursor = self.connection.cursor()
+psycopg2.InterfaceError: connection already closed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/middleware.py", line 130, in __call__
+    return self._postprocess(request, response, toolbar)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/middleware.py", line 167, in _postprocess
+    panel.generate_stats(request, response)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/request.py", line 64, in generate_stats
+    (k, request.session.get(k)) for k in sorted(request.session.keys())
+                                                ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 160, in keys
+    return self._session.keys()
+           ^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 629, in get
+    num = len(clone)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 1935, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1620, in execute_sql
+    cursor = self.connection.cursor()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 59, in cursor
+    cursor = connection._djdt_cursor(*args, **kwargs)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/base/base.py", line 320, in cursor
+    return self._cursor()
+           ~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/base/base.py", line 297, in _cursor
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/base/base.py", line 298, in _cursor
+    return self._prepare_cursor(self.create_cursor(name))
+                                ~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/postgresql/base.py", line 429, in create_cursor
+    cursor = self.connection.cursor()
+django.db.utils.InterfaceError: connection already closed
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: no existe la relación «django_session»
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/GitHub/api_bank_h2/api/core/middleware.py", line 14, in __call__
+    _user.value = request.user if request.user.is_authenticated else None
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/functional.py", line 251, in inner
+    self._setup()
+    ~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/utils/functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 39, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ~~~~~~~~^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/auth/middleware.py", line 19, in get_user
+    request._cached_user = auth.get_user(request)
+                           ~~~~~~~~~~~~~^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 304, in get_user
+    user_id = _get_user_session_key(request)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/auth/__init__.py", line 95, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 629, in get
+    num = len(clone)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 1935, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 235, in execute
+    return self._record(super().execute, sql, params)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 160, in _record
+    return method(sql, params)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: no existe la relación «django_session»
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+Internal Server Error: /favicon.ico
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UndefinedTable: no existe la relación «django_session»
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/middleware.py", line 130, in __call__
+    return self._postprocess(request, response, toolbar)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/middleware.py", line 167, in _postprocess
+    panel.generate_stats(request, response)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/request.py", line 64, in generate_stats
+    (k, request.session.get(k)) for k in sorted(request.session.keys())
+                                                ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 160, in keys
+    return self._session.keys()
+           ^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 55, in load
+    s = self._get_session_from_db()
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/contrib/sessions/backends/db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        session_key=self.session_key, expire_date__gt=timezone.now()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 629, in get
+    num = len(clone)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 366, in __len__
+    self._fetch_all()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 1935, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+        chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size
+    )
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/markmur88/Documentos/Entorno/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: no existe la relación «django_session»
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se...
+                                                             ^
+

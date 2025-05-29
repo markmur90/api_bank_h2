@@ -40,7 +40,7 @@ unalias d_njalla 2>/dev/null
 d_njalla() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l -H -B -v -r "$@"}
 
 unalias d_pgm 2>/dev/null
-d_pgm() {d_env && bash ./01_full.sh --env=local -Q -I "$@"}
+d_pgm() {d_env && bash ./01_full.sh --env=local -Q -I -l -r "$@"}
 
 unalias d_hek 2>/dev/null
 d_hek() {d_env && bash ./01_full.sh --env=local -B -H -u "$@"}
