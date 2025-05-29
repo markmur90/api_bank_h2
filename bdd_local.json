@@ -2190,7 +2190,7 @@
   "fields": {
     "entorno": "production",
     "nombre": "ALLOWED_HOSTS",
-    "valor": "apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com",
+    "valor": "apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com",
     "descripcion": "",
     "activo": true
   }

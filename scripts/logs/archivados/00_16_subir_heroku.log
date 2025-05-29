@@ -54,7 +54,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣟[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣯[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v171
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -561,7 +561,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 
-❌ Error en línea 34: "heroku config:set DEBUG=False ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com" SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" DJANGO_ENV=production ENVIRONMENT=production"
+❌ Error en línea 34: "heroku config:set DEBUG=False ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com" SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" DJANGO_ENV=production ENVIRONMENT=production"
 Abortando ejecución.
 
 📅 Fecha de ejecución: 2025-05-28 08:25:12
@@ -571,7 +571,7 @@ Abortando ejecución.
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 
-❌ Error en línea 34: "heroku config:set DEBUG=False ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com" SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" DJANGO_ENV=production ENVIRONMENT=production"
+❌ Error en línea 34: "heroku config:set DEBUG=False ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com" SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" DJANGO_ENV=production ENVIRONMENT=production"
 Abortando ejecución.
 
 📅 Fecha de ejecución: 2025-05-28 08:30:54
@@ -581,7 +581,7 @@ Abortando ejecución.
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -633,7 +633,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -689,7 +689,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -712,7 +712,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -735,7 +735,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -758,7 +758,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -781,7 +781,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -801,7 +801,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -824,7 +824,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -847,7 +847,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -870,7 +870,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -893,7 +893,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -916,7 +916,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -939,7 +939,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -962,7 +962,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -985,7 +985,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
