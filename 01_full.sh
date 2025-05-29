@@ -6,7 +6,7 @@ LOG_DEPLOY="./scripts/logs/01_full_deploy/full_deploy.log"
 
 clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
-DO_CLEAR=false
+DO_CLEAR=true
 TIME_SLEEP=0
 
 pausa_y_limpiar() {

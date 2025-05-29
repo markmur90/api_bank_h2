@@ -1,0 +1,15 @@
+📅 Fecha de ejecución: 2025-05-28 09:25:31
+📄 Script: 00_20_ssl.sh
+═════════════════════════════════════════════════════════════
+[2025-05-28 09:25:31 +0200] [107393] [INFO] Starting gunicorn 23.0.0
+[2025-05-28 09:25:31 +0200] [107393] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 09:25:31 +0200] [107393] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 09:25:32 +0200] [107393] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 09:25:32 +0200] [107393] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 09:25:33 +0200] [107393] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 09:25:33 +0200] [107393] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 09:25:34 +0200] [107393] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 09:25:34 +0200] [107393] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 09:25:35 +0200] [107393] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-28 09:25:35 +0200] [107393] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-28 09:25:36 +0200] [107393] [ERROR] Can't connect to ('0.0.0.0', 8443)
