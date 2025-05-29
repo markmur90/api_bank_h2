@@ -1,9 +1,9 @@
-# ╔═════════════════════════════════════════════════════════════╗
+# ╔═══════════════════════════════════════════╗
 # ║     ALIAS RESUMIDOS + MENÚ TUI PARA api_bank_h2          ║
 # ║  Ejecutar despliegues automatizados y personalizados        ║
 # ║  Usa `deploy_menu` para elegir visualmente con FZF         ║
 # ║  Usa `d_help` para ver ejemplos detallados con flags       ║
-# ╚═════════════════════════════════════════════════════════════╝
+# ╚═══════════════════════════════════════════╝
 
 clear
 

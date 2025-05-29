@@ -12,7 +12,7 @@ mkdir -p "$(dirname "$LOG_DETALLE")"
 {
 echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
 echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═════════════════════════════════════════════════════════════"
+echo -e "═══════════════════════════════════════════"
 } >> "$LOG_FILE"
 
 # Redirigir salida detallada a log de proceso

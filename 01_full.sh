@@ -3,7 +3,7 @@ set -euo pipefail
 
 centrar_texto() {
   local texto="$1"
-  local ancho=61
+  local ancho=43
   local relleno_char="-"
   local largo_texto=${#texto}
   local relleno_total=$((ancho - largo_texto - 2))
@@ -48,14 +48,14 @@ fi
 
 COMENTARIO_COMMIT=""
 
-# ╔════════════════════════════════════════════════════════════════════════════╗
-# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2           ║
-# ║  Automatización total: setup, backups, deploy, limpieza y seguridad       ║
-# ║  Soporte para 30 combinaciones de despliegue con alias `d_*`              ║
-# ║  Ejecuta `deploy_menu` para selección interactiva con FZF                 ║
-# ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros           ║
-# ║  Autor: markmur88                                                         ║
-# ╚════════════════════════════════════════════════════════════════════════════╝
+# ╔═════════════════════════════════════════════════════════════════════════════╗
+# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2               ║
+# ║  Automatización total: setup, backups, deploy, limpieza y seguridad         ║
+# ║  Soporte para 30 combinaciones de despliegue con alias `d_*`                ║
+# ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
+# ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
+# ║  Autor: markmur88                                                           ║
+# ╚═════════════════════════════════════════════════════════════════════════════╝
 
 # === CARGA DEL ENTORNO (.env) ===
 ENV_FILE=".env"

@@ -17,7 +17,7 @@ mkdir -p "$(dirname "$LOG_FILE")" "$(dirname "$LOG_DEPLOY")"
   echo ""
   echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
   echo -e "📄 Script: $SCRIPT_NAME"
-  echo -e "═════════════════════════════════════════════════════════════"
+  echo -e "═══════════════════════════════════════════"
 } | tee -a "$LOG_FILE" "$LOG_DEPLOY"
 
 trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE" "$LOG_DEPLOY"; exit 1' ERR

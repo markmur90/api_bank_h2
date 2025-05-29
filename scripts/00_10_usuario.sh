@@ -8,7 +8,7 @@ mkdir -p "$(dirname "$LOG_FILE")"
 {
 echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
 echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═════════════════════════════════════════════════════════════"
+echo -e "═══════════════════════════════════════════"
 } | tee -a "$LOG_FILE"
 
 trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"

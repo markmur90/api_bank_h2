@@ -1,7 +1,7 @@
 
 📅 Fecha de ejecución: 2025-05-29 02:59:24
 📄 Script: 00_16_subir_heroku.sh
-═════════════════════════════════════════════════════════════
+═══════════════════════════════════════════
 
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
@@ -24,7 +24,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 
 📅 Fecha de ejecución: 2025-05-29 03:06:51
 📄 Script: 00_16_subir_heroku.sh
-═════════════════════════════════════════════════════════════
+═══════════════════════════════════════════
 
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
@@ -47,7 +47,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 
 📅 Fecha de ejecución: 2025-05-29 03:17:06
 📄 Script: 00_16_subir_heroku.sh
-═════════════════════════════════════════════════════════════
+═══════════════════════════════════════════
 
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
@@ -61,6 +61,29 @@ ENVIRONMENT: production
 
 📦 Haciendo git add...
 📝 Commit con mensaje: Config
+🌐 Push a GitHub...
+HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
+☁️  Push a Heroku...
+✅ Heroku reiniciado correctamente.
+
+🎉 ✅ ¡Deploy completado con éxito!
+
+📅 Fecha de ejecución: 2025-05-29 03:23:41
+📄 Script: 00_16_subir_heroku.sh
+═══════════════════════════════════════════
+
+🔧 Desactivando collectstatic en Heroku...
+DISABLE_COLLECTSTATIC: 1
+DEBUG: False
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
+DJANGO_ENV: production
+ENVIRONMENT: production
+
+🚀 Subiendo el proyecto a Heroku y GitHub...
+
+📦 Haciendo git add...
+📝 Commit con mensaje: config
 🌐 Push a GitHub...
 HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 ☁️  Push a Heroku...
