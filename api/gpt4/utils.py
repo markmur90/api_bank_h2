@@ -30,8 +30,6 @@ from api.gpt4.utils_core import load_private_key_y_kid
 from config.settings.base1 import ORIGIN, API_URL, TOKEN_URL, AUTH_URL, CLIENT_ID, CLIENT_SECRET
 # from config.settings.configuración_dinamica import OAUTH2, TIMEOUT_REQUEST, ORIGIN, API_URL, TOKEN_URL, AUTH_URL, CLIENT_ID, CLIENT_SECRET
 
-TIMEOUT_REQUEST = 3600
-
 # ==== Directorios de schemas y logs ====
 BASE_SCHEMA_DIR = os.path.join("schemas", "transferencias")
 os.makedirs(BASE_SCHEMA_DIR, exist_ok=True)
@@ -440,7 +438,7 @@ def send_transfer0(transfer, use_token=None, use_otp=None, regenerate_token=Fals
         'Otp': proof_token
     })
     try:
-        response = requests.post(API_URL, headers=headers, json=schema_data, timeout=TIMEOUT_REQUEST)
+        response = requests.post(API_URL, headers=headers, json=schema_data, timeout=600)
         response.raise_for_status()
         data = response.json()
         transfer.auth_id = data.get('authId')
@@ -491,7 +489,7 @@ def send_transfer1(transfer, use_token=None, use_otp=None, regenerate_token=Fals
         "Correlation-Id": transfer.payment_id,
         "otp": proof_token
     })
-    response = requests.post(API_URL, json=schema_data, headers=headers, timeout=TIMEOUT_REQUEST)
+    response = requests.post(API_URL, json=schema_data, headers=headers, timeout=600)
     data = response.json()
     transfer.auth_id = data.get("authId")
     transfer.status = data.get("transactionStatus", transfer.status)
@@ -532,7 +530,7 @@ def send_transfer2(
         'Otp': proof_token
     })
     try:
-        response = requests.post(API_URL, headers=headers, json=schema_data, timeout=TIMEOUT_REQUEST)
+        response = requests.post(API_URL, headers=headers, json=schema_data, timeout=600)
         response.raise_for_status()
     except requests.RequestException as exc:
         error_msg = handle_error_response(exc)
@@ -595,7 +593,7 @@ def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None
     }
     registrar_log(pid, headers_enviados=headers, request_body=body, tipo_log='TRANSFER', extra_info="Enviando transferencia SEPA")
     try:
-        resp = requests.post(API_URL, headers=headers, json=body, timeout=TIMEOUT_REQUEST)
+        resp = requests.post(API_URL, headers=headers, json=body, timeout=600)
         response_headers = dict(resp.headers)
         registrar_log(pid, tipo_log='TRANSFER', response_text=resp.text, headers_recibidos=response_headers, extra_info="Respuesta del API SEPA")
         resp.raise_for_status()
@@ -758,7 +756,7 @@ def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     registrar_log(payment_id, tipo_log='AUTH', headers_enviados=headers, request_body=data)
     try:
-        resp = requests.post(TOKEN_URL, data=data, auth=(CLIENT_ID, CLIENT_SECRET), timeout=TIMEOUT_REQUEST)
+        resp = requests.post(TOKEN_URL, data=data, auth=(CLIENT_ID, CLIENT_SECRET), timeout=600)
         registrar_log(payment_id, tipo_log='AUTH', response_headers=dict(resp.headers), response_text=resp.text)
         resp.raise_for_status()
     except Exception as e:
@@ -796,7 +794,7 @@ def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
     }
     registrar_log(payment_id, tipo_log='AUTH', request_body=data)
     try:
-        resp = requests.post(TOKEN_URL, data=data, timeout=TIMEOUT_REQUEST)
+        resp = requests.post(TOKEN_URL, data=data, timeout=600)
         registrar_log(payment_id, tipo_log='AUTH', response_headers=dict(resp.headers), response_text=resp.text)
         resp.raise_for_status()
     except Exception as e:
@@ -823,7 +821,7 @@ def update_sca_request(transfer: Transfer, action: str, otp: str, token: str) ->
     }
     payload = {'action': action, 'authId': transfer.auth_id}
     registrar_log(transfer.payment_id, tipo_log='SCA', headers_enviados=headers, request_body=payload, extra_info="Actualizando SCA")
-    resp = requests.patch(url, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    resp = requests.patch(url, headers=headers, json=payload, timeout=600)
     registrar_log(transfer.payment_id, tipo_log='SCA', response_headers=dict(resp.headers), response_text=resp.text, extra_info="Respuesta SCA")
     resp.raise_for_status()
     data = resp.json()
@@ -843,7 +841,7 @@ def fetch_transfer_details(transfer: Transfer, token: str) -> dict:
         'Correlation-Id': transfer.payment_id
     }
     registrar_log(transfer.payment_id, tipo_log='TRANSFER', headers_enviados=headers, extra_info="Obteniendo estado de transferencia")
-    resp = requests.get(url, headers=headers, timeout=TIMEOUT_REQUEST)
+    resp = requests.get(url, headers=headers, timeout=600)
     registrar_log(transfer.payment_id, tipo_log='TRANSFER', response_headers=dict(resp.headers), response_text=resp.text, extra_info="Respuesta fetch status")
     resp.raise_for_status()
     data = resp.json()
@@ -902,7 +900,7 @@ def fetch_token_by_code(code, code_verifier):
       'code_verifier': code_verifier
     }
     auth = (p['CLIENT_ID'], p['CLIENT_SECRET'])
-    resp = requests.post(p['TOKEN_URL'], data=data, auth=auth, timeout=p['TIMEOUT_REQUEST'])
+    resp = requests.post(p['TOKEN_URL'], data=data, auth=auth, timeout=600)
     resp.raise_for_status()
     j = resp.json()
     return j['access_token'], j.get('refresh_token'), j.get('expires_in', 600)
@@ -916,7 +914,7 @@ def refresh_access_token(refresh_token: str) -> tuple[str, str, int]:
     auth = (p['CLIENT_ID'], p['CLIENT_SECRET'])
     registrar_log("REFRESH_TOKEN", tipo_log='AUTH', request_body=data, extra_info="Iniciando refresh token OAuth2")
     try:
-        resp = requests.post(p['TOKEN_URL'], data=data, auth=auth, timeout=p['TIMEOUT_REQUEST'])
+        resp = requests.post(p['TOKEN_URL'], data=data, auth=auth, timeout=600)
         registrar_log("REFRESH_TOKEN", tipo_log='AUTH', response_headers=dict(resp.headers), response_text=resp.text, extra_info="Respuesta refresh token")
         resp.raise_for_status()
         j = resp.json()
@@ -943,7 +941,7 @@ def crear_challenge_mtan(transfer: Transfer, token: str, payment_id: str) -> str
         }
     }
     registrar_log(payment_id, headers_enviados=headers, request_body=payload, extra_info="Iniciando MTAN challenge", tipo_log='OTP')
-    resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=600)
     registrar_log(payment_id, response_headers=dict(resp.headers), response_text=resp.text, tipo_log='OTP')
     resp.raise_for_status()
     return resp.json()['id']
@@ -957,7 +955,7 @@ def verify_mtan(challenge_id: str, otp: str, token: str, payment_id: str) -> str
     }
     payload = {'challengeResponse': otp}
     registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, request_body=payload, extra_info=f"Verificando OTP para challenge {challenge_id}")
-    r = requests.patch(f"{AUTH_URL}/{challenge_id}", headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    r = requests.patch(f"{AUTH_URL}/{challenge_id}", headers=headers, json=payload, timeout=600)
     registrar_log(payment_id, tipo_log='OTP', response_headers=dict(r.headers), response_text=r.text, extra_info="Respuesta verificación OTP")
     r.raise_for_status()
     return r.json()['challengeProofToken']
@@ -976,7 +974,7 @@ def crear_challenge_phototan(transfer: Transfer, token: str, payment_id: str):
         'challenge': {}
     }
     registrar_log(payment_id, headers_enviados=headers, request_body=payload, extra_info="Iniciando PhotoTAN challenge", tipo_log='OTP')
-    resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=600)
     registrar_log(payment_id, response_headers=dict(resp.headers), response_text=resp.text, tipo_log='OTP')
     resp.raise_for_status()
     data = resp.json()
@@ -996,7 +994,7 @@ def resolver_challenge(challenge_id: str, token: str, payment_id: str) -> str:
     }
     start = time.time()
     while True:
-        resp = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
+        resp = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=600)
         registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, response_headers=dict(resp.headers), response_text=resp.text, extra_info=f"Comprobando estado challenge {challenge_id}")
         data = resp.json()
         status = data.get('status')
@@ -1057,7 +1055,7 @@ def crear_challenge_pushtan(transfer: Transfer, token: str, payment_id: str) -> 
         'language': 'de'
     }
     registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, request_body=payload, extra_info="Iniciando PushTAN challenge")
-    response = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    response = requests.post(AUTH_URL, headers=headers, json=payload, timeout=600)
     registrar_log(payment_id, tipo_log='OTP', response_headers=dict(response.headers), response_text=response.text)
     response.raise_for_status()
     return response.json()['id']
@@ -1078,7 +1076,7 @@ def crear_challenge_autorizacion(transfer, token):
         }
         headers = {'Authorization':f'Bearer {token}','Content-Type':'application/json'}
         registrar_log(pid, headers_enviados=headers, request_body=payload, tipo_log='OTP')
-        resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+        resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=600)
         registrar_log(pid, response_text=resp.text, tipo_log='OTP')
         resp.raise_for_status()
         cid = resp.json().get('id')
@@ -1095,7 +1093,7 @@ def resolver_challenge_pushtan(challenge_id: str, token: str, payment_id: str) -
     }
     start = time.time()
     while True:
-        response = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
+        response = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=600)
         registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, response_headers=dict(response.headers), response_text=response.text, extra_info="Esperando validación PushTAN")
         data = response.json()
         status = data.get('status')
