@@ -25,6 +25,12 @@
     padding: 0.3rem 0.5rem !important;
     font-size: 0.88rem;
   }
+  .nombre-col {
+    font-size: 0.75rem !important;
+  }
+  .valor-col {
+    font-size: 1rem !important;
+  }
   .btn-editar {
     background-color: #4a90e2;
     color: white;
@@ -56,12 +62,12 @@
     <div class="custom-card-body">
       <a href="{% url 'crear_configuracion' %}" class="btn btn-sm btn-primary mb-3">➕ Nueva configuración</a>
       <div class="table-responsive">
-        <table class="table table-sm table-bordered table-hover align-middle">
+        <table class="table table-sm table-bordered table-hover align-middle sortable">
           <thead class="table-dark text-center">
             <tr>
               <th>Entorno</th>
-              <th>Nombre</th>
-              <th>Valor</th>
+              <th class="nombre-col">Nombre</th>
+              <th class="valor-col">Valor</th>
               <th>Activo</th>
               <th>Acciones</th>
             </tr>
@@ -70,8 +76,8 @@
             {% for config in configuraciones %}
               <tr>
                 <td>{{ config.entorno }}</td>
-                <td>{{ config.nombre }}</td>
-                <td class="text-truncate valor-max-width">{{ config.valor|truncatechars:80 }}</td>
+                <td class="nombre-col">{{ config.nombre }}</td>
+                <td class="valor-col text-truncate valor-max-width">{{ config.valor|truncatechars:80 }}</td>
                 <td class="text-center">{{ config.activo|yesno:"✅,❌" }}</td>
                 <td class="text-center">
                   <a href="{% url 'editar_configuracion' config.pk %}" class="btn btn-sm btn-editar">✏️</a>
@@ -87,4 +93,6 @@
     </div>
   </div>
 </div>
+
+<script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 {% endblock %}
