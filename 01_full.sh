@@ -10,8 +10,6 @@ centrar_texto() {
   local relleno_izq=$((relleno_total / 2))
   local relleno_der=$((relleno_total - relleno_izq))
   printf "
-
-
 %s %s %s
 " \
     "$(printf "%${relleno_izq}s" | tr ' ' "$relleno_char")" \
@@ -540,7 +538,6 @@ pausa_y_limpiar
 # === 23 ===
 echo -e "\033[7;34m-------------------------------------------- DEPLOY COMPLETO ------------------------------------------\033[0m" 
 centrar_texto "DEPLOY COMPLETO" >> "$LOG_DEPLOY"
-echo -e "\n\n"
 
 URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
