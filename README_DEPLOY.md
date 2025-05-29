@@ -265,7 +265,7 @@ Este documento resume cómo configurar correctamente el sistema OAuth2 de una ap
 
 ## 📦 VARIABLES DE ENTORNO REQUERIDAS
 
-## ✅ En desarrollo/sandbox (`.env.development`)
+## ✅ En desarrollo/sandbox (`.env.local`)
 
 ```dotenv
 DJANGO_DEBUG=True

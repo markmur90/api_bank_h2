@@ -33,7 +33,6 @@ EXCLUDES=(
     "--exclude=*.sqlite3"
     "--exclude=.vscode/"
     "--exclude=base0.py"
-    "--exclude=base1.py"
     "--exclude=*copy*.*"
     "--exclude=local_old.py"
     "--exclude=production_old.py"

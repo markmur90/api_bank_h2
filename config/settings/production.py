@@ -9,10 +9,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Configuraciones específicas del entorno de producción
 USE_OAUTH2_UI = True
 
-REDIRECT_URI = os.getenv("REDIRECT_URI", "https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/")
-ORIGIN = os.getenv("ORIGIN", "https://apibank2-54644cdf263f.herokuapp.com")
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-OAUTH2.update({
-    "REDIRECT_URI": REDIRECT_URI,
-    "ORIGIN": ORIGIN,
-})
+# REDIRECT_URI = os.getenv("REDIRECT_URI", "https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/")
+# ORIGIN = os.getenv("ORIGIN", "https://apibank2-54644cdf263f.herokuapp.com")
+
+# OAUTH2.update({
+#     "REDIRECT_URI": REDIRECT_URI,
+#     "ORIGIN": ORIGIN,
+# })
+
