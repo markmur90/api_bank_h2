@@ -1,0 +1,51 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.card {
+  border-radius: 0.75rem;
+}
+
+.card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.table th, .table td {
+  vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.form-control {
+  background-color: #333;
+  color: #fff;
+  border: none;
+}
+
+.form-control:focus {
+  background-color: #444;
+  color: #fff;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+}
+
+.shadow-lg {
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.5)!important;
+}
+
+.fixed-bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+}
