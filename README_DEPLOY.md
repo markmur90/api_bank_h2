@@ -1,6 +1,6 @@
 # 🧠 Automatización de Despliegue — `api_bank_h2`
 
-### Cambios importantes en esta versión
+## Cambios importantes en esta versión
 
 - Todos los scripts usan ahora **bloques elegibles** `DO_*` en lugar de `OMIT_*`, permitiendo un control más preciso con `--do-*`.
 - Se ha añadido el comando `d_local_ssl`, que ejecuta entorno local en HTTPS (Gunicorn + Nginx en puerto 8443 con certificado autofirmado).
@@ -9,8 +9,6 @@
   - `d_local_ssl` → lanza entorno local con SSL
   - `d_reset` → reinicia entorno seguro
   - `d_reload_aliases` → recarga todos los alias
-
-
 
 Este archivo documenta el uso de funciones Bash para automatizar el despliegue, configuración y ejecución del sistema `api_bank_h2` en distintos entornos. Incluye alias funcionales para `local`, `heroku`, `production`, y pruebas SSL.
 
@@ -113,17 +111,6 @@ Este archivo documenta el uso de funciones Bash para automatizar el despliegue, 
 | `d_cep` | `./01_full.sh -p -E` | Generar claves PEM y certificados |
 | `d_vps` | `./01_full.sh -v` | Desplegar solo en VPS |
 
-
-## 📂 Recomendación
-
-Agrega este archivo a tu `.bashrc`, `.bash_aliases` o `.zshrc` y luego ejecuta:
-
-```bash
-source ~/.bash_aliases
-```
-
-Así tendrás acceso inmediato a todas las funciones.
-
 ---
 
 ## 🌐 Dominio y Servidor
@@ -145,22 +132,6 @@ Así tendrás acceso inmediato a todas las funciones.
 
 ---
 
-## 📦 Scripts de instalación
-
-Ubicados en el directorio `scripts/`, estos scripts automatizan el setup del VPS:
-
-| Script                           | Función                                 |
-| -------------------------------- | ---------------------------------------- |
-| `setup_coretransact.sh`        | Script maestro de configuración inicial |
-| `vps_instalar_dependencias.sh` | Instala dependencias necesarias          |
-| `vps_configurar_ssh.sh`        | Configura claves y puerto SSH            |
-| `vps_configurar_sistema.sh`    | Timezone, hostname y usuario             |
-| `vps_deploy_django.sh`         | Clonación y despliegue de Django        |
-| `vps_configurar_gunicorn.sh`   | Configura Gunicorn para Django           |
-| `vps_configurar_nginx.sh`      | Configura Nginx con SSL                  |
-
----
-
 ## 📡 Configuración DNS Njalla
 
 - Crear un registro A para `apih.coretransapi.com` apuntando a `80.78.30.188`.
@@ -175,14 +146,14 @@ Certbot se encargará de emitir los certificados:
 
 ```bash
 certbot --nginx -d apih.coretransapi.com
-```
+```text
 
 Los certificados estarán en:
 
 ```nginx
 ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
 ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
-```
+```text
 
 ---
 
@@ -244,8 +215,6 @@ server {
 | Ingreso Mensual            | —                                           | `7000 x mes`                                | `700 x mes`                                 |
 
 > 🛡️ Estos datos son utilizados únicamente con fines de simulación y pruebas automatizadas. No se recomienda emplearlos en producción sin cifrado, validación y control de acceso.
-
-
 
 ---
 
@@ -312,8 +281,7 @@ heroku config:set AUTH_URL="https://simulator-api.db.com/gw/dbapi/authorization/
 
 En el panel de apps de [developer.db.com](https://developer.db.com/dashboard/developerapps), registra como **redirect URI**:
 
-```
-https://api.coretransapi.com/oauth2/callback/
+```https://api.coretransapi.com/oauth2/callback/
 ```
 
 ---
@@ -330,8 +298,7 @@ heroku domains:add api.coretransapi.com
 
 En el proveedor DNS, apunta:
 
-```
-api.coretransapi.com → <tu-app>.herokudns.com
+```api.coretransapi.com → <tu-app>.herokudns.com
 ```
 
 ### C. HTTPS automático
@@ -369,17 +336,12 @@ Esto incluye:
 
 ---
 
-# **Deploy de Django a VPS Njalla**
+## **Deploy de Django a VPS Njalla**
 
 ---
 
 Guía detallada paso a paso
 Requisitos previos
-
-    Proyecto Django funcional en tu computadora local
-    Acceso SSH a tu VPS de Njalla (ya lo tienes)
-    Git instalado en tu computadora local
-    Conocimientos básicos de línea de comandos
 
 ## **Proceso principal**
 
@@ -393,12 +355,12 @@ Actualiza settings.py
 DEBUG = False
 ALLOWED_HOSTS = ['tu-dominio.com', 'www.tu-dominio.com', 'tu-ip-vps']
 
-###### Configuración para archivos estáticos
+#### Configuración para archivos estáticos
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-###### Configuración para archivos de medios
+##### Configuración para archivos de medios
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
@@ -411,24 +373,24 @@ Consejo: Considera usar variables de entorno para configuraciones sensibles como
 
 ### **2 Conectarse al VPS**
 
-###### Conéctate a tu VPS de Njalla usando SSH:
+#### Conéctate a tu VPS de Njalla usando SSH
 
 ssh usuario@tu-ip-vps
 
-###### Si usas una clave SSH personalizada:
+##### Si usas una clave SSH personalizada
 
 ssh -i /ruta/a/tu/clave_privada usuario@tu-ip-vps
 
 ### **3 Instalar dependencias en el servidor**
 
-###### Una vez conectado al VPS, instala las dependencias necesarias:
+#### Una vez conectado al VPS, instala las dependencias necesarias
 
 sudo apt update
 sudo apt install python3 python3-pip python3-venv nginx postgresql postgresql-contrib
 
 ### **4 Configurar la base de datos**
 
-###### Configura PostgreSQL para tu proyecto:
+#### Configura PostgreSQL para tu proyecto
 
 sudo -u postgres psql
 
@@ -444,15 +406,15 @@ GRANT ALL PRIVILEGES ON DATABASE nombre_db TO nombre_usuario;
 
 Hay varias formas de transferir tu proyecto al servidor:
 
-###### Opción 1: Usando Git (recomendado)
+#### Opción 1: Usando Git (recomendado)
 
 En tu servidor:
 
 mkdir -p /var/www/
 cd /var/www/
-git clone https://tu-repositorio.git proyecto_django
+git clone <https://tu-repositorio.git> proyecto_django
 
-###### Opción 2: Usando SCP
+##### Opción 2: Usando SCP
 
 En tu computadora local:
 
@@ -460,7 +422,7 @@ scp -r /ruta/a/tu/proyecto_django usuario@tu-ip-vps:/var/www/
 
 ### **6 Configurar el entorno virtual**
 
-###### Crea y configura un entorno virtual para tu proyecto:
+#### Crea y configura un entorno virtual para tu proyecto
 
 cd /var/www/proyecto_django
 python3 -m venv venv
@@ -470,7 +432,7 @@ pip install gunicorn psycopg2-binary
 
 ### **7 Configurar Django**
 
-###### Aplica las migraciones y recolecta los archivos estáticos:
+#### Aplica las migraciones y recolecta los archivos estáticos
 
 cd /var/www/proyecto_django
 source venv/bin/activate
@@ -480,11 +442,11 @@ python manage.py createsuperuser
 
 ### **8 Configurar Gunicorn**
 
-###### Crea un archivo de servicio para Gunicorn:
+#### Crea un archivo de servicio para Gunicorn
 
 sudo nano /etc/systemd/system/gunicorn.service
 
-###### Añade el siguiente contenido:
+#### Añade el siguiente contenido
 
 [Unit]
 Description=gunicorn daemon
@@ -499,7 +461,7 @@ ExecStart=/var/www/proyecto_django/venv/bin/gunicorn --access-logfile - --worker
 [Install]
 WantedBy=multi-user.target
 
-###### Inicia el servicio:
+#### Inicia el servicio
 
 sudo systemctl start gunicorn
 sudo systemctl enable gunicorn
@@ -507,33 +469,29 @@ sudo systemctl status gunicorn
 
 ### **9 Configurar Nginx**
 
-###### Crea un archivo de configuración para Nginx:
+#### Crea un archivo de configuración para Nginx
 
 sudo nano /etc/nginx/sites-available/proyecto_django
 
-###### Añade el siguiente contenido:
+##### Contenido a agregar
 
 server {
     listen 80;
-    server_name tu-dominio.com www.tu-dominio.com;
-
+    server_name tu-dominio.com <www.tu-dominio.com>;
     location = /favicon.ico { access_log off; log_not_found off; }
-
     location /static/ {
         root /var/www/proyecto_django;
     }
-
     location /media/ {
         root /var/www/proyecto_django;
     }
-
     location / {
         include proxy_params;
-        proxy_pass http://unix:/var/www/proyecto_django/proyecto.sock;
+        proxy_pass <http://unix:/var/www/proyecto_django/proyecto.sock>;
     }
 }
 
-###### Habilita el sitio y reinicia Nginx:
+###### Habilita el sitio y reinicia Nginx
 
 sudo ln -s /etc/nginx/sites-available/proyecto_django /etc/nginx/sites-enabled/
 sudo nginx -t
@@ -541,31 +499,31 @@ sudo systemctl restart nginx
 
 ### **10 Configurar HTTPS con Certbot**
 
-###### Instala Certbot y obtén un certificado SSL:
+#### Instala Certbot y obtén un certificado SSL
 
 sudo apt install certbot python3-certbot-nginx
-sudo certbot --nginx -d tu-dominio.com -d www.tu-dominio.com
+sudo certbot --nginx -d tu-dominio.com -d <www.tu-dominio.com>
 
-###### Certbot actualizará automáticamente tu configuración de Nginx para usar HTTPS.
+#### Certbot actualizará automáticamente tu configuración de Nginx para usar HTTPS
 
 ### **11 Configurar el firewall**
 
-###### Configura el firewall para permitir el tráfico web:
+#### Configura el firewall para permitir el tráfico web
 
 sudo ufw allow 'Nginx Full'
 sudo ufw allow ssh
 sudo ufw enable
 sudo ufw status
 
-###### ¡Felicidades! Tu aplicación Django debería estar ahora desplegada y accesible en tu dominio con HTTPS.
+#### ¡Felicidades! Tu aplicación Django debería estar ahora desplegada y accesible en tu dominio con HTTPS
 
 ---
 
-## **Mantenimiento y actualizaciones**
+## **Mantenimiento y actualizaciones (Resumen)**
 
-### **Actualizar tu aplicación**
+### **Actualizar tu aplicación en producción**
 
-###### Para actualizar tu aplicación cuando hagas cambios:
+#### Pasos para actualizar tu aplicación en producción
 
 cd /var/www/proyecto_django
 git pull  # Si usas Git
@@ -579,19 +537,19 @@ sudo systemctl restart gunicorn
 
 Es importante realizar copias de seguridad regularmente:
 
-###### Backup de la base de datos
+#### Backup de la base de datos
 
 sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
 
-###### Backup del código
+#### Backup manual del código fuente
 
 tar -czvf /path/to/backup/proyecto_django_$(date +%Y%m%d).tar.gz /var/www/proyecto_django
 
-###### Automatizar con cron
+#### Automatizar backups con cron
 
 sudo crontab -e
 
-0 2 * * * sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
+0 2 ** * sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
 
 ---
 
@@ -601,11 +559,11 @@ sudo crontab -e
 
 ### **Configuración de variables de entorno**
 
-###### Es recomendable usar variables de entorno para configuraciones sensibles:
+#### Es recomendable usar variables de entorno para configuraciones sensibles
 
 sudo nano /etc/environment
 
-###### Añade tus variables:
+#### Añade tus variables
 
 DJANGO_SECRET_KEY='tu_clave_secreta'
 DJANGO_DEBUG=False
@@ -614,7 +572,7 @@ DJANGO_DB_USER='nombre_usuario'
 DJANGO_DB_PASSWORD='contraseña'
 DJANGO_DB_HOST='0.0.0.0'
 
-###### Luego modifica tu settings.py para usar estas variables:
+##### Luego modifica tu settings.py para usar estas variables
 
 import os
 
@@ -634,12 +592,12 @@ DATABASES = {
 
 ### **Configuración de caché**
 
-###### Para mejorar el rendimiento, configura el caché:
+#### Para mejorar el rendimiento, configura el caché
 
 sudo apt install redis-server
 pip install django-redis
 
-###### Añade la configuración a settings.py:
+#### Añade la configuración a settings.py
 
 CACHES = {
     'default': {
@@ -658,13 +616,12 @@ SESSION_CACHE_ALIAS = 'default'
 
 ## **Configuración avanzada de Nginx**
 
-###### Optimización de rendimiento
+### Optimización de rendimiento
 
 Mejora el rendimiento de Nginx con estas configuraciones:
 
 server {
     # Configuración básica...
-
     # Compresión gzip
     gzip on;
     gzip_vary on;
@@ -672,52 +629,46 @@ server {
     gzip_proxied expired no-cache no-store private auth;
     gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml;
     gzip_disable "MSIE [1-6]\.";
-
     # Caché de navegador para archivos estáticos
     location /static/ {
         root /var/www/proyecto_django;
         expires 30d;
         add_header Cache-Control "public, max-age=2592000";
     }
-
     # Configuración para archivos de medios
     location /media/ {
         root /var/www/proyecto_django;
         expires 7d;
         add_header Cache-Control "public, max-age=604800";
     }
-
     # Límites de tamaño de carga
     client_max_body_size 10M;
 }
 
-###### Configuración de seguridad
+#### Configuración de seguridad
 
 Mejora la seguridad de tu servidor:
 
 server {
     # Configuración básica...
-
     # Cabeceras de seguridad
     add_header X-Content-Type-Options nosniff;
     add_header X-XSS-Protection "1; mode=block";
     add_header X-Frame-Options SAMEORIGIN;
     add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
-
     # Deshabilitar listado de directorios
     autoindex off;
-
     # Ocultar información de versión
     server_tokens off;
 }
 
 ---
 
-## **Mantenimiento y actualizaciones**
+##### **Resumen de mantenimiento y actualizaciones**
 
 ### **Actualizar tu aplicación**
 
-#### Para actualizar tu aplicación cuando hagas cambios:
+#### Para actualizar tu aplicación cuando hagas cambios
 
 cd /var/www/proyecto_django
 git pull  # Si usas Git
@@ -731,19 +682,19 @@ sudo systemctl restart gunicorn
 
 Es importante realizar copias de seguridad regularmente:
 
-###### Backup de la base de datos
+### Backup manual de la base de datos
 
 sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
 
-###### Backup del código
+#### Backup manual del código
 
 tar -czvf /path/to/backup/proyecto_django_$(date +%Y%m%d).tar.gz /var/www/proyecto_django
 
-###### Automatizar con cron
+#### Programar backups automáticos con cron
 
 sudo crontab -e
 
-0 2 * * * sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
+0 2 ** * sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
 
 ---
 
@@ -753,70 +704,82 @@ sudo crontab -e
 
 Si recibes un error 502, verifica los siguientes aspectos:
 
-###### Comprueba que Gunicorn esté funcionando:
+#### Comprueba que Gunicorn esté funcionando
 
-    sudo systemctl status gunicorn
+```sudo systemctl status gunicorn
+```
 
-###### Verifica los logs de Gunicorn:
+#### Verifica los logs de Gunicorn
 
-    sudo journalctl -u gunicorn
+```    sudo journalctl -u gunicorn
+```
 
-###### Comprueba los permisos del socket:
+#### Comprueba los permisos del socket
 
-    ls -la /var/www/proyecto_django/proyecto.sock
+```    ls -la /var/www/proyecto_django/proyecto.sock
+```
 
-###### Reinicia Gunicorn:
+##### Reinicia Gunicorn
 
-    sudo systemctl restart gunicorn
+```    sudo systemctl restart gunicorn
+```
 
 ### Archivos estáticos no se cargan
 
 Si los archivos estáticos no se cargan correctamente:
 
-###### Verifica que hayas ejecutado collectstatic:
+#### Verifica que hayas ejecutado collectstatic
 
-    cd /var/www/proyecto_django
+```    cd /var/www/proyecto_django
     source venv/bin/activate
     python manage.py collectstatic --noinput
+```
 
-###### Comprueba los permisos de la carpeta static:
+##### Comprueba los permisos de la carpeta static
 
-    sudo chown -R www-data:www-data /var/www/proyecto_django/staticfiles
+```    sudo chown -R www-data:www-data /var/www/proyecto_django/staticfiles
+```
 
-###### Verifica la configuración de Nginx para los archivos estáticos:
+###### Verifica la configuración de Nginx para los archivos estáticos
 
-    sudo nano /etc/nginx/sites-available/proyecto_django
+```    sudo nano /etc/nginx/sites-available/proyecto_django
+```
 
 ### Problemas de base de datos
 
 Si tienes problemas con la base de datos:
 
-###### Verifica que PostgreSQL esté funcionando:
+#### Verifica que PostgreSQL esté funcionando
 
-    sudo systemctl status postgresql
+```    sudo systemctl status postgresql
+```
 
-###### Comprueba la conexión a la base de datos:
+##### Comprueba la conexión a la base de datos
 
-    sudo -u postgres psql -c "SELECT 1;"
+```    sudo -u postgres psql -c "SELECT 1;"
+```
 
-###### Verifica las credenciales de la base de datos en settings.py o en las variables de entorno.
+###### Verifica las credenciales de la base de datos en settings.py o en las variables de entorno
 
 ### Verificar logs
 
 Los logs son fundamentales para diagnosticar problemas:
 
-###### Logs de Nginx:
+#### Logs de Nginx
 
-    sudo tail -f /var/log/nginx/error.log
+```    sudo tail -f /var/log/nginx/error.log
     sudo tail -f /var/log/nginx/access.log
+```
 
-###### Logs de Gunicorn:
+##### Logs de Gunicorn
 
-    sudo journalctl -u gunicorn
+```    sudo journalctl -u gunicorn
+```
 
-###### Logs de Django (si has configurado logging en settings.py):
+###### Logs de Django (si has configurado logging en settings.py)
 
-    tail -f /var/www/proyecto_django/logs/django.log
+```    tail -f /var/www/proyecto_django/logs/django.log
+```
 
 ---
 
@@ -824,7 +787,7 @@ Los logs son fundamentales para diagnosticar problemas:
 
 ### Actualizar tu aplicación
 
-###### Para actualizar tu aplicación cuando hagas cambios:
+#### Actualizar tu aplicación tras cambios (mantenimiento)
 
 cd /var/www/proyecto_django
 git pull  # Si usas Git
@@ -834,15 +797,15 @@ python manage.py migrate  # Si hay nuevas migraciones
 python manage.py collectstatic --noinput
 sudo systemctl restart gunicorn
 
-### Copias de seguridad
+### Copias de seguridad automáticas
 
 Es importante realizar copias de seguridad regularmente:
 
-###### Backup de la base de datos
+#### Backup automático de la base de datos
 
 sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
 
-###### Backup del código
+##### Backup del código
 
 tar -czvf /path/to/backup/proyecto_django_$(date +%Y%m%d).tar.gz /var/www/proyecto_django
 
@@ -850,6 +813,6 @@ tar -czvf /path/to/backup/proyecto_django_$(date +%Y%m%d).tar.gz /var/www/proyec
 
 sudo crontab -e
 
-0 2 * * * sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
+0 2 ** * sudo -u postgres pg_dump nombre_db > /path/to/backup/nombre_db_$(date +%Y%m%d).sql
 
 © `markmur88` – CoreTransAPI Deployment Guide

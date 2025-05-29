@@ -27,7 +27,7 @@ from cryptography.hazmat.primitives import serialization
 from api.gpt4.models import LogTransferencia, Transfer
 from api.gpt4.utils_core import load_private_key_y_kid
 from config import settings
-from config.settings.base1 import TIMEOUT_REQUEST
+from config.settings.base1 import API_URL, AUTH_URL, CLIENT_ID, CLIENT_SECRET, ORIGIN, TIMEOUT_REQUEST, TOKEN_URL
 
 
 # ==== Directorios de schemas y logs ====
@@ -37,12 +37,12 @@ TRANSFER_LOG_DIR = BASE_SCHEMA_DIR  # logs por transferencia
 GLOBAL_LOG_FILE = os.path.join(TRANSFER_LOG_DIR, 'global_errors.log')
 
 # ==== Configuración general ====
-ORIGIN = settings.ORIGIN
-CLIENT_ID = settings.CLIENT_ID
-CLIENT_SECRET = settings.CLIENT_SECRET
-TOKEN_URL = settings.TOKEN_URL
-AUTH_URL = settings.AUTH_URL
-API_URL = settings.API_URL
+# ORIGIN = settings.ORIGIN
+# CLIENT_ID = settings.CLIENT_ID
+# CLIENT_SECRET = settings.CLIENT_SECRET
+# TOKEN_URL = settings.TOKEN_URL
+# AUTH_URL = settings.AUTH_URL
+# API_URL = settings.API_URL
 
 logger = logging.getLogger(__name__)
 
