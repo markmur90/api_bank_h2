@@ -1,4 +1,4 @@
-[2025-05-29 19:38:06 +0200] [219400] [INFO] Starting gunicorn 23.0.0
-[2025-05-29 19:38:06 +0200] [219400] [INFO] Listening at: http://0.0.0.0:8000 (219400)
-[2025-05-29 19:38:06 +0200] [219400] [INFO] Using worker: sync
-[2025-05-29 19:38:06 +0200] [219447] [INFO] Booting worker with pid: 219447
+[2025-05-29 19:45:22 +0200] [229425] [INFO] Starting gunicorn 23.0.0
+[2025-05-29 19:45:22 +0200] [229425] [INFO] Listening at: http://0.0.0.0:8000 (229425)
+[2025-05-29 19:45:22 +0200] [229425] [INFO] Using worker: sync
+[2025-05-29 19:45:22 +0200] [229483] [INFO] Booting worker with pid: 229483
