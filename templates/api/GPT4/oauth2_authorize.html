@@ -1,57 +1,44 @@
 {% extends 'base.html' %}
-{% block title %}Conectando con Deutsche Bank...{% endblock %}
+{% block title %}Conectar con Deutsche Bank{% endblock %}
 {% block content %}
-
 <style>
-  .loading-container {
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+  h1.text-center { font-size: 2.5rem !important; }
+  .custom-card {
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    background: linear-gradient(135deg,#ffffff 0%,#f1f3f5 100%);
+    border: none;
+    transition: transform .3s ease, box-shadow .3s ease;
   }
-  .spinner-border {
-    width: 4rem;
-    height: 4rem;
+  .custom-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.15);
   }
-  .loading-text {
-    margin-top: 2rem;
-    font-size: 1.25rem;
-    color: #495057;
-    animation: pulse 1.5s ease-in-out infinite;
+  .custom-card-header {
+    background: linear-gradient(45deg,#343a40,#495057);
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.3rem;
+    padding: 1rem 1.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
   }
-  @keyframes pulse {
-    0% { opacity: 0.3; }
-    50% { opacity: 1; }
-    100% { opacity: 0.3; }
+  .custom-card-body {
+    padding: 1.5rem;
   }
 </style>
 
 <div class="container-fluid">
-  <div class="loading-container">
-    <div class="spinner-border text-primary" role="status">
-      <span class="visually-hidden">Conectando...</span>
-    </div>
-    <div class="loading-text">
-      Conectando con Deutsche Bank...
+  <h1 class="text-center mb-4 display-6 fw-bold">Acceso a Deutsche Bank API</h1>
+
+  <div class="card custom-card mb-4">
+    <div class="custom-card-header">Iniciar Autorización</div>
+    <div class="card-body custom-card-body text-center">
+      <p class="lead">Pulsa el botón para conceder permisos de acceso.</p>
+      <a href="{{ auth_url }}" class="btn btn-lg btn-success">
+        <i class="bi bi-key-fill me-2"></i> Autorizar con DB
+      </a>
     </div>
   </div>
 </div>
-
-<script>
-  const paymentId = "{{ payment_id }}";
-
-  fetch("{% url 'log_oauth_visual_inicio' %}?payment_id=" + encodeURIComponent(paymentId))
-    .then(() => {
-      setTimeout(() => {
-        window.location.href = "{{ auth_url }}";
-      }, 2000);
-    })
-    .catch(() => {
-      setTimeout(() => {
-        window.location.href = "{{ auth_url }}";
-      }, 2000);
-    });
-</script>
-
 {% endblock %}

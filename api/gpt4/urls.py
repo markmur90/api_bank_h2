@@ -39,8 +39,8 @@ urlpatterns = [
     path("transfers/<str:payment_id>/sca/", views.transfer_update_sca, name="transfer_update_scaGPT4"),
     path("transfers/<str:payment_id>/", views.transfer_detail, name="transfer_detailGPT4"),
     
-    # path('oauth2/authorize/', views.oauth2_authorize, name='oauth2_authorize'),
-    # path('oauth2/callback/', views.oauth2_callback, name='oauth2_callback'),
+    path('oauth2/authorize/', views.oauth2_authorize, name='oauth2_authorize'),
+    path('oauth2/callback/', views.oauth2_callback, name='oauth2_callback'),
     path('toggle-oauth/', views.toggle_oauth, name='toggle_oauth'),
     path('oauth2/logs/', views.get_oauth_logs, name='get_oauth_logs'),
     path("logs/", views.list_logs, name="list_logsGPT4"),
