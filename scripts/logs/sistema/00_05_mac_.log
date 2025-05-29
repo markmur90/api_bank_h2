@@ -1,0 +1,26 @@
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/f2:cb:b5:6d:ec:1c
+Sending on   LPF/wlan0/f2:cb:b5:6d:ec:1c
+Sending on   Socket/fallback
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 3
+DHCPOFFER of 192.168.0.174 from 192.168.0.1
+DHCPREQUEST for 192.168.0.174 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.174 from 192.168.0.1
+bound to 192.168.0.174 -- renewal in 39322 seconds.
+
+=========================================
+📅 Fecha           : 2025-05-29 04:13:10
+🛰️ Interfaz        : wlan0
+🧭 MAC anterior    : c0:e4:34:95:bd:5b
+✨ MAC actual      : f2:cb:b5:6d:ec:1c
+🧭 IP anterior     : 192.168.0.173
+🛰️ IP actual       : 192.168.0.174
+🧭 IP Tor anterior : {"error": "Too Many Requests"}
+🛰️ IP Tor actual   : {"error": "Too Many Requests"}
+=========================================
