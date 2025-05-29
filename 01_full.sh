@@ -20,14 +20,9 @@ centrar_texto() {
 SCRIPT_NAME="$(basename "$0")"
 LOG_DEPLOY="./scripts/logs/01_full_deploy/full_deploy.log"
 
-# clear
+clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
 DO_CLEAR=false
-if [[ "$@" =~ -[Y-Zy-z] ]]; then
-    DO_CLEAR=false
-else
-    DO_CLEAR=true
-fi
 TIME_SLEEP=0
 
 pausa_y_limpiar() {
