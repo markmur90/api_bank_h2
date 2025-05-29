@@ -1156,3 +1156,41 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 ✅ Heroku reiniciado correctamente.
 
 🎉 ✅ ¡Deploy completado con éxito!
+
+📅 Fecha de ejecución: 2025-05-29 20:44:41
+📄 Script: 00_16_subir_heroku.sh
+═══════════════════════════════════════════
+
+🔧 Desactivando collectstatic en Heroku...
+
+🔑 Clave privada detectada en /home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem
+Setting PRIVATE_KEY_B64 and restarting apibank2...
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... done, v275
+
+✅ Clave privada codificada subida como PRIVATE_KEY_B64
+
+🚀 Subiendo el proyecto a Heroku y GitHub...
+
+📦 Haciendo git add...
+📝 Commit con mensaje: variables production
+🌐 Push a GitHub...
+HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
+☁️  Push a Heroku...
+✅ Heroku reiniciado correctamente.
+
+🎉 ✅ ¡Deploy completado con éxito!
