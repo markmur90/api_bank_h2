@@ -3,8 +3,11 @@ set -euo pipefail
 
 SCRIPT_NAME="$(basename "$0")"
 LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROCESS_LOG="$SCRIPT_DIR/logs/01_full_deploy/process_ssl.log"
 
 mkdir -p "$(dirname "$LOG_FILE")"
+mkdir -p "$(dirname "$PROCESS_LOG")"
 
 {
 echo ""
@@ -49,11 +52,11 @@ if sudo lsof -i :8443 | grep -q LISTEN; then
     fi
 
     echo "🚀 Ejecutando Gunicorn como backend en http://0.0.0.0:8000" | tee -a $LOG_DEPLOY
-nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > scripts/logs/01_full_deploy/full_deploy.log 2>&1 &
+nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > scripts/logs/despliegue/00_21_local_ssl.log 2>&1 &
 else
     echo "🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443" | tee -a $LOG_DEPLOY
     echo "🔐 Certificado: $CERT_CRT" | tee -a $LOG_DEPLOY
-nohup gunicorn config.wsgi:application \ > scripts/logs/01_full_deploy/full_deploy.log 2>&1 &
+nohup gunicorn config.wsgi:application \ > scripts/logs/despliegue/00_21_local_ssl.log 2>&1 &
       --certfile="$CERT_CRT" \
       --keyfile="$CERT_KEY" \
       --bind 0.0.0.0:8443

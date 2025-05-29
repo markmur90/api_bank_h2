@@ -56,4 +56,4 @@ trap '{
     --workers 3 \
     --timeout 300 \
     --log-file - >> "$PROCESS_LOG" 2>&1 &
-} >> "$LOG_FILE" 2>&1
+} >> "$PROCESS_LOG" 2>&1

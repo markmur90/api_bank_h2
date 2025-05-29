@@ -855,7 +855,7 @@
   adding: api_bank_h2/scripts/conexion_segura_db/.env.example (deflated 3%)
   adding: api_bank_h2/scripts/run_local_ssl_env.sh (deflated 42%)
   adding: api_bank_h2/scripts/vps_instalar_dependencias.sh (deflated 54%)
-  adding: api_bank_h2/scripts/00_21_local_ssl.sh (deflated 57%)
+  adding: api_bank_h2/scripts/00_21_local_ssl.sh (deflated 58%)
   adding: api_bank_h2/scripts/00_07_postgres.sh (deflated 61%)
   adding: api_bank_h2/scripts/00_05_mac.sh (deflated 61%)
   adding: api_bank_h2/scripts/verificar_https_headers.sh (deflated 50%)
@@ -1743,5 +1743,5 @@
   adding: api_bank_h2/schemas/certs/desarrollo.key (deflated 23%)
   adding: api_bank_h2/schemas/certs/desarrollo.crt (deflated 33%)
   adding: api_bank_h2/schemas/zCod.md (deflated 27%)
-[1;32m[OK]   Proyecto comprimido exitosamente en: /home/markmur88/Documentos/GitHub/backup/zip/backup_completo_20250529_023131_G0288_D019.zip[0m
+[1;32m[OK]   Proyecto comprimido exitosamente en: /home/markmur88/Documentos/GitHub/backup/zip/backup_completo_20250529_023951_G0290_D021.zip[0m
 [1;32m[OK]   ✅ Script finalizado correctamente. Log disponible en: /home/markmur88/Documentos/GitHub/api_bank_h2/scripts/logs/backup/00_02_zip_backup_.log[0m
