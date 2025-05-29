@@ -6,7 +6,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
 ENV_FILE="$PROJECT_ROOT/.env.production"
-HEROKU_APP="${1:-apibank2}"
+HEROKU_APP=apibank2
 PEM_PATH="$PROJECT_ROOT/schemas/keys/private_key.pem"
 
 LOG_FILE="$SCRIPT_DIR/logs/01_full_deploy/full_deploy.log"
@@ -29,14 +29,14 @@ command -v heroku >/dev/null || { echo "❌ Heroku CLI no está instalado." | te
 
 # === Desactivamos collectstatic ===
 echo -e "\n🔧 Desactivando collectstatic en Heroku..." | tee -a "$LOG_DEPLOY"
-heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP"
 
-heroku config:set DEBUG=False --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
-heroku config:set ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set DEBUG=False --app "$HEROKU_APP"
+heroku config:set ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com" --app "$HEROKU_APP"
 
-heroku config:set SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
-heroku config:set DJANGO_ENV=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
-heroku config:set ENVIRONMENT=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" --app "$HEROKU_APP"
+heroku config:set DJANGO_ENV=production --app "$HEROKU_APP"
+heroku config:set ENVIRONMENT=production --app "$HEROKU_APP"
 
 
 
