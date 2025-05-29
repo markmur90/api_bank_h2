@@ -19,7 +19,7 @@ centrar_texto() {
 
 centrar_texto_coloreado() {
   local texto="$1"
-  local ancho=86
+  local ancho=78
   local relleno_char="-"
   local texto_sin_color="$(echo -e "$texto" | sed 's/\x1b\[[0-9;]*m//g')"
   local largo_texto=${#texto_sin_color}

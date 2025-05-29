@@ -204,7 +204,7 @@ server {
 | Código Moneda              | EUR                                         | EUR                                         | EUR                                         |
 | Teléfono                   | —                                           | `+49 170 123456`, `069 1234567`             | `+49 170 123456`, `069 1234567`             |
 | Email                      | —                                           | `TomWinter@example.com`                     | `AnnaMeyer@example.com`                     |
-| Identificadores Adicionales | `SecurityAccountID: 100204004000`           | `FKN+PIN: 10020446900014432`<br>`SecurityAccountID: 100204469000` | `SecurityAccountID: 10020446400020681`<br>`1002044640 00 20681` |
+| Identificadores Adicionales | `SecurityAccountID: 100204004000`           | `FKN+PIN: 10020446900014432`<br>`SecurityAccountID: 100204469000` | `SecurityAccountID: 100 2044640 00 20681`<br>`100 2044640 00 20681` |
 | OTP                        | [`gluesim`](otpauth://totp/gluesim:100204004000001?secret=7G3DC4GV4J2YFPDS) | [`gluesim`](otpauth://totp/gluesim:100204469000001?secret=ZHEZZYWZJ4R5K2RE) | [`gluesim`](otpauth://totp/gluesim:100204464000001?secret=6XANMMKKWU32XN3G) |
 | Counterparty IBAN          | `DE10 0100 0000 0000 0221 37`               | `DE10 0100 0000 0000 0221 37`               | `DE10 0100 0000 0000 0221 37`               |
 | Transaction Code           | 123                                         | 123                                         | 123                                         |
