@@ -68,7 +68,7 @@
           </thead>
           <tbody>
             {% for config in configuraciones %}
-                <td class="text-truncate valor-max-width">{{ config.valor|truncatechars:80 }}</td>
+              <tr>
                 <td>{{ config.entorno }}</td>
                 <td>{{ config.nombre }}</td>
                 <td class="text-truncate valor-max-width">{{ config.valor|truncatechars:80 }}</td>
