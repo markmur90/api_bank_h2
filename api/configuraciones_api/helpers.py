@@ -6,7 +6,9 @@ def obtener_config(nombre, entorno='produccion', por_defecto=None):
     except ConfiguracionAPI.DoesNotExist:
         return por_defecto
 
-def get_conf(clave, default=None):
-    from django.conf import settings
-    entorno = getattr(settings, "DJANGO_ENV", "local")
-    return obtener_config(clave, entorno=entorno, por_defecto=default)
+def get_conf(*args, **kwargs):
+    return obtener_config(*args, **kwargs)
+
+# utils_core.py o helpers.py
+def get_conf_keys(*keys):
+    return (get_conf(k) for k in keys)

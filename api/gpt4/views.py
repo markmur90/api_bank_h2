@@ -444,12 +444,7 @@ def descargar_pdf(request, payment_id):
 
 # ==== OAUTH2 ====
 
-from django.conf import settings
-from django.shortcuts import redirect, render
-from django.contrib import messages
-from api.gpt4.reg_log import registrar_log, registrar_log_oauth
-from api.gpt4.models import Transfer
-from api.gpt4.reg_log import generate_pkce_pair, build_auth_url, fetch_token_by_code
+
 
 def oauth2_authorize(request):
     if not settings.USE_OAUTH2_UI:

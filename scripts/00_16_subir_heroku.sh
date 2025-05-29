@@ -31,51 +31,43 @@ command -v heroku >/dev/null || { echo "❌ Heroku CLI no está instalado." | te
 echo -e "\n🔧 Desactivando collectstatic en Heroku..." | tee -a "$LOG_DEPLOY"
 heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
-# heroku config:set DEBUG=False --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
-# heroku config:set ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set DEBUG=False --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
-# heroku config:set SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
-# heroku config:set DJANGO_ENV=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
-# heroku config:set ENVIRONMENT=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set DJANGO_ENV=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set ENVIRONMENT=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
-# heroku config:set TOKEN_URL=https://simulator-api.db.com:443/gw/oidc/token --app "$HEROKU_APP"
-# heroku config:set AUTHORIZE_URL=https://simulator-api.db.com:443/gw/oidc/authorize --app "$HEROKU_APP"
-# heroku config:set OTP_URL=https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single --app "$HEROKU_APP"
-# heroku config:set AUTH_URL=https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges --app "$HEROKU_APP"
-# heroku config:set API_URL=https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer --app "$HEROKU_APP"
-# heroku config:set SCOPE=sepa_credit_transfers --app "$HEROKU_APP"
-# heroku config:set ORIGIN=https://apibank2-54644cdf263f.herokuapp.com --app "$HEROKU_APP"
-# heroku config:set TIMEOUT_REQUEST=3600 --app "$HEROKU_APP"
-# heroku config:set REDIRECT_URI=https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/ --app "$HEROKU_APP"
+
 
 # === Carga de variables desde .env.production ===
-echo -e "\n📤 Cargando variables desde $ENV_FILE..." | tee -a "$LOG_DEPLOY"
-[[ -f "$ENV_FILE" ]] || { echo "❌ Archivo $ENV_FILE no encontrado." | tee -a "$LOG_DEPLOY"; exit 1; }
+# echo -e "\n📤 Cargando variables desde $ENV_FILE..." | tee -a "$LOG_DEPLOY"
+# [[ -f "$ENV_FILE" ]] || { echo "❌ Archivo $ENV_FILE no encontrado." | tee -a "$LOG_DEPLOY"; exit 1; }
 
-success=0
-while IFS='=' read -r key value; do
-  [[ -z "${key// }" || "${key:0:1}" == "#" ]] && continue
-  value="${value%\"}"
-  value="${value#\"}"
-  if heroku config:set "$key=$value" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
-    echo "✅ $key cargada correctamente" | tee -a "$LOG_DEPLOY"
-  else
-    echo "⚠️  Error al cargar $key" | tee -a "$LOG_DEPLOY"
-  fi
-done < "$ENV_FILE"
+# success=0
+# while IFS='=' read -r key value; do
+#   [[ -z "${key// }" || "${key:0:1}" == "#" ]] && continue
+#   value="${value%\"}"
+#   value="${value#\"}"
+#   if heroku config:set "$key=$value" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
+#     echo "✅ $key cargada correctamente" | tee -a "$LOG_DEPLOY"
+#   else
+#     echo "⚠️  Error al cargar $key" | tee -a "$LOG_DEPLOY"
+#   fi
+# done < "$ENV_FILE"
 
 # === Subida de clave privada codificada ===
-# if [[ -f "$PEM_PATH" ]]; then
-#   echo -e "\n🔑 Clave privada detectada en $PEM_PATH" | tee -a "$LOG_DEPLOY"
-#   PRIVATE_KEY_B64=$(base64 -w 0 "$PEM_PATH")
-#   if heroku config:set PRIVATE_KEY_B64="$PRIVATE_KEY_B64" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
-#     echo "✅ Clave privada codificada subida como PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
-#   else
-#     echo "⚠️  Error al subir PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
-#   fi
-# else
-#   echo "⚠️  Archivo $PEM_PATH no encontrado. Saltando PRIVATE_KEY_B64." | tee -a "$LOG_DEPLOY"
-# fi
+if [[ -f "$PEM_PATH" ]]; then
+  echo -e "\n🔑 Clave privada detectada en $PEM_PATH" | tee -a "$LOG_DEPLOY"
+  PRIVATE_KEY_B64=$(base64 -w 0 "$PEM_PATH")
+  if heroku config:set PRIVATE_KEY_B64="$PRIVATE_KEY_B64" --app "$HEROKU_APP" >> "$LOG_DEPLOY" 2>&1; then
+    echo "✅ Clave privada codificada subida como PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
+  else
+    echo "⚠️  Error al subir PRIVATE_KEY_B64" | tee -a "$LOG_DEPLOY"
+  fi
+else
+  echo "⚠️  Archivo $PEM_PATH no encontrado. Saltando PRIVATE_KEY_B64." | tee -a "$LOG_DEPLOY"
+fi
 
 # === Push a GitHub y Heroku ===
 echo -e "\n🚀 Subiendo el proyecto a Heroku y GitHub...\n" | tee -a "$LOG_DEPLOY"

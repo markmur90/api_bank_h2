@@ -7,7 +7,6 @@ import random
 import string
 import hashlib
 import base64
-from django.conf import settings
 import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
@@ -26,9 +25,8 @@ import jwt
 from cryptography.hazmat.primitives import serialization
 
 from api.gpt4.models import LogTransferencia, Transfer
-from api.gpt4.utils_core import load_private_key_y_kid
-from config.settings.base1 import ORIGIN, API_URL, TOKEN_URL, AUTH_URL, CLIENT_ID, CLIENT_SECRET
-# from config.settings.configuración_dinamica import OAUTH2, TIMEOUT_REQUEST, ORIGIN, API_URL, TOKEN_URL, AUTH_URL, CLIENT_ID, CLIENT_SECRET
+
+
 
 # ==== Directorios de schemas y logs ====
 BASE_SCHEMA_DIR = os.path.join("schemas", "transferencias")
@@ -37,29 +35,38 @@ TRANSFER_LOG_DIR = BASE_SCHEMA_DIR  # logs por transferencia
 GLOBAL_LOG_FILE = os.path.join(TRANSFER_LOG_DIR, 'global_errors.log')
 
 # ==== Configuración general ====
-# ORIGIN = OAUTH2['ORIGIN']
-# CLIENT_ID = OAUTH2['CLIENT_ID']
-# CLIENT_SECRET = OAUTH2['CLIENT_SECRET']
-# TOKEN_URL = OAUTH2['TOKEN_URL']
-# AUTH_URL = OAUTH2['AUTH_URL']
-# API_URL = OAUTH2['API_URL']
-# TIMEOUT_REQUEST = OAUTH2['TIMEOUT_REQUEST']
+from functools import lru_cache
+from api.configuraciones_api.helpers import get_conf
 
-ORIGIN = settings.OAUTH2['ORIGIN']
-CLIENT_ID = settings.OAUTH2['CLIENT_ID']
-CLIENT_SECRET = settings.OAUTH2['CLIENT_SECRET']
-TOKEN_URL = settings.OAUTH2['TOKEN_URL']
-AUTH_URL = settings.OAUTH2['AUTH_URL']
-API_URL = settings.OAUTH2['API_URL']
-# TIMEOUT_REQUEST = settings.OAUTH2['TIMEOUT_REQUEST']
+@lru_cache
+def get_settings():
+    return {
+        "ORIGIN": get_conf("ORIGIN"),
+        "CLIENT_ID": get_conf("CLIENT_ID"),
+        "CLIENT_SECRET": get_conf("CLIENT_SECRET"),
+        "TOKEN_URL": get_conf("TOKEN_URL"),
+        "AUTH_URL": get_conf("AUTH_URL"),
+        "API_URL": get_conf("API_URL"),
+        "TIMEOUT_REQUEST": get_conf("TIMEOUT_REQUEST"),
+        "REDIRECT_URI": get_conf("REDIRECT_URI"),
+        "SCOPE": get_conf("SCOPE"),
+        "AUTHORIZE_URL": get_conf("AUTHORIZE_URL"),
+        "OAUTH2": {
+            "CLIENT_ID": get_conf("CLIENT_ID"),
+            "CLIENT_SECRET": get_conf("CLIENT_SECRET"),
+            "TOKEN_URL": get_conf("TOKEN_URL"),
+            "REDIRECT_URI": get_conf("REDIRECT_URI"),
+            "SCOPE": get_conf("SCOPE"),
+            "AUTHORIZE_URL": get_conf("AUTHORIZE_URL"),
+            "TIMEOUT_REQUEST": get_conf("TIMEOUT_REQUEST"),
+        }
+    }
+
+# Ejemplo de uso:
+# settings = get_settings()
+# token_url = settings["TOKEN_URL"]
+
 logger = logging.getLogger(__name__)
-
-
-def obtener_ruta_schema_transferencia(payment_id: str) -> str:
-    carpeta = os.path.join(BASE_SCHEMA_DIR, str(payment_id))
-    os.makedirs(carpeta, exist_ok=True)
-    return carpeta
-
 
 
 # ===========================
@@ -89,6 +96,127 @@ def generate_deterministic_id(*args, prefix="") -> str:
 def generate_payment_id_uuid() -> str:
     return uuid.uuid4()
 
+
+
+def obtener_ruta_schema_transferencia(payment_id: str) -> str:
+    carpeta = os.path.join(BASE_SCHEMA_DIR, str(payment_id))
+    os.makedirs(carpeta, exist_ok=True)
+    return carpeta
+
+def registrar_log_oauth(accion, estado, metadata=None, error=None, request=None):
+    log_entry = {
+        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        'accion': accion,
+        'estado': estado,
+        'metadata': metadata or {},
+        'error': error
+    }
+    entry = json.dumps(log_entry, indent=2)
+
+    log_dir = os.path.join(BASE_SCHEMA_DIR, "OAUTH_LOGS")
+    os.makedirs(log_dir, exist_ok=True)
+    log_file = os.path.join(log_dir, "oauth_general.log")
+
+    session_id = None
+    if request and hasattr(request, 'session'):
+        session_id = request.session.session_key
+
+    session_log_file = os.path.join(log_dir, f"oauth_general.log") if session_id else None
+
+    try:
+        with open(log_file, 'a') as f:
+            f.write(entry + "\n")
+        if session_log_file:
+            with open(session_log_file, 'a') as f:
+                f.write(entry + "\n")
+    except Exception as e:
+        print(f"Error escribiendo logs OAuth: {str(e)}")
+
+    registro = request.session.get('current_payment_id') if request and hasattr(request, 'session') else None
+    if not registro:
+        registro = session_id or "SIN_SESION"
+
+    try:
+        LogTransferencia.objects.create(
+            registro=registro,
+            tipo_log='AUTH',
+            contenido=entry
+        )
+    except Exception as e:
+        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as f:
+            f.write(f"[{datetime.now()}] Error guardando log OAuth en DB: {str(e)}\n")
+
+    registrar_log(
+        registro=registro,
+        tipo_log='AUTH',
+        request_body=metadata,
+        error=error,
+        extra_info=f"OAuth: {accion} - {estado}"
+    )
+
+
+def registrar_log(
+    registro: str,
+    tipo_log: str = 'TRANSFER',
+    headers_enviados: dict = None,
+    request_body: any = None,
+    response_headers: dict = None,
+    response_text: str = None,
+    error: any = None,
+    extra_info: str = None
+):
+
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    entry = "\n" + "=" * 80 + "\n"
+    entry += f"Fecha y hora: {timestamp}\n" + "=" * 80 + "\n"
+
+    if extra_info:
+        entry += f"=== Info ===\n{extra_info}\n\n"
+    if headers_enviados:
+        try:
+            entry += "=== Headers enviados ===\n" + json.dumps(headers_enviados, indent=4) + "\n\n"
+        except Exception:
+            entry += "=== Headers enviados (sin formato) ===\n" + str(headers_enviados) + "\n\n"
+    if request_body:
+        try:
+            entry += "=== Body de la petición ===\n" + json.dumps(request_body, indent=4, default=str) + "\n\n"
+        except Exception:
+            entry += "=== Body de la petición (sin formato) ===\n" + str(request_body) + "\n\n"
+    if response_headers:
+        try:
+            entry += "=== Response Headers ===\n" + json.dumps(response_headers, indent=4) + "\n\n"
+        except Exception:
+            entry += "=== Response Headers (sin formato) ===\n" + str(response_headers) + "\n\n"
+    if response_text:
+        entry += "=== Respuesta ===\n" + str(response_text) + "\n\n"
+    if error:
+        entry += "=== Error ===\n" + str(error) + "\n"
+
+    carpeta = obtener_ruta_schema_transferencia(registro)
+    log_path = os.path.join(carpeta, f"transferencia_{registro}.log")
+    try:
+        with open(log_path, 'a', encoding='utf-8') as f:
+            f.write(entry)
+    except Exception as e:
+        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
+            gf.write(f"[{timestamp}] ERROR AL GUARDAR EN ARCHIVO {registro}.log: {str(e)}\n")
+
+    try:
+        LogTransferencia.objects.create(
+            registro=registro,
+            tipo_log=tipo_log or 'ERROR',
+            contenido=entry
+        )
+    except Exception as e:
+        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
+            gf.write(f"[{timestamp}] ERROR AL GUARDAR LOG EN DB para {registro}: {str(e)}\n")
+
+    if error:
+        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
+            gf.write(f"[{timestamp}] ERROR [{registro}]: {str(error)}\n")
+            
+     
+     
 # ===========================
 # XML Y AML
 # ===========================
@@ -319,7 +447,10 @@ def handle_error_response(response):
         return "; ".join(item.get('message', str(item)) for item in data)
     return response.text if hasattr(response, 'text') else str(response)
 
+
 def default_request_headers():
+    settings = get_settings()
+    ORIGIN = settings["ORIGIN"]
     return {
         "Accept": "application/json, text/html, application/xhtml+xml, application/xml;q=0.9, */*;q=0.8",
         "Accept-Encoding": "gzip, deflate, br, zstd",
@@ -334,7 +465,7 @@ def default_request_headers():
         "Upgrade-Insecure-Requests": "1",
         "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0",
         "Origin": ORIGIN,
-        "Strict-Transport-Security": "max-age=31536000; includeSubDomains; preload",
+        "Strict-Transport-Security": "max-age=3153TIMEOUT_REQUEST0; includeSubDomains; preload",
         "X-Frame-Options": "DENY",
         "X-Content-Type-Options": "nosniff",
         'x-request-Id': str(uuid.uuid4()),
@@ -424,6 +555,10 @@ def crear_tabla_pdf(c, data, y_position):
 # SEND TRANSFER
 # ===========================
 def send_transfer0(transfer, use_token=None, use_otp=None, regenerate_token=False, regenerate_otp=False):
+    settings = get_settings()
+    API_URL = settings["API_URL"]    
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     schema_data = transfer.to_schema_data()
     token = use_token if use_token and not regenerate_token else get_access_token(transfer.payment_id)
     proof_token, token = (use_otp, token) if use_otp and not regenerate_otp else obtener_otp_automatico_con_challenge(transfer)
@@ -438,7 +573,7 @@ def send_transfer0(transfer, use_token=None, use_otp=None, regenerate_token=Fals
         'Otp': proof_token
     })
     try:
-        response = requests.post(API_URL, headers=headers, json=schema_data, timeout=600)
+        response = requests.post(API_URL, headers=headers, json=schema_data, timeout=TIMEOUT_REQUEST)
         response.raise_for_status()
         data = response.json()
         transfer.auth_id = data.get('authId')
@@ -479,6 +614,10 @@ def send_transfer0(transfer, use_token=None, use_otp=None, regenerate_token=Fals
     return response
 
 def send_transfer1(transfer, use_token=None, use_otp=None, regenerate_token=False, regenerate_otp=False):
+    settings = get_settings()
+    API_URL = settings["API_URL"]    
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     proof_token, token = obtener_otp_automatico_con_challenge(transfer.payment_id) if regenerate_otp or not use_otp else (use_otp, token)
     token = get_access_token(transfer.payment_id) if regenerate_token or not use_token else use_token
     schema_data = transfer.to_schema_data()
@@ -489,7 +628,7 @@ def send_transfer1(transfer, use_token=None, use_otp=None, regenerate_token=Fals
         "Correlation-Id": transfer.payment_id,
         "otp": proof_token
     })
-    response = requests.post(API_URL, json=schema_data, headers=headers, timeout=600)
+    response = requests.post(API_URL, json=schema_data, headers=headers, timeout=TIMEOUT_REQUEST)
     data = response.json()
     transfer.auth_id = data.get("authId")
     transfer.status = data.get("transactionStatus", transfer.status)
@@ -511,6 +650,11 @@ def send_transfer2(
     regenerate_token: bool = False,
     regenerate_otp: bool = False
 ) -> requests.Response:
+
+    settings = get_settings()
+    API_URL = settings["API_URL"]    
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     schema_data = transfer.to_schema_data()
     if use_token and not regenerate_token:
         token = use_token
@@ -530,7 +674,7 @@ def send_transfer2(
         'Otp': proof_token
     })
     try:
-        response = requests.post(API_URL, headers=headers, json=schema_data, timeout=600)
+        response = requests.post(API_URL, headers=headers, json=schema_data, timeout=TIMEOUT_REQUEST)
         response.raise_for_status()
     except requests.RequestException as exc:
         error_msg = handle_error_response(exc)
@@ -573,6 +717,10 @@ def send_transfer2(
 
 def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None,
                   regenerate_token: bool = False, regenerate_otp: bool = False) -> requests.Response:
+    settings = get_settings()
+    API_URL = settings["API_URL"]    
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     pid = transfer.payment_id
     # 1️⃣ Token
     token = use_token if use_token and not regenerate_token else get_access_token(pid)
@@ -593,7 +741,7 @@ def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None
     }
     registrar_log(pid, headers_enviados=headers, request_body=body, tipo_log='TRANSFER', extra_info="Enviando transferencia SEPA")
     try:
-        resp = requests.post(API_URL, headers=headers, json=body, timeout=600)
+        resp = requests.post(API_URL, headers=headers, json=body, timeout=TIMEOUT_REQUEST)
         response_headers = dict(resp.headers)
         registrar_log(pid, tipo_log='TRANSFER', response_text=resp.text, headers_recibidos=response_headers, extra_info="Respuesta del API SEPA")
         resp.raise_for_status()
@@ -620,121 +768,6 @@ def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None
 
 
 
-def registrar_log_oauth(accion, estado, metadata=None, error=None, request=None):
-    log_entry = {
-        'timestamp': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-        'accion': accion,
-        'estado': estado,
-        'metadata': metadata or {},
-        'error': error
-    }
-    entry = json.dumps(log_entry, indent=2)
-
-    log_dir = os.path.join(BASE_SCHEMA_DIR, "OAUTH_LOGS")
-    os.makedirs(log_dir, exist_ok=True)
-    log_file = os.path.join(log_dir, "oauth_general.log")
-
-    session_id = None
-    if request and hasattr(request, 'session'):
-        session_id = request.session.session_key
-
-    session_log_file = os.path.join(log_dir, f"oauth_general.log") if session_id else None
-
-    try:
-        with open(log_file, 'a') as f:
-            f.write(entry + "\n")
-        if session_log_file:
-            with open(session_log_file, 'a') as f:
-                f.write(entry + "\n")
-    except Exception as e:
-        print(f"Error escribiendo logs OAuth: {str(e)}")
-
-    registro = request.session.get('current_payment_id') if request and hasattr(request, 'session') else None
-    if not registro:
-        registro = session_id or "SIN_SESION"
-
-    try:
-        LogTransferencia.objects.create(
-            registro=registro,
-            tipo_log='AUTH',
-            contenido=entry
-        )
-    except Exception as e:
-        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as f:
-            f.write(f"[{datetime.now()}] Error guardando log OAuth en DB: {str(e)}\n")
-
-    registrar_log(
-        registro=registro,
-        tipo_log='AUTH',
-        request_body=metadata,
-        error=error,
-        extra_info=f"OAuth: {accion} - {estado}"
-    )
-
-
-
-def registrar_log(
-    registro: str,
-    tipo_log: str = 'TRANSFER',
-    headers_enviados: dict = None,
-    request_body: any = None,
-    response_headers: dict = None,
-    response_text: str = None,
-    error: any = None,
-    extra_info: str = None
-):
-
-    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    entry = "\n" + "=" * 80 + "\n"
-    entry += f"Fecha y hora: {timestamp}\n" + "=" * 80 + "\n"
-
-    if extra_info:
-        entry += f"=== Info ===\n{extra_info}\n\n"
-    if headers_enviados:
-        try:
-            entry += "=== Headers enviados ===\n" + json.dumps(headers_enviados, indent=4) + "\n\n"
-        except Exception:
-            entry += "=== Headers enviados (sin formato) ===\n" + str(headers_enviados) + "\n\n"
-    if request_body:
-        try:
-            entry += "=== Body de la petición ===\n" + json.dumps(request_body, indent=4, default=str) + "\n\n"
-        except Exception:
-            entry += "=== Body de la petición (sin formato) ===\n" + str(request_body) + "\n\n"
-    if response_headers:
-        try:
-            entry += "=== Response Headers ===\n" + json.dumps(response_headers, indent=4) + "\n\n"
-        except Exception:
-            entry += "=== Response Headers (sin formato) ===\n" + str(response_headers) + "\n\n"
-    if response_text:
-        entry += "=== Respuesta ===\n" + str(response_text) + "\n\n"
-    if error:
-        entry += "=== Error ===\n" + str(error) + "\n"
-
-    carpeta = obtener_ruta_schema_transferencia(registro)
-    log_path = os.path.join(carpeta, f"transferencia_{registro}.log")
-    try:
-        with open(log_path, 'a', encoding='utf-8') as f:
-            f.write(entry)
-    except Exception as e:
-        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
-            gf.write(f"[{timestamp}] ERROR AL GUARDAR EN ARCHIVO {registro}.log: {str(e)}\n")
-
-    try:
-        LogTransferencia.objects.create(
-            registro=registro,
-            tipo_log=tipo_log or 'ERROR',
-            contenido=entry
-        )
-    except Exception as e:
-        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
-            gf.write(f"[{timestamp}] ERROR AL GUARDAR LOG EN DB para {registro}: {str(e)}\n")
-
-    if error:
-        with open(GLOBAL_LOG_FILE, 'a', encoding='utf-8') as gf:
-            gf.write(f"[{timestamp}] ERROR [{registro}]: {str(error)}\n")
-
-
-
 def limpiar_datos_sensibles(data):
     """
     Limpia datos sensibles para logs sin truncar información importante
@@ -749,14 +782,20 @@ def limpiar_datos_sensibles(data):
 
 
 
-
 def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str:
+    settings = get_settings()
+    TOKEN_URL = settings["TOKEN_URL"]
+    CLIENT_ID = settings["CLIENT_ID"]
+    CLIENT_SECRET = settings["CLIENT_SECRET"]
+    SCOPE = settings["SCOPE"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     registrar_log(payment_id, tipo_log='AUTH', extra_info="Obteniendo Access Token (Client Credentials)")
-    data = {'grant_type': 'client_credentials', 'scope': settings.SCOPE}
+    data = {'grant_type': 'client_credentials', 'scope': SCOPE}
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
     registrar_log(payment_id, tipo_log='AUTH', headers_enviados=headers, request_body=data)
     try:
-        resp = requests.post(TOKEN_URL, data=data, auth=(CLIENT_ID, CLIENT_SECRET), timeout=600)
+        resp = requests.post(TOKEN_URL, data=data, auth=(CLIENT_ID, CLIENT_SECRET), timeout=TIMEOUT_REQUEST)
         registrar_log(payment_id, tipo_log='AUTH', response_headers=dict(resp.headers), response_text=resp.text)
         resp.raise_for_status()
     except Exception as e:
@@ -774,6 +813,11 @@ def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str
 
 
 def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
+    settings = get_settings()
+    TOKEN_URL = settings["TOKEN_URL"]
+    SCOPE = settings["SCOPE"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
     registrar_log(payment_id, tipo_log='AUTH', extra_info="Obteniendo Access Token (JWT Assertion)")
     now = int(time.time())
@@ -782,19 +826,19 @@ def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
         'sub': transfer.client.clientId,
         'aud': TOKEN_URL,
         'iat': now,
-        'exp': now + 3600
+        'exp': now + TIMEOUT_REQUEST
     }
     private_key, kid = load_private_key_y_kid()
     assertion = jwt.encode(payload, private_key, algorithm='ES256', headers={'kid': kid})
     data = {
         'grant_type': 'client_credentials',
-        'scope': settings.SCOPE,
+        'scope': SCOPE,
         'client_assertion_type': 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
         'client_assertion': assertion
     }
     registrar_log(payment_id, tipo_log='AUTH', request_body=data)
     try:
-        resp = requests.post(TOKEN_URL, data=data, timeout=600)
+        resp = requests.post(TOKEN_URL, data=data, timeout=TIMEOUT_REQUEST)
         registrar_log(payment_id, tipo_log='AUTH', response_headers=dict(resp.headers), response_text=resp.text)
         resp.raise_for_status()
     except Exception as e:
@@ -812,6 +856,10 @@ def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
 
 
 def update_sca_request(transfer: Transfer, action: str, otp: str, token: str) -> requests.Response:
+    settings = get_settings()
+    API_URL = settings["API_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     url = f"{API_URL}/{transfer.payment_id}"
     headers = {
         'Authorization': f'Bearer {token}',
@@ -821,7 +869,7 @@ def update_sca_request(transfer: Transfer, action: str, otp: str, token: str) ->
     }
     payload = {'action': action, 'authId': transfer.auth_id}
     registrar_log(transfer.payment_id, tipo_log='SCA', headers_enviados=headers, request_body=payload, extra_info="Actualizando SCA")
-    resp = requests.patch(url, headers=headers, json=payload, timeout=600)
+    resp = requests.patch(url, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
     registrar_log(transfer.payment_id, tipo_log='SCA', response_headers=dict(resp.headers), response_text=resp.text, extra_info="Respuesta SCA")
     resp.raise_for_status()
     data = resp.json()
@@ -833,6 +881,10 @@ def update_sca_request(transfer: Transfer, action: str, otp: str, token: str) ->
 
 
 def fetch_transfer_details(transfer: Transfer, token: str) -> dict:
+    settings = get_settings()
+    API_URL = settings["API_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     url = f"{API_URL}/{transfer.payment_id}"
     headers = {
         'Authorization': f'Bearer {token}',
@@ -841,7 +893,7 @@ def fetch_transfer_details(transfer: Transfer, token: str) -> dict:
         'Correlation-Id': transfer.payment_id
     }
     registrar_log(transfer.payment_id, tipo_log='TRANSFER', headers_enviados=headers, extra_info="Obteniendo estado de transferencia")
-    resp = requests.get(url, headers=headers, timeout=600)
+    resp = requests.get(url, headers=headers, timeout=TIMEOUT_REQUEST)
     registrar_log(transfer.payment_id, tipo_log='TRANSFER', response_headers=dict(resp.headers), response_text=resp.text, extra_info="Respuesta fetch status")
     resp.raise_for_status()
     data = resp.json()
@@ -854,19 +906,27 @@ def fetch_transfer_details(transfer: Transfer, token: str) -> dict:
 
 
 def get_client_credentials_token():
+    settings = get_settings()
+    SCOPE = settings["SCOPE"]
+    CLIENT_ID = settings["CLIENT_ID"]
+    CLIENT_SECRET = settings["CLIENT_SECRET"]
+    TOKEN_URL = settings["TOKEN_URL"]
+    TIMEOUT = settings["TIMEOUT"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     data = {
         'grant_type': 'client_credentials',
-        'scope': settings.OAUTH2['SCOPE']
+        'scope': SCOPE,
     }
-    auth = (settings.OAUTH2['CLIENT_ID'], settings.OAUTH2['CLIENT_SECRET'])
+    auth = (CLIENT_ID, CLIENT_SECRET)
     registrar_log("CLIENT_CRED", tipo_log='AUTH', request_body=data, extra_info="Solicitando token Client Credentials")
     try:
-        resp = requests.post(settings.OAUTH2['TOKEN_URL'], data=data, auth=auth, timeout=settings.OAUTH2['TIMEOUT'])
+        resp = requests.post(TOKEN_URL, data=data, auth=auth, timeout=TIMEOUT)
         registrar_log("CLIENT_CRED", tipo_log='AUTH', response_headers=dict(resp.headers), response_text=resp.text, extra_info="Token recibido Client Credentials")
         resp.raise_for_status()
         token_data = resp.json()
         registrar_log("CLIENT_CRED", tipo_log='AUTH', extra_info="Token obtenido con éxito")
-        return token_data['access_token'], token_data.get('expires_in', 600)
+        return token_data['access_token'], token_data.get('expires_in', TIMEOUT_REQUEST)
     except Exception as e:
         registrar_log("CLIENT_CRED", tipo_log='ERROR', error=str(e), extra_info="Error al obtener token Client Credentials")
         raise
@@ -879,34 +939,35 @@ def generate_pkce_pair():
     ).rstrip(b'=').decode()
     return verifier, challenge
 
+
 def build_auth_url(state, code_challenge):
-    p = settings.OAUTH2
+    p = get_settings()["OAUTH2"]
     return (
-      f"{p['AUTHORIZE_URL']}?response_type=code"
-      f"&client_id={p['CLIENT_ID']}"
-      f"&redirect_uri={p['REDIRECT_URI']}"
-      f"&scope={p['SCOPE']}"
-      f"&state={state}"
-      f"&code_challenge_method=S256"
-      f"&code_challenge={code_challenge}"
+        f"{p['AUTHORIZE_URL']}?response_type=code"
+        f"&client_id={p['CLIENT_ID']}"
+        f"&redirect_uri={p['REDIRECT_URI']}"
+        f"&scope={p['SCOPE']}"
+        f"&state={state}"
+        f"&code_challenge_method=S256"
+        f"&code_challenge={code_challenge}"
     )
 
 def fetch_token_by_code(code, code_verifier):
-    p = settings.OAUTH2
+    p = get_settings()["OAUTH2"]
     data = {
-      'grant_type': 'authorization_code',
-      'code': code,
-      'redirect_uri': p['REDIRECT_URI'],
-      'code_verifier': code_verifier
+        'grant_type': 'authorization_code',
+        'code': code,
+        'redirect_uri': p['REDIRECT_URI'],
+        'code_verifier': code_verifier
     }
     auth = (p['CLIENT_ID'], p['CLIENT_SECRET'])
-    resp = requests.post(p['TOKEN_URL'], data=data, auth=auth, timeout=600)
+    resp = requests.post(p['TOKEN_URL'], data=data, auth=auth, timeout=p['TIMEOUT_REQUEST'])
     resp.raise_for_status()
     j = resp.json()
-    return j['access_token'], j.get('refresh_token'), j.get('expires_in', 600)
+    return j['access_token'], j.get('refresh_token'), j.get('expires_in', p['TIMEOUT_REQUEST'])
 
 def refresh_access_token(refresh_token: str) -> tuple[str, str, int]:
-    p = settings.OAUTH2
+    p = get_settings()["OAUTH2"]
     data = {
         'grant_type': 'refresh_token',
         'refresh_token': refresh_token
@@ -914,19 +975,24 @@ def refresh_access_token(refresh_token: str) -> tuple[str, str, int]:
     auth = (p['CLIENT_ID'], p['CLIENT_SECRET'])
     registrar_log("REFRESH_TOKEN", tipo_log='AUTH', request_body=data, extra_info="Iniciando refresh token OAuth2")
     try:
-        resp = requests.post(p['TOKEN_URL'], data=data, auth=auth, timeout=600)
+        resp = requests.post(p['TOKEN_URL'], data=data, auth=auth, timeout=p['TIMEOUT_REQUEST'])
         registrar_log("REFRESH_TOKEN", tipo_log='AUTH', response_headers=dict(resp.headers), response_text=resp.text, extra_info="Respuesta refresh token")
         resp.raise_for_status()
         j = resp.json()
         registrar_log("REFRESH_TOKEN", tipo_log='AUTH', extra_info="Token refrescado correctamente")
-        return j['access_token'], j.get('refresh_token'), j.get('expires_in', 600)
+        return j['access_token'], j.get('refresh_token'), j.get('expires_in', p['TIMEOUT_REQUEST'])
     except Exception as e:
         registrar_log("REFRESH_TOKEN", tipo_log='ERROR', error=str(e), extra_info="Error al refrescar token OAuth2")
         raise
 
 
 
+
 def crear_challenge_mtan(transfer: Transfer, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     headers = {
         'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json',
@@ -941,13 +1007,18 @@ def crear_challenge_mtan(transfer: Transfer, token: str, payment_id: str) -> str
         }
     }
     registrar_log(payment_id, headers_enviados=headers, request_body=payload, extra_info="Iniciando MTAN challenge", tipo_log='OTP')
-    resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=600)
+    
+    resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
     registrar_log(payment_id, response_headers=dict(resp.headers), response_text=resp.text, tipo_log='OTP')
     resp.raise_for_status()
     return resp.json()['id']
 
 
 def verify_mtan(challenge_id: str, otp: str, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     headers = {
         'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json',
@@ -955,13 +1026,17 @@ def verify_mtan(challenge_id: str, otp: str, token: str, payment_id: str) -> str
     }
     payload = {'challengeResponse': otp}
     registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, request_body=payload, extra_info=f"Verificando OTP para challenge {challenge_id}")
-    r = requests.patch(f"{AUTH_URL}/{challenge_id}", headers=headers, json=payload, timeout=600)
+    r = requests.patch(f"{AUTH_URL}/{challenge_id}", headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
     registrar_log(payment_id, tipo_log='OTP', response_headers=dict(r.headers), response_text=r.text, extra_info="Respuesta verificación OTP")
     r.raise_for_status()
     return r.json()['challengeProofToken']
 
 
 def crear_challenge_phototan(transfer: Transfer, token: str, payment_id: str):
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     headers = {
         'Authorization': f'Bearer {token}',
         'Content-Type': 'application/json',
@@ -974,7 +1049,7 @@ def crear_challenge_phototan(transfer: Transfer, token: str, payment_id: str):
         'challenge': {}
     }
     registrar_log(payment_id, headers_enviados=headers, request_body=payload, extra_info="Iniciando PhotoTAN challenge", tipo_log='OTP')
-    resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=600)
+    resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
     registrar_log(payment_id, response_headers=dict(resp.headers), response_text=resp.text, tipo_log='OTP')
     resp.raise_for_status()
     data = resp.json()
@@ -988,13 +1063,17 @@ def verify_phototan(challenge_id: str, otp: str, token: str, payment_id: str) ->
 
 
 def resolver_challenge(challenge_id: str, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     headers = {
         'Authorization': f'Bearer {token}',
         'Correlation-Id': payment_id
     }
     start = time.time()
     while True:
-        resp = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=600)
+        resp = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
         registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, response_headers=dict(resp.headers), response_text=resp.text, extra_info=f"Comprobando estado challenge {challenge_id}")
         data = resp.json()
         status = data.get('status')
@@ -1036,6 +1115,10 @@ def preparar_request_type_y_datos(schema_data):
     return request_type, datos
 
 def crear_challenge_pushtan(transfer: Transfer, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     schema_data = transfer.to_schema_data()
     request_data = {
         "type": "challengeRequestDataSepaPaymentTransfer",
@@ -1055,13 +1138,17 @@ def crear_challenge_pushtan(transfer: Transfer, token: str, payment_id: str) -> 
         'language': 'de'
     }
     registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, request_body=payload, extra_info="Iniciando PushTAN challenge")
-    response = requests.post(AUTH_URL, headers=headers, json=payload, timeout=600)
+    response = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
     registrar_log(payment_id, tipo_log='OTP', response_headers=dict(response.headers), response_text=response.text)
     response.raise_for_status()
     return response.json()['id']
 
 
 def crear_challenge_autorizacion(transfer, token):
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     pid = transfer.payment_id
     try:
         registrar_log(pid, extra_info="Iniciando challenge OTP", tipo_log='OTP')
@@ -1076,7 +1163,7 @@ def crear_challenge_autorizacion(transfer, token):
         }
         headers = {'Authorization':f'Bearer {token}','Content-Type':'application/json'}
         registrar_log(pid, headers_enviados=headers, request_body=payload, tipo_log='OTP')
-        resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=600)
+        resp = requests.post(AUTH_URL, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
         registrar_log(pid, response_text=resp.text, tipo_log='OTP')
         resp.raise_for_status()
         cid = resp.json().get('id')
@@ -1087,13 +1174,17 @@ def crear_challenge_autorizacion(transfer, token):
         raise
 
 def resolver_challenge_pushtan(challenge_id: str, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
     headers = {
         'Authorization': f'Bearer {token}',
         'Correlation-Id': payment_id
     }
     start = time.time()
     while True:
-        response = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=600)
+        response = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
         registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, response_headers=dict(response.headers), response_text=response.text, extra_info="Esperando validación PushTAN")
         data = response.json()
         status = data.get('status')
@@ -1118,3 +1209,91 @@ def obtener_otp_automatico_con_challenge(transfer):
     challenge_id = crear_challenge_autorizacion(transfer, token, transfer.payment_id)
     otp_token = resolver_challenge(challenge_id, token, transfer.payment_id)
     return otp_token, token
+
+
+from cryptography.hazmat.primitives import serialization
+from cryptography.hazmat.backends import default_backend
+from api.gpt4.models import ClaveGenerada, Transfer
+import time
+import jwt
+from api.configuraciones_api.helpers import get_conf, get_conf_keys
+from api.gpt4.utils import registrar_log
+
+
+def load_private_key_y_kid(registro=None):
+    try:
+        clave = ClaveGenerada.objects.filter(estado="EXITO").order_by('-fecha').first()
+        if not clave:
+            raise ValueError("No se encontró ninguna clave válida con estado EXITO.")
+
+        if not clave.clave_privada or not clave.kid:
+            raise ValueError("La clave encontrada no contiene 'clave_privada' o 'kid'.")
+
+        registrar_log(
+            registro=registro,
+            tipo_log='AUTH',
+            extra_info=f"✅ Clave y KID cargados correctamente (KID={clave.kid})"
+        )
+        return clave.clave_privada, clave.kid
+
+    except Exception as e:
+        registrar_log(
+            registro=registro,
+            tipo_log='ERROR',
+            error=str(e),
+            extra_info="❌ Error cargando clave y kid"
+        )
+        raise
+
+
+def generar_client_assertion(registro=None):
+    try:
+        conf = get_conf()
+        client_id = conf.get("CLIENT_ID")
+        token_url = conf.get("TOKEN_URL")
+
+        if not client_id or not token_url:
+            raise ValueError("CLIENT_ID o TOKEN_URL no están configurados correctamente.")
+
+        private_key, kid = load_private_key_y_kid(registro=registro)
+
+        issued_at = int(time.time())
+        expiration = issued_at + 300  # 5 minutos
+
+        payload = {
+            "iss": client_id,
+            "sub": client_id,
+            "aud": token_url,
+            "jti": f"{client_id}-{issued_at}",
+            "exp": expiration,
+            "iat": issued_at,
+        }
+
+        headers = {
+            "alg": "RS256",
+            "typ": "JWT",
+            "kid": kid
+        }
+
+        assertion = jwt.encode(
+            payload,
+            private_key,
+            algorithm="RS256",
+            headers=headers
+        )
+
+        registrar_log(
+            registro=registro,
+            tipo_log='AUTH',
+            extra_info=f"✅ JWT generado correctamente para client_id={client_id}, kid={kid}"
+        )
+        return assertion
+
+    except Exception as e:
+        registrar_log(
+            registro=registro,
+            tipo_log='ERROR',
+            error=str(e),
+            extra_info="❌ Error generando client_assertion"
+        )
+        raise

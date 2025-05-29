@@ -31,7 +31,7 @@ unalias d_mig 2>/dev/null
 d_mig() {d_env && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && python3 manage.py runserver 8002 "$@"}
 
 unalias d_local 2>/dev/null
-d_local() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l -r "$@"}
+d_local() {d_env && bash ./01_full.sh --env=local -Z -C -Q -I -l -r "$@"}
 
 unalias d_heroku 2>/dev/null
 d_heroku() {d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -r "$@"}
