@@ -44,7 +44,7 @@ heroku config:set API_URL=https://simulator-api.db.com:443/gw/dbapi/paymentIniti
 heroku config:set SCOPE=sepa_credit_transfers --app "$HEROKU_APP"
 heroku config:set ORIGIN=https://apibank2-54644cdf263f.herokuapp.com --app "$HEROKU_APP"
 heroku config:set TIMEOUT_REQUEST=3600 --app "$HEROKU_APP"
-heroku config:set REDIRECT_URI=https://apibank2-54644cdf263f.herokuapp.com/callback --app "$HEROKU_APP"
+heroku config:set REDIRECT_URI=https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/ --app "$HEROKU_APP"
 
 # # === Carga de variables desde .env.production ===
 # echo -e "\n📤 Cargando variables desde $ENV_FILE..." | tee -a "$LOG_DEPLOY"
