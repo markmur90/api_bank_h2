@@ -27,8 +27,10 @@ from cryptography.hazmat.primitives import serialization
 
 from api.gpt4.models import LogTransferencia, Transfer
 from api.gpt4.utils_core import load_private_key_y_kid
-from config.settings.base1 import TIMEOUT_REQUEST, ORIGIN, API_URL, TOKEN_URL, AUTH_URL, CLIENT_ID, CLIENT_SECRET
+from config.settings.base1 import ORIGIN, API_URL, TOKEN_URL, AUTH_URL, CLIENT_ID, CLIENT_SECRET
 # from config.settings.configuración_dinamica import OAUTH2, TIMEOUT_REQUEST, ORIGIN, API_URL, TOKEN_URL, AUTH_URL, CLIENT_ID, CLIENT_SECRET
+
+TIMEOUT_REQUEST = 3600
 
 # ==== Directorios de schemas y logs ====
 BASE_SCHEMA_DIR = os.path.join("schemas", "transferencias")
@@ -51,7 +53,7 @@ CLIENT_SECRET = settings.OAUTH2['CLIENT_SECRET']
 TOKEN_URL = settings.OAUTH2['TOKEN_URL']
 AUTH_URL = settings.OAUTH2['AUTH_URL']
 API_URL = settings.OAUTH2['API_URL']
-TIMEOUT_REQUEST = settings.OAUTH2['TIMEOUT_REQUEST']
+# TIMEOUT_REQUEST = settings.OAUTH2['TIMEOUT_REQUEST']
 logger = logging.getLogger(__name__)
 
 

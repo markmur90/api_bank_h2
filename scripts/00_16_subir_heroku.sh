@@ -32,12 +32,19 @@ echo -e "\n🔧 Desactivando collectstatic en Heroku..." | tee -a "$LOG_DEPLOY"
 heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
 heroku config:set DEBUG=False --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
-heroku config:set ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
+heroku config:set ALLOWED_HOSTS="apibank2-54644cdf263f.herokuapp.com" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
 heroku config:set SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 heroku config:set DJANGO_ENV=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 heroku config:set ENVIRONMENT=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
+heroku config:set TOKEN_URL=https://simulator-api.db.com:443/gw/dbapi/token --app "$HEROKU_APP"
+heroku config:set AUTH_URL=https://simulator-api.db.com:443/gw/dbapi/authorize --app "$HEROKU_APP"
+heroku config:set API_URL=https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer --app "$HEROKU_APP"
+heroku config:set SCOPE=sepa_credit_transfers --app "$HEROKU_APP"
+heroku config:set ORIGIN=https://apibank2-54644cdf263f.herokuapp.com --app "$HEROKU_APP"
+heroku config:set TIMEOUT_REQUEST=3600 --app "$HEROKU_APP"
+heroku config:set REDIRECT_URI=https://apibank2-54644cdf263f.herokuapp.com/callback --app "$HEROKU_APP"
 
 # # === Carga de variables desde .env.production ===
 # echo -e "\n📤 Cargando variables desde $ENV_FILE..." | tee -a "$LOG_DEPLOY"

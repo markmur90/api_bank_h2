@@ -35,9 +35,9 @@ from api.gpt4.models import LogTransferencia, Transfer
 from api.gpt4.utils import generar_xml_pain002, handle_error_response, validar_xml_con_xsd
 from api.gpt4.utils_core import load_private_key_y_kid
 from config import settings
-from config.settings.base1 import TIMEOUT_REQUEST
 
 
+TIMEOUT_REQUEST=3600
 
 
 # ==== Directorios de schemas y logs ====
