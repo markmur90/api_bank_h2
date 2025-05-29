@@ -25,13 +25,13 @@ unalias ad_local 2>/dev/null
 ad_local() {cd "$HOME/Documentos/GitHub/api_bank_h2" && clear && code . "$@"}
 
 unalias ad_heroku 2>/dev/null
-ad_heroku() {cd "$HOME/Documentos/GitHub/api_bank_heroku" && clear && code . "$@"}
+ad_heroku() {cd "$HOME/Documentos/GitHub/api_bank_heroku" && clear "$@"}
 
 unalias d_env 2>/dev/null
 d_env() {source "$HOME/Documentos/Entorno/envAPP/bin/activate" "$@"}
 
 unalias d_mig 2>/dev/null
-d_mig() {d_env && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && python3 manage.py runserver 8002 "$@"}
+d_mig() {d_env && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && clear "$@"}
 
 unalias d_local 2>/dev/null
 d_local() {d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l -r "$@"}
