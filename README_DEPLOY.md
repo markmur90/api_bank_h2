@@ -1,5 +1,17 @@
 # 🧠 Automatización de Despliegue — `api_bank_h2`
 
+### Cambios importantes en esta versión
+
+- Todos los scripts usan ahora **bloques elegibles** `DO_*` en lugar de `OMIT_*`, permitiendo un control más preciso con `--do-*`.
+- Se ha añadido el comando `d_local_ssl`, que ejecuta entorno local en HTTPS (Gunicorn + Nginx en puerto 8443 con certificado autofirmado).
+- Los encabezados de los logs están centrados visualmente para mejorar la auditoría.
+- Nuevos alias disponibles:
+  - `d_local_ssl` → lanza entorno local con SSL
+  - `d_reset` → reinicia entorno seguro
+  - `d_reload_aliases` → recarga todos los alias
+
+
+
 Este archivo documenta el uso de funciones Bash para automatizar el despliegue, configuración y ejecución del sistema `api_bank_h2` en distintos entornos. Incluye alias funcionales para `local`, `heroku`, `production`, y pruebas SSL.
 
 ---
@@ -73,66 +85,34 @@ Este archivo documenta el uso de funciones Bash para automatizar el despliegue, 
 
 ---
 
-## 🚀 Comandos Disponibles
+## 🧠 Alias disponibles y funciones
 
-### Funciones generales
+| Alias | Acción | Descripción |
+| ----- | ------ | ----------- |
+| `api` | `cd + venv + code api_bank_h2` | Abrir proyecto Django principal |
+| `BKapi` | `cd + venv + code api_bank_h2_BK` | Abrir backup del proyecto |
+| `api_heroku` | `cd + venv + code api_bank_heroku` | Abrir proyecto en Heroku |
+| `update` | `apt-get update/upgrade/full-upgrade` | Actualizar sistema completo |
+| `monero` | `bash monero-wallet-gui` | Abrir interfaz gráfica de Monero |
+| `d_help` | `./01_full.sh --help` | Muestra ayuda del script maestro |
+| `d_step` | `./01_full.sh -s` | Ejecución paso a paso del despliegue |
+| `d_all` | `./01_full.sh -a` | Ejecuta todos los bloques disponibles |
+| `d_debug` | `./01_full.sh -d` | Modo debug del despliegue |
+| `d_menu` | `./01_full.sh --menu` | Menú interactivo FZF |
+| `d_status` | `diagnóstico_entorno.sh` | Diagnóstico completo del entorno |
+| `ad_local` | `cd + venv + d_local` | Activar entorno y lanzar despliegue local |
+| `d_env` | `cd + venv` | Solo entorno activado sin ejecutar nada |
+| `d_mig` | `makemigrations + migrate + collectstatic + runserver` | Migraciones y servidor local |
+| `d_local` | `./01_full.sh local completo` | Despliegue completo local |
+| `d_heroku` | `./01_full.sh producción Heroku` | Despliegue completo en Heroku |
+| `d_njalla` | `./01_full.sh VPS Njalla` | Despliegue completo en VPS |
+| `d_pgm` | `./01_full.sh + producción + extras` | Backup + migraciones + certificados |
+| `d_hek` | `./01_full.sh BDD + variables Heroku` | Sincronizar BDD + Heroku + usuario |
+| `d_back` | `./01_full.sh -C -Z` | Limpieza y backup |
+| `d_sys` | `./01_full.sh -Y -P -D -M -x` | Actualizar sistema, cerrar puertos, firewall |
+| `d_cep` | `./01_full.sh -p -E` | Generar claves PEM y certificados |
+| `d_vps` | `./01_full.sh -v` | Desplegar solo en VPS |
 
-| Comando      | Parámetros | Descripción                             |
-| ------------ | ----------- | ---------------------------------------- |
-| `d_help`   | `--help`  | Muestra ayuda del script maestro         |
-| `d_step`   | `-s`      | Ejecuta paso a paso                      |
-| `d_all`    | `-a`      | Ejecuta todos los bloques disponibles    |
-| `d_debug`  | `-d`      | Activa modo debug                        |
-| `d_menu`   | `--menu`  | Muestra menú interactivo con FZF        |
-| `d_status` | —          | Diagnóstico completo del entorno actual |
-
----
-
-## 🌐 Entorno Local
-
-| Comando              | Parámetros                                            | Descripción                                       |
-| -------------------- | ------------------------------------------------------ | -------------------------------------------------- |
-| `d_local`          | `-P -D -M -x -C -Z -Q -I -L -S -V -p -u -H -B -v -E` | Versión resumida de despliegue local + SSL        |
-| `d_local_long`     | `--do-*` largo para cada acción                     | Versión larga, explícita, con todas las acciones |
-| `d_local_dry`      | `--dry-run -P -C -Q -I -U -V`                        | Simulación del despliegue local                   |
-| `d_local_dry_long` | `--dry-run --do-*` largo                             | Simulación con todos los pasos largos             |
-| `d_local_ssl`      | —                                                     | Ejecuta entorno local HTTPS (Nginx + Gunicorn)     |
-| `d_ssl`            | —                                                     | Servidor HTTPS para desarrollo (runsslserver)      |
-
----
-
-## ☁️ Entorno Heroku
-
-| Comando           | Parámetros              | Descripción                             |
-| ----------------- | ------------------------ | ---------------------------------------- |
-| `d_heroku`      | `-P -C -u -U -V -p -x` | Despliegue completo en Heroku            |
-| `d_heroku_long` | `--do-*` largo         | Versión detallada del despliegue Heroku |
-
----
-
-## 🛡 Entorno Producción (Njalla / VPS)
-
-| Comando                    | Parámetros                      | Descripción                                        |
-| -------------------------- | -------------------------------- | --------------------------------------------------- |
-| `d_njalla`               | `-P -C -H -U -V -u -B -v`      | Despliegue total en producción con verificación   |
-| `d_njalla_long`          | `--do-*` largo                 | Versión completa detallada para producción Njalla |
-| `d_production_vars`      | `-P -C -H -U -V`               | Solo pasos críticos de producción                 |
-| `d_production_vars_long` | `--do-*` largo                 | Versión larga de pasos críticos                   |
-| `d_prod_min`             | `-v -V`                        | Despliegue mínimo: deploy y ejecución web         |
-| `d_prod_min_long`        | `--do-deploy-vps --do-run-web` | Versión explícita del despliegue mínimo          |
-
----
-
-## 🧪 Ejemplos de Uso
-
-| Comando        | Parámetros | Descripción          |
-| -------------- | ----------- | --------------------- |
-| `api`        | —          | Abrir api_bank_h2     |
-| `BKapi`      | —          | Abrir api_bank_h2_BK  |
-| `api_heroku` | —          | Abrir api_bank_heroku |
-| `update`     | —          | Actualizar sistema    |
-
----
 
 ## 📂 Recomendación
 

@@ -70,3 +70,48 @@ bound to 192.168.0.175 -- renewal in 40039 seconds.
 🧭 IP Tor anterior : 2.58.56.93
 🛰️ IP Tor actual   : {"error": "Too Many Requests"}
 =========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+Killed old client process
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/7e:f4:d9:0f:d2:e6
+Sending on   LPF/wlan0/7e:f4:d9:0f:d2:e6
+Sending on   Socket/fallback
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 3
+DHCPOFFER of 192.168.0.175 from 192.168.0.1
+DHCPREQUEST for 192.168.0.175 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.175 from 192.168.0.1
+Error: ipv4: Address already assigned.
+bound to 192.168.0.175 -- renewal in 32807 seconds.
+⚠ IP no ha cambiado tras el primer intento. Reintentando...
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/5e:37:60:f7:2f:69
+Sending on   LPF/wlan0/5e:37:60:f7:2f:69
+Sending on   Socket/fallback
+DHCPREQUEST for 192.168.0.175 on wlan0 to 255.255.255.255 port 67
+DHCPREQUEST for 192.168.0.175 on wlan0 to 255.255.255.255 port 67
+DHCPNAK from 192.168.0.1
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 8
+DHCPOFFER of 192.168.0.176 from 192.168.0.1
+DHCPREQUEST for 192.168.0.176 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.176 from 192.168.0.1
+bound to 192.168.0.176 -- renewal in 33538 seconds.
+
+=========================================
+📅 Fecha           : 2025-05-29 04:29:02
+🛰️ Interfaz        : wlan0
+🧭 MAC anterior    : 36:ab:ee:43:42:8e
+✨ MAC actual      : 5e:37:60:f7:2f:69
+🧭 IP anterior     : 192.168.0.175
+🛰️ IP actual       : 192.168.0.176
+🧭 IP Tor anterior : {"error": "Too Many Requests"}
+🛰️ IP Tor actual   : {"error": "Too Many Requests"}
+=========================================
