@@ -793,13 +793,13 @@ def handle_notification(request):
 
 class ClaveGeneradaListView(ListView):
     model = ClaveGenerada
-    template_name = 'claves/lista.html'
+    template_name = 'api/claves/lista.html'
     context_object_name = 'claves'
 
 class ClaveGeneradaCreateView(CreateView):
     model = ClaveGenerada
     form_class = ClaveGeneradaForm
-    template_name = 'claves/formulario.html'
+    template_name = 'api/claves/formulario.html'
     success_url = reverse_lazy('lista_claves')
 
     def get_context_data(self, **kwargs):
@@ -810,7 +810,7 @@ class ClaveGeneradaCreateView(CreateView):
 class ClaveGeneradaUpdateView(UpdateView):
     model = ClaveGenerada
     form_class = ClaveGeneradaForm
-    template_name = 'claves/formulario.html'
+    template_name = 'api/claves/formulario.html'
     success_url = reverse_lazy('lista_claves')
 
     def get_context_data(self, **kwargs):
@@ -820,7 +820,7 @@ class ClaveGeneradaUpdateView(UpdateView):
 
 class ClaveGeneradaDeleteView(DeleteView):
     model = ClaveGenerada
-    template_name = 'claves/eliminar.html'
+    template_name = 'api/claves/eliminar.html'
     success_url = reverse_lazy('lista_claves')
 
     def get_context_data(self, **kwargs):

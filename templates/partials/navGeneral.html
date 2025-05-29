@@ -1,3 +1,25 @@
+<style>
+  /* Nueva clase para que el select luzca como un nav-link dropdown-toggle */
+  .nav-select {
+    display: inline-block;
+    color:var(--bs-nav-link-color);      /* mismo color de texto */
+    /*color: rgba(var(--bs-light-rgb), 1); */     /* mismo color de texto */
+    background-color: transparent;            /* fondo transparente */
+    border: none;                             /* sin borde */
+    padding: 0.5rem 1rem;                     /* mismo padding */
+    font-size: 1rem;                          /* misma tipografía */
+  }
+  .nav-select:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  /* Aseguramos que el ícono de dropdown siga visible */
+  .nav-select.dropdown-toggle::after {
+    margin-left: .255em;
+    vertical-align: .255em;
+  }
+</style>
+
 <nav class="navbar navbar-expand-lg navbar-dark sticky-top custom-navbar-bg">
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'dashboard' %}">Banco</a>
@@ -30,7 +52,7 @@
         <li class="nav-item">
           <form method="get" class="mb-0">
             <label for="entornoSelect" class="form-label visually-hidden">Seleccionar entorno</label>
-            <select id="entornoSelect" name="entorno" class="form-select form-select-sm" onchange="location.href=this.value;" aria-label="Seleccionar entorno">
+            <select id="entornoSelect" name="entorno" class="nav-select dropdown-toggle" onchange="location.href=this.value;" aria-label="Seleccionar entorno">
               {% for opt in entornos %}
                 <option value="{% url 'cambiar_entorno' opt %}" {% if opt == entorno_actual %}selected{% endif %}>
                   {{ opt|title }}
