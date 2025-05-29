@@ -1,7 +1,7 @@
 from datetime import datetime
 from django import forms
 import pytz
-from api.gpt4.models import ClientID, Debtor, DebtorAccount, Creditor, CreditorAccount, CreditorAgent, Kid, Transfer
+from api.gpt4.models import ClaveGenerada, ClientID, Debtor, DebtorAccount, Creditor, CreditorAccount, CreditorAgent, Kid, Transfer
 
 class DebtorForm(forms.ModelForm):
     class Meta:
@@ -179,3 +179,22 @@ class KidForm(forms.ModelForm):
             'codigo': forms.TextInput(attrs={'class': 'form-control'}),
             'kid': forms.TextInput(attrs={'class': 'form-control'}),
         }
+
+class ClaveGeneradaForm(forms.ModelForm):
+    class Meta:
+        model = ClaveGenerada
+        fields = [
+            'usuario',
+            'estado',
+            'kid',
+            'path_privada',
+            'path_publica',
+            'path_jwks',
+            'clave_privada',
+            'clave_publica',
+            'jwks',
+            'archivo_privado',
+            'archivo_publico',
+            'archivo_jwks',
+            'mensaje_error',
+        ]

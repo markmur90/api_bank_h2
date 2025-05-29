@@ -12,9 +12,11 @@ from weasyprint import HTML
 from django.views.decorators.http import require_POST, require_http_methods
 from django.urls import reverse
 from django.utils.timezone import now
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 
-from api.gpt4.forms import ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm, DebtorAccountForm, DebtorForm, KidForm, ScaForm, SendTransferForm, TransferForm
-from api.gpt4.models import Creditor, CreditorAccount, CreditorAgent, Debtor, DebtorAccount, LogTransferencia, PaymentIdentification, Transfer
+from api.gpt4.forms import ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm, DebtorAccountForm, DebtorForm, KidForm, ScaForm, SendTransferForm, TransferForm, ClaveGeneradaForm
+from api.gpt4.models import Creditor, CreditorAccount, CreditorAgent, Debtor, DebtorAccount, LogTransferencia, PaymentIdentification, Transfer, ClaveGenerada
 from api.gpt4.utils import BASE_SCHEMA_DIR, build_auth_url, crear_challenge_mtan, crear_challenge_phototan, crear_challenge_pushtan, fetch_token_by_code, fetch_transfer_details, generar_archivo_aml, generar_pdf_transferencia, generar_xml_pain001, generate_deterministic_id, generate_payment_id_uuid, generate_pkce_pair, get_access_token, get_client_credentials_token, obtener_ruta_schema_transferencia, read_log_file, refresh_access_token, registrar_log, registrar_log_oauth, resolver_challenge_pushtan, send_transfer, update_sca_request
 from config import settings
 
@@ -785,3 +787,43 @@ def handle_notification(request):
         )
         return JsonResponse({'status': 'error', 'mensaje': str(e)}, status=500)
 
+
+# views.py
+
+
+class ClaveGeneradaListView(ListView):
+    model = ClaveGenerada
+    template_name = 'claves/lista.html'
+    context_object_name = 'claves'
+
+class ClaveGeneradaCreateView(CreateView):
+    model = ClaveGenerada
+    form_class = ClaveGeneradaForm
+    template_name = 'claves/formulario.html'
+    success_url = reverse_lazy('lista_claves')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['modo'] = 'crear'
+        return context
+
+class ClaveGeneradaUpdateView(UpdateView):
+    model = ClaveGenerada
+    form_class = ClaveGeneradaForm
+    template_name = 'claves/formulario.html'
+    success_url = reverse_lazy('lista_claves')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['modo'] = 'editar'
+        return context
+
+class ClaveGeneradaDeleteView(DeleteView):
+    model = ClaveGenerada
+    template_name = 'claves/eliminar.html'
+    success_url = reverse_lazy('lista_claves')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['clave'] = self.object
+        return context
