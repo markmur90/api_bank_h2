@@ -1,0 +1,16 @@
+📅 Fecha de ejecución: 2025-05-29 20:37:51
+📄 Script: 00_20_ssl.sh
+═══════════════════════════════════════════
+🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443
+[2025-05-29 20:37:52 +0200] [286270] [INFO] Starting gunicorn 23.0.0
+[2025-05-29 20:37:52 +0200] [286270] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-29 20:37:52 +0200] [286270] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-29 20:37:53 +0200] [286270] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-29 20:37:53 +0200] [286270] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-29 20:37:54 +0200] [286270] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-29 20:37:54 +0200] [286270] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-29 20:37:55 +0200] [286270] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-29 20:37:55 +0200] [286270] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-29 20:37:56 +0200] [286270] [ERROR] Connection in use: ('0.0.0.0', 8443)
+[2025-05-29 20:37:56 +0200] [286270] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
+[2025-05-29 20:37:57 +0200] [286270] [ERROR] Can't connect to ('0.0.0.0', 8443)
