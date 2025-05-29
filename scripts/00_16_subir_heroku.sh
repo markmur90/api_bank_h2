@@ -38,8 +38,10 @@ heroku config:set SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw" --app
 heroku config:set DJANGO_ENV=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 heroku config:set ENVIRONMENT=production --app "$HEROKU_APP" | tee -a "$LOG_DEPLOY"
 
-heroku config:set TOKEN_URL=https://simulator-api.db.com:443/gw/dbapi/token --app "$HEROKU_APP"
-heroku config:set AUTH_URL=https://simulator-api.db.com:443/gw/dbapi/authorize --app "$HEROKU_APP"
+heroku config:set TOKEN_URL=https://simulator-api.db.com:443/gw/oidc/token --app "$HEROKU_APP"
+heroku config:set AUTHORIZE_URL=https://simulator-api.db.com:443/gw/oidc/authorize --app "$HEROKU_APP"
+heroku config:set OTP_URL=https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single --app "$HEROKU_APP"
+heroku config:set AUTH_URL=https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges --app "$HEROKU_APP"
 heroku config:set API_URL=https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer --app "$HEROKU_APP"
 heroku config:set SCOPE=sepa_credit_transfers --app "$HEROKU_APP"
 heroku config:set ORIGIN=https://apibank2-54644cdf263f.herokuapp.com --app "$HEROKU_APP"
