@@ -288,11 +288,11 @@ fi
 # === FUNCIONES PROFESIONALES ===
 verificar_vpn_segura() {
     if ip a show proton0 &>/dev/null; then
-        log_ok "VPN (proton0) activa. Conexión segura."
+        echo "VPN (proton0) activa. Conexión segura."
     elif ip a show tun0 &>/dev/null; then
-        log_ok "VPN (tun0) activa. Conexión segura."
+        echo "VPN (tun0) activa. Conexión segura."
     else
-        log_error "❌ No hay VPN activa (ni proton0 ni tun0). Abortando despliegues sensibles."
+        echo "❌ No hay VPN activa (ni proton0 ni tun0). Abortando despliegues sensibles."
         exit 1
     fi
 }
@@ -313,18 +313,18 @@ rotar_logs_si_grandes() {
 verificar_configuracion_segura() {
     archivo_env="$PROJECT_ROOT/.env"
     if grep -q "DEBUG=True" "$archivo_env"; then
-        log_error "❌ DEBUG está activo en producción. Revisa tu .env"
+        echo "❌ DEBUG está activo en producción. Revisa tu .env"
         exit 1
     fi
     if grep -q "localhost" "$archivo_env"; then
-        log_error "❌ ALLOWED_HOSTS contiene 'localhost'. No es seguro para producción."
+        echo "❌ ALLOWED_HOSTS contiene 'localhost'. No es seguro para producción."
         exit 1
     fi
     if ! grep -q "SECRET_KEY=" "$archivo_env"; then
-        log_error "❌ SECRET_KEY no está configurado en .env"
+        echo "❌ SECRET_KEY no está configurado en .env"
         exit 1
     fi
-    log_ok "✔️ Configuración .env validada."
+    echo "✔️ Configuración .env validada."
 }
 
 
