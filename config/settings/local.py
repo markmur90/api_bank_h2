@@ -9,10 +9,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # Configuraciones específicas del entorno local
 USE_OAUTH2_UI = False
 
-# REDIRECT_URI = os.getenv("REDIRECT_URI", "http://0.0.0.0:8000/oauth2/callback/")
-# ORIGIN = os.getenv("ORIGIN", "http://0.0.0.0:8000")
+REDIRECT_URI = os.getenv("REDIRECT_URI", "https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/")
+ORIGIN = os.getenv("ORIGIN", "https://apibank2-54644cdf263f.herokuapp.com")
 
-# OAUTH2.update({
-#     "REDIRECT_URI": REDIRECT_URI,
-#     "ORIGIN": ORIGIN,
-# })
+OAUTH2.update({
+    "REDIRECT_URI": REDIRECT_URI,
+    "ORIGIN": ORIGIN,
+})

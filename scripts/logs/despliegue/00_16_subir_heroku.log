@@ -2455,3 +2455,656 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 ✅ Heroku reiniciado correctamente.
 
 🎉 ✅ ¡Deploy completado con éxito!
+
+📅 Fecha de ejecución: 2025-05-29 22:52:52
+📄 Script: 00_16_subir_heroku.sh
+═══════════════════════════════════════════
+
+🔧 Desactivando collectstatic en Heroku...
+
+📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_h2/.env.production...
+Setting DEBUG and restarting apibank2...
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... done, v295
+DEBUG: False
+✅ DEBUG cargada correctamente
+Setting ALLOWED_HOSTS and restarting apibank2...
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
+ ›   Warning: Release command executing: this config change will not be 
+ ›   available until the command succeeds. Use `heroku releases:output` to view
+ ›    the log.
+ ›
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v296
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apib.coretransapi.com
+✅ ALLOWED_HOSTS cargada correctamente
+Setting SECRET_KEY and restarting apibank2...
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... done, v296
+SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
+✅ SECRET_KEY cargada correctamente
+Setting ENVIRONMENT and restarting apibank2...
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... done, v296
+ENVIRONMENT: production
+✅ ENVIRONMENT cargada correctamente
+Setting DJANGO_ENV and restarting apibank2...
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... done, v296
+DJANGO_ENV: production
+✅ DJANGO_ENV cargada correctamente
+Setting REDIRECT_URI and restarting apibank2...
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... done, v296
+REDIRECT_URI: https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/
+✅ REDIRECT_URI cargada correctamente
+Setting ORIGIN and restarting apibank2...
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ORIGIN and restarting apibank2... done, v296
+ORIGIN: https://apibank2-54644cdf263f.herokuapp.com
+✅ ORIGIN cargada correctamente
+Setting CLIENT_ID and restarting apibank2...
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting CLIENT_ID and restarting apibank2... done, v296
+CLIENT_ID: 7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7
+✅ CLIENT_ID cargada correctamente
+Setting CLIENT_SECRET and restarting apibank2...
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting CLIENT_SECRET and restarting apibank2... done, v296
+CLIENT_SECRET: L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw
+✅ CLIENT_SECRET cargada correctamente
+Setting TOKEN_URL and restarting apibank2...
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting TOKEN_URL and restarting apibank2... done, v296
+TOKEN_URL: https://simulator-api.db.com:443/gw/oidc/token
+✅ TOKEN_URL cargada correctamente
+Setting AUTHORIZE_URL and restarting apibank2...
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting AUTHORIZE_URL and restarting apibank2... done, v296
+AUTHORIZE_URL: https://simulator-api.db.com:443/gw/oidc/authorize
+✅ AUTHORIZE_URL cargada correctamente
+Setting OTP_URL and restarting apibank2...
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting OTP_URL and restarting apibank2... done, v296
+OTP_URL: https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single
+✅ OTP_URL cargada correctamente
+Setting AUTH_URL and restarting apibank2...
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting AUTH_URL and restarting apibank2... done, v296
+AUTH_URL: https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges
+✅ AUTH_URL cargada correctamente
+Setting API_URL and restarting apibank2...
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting API_URL and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting API_URL and restarting apibank2... done, v296
+API_URL: https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer
+✅ API_URL cargada correctamente
+Setting SCOPE and restarting apibank2...
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting SCOPE and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting SCOPE and restarting apibank2... done, v296
+SCOPE: sepa_credit_transfers
+✅ SCOPE cargada correctamente
+Setting TIMEOUT and restarting apibank2...
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TIMEOUT and restarting apibank2... done, v296
+TIMEOUT: 3600
+✅ TIMEOUT cargada correctamente
+Setting TIMEOUT_REQUEST and restarting apibank2...
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting TIMEOUT_REQUEST and restarting apibank2... done, v296
+TIMEOUT_REQUEST: 3600
+✅ TIMEOUT_REQUEST cargada correctamente
+Setting PRIVATE_KEY_PATH and restarting apibank2...
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_PATH and restarting apibank2... done, v296
+PRIVATE_KEY_PATH: app/schemas/keys/private_key.pem
+✅ PRIVATE_KEY_PATH cargada correctamente
+Setting PRIVATE_KEY_KID and restarting apibank2...
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_KID and restarting apibank2... done, v296
+PRIVATE_KEY_KID: 57c43e75-3a34-4ef2-8d2b-04f1b117f2881
+✅ PRIVATE_KEY_KID cargada correctamente
+Setting ACCESS_TOKEN and restarting apibank2...
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ACCESS_TOKEN and restarting apibank2... done, v296
+ACCESS_TOKEN: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg
+✅ ACCESS_TOKEN cargada correctamente
+
+🔑 Clave privada detectada en /home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem
+Setting PRIVATE_KEY_B64 and restarting apibank2...
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting PRIVATE_KEY_B64 and restarting apibank2... done, v296
+PRIVATE_KEY_B64: LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR0hBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJHMHdhd0lCQVFRZ1ArWHMxSG9rT1BtbFJxWWkKVUtVa2hrYjdKa1lyY3k0amQxblV4Vm83VC8raFJBTkNBQVNoUnVBZDhwaHYzcUF2RVQ4cWczWXpyOWlRTDh6bwp5WkxJay9tQ1lXVTg5YVd5NDdjVm45WWRxNDU1VGRQUzArRjdxSzdnV0xYR3NycU01WjcrR0VxeQotLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tCg==
+✅ Clave privada codificada subida como PRIVATE_KEY_B64
+
+🚀 Subiendo el proyecto a Heroku y GitHub...
+
+📦 Haciendo git add...
+📝 Commit con mensaje: BASE
+🌐 Push a GitHub...
+HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
+☁️  Push a Heroku...
+✅ Heroku reiniciado correctamente.
+
+🎉 ✅ ¡Deploy completado con éxito!
+
+📅 Fecha de ejecución: 2025-05-29 23:17:41
+📄 Script: 00_16_subir_heroku.sh
+═══════════════════════════════════════════
+
+🔧 Desactivando collectstatic en Heroku...
+
+📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_h2/.env.production...
+Setting DEBUG and restarting apibank2...
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DEBUG and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DEBUG and restarting apibank2... done, v297
+DEBUG: False
+✅ DEBUG cargada correctamente
+Setting ALLOWED_HOSTS and restarting apibank2...
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v297
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+✅ ALLOWED_HOSTS cargada correctamente
+Setting SECRET_KEY and restarting apibank2...
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting SECRET_KEY and restarting apibank2... done, v297
+SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
+✅ SECRET_KEY cargada correctamente
+Setting ENVIRONMENT and restarting apibank2...
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting ENVIRONMENT and restarting apibank2... done, v297
+ENVIRONMENT: production
+✅ ENVIRONMENT cargada correctamente
+Setting DJANGO_ENV and restarting apibank2...
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting DJANGO_ENV and restarting apibank2... done, v297
+DJANGO_ENV: production
+✅ DJANGO_ENV cargada correctamente
+Setting REDIRECT_URI and restarting apibank2...
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣾[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣽[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣻[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⢿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⡿[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣟[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣯[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... [38;5;104m⣷[0m
+[G[1A[JSetting REDIRECT_URI and restarting apibank2... done, v297
+REDIRECT_URI: https://apibank2-54644cdf263f.herokuapp.com/oauth2/callback/
+⚠️  Error al cargar REDIRECT_URI
