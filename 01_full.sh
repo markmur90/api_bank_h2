@@ -1,6 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+centrar_texto() {
+  local texto="$1"
+  local ancho=80
+  local relleno_char="-"
+  local largo_texto=${#texto}
+  local relleno_total=$((ancho - largo_texto - 2))
+  local relleno_izq=$((relleno_total / 2))
+  local relleno_der=$((relleno_total - relleno_izq))
+  printf "
+
+
+%s %s %s
+" \
+    "$(printf "%${relleno_izq}s" | tr ' ' "$relleno_char")" \
+    "$texto" \
+    "$(printf "%${relleno_der}s" | tr ' ' "$relleno_char")"
+}
+
 SCRIPT_NAME="$(basename "$0")"
 LOG_DEPLOY="./scripts/logs/01_full_deploy/full_deploy.log"
 
@@ -360,98 +378,98 @@ pausa_y_limpiar
 
 # === 01 ===
 echo -e "\033[7;33m------------------------------------------------SISTEMA------------------------------------------------\033[0m"
-echo -e "\n\n\n------------------------------------SISTEMA----------------------------" >> "$LOG_DEPLOY"
+centrar_texto "SISTEMA" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_SYS" "Actualizar sistema" "bash $SCRIPTS_DIR/00_01_sistema.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 02 ===
 echo -e "\033[7;33m----------------------------------------------------ZIP------------------------------------------------\033[0m"
-echo "--------------------------------------ZIP------------------------------" >> "$LOG_DEPLOY"
+centrar_texto "ZIP" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_ZIP_SQL" "Crear zip y sql" "bash $SCRIPTS_DIR/00_02_zip_backup.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 03 ===
 echo -e "\033[7;33m------------------------------------------------PUERTOS------------------------------------------------\033[0m"
-echo "------------------------------------PUERTOS----------------------------" >> "$LOG_DEPLOY"
+centrar_texto "PUERTOS" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_PORTS" "Cerrar puertos" "bash $SCRIPTS_DIR/00_03_puertos.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 04 ===
 echo -e "\033[7;33m----------------------------------------------CONTENEDORES---------------------------------------------\033[0m"
-echo "----------------------------------CONTENEDORES-------------------------" >> "$LOG_DEPLOY"
+centrar_texto "CONTENEDORES" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_DOCKER" "Cerrar contenedores" "bash $SCRIPTS_DIR/00_04_container.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 05 ===
-echo -e "\033[7;33m-----------------------------------------------CAMBIO MAC----------------------------------------------\033[0m" 
-echo "-----------------------------------CAMBIO MAC--------------------------" >> "$LOG_DEPLOY"
+echo -e "\033[7;33m-----------------------------------------------CAMBIO MAC----------------------------------------------\033[0m"
+centrar_texto "CAMBIO MAC" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_MAC" "Cambiar MAC" "bash $SCRIPTS_DIR/00_05_mac.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 verificar_vpn_segura
 # === 06 ===
 echo -e "\033[7;33m--------------------------------------------------UFW--------------------------------------------------\033[0m" 
-echo "--------------------------------------UFW------------------------------" >> "$LOG_DEPLOY"
+centrar_texto "UFW" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_UFW" "Configurar UFW" "bash $SCRIPTS_DIR/00_06_ufw.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 07 ===
-echo -e "\033[7;33m------------------------------------------------POSTGRES-----------------------------------------------\033[0m" 
-echo "-----------------------------------POSTGRES----------------------------" >> "$LOG_DEPLOY"
+echo -e "\033[7;33m------------------------------------------------POSTGRES-----------------------------------------------\033[0m"
+centrar_texto "POSTGRES" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_PGSQL" "Configurar PostgreSQL" "bash $SCRIPTS_DIR/00_07_postgres.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 08 ===
 echo -e "\033[7;33m----------------------------------------------MIGRACIONES----------------------------------------------\033[0m" 
-echo "---------------------------------MIGRACIONES---------------------------" >> "$LOG_DEPLOY"
+centrar_texto "MIGRACIONES" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_MIG" "Ejecutar migraciones" "bash $SCRIPTS_DIR/00_08_migraciones.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 09 ===
 echo -e "\033[7;33m----------------------------------------------CARGAR LOCAL---------------------------------------------\033[0m" 
-echo "---------------------------------CARGAR LOCAL--------------------------" >> "$LOG_DEPLOY"
+centrar_texto "CARGAR LOCAL" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_RUN_LOCAL" "Subir bdd_local" "bash $SCRIPTS_DIR/00_09_cargar_json.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 10 ===
 echo -e "\033[7;33m------------------------------------------------USUARIO------------------------------------------------\033[0m" 
-echo "-----------------------------------USUARIO-----------------------------" >> "$LOG_DEPLOY"
+centrar_texto "USUARIO" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_USER" "Crear Super Usuario" "bash $SCRIPTS_DIR/00_10_usuario.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 11 ===
 echo -e "\033[7;33m--------------------------------------------RESPALDOS LOCAL--------------------------------------------\033[0m" 
-echo "-------------------------------RESPALDOS LOCAL-------------------------" >> "$LOG_DEPLOY"
+centrar_texto "RESPALDOS LOCAL" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_JSON_LOCAL" "Crear respaldo JSON local" "bash $SCRIPTS_DIR/00_11_hacer_json.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 12 ===
 echo -e "\033[7;33m------------------------------------------------PEM JWKS-----------------------------------------------\033[0m" 
-echo "---------------------------------PEM JWKS------------------------------" >> "$LOG_DEPLOY"
+centrar_texto "PEM JWKS" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_PEM" "Generar PEM JWKS" "bash $SCRIPTS_DIR/00_12_pem.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 13 ===
 echo -e "\033[7;33m----------------------------------------VERIFICAR TRANSFERENCIAS---------------------------------------\033[0m" 
-echo "-----------------------VERIFICAR TRANSFERENCIAS------------------------" >> "$LOG_DEPLOY"
+centrar_texto "VERIFICAR TRANSFERENCIAS" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_VERIF_TRANSF" "Verificar Transferencias" "bash $SCRIPTS_DIR/00_13_verificar_transferencias.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 14 ===
 echo -e "\033[7;33m----------------------------------------SINCRONIZACION COMPLETA----------------------------------------\033[0m" 
-echo "------------------------SINCRONIZACION COMPLETA------------------------" >> "$LOG_DEPLOY"
+centrar_texto "SINCRONIZACION COMPLETA" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_SYNC_LOCAL" "Sincronizar Archivos Locales" "bash $SCRIPTS_DIR/00_14_sincronizacion_archivos.sh"
 echo -e "\n\n"
 pausa_y_limpiar
@@ -462,7 +480,7 @@ rotar_logs_si_grandes
 
 # === 15 ===
 echo -e "\033[7;33m-------------------------------------------VARIABLES A HEROKU------------------------------------------\033[0m" 
-echo "---------------------------VARIABLES A HEROKU--------------------------" >> "$LOG_DEPLOY"
+centrar_texto "VARIABLES A HEROKU" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_VARHER" "Subir variables a Heroku" "bash $SCRIPTS_DIR/00_15_variables_heroku.sh"
 echo ""
 echo -e "\n\n"
@@ -470,42 +488,42 @@ pausa_y_limpiar
 
 # === 16 ===
 echo -e "\033[7;33m---------------------------------------------SUBIR A HEROKU--------------------------------------------\033[0m" 
-echo "-----------------------------SUBIR A HEROKU----------------------------" >> "$LOG_DEPLOY"
+centrar_texto "SUBIR A HEROKU" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_HEROKU" "Subir el proyecto a la web" "bash $SCRIPTS_DIR/00_16_subir_heroku.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 17 ===
 echo -e "\033[7;33m-----------------------------------------SINCRONIZACION BDD WEB----------------------------------------\033[0m" 
-echo "-------------------------SINCRONIZACION BDD WEB------------------------" >> "$LOG_DEPLOY"
+centrar_texto "SINCRONIZACION BDD WEB" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_SYNC_REMOTE_DB" "Sincronizar BDD Remota" "bash $SCRIPTS_DIR/00_17_sincronizar_bdd.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 18 ===
 echo -e "\033[7;33m-----------------------------------DEPLOY REMOTO A VPS - CORETRANSAPI----------------------------------\033[0m" 
-echo "----------------------------------VPS----------------------------------" >> "$LOG_DEPLOY"
+centrar_texto "VPS" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_DEPLOY_VPS" "Desplegar en VPS" "bash $SCRIPTS_DIR/00_18_deploy_njalla.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 19 ===
 echo -e "\033[7;33m-------------------------------------------BORRANDO ZIP Y SQL------------------------------------------\033[0m" 
-echo "---------------------------------CLEAN---------------------------------" >> "$LOG_DEPLOY"
+centrar_texto "CLEAN" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_CLEAN" "Limpiar respaldos" "bash $SCRIPTS_DIR/00_19_borrar_zip_sql.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 20 ===
 echo -e "\033[7;33m------------------------------------------------- SSL -------------------------------------------------\033[0m" 
-echo "----------------------------------SSL----------------------------------" >> "$LOG_DEPLOY"
+centrar_texto "SSL" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_CERT" "Generar Certificado" "bash $SCRIPTS_DIR/00_20_ssl.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 21 ===
 echo -e "\033[7;33m-----------------------------------------ENTORNO LOCAL CON SSL-----------------------------------------\033[0m" 
-echo "------------------------------LOCAL + SSL------------------------------" >> "$LOG_DEPLOY"
+centrar_texto "LOCAL CON SSL" >> "$LOG_DEPLOY"
 if [[ "$DO_LOCAL_SSL" == true && "$DO_GUNICORN" == true ]]; then
     echo -e "\033[1;31m❌ No puedes ejecutar DO_LOCAL_SSL y DO_GUNICORN al mismo tiempo.\033[0m"
     exit 1
@@ -516,14 +534,14 @@ pausa_y_limpiar
 
 # === 22 ===
 echo -e "\033[7;33m----------------------------------------------- GUNICORN ----------------------------------------------\033[0m" 
-echo "--------------------------------GUNICORN------------------------------" >> "$LOG_DEPLOY"
+centrar_texto "GUNICORN" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_GUNICORN" "Iniciar Gunicorn, honeypot y livereload" "bash $SCRIPTS_DIR/00_22_gunicorn.sh"
 echo -e "\n\n"
 pausa_y_limpiar
 
 # === 23 ===
 echo -e "\033[7;34m-------------------------------------------- DEPLOY COMPLETO ------------------------------------------\033[0m" 
-echo -e "----------------------------DEPLOY COMPLETO----------------------------\n\n\n" >> "$LOG_DEPLOY"
+centrar_texto "DEPLOY COMPLETO" >> "$LOG_DEPLOY"
 URL_LOCAL="http://0.0.0.0:5000"
 URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
