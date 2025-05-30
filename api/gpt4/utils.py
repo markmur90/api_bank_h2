@@ -751,7 +751,7 @@ def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None
     try:
         resp = requests.post(API_URL, headers=headers, json=body, timeout=TIMEOUT_REQUEST)
         response_headers = dict(resp.headers)
-        registrar_log(pid, tipo_log='TRANSFER', response_text=resp.text, headers_recibidos=response_headers, extra_info="Respuesta del API SEPA")
+        registrar_log(pid, tipo_log='TRANSFER', response_text=resp.text, headers_enviados=response_headers, extra_info="Respuesta del API SEPA")
         resp.raise_for_status()
     except requests.RequestException as e:
         err = str(e)
