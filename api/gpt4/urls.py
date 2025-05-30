@@ -50,5 +50,7 @@ urlpatterns = [
     path('crear/', views.ClaveGeneradaCreateView.as_view(), name='crear_clave'),
     path('editar/<int:pk>/', views.ClaveGeneradaUpdateView.as_view(), name='editar_clave'),
     path('eliminar/<int:pk>/', views.ClaveGeneradaDeleteView.as_view(), name='eliminar_clave'),
-    
+    path("toggle_banco/", views.toggle_conexion_banco, name="toggle_conexion_banco"),
+    path("probar_banco/", views.prueba_conexion_banco, name="prueba_conexion_banco"),
+    path("diagnostico_banco/", views.diagnostico_banco, name="diagnostico_banco"),
 ]

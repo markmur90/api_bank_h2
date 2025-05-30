@@ -75,3 +75,22 @@ def puerto_activo(host, puerto, timeout=2):
             return True
     except Exception:
         return False
+    
+# ============================
+# Wrapper inteligente por sesión
+# ============================
+from django.conf import settings
+
+def hacer_request_banco(request, path="/api", metodo="GET", datos=None, headers=None):
+    usar_conexion = request.session.get("usar_conexion_banco", False)
+    if usar_conexion:
+        return hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
+    # Modo normal/local
+    registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
+    url = f"https://80.78.30.188:9000{path}"
+    try:
+        respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=TIMEOUT)
+        return respuesta.json()
+    except Exception as e:
+        registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
+        return None

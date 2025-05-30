@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import socket
 import time
 import uuid
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,13 +9,20 @@ from django.http import FileResponse, HttpResponse, JsonResponse
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import get_template
+import dns
 from weasyprint import HTML
 from django.views.decorators.http import require_POST, require_http_methods
 from django.urls import reverse
 from django.utils.timezone import now
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.shortcuts import redirect
+from django.contrib import messages
+from django.http import JsonResponse
+from django.views.decorators.http import require_GET
 
+from api.gpt4.conexion_banco import hacer_request_banco
+from api.gpt4.decorators import requiere_conexion_banco
 from api.gpt4.forms import ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm, DebtorAccountForm, DebtorForm, KidForm, ScaForm, SendTransferForm, TransferForm, ClaveGeneradaForm
 from api.gpt4.models import Creditor, CreditorAccount, CreditorAgent, Debtor, DebtorAccount, LogTransferencia, PaymentIdentification, Transfer, ClaveGenerada
 from api.gpt4.utils import BASE_SCHEMA_DIR, build_auth_url, crear_challenge_mtan, crear_challenge_phototan, crear_challenge_pushtan, fetch_token_by_code, fetch_transfer_details, generar_archivo_aml, generar_pdf_transferencia, generar_xml_pain001, generate_deterministic_id, generate_payment_id_uuid, generate_pkce_pair, get_access_token, get_client_credentials_token, obtener_ruta_schema_transferencia, read_log_file, refresh_access_token, registrar_log, registrar_log_oauth, resolver_challenge_pushtan, send_transfer, update_sca_request
@@ -822,3 +830,62 @@ class ClaveGeneradaDeleteView(DeleteView):
         context = super().get_context_data(**kwargs)
         context['clave'] = self.object
         return context
+
+
+
+# ============================
+# Toggle y prueba conexión banco
+# ============================
+
+
+@require_GET
+def prueba_conexion_banco(request):
+    respuesta = hacer_request_banco(request, path="/api/test")
+    if respuesta is None:
+        return JsonResponse({"estado": "fallo", "detalle": "No se obtuvo respuesta."}, status=502)
+    return JsonResponse({"estado": "ok", "respuesta": respuesta})
+
+def toggle_conexion_banco(request):
+    estado_actual = request.session.get("usar_conexion_banco", False)
+    request.session["usar_conexion_banco"] = not estado_actual
+    estado = "activada" if not estado_actual else "desactivada"
+    messages.success(request, f"Conexión bancaria {estado}.")
+    return redirect(request.META.get("HTTP_REFERER", "/"))
+
+
+
+
+# ============================
+# Diagnóstico de red bancaria
+# ============================
+
+@require_GET
+def diagnostico_banco(request):
+    try:
+        hostname = socket.gethostname()
+        ip_local = socket.gethostbyname(hostname)
+    except Exception as e:
+        ip_local = f"❌ Error obteniendo IP local: {e}"
+
+    try:
+        resolver = dns.resolver.Resolver()
+        resolver.nameservers = ["192.168.10.12"]
+        respuesta = resolver.resolve("pain.banco.priv")
+        dns_resuelto = respuesta[0].to_text()
+    except Exception as e:
+        dns_resuelto = f"❌ Error resolviendo dominio bancario: {e}"
+   
+    return render(request, "diagnostico_banco.html", {
+        "ip_local": ip_local,
+        "dns_banco": dns_resuelto,
+        "en_red_simulada": ip_local.startswith("192.168.10.")
+    })
+
+
+@require_GET
+@requiere_conexion_banco
+def prueba_conexion_banco(request):
+    respuesta = hacer_request_banco(request, path="/api/test")
+    if respuesta is None:
+        return JsonResponse({"estado": "fallo", "detalle": "No se obtuvo respuesta."}, status=502)
+    return JsonResponse({"estado": "ok", "respuesta": respuesta})
