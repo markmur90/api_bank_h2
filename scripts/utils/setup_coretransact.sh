@@ -7,7 +7,7 @@ echo "🔐 Iniciando configuración básica para VPS: coretransapi"
 USER=root
 IP_VPS="80.78.30.188"
 CLAVE_SSH="$HOME/.ssh/vps_njalla_ed25519"
-PROYECTO_DIR="/root/api_bank_h2"
+PROYECTO_DIR="/root/coretransapi"
 REPO_GIT="git@github.com:markmur88/api_bank_heroku.git"
 VENV_DIR="/root/envAPP"
 
@@ -81,7 +81,7 @@ python manage.py collectstatic --noinput
 echo "🔧 Creando servicio Gunicorn..."
 cat > /etc/systemd/system/gunicorn.service <<GEOF
 [Unit]
-Description=Gunicorn daemon para api_bank_h2
+Description=Gunicorn daemon para coretransapi
 After=network.target
 
 [Service]
@@ -99,12 +99,12 @@ systemctl enable gunicorn
 systemctl start gunicorn
 
 echo "🌐 Configurando Nginx..."
-cp $PROYECTO_DIR/sripts/nginx.conf /etc/nginx/sites-available/api_bank_h2.conf
-ln -sf /etc/nginx/sites-available/api_bank_h2.conf /etc/nginx/sites-enabled/api_bank_h2.conf
+cp $PROYECTO_DIR/sripts/nginx.conf /etc/nginx/sites-available/coretransapi.conf
+ln -sf /etc/nginx/sites-available/coretransapi.conf /etc/nginx/sites-enabled/coretransapi.conf
 rm -f /etc/nginx/sites-enabled/default
 
 echo "🔐 Solicitando certificado SSL con Certbot..."
-certbot --nginx -d apih.coretransapi.com --non-interactive --agree-tos -m admin@coretransapi.com --redirect
+certbot --nginx -d apih.coretransapi.com --non-interactive --agree-tos -m netghostx90@protonmail.com --redirect
 
 echo "🔄 Reiniciando Nginx..."
 nginx -t && systemctl reload nginx
