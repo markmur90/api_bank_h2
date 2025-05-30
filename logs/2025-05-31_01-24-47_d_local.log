@@ -1,0 +1,66 @@
+[H[2J[3J[H[2J[3J🔐 Solicitando acceso sudo...
+🌍 Entorno cargado desde .env
+
+[1;36m============================= VARIABLES ACTUALES =============================[0m
+INTERFAZ             =	wlan0
+SCRIPTS_DIR          =	/home/markmur88/Documentos/GitHub/api_bank_h2/scripts
+PRIVATE_KEY_PATH     =	/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem
+SERVERS_DIR          =	/home/markmur88/Documentos/GitHub/api_bank_h2/servers
+CACHE_DIR            =	/home/markmur88/Documentos/GitHub/api_bank_h2/tmp
+PROJECT_ROOT         =	/home/markmur88/Documentos/GitHub/api_bank_h2
+LOG_DIR              =	/home/markmur88/Documentos/GitHub/api_bank_h2/scripts/logs/01_full_deploy
+[1;36m==============================================================================[0m
+
+[H[2J[3J---------------------------------- [7;33mSISTEMA[0m -----------------------------------
+
+📅 Fecha de ejecución: 2025-05-31 01:24:48
+📄 Script: 00_01_sistema.sh
+═══════════════════════════════════════════
+Obj:1 http://http.kali.org/kali kali-rolling InRelease
+Obj:2 http://deb.debian.org/debian bullseye InRelease
+Obj:3 http://deb.debian.org/debian bullseye-updates InRelease
+Obj:4 https://repo.protonvpn.com/debian stable InRelease
+Obj:5 http://deb.debian.org/debian bullseye-backports InRelease
+Obj:6 https://dl.winehq.org/wine-builds/debian bullseye InRelease
+Obj:7 https://download.docker.com/linux/debian bookworm InRelease
+Obj:8 https://packages.microsoft.com/repos/code stable InRelease
+Obj:9 http://security.debian.org/debian-security bullseye-security InRelease
+Leyendo lista de paquetes...
+W: https://packages.microsoft.com/repos/code/dists/stable/InRelease: Policy will reject signature within a year, see --audit for details
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+Calculando la actualización...
+0 actualizados, 0 nuevos se instalarán, 0 para eliminar y 0 no actualizados.
+Leyendo lista de paquetes...
+Creando árbol de dependencias...
+Leyendo la información de estado...
+0 actualizados, 0 nuevos se instalarán, 0 para eliminar y 0 no actualizados.
+[7;30m🔄 Sistema actualizado.[0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[H[2J[3J------------------------------------ [7;33mZIP[0m -------------------------------------
+[H[2J[3J---------------------------------- [7;33mPUERTOS[0m -----------------------------------
+
+📅 Fecha de ejecución: 2025-05-31 01:25:07
+📄 Script: 00_03_puertos.sh
+═══════════════════════════════════════════
+[7;34m🔎 Verificando puertos en uso...[0m
+
+[7;31m🚫 No se encontraron procesos en los puertos definidos.[0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[H[2J[3J-------------------------------- [7;33mCONTENEDORES[0m --------------------------------
+
+📅 Fecha de ejecución: 2025-05-31 01:25:09
+📄 Script: 00_04_container.sh
+═══════════════════════════════════════════
+[7;30m🐳 No hay contenedores.[0m
+[7;94m---///---///---///---///---///---///---///---///---///---[0m
+
+[H[2J[3J--------------------------------- [7;33mCAMBIO MAC[0m ---------------------------------
+
+📅 Fecha de ejecución: 2025-05-31 01:25:10
+📄 Script: 00_05_mac.sh
+═══════════════════════════════════════════
+🌐 Obteniendo IP de salida actual por Tor...

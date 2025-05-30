@@ -1,0 +1,26 @@
+[H[2J[3J[H[2J[3J🔐 Solicitando acceso sudo...
+🌍 Entorno cargado desde .env
+
+[1;36m============================= VARIABLES ACTUALES =============================[0m
+INTERFAZ             =	wlan0
+SCRIPTS_DIR          =	/home/markmur88/Documentos/GitHub/api_bank_h2/scripts
+PRIVATE_KEY_PATH     =	/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem
+SERVERS_DIR          =	/home/markmur88/Documentos/GitHub/api_bank_h2/servers
+CACHE_DIR            =	/home/markmur88/Documentos/GitHub/api_bank_h2/tmp
+PROJECT_ROOT         =	/home/markmur88/Documentos/GitHub/api_bank_h2
+LOG_DIR              =	/home/markmur88/Documentos/GitHub/api_bank_h2/scripts/logs/01_full_deploy
+[1;36m==============================================================================[0m
+
+[H[2J[3J---------------------------------- [7;33mSISTEMA[0m -----------------------------------
+
+📅 Fecha de ejecución: 2025-05-31 01:23:34
+📄 Script: 00_01_sistema.sh
+═══════════════════════════════════════════
+Obj:1 http://deb.debian.org/debian bullseye InRelease
+Obj:2 http://http.kali.org/kali kali-rolling InRelease
+Obj:3 http://deb.debian.org/debian bullseye-updates InRelease
+Obj:4 http://deb.debian.org/debian bullseye-backports InRelease
+Obj:5 https://repo.protonvpn.com/debian stable InRelease
+Obj:6 https://dl.winehq.org/wine-builds/debian bullseye InRelease
+Obj:7 https://download.docker.com/linux/debian bookworm InRelease
+Obj:8 https://packages.microsoft.com/repos/code stable InRelease

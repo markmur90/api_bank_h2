@@ -1,123 +1,216 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
 
+SCRIPT_NAME="$(basename "$0")"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+LOG_FILE="$SCRIPT_DIR/logs/deploy_coretransapi/deploy_coretransapi.log"
+PROCESS_LOG="$SCRIPT_DIR/logs/deploy_coretransapi/process_deploy_coretransapi.log"
+LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/deploy_coretransapi_.log"
+
+mkdir -p "$(dirname "$LOG_FILE")"
+mkdir -p "$(dirname "$PROCESS_LOG")"
+mkdir -p "$(dirname "$LOG_DEPLOY")"
+
+{
+echo ""
+echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
+echo -e "📄 Script: $SCRIPT_NAME"
+echo -e "═══════════════════════════════════════════"
+} | tee -a "$LOG_FILE"
+
+trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
+
+echo "🚀 Desplegando cambios en coretransapi..." | tee -a "$LOG_DEPLOY"
+
+ssh -i ~/.ssh/vps_njalla_ed25519 -p 49222 root@80.78.30.188 <<'EOF'
 set -e
 
-echo "🔐 Iniciando configuración básica para VPS: coretransapi"
-
+# Parámetros
 USER=root
+MARK=markmur88
 IP_VPS="80.78.30.188"
-CLAVE_SSH="$HOME/.ssh/vps_njalla_ed25519"
-PROYECTO_DIR="/$USER/coretransapi"
-REPO_GIT="git@github.com:markmur88/api_bank_heroku.git"
-VENV_DIR="/$USER/envAPP"
+DIR_USR="/home/$MARK"
+CLAVE_SSH="$DIR_USR/.ssh/vps_njalla_ed25519"
+PROYECTO_DIR="$DIR_USR/coretransapi"
+REPO_GIT="git@github.com:$MARK/api_bank_heroku.git"
+VENV_DIR="$DIR_USR/envAPP"
+LOG_DEPLOY="/var/log/deploy_coretransapi.log"
+EMAIL_SSL="netghostx90@protonmail.com"
 
-echo "📎 Subiendo clave pública SSH..."
-scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_ed25519.pub $USER@$IP_VPS:~/coretransapi.pub
+# 1. Subir clave pública SSH
+echo "📤 Subiendo clave SSH..."
+scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_ed25519.pub $USER@$IP_VPS:/root/coretransapi.pub
 
+# 2. Configurar clave en el VPS
+ssh -i "$CLAVE_SSH" $USER@$IP_VPS <<'EOF'
+    set -e
 
-ssh -i "$CLAVE_SSH" $USER@$IP_VPS << 'EOF'
-echo "🔑 Autorizando clave SSH..."
-mkdir -p ~/.ssh
-cat ~/coretransapi.pub >> ~/.ssh/authorized_keys
-chmod 600 ~/.ssh/authorized_keys
-chmod 700 ~/.ssh
-rm ~/coretransapi.pub
+    echo "📎 Aplicando clave pública a authorized_keys..."
+    mkdir -p ~/.ssh
+    cat ~/coretransapi.pub >> ~/.ssh/authorized_keys
+    chmod 600 ~/.ssh/authorized_keys
+    chmod 700 ~/.ssh
+    rm ~/coretransapi.pub
 
-echo "🧱 Instalando dependencias base..."
-apt update && apt upgrade -y
-apt install -y git curl build-essential ufw fail2ban python3 python3-pip python3-venv python3-dev libpq-dev postgresql postgresql-contrib nginx certbot python3-certbot-nginx
+    echo "🧱 Instalando dependencias base..."
+    apt update && apt upgrade -y
+    apt install -y git curl build-essential ufw fail2ban python3 python3-pip python3-venv python3-dev libpq-dev postgresql postgresql-contrib nginx certbot python3-certbot-nginx supervisor
 
-echo "🧯 Configurando firewall UFW..."
-ufw --force reset
-ufw allow OpenSSH
-ufw allow 80
-ufw allow 443
-ufw allow 8000
-ufw allow 49222
-ufw --force enable
+    echo "🧱 Activando firewall UFW..."
+    ufw --force enable
+    ufw start
+    for port in OpenSSH 22 80 443 5432 8000 9001 9050 9051 53 123 49222; do ufw allow "$port"; done
+    ufw --force reload
 
-echo "🔁 Configurando SSH en puerto 49222..."
-cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak_$(date +%F_%T)
-sed -i 's/^#Port 22/Port 22\nPort 49222/' /etc/ssh/sshd_config
-sed -i 's/^PermitRootLogin .*/PermitRootLogin prohibit-password/' /etc/ssh/sshd_config
-systemctl restart sshd
+    echo "🔄 Cambiando puerto SSH..."
+    PORT=49222
+    sed -i "s/^#Port 22/Port $PORT/" /etc/ssh/sshd_config
+    sed -i "s/^PermitRootLogin yes/PermitRootLogin no/" /etc/ssh/sshd_config
+    systemctl restart sshd
+    echo "✅ SSH configurado en puerto $PORT"
 
-echo "🎯 Configurando hostname..."
-hostnamectl set-hostname coretransapi
-echo "coretransapi" > /etc/hostname
+    echo "🎯 Hostname y entorno inicial..."
+    hostnamectl set-hostname coretransapi
+    echo "coretransapi" > /etc/hostname
 
-echo "🌍 Configurando zona horaria..."
-timedatectl set-timezone Europe/Madrid
+    echo "🌍 Zona horaria..."
+    timedatectl set-timezone Europe/Berlin
 
-echo "👤 Creando usuario markmur88..."
-useradd -m -s /bin/bash markmur88
-usermod -aG sudo markmur88
-echo "markmur88 ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/markmur88
+    echo "👤 Creando usuario $MARK..."
+    useradd -m -s /bin/bash $MARK
+    usermod -aG sudo $MARK
+    echo "$MARK ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/$MARK
 
-echo "📥 Clonando proyecto Django..."
-sudo -u markmur88 git clone $REPO_GIT $PROYECTO_DIR
+    echo "📥 Clonando proyecto Django..."
+    sudo -u $MARK git clone $REPO_GIT $PROYECTO_DIR
 
+    echo "🐍 Creando entorno virtual..."
+    python3 -m venv $VENV_DIR
+    source $VENV_DIR/bin/activate
 
-echo "🐍 Creando entorno virtual..."
-python3 -m venv $VENV_DIR
-source $VENV_DIR/bin/activate
+    echo "📦 Instalando requirements..."
+    pip install --upgrade pip
+    pip install -r $PROYECTO_DIR/requirements.txt
 
-echo "📦 Instalando requirements..."
-pip install --upgrade pip
-pip install -r $PROYECTO_DIR/requirements.txt
+    echo "🛠️ Configurando base de datos PostgreSQL..."
+    systemctl enable postgresql
+    systemctl start postgresql
 
-echo "🛠️ Configurando base de datos PostgreSQL..."
-sudo -u postgres psql -c "CREATE DATABASE mydatabase;"
-sudo -u postgres psql -c "CREATE USER markmur88 WITH PASSWORD 'Ptf8454Jd55';"
-sudo -u postgres psql -c "ALTER ROLE markmur88 SET client_encoding TO 'utf8';"
-sudo -u postgres psql -c "ALTER ROLE markmur88 SET default_transaction_isolation TO 'read committed';"
-sudo -u postgres psql -c "ALTER ROLE markmur88 SET timezone TO 'Europe/Madrid';"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE mydatabase TO markmur88;"
+    DB_NAME="mydatabase"
+    DB_USER="markmur88"
+    DB_PASS="Ptf8454Jd55"
 
-echo "⚙️ Ejecutando migraciones y recolectando staticfiles..."
-cd $PROYECTO_DIR
-source $VENV_DIR/bin/activate
-python manage.py migrate
-python manage.py collectstatic --noinput
+    sudo -u postgres psql <<-EOSQL
+    DO \$\$
+    BEGIN
+        IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = '${DB_USER}') THEN
+            CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASS}';
+        END IF;
+    END
+    \$\$;
 
-echo "🔧 Creando servicio Gunicorn..."
-cat > /etc/systemd/system/gunicorn.service <<GEOF
-[Unit]
-Description=Gunicorn daemon para coretransapi
-After=network.target
+    ALTER USER ${DB_USER} WITH CREATEDB CREATEROLE;
+    GRANT USAGE, CREATE ON SCHEMA public TO ${DB_USER};
+    GRANT ALL PRIVILEGES ON SCHEMA public TO ${DB_USER};
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO ${DB_USER};
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO ${DB_USER};
+    ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO ${DB_USER};
 
-chown -R markmur88:www-data /home/markmur88/coretransapi
-WorkingDirectory=$PROYECTO_DIR
-ExecStart=$VENV_DIR/bin/gunicorn --access-logfile - --workers 3 --bind unix:$PROYECTO_DIR/api.sock config.wsgi:application
+    SELECT pg_terminate_backend(pid) FROM pg_stat_activity WHERE datname = '${DB_NAME}';
+    DROP DATABASE IF EXISTS ${DB_NAME};
+    CREATE DATABASE ${DB_NAME};
+    GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USER};
+    GRANT CONNECT, CREATE ON DATABASE ${DB_NAME} TO ${DB_USER};
+    EOSQL
 
-[Install]
-WantedBy=multi-user.target
-GEOF
+    echo "⚙️ Ejecutando migraciones y recolectando staticfiles..."
+    cd $PROYECTO_DIR
+    source $VENV_DIR/bin/activate
+    python manage.py migrate
+    python manage.py collectstatic --noinput
 
-systemctl daemon-reload
-systemctl enable gunicorn
-systemctl start gunicorn
+    echo "🔧 Configurando permisos de proyecto..."
+    chown -R $MARK:www-data $PROYECTO_DIR
 
-echo "🌐 Configurando Nginx..."
-cp $PROYECTO_DIR/scripts/nginx.conf /etc/nginx/sites-available/coretransapi.conf
-ln -sf /etc/nginx/sites-available/coretransapi.conf /etc/nginx/sites-enabled/coretransapi.conf
-rm -f /etc/nginx/sites-enabled/default
+    echo "🧭 Configurando Supervisor para Gunicorn..."
+    cat > /etc/supervisor/conf.d/coretransapi.conf <<SUPERVISOR
+[program:coretransapi]
+directory=$PROYECTO_DIR
+command=$VENV_DIR/bin/gunicorn config.wsgi:application --bind unix:$PROYECTO_DIR/api.sock --workers 3
+autostart=true
+autorestart=true
+stderr_logfile=/var/log/supervisor/coretransapi.err.log
+stdout_logfile=/var/log/supervisor/coretransapi.out.log
+user=$MARK
+group=www-data
+environment=PATH="$VENV_DIR/bin",DJANGO_SETTINGS_MODULE="config.settings"
+SUPERVISOR
 
-echo "🌐 Verificando que el dominio apih.coretransapi.com apunte a $(hostname -I | awk '{print $1}')"
-if ! host apih.coretransapi.com | grep "$(hostname -I | awk '{print $1}')" > /dev/null; then
-    echo "❌ El dominio no apunta al VPS. Aborta Certbot."
-    exit 1
-fi
+    supervisorctl reread
+    supervisorctl update
+    supervisorctl start coretransapi
 
-echo "🔐 Solicitando certificado SSL con Certbot..."
-certbot --nginx -d apih.coretransapi.com --non-interactive --agree-tos -m netghostx90@protonmail.com --redirect
+    echo "🌐 Configurando Nginx..."
+    cat > /etc/nginx/sites-available/coretransapi.conf <<NGINX
+server {
+    listen 80;
+    server_name apih.coretransapi.com;
+    return 301 https://\$host\$request_uri;
+}
 
-echo "🔄 Reiniciando Nginx..."
-nginx -t && systemctl reload nginx
+server {
+    listen 443 ssl;
+    server_name apih.coretransapi.com;
 
-ls -l /etc/letsencrypt/live/apih.coretransapi.com
+    ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
+    include /etc/letsencrypt/options-ssl-nginx.conf;
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
-nginx -t && systemctl reload nginx
+    client_max_body_size 20M;
 
-echo "✅ VPS coretransapi desplegado y operativo con HTTPS, Gunicorn y Django."
+    access_log /var/log/nginx/coretransapi_access.log;
+    error_log /var/log/nginx/coretransapi_error.log;
+
+    location /static/ {
+        alias $PROYECTO_DIR/static/;
+    }
+
+    location /media/ {
+        alias $PROYECTO_DIR/media/;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:$PROYECTO_DIR/api.sock;
+    }
+}
+NGINX
+
+    ln -sf /etc/nginx/sites-available/coretransapi.conf /etc/nginx/sites-enabled/coretransapi.conf
+    rm -f /etc/nginx/sites-enabled/default
+
+    if ! host apih.coretransapi.com | grep "$(hostname -I | awk '{print $1}')" > /dev/null; then
+        echo "❌ El dominio no apunta al VPS. Aborta Certbot."
+        exit 1
+    fi
+
+    echo "🔐 Solicitando certificado SSL con Certbot..."
+    certbot --nginx -d apih.coretransapi.com --non-interactive --agree-tos -m $EMAIL_SSL --redirect || {
+        echo "❌ Error en Certbot" >> $LOG_DEPLOY
+        exit 1
+    }
+
+    echo "🔄 Reiniciando Nginx..."
+    nginx -t && systemctl reload nginx
+
+    echo "🧼 Limpieza y seguridad básica..."
+    apt install fail2ban -y
+    systemctl enable fail2ban --now
+
 EOF
+EOF
+
+echo "✅ Tarea completada." | tee -a "$LOG_DEPLOY"
+echo "✅ VPS coretransapi configurado correctamente."
+echo "🛡️ Puedes conectarte con: ssh -i $CLAVE_SSH -p 49222 root@$IP_VPS"

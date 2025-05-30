@@ -28,7 +28,6 @@ sudo ufw default allow outgoing
 # Reglas básicas
 sudo ufw allow 22/tcp      # SSH
 sudo ufw allow 80/tcp      # HTTP
-sudo ufw allow 443/tcp     # HTTPS
 sudo ufw allow 8000/tcp    # HTTPS
 # sudo ufw allow 18080/tcp    # HTTPS
 # sudo ufw allow 18081/tcp    # HTTPS
@@ -48,11 +47,11 @@ sudo ufw allow from 127.0.0.1 to any port 9001
 # Tor
 sudo ufw allow from 127.0.0.1 to any port 9050
 sudo ufw allow from 127.0.0.1 to any port 9051
-# DNS y NTP salientes
+# # DNS y NTP salientes
 sudo ufw allow out 53
 sudo ufw allow out 123/udp
-# Heroku CLI saliente
-sudo ufw allow out to any port 443
+# # Heroku CLI saliente
+# sudo ufw allow out to any port 443
 # Monero (XMR)
 # sudo ufw allow 18080/tcp                                     # Nodo P2P abierto
 # sudo ufw allow proto tcp from 127.0.0.1 to any port 18082    # Wallet RPC local

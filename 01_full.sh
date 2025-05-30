@@ -115,7 +115,19 @@ DO_SYNC_LOCAL=false
 DO_VARHER=false
 DO_HEROKU=false
 DO_SYNC_REMOTE_DB=false
+
 DO_DEPLOY_VPS=false
+# === FLAGS POST-22 ===
+DO_NJALLA_SETUP=false           # 00_18_01_setup_coretransact.sh
+DO_HTTPS_HEADER=false           # 00_18_02_verificar_https_headers.sh
+DO_HEALTH=false                 # 00_18_03_reporte_salud_vps.sh
+DO_PGP=false                    # 00_18_04_generar_clave_pgp_njalla.sh
+DO_DEPLOY_UPDATE=false          # 00_18_05_deploy_update.sh
+DO_RESTART=false                # 00_18_06_restart_coretransapi.sh
+DO_STATUS=false                 # 00_18_07_status_coretransapi.sh
+DO_SSL_PORTS=false              # 00_18_08_check_ssl_ports.sh
+DO_ALL_STATUS=false             # 00_18_09_all_status_coretransapi.sh
+
 DO_CLEAN=false
 DO_GUNICORN=false
 DO_LOCAL_SSL=false
@@ -168,6 +180,9 @@ ejecutar() {
     check_status "$*"
 }
 
+
+
+
 usage() {
     echo -e "\n\033[1;36mUSO:\033[0m"
     echo -e "  bash ./01_full.sh [opciones]\n"
@@ -189,12 +204,11 @@ usage() {
     echo -e "  \033[1;33m-C\033[0m, \033[1;33m--do-clean\033[0m          Limpiar respaldos antiguos"
     echo -e "  \033[1;33m-Z\033[0m, \033[1;33m--do-zip\033[0m            Generar backups ZIP + SQL"
 
-    echo -e "\n\033[1;33mDEPLOY:\033[0m"
+    echo -e "\n\033[1;33mDEPLOY HEROKU:\033[0m"
     echo -e "  \033[1;33m-S\033[0m, \033[1;33m--do-sync\033[0m           Sincronizar archivos locales"
     echo -e "  \033[1;33m-B\033[0m, \033[1;33m--do-bdd\033[0m            Sincronizar BDD remota"
     echo -e "  \033[1;33m-H\033[0m, \033[1;33m--do-heroku\033[0m         Desplegar a Heroku"
     echo -e "  \033[1;33m-u\033[0m, \033[1;33m--do-varher\033[0m         Configurar variables Heroku"
-    echo -e "  \033[1;33m-v\033[0m, \033[1;33m--do-vps\033[0m            Desplegar a VPS (Njalla)"
 
     echo -e "\n\033[1;33mENTORNO Y CONFIGURACIÓN:\033[0m"
     echo -e "  \033[1;33m-Y\033[0m, \033[1;33m--do-sys\033[0m            Actualizar sistema y dependencias"
@@ -209,7 +223,20 @@ usage() {
     echo -e "  \033[1;33m-r\033[0m, \033[1;33m--do-local-ssl\033[0m      Ejecutar entorno local con SSL (Gunicorn + Nginx 8443) 🚀"
     echo -e "  \033[1;33m-G\033[0m, \033[1;33m--do-gunicorn\033[0m       Ejecutar Gunicorn"
     echo -e "  \033[1;33m-V\033[0m, \033[1;33m--do-verif-trans\033[0m    Verificar transferencias SEPA"
+
+    echo -e "\n\033[1;33mPOST DEPLOY VPS:\033[0m"
+    echo -e "  \033[1;33m-v\033[0m, \033[1;33m--do-vps\033[0m            Desplegar a VPS (Njalla)"
+    echo -e "  \033[1;33m-N\033[0m, \033[1;33m--do-njalla\033[0m         Setup coretransapi"
+    echo -e "  \033[1;33m-t\033[0m, \033[1;33m--do-headers\033[0m        Verifica encabezados HTTPS"
+    echo -e "  \033[1;33m-e\033[0m, \033[1;33m--do-health\033[0m         Reporte de salud del VPS"
+    echo -e "  \033[1;33m-g\033[0m, \033[1;33m--do-pgp\033[0m            Genera clave PGP Njalla"
+    echo -e "  \033[1;33m-y\033[0m, \033[1;33m--do-update\033[0m         Ejecuta deploy incremental"
+    echo -e "  \033[1;33m-j\033[0m, \033[1;33m--do-restart\033[0m        Reinicia servicio coretransapi"
+    echo -e "  \033[1;33m-k\033[0m, \033[1;33m--do-status\033[0m         Estado del servicio coretransapi"
+    echo -e "  \033[1;33m-m\033[0m, \033[1;33m--do-ssl\033[0m            Verifica certificados SSL y puertos"
+    echo -e "  \033[1;33m-A\033[0m, \033[1;33m--do-allstatus\033[0m      Ejecuta todos los chequeos de status"
 }
+
 
 
 
@@ -233,18 +260,31 @@ while [[ $# -gt 0 ]]; do
         -M|--do-mac)          DO_MAC=true ;;
         -I|--do-migra)        DO_MIG=true ;;
         -Q|--do-pgsql)        DO_PGSQL=true ;;
-        -p|--do-pem)          DO_PEM=true ;;    
+        -p|--do-pem)          DO_PEM=true ;;
         -x|--do-ufw)          DO_UFW=true ;;
         -U|--do-create-user)  DO_USER=true ;;
         -l|--do-load-local)   DO_RUN_LOCAL=true ;;
         -V|--do-verif-trans)  DO_VERIF_TRANSF=true ;;
         -v|--do-vps)          DO_DEPLOY_VPS=true ;;
-        -d|--debug)           DEBUG_MODE=true ;;
-        -r|--do-local-ssl)    DO_LOCAL_SSL=true ;;  # 🚀 NUEVO FLAG
-        -E|--do-cert)         DO_CERT=true ;;     # 🚀 NUEVO FLAG
+        -r|--do-local-ssl)    DO_LOCAL_SSL=true ;;
+        -E|--do-cert)         DO_CERT=true ;;
+        -N|--do-njalla)       DO_NJALLA_SETUP=true ;;
+        -t|--do-headers)      DO_HTTPS_HEADER=true ;;
+        -e|--do-health)       DO_HEALTH=true ;;
+        -g|--do-pgp)          DO_PGP=true ;;
+        -y|--do-update)       DO_DEPLOY_UPDATE=true ;;
+        -j|--do-restart)      DO_RESTART=true ;;
+        -k|--do-status)       DO_STATUS=true ;;
+        -m|--do-ssl)          DO_SSL_PORTS=true ;;
+        -A|--do-allstatus)    DO_ALL_STATUS=true ;;
         -h|--help)            usage; exit 0 ;;
+        --menu)
+            source ./scripts/aliases_deploy.sh
+            deploy_menu
+            exit 0
+            ;;        
         *)
-            echo -e "\033[1;31m❌ Opción desconocida:\033[0m $1"
+            echo -e "\\033[1;31m❌ Opción desconocida:\\033[0m $1"
             usage
             exit 1
             ;;
@@ -514,9 +554,74 @@ pausa_y_limpiar
 # === 18 ===
 centrar_texto_coloreado $'\033[7;33mVPS\033[0m'
 centrar_texto "VPS" >> "$LOG_DEPLOY"
-ejecutar_si_activo "DO_DEPLOY_VPS" "Desplegar en VPS" "bash $SCRIPTS_DIR/00_18_deploy_njalla.sh"
+ejecutar_si_activo "DO_DEPLOY_VPS" "Desplegar en VPS" "bash $SCRIPTS_DIR/00_18_00_deploy_njalla.sh"
 # echo -e "\n\n"
 pausa_y_limpiar
+
+
+# === SETUP COMPLETO CORETRANSAPI ===
+centrar_texto_coloreado $'\033[7;34mSETUP COMPLETO CORETRANSAPI\033[0m'
+centrar_texto "SETUP COMPLETO CORETRANSAPI" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_NJALLA_SETUP" "Setup completo coretransapi" "bash $SCRIPTS_DIR/00_18_01_setup_coretransact.sh"
+pausa_y_limpiar
+
+
+# === VERIFICAR HTTPS HEADERS ===
+centrar_texto_coloreado $'\033[7;34mVERIFICAR HTTPS HEADERS\033[0m'
+centrar_texto "VERIFICAR HTTPS HEADERS" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_HTTPS_HEADER" "Verificar HTTPS Headers" "bash $SCRIPTS_DIR/00_18_02_verificar_https_headers.sh"
+pausa_y_limpiar
+
+
+# === REPORTE DE SALUD DEL VPS ===
+centrar_texto_coloreado $'\033[7;34mREPORTE DE SALUD DEL VPS\033[0m'
+centrar_texto "REPORTE DE SALUD DEL VPS" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_HEALTH" "Reporte de Salud del VPS" "bash $SCRIPTS_DIR/00_18_03_reporte_salud_vps.sh"
+pausa_y_limpiar
+
+
+# === GENERAR CLAVE PGP NJALLA ===
+centrar_texto_coloreado $'\033[7;34mGENERAR CLAVE PGP NJALLA\033[0m'
+centrar_texto "GENERAR CLAVE PGP NJALLA" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_PGP" "Generar clave PGP Njalla" "bash $SCRIPTS_DIR/00_18_04_generar_clave_pgp_njalla.sh"
+pausa_y_limpiar
+
+
+# === DEPLOY INCREMENTAL ===
+centrar_texto_coloreado $'\033[7;34mDEPLOY INCREMENTAL\033[0m'
+centrar_texto "DEPLOY INCREMENTAL" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_DEPLOY_UPDATE" "Deploy incremental" "bash $SCRIPTS_DIR/00_18_05_deploy_update.sh"
+pausa_y_limpiar
+
+
+# === REINICIAR SERVICIO CORETRANSAPI ===
+centrar_texto_coloreado $'\033[7;34mREINICIAR SERVICIO CORETRANSAPI\033[0m'
+centrar_texto "REINICIAR SERVICIO CORETRANSAPI" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_RESTART" "Reiniciar servicio coretransapi" "bash $SCRIPTS_DIR/00_18_06_restart_coretransapi.sh"
+pausa_y_limpiar
+
+
+# === VERIFICAR ESTADO CORETRANSAPI ===
+centrar_texto_coloreado $'\033[7;34mVERIFICAR ESTADO CORETRANSAPI\033[0m'
+centrar_texto "VERIFICAR ESTADO CORETRANSAPI" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_STATUS" "Verificar estado coretransapi" "bash $SCRIPTS_DIR/00_18_07_status_coretransapi.sh"
+pausa_y_limpiar
+
+
+# === VERIFICAR SSL Y PUERTOS ===
+centrar_texto_coloreado $'\033[7;34mVERIFICAR SSL Y PUERTOS\033[0m'
+centrar_texto "VERIFICAR SSL Y PUERTOS" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_SSL_PORTS" "Verificar SSL y Puertos" "bash $SCRIPTS_DIR/00_18_08_check_ssl_ports.sh"
+pausa_y_limpiar
+
+
+# === STATUS COMPLETO CONSOLIDADO ===
+centrar_texto_coloreado $'\033[7;34mSTATUS COMPLETO CONSOLIDADO\033[0m'
+centrar_texto "STATUS COMPLETO CONSOLIDADO" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_ALL_STATUS" "Status completo consolidado" "bash $SCRIPTS_DIR/00_18_09_all_status_coretransapi.sh"
+pausa_y_limpiar
+
+
 
 # === 19 ===
 centrar_texto_coloreado $'\033[7;33mCLEAN\033[0m'
@@ -554,8 +659,7 @@ pausa_y_limpiar
 centrar_texto_coloreado $'\033[7;34mDEPLOY COMPLETO\033[0m'
 centrar_texto "DEPLOY COMPLETO" >> "$LOG_DEPLOY"
 
-URL_LOCAL="http://0.0.0.0:5000"
-URL_GUNICORN="gunicorn config.wsgi:application --bind 127.0.0.1:8000"
+URL_LOCAL="http://0.0.0.0:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
 URL_NJALLA="https://apih.coretransapi.com/"
 
