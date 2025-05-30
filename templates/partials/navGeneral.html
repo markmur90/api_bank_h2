@@ -92,38 +92,6 @@
         </li>
 
 
-        <li class="nav-item">
-          <li class="nav-item">
-            <li class="nav-item">
-              <form method="post" action="{% url 'toggle_conexion_banco' %}">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-outline-warning btn-sm">
-                  {% if request.session.usar_conexion_banco %}
-                    🔌 Desactivar Banco
-                  {% else %}
-                    ⚡ Activar Banco
-                  {% endif %}
-                </button>
-              </form>
-            </li>
-          </li>
-        </li>
-
-
-        <li class="nav-item ms-3">
-          <form method="post" action="{% url 'toggle_conexion_banco' %}">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-outline-warning btn-sm">
-              {% if request.session.usar_conexion_banco %}
-                🔌 Desactivar Banco
-              {% else %}
-                ⚡ Activar Banco
-              {% endif %}
-            </button>
-          </form>
-        </li>
-
-
         <form method="post" action="{% url 'toggle_conexion_banco' %}">
           {% csrf_token %}
           <button type="submit" class="btn btn-outline-warning btn-sm">

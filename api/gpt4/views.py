@@ -875,7 +875,7 @@ def diagnostico_banco(request):
     except Exception as e:
         dns_resuelto = f"❌ Error resolviendo dominio bancario: {e}"
    
-    return render(request, "diagnostico_banco.html", {
+    return render(request, "api/extras/diagnostico_banco.html", {
         "ip_local": ip_local,
         "dns_banco": dns_resuelto,
         "en_red_simulada": ip_local.startswith("192.168.10.")
