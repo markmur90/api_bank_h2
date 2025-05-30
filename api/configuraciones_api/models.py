@@ -8,14 +8,17 @@ class ConfiguracionAPI(models.Model):
     ]
 
     entorno = models.CharField(max_length=20, choices=ENTORNOS, default="production")
-    nombre = models.CharField(max_length=100)
-    valor = models.TextField()
-    descripcion = models.TextField(blank=True)
+    nombre = models.CharField(max_length=100, unique=True)
+    valor = models.TextField(max_length=100)
+    descripcion = models.CharField(max_length=255, blank=True)
     activo = models.BooleanField(default=True)
 
     class Meta:
-        unique_together = ("entorno", "nombre")
-        ordering = ['entorno', 'nombre']
+        db_table = 'configuraciones_api'
+        verbose_name = 'Configuración API'
+        verbose_name_plural = 'Configuraciones API'
 
     def __str__(self):
-        return f"[{self.entorno.upper()}] {self.nombre}"
+        return f'{self.nombre} [{self.entorno}]'
+    
+    

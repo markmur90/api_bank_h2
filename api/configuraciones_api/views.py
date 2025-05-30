@@ -1,3 +1,11 @@
+import hmac
+import hashlib
+import json
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseForbidden
+from django.views.decorators.csrf import csrf_exempt
+from django.utils.encoding import force_bytes
+
 from django.shortcuts import render, get_object_or_404, redirect
 from api.configuraciones_api.models import ConfiguracionAPI
 from api.configuraciones_api.forms import ConfiguracionAPIForm
@@ -27,3 +35,6 @@ def eliminar_configuracion(request, pk):
         configuracion.delete()
         return redirect('lista_configuraciones')
     return render(request, 'api/configuraciones/eliminar.html', {'configuracion': configuracion})
+
+
+

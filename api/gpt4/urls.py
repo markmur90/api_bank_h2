@@ -44,7 +44,7 @@ urlpatterns = [
     path('oauth2/logs/', views.get_oauth_logs, name='get_oauth_logs'),
     path("logs/", views.list_logs, name="list_logsGPT4"),
     path("oauth2/log-visual/", views.log_oauth_visual_inicio, name="log_oauth_visual_inicio"),
-    path('transters/notificaciones/', views.handle_notification, name='handle_notification'),  # hipotético
+    path('transfers/notificaciones/', views.handle_notification, name='handle_notification'),  # hipotético
     
     path('', views.ClaveGeneradaListView.as_view(), name='lista_claves'),
     path('crear/', views.ClaveGeneradaCreateView.as_view(), name='crear_clave'),

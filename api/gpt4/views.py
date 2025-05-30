@@ -5,33 +5,135 @@ import socket
 import time
 import uuid
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import FileResponse, HttpResponse, JsonResponse
+from django.http import FileResponse, HttpResponse, JsonResponse, HttpResponseForbidden
 from django.contrib import messages
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.template.loader import get_template
 import dns
 from weasyprint import HTML
-from django.views.decorators.http import require_POST, require_http_methods
-from django.urls import reverse
+from django.views.decorators.http import require_POST, require_http_methods, require_GET
+from django.urls import reverse, reverse_lazy
 from django.utils.timezone import now
-from django.urls import reverse_lazy
+from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from django.shortcuts import redirect
-from django.contrib import messages
-from django.http import JsonResponse
-from django.views.decorators.http import require_GET
+import hmac
+import hashlib
+from django.utils.encoding import force_bytes
 
+from config import settings
+from api.configuraciones_api.models import ConfiguracionAPI
+from api.gpt4.models import (
+    Creditor, CreditorAccount, CreditorAgent, Debtor, DebtorAccount,
+    LogTransferencia, PaymentIdentification, Transfer, ClaveGenerada
+)
+from api.gpt4.utils import (
+    BASE_SCHEMA_DIR, build_auth_url, crear_challenge_mtan,
+    crear_challenge_phototan, crear_challenge_pushtan,
+    fetch_token_by_code, fetch_transfer_details,
+    generar_archivo_aml, generar_pdf_transferencia,
+    generar_xml_pain001, generate_deterministic_id,
+    generate_payment_id_uuid, generate_pkce_pair,
+    get_access_token, get_client_credentials_token,
+    obtener_ruta_schema_transferencia, read_log_file,
+    refresh_access_token, registrar_log, registrar_log_oauth,
+    resolver_challenge_pushtan, send_transfer, update_sca_request
+)
 from api.gpt4.conexion_banco import hacer_request_banco
 from api.gpt4.decorators import requiere_conexion_banco
-from api.gpt4.forms import ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm, DebtorAccountForm, DebtorForm, KidForm, ScaForm, SendTransferForm, TransferForm, ClaveGeneradaForm
-from api.gpt4.models import Creditor, CreditorAccount, CreditorAgent, Debtor, DebtorAccount, LogTransferencia, PaymentIdentification, Transfer, ClaveGenerada
-from api.gpt4.utils import BASE_SCHEMA_DIR, build_auth_url, crear_challenge_mtan, crear_challenge_phototan, crear_challenge_pushtan, fetch_token_by_code, fetch_transfer_details, generar_archivo_aml, generar_pdf_transferencia, generar_xml_pain001, generate_deterministic_id, generate_payment_id_uuid, generate_pkce_pair, get_access_token, get_client_credentials_token, obtener_ruta_schema_transferencia, read_log_file, refresh_access_token, registrar_log, registrar_log_oauth, resolver_challenge_pushtan, send_transfer, update_sca_request
-from config import settings
-
-
-
+from api.gpt4.forms import (
+    ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm,
+    DebtorAccountForm, DebtorForm, KidForm, ScaForm,
+    SendTransferForm, TransferForm, ClaveGeneradaForm
+)
 
 logger = logging.getLogger(__name__)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def handle_notification(request):
+    try:
+        # 1️⃣ Obtener el secret para el webhook
+        secret = ConfiguracionAPI.objects.get(
+            nombre='WEBHOOK_SECRET',
+            entorno='production'
+        ).valor
+
+        # 2️⃣ Validar firma HMAC SHA-256 en cabecera X-Signature
+        signature = request.headers.get('X-Signature', '')
+        expected_sig = hmac.new(
+            key=force_bytes(secret),
+            msg=request.body,
+            digestmod=hashlib.sha256
+        ).hexdigest()
+        if not hmac.compare_digest(expected_sig, signature):
+            return HttpResponseForbidden('Invalid signature')
+
+        # 3️⃣ Registrar petición entrante en logs
+        payload = request.body.decode('utf-8')
+        headers = {k: v for k, v in request.META.items() if k.startswith('HTTP_')}
+        registro = (
+            request.GET.get('registro')
+            or request.headers.get('X-Request-Id')
+            or f"AUTOLOG-{now().timestamp()}"
+        )
+        registrar_log(
+            registro=registro,
+            tipo_log='NOTIFICACION',
+            headers_enviados=headers,
+            request_body=payload,
+            extra_info="Notificación automática recibida en webhook"
+        )
+        LogTransferencia.objects.create(
+            registro=registro,
+            tipo_log='NOTIFICACION',
+            contenido=payload
+        )
+
+        # 4️⃣ Procesar payload y actualizar estado de la transferencia
+        data = json.loads(payload)
+        payment_id = data.get('paymentId')
+        status     = data.get('transactionStatus')
+        if payment_id and status:
+            Transfer.objects.filter(payment_id=payment_id).update(status=status)
+            registrar_log(
+                registro=payment_id,
+                tipo_log='NOTIFICACION',
+                extra_info=f"Transferencia {payment_id} actualizada a estado {status}"
+            )
+
+        # 5️⃣ Responder 204 No Content
+        return HttpResponse(status=204)
+
+    except ConfiguracionAPI.DoesNotExist:
+        registrar_log(
+            registro='NOTIF_CONFIG_ERROR',
+            tipo_log='ERROR',
+            error='WEBHOOK_SECRET no configurado',
+            extra_info="Falta configuración de WEBHOOK_SECRET"
+        )
+        return JsonResponse(
+            {'status': 'error', 'mensaje': 'Webhook secret no configurado'},
+            status=500
+        )
+
+    except Exception as e:
+        registrar_log(
+            registro='NOTIF_ERROR',
+            tipo_log='ERROR',
+            error=str(e),
+            extra_info="Error procesando notificación entrante"
+        )
+        return JsonResponse(
+            {'status': 'error', 'mensaje': str(e)},
+            status=500
+        )
+
+
+
+
+
+
 
 # ==== DEBTOR ====
 def create_debtor(request):
@@ -757,38 +859,7 @@ def send_transfer_view(request, payment_id):
     return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
 
 
-@csrf_exempt
-@require_http_methods(["POST"])
-def handle_notification(request):
-    try:
-        payload = request.body.decode('utf-8')
-        content_type = request.META.get('CONTENT_TYPE', 'application/json')
-        headers = {k: v for k, v in request.META.items() if k.startswith('HTTP_')}
-        registro = request.GET.get('registro') or request.headers.get('X-Request-Id') or f"AUTOLOG-{now().timestamp()}"
 
-        registrar_log(
-            registro=registro,
-            tipo_log='NOTIFICACION',
-            headers_enviados=headers,
-            request_body=payload,
-            extra_info="Notificación automática recibida en webhook"
-        )
-
-        LogTransferencia.objects.create(
-            registro=registro,
-            tipo_log='NOTIFICACION',
-            contenido=payload
-        )
-
-        return JsonResponse({'status': 'ok', 'mensaje': 'Notificación registrada'})
-    except Exception as e:
-        registrar_log(
-            registro='NOTIF_ERROR',
-            tipo_log='ERROR',
-            error=str(e),
-            extra_info="Error procesando notificación entrante"
-        )
-        return JsonResponse({'status': 'error', 'mensaje': str(e)}, status=500)
 
 
 # views.py
