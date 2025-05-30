@@ -86,22 +86,22 @@
         <!-- dentro de <nav> o similar -->
 
         <li class="nav-item ms-3">
-          <a href="{% url 'diagnostico_banco' %}" class="btn btn-outline-info btn-sm">
-            🧪 Diagnóstico Banco
-          </a>
+          <div class="btn-group" role="group" aria-label="Acciones banco">
+            <a href="{% url 'diagnostico_banco' %}" class="btn btn-outline-info btn-sm">
+              🧪 Diagnóstico
+            </a>
+            <form method="post" action="{% url 'toggle_conexion_banco' %}" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-outline-warning btn-sm">
+                {% if request.session.usar_conexion_banco %}
+                  🔌 Desactivar
+                {% else %}
+                  ⚡ Activar
+                {% endif %}
+              </button>
+            </form>
+          </div>
         </li>
-
-
-        <form method="post" action="{% url 'toggle_conexion_banco' %}">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-outline-warning btn-sm">
-            {% if request.session.usar_conexion_banco %}
-              🔌 Desactivar Banco
-            {% else %}
-              ⚡ Activar Banco
-            {% endif %}
-          </button>
-        </form>
 
         <!-- dentro de <nav> o similar -->
 
