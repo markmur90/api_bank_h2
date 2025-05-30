@@ -46,27 +46,29 @@ from api.configuraciones_api.helpers import get_conf
 
 @lru_cache
 def get_settings():
+    timeout = int(600)
     return {
-        "ORIGIN": get_conf("ORIGIN"),
-        "CLIENT_ID": get_conf("CLIENT_ID"),
+        "ORIGIN":        get_conf("ORIGIN"),
+        "CLIENT_ID":     get_conf("CLIENT_ID"),
         "CLIENT_SECRET": get_conf("CLIENT_SECRET"),
-        "TOKEN_URL": get_conf("TOKEN_URL"),
-        "AUTH_URL": get_conf("AUTH_URL"),
-        "API_URL": get_conf("API_URL"),
-        "TIMEOUT_REQUEST": get_conf("TIMEOUT_REQUEST"),
-        "REDIRECT_URI": get_conf("REDIRECT_URI"),
-        "SCOPE": get_conf("SCOPE"),
+        "TOKEN_URL":     get_conf("TOKEN_URL"),
+        "AUTH_URL":      get_conf("AUTH_URL"),
+        "API_URL":       get_conf("API_URL"),
+        "TIMEOUT_REQUEST": timeout,
+        "REDIRECT_URI":  get_conf("REDIRECT_URI"),
+        "SCOPE":         get_conf("SCOPE"),
         "AUTHORIZE_URL": get_conf("AUTHORIZE_URL"),
         "OAUTH2": {
-            "CLIENT_ID": get_conf("CLIENT_ID"),
+            "CLIENT_ID":     get_conf("CLIENT_ID"),
             "CLIENT_SECRET": get_conf("CLIENT_SECRET"),
-            "TOKEN_URL": get_conf("TOKEN_URL"),
-            "REDIRECT_URI": get_conf("REDIRECT_URI"),
-            "SCOPE": get_conf("SCOPE"),
+            "TOKEN_URL":     get_conf("TOKEN_URL"),
+            "REDIRECT_URI":  get_conf("REDIRECT_URI"),
+            "SCOPE":         get_conf("SCOPE"),
             "AUTHORIZE_URL": get_conf("AUTHORIZE_URL"),
-            "TIMEOUT_REQUEST": get_conf("TIMEOUT_REQUEST"),
-        }
+            "TIMEOUT_REQUEST": timeout,
+        },
     }
+
 
 # Ejemplo de uso:
 # settings = get_settings()

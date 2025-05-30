@@ -1,6 +1,17 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# Colores ANSI
+colors=(
+  "\e[31m"  # rojo
+  "\e[32m"  # verde
+  "\e[33m"  # amarillo
+  "\e[34m"  # azul
+  "\e[35m"  # magenta
+  "\e[36m"  # cian
+)
+reset="\e[0m"
+
 # 1. Detectar ubicación del script y proyecto raíz
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 if [[ "$(basename "$SCRIPT_DIR")" == "scripts" ]]; then
@@ -12,25 +23,44 @@ fi
 # 2. Carpeta de logs
 LOG_DIR="$PROJECT_ROOT/scripts/logs"
 
+# 2.a Validar que exista
+if [[ ! -d "$LOG_DIR" ]]; then
+    echo "⚠️  No existe el directorio de logs: $LOG_DIR"
+    exit 1
+fi
+
 echo -e "📊 Resumen por carpeta de logs:"
 echo -e "═══════════════════════════════════════════════════════════"
 
-# 3. Obtener carpetas únicas con .log
+# 3. Obtener carpetas únicas con .log (portátil, sin abortar si no hay nada)
 mapfile -t DIRS < <(
-    find "$LOG_DIR" -type f -name "*.log" -printf '%h\n' \
+    find "$LOG_DIR" -type f -name "*.log" 2>/dev/null \
+      | sed 's|/[^/]*$||' \
       | sort -u
 )
 
-# 4. Para cada carpeta, imprimir su encabezado y listar sus logs
+# 3.a Avisar si no hay archivos
+if [[ ${#DIRS[@]} -eq 0 ]]; then
+    echo "ℹ️  No se encontraron archivos .log en $LOG_DIR"
+    exit 0
+fi
+
+# Contador para alternar color
+i=0
+n_colors=${#colors[@]}
+
+# 4. Para cada carpeta, imprimir su encabezado coloreado y listar sus logs
 for dir in "${DIRS[@]}"; do
+    color="${colors[$(( i % n_colors ))]}"
+    ((i++))
+
     # Ruta relativa a logs
     rel="${dir#$LOG_DIR/}"
-    echo -e "\n📂 Carpeta: ${rel:-.}"  
+    printf "\n%b📂 Carpeta: %s%b\n" "$color" "${rel:-.}" "$reset"
     echo "───────────────────────────────────────────────────────────"
     printf "%-30s | %-19s | %-30s\n" "Script" "Fecha" "Último estado"
     echo "------------------------------------------------------------------"
     
-    # Recorrer solo los logs en esta carpeta
     find "$dir" -maxdepth 1 -type f -name "*.log" | sort | while read -r log; do
         script_name=$(basename "$log" .log)
         
