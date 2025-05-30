@@ -476,7 +476,7 @@ def default_request_headers():
         "Strict-Transport-Security": "max-age=3153TIMEOUT_REQUEST0; includeSubDomains; preload",
         "X-Frame-Options": "DENY",
         "X-Content-Type-Options": "nosniff",
-        'x-request-Id': str(uuid.uuid4()),
+        'x-request-Id': str(Transfer.payment_id),
         "X-Requested-With": "XMLHttpRequest", 
     }
 
@@ -790,33 +790,86 @@ def limpiar_datos_sensibles(data):
 
 
 
+import requests
+import hmac
+import hashlib
+from urllib.parse import urlencode
+from datetime import timedelta
+
+from django.utils.timezone import now
+from django.utils.encoding import force_bytes
+
+from api.gpt4.utils import registrar_log
+from api.configuraciones_api.models import ConfiguracionAPI
+
+# Cache in-memory per-process. For multi‐process deployments, replace with Django cache.
+_access_token_cache = {}
+
+
 def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str:
-    settings = get_settings()
-    TOKEN_URL = settings["TOKEN_URL"]
-    CLIENT_ID = settings["CLIENT_ID"]
-    CLIENT_SECRET = settings["CLIENT_SECRET"]
-    SCOPE = settings["SCOPE"]
-    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
-    
-    registrar_log(payment_id, tipo_log='AUTH', extra_info="Obteniendo Access Token (Client Credentials)")
+    """
+    Obtiene un access_token vía OAuth2 Client-Credentials, con caching in-memory
+    para reutilizar el token hasta su expiración, a menos que force_refresh=True.
+    """
+    settings = ConfiguracionAPI.objects.filter(entorno='production').values(
+        'TOKEN_URL', 'CLIENT_ID', 'CLIENT_SECRET', 'SCOPE', 'TIMEOUT_REQUEST'
+    ).first()
+    TOKEN_URL = settings['TOKEN_URL']
+    CLIENT_ID = settings['CLIENT_ID']
+    CLIENT_SECRET = settings['CLIENT_SECRET']
+    SCOPE = settings['SCOPE']
+    TIMEOUT = settings['TIMEOUT_REQUEST']
+
+    cache_key = (CLIENT_ID, SCOPE)
+    entry = _access_token_cache.get(cache_key)
+    if not force_refresh and entry:
+        if now() < entry['expires_at']:
+            registrar_log(payment_id, tipo_log='AUTH', extra_info="Reutilizando Access Token cacheado")
+            return entry['token']
+
+    # Preparar request
     data = {'grant_type': 'client_credentials', 'scope': SCOPE}
+    body = urlencode(data)
     headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-    registrar_log(payment_id, tipo_log='AUTH', headers_enviados=headers, request_body=data)
+    registrar_log(payment_id, tipo_log='AUTH', extra_info="Obteniendo nuevo Access Token")
+    registrar_log(payment_id, tipo_log='AUTH', headers_enviados=headers, request_body=body)
+
     try:
-        resp = requests.post(TOKEN_URL, data=data, auth=(CLIENT_ID, CLIENT_SECRET), timeout=TIMEOUT_REQUEST)
+        resp = requests.post(
+            TOKEN_URL,
+            data=body,
+            headers=headers,
+            auth=(CLIENT_ID, CLIENT_SECRET),
+            timeout=TIMEOUT
+        )
         registrar_log(payment_id, tipo_log='AUTH', response_headers=dict(resp.headers), response_text=resp.text)
         resp.raise_for_status()
+    except requests.RequestException as e:
+        err = str(e)
+        registrar_log(payment_id, tipo_log='ERROR', error=err, extra_info="Error de red al obtener Access Token")
+        raise
     except Exception as e:
         err = str(e)
-        registrar_log(payment_id, tipo_log='ERROR', error=err, extra_info="Error al obtener Access Token")
+        registrar_log(payment_id, tipo_log='ERROR', error=err, extra_info="Error inesperado al obtener Access Token")
         raise
-    token = resp.json().get('access_token')
+
+    payload = resp.json()
+    token = payload.get('access_token')
     if not token:
-        err = resp.json().get('error_description', 'Sin access_token en respuesta')
+        err = payload.get('error_description', 'Sin access_token en respuesta')
         registrar_log(payment_id, tipo_log='AUTH', error=err, extra_info="Token inválido recibido")
         raise Exception(f"Token inválido: {err}")
-    registrar_log(payment_id, tipo_log='AUTH', extra_info="Token obtenido correctamente")
+
+    # Cachear token hasta su expiración menos 5 segundos de margen
+    expires_in = payload.get('expires_in', 0)
+    expires_at = now() + timedelta(seconds=expires_in - 5)
+    _access_token_cache[cache_key] = {
+        'token': token,
+        'expires_at': expires_at
+    }
+    registrar_log(payment_id, tipo_log='AUTH', extra_info="Token obtenido y cacheado correctamente")
     return token
+
 
 
 
