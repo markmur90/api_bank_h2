@@ -78,7 +78,7 @@ from pathlib import Path
 from django.shortcuts import render
 
 def mostrar_readme(request):
-    readme_path = Path(__file__).resolve().parent.parent / "README_DEPLOY.md"
+    readme_path = Path(__file__).resolve().parent.parent / "README.md"
     contenido_md = readme_path.read_text(encoding="utf-8")
     contenido_html = markdown.markdown(
         contenido_md,
