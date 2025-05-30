@@ -59,15 +59,15 @@ DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
 # createdb -U usuario mydatabase
 
 
-echo -e "\033[7;30m🌐 Importando backup en la base de datos remota...\033[0m" | tee -a $LOG_DEPLOY
+echo -e "\033[7;30m🌐 Importando backup del archivo...\033[0m" | tee -a $LOG_DEPLOY
 # echo -e "\033[7;30m📦 Generando backup local...\033[0m" | tee -a $LOG_DEPLOY
 # pg_dump --no-owner --no-acl -U "$LOCAL_DB_USER" -h "$LOCAL_DB_HOST" -d "$LOCAL_DB_NAME" > "$BACKUP_FILE" || { echo "❌ Error haciendo el backup local. Abortando."; exit 1; }
-pv "$BACKUP_FILE" | psql "$DATABASE_URL" -q > /dev/null || { echo "❌ Error al importar el backup en la base de datos remota."; exit 1; }
+pv "$BACKUP_FILE" | psql "$DATABASE_URL" -q > /dev/null || { echo "❌ Error al importar el backup del archivo."; exit 1; }
 
 echo -e "\033[7;32m✅ Restauración SQL completada.\033[0m" | tee -a "$LOG_DEPLOY"
 
 
 
-echo -e "\033[7;30m✅ ¡Subido JSON Local!\033[0m" | tee -a $LOG_DEPLOY
+echo -e "\033[7;30m✅ ¡Subido SQL Local!\033[0m" | tee -a $LOG_DEPLOY
 echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m" | tee -a $LOG_DEPLOY
 echo "" | tee -a $LOG_DEPLOY
