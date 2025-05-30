@@ -24,17 +24,24 @@ trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecu
 # Validación de Heroku CLI
 command -v heroku >/dev/null || { echo "❌ Heroku CLI no está instalado."; exit 1; }
 
+export HEROKU_DEBUG=1
+export TERM=dumb
+
+
 echo -e "\n🔧 Desactivando collectstatic en Heroku..."
 # heroku config:set DISABLE_COLLECTSTATIC=1 --app "$HEROKU_APP"
 
 echo -e "\n📤 Cargando variables desde $ENV_FILE..."
 [[ -f "$ENV_FILE" ]] || { echo "❌ Archivo $ENV_FILE no encontrado."; exit 1; }
 
+HEROKU_DEBUG=1
+export TERM=dumb
+
 while IFS='=' read -r key value; do
   [[ -z "${key// }" || "${key:0:1}" == "#" ]] && continue
   value="${value%\"}"
   value="${value#\"}"
-  if heroku config:set "$key=$value" --app "$HEROKU_APP"; then
+  if HEROKU_DEBUG=1 TERM=dumb heroku config:set "$key=$value" --app "$HEROKU_APP" > >(grep -v 'Setting .* restarting' >> "$LOG_DEPLOY") 2>&1; then
     echo "✅ $key cargada correctamente"
   else
     echo "⚠️  Error al cargar $key"
@@ -67,7 +74,7 @@ git push origin api-bank || { echo "❌ Error al subir a GitHub"; exit 1; }
 
 sleep 3
 export HEROKU_API_KEY="HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6"
-echo "$HEROKU_API_KEY" | heroku auth:token
+echo "$HEROKU_API_KEY" | heroku auth:token | tee -a "$LOG_DEPLOY"
 
 echo -e "☁️  Push a Heroku..."
 git push heroku api-bank:main || { echo "❌ Error en deploy a Heroku"; exit 1; }
