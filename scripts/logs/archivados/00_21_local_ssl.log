@@ -1,0 +1,4 @@
+[2025-05-30 03:29:55 +0200] [32972] [INFO] Starting gunicorn 23.0.0
+[2025-05-30 03:29:55 +0200] [32972] [INFO] Listening at: http://0.0.0.0:8000 (32972)
+[2025-05-30 03:29:55 +0200] [32972] [INFO] Using worker: sync
+[2025-05-30 03:29:55 +0200] [32982] [INFO] Booting worker with pid: 32982
