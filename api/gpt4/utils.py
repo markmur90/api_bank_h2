@@ -871,8 +871,6 @@ def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str
     return token
 
 
-
-
 def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
     settings = get_settings()
     TOKEN_URL = settings["TOKEN_URL"]
@@ -913,7 +911,6 @@ def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
         raise Exception(f"Token JWT inválido: {err}")
     registrar_log(payment_id, tipo_log='AUTH', extra_info="Token JWT obtenido correctamente")
     return token
-
 
 
 def update_sca_request(transfer: Transfer, action: str, otp: str, token: str) -> requests.Response:
@@ -1013,6 +1010,7 @@ def build_auth_url(state, code_challenge):
         f"&code_challenge={code_challenge}"
     )
 
+
 def fetch_token_by_code(code, code_verifier):
     p = get_settings()["OAUTH2"]
     data = {
@@ -1026,6 +1024,7 @@ def fetch_token_by_code(code, code_verifier):
     resp.raise_for_status()
     j = resp.json()
     return j['access_token'], j.get('refresh_token'), j.get('expires_in', p['TIMEOUT_REQUEST'])
+
 
 def refresh_access_token(refresh_token: str) -> tuple[str, str, int]:
     p = get_settings()["OAUTH2"]
@@ -1049,7 +1048,23 @@ def refresh_access_token(refresh_token: str) -> tuple[str, str, int]:
 
 
 
-def crear_challenge_mtan(transfer: Transfer, token: str, payment_id: str) -> str:
+# ===========================
+# OTP
+# ===========================
+# ===========================
+# OTP Helper
+# ===========================
+
+def _challenge_url(auth_url: str) -> str:
+    """
+    Asegura que la URL base de autorización de desafíos termine en '/challenges'.
+    """
+    return auth_url.rstrip('/') + '/challenges'
+
+# ===========================
+# MTAN Challenge
+# ===========================
+def crear_challenge_mtanA(transfer: Transfer, token: str, payment_id: str) -> str:
     settings = get_settings()
     AUTH_URL = settings["AUTH_URL"]
     TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
@@ -1074,8 +1089,36 @@ def crear_challenge_mtan(transfer: Transfer, token: str, payment_id: str) -> str
     resp.raise_for_status()
     return resp.json()['id']
 
+def crear_challenge_mtan(transfer: Transfer, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
 
-def verify_mtan(challenge_id: str, otp: str, token: str, payment_id: str) -> str:
+    url = _challenge_url(AUTH_URL)
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'Correlation-Id': payment_id
+    }
+    payload = {
+        'method': 'MTAN',
+        'requestType': 'SEPA_TRANSFER_GRANT',
+        'language': 'en',
+        'challenge': {
+            'mobilePhoneNumber': transfer.debtor.mobile_phone_number
+        }
+    }
+    registrar_log(payment_id, headers_enviados=headers, request_body=payload,
+                 extra_info="Iniciando MTAN challenge", tipo_log='OTP')
+
+    resp = requests.post(url, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    registrar_log(payment_id, response_headers=dict(resp.headers), response_text=resp.text, tipo_log='OTP')
+    resp.raise_for_status()
+    return resp.json()['id']
+
+# ---------------------------
+
+def verify_mtanA(challenge_id: str, otp: str, token: str, payment_id: str) -> str:
     settings = get_settings()
     AUTH_URL = settings["AUTH_URL"]
     TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
@@ -1092,8 +1135,34 @@ def verify_mtan(challenge_id: str, otp: str, token: str, payment_id: str) -> str
     r.raise_for_status()
     return r.json()['challengeProofToken']
 
+def verify_mtan(challenge_id: str, otp: str, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
 
-def crear_challenge_phototan(transfer: Transfer, token: str, payment_id: str):
+    url = _challenge_url(AUTH_URL) + f"/{challenge_id}"
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'Correlation-Id': payment_id
+    }
+    payload = {'challengeResponse': otp}
+    registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers,
+                 request_body=payload, extra_info=f"Verificando OTP para challenge {challenge_id}")
+
+    resp = requests.patch(url, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    registrar_log(payment_id, tipo_log='OTP', response_headers=dict(resp.headers),
+                 response_text=resp.text, extra_info="Respuesta verificación OTP")
+    resp.raise_for_status()
+    return resp.json()['challengeProofToken']
+
+
+
+
+# ===========================
+# PhotoTAN Challenge
+# ===========================
+def crear_challenge_phototanA(transfer: Transfer, token: str, payment_id: str):
     settings = get_settings()
     AUTH_URL = settings["AUTH_URL"]
     TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
@@ -1116,66 +1185,69 @@ def crear_challenge_phototan(transfer: Transfer, token: str, payment_id: str):
     data = resp.json()
     return data['id'], data.get('imageBase64')
 
-
-def verify_phototan(challenge_id: str, otp: str, token: str, payment_id: str) -> str:
-    return verify_mtan(challenge_id, otp, token, payment_id)
-
-
-
-
-def resolver_challenge(challenge_id: str, token: str, payment_id: str) -> str:
+def crear_challenge_phototan(transfer: Transfer, token: str, payment_id: str) -> tuple:
     settings = get_settings()
     AUTH_URL = settings["AUTH_URL"]
     TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
-    
+
+    url = _challenge_url(AUTH_URL)
     headers = {
         'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
         'Correlation-Id': payment_id
     }
-    start = time.time()
-    while True:
-        resp = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
-        registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, response_headers=dict(resp.headers), response_text=resp.text, extra_info=f"Comprobando estado challenge {challenge_id}")
-        data = resp.json()
-        status = data.get('status')
-        if status == 'VALIDATED':
-            otp = data.get('otp')
-            registrar_log(payment_id, extra_info=f"OTP validado: {otp}", tipo_log='AUTH')
-            return otp
-        if status in ('EXPIRED', 'REJECTED', 'EIDP_ERROR'):
-            msg = f"Challenge fallido: {status}"
-            registrar_log(payment_id, error=msg, tipo_log='ERROR')
-            raise Exception(msg)
-        if time.time() - start > 300:
-            msg = "Timeout esperando VALIDATED"
-            registrar_log(payment_id, error=msg, tipo_log='ERROR')
-            raise TimeoutError(msg)
-        time.sleep(1)
-
-
-def obtener_otp_automatico(transfer: Transfer):
-    token = get_access_token(transfer.payment_id)
-    challenge_id = crear_challenge_pushtan(transfer, token, transfer.payment_id)
-    otp = resolver_challenge(challenge_id, token, transfer.payment_id)
-    registrar_log(transfer.payment_id, tipo_log='OTP', extra_info="OTP obtenido automáticamente")
-    return otp, token
-
-
-    
-# ===========================
-# OTP
-# ===========================
-def preparar_request_type_y_datos(schema_data):
-    request_type = "SEPA_TRANSFER_GRANT"
-    datos = {
-        "type": "challengeRequestDataSepaPaymentTransfer",
-        "targetIban": schema_data["creditorAccount"]["iban"],
-        "amountCurrency": schema_data["instructedAmount"]["currency"],
-        "amountValue": schema_data["instructedAmount"]["amount"]
+    payload = {
+        'method': 'PHOTOTAN',
+        'requestType': 'SEPA_TRANSFER_GRANT',
+        'language': 'en',
+        'challenge': {}
     }
-    return request_type, datos
+    registrar_log(payment_id, headers_enviados=headers, request_body=payload,
+                 extra_info="Iniciando PhotoTAN challenge", tipo_log='OTP')
 
-def crear_challenge_pushtan(transfer: Transfer, token: str, payment_id: str) -> str:
+    resp = requests.post(url, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    registrar_log(payment_id, response_headers=dict(resp.headers),
+                 response_text=resp.text, tipo_log='OTP')
+    resp.raise_for_status()
+    data = resp.json()
+    return data['id'], data.get('imageBase64')
+
+# ---------------------------
+
+
+def verify_phototanA(challenge_id: str, otp: str, token: str, payment_id: str) -> str:
+    return verify_mtan(challenge_id, otp, token, payment_id)
+
+def verify_phototan(challenge_id: str, otp: str, token: str, payment_id: str) -> str:
+    """
+    Verifica la PhotoTAN usando PATCH al endpoint de challenge con el OTP proporcionado.
+    """
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+
+    url = _challenge_url(AUTH_URL) + f"/{challenge_id}"
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'Correlation-Id': payment_id
+    }
+    payload = {'challengeResponse': otp}
+    registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers,
+                 request_body=payload, extra_info=f"Verificando PhotoTAN para challenge {challenge_id}")
+
+    resp = requests.patch(url, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    registrar_log(payment_id, tipo_log='OTP', response_headers=dict(resp.headers),
+                 response_text=resp.text, extra_info="Respuesta verificación PhotoTAN")
+    resp.raise_for_status()
+    return resp.json().get('challengeProofToken') or resp.json().get('otp')
+
+
+
+# ===========================
+# PushTAN Challenge
+# ===========================
+def crear_challenge_pushtanA(transfer: Transfer, token: str, payment_id: str) -> str:
     settings = get_settings()
     AUTH_URL = settings["AUTH_URL"]
     TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
@@ -1204,6 +1276,217 @@ def crear_challenge_pushtan(transfer: Transfer, token: str, payment_id: str) -> 
     response.raise_for_status()
     return response.json()['id']
 
+def crear_challenge_pushtan(transfer: Transfer, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+
+    schema_data = transfer.to_schema_data()
+    request_data = {
+        'type': 'challengeRequestDataSepaPaymentTransfer',
+        'targetIban': schema_data['creditorAccount']['iban'],
+        'amountCurrency': schema_data['instructedAmount']['currency'],
+        'amountValue': schema_data['instructedAmount']['amount']
+    }
+    url = _challenge_url(AUTH_URL)
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'Correlation-Id': payment_id
+    }
+    payload = {
+        'method': 'PUSHTAN',
+        'requestType': 'SEPA_TRANSFER_GRANT',
+        'requestData': request_data,
+        'language': 'de'
+    }
+    registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers,
+                 request_body=payload, extra_info="Iniciando PushTAN challenge")
+
+    resp = requests.post(url, headers=headers, json=payload, timeout=TIMEOUT_REQUEST)
+    registrar_log(payment_id, tipo_log='OTP', response_headers=dict(resp.headers),
+                 response_text=resp.text)
+    resp.raise_for_status()
+    return resp.json()['id']
+
+# ---------------------------
+
+def resolver_challenge_pushtanA(challenge_id: str, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Correlation-Id': payment_id
+    }
+    start = time.time()
+    while True:
+        response = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
+        registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, response_headers=dict(response.headers), response_text=response.text, extra_info="Esperando validación PushTAN")
+        data = response.json()
+        status = data.get('status')
+        if status == 'VALIDATED':
+            otp = data.get('otp')
+            registrar_log(payment_id, tipo_log='AUTH', extra_info=f"OTP PushTAN validado: {otp}")
+            return otp
+        if status in ('EXPIRED', 'REJECTED', 'EIDP_ERROR'):
+            msg = f"PushTAN fallido: {status}"
+            registrar_log(payment_id, tipo_log='ERROR', error=msg)
+            raise Exception(msg)
+        if time.time() - start > 300:
+            msg = "Timeout esperando VALIDATED PushTAN"
+            registrar_log(payment_id, tipo_log='ERROR', error=msg)
+            raise TimeoutError(msg)
+        time.sleep(1)
+
+def resolver_challenge_pushtan(challenge_id: str, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+
+    url = _challenge_url(AUTH_URL) + f"/{challenge_id}"
+    start = time.time()
+    while True:
+        resp = requests.get(url, headers={
+            'Authorization': f'Bearer {token}',
+            'Correlation-Id': payment_id
+        }, timeout=TIMEOUT_REQUEST)
+        registrar_log(payment_id, tipo_log='OTP', headers_enviados=resp.request.headers,
+                     response_headers=dict(resp.headers), response_text=resp.text,
+                     extra_info="Esperando validación PushTAN")
+        data = resp.json()
+        status = data.get('status')
+        if status == 'VALIDATED':
+            otp = data.get('otp')
+            registrar_log(payment_id, tipo_log='OTP', extra_info=f"OTP PushTAN validado: {otp}")
+            return otp
+        if status in ('EXPIRED', 'REJECTED', 'EIDP_ERROR'):
+            msg = f"PushTAN fallido: {status}"
+            registrar_log(payment_id, tipo_log='ERROR', error=msg)
+            raise Exception(msg)
+        if time.time() - start > 300:
+            msg = "Timeout esperando VALIDATED PushTAN"
+            registrar_log(payment_id, tipo_log='ERROR', error=msg)
+            raise TimeoutError(msg)
+        time.sleep(1)
+
+
+
+# ===========================
+# Generic Challenge Resolver
+# ===========================
+def resolver_challengeA(challenge_id: str, token: str, payment_id: str) -> str:
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+    
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Correlation-Id': payment_id
+    }
+    start = time.time()
+    while True:
+        resp = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
+        registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, response_headers=dict(resp.headers), response_text=resp.text, extra_info=f"Comprobando estado challenge {challenge_id}")
+        data = resp.json()
+        status = data.get('status')
+        if status == 'VALIDATED':
+            otp = data.get('otp')
+            registrar_log(payment_id, extra_info=f"OTP validado: {otp}", tipo_log='AUTH')
+            return otp
+        if status in ('EXPIRED', 'REJECTED', 'EIDP_ERROR'):
+            msg = f"Challenge fallido: {status}"
+            registrar_log(payment_id, error=msg, tipo_log='ERROR')
+            raise Exception(msg)
+        if time.time() - start > 300:
+            msg = "Timeout esperando VALIDATED"
+            registrar_log(payment_id, error=msg, tipo_log='ERROR')
+            raise TimeoutError(msg)
+        time.sleep(1)
+
+def resolver_challenge(challenge_id: str, token: str, payment_id: str) -> str:
+    """
+    Polling genérico para cualquier challenge creado. Solo para usos alternativos.
+    """
+    settings = get_settings()
+    AUTH_URL = settings["AUTH_URL"]
+    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
+
+    url = _challenge_url(AUTH_URL) + f"/{challenge_id}"
+    start = time.time()
+    while True:
+        resp = requests.get(url, headers={
+            'Authorization': f'Bearer {token}',
+            'Correlation-Id': payment_id
+        }, timeout=TIMEOUT_REQUEST)
+        registrar_log(payment_id, tipo_log='OTP', headers_enviados=resp.request.headers,
+                     response_headers=dict(resp.headers), response_text=resp.text,
+                     extra_info=f"Comprobando estado challenge {challenge_id}")
+        data = resp.json()
+        status = data.get('status')
+        if status == 'VALIDATED':
+            otp = data.get('otp')
+            registrar_log(payment_id, extra_info=f"OTP validado: {otp}", tipo_log='OTP')
+            return otp
+        if status in ('EXPIRED', 'REJECTED', 'EIDP_ERROR'):
+            msg = f"Challenge fallido: {status}"
+            registrar_log(payment_id, tipo_log='ERROR', error=msg)
+            raise Exception(msg)
+        if time.time() - start > 300:
+            msg = "Timeout esperando VALIDATED"
+            registrar_log(payment_id, tipo_log='ERROR', error=msg)
+            raise TimeoutError(msg)
+        time.sleep(1)
+
+
+
+# ===========================
+# Automatic OTP Retrieval
+# ===========================
+def obtener_otp_automaticoA(transfer: Transfer):
+    token = get_access_token(transfer.payment_id)
+    challenge_id = crear_challenge_pushtan(transfer, token, transfer.payment_id)
+    otp = resolver_challenge(challenge_id, token, transfer.payment_id)
+    registrar_log(transfer.payment_id, tipo_log='OTP', extra_info="OTP obtenido automáticamente")
+    return otp, token
+
+def obtener_otp_automatico(transfer: Transfer) -> tuple:
+    token = get_access_token(transfer.payment_id)
+    challenge_id = crear_challenge_pushtan(transfer, token, transfer.payment_id)
+    otp = resolver_challenge_pushtan(challenge_id, token, transfer.payment_id)
+    registrar_log(transfer.payment_id, tipo_log='OTP', extra_info="OTP obtenido automáticamente")
+    return otp, token
+
+# ---------------------------
+
+def obtener_otp_automatico_con_challengeA(transfer):
+    token = get_access_token(transfer.payment_id)
+    challenge_id = crear_challenge_autorizacion(transfer, token, transfer.payment_id)
+    otp_token = resolver_challenge(challenge_id, token, transfer.payment_id)
+    return otp_token, token
+
+def obtener_otp_automatico_con_challenge(transfer: Transfer) -> tuple:
+    token = get_access_token(transfer.payment_id)
+    challenge_id = crear_challenge_autorizacion(transfer, token, transfer.payment_id)
+    otp_token = resolver_challenge_pushtan(challenge_id, token, transfer.payment_id)
+    registrar_log(transfer.payment_id, tipo_log='OTP', extra_info="OTP obtenido automáticamente con challenge personalizado")
+    return otp_token, token
+
+# ---------------------------
+# ===========================
+
+
+
+def preparar_request_type_y_datos(schema_data):
+    request_type = "SEPA_TRANSFER_GRANT"
+    datos = {
+        "type": "challengeRequestDataSepaPaymentTransfer",
+        "targetIban": schema_data["creditorAccount"]["iban"],
+        "amountCurrency": schema_data["instructedAmount"]["currency"],
+        "amountValue": schema_data["instructedAmount"]["amount"]
+    }
+    return request_type, datos
 
 def crear_challenge_autorizacion(transfer, token):
     settings = get_settings()
@@ -1234,42 +1517,7 @@ def crear_challenge_autorizacion(transfer, token):
         registrar_log(pid, error=str(e), extra_info="Error al crear challenge", tipo_log='ERROR')
         raise
 
-def resolver_challenge_pushtan(challenge_id: str, token: str, payment_id: str) -> str:
-    settings = get_settings()
-    AUTH_URL = settings["AUTH_URL"]
-    TIMEOUT_REQUEST = settings["TIMEOUT_REQUEST"]
-    
-    headers = {
-        'Authorization': f'Bearer {token}',
-        'Correlation-Id': payment_id
-    }
-    start = time.time()
-    while True:
-        response = requests.get(f"{AUTH_URL}/{challenge_id}", headers=headers, timeout=TIMEOUT_REQUEST)
-        registrar_log(payment_id, tipo_log='OTP', headers_enviados=headers, response_headers=dict(response.headers), response_text=response.text, extra_info="Esperando validación PushTAN")
-        data = response.json()
-        status = data.get('status')
-        if status == 'VALIDATED':
-            otp = data.get('otp')
-            registrar_log(payment_id, tipo_log='AUTH', extra_info=f"OTP PushTAN validado: {otp}")
-            return otp
-        if status in ('EXPIRED', 'REJECTED', 'EIDP_ERROR'):
-            msg = f"PushTAN fallido: {status}"
-            registrar_log(payment_id, tipo_log='ERROR', error=msg)
-            raise Exception(msg)
-        if time.time() - start > 300:
-            msg = "Timeout esperando VALIDATED PushTAN"
-            registrar_log(payment_id, tipo_log='ERROR', error=msg)
-            raise TimeoutError(msg)
-        time.sleep(1)
 
-
-
-def obtener_otp_automatico_con_challenge(transfer):
-    token = get_access_token(transfer.payment_id)
-    challenge_id = crear_challenge_autorizacion(transfer, token, transfer.payment_id)
-    otp_token = resolver_challenge(challenge_id, token, transfer.payment_id)
-    return otp_token, token
 
 
 from cryptography.hazmat.primitives import serialization
@@ -1305,7 +1553,6 @@ def load_private_key_y_kid(registro=None):
             extra_info="❌ Error cargando clave y kid"
         )
         raise
-
 
 def generar_client_assertion(registro=None):
     try:
@@ -1358,3 +1605,5 @@ def generar_client_assertion(registro=None):
             extra_info="❌ Error generando client_assertion"
         )
         raise
+
+

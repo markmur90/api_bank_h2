@@ -34,13 +34,13 @@ unalias d_mig 2>/dev/null
 d_mig() {python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && clear "$@"}
 
 unalias d_local 2>/dev/null
-d_local() {ad_local && d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l -r && code . "$@"}
+d_local() {ad_local && d_env && bash ./01_full.sh --env=local -Z -C -S -Q -I -l && code . "$@"}
 
 unalias d_heroku 2>/dev/null
-d_heroku() {ad_local && d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -r && ad_heroku && code . "$@"}
+d_heroku() {ad_local && d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B && ad_heroku && code . "$@"}
 
 unalias d_njalla 2>/dev/null
-d_njalla() {ad_local && d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -v -r && ad_heroku && code . "$@"}
+d_njalla() {ad_local && d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -v && ad_heroku && code . "$@"}
 
 unalias d_pgm 2>/dev/null
 d_pgm() {d_env && bash ./01_full.sh -Q -I -l "$@"}
