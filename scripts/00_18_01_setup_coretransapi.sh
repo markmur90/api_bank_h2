@@ -53,6 +53,10 @@ source /home/$APP_USER/envAPP/bin/activate
 pip install --upgrade pip
 pip install -r /home/$APP_USER/$REPO_DIR/requirements.txt
 
+
+
+
+
 echo "🛠 Configurando base de datos PostgreSQL..."
 sudo systemctl enable postgresql
 sudo systemctl start postgresql

@@ -75,6 +75,11 @@ CREATE DATABASE ${DB_NAME};
 GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USER};
 EOSQL
 
+
+
+
+
+
 echo "⚙ Migraciones y archivos estáticos..."
 cd /home/$APP_USER/coretransapi
 source /home/$APP_USER/envAPP/bin/activate

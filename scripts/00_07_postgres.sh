@@ -39,8 +39,10 @@ echo "" | tee -a $LOG_DEPLOY
 DB_NAME="mydatabase"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
-DB_HOST="0.0.0.0"
-export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
+DB_HOST="localhost"
+
+export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
+
 sudo -u postgres psql <<-EOF
 DO \$\$
 BEGIN

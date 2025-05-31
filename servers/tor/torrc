@@ -1,3 +1,32 @@
+# Usar la red Tor como proxy SOCKS en el puerto 9050
+SocksPort 0.0.0.0:9050
+
+# Si quieres forzar usar solo nodos guardados en tu caché (para arranque más rápido):
+# UseEntryGuards 1
+# EntryNodes {us}       ← por ejemplo, solo nodos de Estados Unidos
+# ExitNodes {us}
+
+# Opciones de registro (log)
+Log notice file /var/log/tor/notices.log
+
+# Para ser relay de tráfico (no exit node)
+ORPort 9001
+ExitRelay 0
+DirPort 9030
+
+# Nombre amigable para identificar tu relay
+Nickname MiRelayTor
+
+# Limites de ancho de banda (opcional)
+RelayBandwidthRate 100 KB  # velocidad promedio
+RelayBandwidthBurst 200 KB # pico
+
+# Carpeta donde Tor guardará las claves y la dirección .onion
+HiddenServiceDir /var/lib/tor/hidden_service/
+# Puerto interno en tu servidor al que apunta (ej. servidor web Django que corre en localhost:8000)
+HiddenServicePort 80 127.0.0.1:8000
+
+
 ControlPort 9051
 CookieAuthentication 0
-HashedControlPassword 16:238C9AB9078BD706606410C317DF880D3DF1CB32970D75AC69386186F1
+HashedControlPassword 16:EFA9E4EC36A7678360EB3C68FDEF2CA3FA3E7B82C713DF785E9D884BD1
