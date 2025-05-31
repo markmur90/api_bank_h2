@@ -1,5 +1,22 @@
 #!/usr/bin/env bash
-set -euo pipefail
+
+# Auto-reinvoca con bash si no está corriendo con bash
+if [ -z "$BASH_VERSION" ]; then
+    exec bash "$0" "$@"
+fi
+
+# Función para autolimpieza de huella SSH
+verificar_huella_ssh() {
+    local host="$1"
+    echo "🔍 Verificando huella SSH para $host..."
+    ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=5 "$host" "exit" >/dev/null 2>&1 || {
+        echo "⚠️  Posible conflicto de huella, limpiando..."
+        ssh-keygen -f "$HOME/.ssh/known_hosts" -R "$host" >/dev/null
+    }
+}
+#!/usr/bin/env bash
+set -e
+
 
 SCRIPT_NAME="$(basename "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"

@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 
 # 🔔 Notificaciones VPS
-alias d_notify_start="systemctl --user start notificar_vps.service && echo '🟢 Servicio de notificación iniciado.'"
-alias d_notify_stop="systemctl --user stop notificar_vps.service && echo '🔴 Servicio de notificación detenido.'"
-alias d_notify_status="systemctl --user status notificar_vps.service"
-alias d_notify_restart="systemctl --user restart notificar_vps.service && echo '🔁 Servicio reiniciado.'"
-alias d_notify_vps="bash ./scripts/notificar_cada_30.sh '🔔 Recordatorio: revisar VPS Njalla' 30"
+alias d_notify_start='pgrep -f notificar_cada_30_con_horas.sh >/dev/null && echo "🔁 Ya hay una notificación activa." || (nohup ~/.local/bin/notificar_cada_30_con_horas.sh >/dev/null 2>&1 &) && echo "🔔 Notificador iniciado"'
+
+alias d_notify_stop="pkill -f notificar_cada_30.sh"
+alias d_notify_status="pgrep -fl notificar_cada_30.sh || echo '❌ Notificador no activo'"
+
 
 
 # === CLAVES SSH ===
 
 # === ACCESOS DIRECTOS AL PROYECTO ===
 
-alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear'
+alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && d_notify_start && clear'
 alias BKapi='cd "$HOME/Documentos/GitHub/api_bank_h2_BK" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && code .'
 alias api_heroku='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear'
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
