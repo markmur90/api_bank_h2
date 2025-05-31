@@ -8,7 +8,7 @@ echo "🟢 Notificaciones activadas cada $INTERVALO_MINUTOS minutos exactos del 
 
 while true; do
     # Notifica de inmediato al iniciar
-    notify-send "🔔 VPS Njalla" "$MENSAJE"
+    notify-send "🔔 " "$MENSAJE"
 
     # Calcula segundos restantes para el próximo múltiplo de 30 min
     ahora=$(date +%s)

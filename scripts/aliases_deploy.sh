@@ -27,6 +27,7 @@ export VPS_API_DIR="/home/markmur88/coretransapi"
 ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
 
 # === ALIAS VPS ===
+alias d_notify_vps="bash ./scripts/notificar_cada_30.sh '🔔 Recordatorio: revisar VPS Njalla' 30"
 
 
 alias vps_login="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP"

@@ -24,7 +24,7 @@ echo "🚀 Desplegando cambios en coretransapi..." | tee -a "$LOG_DEPLOY"
 IP_VPS="80.78.30.242"
 PORT_VPS=22
 SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
-REMOTE_USER=root
+REMOTE_USER=markmur88
 APP_USER=markmur88
 EMAIL_SSL="netghostx90@protonmail.com"
 REPO_GIT="git@github.com:$APP_USER/api_bank_heroku.git"
