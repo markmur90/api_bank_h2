@@ -8192,7 +8192,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v307
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m

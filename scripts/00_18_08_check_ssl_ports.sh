@@ -1,39 +1,39 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# === Parámetros ===
+VPS_USER="${1:-markmur88}"
+VPS_IP="${2:-80.78.30.242}"
+SSH_KEY="${3:-$HOME/.ssh/vps_njalla_nueva}"
+SSH_PORT="${4:-49222}"
+DOMAIN="${5:-api.coretransapi.com}"
+PUERTOS="${6:-80 443 49222}"
+
 SCRIPT_NAME="$(basename "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_FILE="$SCRIPT_DIR/logs/check_ssl_ports/check_ssl_ports.log"
-PROCESS_LOG="$SCRIPT_DIR/logs/check_ssl_ports/process_check_ssl_ports.log"
-LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/check_ssl_ports_.log"
-
+LOG_FILE="$SCRIPT_DIR/logs/check_ssl_ports/${SCRIPT_NAME%.sh}.log"
 mkdir -p "$(dirname "$LOG_FILE")"
-mkdir -p "$(dirname "$PROCESS_LOG")"
-mkdir -p "$(dirname "$LOG_DEPLOY")"
+exec > >(tee -a "$LOG_FILE") 2>&1
 
-{
-echo ""
-echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
-echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═══════════════════════════════════════════"
-} | tee -a "$LOG_FILE"
+echo "📅 $(date '+%Y-%m-%d %H:%M:%S')"
+echo "📄 Script: $SCRIPT_NAME"
+echo "🔍 Verificando SSL y puertos abiertos en $VPS_USER@$VPS_IP..."
 
-trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
-
-echo "🔎 Verificando certificados SSL y puertos abiertos..." | tee -a "$LOG_DEPLOY"
-
-ssh -i ~/.ssh/vps_njalla_ed25519 -p 49222 root@80.78.30.188 <<'EOF'
+ssh -i "$SSH_KEY" -p "$SSH_PORT" "$VPS_USER@$VPS_IP" bash <<EOF
 set -e
 
-echo "🔐 Certificados SSL instalados:"
-ls -l /etc/letsencrypt/live/apih.coretransapi.com/
+echo "🔐 Certificados SSL para $DOMAIN:"
+if [ -d "/etc/letsencrypt/live/$DOMAIN" ]; then
+    ls -l "/etc/letsencrypt/live/$DOMAIN"
+else
+    echo "❌ Directorio SSL no encontrado: /etc/letsencrypt/live/$DOMAIN"
+fi
 
-echo -e "\n🌍 Verificación de puertos abiertos (80, 443, 49222):"
-for PORT in 80 443 49222; do
+echo -e "\n🌐 Verificación de puertos:"
+for PORT in $PUERTOS; do
     echo -n "Puerto $PORT: "
-    ss -tuln | grep ":$PORT" && echo "🟢 Abierto" || echo "🔴 Cerrado"
+    ss -tuln | grep ":$PORT" &>/dev/null && echo "🟢 Abierto" || echo "🔴 Cerrado"
 done
-
 EOF
 
-echo "✅ Tarea completada." | tee -a "$LOG_DEPLOY"
+echo "✅ Revisión completada."

@@ -1,4 +1,50 @@
 #!/usr/bin/env bash
+api
+
+clear
+# === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
+DO_CLEAR=false
+TIME_SLEEP=0
+
+pausa_y_limpiar() {
+    sleep "$TIME_SLEEP"
+    if [[ "$DO_CLEAR" == true ]]; then
+        clear
+    fi
+}
+
+
+
+cat <<'EOF'
+# ╔═════════════════════════════════════════════════════════════════════════════╗
+# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2               ║
+# ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
+# ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
+# ║                                                                             ║
+# ║  === ALIAS DISPONIBLES (desde aliases_deploy.sh) ===                        ║
+# ║  🖥️  Local:                                                                 ║
+# ║    - api         → Activa entorno + entra al proyecto principal             ║
+# ║    - d_local     → Despliegue local con flags de prueba                     ║
+# ║    - d_heroku    → Despliegue heroku                                        ║
+# ║    - d_env       → Activa solo el entorno virtual                           ║
+# ║    - d_mig       → makemigrations + migrate + collectstatic                 ║
+# ║                                                                             ║
+# ║  🌐 VPS Njalla:                                                             ║
+# ║    - vps_login   → Conexión SSH al servidor                                 ║
+# ║    - vps_reload  → Reinicia Gunicorn y recarga Nginx                        ║
+# ║    - vps_logs    → Log live del servicio Gunicorn                           ║
+# ║    - vps_status  → Verifica estado actual de Gunicorn                       ║
+# ║    - vps_sync    → Sincroniza código local al servidor (rsync)              ║
+# ║    - vps_cert    → Testea renovación automática de Certbot                  ║
+# ║    - vps_ping    → Test de conexión TCP hacia el VPS                        ║
+# ║                                                                             ║
+# ║  Usa `source scripts/aliases_deploy.sh` para habilitarlos en la terminal.   ║
+# ║  Autor: markmur88                                                           ║
+# ╚═════════════════════════════════════════════════════════════════════════════╝
+EOF
+pausa_y_limpiar
+
+
 set -euo pipefail
 
 centrar_texto() {
@@ -35,17 +81,8 @@ centrar_texto_coloreado() {
 SCRIPT_NAME="$(basename "$0")"
 LOG_DEPLOY="./scripts/logs/01_full_deploy/full_deploy.log"
 
-clear
-# === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
-DO_CLEAR=true
-TIME_SLEEP=1
+# clear
 
-pausa_y_limpiar() {
-    sleep "$TIME_SLEEP"
-    if [[ "$DO_CLEAR" == true ]]; then
-        clear
-    fi
-}
 
 echo "🔐 Solicitando acceso sudo..."
 if sudo -v; then
@@ -69,6 +106,26 @@ COMENTARIO_COMMIT=""
 # ║  Soporte para 30 combinaciones de despliegue con alias `d_*`                ║
 # ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
 # ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
+# ║                                                                             ║
+# ║  === ALIAS DISPONIBLES (desde aliases_deploy.sh) ===                       ║
+# ║                                                                             ║
+# ║  🖥️  Local:                                                                 ║
+# ║    - api         → Activa entorno + entra al proyecto principal            ║
+# ║    - d_local     → Despliegue local con flags de prueba                    ║
+# ║    - d_env       → Activa solo el entorno virtual                          ║
+# ║    - d_mig       → makemigrations + migrate + collectstatic                ║
+# ║                                                                             ║
+# ║  🌐 VPS Njalla:                                                             ║
+# ║    - vps_login   → Conexión SSH al servidor                                ║
+# ║    - vps_reload  → Reinicia Gunicorn y recarga Nginx                       ║
+# ║    - vps_logs    → Log live del servicio Gunicorn                          ║
+# ║    - vps_status  → Verifica estado actual de Gunicorn                      ║
+# ║    - vps_sync    → Sincroniza código local al servidor (rsync)            ║
+# ║    - vps_cert    → Testea renovación automática de Certbot                ║
+# ║    - vps_ping    → Test de conexión TCP hacia el VPS                       ║
+# ║                                                                             ║
+# ║  Usa `source scripts/aliases_deploy.sh` para habilitarlos en la terminal. ║
+
 # ║  Autor: markmur88                                                           ║
 # ╚═════════════════════════════════════════════════════════════════════════════╝
 
@@ -96,6 +153,22 @@ STARTUP_LOG="$LOG_DIR/startup.log"
 
 # === FLAGS DE CONTROL DE BLOQUES ===
 DRY_RUN=false
+
+# === DETENER SI NO HAY ARGUMENTOS Y SOLO MOSTRAR ENCABEZADO ===
+# if [[ $# -eq 0 ]]; then
+#     echo ""
+#     cat <<'EOF'
+# # ╔═════════════════════════════════════════════════════════════════════════════╗
+# # ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2               ║
+# # ║  Automatización total: setup, backups, deploy, limpieza y seguridad         ║
+# # ║  Soporte para 30 combinaciones de despliegue con alias `d_*`                ║
+# # ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
+# # ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
+# # ╚═════════════════════════════════════════════════════════════════════════════╝
+# EOF
+#     exit 0
+# fi
+
 PROMPT_MODE=false
 DEBUG_MODE=true       # 00
 DO_SYS=false
@@ -134,7 +207,23 @@ DO_LOCAL_SSL=false
 DO_CERT=false
 
 if [[ "$@" =~ -[Y-Zy-z] ]]; then
-    PROMPT_MODE=false
+
+# === DETENER SI NO HAY ARGUMENTOS Y SOLO MOSTRAR ENCABEZADO ===
+if [[ $# -eq 0 ]]; then
+    echo ""
+    cat <<'EOF'
+# ╔═════════════════════════════════════════════════════════════════════════════╗
+# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2               ║
+# ║  Automatización total: setup, backups, deploy, limpieza y seguridad         ║
+# ║  Soporte para 30 combinaciones de despliegue con alias `d_*`                ║
+# ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
+# ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
+# ╚═════════════════════════════════════════════════════════════════════════════╝
+EOF
+    exit 0
+fi
+
+PROMPT_MODE=false
 fi
 
 # === PARÁMETRO DE ENTORNO --env ===
@@ -187,30 +276,30 @@ usage() {
     echo -e "\n\033[1;36mUSO:\033[0m"
     echo -e "  bash ./01_full.sh [opciones]\n"
 
-    echo -e "\033[1;33mOPCIONES DISPONIBLES:\033[0m"
+    echo -e "\033[1;36mOPCIONES DISPONIBLES:\033[0m"
     echo -e "  \033[1;33m-a\033[0m, \033[1;33m--all\033[0m               Ejecutar sin confirmaciones interactivas"
     echo -e "  \033[1;33m-s\033[0m, \033[1;33m--step\033[0m              Activar modo paso a paso (pregunta todo)"
     echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m             Mostrar diagnóstico y variables actuales"
     echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m              Mostrar esta ayuda y salir"
 
-    echo -e "\n\033[1;33mTAREAS DE DESARROLLO LOCAL:\033[0m"
+    echo -e "\033[1;36mTAREAS DE DESARROLLO LOCAL:\033[0m"
     echo -e "  \033[1;33m-L\033[0m, \033[1;33m--do-local\033[0m          Descargar archivos locales .json/.env"
     echo -e "  \033[1;33m-l\033[0m, \033[1;33m--do-load-local\033[0m     Subir archivos locales .json/.env"
     echo -e "  \033[1;33m-Q\033[0m, \033[1;33m--do-pgsql\033[0m          Configurar PostgreSQL local"
     echo -e "  \033[1;33m-I\033[0m, \033[1;33m--do-migra\033[0m          Aplicar migraciones Django"
     echo -e "  \033[1;33m-U\033[0m, \033[1;33m--do-create-user\033[0m    Crear usuario del sistema"
 
-    echo -e "\n\033[1;33mBACKUPS:\033[0m"
+    echo -e "\033[1;36mBACKUPS:\033[0m"
     echo -e "  \033[1;33m-C\033[0m, \033[1;33m--do-clean\033[0m          Limpiar respaldos antiguos"
     echo -e "  \033[1;33m-Z\033[0m, \033[1;33m--do-zip\033[0m            Generar backups ZIP + SQL"
 
-    echo -e "\n\033[1;33mDEPLOY HEROKU:\033[0m"
+    echo -e "\033[1;36mDEPLOY HEROKU:\033[0m"
     echo -e "  \033[1;33m-S\033[0m, \033[1;33m--do-sync\033[0m           Sincronizar archivos locales"
     echo -e "  \033[1;33m-B\033[0m, \033[1;33m--do-bdd\033[0m            Sincronizar BDD remota"
     echo -e "  \033[1;33m-H\033[0m, \033[1;33m--do-heroku\033[0m         Desplegar a Heroku"
     echo -e "  \033[1;33m-u\033[0m, \033[1;33m--do-varher\033[0m         Configurar variables Heroku"
 
-    echo -e "\n\033[1;33mENTORNO Y CONFIGURACIÓN:\033[0m"
+    echo -e "\033[1;36mENTORNO Y CONFIGURACIÓN:\033[0m"
     echo -e "  \033[1;33m-Y\033[0m, \033[1;33m--do-sys\033[0m            Actualizar sistema y dependencias"
     echo -e "  \033[1;33m-P\033[0m, \033[1;33m--do-ports\033[0m          Cerrar puertos abiertos conflictivos"
     echo -e "  \033[1;33m-D\033[0m, \033[1;33m--do-docker\033[0m         Cerrar contenedores abiertos conflictivos"
@@ -219,12 +308,12 @@ usage() {
     echo -e "  \033[1;33m-p\033[0m, \033[1;33m--do-pem\033[0m            Generar claves PEM locales"
     echo -e "  \033[1;33m-E\033[0m, \033[1;33m--do-cert\033[0m           Generar certificados SSL locales"
 
-    echo -e "\n\033[1;33mEJECUCIÓN Y TESTING:\033[0m"
+    echo -e "\033[1;36mEJECUCIÓN Y TESTING:\033[0m"
     echo -e "  \033[1;33m-r\033[0m, \033[1;33m--do-local-ssl\033[0m      Ejecutar entorno local con SSL (Gunicorn + Nginx 8443) 🚀"
     echo -e "  \033[1;33m-G\033[0m, \033[1;33m--do-gunicorn\033[0m       Ejecutar Gunicorn"
     echo -e "  \033[1;33m-V\033[0m, \033[1;33m--do-verif-trans\033[0m    Verificar transferencias SEPA"
 
-    echo -e "\n\033[1;33mPOST DEPLOY VPS:\033[0m"
+    echo -e "\033[1;36mPOST DEPLOY VPS:\033[0m"
     echo -e "  \033[1;33m-v\033[0m, \033[1;33m--do-vps\033[0m            Desplegar a VPS (Njalla)"
     echo -e "  \033[1;33m-N\033[0m, \033[1;33m--do-njalla\033[0m         Setup coretransapi"
     echo -e "  \033[1;33m-t\033[0m, \033[1;33m--do-headers\033[0m        Verifica encabezados HTTPS"
@@ -243,7 +332,23 @@ usage() {
 # === PARSEO DE ARGUMENTOS ===
 while [[ $# -gt 0 ]]; do
     case "$1" in
-        -a|--all)             PROMPT_MODE=false ;;
+        -a|--all)             
+# === DETENER SI NO HAY ARGUMENTOS Y SOLO MOSTRAR ENCABEZADO ===
+if [[ $# -eq 0 ]]; then
+    echo ""
+    cat <<'EOF'
+# ╔═════════════════════════════════════════════════════════════════════════════╗
+# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2               ║
+# ║  Automatización total: setup, backups, deploy, limpieza y seguridad         ║
+# ║  Soporte para 30 combinaciones de despliegue con alias `d_*`                ║
+# ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
+# ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
+# ╚═════════════════════════════════════════════════════════════════════════════╝
+EOF
+    exit 0
+fi
+
+PROMPT_MODE=false ;;
         -s|--step)            PROMPT_MODE=true ;;
         -W|--dry-run)         DRY_RUN=true ;;
         -B|--do-bdd)          DO_SYNC_REMOTE_DB=true ;;
@@ -323,7 +428,7 @@ fi
 
 
 
-if [[ "${DEBUG_MODE:-false}" == true ]]; then
+if [[ "${DEBUG_MODE:-false}" == false ]]; then
     echo ""
     echo -e "\033[1;36m============================= VARIABLES ACTUALES =============================\033[0m"
     printf "%-20s =\t%s\n" "INTERFAZ"            "$INTERFAZ"
@@ -656,12 +761,12 @@ ejecutar_si_activo "DO_GUNICORN" "Iniciar Gunicorn, honeypot y livereload" "bash
 pausa_y_limpiar
 
 # === 23 ===
-centrar_texto_coloreado $'\033[7;34mDEPLOY COMPLETO\033[0m'
-centrar_texto "DEPLOY COMPLETO" >> "$LOG_DEPLOY"
+centrar_texto_coloreado $'\033[7;34mSCRIPT COMPLETO\033[0m'
+centrar_texto "SCRIPT COMPLETO" >> "$LOG_DEPLOY"
 
 URL_LOCAL="http://0.0.0.0:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
-URL_NJALLA="https://apih.coretransapi.com/"
+URL_NJALLA="https://api.coretransapi.com/"
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"

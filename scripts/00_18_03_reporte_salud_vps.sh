@@ -7,28 +7,7 @@ LOG_FILE="$SCRIPT_DIR/logs/00_18_03_reporte_salud_vps/00_18_03_reporte_salud_vps
 PROCESS_LOG="$SCRIPT_DIR/logs/00_18_03_reporte_salud_vps/process_00_18_03_reporte_salud_vps.log"
 LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/00_18_03_reporte_salud_vps_.log"
 
-mkdir -p "$(dirname "$LOG_FILE")"
-mkdir -p "$(dirname "$PROCESS_LOG")"
-mkdir -p "$(dirname "$LOG_DEPLOY")"
-
-{
-echo ""
-echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
-echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═══════════════════════════════════════════"
-} | tee -a "$LOG_FILE"
-
-trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
-
-
-
-#!/usr/bin/env bash
-set -euo pipefail
-
-SCRIPT_NAME="$(basename "$0")"
-LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
-
-mkdir -p "$(dirname "$LOG_FILE")"
+mkdir -p "$(dirname "$LOG_FILE")" "$(dirname "$PROCESS_LOG")" "$(dirname "$LOG_DEPLOY")"
 
 {
 echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
@@ -38,13 +17,13 @@ echo -e "═══════════════════════�
 
 trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
 
-set -e
-
-VPS_USER="markmur88"
-VPS_IP="80.78.30.188"
+# Parámetros
+VPS_USER="${1:-markmur88}"
+VPS_IP="${2:-80.78.30.242}"
+SSH_KEY="${SSH_KEY:-$HOME/.ssh/vps_njalla_nueva}"
 
 echo "📡 Conectando a VPS $VPS_USER@$VPS_IP..."
-ssh "$VPS_USER@$VPS_IP" bash << 'EOF'
+ssh -i "$SSH_KEY" "$VPS_USER@$VPS_IP" bash << 'EOF'
 echo "🩺 Uptime:"
 uptime
 echo ""

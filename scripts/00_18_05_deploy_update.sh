@@ -1,46 +1,36 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# === Parámetros ===
+VPS_USER="${1:-markmur88}"
+VPS_IP="${2:-80.78.30.242}"
+SSH_KEY="${3:-$HOME/.ssh/vps_njalla_nueva}"
+PROYECTO_DIR="/home/$VPS_USER/coretransapi"
+VENV_DIR="/home/$VPS_USER/envAPP"
+
 SCRIPT_NAME="$(basename "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_FILE="$SCRIPT_DIR/logs/00_18_05_deploy_update/00_18_05_deploy_update.log"
-PROCESS_LOG="$SCRIPT_DIR/logs/00_18_05_deploy_update/process_00_18_05_deploy_update.log"
-LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/00_18_05_deploy_update_.log"
-
+LOG_FILE="$SCRIPT_DIR/logs/00_18_05_deploy_update/${SCRIPT_NAME%.sh}.log"
 mkdir -p "$(dirname "$LOG_FILE")"
-mkdir -p "$(dirname "$PROCESS_LOG")"
-mkdir -p "$(dirname "$LOG_DEPLOY")"
+exec > >(tee -a "$LOG_FILE") 2>&1
 
-{
-echo ""
-echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
-echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═══════════════════════════════════════════"
-} | tee -a "$LOG_FILE"
+echo "📅 $(date '+%Y-%m-%d %H:%M:%S')"
+echo "📄 Script: $SCRIPT_NAME"
+echo "🔁 Ejecutando actualización remota en $VPS_USER@$VPS_IP"
 
-trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
-
-
-
-#!/bin/bash
-
+ssh -i "$SSH_KEY" "$VPS_USER@$VPS_IP" bash <<EOF
 set -e
-echo "🚀 Iniciando actualización incremental para coretransapi"
 
-MARK=markmur88
-DIR_USR="/home/$MARK"
-PROYECTO_DIR="$DIR_USR/coretransapi"
-VENV_DIR="$DIR_USR/envAPP"
-
-echo "📥 Actualizando repositorio..."
-cd $PROYECTO_DIR
-sudo -u $MARK git pull
+echo "📥 Actualizando repositorio Django..."
+cd "$PROYECTO_DIR"
+git pull
 
 echo "🐍 Activando entorno virtual..."
-source $VENV_DIR/bin/activate
+source "$VENV_DIR/bin/activate"
 
 echo "📦 Instalando nuevas dependencias (si hay)..."
-pip install -r requirements.txt
+pip install --upgrade pip
+pip install -r "$PROYECTO_DIR/requirements.txt"
 
 echo "⚙️ Ejecutando migraciones..."
 python manage.py migrate
@@ -48,10 +38,11 @@ python manage.py migrate
 echo "🎨 Recolectando archivos estáticos..."
 python manage.py collectstatic --noinput
 
-echo "🧠 Reiniciando procesos en Supervisor..."
-supervisorctl restart coretransapi
+echo "🧠 Reiniciando coretransapi via Supervisor..."
+sudo supervisorctl restart coretransapi
 
-echo "🌐 Recargando Nginx y verificando..."
-nginx -t && systemctl reload nginx
+echo "🌐 Verificando y recargando Nginx..."
+sudo nginx -t && sudo systemctl reload nginx
 
-echo "📝 Últimos logs
+echo "✅ Actualización completa en $HOSTNAME"
+EOF

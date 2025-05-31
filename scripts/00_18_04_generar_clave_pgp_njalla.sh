@@ -1,107 +1,58 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+# === CONFIGURACIÓN ===
+NOMBRE="${1:-James Von Moltke}"
+EMAIL="${2:-j.moltke@db.com}"
+COMENTARIO="${3:-PGP}"
+CLAVE_SALIDA="${4:-jmoltke}"
+GPG_DIR="$HOME/.gnupg"
+KEYFILE="keygen_${CLAVE_SALIDA}.conf"
+
+# === LOGGING ===
 SCRIPT_NAME="$(basename "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LOG_FILE="$SCRIPT_DIR/logs/00_18_04_generar_clave_pgp_njalla/00_18_04_generar_clave_pgp_njalla.log"
-PROCESS_LOG="$SCRIPT_DIR/logs/00_18_04_generar_clave_pgp_njalla/process_00_18_04_generar_clave_pgp_njalla.log"
-LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/00_18_04_generar_clave_pgp_njalla_.log"
-
+LOG_FILE="$SCRIPT_DIR/logs/00_18_04_generar_clave_pgp_njalla/${SCRIPT_NAME%.sh}.log"
 mkdir -p "$(dirname "$LOG_FILE")"
-mkdir -p "$(dirname "$PROCESS_LOG")"
-mkdir -p "$(dirname "$LOG_DEPLOY")"
+exec > >(tee -a "$LOG_FILE") 2>&1
 
-{
-echo ""
-echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
+echo -e "📅 Fecha: $(date '+%Y-%m-%d %H:%M:%S')"
 echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═══════════════════════════════════════════"
-} | tee -a "$LOG_FILE"
+echo -e "👤 Usuario: $NOMBRE <$EMAIL>"
 
-trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
-
-
-
-#!/usr/bin/env bash
-set -euo pipefail
-
-SCRIPT_NAME="$(basename "$0")"
-LOG_FILE="./scripts/logs/01_full_deploy/full_deploy.log"
-
-mkdir -p "$(dirname "$LOG_FILE")"
-
-{
-echo -e "📅 Fecha de ejecución: $(date '+%Y-%m-%d %H:%M:%S')"
-echo -e "📄 Script: $SCRIPT_NAME"
-echo -e "═══════════════════════════════════════════"
-} | tee -a "$LOG_FILE"
-
-trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución." | tee -a "$LOG_FILE"; exit 1' ERR
-
-#!/bin/bash
-
-set -e
-
-echo "🔐 Generando clave PGP protegida para Njalla..."
-
-# ======================
-# CONFIGURACIÓN
-# ======================
-NOMBRE="James Von Moltke"
-EMAIL="j.moltke@db.com"
-COMENTARIO="PGP"
-CLAVE_SALIDA="jmoltke"
-GPG_DIR="$HOME/.gnupg"
-
-# ======================
-# COMPROBAR DEPENDENCIAS
-# ======================
+# === DEPENDENCIAS ===
 if ! command -v gpg > /dev/null; then
-    echo "❌ GnuPG no está instalado. Instalalo con: sudo apt install gnupg"
+    echo "❌ GnuPG no instalado. Ejecutá: sudo apt install gnupg"
     exit 1
 fi
 
-# ======================
-# GENERAR LA CLAVE CON CONTRASEÑA
-# ======================
-echo
-echo "📝 A continuación se abrirá el asistente de GPG para generar una clave protegida con contraseña."
-echo "   Usá estos datos:"
-echo "   - Nombre  : $NOMBRE"
-echo "   - Email   : $EMAIL"
-echo "   - Coment. : $COMENTARIO"
-echo "   - Tamaño  : 4096"
-echo "   - Expira  : 0 (sin expiración)"
-echo
+# === GENERAR CONFIG ===
+cat > "$KEYFILE" <<EOF
+%no-protection
+Key-Type: default
+Key-Length: 4096
+Subkey-Type: default
+Subkey-Length: 4096
+Name-Real: $NOMBRE
+Name-Comment: $COMENTARIO
+Name-Email: $EMAIL
+Expire-Date: 0
+%commit
+EOF
 
-gpg --full-generate-key
+echo "🔐 Generando clave PGP automática (sin passphrase)..."
+gpg --batch --generate-key "$KEYFILE"
+rm "$KEYFILE"
 
-# ======================
-# EXPORTAR CLAVE PÚBLICA
-# ======================
-gpg --armor --output "$CLAVE_SALIDA"_public.asc --export "$EMAIL"
-echo "✅ Clave pública exportada a: $CLAVE_SALIDA"_public.asc
+# === EXPORTAR CLAVES ===
+gpg --armor --output "${CLAVE_SALIDA}_public.asc" --export "$EMAIL"
+gpg --armor --output "${CLAVE_SALIDA}_private.asc" --export-secret-keys "$EMAIL"
+chmod 600 "${CLAVE_SALIDA}_private.asc"
 
-# ======================
-# EXPORTAR CLAVE PRIVADA
-# ======================
-gpg --armor --output "$CLAVE_SALIDA"_private.asc --export-secret-keys "$EMAIL"
-chmod 600 "$CLAVE_SALIDA"_private.asc
-echo "✅ Clave privada exportada a: "$CLAVE_SALIDA"_private.asc (¡GUARDALA EN UN USB CIFRADO!)"
+echo "✅ Claves exportadas:"
+echo "   🔑 Pública : ${CLAVE_SALIDA}_public.asc"
+echo "   🔒 Privada : ${CLAVE_SALIDA}_private.asc"
 
-# ======================
-# VERIFICACIÓN
-# ======================
-echo
-echo "📋 Resumen de la clave generada:"
+# === VERIFICACIÓN ===
+echo -e "\n📋 Claves actuales para $EMAIL:"
 gpg --list-keys "$EMAIL"
-
-# ======================
-# ABRIR CLAVE EN EDITOR
-# ======================
-echo
-echo "📝 Abriendo la clave pública en tu editor predeterminado..."
-xdg-open "$CLAVE_SALIDA"_public.asc &
-
-echo
-echo "📩 Pegá el contenido en Njalla (PGP Key Field) para que te cifren los correos."

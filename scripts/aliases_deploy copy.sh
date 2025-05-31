@@ -20,11 +20,11 @@ alias d_status='api && bash ./scripts/diagnostico_entorno.sh'
 
 # === VARIABLES VPS (personalizables) ===
 export VPS_USER="root"
-export VPS_IP="80.78.30.188"
+export VPS_IP="80.78.30.242"
 export VPS_PORT="49222"
-export SSH_KEY="$HOME/.ssh/vps_njalla_ed25519"
+export SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
 export VPS_API_DIR="/home/markmur88/coretransapi"
-ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_ed25519
+ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
 
 # === ALIAS VPS ===
 

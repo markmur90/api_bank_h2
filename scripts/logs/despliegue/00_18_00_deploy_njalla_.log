@@ -1,0 +1,6 @@
+
+[1;36m🌐 Desplegando api_bank_heroku en VPS Njalla...[0m
+bash: $PROJECT_ROOT/scripts/00_18_01_setup_coretransact.sh: No existe el fichero o el directorio
+[1;31m⚠️ Fallo en el primer intento de deploy. Ejecutando instalación de dependencias...[0m
+bash: $PROJECT_ROOT/scripts/00_18_01_setup_coretransact.sh: No existe el fichero o el directorio
+[1;31m❌ Fallo final en despliegue remoto. Consulta logs en /home/markmur88/Documentos/GitHub/api_bank_h2/scripts/logs/despliegue/00_18_00_deploy_njalla_.log[0m

@@ -37,7 +37,7 @@ PUERTOS=(8000 5000 35729)
 URL_SSL_LOCAL="https://0.0.0.0:8443"
 URL_GUNICORN="http://127.0.0.1:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
-URL_NJALLA="https://apih.coretransapi.com/"
+URL_NJALLA="https://api.coretransapi.com/"
 LOGO_SEP="\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
 
 # === FUNCIONES ===

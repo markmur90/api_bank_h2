@@ -19,16 +19,15 @@ alias d_menu='api && bash ./01_full.sh --menu'
 alias d_status='api && bash ./scripts/diagnostico_entorno.sh'
 
 # === VARIABLES VPS (personalizables) ===
-export VPS_USER="root"
-export VPS_IP="80.78.30.188"
+export VPS_USER="markmur88"
+export VPS_IP="80.78.30.242"
 export VPS_PORT="49222"
-export SSH_KEY="$HOME/.ssh/vps_njalla_ed25519"
+export SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
 export VPS_API_DIR="/home/markmur88/coretransapi"
-ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_ed25519
+ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
 
 # === ALIAS VPS ===
-unalias d_njalla 2>/dev/null
-d_njalla() {ad_local && d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -v && code . "$@"}
+
 
 alias vps_login="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP"
 alias vps_logs="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'journalctl -u gunicorn.service -f'"
@@ -44,6 +43,10 @@ alias vps_ping="api && timeout 3 bash -c '</dev/tcp/$VPS_IP/$VPS_PORT' && echo '
 
 
 # 🌐 Local (versión completa y versión corta)
+
+unalias d_njalla 2>/dev/null
+d_njalla() {d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -v && code . "$@"}
+
 unalias d_env 2>/dev/null
 d_env() {source "$HOME/Documentos/Entorno/envAPP/bin/activate" "$@"}
 

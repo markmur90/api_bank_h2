@@ -661,7 +661,7 @@ centrar_texto "DEPLOY COMPLETO" >> "$LOG_DEPLOY"
 
 URL_LOCAL="http://0.0.0.0:8000"
 URL_HEROKU="https://apibank2-54644cdf263f.herokuapp.com/"
-URL_NJALLA="https://apih.coretransapi.com/"
+URL_NJALLA="https://api.coretransapi.com/"
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"

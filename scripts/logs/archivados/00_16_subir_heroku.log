@@ -6,7 +6,7 @@
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -29,7 +29,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -52,7 +52,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -75,7 +75,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -98,7 +98,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -121,7 +121,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -144,7 +144,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -167,7 +167,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -190,7 +190,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -213,7 +213,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -236,7 +236,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -259,7 +259,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -282,7 +282,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -305,7 +305,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -328,7 +328,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -351,7 +351,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -374,7 +374,7 @@ HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
 🔧 Desactivando collectstatic en Heroku...
 DISABLE_COLLECTSTATIC: 1
 DEBUG: False
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 DJANGO_ENV: production
 ENVIRONMENT: production
@@ -3010,7 +3010,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣷[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v297
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -3156,7 +3156,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣟[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣯[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v297
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -3660,7 +3660,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣽[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣻[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v298
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ⚠️  Error al cargar ALLOWED_HOSTS
 
 📅 Fecha de ejecución: 2025-05-29 23:59:40
@@ -3715,7 +3715,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣟[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣯[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v298
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -4203,7 +4203,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣷[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v298
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -4710,7 +4710,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣷[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v299
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -5210,7 +5210,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣽[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v300
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -5733,7 +5733,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣽[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣻[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v301
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -6331,7 +6331,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v302
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -6915,7 +6915,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣟[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v303
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -7457,7 +7457,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣻[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v304
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -8000,7 +8000,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v305
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -8531,7 +8531,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣷[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⣾[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v306
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -9075,7 +9075,7 @@ Setting ALLOWED_HOSTS and restarting apibank2...
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⢿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... [38;5;104m⡿[0m
 [G[1A[JSetting ALLOWED_HOSTS and restarting apibank2... done, v307
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 Setting SECRET_KEY and restarting apibank2...
 [G[1A[JSetting SECRET_KEY and restarting apibank2... [38;5;104m⣾[0m
@@ -9741,7 +9741,7 @@ Abortando ejecución.
 📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_h2/.env.production...
 DEBUG: False
 ✅ DEBUG cargada correctamente
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 ✅ SECRET_KEY cargada correctamente
@@ -9858,7 +9858,7 @@ Restarting all dynos on apibank2...
 📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_h2/.env.production...
 DEBUG: False
 ✅ DEBUG cargada correctamente
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 ✅ SECRET_KEY cargada correctamente
@@ -9876,7 +9876,7 @@ DJANGO_ENV: production
 📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_h2/.env.production...
 DEBUG: False
 ✅ DEBUG cargada correctamente
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 ✅ SECRET_KEY cargada correctamente
@@ -9991,7 +9991,7 @@ Restarting all dynos on apibank2...
 📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_h2/.env.production...
 DEBUG: False
 ✅ DEBUG cargada correctamente
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 ✅ SECRET_KEY cargada correctamente
@@ -10218,7 +10218,7 @@ Restarting all dynos on apibank2...
 📤 Cargando variables desde /home/markmur88/Documentos/GitHub/api_bank_h2/.env.production...
 DEBUG: False
 ✅ DEBUG cargada correctamente
-ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,apih.coretransapi.com
+ALLOWED_HOSTS: apibank2-54644cdf263f.herokuapp.com,.herokuapp.com,api.coretransapi.com
 ✅ ALLOWED_HOSTS cargada correctamente
 SECRET_KEY: MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw
 ✅ SECRET_KEY cargada correctamente

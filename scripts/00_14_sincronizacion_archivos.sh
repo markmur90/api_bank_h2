@@ -40,6 +40,7 @@ EXCLUDES=(
     "--exclude=.github/"
     "--exclude=temp/"
     "--exclude=ultimate/"
+    "--exclude=z_njalla/"
 )
 
 actualizar_django_env() {

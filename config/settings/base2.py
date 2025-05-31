@@ -97,7 +97,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://api.db.com",
     "https://simulator-api.db.com",
     "https://apibank2-54644cdf263f.herokuapp.com",
-    "https://apih.coretransapi.com",
+    "https://api.coretransapi.com",
 ]
 
 REST_FRAMEWORK = {

@@ -243,7 +243,7 @@ Así tendrás acceso inmediato a todas las funciones.
 
 - **Dominio:** `coretransapi.com` (administrado en Njalla)
 - **VPS:** Debian 12 (VPS 15) - `504e1ebc.host.njalla.net`
-- **IP pública:** `80.78.30.188`
+- **IP pública:** `80.78.30.242`
 - **IPv6:** `2a0a:3840:8078:30::504e:1ebc:1337`
 - **Hostname:** `coretransapi`
 
@@ -276,7 +276,7 @@ Ubicados en el directorio `scripts/`, estos scripts automatizan el setup del VPS
 
 ## 📡 Configuración DNS Njalla
 
-- Crear un registro A para `apih.coretransapi.com` apuntando a `80.78.30.188`.
+- Crear un registro A para `api.coretransapi.com` apuntando a `80.78.30.242`.
 - TTL: `3600`
 - Activar DNSSEC y configurar glue records si aplica.
 
@@ -287,14 +287,14 @@ Ubicados en el directorio `scripts/`, estos scripts automatizan el setup del VPS
 Certbot se encargará de emitir los certificados:
 
 ```bash
-certbot --nginx -d apih.coretransapi.com
+certbot --nginx -d api.coretransapi.com
 ```
 
 Los certificados estarán en:
 
 ```nginx
-ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
-ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
+ssl_certificate /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
+ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
 ```
 
 ---
@@ -304,7 +304,7 @@ ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
 ```nginx
 server {
     listen 80;
-    server_name apih.coretransapi.com;
+    server_name api.coretransapi.com;
 
     location / {
         return 301 https://$host$request_uri;
@@ -313,10 +313,10 @@ server {
 
 server {
     listen 443 ssl;
-    server_name apih.coretransapi.com;
+    server_name api.coretransapi.com;
 
-    ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
 
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
@@ -530,7 +530,7 @@ ssh usuario@tu-ip-vps
 
 ###### Si usas una clave SSH personalizada:
 
-ssh -i /ruta/a/tu/clave_privada usuario@tu-ip-vps
+ssh -i ~/.ssh/vps_njalla_nueva root@80.78.30.242
 
 ### **3 Instalar dependencias en el servidor**
 

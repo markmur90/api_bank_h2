@@ -12,7 +12,7 @@ else
 fi
 
 VPS_USER="${VPS_USER:-markmur88}"
-VPS_IP="${VPS_IP:-80.78.30.188}"
+VPS_IP="${VPS_IP:-80.78.30.242}"
 SSH_KEY="${SSH_KEY:-$HOME/.ssh/id_ed25519}"
 APP_DIR="${VPS_API_DIR:-/home/$VPS_USER/api_bank}"
 BACKUP_DIR="${BACKUP_DIR:-$BASE_DIR/backup}"
