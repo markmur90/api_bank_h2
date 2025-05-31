@@ -39,6 +39,8 @@ alias vps_reload="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'systemc
 alias vps_status="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'systemctl status gunicorn'"
 alias vps_cert="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'sudo certbot renew --dry-run'"
 alias vps_sync="api && rsync -avz -e "ssh -i $SSH_KEY -p $VPS_PORT" "$RUTA_LOCAL" "${VPS_USER}@${VPS_IP}:${RUTA_REMOTA}" "
+alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1:5432 root@80.78.30.242'
+# psql -h 127.0.0.1 -p 5433 -U <usuario_db> -d <nombre_db>
 
 # 🧪 Test conexión con timeout de 3s
 
