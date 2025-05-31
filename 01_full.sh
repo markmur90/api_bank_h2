@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-api
+
 
 clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
