@@ -1,3 +1,10 @@
+#!/usr/bin/env bash
+
+# Auto-reinvoca con bash si no está corriendo con bash
+if [ -z "$BASH_VERSION" ]; then
+    exec bash "$0" "$@"
+fi
+
 # Función para autolimpieza de huella SSH
 verificar_huella_ssh() {
     local host="$1"

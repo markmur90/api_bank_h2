@@ -3,8 +3,8 @@
 
 clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
-DO_CLEAR=false
-TIME_SLEEP=0
+DO_CLEAR=true
+TIME_SLEEP=1
 
 pausa_y_limpiar() {
     sleep "$TIME_SLEEP"
