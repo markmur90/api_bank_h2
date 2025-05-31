@@ -6,16 +6,16 @@ echo "🔐 Iniciando configuración básica para VPS: coretransapi"
 # Parámetros
 USER=root
 MARK=markmur88
-IP_VPS="80.78.30.188"
+IP_VPS="80.78.30.242"
 DIR_USR="/home/$MARK"
-CLAVE_SSH="$DIR_USR/.ssh/vps_njalla_ed25519"
+CLAVE_SSH="$DIR_USR/.ssh/vps_njalla_nueva"
 PROYECTO_DIR="$DIR_USR/coretransapi"
 REPO_GIT="git@github.com:$MARK/api_bank_heroku.git"
 VENV_DIR="$DIR_USR/envAPP"
 
 # 1. Subir clave pública SSH
 echo "📤 Subiendo clave SSH..."
-scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_ed25519.pub $USER@$IP_VPS:/root/coretransapi.pub
+scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_nueva.pub $USER@$IP_VPS:/root/coretransapi.pub
 
 # 2. Configurar clave en el VPS
 ssh -i "$CLAVE_SSH" $USER@$IP_VPS <<'EOF'
@@ -162,21 +162,21 @@ ssh -i "$CLAVE_SSH" $USER@$IP_VPS <<'EOF'
     cp $PROYECTO_DIR/scripts/nginx.conf /etc/nginx/sites-available/coretransapi.conf
     ln -sf /etc/nginx/sites-available/coretransapi.conf /etc/nginx/sites-enabled/coretransapi.conf
     rm -f /etc/nginx/sites-enabled/default
-    echo "🌐 Verificando que el dominio apih.coretransapi.com apunte a $(hostname -I | awk '{print $1}')"
-    if ! host apih.coretransapi.com | grep "$(hostname -I | awk '{print $1}')" > /dev/null; then
+    echo "🌐 Verificando que el dominio api.coretransapi.com apunte a $(hostname -I | awk '{print $1}')"
+    if ! host api.coretransapi.com | grep "$(hostname -I | awk '{print $1}')" > /dev/null; then
         echo "❌ El dominio no apunta al VPS. Aborta Certbot."
         exit 1
     fi
 
 
     echo "🔐 Solicitando certificado SSL con Certbot..."
-    certbot --nginx -d apih.coretransapi.com --non-interactive --agree-tos -m netghostx90@protonmail.com --redirect
+    certbot --nginx -d api.coretransapi.com --non-interactive --agree-tos -m netghostx90@protonmail.com --redirect
 
 
     echo "🔄 Reiniciando Nginx..."
     nginx -t && systemctl reload nginx
 
-    ls -l /etc/letsencrypt/live/apih.coretransapi.com
+    ls -l /etc/letsencrypt/live/api.coretransapi.com
 
     nginx -t && systemctl reload nginx
 

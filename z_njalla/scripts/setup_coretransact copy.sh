@@ -5,12 +5,12 @@ echo "🔐 Iniciando configuración básica para VPS: coretransapi"
 
 # Parámetros
 USER=root
-IP_VPS="80.78.30.188"
-CLAVE_SSH="$HOME/.ssh/vps_njalla_ed25519"
+IP_VPS="80.78.30.242"
+CLAVE_SSH="$HOME/.ssh/vps_njalla_nueva"
 
 # 1. Subir clave pública SSH
 echo "📤 Subiendo clave SSH..."
-scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_ed25519.pub $USER@$IP_VPS:/root/coretransapi.pub
+scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_nueva.pub $USER@$IP_VPS:/root/coretransapi.pub
 
 # 2. Configurar clave en el VPS
 ssh -i "$CLAVE_SSH" $USER@$IP_VPS <<'EOF'

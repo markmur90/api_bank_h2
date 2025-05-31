@@ -66,17 +66,19 @@ Reverse DNS Name (FQDN):
 504e1ebc.host.njalla.net
 
 Network
-IPs: 80.78.30.188
+IPs: 80.78.30.242
 2a0a:3840:8078:30::504e:1ebc:1337
 
 You can log in via ssh as root with the provided SSH key. 
-ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIELi49PO3V5HAtZUsmOAgMpvkj83C08cqehlt8azE628 vps_njalla_api
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ/kjzGOjf7upHDjGW3KWxnucmePd4x43EjvtexPW5HK vps_njalla_nueva
+
+
 
 # Elimina la clave antigua del servidor
-ssh-keygen -f ~/.ssh/known_hosts -R 80.78.30.188
+ssh-keygen -f ~/.ssh/known_hosts -R 80.78.30.242
 
 # Vuelve a intentar copiar la clave
-ssh-copy-id root@80.78.30.188
+ssh-copy-id root@80.78.30.242
 
 
 # =====================================
@@ -84,8 +86,8 @@ ssh-copy-id root@80.78.30.188
 adduser markmur88
 usermod -aG sudo markmur88
 
-ssh-copy-id -i ~/.ssh/vps_njalla_ed25519.pub root@80.78.30.188
-ssh -i ~/.ssh/vps_njalla_ed25519 root@80.78.30.188
+ssh-copy-id -i ~/.ssh/vps_njalla_nueva.pub root@80.78.30.242
+ssh -i ~/.ssh/vps_njalla_nueva root@80.78.30.242
 ssh vps-njalla
 
 # =====================================
@@ -115,13 +117,13 @@ Glue records
 🚀 Subir la clave al VPS (cuando tengas acceso)
 
 Si ya tenés acceso por contraseña, podés hacer:
-ssh-copy-id -i ~/.ssh/vps_njalla_ed25519.pub root@IP_DEL_VPS
+ssh-copy-id -i ~/.ssh/vps_njalla_nueva.pub root@IP_DEL_VPS
 
-O manualmente, copiando el contenido de vps_njalla_ed25519.pub en:
+O manualmente, copiando el contenido de vps_njalla_nueva.pub en:
 /root/.ssh/authorized_keys
 
 🧪 Conectar con la nueva clave
-ssh -i ~/.ssh/vps_njalla_ed25519 root@IP_DEL_VPS
+ssh -i ~/.ssh/vps_njalla_nueva root@IP_DEL_VPS
 
 📜 Bonus: Configurar acceso por nombre en ~/.ssh/config
 
@@ -130,7 +132,7 @@ Agregá esto para hacerlo más fácil:
 Host vps-njalla
     HostName IP_DEL_VPS
     User root
-    IdentityFile ~/.ssh/vps_njalla_ed25519
+    IdentityFile ~/.ssh/vps_njalla_nueva
     IdentitiesOnly yes
 
 Y luego podés simplemente usar:
@@ -161,12 +163,12 @@ echo "🔐 Iniciando configuración básica para VPS: coretransapi"
 
 # Parámetros
 USER=root
-IP_VPS="80.78.30.188"
-CLAVE_SSH="$HOME/.ssh/vps_njalla_ed25519"
+IP_VPS="80.78.30.242"
+CLAVE_SSH="$HOME/.ssh/vps_njalla_nueva"
 
 # 1. Subir clave pública SSH
 echo "📤 Subiendo clave SSH..."
-scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_ed25519.pub $USER@$IP_VPS:/root/coretransapi.pub
+scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_nueva.pub $USER@$IP_VPS:/root/coretransapi.pub
 
 # 2. Configurar clave en el VPS
 ssh -i "$CLAVE_SSH" $USER@$IP_VPS <<'EOF'
@@ -225,7 +227,7 @@ echo "🛡️ Puedes conectarte con: ssh -i $CLAVE_SSH -p 49222 root@IP_DEL_VPS"
 
     Esperá unos minutos a que se propague el DNS.
 
-🔐 Configuración Nginx para apih.coretransapi.com
+🔐 Configuración Nginx para api.coretransapi.com
 
 Aquí tenés un bloque nginx.conf listo para servir tu API con Gunicorn y Let's Encrypt SSL:
 # =====================================
@@ -233,7 +235,7 @@ Aquí tenés un bloque nginx.conf listo para servir tu API con Gunicorn y Let's 
 # =====================================
 server {
     listen 80;
-    server_name apih.coretransapi.com;
+    server_name api.coretransapi.com;
 
     location / {
         return 301 https://$host$request_uri;
@@ -242,10 +244,10 @@ server {
 
 server {
     listen 443 ssl;
-    server_name apih.coretransapi.com;
+    server_name api.coretransapi.com;
 
-    ssl_certificate /etc/letsencrypt/live/apih.coretransapi.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/apih.coretransapi.com/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
 
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers HIGH:!aNULL:!MD5;
@@ -262,7 +264,7 @@ server {
 
     Requiere que tengas Certbot instalado y ejecutado:
 
-certbot --nginx -d apih.coretransapi.com
+certbot --nginx -d api.coretransapi.com
 
 Genera un bloque gunicorn.socket y gunicorn.service para servir tu API con systemd bajo ese dominio?
 
@@ -273,7 +275,7 @@ envAPP┌──(envAPP)─(markmur88㉿markmur88)-[~/…/api_bank_h2/ultimate/nj
 └─$ ./setup_coretransact.sh  
 🔐 Iniciando configuración básica para VPS: coretransapi
 📤 Subiendo clave SSH...
-vps_njalla_ed25519.pub                                                                                                                      100%   96     0.3KB/s   00:00    
+vps_njalla_nueva.pub                                                                                                                      100%   96     0.3KB/s   00:00    
 Pseudo-terminal will not be allocated because stdin is not a terminal.
 Linux server 6.1.0-34-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.135-1 (2025-04-25) x86_64
 
@@ -506,4 +508,4 @@ Use of uninitialized value $answer in chop at /usr/sbin/adduser line 766, <STDIN
 Use of uninitialized value $answer in pattern match (m//) at /usr/sbin/adduser line 767, <STDIN> line 3.
 Use of uninitialized value $answer in pattern match (m//) at /usr/sbin/adduser line 768, <STDIN> line 3.
 ✅ VPS coretransapi configurado correctamente.
-🛡️ Puedes conectarte con: ssh -i $HOME/.ssh/vps_njalla_ed25519 -p 49222 root@IP_DEL_VPS
+🛡️ Puedes conectarte con: ssh -i $HOME/.ssh/vps_njalla_nueva -p 49222 root@IP_DEL_VPS

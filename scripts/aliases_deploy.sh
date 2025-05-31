@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # 🔔 Notificaciones VPS
-alias d_notify_start='pgrep -f notificar_cada_30_con_horas.sh >/dev/null && echo "🔁 Ya hay una notificación activa." || (nohup ~/.local/bin/notificar_cada_30_con_horas.sh >/dev/null 2>&1 &) && echo "🔔 Notificador iniciado"'
+# alias d_notify_start='pgrep -f notificar_cada_30.sh >/dev/null && echo "🔁 Ya hay una notificación activa." || (nohup ~/.local/bin/notificar_cada_30.sh >/dev/null 2>&1 &) && echo "🔔 Notificador iniciado"'
 
 alias d_notify_stop="pkill -f notificar_cada_30.sh"
 alias d_notify_status="pgrep -fl notificar_cada_30.sh || echo '❌ Notificador no activo'"
@@ -12,7 +12,7 @@ alias d_notify_status="pgrep -fl notificar_cada_30.sh || echo '❌ Notificador n
 
 # === ACCESOS DIRECTOS AL PROYECTO ===
 
-alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && d_notify_start && clear'
+alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear'
 alias BKapi='cd "$HOME/Documentos/GitHub/api_bank_h2_BK" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && code .'
 alias api_heroku='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear'
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
@@ -27,15 +27,14 @@ alias d_menu='api && bash ./01_full.sh --menu'
 alias d_status='api && bash ./scripts/diagnostico_entorno.sh'
 
 # === VARIABLES VPS (personalizables) ===
-export VPS_USER="markmur88"
+export VPS_USER="root"
 export VPS_IP="80.78.30.242"
-export VPS_PORT="49222"
+export VPS_PORT="22"
 export SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
-export VPS_API_DIR="/home/markmur88/coretransapi"
+export VPS_API_DIR="/home/markmur88/api_bank_heroku"
 ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
 
 # === ALIAS VPS ===
-alias d_notify_vps="bash ./scripts/notificar_cada_30.sh '🔔 Recordatorio: revisar VPS Njalla' 30"
 
 
 alias vps_login="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP"

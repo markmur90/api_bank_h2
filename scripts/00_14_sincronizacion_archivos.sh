@@ -38,9 +38,9 @@ EXCLUDES=(
     "--exclude=.codesandbox/"
     "--exclude=.devcontainer/"
     "--exclude=.github/"
-    "--exclude=temp/"
-    "--exclude=ultimate/"
-    "--exclude=z_njalla/"
+    # "--exclude=temp/"
+    # "--exclude=ultimate/"
+    # "--exclude=z_njalla/"
 )
 
 actualizar_django_env() {

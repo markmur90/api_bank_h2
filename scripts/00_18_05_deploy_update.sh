@@ -29,7 +29,7 @@ set -euo pipefail
 VPS_USER="${1:-markmur88}"
 VPS_IP="${2:-80.78.30.242}"
 SSH_KEY="${3:-$HOME/.ssh/vps_njalla_nueva}"
-PROYECTO_DIR="/home/$VPS_USER/coretransapi"
+PROYECTO_DIR="/home/$VPS_USER/api_bank_heroku"
 VENV_DIR="/home/$VPS_USER/envAPP"
 
 SCRIPT_NAME="$(basename "$0")"

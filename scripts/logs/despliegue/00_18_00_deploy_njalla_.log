@@ -3367,3 +3367,83 @@ Rules updated
 Rules updated (v6)
 ERROR: Wrong number of arguments
 [1;31m❌ Fallo final en despliegue remoto. Consulta logs en /home/markmur88/Documentos/GitHub/api_bank_h2/scripts/logs/despliegue/00_18_00_deploy_njalla_.log[0m
+
+[1;36m🌐 Desplegando api_bank_heroku en VPS Njalla...[0m
+🔍 Verificando huella SSH para 80.78.30.242...
+⚠️  Posible conflicto de huella, limpiando...
+📦 Instalando dependencias iniciales en 80.78.30.242...
+Warning: Permanently added '80.78.30.242' (ED25519) to the list of known hosts.
+🧱 Instalando dependencias base...
+Hit:1 http://deb.debian.org/debian bookworm InRelease
+Hit:2 http://deb.debian.org/debian bookworm-updates InRelease
+Hit:3 http://deb.debian.org/debian-security bookworm-security InRelease
+Hit:4 http://deb.debian.org/debian bookworm-backports InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+Reading package lists...
+Building dependency tree...
+Reading state information...
+
+WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
+
+git is already the newest version (1:2.39.5-0+deb12u2).
+curl is already the newest version (7.88.1-10+deb12u12).
+build-essential is already the newest version (12.9).
+ufw is already the newest version (0.36.2-1).
+fail2ban is already the newest version (1.0.2-2).
+python3 is already the newest version (3.11.2-1+b1).
+python3-pip is already the newest version (23.0.1+dfsg-1).
+python3-venv is already the newest version (3.11.2-1+b1).
+python3-dev is already the newest version (3.11.2-1+b1).
+libpq-dev is already the newest version (15.13-0+deb12u1).
+postgresql is already the newest version (15+248).
+postgresql-contrib is already the newest version (15+248).
+nginx is already the newest version (1.22.1-9+deb12u2).
+certbot is already the newest version (2.1.0-4).
+python3-certbot-nginx is already the newest version (2.1.0-2).
+supervisor is already the newest version (4.2.5-1).
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+🧱 Activando firewall UFW...
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Rules updated
+Rules updated
+Rules updated
+Rules updated
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated
+Rules updated
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+Firewall is active and enabled on system startup
+Firewall reloaded
+🎯 Hostname y zona horaria...
+👤 Creando usuario markmur88...
+✅ Fase 1 completada. Ahora conectate por el puerto 49222 y ejecutá la fase 2.
+
+[1;36m🔍 Instalando la segunda fase...[0m
+[1;32m✅ Despliegue remoto al VPS completado.[0m
