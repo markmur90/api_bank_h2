@@ -1,3 +1,20 @@
+# Función para autolimpieza de huella SSH
+verificar_huella_ssh() {
+    local host="$1"
+    echo "🔍 Verificando huella SSH para $host..."
+    ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=5 "$host" "exit" >/dev/null 2>&1 || {
+        echo "⚠️  Posible conflicto de huella, limpiando..."
+        ssh-keygen -f "$HOME/.ssh/known_hosts" -R "$host" >/dev/null
+    }
+}
+#!/usr/bin/env bash
+set -e
+
+# === Variables (ajustables) ===
+IP_VPS="80.78.30.242"
+verificar_huella_ssh "$IP_VPS"
+
+
 #!/usr/bin/env bash
 set -euo pipefail
 

@@ -5,6 +5,7 @@ alias d_notify_start="systemctl --user start notificar_vps.service && echo '🟢
 alias d_notify_stop="systemctl --user stop notificar_vps.service && echo '🔴 Servicio de notificación detenido.'"
 alias d_notify_status="systemctl --user status notificar_vps.service"
 alias d_notify_restart="systemctl --user restart notificar_vps.service && echo '🔁 Servicio reiniciado.'"
+alias d_notify_vps="bash ./scripts/notificar_cada_30.sh '🔔 Recordatorio: revisar VPS Njalla' 30"
 
 
 # === CLAVES SSH ===
