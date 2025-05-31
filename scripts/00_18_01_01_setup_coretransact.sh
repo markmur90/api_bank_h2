@@ -41,7 +41,6 @@ ufw --force reload
 
 echo "🎯 Hostname y zona horaria..."
 hostnamectl set-hostname coretransapi
-timedatectl set-timezone Europe/Berlin
 
 echo "👤 Creando usuario $APP_USER..."
 useradd -m -s /bin/bash $APP_USER
