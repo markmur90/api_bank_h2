@@ -886,3 +886,20 @@ Restarting all dynos on apibank2...
 ✅ Heroku reiniciado correctamente.
 
 🎉 ✅ ¡Deploy completado con éxito!
+
+📅 Inicio ejecución: 2025-05-31 09:12:40
+📄 Script: 00_16_subir_heroku.sh
+═══════════════════════════════════════════
+
+🚀 Subiendo el proyecto a Heroku y GitHub...
+📦 Haciendo git add...
+📝 Commit con mensaje: deploy5
+[api-bank a8d5e71c] deploy5
+ 24 files changed, 4029 insertions(+), 31 deletions(-)
+🌐 Push a GitHub...
+remote: 
+remote: GitHub found 9 vulnerabilities on markmur90/api_bank_heroku's default branch (1 critical, 4 high, 3 moderate, 1 low). To find out more, visit:        
+remote:      https://github.com/markmur90/api_bank_heroku/security/dependabot        
+remote: 
+To github.com:markmur90/api_bank_heroku.git
+   2ab1348a..a8d5e71c  api-bank -> api-bank
