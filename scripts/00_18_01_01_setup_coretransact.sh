@@ -24,7 +24,7 @@ PORT_VPS="22"
 REMOTE_USER="root"
 SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
 APP_USER="markmur88"
-REPO_GIT="git@github.com:markmur88/coretransapi.git"
+REPO_GIT="https://github.com/markmur90/api_bank_heroku.git"
 
 echo "📦 Instalando dependencias iniciales en $IP_VPS..."
 

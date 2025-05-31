@@ -1,5 +1,28 @@
 #!/usr/bin/env bash
-set -euo pipefail
+
+# ⚠️ Detectar y cambiar a usuario no-root si es necesario
+if [[ "$EUID" -eq 0 && "$SUDO_USER" != "markmur88" ]]; then
+    echo "🧍 Ejecutando como root. Cambiando a usuario 'markmur88'..."
+    exec sudo -i -u markmur88 "$0" "$@"
+    exit 0
+fi
+
+# Auto-reinvoca con bash si no está corriendo con bash
+if [ -z "$BASH_VERSION" ]; then
+    exec bash "$0" "$@"
+fi
+
+# Función para autolimpieza de huella SSH
+verificar_huella_ssh() {
+    local host="$1"
+    echo "🔍 Verificando huella SSH para $host..."
+    ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=5 "$host" "exit" >/dev/null 2>&1 || {
+        echo "⚠️  Posible conflicto de huella, limpiando..."
+        ssh-keygen -f "$HOME/.ssh/known_hosts" -R "$host" >/dev/null
+    }
+}
+#!/usr/bin/env bash
+set -e
 
 # === CONFIGURACIÓN ===
 NOMBRE="${1:-James Von Moltke}"

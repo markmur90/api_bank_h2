@@ -1129,3 +1129,1144 @@ Restarting all dynos on apibank2...
 ✅ Heroku reiniciado correctamente.
 
 🎉 ✅ ¡Deploy completado con éxito!
+
+📅 Inicio ejecución: 2025-05-31 10:02:42
+📄 Script: 00_16_subir_heroku.sh
+═══════════════════════════════════════════
+
+🚀 Subiendo el proyecto a Heroku y GitHub...
+📦 Haciendo git add...
+📝 Commit con mensaje: deploy migraciones
+[api-bank 3a76b3a3] deploy migraciones
+ 950 files changed, 316714 insertions(+), 65 deletions(-)
+ create mode 100644 temp/.env.all
+ create mode 100755 temp/01_full copy 2.sh
+ create mode 100755 temp/01_full copy.sh
+ create mode 100755 temp/01_fullB.sh
+ create mode 100755 temp/01_fullO.sh
+ create mode 100755 temp/02_full.sh
+ create mode 100755 temp/03_full.sh
+ create mode 100644 temp/0AUTH/credenciales_oauth2/clave_privada.pem
+ create mode 100644 temp/0AUTH/credenciales_oauth2/clave_publica.pem
+ create mode 100644 temp/0AUTH/credenciales_oauth2/client_assertion.jwt
+ create mode 100644 temp/0AUTH/credenciales_oauth2/firma_log.txt
+ create mode 100644 temp/0AUTH/credenciales_oauth2/jwks.json
+ create mode 100644 temp/0AUTH/credenciales_oauth2/log.txt
+ create mode 100644 temp/0AUTH/credenciales_oauth2/resumen.txt
+ create mode 100644 temp/0AUTH/generar_claves_oauth2.py
+ create mode 100644 temp/AIRPLANE.TXT
+ create mode 100755 temp/Dockerfile
+ create mode 100755 temp/IA_requirements.txt
+ create mode 100755 temp/aliases_deploy copy 2.sh
+ create mode 100755 temp/aliases_deploy copy.sh
+ create mode 100755 temp/cert.pem
+ create mode 100755 temp/colores.sh
+ create mode 100755 temp/devcontainer.json
+ create mode 100755 temp/docker-compose.yml
+ create mode 100755 temp/docs/ACCESS_TOKEN
+ create mode 100755 temp/docs/CUENTAS
+ create mode 100644 temp/docs/Cabeceras.json
+ create mode 100755 temp/docs/ERROR CRITICO
+ create mode 100755 temp/docs/INSTALADOR
+ create mode 100755 temp/docs/POSGRS.txt
+ create mode 100755 temp/docs/RUTA
+ create mode 100644 temp/docs/analisis/00012
+ create mode 100755 temp/docs/analisis/000Black
+ create mode 100755 temp/docs/analisis/000accesos
+ create mode 100755 temp/docs/analisis/000drentt
+ create mode 100755 temp/docs/analisis/001Black
+ create mode 100644 temp/docs/analisis/001Black2
+ create mode 100644 temp/docs/analisis/001Black2.txt
+ create mode 100755 temp/docs/analisis/002Black
+ create mode 100755 temp/docs/analisis/003Black
+ create mode 100755 temp/docs/analisis/004Black
+ create mode 100755 temp/docs/analisis/005Prompt
+ create mode 100755 temp/docs/analisis/006Datos
+ create mode 100755 temp/docs/analisis/101Info
+ create mode 100755 temp/docs/analisis/102Conect
+ create mode 100755 temp/docs/analisis/103Token
+ create mode 100755 temp/docs/analisis/104campos
+ create mode 100755 temp/docs/analisis/105-1curl
+ create mode 100755 temp/docs/analisis/105-2net
+ create mode 100755 temp/docs/analisis/105-3curl
+ create mode 100755 temp/docs/analisis/105-4
+ create mode 100755 temp/docs/analisis/105-5
+ create mode 100755 temp/docs/analisis/105-6
+ create mode 100755 temp/docs/analisis/105-7
+ create mode 100755 temp/docs/analisis/105-8curl
+ create mode 100755 temp/docs/analisis/105ssh
+ create mode 100644 temp/docs/analisis/a001Black_proc
+ create mode 100755 temp/docs/analisis/enviroments.env
+ create mode 100644 temp/docs/analisis/resolv
+ create mode 100755 temp/docs/api_memo_bank.txt
+ create mode 100644 temp/docs/automatic_commit
+ create mode 100644 temp/docs/core
+ create mode 100755 temp/docs/cronograma.txt
+ create mode 100644 temp/docs/docker
+ create mode 100755 temp/docs/esquema y estructura.txt
+ create mode 100755 temp/docs/estructura
+ create mode 100755 temp/docs/estructura carpetas y modulos.txt
+ create mode 100755 temp/docs/generar_openapi
+ create mode 100644 temp/docs/gunicorn
+ create mode 100755 temp/docs/herramientas fuerza bruta
+ create mode 100755 temp/docs/info/OAuth2.pdf
+ create mode 100755 temp/docs/info/servername
+ create mode 100755 temp/docs/info/testssl
+ create mode 100755 temp/docs/instructivo/000_4SwiftGET.md
+ create mode 100755 temp/docs/instructivo/000_5SwiftPOST-SEND.md
+ create mode 100755 temp/docs/instructivo/000_5SwiftPOST.md
+ create mode 100755 temp/docs/instructivo/1[1].docx
+ create mode 100755 temp/docs/instructivo/EBICS_DFU-Explanation_of_Order_Type_Identifiers_E_A4_190820.pdf
+ create mode 100755 temp/docs/instructivo/OAuth
+ create mode 100755 temp/docs/instructivo/Para probar tu API desarrollada en.txt
+ create mode 100755 temp/docs/instructivo/UserGuide_-_EBICS_Security_recommendations_for_corporate_clients_E_A4_181206.pdf
+ create mode 100755 temp/docs/instructivo/api
+ create mode 100755 temp/docs/instructivo/como se instala     'rest_framework.txt
+ create mode 100755 temp/docs/instructivo/curl
+ create mode 100755 temp/docs/instructivo/curl_commands.sh
+ create mode 100755 temp/docs/instructivo/ejemplos_json
+ create mode 100755 temp/docs/instructivo/errores
+ create mode 100755 temp/docs/instructivo/postman
+ create mode 100755 temp/docs/instructivo/postman_instructions.md
+ create mode 100755 temp/docs/pics/CUENTAS/0Imagen de WhatsApp 2025-02-24 a las 22.25.48_7ded6676.jpg
+ create mode 100755 temp/docs/pics/CUENTAS/CIS EQUITY & CAPITAL VENTURES LIMITED.pdf
+ create mode 100644 temp/docs/pics/CUENTAS/COMPANY INFORMATION SHEET (CIS).pdf
+ create mode 100755 temp/docs/pics/CUENTAS/STRATEGIESGLOBALLLC-CIS-9375882.pdf
+ create mode 100644 temp/docs/pics/CUENTAS/SUBJECT_ (CIS) CDG SYSTEMS.pdf
+ create mode 100755 temp/docs/pics/CUENTAS/Santander LEGALNET SYSTEMS SPAIN SL.pdf
+ create mode 100755 temp/docs/pics/CUENTAS/cuenta 1.jpg
+ create mode 100755 temp/docs/pics/DRETTTT.pdf
+ create mode 100755 temp/docs/pics/TRANSFERENCIAS/EQUITY POF 28-02-2024.pdf
+ create mode 100755 temp/docs/pics/TRANSFERENCIAS/Imagen de WhatsApp 2025-02-19 a las 00.51.30_27de62ad.jpg
+ create mode 100755 temp/docs/pics/TRANSFERENCIAS/Transfer Miami 1.pdf
+ create mode 100755 temp/docs/pics/TRANSFERENCIAS/Z0000BI MARCIO KINGPRO 01-12_editado.pdf
+ create mode 100755 temp/docs/pics/TRANSFERENCIAS/Z0000Black Screen KINPRO1B.FIN 09-11-23_editado.pdf
+ create mode 100644 temp/docs/pics/TRANSFERENCIAS/z001
+ create mode 100644 temp/docs/pics/TRANSFERENCIAS/z002
+ create mode 100755 temp/docs/postgres copy.txt
+ create mode 100755 temp/docs/postgres.txt
+ create mode 100755 temp/docs/python/0002.json
+ create mode 100755 temp/docs/python/02569S
+ create mode 100755 temp/docs/python/02569S.pub
+ create mode 100755 temp/docs/python/0migraciones.py
+ create mode 100755 temp/docs/python/1migraciones_git.py
+ create mode 100755 temp/docs/python/2migraciones_git_ssl.py
+ create mode 100755 temp/docs/python/api.py
+ create mode 100755 temp/docs/python/cert.pub
+ create mode 100755 temp/docs/python/code.py
+ create mode 100755 temp/docs/python/code_challenge.py
+ create mode 100755 temp/docs/python/code_verifier.py
+ create mode 100755 temp/docs/python/config.py
+ create mode 100755 temp/docs/python/curl_token.py
+ create mode 100755 temp/docs/python/enviroments.env
+ create mode 100755 temp/docs/python/requirements.txt
+ create mode 100755 temp/docs/python/services.py
+ create mode 100755 temp/docs/python/setup_django_project.sh
+ create mode 100755 temp/docs/scrip_psql.txt
+ create mode 100755 temp/docs/settings.py
+ create mode 100644 temp/docs/settings_ant
+ create mode 100755 temp/docs/ssl
+ create mode 100755 temp/docs/testssl
+ create mode 100755 temp/docs/transaction
+ create mode 100755 temp/docs/zz
+ create mode 100755 temp/env.example
+ create mode 100755 temp/environ
+ create mode 100755 temp/helps/00Update.sh
+ create mode 100755 temp/helps/01ufwNormal.sh
+ create mode 100755 temp/helps/02ufwAllow.sh
+ create mode 100755 temp/helps/03ufwDeny.sh
+ create mode 100644 temp/helps/0Inicio.sh
+ create mode 100755 temp/helps/AUTHORIZATION PIN 02569S.txt
+ create mode 100755 temp/helps/Actua como programador.txt
+ create mode 100755 "temp/helps/Act\303\272a como experto en.txt"
+ create mode 100755 "temp/helps/Al siguiente c\303\263digo en.txt"
+ create mode 100755 "temp/helps/Configuraci\303\263n general.md"
+ create mode 100755 temp/helps/DOCTYPE html html lang.html
+ create mode 100755 temp/helps/Documento nuevo.txt
+ create mode 100755 temp/helps/Mozilla-Recovery-Key_2025-04-06_markmur88@proton.me.pdf
+ create mode 100755 "temp/helps/Perfecto A continuaci\303\263n.txt"
+ create mode 100755 temp/helps/SANDBOX API URL https.txt
+ create mode 100755 temp/helps/Sepa Credit payment fc.txt
+ create mode 100755 temp/helps/Sistema de Transferencias.txt
+ create mode 100755 temp/helps/VPN/ca/vpnbook-openvpn-ca149/vpnbook-ca149-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/ca/vpnbook-openvpn-ca149/vpnbook-ca149-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/ca/vpnbook-openvpn-ca149/vpnbook-ca149-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/ca/vpnbook-openvpn-ca149/vpnbook-ca149-udp53.ovpn
+ create mode 100755 temp/helps/VPN/ca/vpnbook-openvpn-ca196/vpnbook-ca196-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/ca/vpnbook-openvpn-ca196/vpnbook-ca196-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/ca/vpnbook-openvpn-ca196/vpnbook-ca196-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/ca/vpnbook-openvpn-ca196/vpnbook-ca196-udp53.ovpn
+ create mode 100755 temp/helps/VPN/de/vpnbook-openvpn-de20/vpnbook-de20-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/de/vpnbook-openvpn-de20/vpnbook-de20-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/de/vpnbook-openvpn-de20/vpnbook-de20-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/de/vpnbook-openvpn-de20/vpnbook-de20-udp53.ovpn
+ create mode 100755 temp/helps/VPN/de/vpnbook-openvpn-de220/vpnbook-de220-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/de/vpnbook-openvpn-de220/vpnbook-de220-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/de/vpnbook-openvpn-de220/vpnbook-de220-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/de/vpnbook-openvpn-de220/vpnbook-de220-udp53.ovpn
+ create mode 100755 temp/helps/VPN/fr/vpnbook-openvpn-fr200/vpnbook-fr200-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/fr/vpnbook-openvpn-fr200/vpnbook-fr200-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/fr/vpnbook-openvpn-fr200/vpnbook-fr200-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/fr/vpnbook-openvpn-fr200/vpnbook-fr200-udp53.ovpn
+ create mode 100755 temp/helps/VPN/fr/vpnbook-openvpn-fr231/vpnbook-fr231-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/fr/vpnbook-openvpn-fr231/vpnbook-fr231-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/fr/vpnbook-openvpn-fr231/vpnbook-fr231-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/fr/vpnbook-openvpn-fr231/vpnbook-fr231-udp53.ovpn
+ create mode 100755 temp/helps/VPN/pl/vpnbook-openvpn-pl134/vpnbook-pl134-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/pl/vpnbook-openvpn-pl134/vpnbook-pl134-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/pl/vpnbook-openvpn-pl134/vpnbook-pl134-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/pl/vpnbook-openvpn-pl134/vpnbook-pl134-udp53.ovpn
+ create mode 100755 temp/helps/VPN/pl/vpnbook-openvpn-pl140/vpnbook-pl140-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/pl/vpnbook-openvpn-pl140/vpnbook-pl140-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/pl/vpnbook-openvpn-pl140/vpnbook-pl140-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/pl/vpnbook-openvpn-pl140/vpnbook-pl140-udp53.ovpn
+ create mode 100755 temp/helps/VPN/uk/vpnbook-openvpn-uk205/vpnbook-uk205-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/uk/vpnbook-openvpn-uk205/vpnbook-uk205-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/uk/vpnbook-openvpn-uk205/vpnbook-uk205-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/uk/vpnbook-openvpn-uk205/vpnbook-uk205-udp53.ovpn
+ create mode 100755 temp/helps/VPN/uk/vpnbook-openvpn-uk68/vpnbook-uk68-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/uk/vpnbook-openvpn-uk68/vpnbook-uk68-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/uk/vpnbook-openvpn-uk68/vpnbook-uk68-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/uk/vpnbook-openvpn-uk68/vpnbook-uk68-udp53.ovpn
+ create mode 100755 temp/helps/VPN/us/vpnbook-openvpn-us16/vpnbook-us16-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/us/vpnbook-openvpn-us16/vpnbook-us16-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/us/vpnbook-openvpn-us16/vpnbook-us16-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/us/vpnbook-openvpn-us16/vpnbook-us16-udp53.ovpn
+ create mode 100755 temp/helps/VPN/us/vpnbook-openvpn-us178/vpnbook-us178-tcp443.ovpn
+ create mode 100755 temp/helps/VPN/us/vpnbook-openvpn-us178/vpnbook-us178-tcp80.ovpn
+ create mode 100755 temp/helps/VPN/us/vpnbook-openvpn-us178/vpnbook-us178-udp25000.ovpn
+ create mode 100755 temp/helps/VPN/us/vpnbook-openvpn-us178/vpnbook-us178-udp53.ovpn
+ create mode 100755 temp/helps/VPN/vpn
+ create mode 100644 temp/helps/Ventoy.git
+ create mode 100755 temp/helps/WARNING root No DATABASE.txt
+ create mode 100755 "temp/helps/act\303\272a como ingeniero en.txt"
+ create mode 100755 temp/helps/api bank mt 8baa98a9ca2b.txt
+ create mode 100644 temp/helps/clave_privada.ppk
+ create mode 100755 temp/helps/creditor creditorName.txt
+ create mode 100755 temp/helps/def get oauth session.txt
+ create mode 100755 temp/helps/github-recovery-codes.txt
+ create mode 100755 temp/helps/heroku login.txt
+ create mode 100755 temp/helps/https api db com 443 gw.txt
+ create mode 100644 temp/helps/id_rsa
+ create mode 100644 temp/helps/id_rsa.pub
+ create mode 100755 temp/helps/ipsweep.sh
+ create mode 100755 temp/helps/markmur88@proton.me Backup authentication codes.txt
+ create mode 100644 temp/helps/ventoy.json
+ create mode 100755 temp/iconos.sh
+ create mode 100644 temp/inicio/.dockerignore
+ create mode 100755 temp/inicio/00.sh
+ create mode 100755 temp/inicio/00Entorno.sh
+ create mode 100755 temp/inicio/01Postgres.sh
+ create mode 100755 temp/inicio/01ufwNormal.sh
+ create mode 100755 temp/inicio/02Bdd.sh
+ create mode 100755 temp/inicio/02Bdd_dump.sh
+ create mode 100755 temp/inicio/02_honeypot_api.sh
+ create mode 100755 temp/inicio/02user.sh
+ create mode 100755 temp/inicio/03copy_and_backup.sh
+ create mode 100755 temp/inicio/06sync_to_remote.sh
+ create mode 100755 temp/inicio/07script_completo.sh
+ create mode 100755 temp/inicio/Dockerfile
+ create mode 100755 temp/inicio/Heroku y Django.md
+ create mode 100755 temp/inicio/Inicio.sh
+ create mode 100755 temp/inicio/Opciones.sh
+ create mode 100755 temp/inicio/auto_commit_sync.sh
+ create mode 100755 temp/inicio/cambia_mac.sh
+ create mode 100644 temp/inicio/dbapi-OTP.json
+ create mode 100755 temp/inicio/dbapi-SCT.json
+ create mode 100644 temp/inicio/dbapi-TA.json
+ create mode 100644 temp/inicio/dbapi-onetimepasswords.json
+ create mode 100755 temp/inicio/dbapi-sepaCreditTransfer2.json
+ create mode 100644 temp/inicio/dbapi-transactionAuthorization.json
+ create mode 100755 temp/inicio/deploy_h2.sh
+ create mode 100755 temp/inicio/deploy_h3.sh
+ create mode 100755 temp/inicio/deploy_honeypot.sh
+ create mode 100644 temp/inicio/errores.md
+ create mode 100644 temp/inicio/errores2.md
+ create mode 100644 temp/inicio/errores3.md
+ create mode 100644 temp/inicio/errores4.md
+ create mode 100644 temp/inicio/errores5.md
+ create mode 100755 temp/inicio/gunicorn.log
+ create mode 100755 temp/inicio/hacks
+ create mode 100755 temp/inicio/honeyfull.sh
+ create mode 100755 temp/inicio/honeypot_logs.csv
+ create mode 100755 temp/inicio/honeypot_server.py
+ create mode 100755 temp/inicio/inicio.sh
+ create mode 100755 temp/inicio/maestro.sh
+ create mode 100644 temp/inicio/schema.py
+ create mode 100755 temp/inicio/z100Info
+ create mode 100755 temp/inicio/zCod.md
+ create mode 100755 temp/inicio/zpeticiones
+ create mode 100755 temp/inicio/zpr
+ create mode 100755 temp/inicio/zprompt
+ create mode 100755 temp/privkey.pem
+ create mode 100644 temp/requests/bulk/cancel_bulk_sepa_credit_transfer.json
+ create mode 100644 temp/requests/bulk/create_bulk_sepa_credit_transfer.json
+ create mode 100644 temp/requests/bulk/get_bulk_sepa_credit_transfer_details.json
+ create mode 100644 temp/requests/bulk/get_bulk_sepa_credit_transfer_status.json
+ create mode 100644 temp/requests/dbapi-sepaCreditTransfer2.json
+ create mode 100644 temp/requests/retry/retry_second_factor.json
+ create mode 100644 temp/requests/sepa/cancel_sepa_credit_transfer.json
+ create mode 100644 temp/requests/sepa/create_sepa_credit_transfer.json
+ create mode 100644 temp/requests/sepa/get_sepa_credit_transfer_details.json
+ create mode 100644 temp/requests/sepa/get_sepa_credit_transfer_status.json
+ create mode 100755 temp/scripts/WormGPT/brute.py
+ create mode 100755 temp/scripts/WormGPT/honeypot_logs.csv
+ create mode 100755 temp/scripts/WormGPT/honeypot_server.py
+ create mode 100755 temp/scripts/WormGPT/plan_SSH.md
+ create mode 100755 temp/scripts/WormGPT/ssh_auditor.py
+ create mode 100755 temp/scripts/WormGPT/ssh_brute.py
+ create mode 100755 temp/scripts/WormGPT/ssh_brute_exploit.py
+ create mode 100755 temp/scripts/WormGPT/ssh_brute_help.md
+ create mode 100755 temp/scripts/WormGPT/ssh_chat_wormGPT.md
+ create mode 100755 temp/scripts/WormGPT/ssh_exploit.py
+ create mode 100755 temp/scripts/WormGPT/ssh_honeypot.py
+ create mode 100644 temp/scripts/automate/config/config.json
+ create mode 100644 temp/scripts/automate/config/config_base.json
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_MK
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_SID
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_acc
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_ed
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_rc
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_ss
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_ss_pin
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_ssn
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/c_ssn_pin
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/contrasenas.txt
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/info
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/passwords
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/puertos
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/puertos.txt
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/servidores
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/servidores.txt
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/users
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/usuarios.txt
+ create mode 100644 temp/scripts/automate/diccionarios/diccionarios/wordlist.txt
+ create mode 100755 temp/scripts/automate/escaneo/01escaneo.py
+ create mode 100755 temp/scripts/automate/escaneo/02escaneo.py
+ create mode 100755 temp/scripts/automate/escaneo/03escaneo.py
+ create mode 100755 temp/scripts/automate/escaneo/04escaneo.sh
+ create mode 100755 temp/scripts/automate/escaneo/05escaneo.sh
+ create mode 100755 temp/scripts/automate/escaneo/06escaneo.py
+ create mode 100755 temp/scripts/automate/escaneo/07escaneo.py
+ create mode 100755 temp/scripts/automate/escaneo/08escaneo.py
+ create mode 100755 temp/scripts/automate/escaneo/09escaneo.py
+ create mode 100755 temp/scripts/automate/escaneo/10escaneo.py
+ create mode 100755 temp/scripts/automate/escaneo/README.md
+ create mode 100755 temp/scripts/automate/escaneo/config copy.py
+ create mode 100755 temp/scripts/automate/escaneo/config.py
+ create mode 100755 temp/scripts/automate/escaneo/constants.py
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_MK
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_SID
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_acc
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_ed
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_rc
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_ss
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_ss_pin
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_ssn
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/c_ssn_pin
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/contrasenas.txt
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/info
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/passwords
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/puertos
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/puertos.txt
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/servidores
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/servidores.txt
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/users
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/usuarios.txt
+ create mode 100644 temp/scripts/automate/escaneo/diccionarios/diccionarios/wordlist.txt
+ create mode 100644 temp/scripts/automate/escaneo/escaneos/scan_results_20250507_192522.txt
+ create mode 100755 temp/scripts/automate/escaneo/hydra_ataque.py
+ create mode 100755 temp/scripts/automate/escaneo/medusa_ataque.py
+ create mode 100755 temp/scripts/automate/escaneo/medusa_ingreso.py
+ create mode 100755 temp/scripts/automate/escaneo/rutas.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250329_181608.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250329_192402.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250330_124855.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250330_132909.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250330_181231.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250330_222127.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250330_223844.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250407_123248.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250413_203311.txt
+ create mode 100644 temp/scripts/automate/escaneos/scan_results_20250420_191029.txt
+ create mode 100644 temp/scripts/automate/logs/ataque_hydra.log
+ create mode 100644 temp/scripts/automate/logs/ataque_medusa.log
+ create mode 100644 temp/scripts/automate/logs/automation.log
+ create mode 100644 temp/scripts/automate/logs/error.log
+ create mode 100644 temp/scripts/automate/logs/errors.log
+ create mode 100644 temp/scripts/automate/logs/generar_claves_ssh.log
+ create mode 100644 temp/scripts/automate/reports/reporte_20250329_174943.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250329_175148.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250329_185929.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250329_211910.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250330_124636.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250330_150149.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250330_155439.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250330_204416.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250420_191357.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250427_200955.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250427_201132.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250427_201443.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250427_201603.txt
+ create mode 100644 temp/scripts/automate/reports/reporte_20250505_174950.txt
+ create mode 100755 temp/scripts/automate/scripts/0002.json
+ create mode 100644 temp/scripts/automate/scripts/automation_script.py
+ create mode 100755 temp/scripts/automate/scripts/automation_script1.py
+ create mode 100755 temp/scripts/automate/scripts/automation_script2.py
+ create mode 100755 temp/scripts/automate/scripts/automation_script3.py
+ create mode 100644 temp/scripts/automate/scripts/codeS256.py
+ create mode 100755 temp/scripts/automate/scripts/collect_dic.py
+ create mode 100755 temp/scripts/automate/scripts/collect_dic_csv.py
+ create mode 100755 temp/scripts/automate/scripts/collect_dic_json.py
+ create mode 100755 temp/scripts/automate/scripts/collect_dic_txt.py
+ create mode 100644 temp/scripts/automate/scripts/config.py
+ create mode 100755 temp/scripts/automate/scripts/connect_db_ssh.py
+ create mode 100755 temp/scripts/automate/scripts/connect_scan.py
+ create mode 100755 temp/scripts/automate/scripts/escaneo.py
+ create mode 100755 temp/scripts/automate/scripts/generar_claves_ssh.py
+ create mode 100755 temp/scripts/automate/scripts/generate_token.py
+ create mode 100644 temp/scripts/automate/scripts/generated_token.py
+ create mode 100755 temp/scripts/automate/scripts/gunicorn_config.py
+ create mode 100755 temp/scripts/automate/scripts/json_connect_scan.py
+ create mode 100644 temp/scripts/automate/scripts/keys/CbA
+ create mode 100644 temp/scripts/automate/scripts/keys/CbA copy
+ create mode 100644 temp/scripts/automate/scripts/keys/cert
+ create mode 100644 temp/scripts/automate/scripts/keys/certificate.pem
+ create mode 100644 temp/scripts/automate/scripts/keys/id_rsa
+ create mode 100644 temp/scripts/automate/scripts/keys/id_rsa.pub
+ create mode 100644 temp/scripts/automate/scripts/keys/intermediateCert.crt
+ create mode 100644 temp/scripts/automate/scripts/keys/localhost.csr
+ create mode 100644 temp/scripts/automate/scripts/keys/localhost.key
+ create mode 100644 temp/scripts/automate/scripts/keys/private_key.pem
+ create mode 100644 temp/scripts/automate/scripts/keys/trustedRoot.crt
+ create mode 100644 temp/scripts/automate/scripts/logs/automation.log
+ create mode 100644 temp/scripts/automate/scripts/logs/errors.log
+ create mode 100644 temp/scripts/automate/scripts/logs/generar_claves_ssh.log
+ create mode 100755 temp/scripts/automate/scripts/scan/00escaneo.py
+ create mode 100644 temp/scripts/automate/scripts/scan/01escaneo_1-50.py
+ create mode 100644 temp/scripts/automate/scripts/scan/02escaneo_51-100.py
+ create mode 100644 temp/scripts/automate/scripts/scan/03escaneo_101-150.py
+ create mode 100644 temp/scripts/automate/scripts/scan/04escaneo_151-200.py
+ create mode 100644 temp/scripts/automate/scripts/scan/05escaneo_201-250.py
+ create mode 100644 temp/scripts/automate/scripts/scan/06escaneo_251-300.py
+ create mode 100644 temp/scripts/automate/scripts/scan/07escaneo_301-350.py
+ create mode 100644 temp/scripts/automate/scripts/scan/08escaneo_351-400.py
+ create mode 100644 temp/scripts/automate/scripts/scan/09escaneo_401-450.py
+ create mode 100644 temp/scripts/automate/scripts/scan/10escaneo_451-500.py
+ create mode 100644 temp/scripts/automate/scripts/scan/11escaneo_501-550.py
+ create mode 100644 temp/scripts/automate/scripts/scan/12escaneo_551-600.py
+ create mode 100644 temp/scripts/automate/scripts/scan/13escaneo_601-650.py
+ create mode 100644 temp/scripts/automate/scripts/scan/14escaneo_651-700.py
+ create mode 100644 temp/scripts/automate/scripts/scan/15escaneo_701-750.py
+ create mode 100644 temp/scripts/automate/scripts/scan/16escaneo_751-800.py
+ create mode 100644 temp/scripts/automate/scripts/scan/17escaneo_801-850.py
+ create mode 100644 temp/scripts/automate/scripts/scan/18escaneo_851-900.py
+ create mode 100644 temp/scripts/automate/scripts/scan/19escaneo_901-950.py
+ create mode 100644 temp/scripts/automate/scripts/scan/20escaneo_951-1000.py
+ create mode 100644 temp/scripts/automate/scripts/scan/99escaneo.py
+ create mode 100755 temp/scripts/automate/send/auto_send_swift.sh
+ create mode 100644 temp/scripts/automate/send/data.py
+ create mode 100644 temp/scripts/automate/send/data_sct.txt
+ create mode 100644 temp/scripts/automate/send/generated_token.py
+ create mode 100644 temp/scripts/automate/send/headers.json
+ create mode 100644 temp/scripts/automate/send/send.py
+ create mode 100644 temp/scripts/automate/send/send_swift.py
+ create mode 100644 temp/scripts/automate/send/swift.py
+ create mode 100644 temp/scripts/automate/send/utils.py
+ create mode 100644 temp/scripts/build.sh
+ create mode 100644 temp/scripts/entrypoint.sh
+ create mode 100644 temp/scripts/enviroments.env
+ create mode 100755 temp/scripts/instalacion/4instalacion.sh
+ create mode 100755 temp/scripts/instalacion/4instalacion_copy.sh
+ create mode 100755 temp/scripts/instalacion/5.sh
+ create mode 100644 temp/scripts/ipsweep.sh
+ create mode 100644 temp/scripts/postgres/2_setup_postgresql.sh
+ create mode 100644 temp/scripts/postgres/save_complementary_data.py
+ create mode 100644 temp/scripts/postgres/save_complementary_data_postgresql.py
+ create mode 100644 temp/scripts/postgres/save_complementary_data_sqlite.py
+ create mode 100644 temp/scripts/postgres/setup_postgresql.sh
+ create mode 100755 temp/scripts/server/01/01_conection.py
+ create mode 100755 temp/scripts/server/01/02_conection.py
+ create mode 100755 temp/scripts/server/01/03_conection.py
+ create mode 100755 temp/scripts/server/01/04_conection.py
+ create mode 100755 temp/scripts/server/01/05_conection.py
+ create mode 100755 temp/scripts/server/01/06_conection.py
+ create mode 100755 temp/scripts/server/01/07_conection.py
+ create mode 100755 temp/scripts/server/01/08_conection.py
+ create mode 100644 temp/scripts/server/01/09_conection.py
+ create mode 100644 temp/scripts/server/01/10_conection.py
+ create mode 100644 temp/scripts/server/01/11_conection.py
+ create mode 100755 temp/scripts/server/01/18_csv3.py
+ create mode 100755 temp/scripts/server/01/aml_fcfc69ac-20a7-4175-8fc0-a48eed394949.xml
+ create mode 100755 temp/scripts/server/01/pain001_fcfc69ac-20a7-4175-8fc0-a48eed394949.xml
+ create mode 100644 temp/scripts/server/01/verisign_class3_public_primary.pem
+ create mode 100644 temp/scripts/server/02/00_scanner/scanner.py
+ create mode 100644 temp/scripts/server/02/01_auditor/auditor.py
+ create mode 100644 temp/scripts/server/02/01_auditor/scanner.py
+ create mode 100644 temp/scripts/server/02/02_app/.env
+ create mode 100644 temp/scripts/server/02/02_app/03_app.py
+ create mode 100644 temp/scripts/server/02/02_app/04_app.py
+ create mode 100644 temp/scripts/server/02/02_app/05_app.py
+ create mode 100644 temp/scripts/server/02/02_app/06_app.py
+ create mode 100644 temp/scripts/server/02/02_app/app.py
+ create mode 100644 temp/scripts/server/02/02_app/honeypot_logs.csv
+ create mode 100644 temp/scripts/server/02/02_app/reports/127.0.0.1_20250507_221816/report.json
+ create mode 100644 temp/scripts/server/02/02_app/reports/127.0.0.1_20250507_221925/report.json
+ create mode 100644 temp/scripts/server/02/02_app/reports/127.0.0.1_20250507_222003/report.json
+ create mode 100644 temp/scripts/server/02/03_docker/.env
+ create mode 100755 temp/scripts/server/02/03_docker/01_conection.py
+ create mode 100755 temp/scripts/server/02/03_docker/02_conection.py
+ create mode 100755 temp/scripts/server/02/03_docker/03_conection.py
+ create mode 100755 temp/scripts/server/02/03_docker/04_escaneo.py
+ create mode 100644 temp/scripts/server/02/03_docker/05_app.py
+ create mode 100755 temp/scripts/server/02/03_docker/05_escaneo.py
+ create mode 100644 temp/scripts/server/02/03_docker/06.py
+ create mode 100644 temp/scripts/server/02/03_docker/06_app.py
+ create mode 100755 temp/scripts/server/02/03_docker/07_ssh_brute.py
+ create mode 100755 temp/scripts/server/02/03_docker/08_honeypot.py
+ create mode 100644 temp/scripts/server/02/03_docker/09_generate_jwt.py
+ create mode 100644 temp/scripts/server/02/03_docker/10_generate_token.py
+ create mode 100644 temp/scripts/server/02/03_docker/11_00_scanner.py
+ create mode 100644 temp/scripts/server/02/03_docker/12_00_scanner.py
+ create mode 100644 temp/scripts/server/02/03_docker/12_01_auditor.py
+ create mode 100644 temp/scripts/server/02/03_docker/Dockerfile
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_MK
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_SID
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_acc
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_ed
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_rc
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_ss
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_ss_pin
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_ssn
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/c_ssn_pin
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/contrasenas.txt
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/info
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/passwords
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/puertos
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/puertos.txt
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/servidores
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/servidores.txt
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/users
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/usuarios.txt
+ create mode 100644 temp/scripts/server/02/03_docker/diccionarios/diccionarios/wordlist.txt
+ create mode 100644 temp/scripts/server/02/03_docker/docker-compose.yml
+ create mode 100644 temp/scripts/server/02/03_docker/entrypoint.sh
+ create mode 100644 temp/scripts/server/02/03_docker/flask/05_app.py
+ create mode 100644 temp/scripts/server/02/03_docker/flask/diccionarios/passwords
+ create mode 100644 temp/scripts/server/02/03_docker/flask/diccionarios/users
+ create mode 100644 temp/scripts/server/02/03_docker/flask/generate_jwt.py
+ create mode 100644 temp/scripts/server/02/03_docker/flask/generate_token.py
+ create mode 100644 temp/scripts/server/02/03_docker/flask/honeypot_logs.csv
+ create mode 100644 temp/scripts/server/02/03_docker/flask/private.pem
+ create mode 100644 temp/scripts/server/02/03_docker/flask/public.pem
+ create mode 100644 temp/scripts/server/02/03_docker/flask/static/css/style.css
+ create mode 100644 temp/scripts/server/02/03_docker/flask/templates/index.html
+ create mode 100644 temp/scripts/server/02/03_docker/flask/token.json
+ create mode 100644 temp/scripts/server/02/03_docker/flask/token.txt
+ create mode 100644 temp/scripts/server/02/03_docker/flask/utils.py
+ create mode 100644 temp/scripts/server/02/03_docker/flask/validate_jwt.py
+ create mode 100644 temp/scripts/server/02/03_docker/flask/validate_token.py
+ create mode 100644 temp/scripts/server/02/03_docker/flask/validate_token_db.py
+ create mode 100644 temp/scripts/server/02/03_docker/honeypot_logs.csv
+ create mode 100644 temp/scripts/server/02/03_docker/pem
+ create mode 100644 temp/scripts/server/02/03_docker/private.pem
+ create mode 100644 temp/scripts/server/02/03_docker/public.pem
+ create mode 100644 temp/scripts/server/02/03_docker/reports/01_20250507_183712/report.json
+ create mode 100644 temp/scripts/server/02/03_docker/reports/01_20250507_183712/report.txt
+ create mode 100644 temp/scripts/server/02/03_docker/reports/03_20250507_183751/report.json
+ create mode 100644 temp/scripts/server/02/03_docker/reports/03_20250507_183751/report.txt
+ create mode 100644 temp/scripts/server/02/03_docker/reports/03_20250507_183944/report.json
+ create mode 100644 temp/scripts/server/02/03_docker/reports/03_20250507_183944/report.txt
+ create mode 100644 temp/scripts/server/02/03_docker/reports/127.0.0.1_20250507_182203/report.json
+ create mode 100644 temp/scripts/server/02/03_docker/reports/127.0.0.1_20250507_182203/report.txt
+ create mode 100644 temp/scripts/server/02/03_docker/reports/127.0.0.1_20250507_235519/report.json
+ create mode 100644 temp/scripts/server/02/03_docker/requirements.txt
+ create mode 100755 temp/scripts/server/02/03_docker/start.sh
+ create mode 100644 temp/scripts/server/02/03_docker/verisign_class3_public_primary copy.pem
+ create mode 100644 temp/scripts/server/03/00_token/generate_access_token.py
+ create mode 100644 temp/scripts/server/03/00_token/jwks.json
+ create mode 100644 temp/scripts/server/03/00_token/jwt_generate.py
+ create mode 100644 temp/scripts/server/03/00_token/private_key.pem
+ create mode 100644 temp/scripts/server/03/00_token/public_key.pem
+ create mode 100644 temp/scripts/server/03/00_token/remote_generator_validator.py
+ create mode 100644 temp/scripts/server/03/00_token/validate_token_local.py
+ create mode 100644 temp/scripts/server/04/simulador_banco/alertas.py
+ create mode 100644 temp/scripts/server/04/simulador_banco/backup.py
+ create mode 100644 temp/scripts/server/04/simulador_banco/conexion_tls.py
+ create mode 100644 temp/scripts/server/04/simulador_banco/config.py
+ create mode 100644 temp/scripts/server/04/simulador_banco/cron_check.py
+ create mode 100644 temp/scripts/server/04/simulador_banco/logger.py
+ create mode 100644 temp/scripts/server/04/simulador_banco/mt103_generator.py
+ create mode 100644 temp/scripts/server/04/tls_check_deutschebank.py
+ create mode 100755 temp/scripts/validacion/01_validator.py
+ create mode 100755 temp/scripts/validacion/02_validator.py
+ create mode 100755 temp/scripts/validacion/03_validator.py
+ create mode 100644 temp/scripts/validacion/041_generator_schema.py
+ create mode 100644 temp/scripts/validacion/042.py
+ create mode 100644 temp/scripts/validacion/043.py
+ create mode 100755 temp/scripts/validacion/04_generator_schema.py
+ create mode 100755 temp/scripts/validacion/05_correlation.py
+ create mode 100644 temp/scripts/validacion/06_validator.py
+ create mode 100644 temp/scripts/validacion/dbapi-OTP.json
+ create mode 100755 temp/scripts/validacion/dbapi-SCT.json
+ create mode 100644 temp/scripts/validacion/dbapi-SCT_schema.json
+ create mode 100644 temp/scripts/validacion/dbapi-TA.json
+ create mode 100644 temp/scripts/validacion/json/otp.json
+ create mode 100644 temp/scripts/validacion/json/sct.json
+ create mode 100644 temp/scripts/validacion/json/ta.json
+ create mode 100644 temp/scripts/validacion/schemas.py
+ create mode 100644 temp/scripts/validacion/sct2.py
+ create mode 100644 temp/scripts/validacion/validator copy.py
+ create mode 100644 temp/scripts/validacion/validator.py
+ create mode 100755 temp/scripts_njalla/anteriores/01_diagnose.sh
+ create mode 100755 temp/scripts_njalla/anteriores/02_ports.sh
+ create mode 100755 temp/scripts_njalla/anteriores/03_containers.sh
+ create mode 100755 temp/scripts_njalla/anteriores/04_update_system.sh
+ create mode 100755 temp/scripts_njalla/anteriores/05_ufw.sh
+ create mode 100755 temp/scripts_njalla/anteriores/06_macchanger.sh
+ create mode 100755 temp/scripts_njalla/anteriores/07_tor.sh
+ create mode 100755 temp/scripts_njalla/anteriores/08_clean_zip.sh
+ create mode 100755 temp/scripts_njalla/anteriores/09_postgres.sh
+ create mode 100755 temp/scripts_njalla/anteriores/10_reset_postgres.sh
+ create mode 100755 temp/scripts_njalla/anteriores/11_migrations.sh
+ create mode 100755 temp/scripts_njalla/anteriores/12_user.sh
+ create mode 100755 temp/scripts_njalla/anteriores/13_loaddata.sh
+ create mode 100755 temp/scripts_njalla/anteriores/14_pem.sh
+ create mode 100755 temp/scripts_njalla/anteriores/15_zip_backup.sh
+ create mode 100755 temp/scripts_njalla/anteriores/16_backup_local.sh
+ create mode 100755 temp/scripts_njalla/anteriores/17_sync.sh
+ create mode 100755 temp/scripts_njalla/anteriores/18_ssl_nginx.sh
+ create mode 100755 temp/scripts_njalla/anteriores/19_gunicorn.sh
+ create mode 100755 temp/scripts_njalla/anteriores/20_deploy_heroku.sh
+ create mode 100755 temp/scripts_njalla/anteriores/22_tor_web.sh
+ create mode 100755 temp/scripts_njalla/anteriores/23_notify.sh
+ create mode 100644 temp/staticfiles/admin/css/autocomplete.css
+ create mode 100644 temp/staticfiles/admin/css/base.css
+ create mode 100644 temp/staticfiles/admin/css/changelists.css
+ create mode 100644 temp/staticfiles/admin/css/dark_mode.css
+ create mode 100644 temp/staticfiles/admin/css/dashboard.css
+ create mode 100644 temp/staticfiles/admin/css/forms.css
+ create mode 100644 temp/staticfiles/admin/css/login.css
+ create mode 100644 temp/staticfiles/admin/css/nav_sidebar.css
+ create mode 100644 temp/staticfiles/admin/css/responsive.css
+ create mode 100644 temp/staticfiles/admin/css/responsive_rtl.css
+ create mode 100644 temp/staticfiles/admin/css/rtl.css
+ create mode 100644 temp/staticfiles/admin/css/unusable_password_field.css
+ create mode 100644 temp/staticfiles/admin/css/vendor/select2/LICENSE-SELECT2.md
+ create mode 100644 temp/staticfiles/admin/css/vendor/select2/select2.css
+ create mode 100644 temp/staticfiles/admin/css/vendor/select2/select2.min.css
+ create mode 100644 temp/staticfiles/admin/css/widgets.css
+ create mode 100644 temp/staticfiles/admin/img/LICENSE
+ create mode 100644 temp/staticfiles/admin/img/README.txt
+ create mode 100644 temp/staticfiles/admin/img/calendar-icons.svg
+ create mode 100644 temp/staticfiles/admin/img/gis/move_vertex_off.svg
+ create mode 100644 temp/staticfiles/admin/img/gis/move_vertex_on.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-addlink.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-alert.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-calendar.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-changelink.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-clock.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-deletelink.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-hidelink.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-no.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-unknown-alt.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-unknown.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-viewlink.svg
+ create mode 100644 temp/staticfiles/admin/img/icon-yes.svg
+ create mode 100644 temp/staticfiles/admin/img/inline-delete.svg
+ create mode 100644 temp/staticfiles/admin/img/search.svg
+ create mode 100644 temp/staticfiles/admin/img/selector-icons.svg
+ create mode 100644 temp/staticfiles/admin/img/sorting-icons.svg
+ create mode 100644 temp/staticfiles/admin/img/tooltag-add.svg
+ create mode 100644 temp/staticfiles/admin/img/tooltag-arrowright.svg
+ create mode 100644 temp/staticfiles/admin/js/SelectBox.js
+ create mode 100644 temp/staticfiles/admin/js/SelectFilter2.js
+ create mode 100644 temp/staticfiles/admin/js/actions.js
+ create mode 100644 temp/staticfiles/admin/js/admin/DateTimeShortcuts.js
+ create mode 100644 temp/staticfiles/admin/js/admin/RelatedObjectLookups.js
+ create mode 100644 temp/staticfiles/admin/js/autocomplete.js
+ create mode 100644 temp/staticfiles/admin/js/calendar.js
+ create mode 100644 temp/staticfiles/admin/js/cancel.js
+ create mode 100644 temp/staticfiles/admin/js/change_form.js
+ create mode 100644 temp/staticfiles/admin/js/core.js
+ create mode 100644 temp/staticfiles/admin/js/filters.js
+ create mode 100644 temp/staticfiles/admin/js/inlines.js
+ create mode 100644 temp/staticfiles/admin/js/jquery.init.js
+ create mode 100644 temp/staticfiles/admin/js/nav_sidebar.js
+ create mode 100644 temp/staticfiles/admin/js/popup_response.js
+ create mode 100644 temp/staticfiles/admin/js/prepopulate.js
+ create mode 100644 temp/staticfiles/admin/js/prepopulate_init.js
+ create mode 100644 temp/staticfiles/admin/js/theme.js
+ create mode 100644 temp/staticfiles/admin/js/unusable_password_field.js
+ create mode 100644 temp/staticfiles/admin/js/urlify.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/jquery/LICENSE.txt
+ create mode 100644 temp/staticfiles/admin/js/vendor/jquery/jquery.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/jquery/jquery.min.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/LICENSE.md
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/af.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ar.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/az.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/bg.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/bn.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/bs.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ca.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/cs.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/da.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/de.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/dsb.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/el.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/en.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/es.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/et.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/eu.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/fa.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/fi.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/fr.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/gl.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/he.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/hi.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/hr.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/hsb.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/hu.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/hy.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/id.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/is.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/it.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ja.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ka.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/km.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ko.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/lt.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/lv.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/mk.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ms.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/nb.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ne.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/nl.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/pl.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ps.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/pt-BR.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/pt.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ro.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/ru.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/sk.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/sl.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/sq.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/sr-Cyrl.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/sr.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/sv.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/th.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/tk.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/tr.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/uk.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/vi.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/zh-CN.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/i18n/zh-TW.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/select2.full.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/select2/select2.full.min.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/xregexp/LICENSE.txt
+ create mode 100644 temp/staticfiles/admin/js/vendor/xregexp/xregexp.js
+ create mode 100644 temp/staticfiles/admin/js/vendor/xregexp/xregexp.min.js
+ create mode 100644 temp/staticfiles/css/bootstrap.min.css
+ create mode 100644 temp/staticfiles/css/styles.css
+ create mode 100644 temp/staticfiles/debug_toolbar/css/print.css
+ create mode 100644 temp/staticfiles/debug_toolbar/css/toolbar.css
+ create mode 100644 temp/staticfiles/debug_toolbar/js/history.js
+ create mode 100644 temp/staticfiles/debug_toolbar/js/redirect.js
+ create mode 100644 temp/staticfiles/debug_toolbar/js/timer.js
+ create mode 100644 temp/staticfiles/debug_toolbar/js/toolbar.js
+ create mode 100644 temp/staticfiles/debug_toolbar/js/utils.js
+ create mode 100644 temp/staticfiles/drf-yasg/README
+ create mode 100644 temp/staticfiles/drf-yasg/immutable.js
+ create mode 100644 temp/staticfiles/drf-yasg/immutable.min.js
+ create mode 100644 temp/staticfiles/drf-yasg/insQ.js
+ create mode 100644 temp/staticfiles/drf-yasg/insQ.min.js
+ create mode 100644 temp/staticfiles/drf-yasg/redoc-init.js
+ create mode 100644 temp/staticfiles/drf-yasg/redoc-old/LICENSE
+ create mode 100644 temp/staticfiles/drf-yasg/redoc-old/redoc.min.js
+ create mode 100644 temp/staticfiles/drf-yasg/redoc-old/redoc.min.js.map
+ create mode 100644 temp/staticfiles/drf-yasg/redoc/LICENSE
+ create mode 100644 temp/staticfiles/drf-yasg/redoc/redoc-logo.png
+ create mode 100644 temp/staticfiles/drf-yasg/redoc/redoc.min.js
+ create mode 100644 temp/staticfiles/drf-yasg/redoc/redoc.standalone.js.map
+ create mode 100644 temp/staticfiles/drf-yasg/style.css
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/LICENSE
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/NOTICE
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/absolute-path.js
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/favicon-32x32.png
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/index.css
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/index.js
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/oauth2-redirect.html
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-initializer.js
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js.map
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui-es-bundle-core.js
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui-es-bundle-core.js.map
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui-es-bundle.js
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui-es-bundle.js.map
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js.map
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui.css
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui.css.map
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-dist/swagger-ui.js.map
+ create mode 100644 temp/staticfiles/drf-yasg/swagger-ui-init.js
+ create mode 100644 temp/staticfiles/favicon.ico
+ create mode 100644 temp/staticfiles/images/background.png
+ create mode 100644 temp/staticfiles/js/bootstrap.bundle.min.js
+ create mode 100644 temp/staticfiles/js/transfres.js
+ create mode 100644 temp/staticfiles/rest_framework/css/bootstrap-theme.min.css
+ create mode 100644 temp/staticfiles/rest_framework/css/bootstrap-theme.min.css.map
+ create mode 100644 temp/staticfiles/rest_framework/css/bootstrap-tweaks.css
+ create mode 100644 temp/staticfiles/rest_framework/css/bootstrap.min.css
+ create mode 100644 temp/staticfiles/rest_framework/css/bootstrap.min.css.map
+ create mode 100644 temp/staticfiles/rest_framework/css/default.css
+ create mode 100644 temp/staticfiles/rest_framework/css/font-awesome-4.0.3.css
+ create mode 100644 temp/staticfiles/rest_framework/css/prettify.css
+ create mode 100644 temp/staticfiles/rest_framework/docs/css/base.css
+ create mode 100644 temp/staticfiles/rest_framework/docs/css/highlight.css
+ create mode 100644 temp/staticfiles/rest_framework/docs/css/jquery.json-view.min.css
+ create mode 100644 temp/staticfiles/rest_framework/docs/img/favicon.ico
+ create mode 100644 temp/staticfiles/rest_framework/docs/img/grid.png
+ create mode 100644 temp/staticfiles/rest_framework/docs/js/api.js
+ create mode 100644 temp/staticfiles/rest_framework/docs/js/highlight.pack.js
+ create mode 100644 temp/staticfiles/rest_framework/docs/js/jquery.json-view.min.js
+ create mode 100644 temp/staticfiles/rest_framework/fonts/fontawesome-webfont.eot
+ create mode 100644 temp/staticfiles/rest_framework/fonts/fontawesome-webfont.svg
+ create mode 100644 temp/staticfiles/rest_framework/fonts/fontawesome-webfont.ttf
+ create mode 100644 temp/staticfiles/rest_framework/fonts/fontawesome-webfont.woff
+ create mode 100644 temp/staticfiles/rest_framework/fonts/glyphicons-halflings-regular.eot
+ create mode 100644 temp/staticfiles/rest_framework/fonts/glyphicons-halflings-regular.svg
+ create mode 100644 temp/staticfiles/rest_framework/fonts/glyphicons-halflings-regular.ttf
+ create mode 100644 temp/staticfiles/rest_framework/fonts/glyphicons-halflings-regular.woff
+ create mode 100644 temp/staticfiles/rest_framework/fonts/glyphicons-halflings-regular.woff2
+ create mode 100644 temp/staticfiles/rest_framework/img/glyphicons-halflings-white.png
+ create mode 100644 temp/staticfiles/rest_framework/img/glyphicons-halflings.png
+ create mode 100644 temp/staticfiles/rest_framework/img/grid.png
+ create mode 100644 temp/staticfiles/rest_framework/js/ajax-form.js
+ create mode 100644 temp/staticfiles/rest_framework/js/bootstrap.min.js
+ create mode 100644 temp/staticfiles/rest_framework/js/coreapi-0.1.1.js
+ create mode 100644 temp/staticfiles/rest_framework/js/csrf.js
+ create mode 100644 temp/staticfiles/rest_framework/js/default.js
+ create mode 100644 temp/staticfiles/rest_framework/js/jquery-3.7.1.min.js
+ create mode 100644 temp/staticfiles/rest_framework/js/load-ajax-form.js
+ create mode 100644 temp/staticfiles/rest_framework/js/prettify-min.js
+ create mode 100755 temp/swagger/call/CallDbApiCashAccount copy 2.java
+ create mode 100755 temp/swagger/call/CallDbApiCashAccount.java
+ create mode 100755 temp/swagger/call/CallDbApiCashAccount.txt
+ create mode 100755 temp/swagger/json/0003.json
+ create mode 100755 temp/swagger/json/0061dbapi-transactions.json
+ create mode 100755 temp/swagger/json/006payload.json
+ create mode 100755 temp/swagger/json/0071swift.json
+ create mode 100755 temp/swagger/json/0072swift.json
+ create mode 100644 temp/swagger/json/Cabeceras
+ create mode 100644 temp/swagger/json/dbapi-onetimepasswords.json
+ create mode 100755 temp/swagger/json/dbapi-sepaCreditTransfer.json
+ create mode 100644 temp/swagger/json/dbapi-sepaCreditTransfer2.json
+ create mode 100644 temp/swagger/json/dbapi-transactionAuthorization.json
+ create mode 100755 temp/swagger/json/dbapi-transactions.json
+ create mode 100755 temp/swagger/json/requests.json
+ create mode 100755 temp/swagger/json/swift.json
+ create mode 100755 temp/swagger/onetimepasswords/dbapi-onetimepasswords.json
+ create mode 100755 temp/swagger/payments/GET instantSepaCreditTransfers_creditorAccounts_{iban}_reachabilityStatus.txt
+ create mode 100755 temp/swagger/payments/GET instantSepaCreditTransfers{paymentId.txt
+ create mode 100755 temp/swagger/payments/POST instantSepaCreditTransfers.txt
+ create mode 100755 temp/swagger/payments/PaymentInitiation spa.txt
+ create mode 100755 temp/swagger/payments/PaymentInitiation.txt
+ create mode 100755 temp/swagger/payments/dbapi-paymentInitiation-payments.json
+ create mode 100755 temp/swagger/processingorders/dbapi-processingOrders.json
+ create mode 100755 temp/swagger/transactionauthorization/dbapi-transactionAuthorization.json
+ create mode 100755 temp/sys
+ create mode 100755 temp/token/URL_TOKEN.md
+ create mode 100644 temp/token/api_db_smart/api_db_smart_access.py
+ create mode 100644 temp/token/api_db_smart/ecdsa_private_key.pem
+ create mode 100644 temp/token/api_db_smart/ecdsa_public_key.pem
+ create mode 100644 temp/token/api_db_smart/generate_ecdsa_keypair.py
+ create mode 100644 temp/token/api_db_smart/jwks_public.json
+ create mode 100644 temp/token/jwks/access_token.json
+ create mode 100755 temp/token/jwks/client_assertion.jwt
+ create mode 100755 temp/token/jwks/crear_jwks.py
+ create mode 100755 temp/token/jwks/ejecutar_jwt.sh
+ create mode 100755 temp/token/jwks/ejecutar_todo.sh
+ create mode 100755 temp/token/jwks/firmar_jwt.py
+ create mode 100755 temp/token/jwks/firmar_jwt_prod.py
+ create mode 100755 temp/token/jwks/jwks_private.json
+ create mode 100755 temp/token/jwks/jwks_public.json
+ create mode 100755 temp/token/jwks/print_jwks_public.py
+ create mode 100644 temp/token/jwks/resultado_jwt.txt
+ create mode 100755 temp/token/jwks/validar_jwt.py
+ create mode 100644 temp/token/pem/codeS256.py
+ create mode 100644 temp/token/pem/codes_s256.txt
+ create mode 100644 temp/token/pem/generate_iban.py
+ create mode 100644 temp/token/pem/generate_jwt.py
+ create mode 100644 temp/token/pem/generate_token.py
+ create mode 100644 temp/token/pem/generated_token_jwt.txt
+ create mode 100644 temp/token/pem/generated_token_pem.json
+ create mode 100644 temp/token/pem/private.pem
+ create mode 100644 temp/token/pem/public.pem
+ create mode 100644 temp/token/pem/validate_token.py
+ create mode 100644 temp/token/pem/validate_token_db.py
+ create mode 100644 temp/token/pem_help.txt
+ create mode 100755 temp/token/token.md
+ create mode 100755 temp/token/url_help.md
+ create mode 100644 temp/ultimate/.env.heroku
+ create mode 100644 temp/ultimate/.env.local
+ create mode 100755 temp/ultimate/01_full copy 2.sh
+ create mode 100755 temp/ultimate/01_full copy.sh
+ create mode 100644 temp/ultimate/AYUDA_GHOST_RECON.txt
+ create mode 100644 temp/ultimate/README_CORETRANSAPI.md
+ create mode 100755 temp/ultimate/api_bank_heroku.txt
+ create mode 100755 temp/ultimate/bdd_local copy.json
+ create mode 100755 temp/ultimate/config_master.py
+ create mode 100644 temp/ultimate/convert_readme.py
+ create mode 100755 temp/ultimate/gunicorn.log
+ create mode 100755 temp/ultimate/honeypot.log
+ create mode 100755 temp/ultimate/honeypot.py
+ create mode 100644 temp/ultimate/honeypot_logs.csv
+ create mode 100644 temp/ultimate/instalar_ghost_alias.sh
+ create mode 100755 temp/ultimate/livereload.log
+ create mode 100755 temp/ultimate/master.sh
+ create mode 100755 temp/ultimate/multi_master.sh
+ create mode 100755 temp/ultimate/post_install_coretransapi.sh
+ create mode 100644 temp/ultimate/requirements.txt
+ create mode 100755 temp/ultimate/setup_coretransact.sh
+ create mode 100644 temp/ultimate/sync.sh
+ create mode 100755 temp/ultimate/ultimate_ghost.py
+ create mode 100644 temp/var/gpt4/urls.py
+ create mode 100644 temp/var/gpt4/views.py
+ create mode 100644 temp/var/gpt_2025_04_21__01_39.tar.gz
+ create mode 100644 temp/var/gpt_2025_04_21__03_20.tar.gz
+ create mode 100644 temp/var/gpt_2025_04_21__21_18.tar.gz
+ create mode 100644 temp/var/sepa_proyecto_completo/manage.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/forms.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/generate_aml.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/generate_pdf.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/generate_sepa_json_payload.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/generate_xml.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/helpers.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/models.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/urls.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/utils.py
+ create mode 100644 temp/var/sepa_proyecto_completo/sepa_transferencias/views.py
+ create mode 100644 temp/var/sepa_proyecto_completo/templates/sepa_transferencias/base.html
+ create mode 100644 temp/var/sepa_proyecto_completo/templates/sepa_transferencias/crear_bulk.html
+ create mode 100644 temp/var/sepa_proyecto_completo/templates/sepa_transferencias/crear_transferencia.html
+ create mode 100644 temp/var/sepa_proyecto_completo/templates/sepa_transferencias/detalle_bulk.html
+ create mode 100644 temp/var/sepa_proyecto_completo/templates/sepa_transferencias/detalle_transferencia.html
+ create mode 100644 temp/var/sepa_proyecto_completo/templates/sepa_transferencias/listar_transferencias.html
+ create mode 100644 temp/var/sepa_proyecto_completo/templates/sepa_transferencias/login.html
+ create mode 100644 temp/var/utils copy 2.py
+ create mode 100644 temp/var/utils copy.py
+🌐 Push a GitHub...
+remote: 
+remote: GitHub found 9 vulnerabilities on markmur90/api_bank_heroku's default branch (1 critical, 4 high, 3 moderate, 1 low). To find out more, visit:        
+remote:      https://github.com/markmur90/api_bank_heroku/security/dependabot        
+remote: 
+To github.com:markmur90/api_bank_heroku.git
+   70b95932..3a76b3a3  api-bank -> api-bank
+HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
+HRKU-6803f1ea-fd1f-4210-a5cd-95ca7902ccf6
+☁️  Push a Heroku...
+remote: Updated 1876 paths from 4831298d        
+remote: Compressing source files... done.        
+remote: Building source:        
+remote: 
+remote: -----> Building on the Heroku-24 stack        
+remote: -----> Using buildpack: heroku/python        
+remote: -----> Python app detected        
+remote: -----> Using Python 3.13 specified in .python-version        
+remote: -----> Restoring cache        
+remote: -----> Using cached install of Python 3.13.3        
+remote: -----> Installing pip 25.1.1        
+remote: -----> Installing dependencies using 'pip install -r requirements.txt'        
+remote:        Requirement already satisfied: annotated-types==0.7.0 (from -r requirements.txt (line 1)) (0.7.0)        
+remote:        Requirement already satisfied: anyio==4.9.0 (from -r requirements.txt (line 2)) (4.9.0)        
+remote:        Requirement already satisfied: asgiref==3.8.1 (from -r requirements.txt (line 3)) (3.8.1)        
+remote:        Requirement already satisfied: attrs==25.3.0 (from -r requirements.txt (line 4)) (25.3.0)        
+remote:        Requirement already satisfied: bcrypt==4.3.0 (from -r requirements.txt (line 5)) (4.3.0)        
+remote:        Requirement already satisfied: bleach==6.2.0 (from -r requirements.txt (line 6)) (6.2.0)        
+remote:        Requirement already satisfied: blinker==1.9.0 (from -r requirements.txt (line 7)) (1.9.0)        
+remote:        Requirement already satisfied: Brotli==1.1.0 (from -r requirements.txt (line 8)) (1.1.0)        
+remote:        Requirement already satisfied: cachetools==5.5.2 (from -r requirements.txt (line 9)) (5.5.2)        
+remote:        Requirement already satisfied: certifi==2025.1.31 (from -r requirements.txt (line 10)) (2025.1.31)        
+remote:        Requirement already satisfied: cffi==1.17.1 (from -r requirements.txt (line 11)) (1.17.1)        
+remote:        Requirement already satisfied: chardet==5.2.0 (from -r requirements.txt (line 12)) (5.2.0)        
+remote:        Requirement already satisfied: charset-normalizer==3.4.1 (from -r requirements.txt (line 13)) (3.4.1)        
+remote:        Requirement already satisfied: click==8.1.8 (from -r requirements.txt (line 14)) (8.1.8)        
+remote:        Requirement already satisfied: clickclick==20.10.2 (from -r requirements.txt (line 15)) (20.10.2)        
+remote:        Requirement already satisfied: colorama==0.4.6 (from -r requirements.txt (line 16)) (0.4.6)        
+remote:        Requirement already satisfied: connexion==3.2.0 (from -r requirements.txt (line 17)) (3.2.0)        
+remote:        Requirement already satisfied: coverage==7.8.0 (from -r requirements.txt (line 18)) (7.8.0)        
+remote:        Requirement already satisfied: cryptography==44.0.2 (from -r requirements.txt (line 19)) (44.0.2)        
+remote:        Requirement already satisfied: cssselect2==0.8.0 (from -r requirements.txt (line 20)) (0.8.0)        
+remote:        Requirement already satisfied: distlib==0.3.9 (from -r requirements.txt (line 21)) (0.3.9)        
+remote:        Requirement already satisfied: distro==1.9.0 (from -r requirements.txt (line 22)) (1.9.0)        
+remote:        Requirement already satisfied: dj-database-url==2.3.0 (from -r requirements.txt (line 23)) (2.3.0)        
+remote:        Requirement already satisfied: Django==5.2 (from -r requirements.txt (line 24)) (5.2)        
+remote:        Requirement already satisfied: django-bootstrap5==25.1 (from -r requirements.txt (line 25)) (25.1)        
+remote:        Requirement already satisfied: django-cors-headers==4.7.0 (from -r requirements.txt (line 26)) (4.7.0)        
+remote:        Requirement already satisfied: django-debug-toolbar==5.1.0 (from -r requirements.txt (line 27)) (5.1.0)        
+remote:        Requirement already satisfied: django-environ==0.12.0 (from -r requirements.txt (line 28)) (0.12.0)        
+remote:        Requirement already satisfied: django-heroku==0.3.1 (from -r requirements.txt (line 29)) (0.3.1)        
+remote:        Requirement already satisfied: django-markdownify==0.9.5 (from -r requirements.txt (line 30)) (0.9.5)        
+remote:        Requirement already satisfied: django-oauth-toolkit==3.0.1 (from -r requirements.txt (line 31)) (3.0.1)        
+remote:        Requirement already satisfied: django-sslserver==0.22 (from -r requirements.txt (line 32)) (0.22)        
+remote:        Requirement already satisfied: djangorestframework==3.16.0 (from -r requirements.txt (line 33)) (3.16.0)        
+remote:        Requirement already satisfied: djangorestframework_simplejwt==5.5.0 (from -r requirements.txt (line 34)) (5.5.0)        
+remote:        Requirement already satisfied: dnspython==2.7.0 (from -r requirements.txt (line 35)) (2.7.0)        
+remote:        Requirement already satisfied: drf-yasg==1.21.10 (from -r requirements.txt (line 36)) (1.21.10)        
+remote:        Requirement already satisfied: ecdsa==0.19.1 (from -r requirements.txt (line 37)) (0.19.1)        
+remote:        Requirement already satisfied: Faker==37.1.0 (from -r requirements.txt (line 38)) (37.1.0)        
+remote:        Requirement already satisfied: filelock==3.18.0 (from -r requirements.txt (line 39)) (3.18.0)        
+remote:        Requirement already satisfied: flake8==7.2.0 (from -r requirements.txt (line 40)) (7.2.0)        
+remote:        Requirement already satisfied: Flask==3.1.0 (from -r requirements.txt (line 41)) (3.1.0)        
+remote:        Requirement already satisfied: Flask-Testing==0.8.1 (from -r requirements.txt (line 42)) (0.8.1)        
+remote:        Requirement already satisfied: Flask-WTF==1.2.2 (from -r requirements.txt (line 43)) (1.2.2)        
+remote:        Requirement already satisfied: fonttools==4.57.0 (from -r requirements.txt (line 44)) (4.57.0)        
+remote:        Requirement already satisfied: greenlet==3.2.2 (from -r requirements.txt (line 45)) (3.2.2)        
+remote:        Requirement already satisfied: gunicorn==23.0.0 (from -r requirements.txt (line 46)) (23.0.0)        
+remote:        Requirement already satisfied: h11==0.14.0 (from -r requirements.txt (line 47)) (0.14.0)        
+remote:        Requirement already satisfied: httpcore==1.0.8 (from -r requirements.txt (line 48)) (1.0.8)        
+remote:        Requirement already satisfied: httpx==0.28.1 (from -r requirements.txt (line 49)) (0.28.1)        
+remote:        Requirement already satisfied: idna==3.10 (from -r requirements.txt (line 50)) (3.10)        
+remote:        Requirement already satisfied: inflection==0.5.1 (from -r requirements.txt (line 51)) (0.5.1)        
+remote:        Requirement already satisfied: iniconfig==2.1.0 (from -r requirements.txt (line 52)) (2.1.0)        
+remote:        Requirement already satisfied: itsdangerous==2.2.0 (from -r requirements.txt (line 53)) (2.2.0)        
+remote:        Requirement already satisfied: Jinja2==3.1.6 (from -r requirements.txt (line 54)) (3.1.6)        
+remote:        Requirement already satisfied: jiter==0.10.0 (from -r requirements.txt (line 55)) (0.10.0)        
+remote:        Requirement already satisfied: joblib==1.5.1 (from -r requirements.txt (line 56)) (1.5.1)        
+remote:        Requirement already satisfied: jsonschema==4.23.0 (from -r requirements.txt (line 57)) (4.23.0)        
+remote:        Requirement already satisfied: jsonschema-specifications==2024.10.1 (from -r requirements.txt (line 58)) (2024.10.1)        
+remote:        Requirement already satisfied: jwcrypto==1.5.6 (from -r requirements.txt (line 59)) (1.5.6)        
+remote:        Requirement already satisfied: livereload==2.7.1 (from -r requirements.txt (line 60)) (2.7.1)        
+remote:        Requirement already satisfied: lxml==5.3.2 (from -r requirements.txt (line 61)) (5.3.2)        
+remote:        Requirement already satisfied: Markdown==3.8 (from -r requirements.txt (line 62)) (3.8)        
+remote:        Requirement already satisfied: MarkupSafe==3.0.2 (from -r requirements.txt (line 63)) (3.0.2)        
+remote:        Requirement already satisfied: mccabe==0.7.0 (from -r requirements.txt (line 64)) (0.7.0)        
+remote:        Requirement already satisfied: mypy==1.15.0 (from -r requirements.txt (line 65)) (1.15.0)        
+remote:        Requirement already satisfied: mypy-extensions==1.0.0 (from -r requirements.txt (line 66)) (1.0.0)        
+remote:        Requirement already satisfied: nltk==3.9.1 (from -r requirements.txt (line 67)) (3.9.1)        
+remote:        Requirement already satisfied: oauthlib==3.2.2 (from -r requirements.txt (line 68)) (3.2.2)        
+remote:        Requirement already satisfied: openai==1.82.0 (from -r requirements.txt (line 69)) (1.82.0)        
+remote:        Requirement already satisfied: openapi-client==1.1.7 (from -r requirements.txt (line 70)) (1.1.7)        
+remote:        Requirement already satisfied: packaging==24.2 (from -r requirements.txt (line 71)) (24.2)        
+remote:        Requirement already satisfied: paramiko==3.5.1 (from -r requirements.txt (line 72)) (3.5.1)        
+remote:        Requirement already satisfied: pillow==11.2.1 (from -r requirements.txt (line 73)) (11.2.1)        
+remote:        Requirement already satisfied: platformdirs==4.3.7 (from -r requirements.txt (line 74)) (4.3.7)        
+remote:        Requirement already satisfied: playwright==1.52.0 (from -r requirements.txt (line 75)) (1.52.0)        
+remote:        Requirement already satisfied: pluggy==1.5.0 (from -r requirements.txt (line 76)) (1.5.0)        
+remote:        Requirement already satisfied: psycopg2==2.9.10 (from -r requirements.txt (line 77)) (2.9.10)        
+remote:        Requirement already satisfied: psycopg2-binary==2.9.10 (from -r requirements.txt (line 78)) (2.9.10)        
+remote:        Requirement already satisfied: py==1.11.0 (from -r requirements.txt (line 79)) (1.11.0)        
+remote:        Requirement already satisfied: pyasn1==0.4.8 (from -r requirements.txt (line 80)) (0.4.8)        
+remote:        Requirement already satisfied: pycodestyle==2.13.0 (from -r requirements.txt (line 81)) (2.13.0)        
+remote:        Requirement already satisfied: pycparser==2.22 (from -r requirements.txt (line 82)) (2.22)        
+remote:        Requirement already satisfied: pydantic==2.11.3 (from -r requirements.txt (line 83)) (2.11.3)        
+remote:        Requirement already satisfied: pydantic_core==2.33.1 (from -r requirements.txt (line 84)) (2.33.1)        
+remote:        Requirement already satisfied: pydyf==0.11.0 (from -r requirements.txt (line 85)) (0.11.0)        
+remote:        Requirement already satisfied: pyee==13.0.0 (from -r requirements.txt (line 86)) (13.0.0)        
+remote:        Requirement already satisfied: pyflakes==3.3.2 (from -r requirements.txt (line 87)) (3.3.2)        
+remote:        Requirement already satisfied: PyJWT==2.9.0 (from -r requirements.txt (line 88)) (2.9.0)        
+remote:        Requirement already satisfied: PyNaCl==1.5.0 (from -r requirements.txt (line 89)) (1.5.0)        
+remote:        Requirement already satisfied: pyOpenSSL==25.0.0 (from -r requirements.txt (line 90)) (25.0.0)        
+remote:        Requirement already satisfied: pyphen==0.17.2 (from -r requirements.txt (line 91)) (0.17.2)        
+remote:        Requirement already satisfied: pyproject-api==1.9.0 (from -r requirements.txt (line 92)) (1.9.0)        
+remote:        Requirement already satisfied: pytest==8.3.5 (from -r requirements.txt (line 93)) (8.3.5)        
+remote:        Requirement already satisfied: pytest-cov==6.1.1 (from -r requirements.txt (line 94)) (6.1.1)        
+remote:        Requirement already satisfied: pytest-django==4.11.1 (from -r requirements.txt (line 95)) (4.11.1)        
+remote:        Requirement already satisfied: pytest-mock==3.14.0 (from -r requirements.txt (line 96)) (3.14.0)        
+remote:        Requirement already satisfied: pytest-randomly==3.16.0 (from -r requirements.txt (line 97)) (3.16.0)        
+remote:        Requirement already satisfied: python-dateutil==2.9.0.post0 (from -r requirements.txt (line 98)) (2.9.0.post0)        
+remote:        Requirement already satisfied: python-decouple==3.8 (from -r requirements.txt (line 99)) (3.8)        
+remote:        Requirement already satisfied: python-dotenv==1.1.0 (from -r requirements.txt (line 100)) (1.1.0)        
+remote:        Requirement already satisfied: python-jose==3.4.0 (from -r requirements.txt (line 101)) (3.4.0)        
+remote:        Requirement already satisfied: python-multipart==0.0.20 (from -r requirements.txt (line 102)) (0.0.20)        
+remote:        Requirement already satisfied: python-nmap==0.7.1 (from -r requirements.txt (line 103)) (0.7.1)        
+remote:        Requirement already satisfied: pytz==2025.2 (from -r requirements.txt (line 104)) (2025.2)        
+remote:        Requirement already satisfied: PyYAML==6.0.2 (from -r requirements.txt (line 105)) (6.0.2)        
+remote:        Requirement already satisfied: qrcode==8.1 (from -r requirements.txt (line 106)) (8.1)        
+remote:        Requirement already satisfied: referencing==0.36.2 (from -r requirements.txt (line 107)) (0.36.2)        
+remote:        Requirement already satisfied: regex==2024.11.6 (from -r requirements.txt (line 108)) (2024.11.6)        
+remote:        Requirement already satisfied: reportlab==4.4.0 (from -r requirements.txt (line 109)) (4.4.0)        
+remote:        Requirement already satisfied: requests==2.32.3 (from -r requirements.txt (line 110)) (2.32.3)        
+remote:        Requirement already satisfied: requests-oauthlib==2.0.0 (from -r requirements.txt (line 111)) (2.0.0)        
+remote:        Requirement already satisfied: rpds-py==0.24.0 (from -r requirements.txt (line 112)) (0.24.0)        
+remote:        Requirement already satisfied: rsa==4.9.1 (from -r requirements.txt (line 113)) (4.9.1)        
+remote:        Requirement already satisfied: selenium==3.141.0 (from -r requirements.txt (line 114)) (3.141.0)        
+remote:        Requirement already satisfied: setuptools==78.1.0 (from -r requirements.txt (line 115)) (78.1.0)        
+remote:        Requirement already satisfied: six==1.17.0 (from -r requirements.txt (line 116)) (1.17.0)        
+remote:        Requirement already satisfied: sniffio==1.3.1 (from -r requirements.txt (line 117)) (1.3.1)        
+remote:        Requirement already satisfied: sqlparse==0.5.3 (from -r requirements.txt (line 118)) (0.5.3)        
+remote:        Requirement already satisfied: starlette==0.46.2 (from -r requirements.txt (line 119)) (0.46.2)        
+remote:        Requirement already satisfied: swagger_ui_bundle==1.1.0 (from -r requirements.txt (line 120)) (1.1.0)        
+remote:        Requirement already satisfied: tinycss2==1.4.0 (from -r requirements.txt (line 121)) (1.4.0)        
+remote:        Requirement already satisfied: tinyhtml5==2.0.0 (from -r requirements.txt (line 122)) (2.0.0)        
+remote:        Requirement already satisfied: tomli==2.2.1 (from -r requirements.txt (line 123)) (2.2.1)        
+remote:        Requirement already satisfied: tornado==6.4.2 (from -r requirements.txt (line 124)) (6.4.2)        
+remote:        Requirement already satisfied: tox==4.25.0 (from -r requirements.txt (line 125)) (4.25.0)        
+remote:        Requirement already satisfied: tqdm==4.67.1 (from -r requirements.txt (line 126)) (4.67.1)        
+remote:        Requirement already satisfied: types-python-dateutil==2.9.0.20241206 (from -r requirements.txt (line 127)) (2.9.0.20241206)        
+remote:        Requirement already satisfied: typing-inspection==0.4.0 (from -r requirements.txt (line 128)) (0.4.0)        
+remote:        Requirement already satisfied: typing_extensions==4.13.2 (from -r requirements.txt (line 129)) (4.13.2)        
+remote:        Requirement already satisfied: tzdata==2025.2 (from -r requirements.txt (line 130)) (2025.2)        
+remote:        Requirement already satisfied: uritemplate==4.1.1 (from -r requirements.txt (line 131)) (4.1.1)        
+remote:        Requirement already satisfied: urllib3==1.26.16 (from -r requirements.txt (line 132)) (1.26.16)        
+remote:        Requirement already satisfied: virtualenv==20.30.0 (from -r requirements.txt (line 133)) (20.30.0)        
+remote:        Requirement already satisfied: weasyprint==65.1 (from -r requirements.txt (line 134)) (65.1)        
+remote:        Requirement already satisfied: webencodings==0.5.1 (from -r requirements.txt (line 135)) (0.5.1)        
+remote:        Requirement already satisfied: Werkzeug==3.1.3 (from -r requirements.txt (line 136)) (3.1.3)        
+remote:        Requirement already satisfied: whitenoise==6.9.0 (from -r requirements.txt (line 137)) (6.9.0)        
+remote:        Requirement already satisfied: WTForms==3.2.1 (from -r requirements.txt (line 138)) (3.2.1)        
+remote:        Requirement already satisfied: zopfli==0.2.3.post1 (from -r requirements.txt (line 139)) (0.2.3.post1)        
+remote: -----> Downloading NLTK corpora...        
+remote:        'nltk.txt' not found, not downloading any corpora        
+remote: -----> Skipping Django collectstatic since the env var DISABLE_COLLECTSTATIC is set.        
+remote: -----> Running bin/post_compile hook        
+remote:        🔧 Ejecutando script post_compile en /tmp/build_0078ccc0...        
+remote:        ⚠ Clave ya existe en /tmp/build_0078ccc0/schemas/keys/private_key.pem. No se sobrescribe.        
+remote:        🔒 Resultado post_compile: CLAVE YA PRESENTE, OMITIDA        
+remote: -----> Discovering process types        
+remote:        Procfile declares types -> release, web        
+remote: 
+remote: -----> Compressing...        
+remote:        Done: 192M        
+remote: -----> Launching...        
+remote:  !     Release command declared: this new release will not be available until the command succeeds.        
+remote:        Released v331        
+remote:        https://apibank2-54644cdf263f.herokuapp.com/ deployed to Heroku        
+remote: 
+remote: Verifying deploy.... done.        
+remote: Running release command...        
+remote: 
+remote: [settings] DJANGO_ENV = production        
+remote: [settings] Variables cargadas desde: /app/.env.production        
+remote: ⚠️ Django apps aún no están listas. Configuración dinámica omitida.        
+remote: 
+remote: 204 static files copied to '/app/staticfiles', 5 unmodified.        
+To https://git.heroku.com/apibank2.git
+   70b95932..3a76b3a3  api-bank -> main
+Restarting all dynos on apibank2...
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣾[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣽[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣻[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⢿[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⡿[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣟[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣯[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣷[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣾[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣽[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣻[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⢿[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⡿[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣟[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣯[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣷[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣾[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣽[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⣻[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⢿[0m
+[G[1A[JRestarting all dynos on apibank2... [38;5;104m⡿[0m
+[G[1A[JRestarting all dynos on apibank2... done
+✅ Heroku reiniciado correctamente.
+
+🎉 ✅ ¡Deploy completado con éxito!

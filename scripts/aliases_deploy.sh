@@ -1,15 +1,5 @@
 #!/usr/bin/env bash
 
-# 🔔 Notificaciones VPS
-# alias d_notify_start='pgrep -f notificar_cada_30.sh >/dev/null && echo "🔁 Ya hay una notificación activa." || (nohup ~/.local/bin/notificar_cada_30.sh >/dev/null 2>&1 &) && echo "🔔 Notificador iniciado"'
-
-alias d_notify_stop="pkill -f notificar_cada_30.sh"
-alias d_notify_status="pgrep -fl notificar_cada_30.sh || echo '❌ Notificador no activo'"
-
-
-
-# === CLAVES SSH ===
-
 # === ACCESOS DIRECTOS AL PROYECTO ===
 
 alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear'
@@ -34,26 +24,29 @@ export SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
 export VPS_API_DIR="/home/markmur88/api_bank_heroku"
 ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
 
+RUTA_LOCAL="$HOME/Documentos/GitHub/api_bank_h2/"
+RUTA_REMOTA="/home/markmur88/api_bank_heroku/"
+
 # === ALIAS VPS ===
-
-
 alias vps_login="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP"
+alias vps_check="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'netstat -tulnp | grep LISTEN'"
+alias vps_ping="api && timeout 3 bash -c '</dev/tcp/$VPS_IP/$VPS_PORT' && echo '✅ VPS accesible' || echo '❌ Sin respuesta del VPS'"
+
+
 alias vps_logs="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'journalctl -u gunicorn.service -f'"
 alias vps_nginx="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'tail -f /var/log/nginx/error.log'"
 alias vps_reload="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'systemctl restart gunicorn && systemctl reload nginx'"
 alias vps_status="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'systemctl status gunicorn'"
-alias vps_check="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'netstat -tulnp | grep LISTEN'"
-alias vps_sync="api && rsync -avz -e \"ssh -i $SSH_KEY -p $VPS_PORT\" ./ $VPS_USER@$VPS_IP:$VPS_API_DIR/"
 alias vps_cert="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'sudo certbot renew --dry-run'"
+alias vps_sync="api && rsync -avz -e "ssh -i $SSH_KEY -p $VPS_PORT" "$RUTA_LOCAL" "${VPS_USER}@${VPS_IP}:${RUTA_REMOTA}" "
 
 # 🧪 Test conexión con timeout de 3s
-alias vps_ping="api && timeout 3 bash -c '</dev/tcp/$VPS_IP/$VPS_PORT' && echo '✅ VPS accesible' || echo '❌ Sin respuesta del VPS'"
 
 
 # 🌐 Local (versión completa y versión corta)
 
 unalias d_njalla 2>/dev/null
-d_njalla() {d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -v && code . "$@"}
+d_njalla() {d_env && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B -v "$@"}
 
 unalias d_env 2>/dev/null
 d_env() {source "$HOME/Documentos/Entorno/envAPP/bin/activate" "$@"}

@@ -3,7 +3,7 @@
 
 clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
-DO_CLEAR=true
+DO_CLEAR=false
 TIME_SLEEP=1
 
 pausa_y_limpiar() {
@@ -530,7 +530,6 @@ ejecutar_si_activo() {
 # === LLAMAR AL DIAGNÓSTICO TEMPRANO ===
 # diagnostico_entorno
 
-pausa_y_limpiar
 
 
 # === 01 ===

@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# ⚠️ Detectar y cambiar a usuario no-root si es necesario
+if [[ "$EUID" -eq 0 && "$SUDO_USER" != "markmur88" ]]; then
+    echo "🧍 Ejecutando como root. Cambiando a usuario 'markmur88'..."
+    exec sudo -i -u markmur88 "$0" "$@"
+    exit 0
+fi
+
 # Auto-reinvoca con bash si no está corriendo con bash
 if [ -z "$BASH_VERSION" ]; then
     exec bash "$0" "$@"
@@ -24,11 +31,11 @@ PORT_VPS="49222"
 REMOTE_USER="root"
 SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
 APP_USER="markmur88"
-REPO_GIT="git@github.com:markmur88/coretransapi.git"
+REPO_GIT="https://github.com/markmur90/api_bank_heroku.git"
 DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
 DB_NAME="mydatabase"
-EMAIL_SSL="admin@coretransapi.com"
+EMAIL_SSL="netghostx90@protonmail.com"
 
 echo "🚀 Continuando despliegue completo en $IP_VPS..."
 

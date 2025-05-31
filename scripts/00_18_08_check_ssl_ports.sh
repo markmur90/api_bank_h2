@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# ⚠️ Detectar y cambiar a usuario no-root si es necesario
+if [[ "$EUID" -eq 0 && "$SUDO_USER" != "markmur88" ]]; then
+    echo "🧍 Ejecutando como root. Cambiando a usuario 'markmur88'..."
+    exec sudo -i -u markmur88 "$0" "$@"
+    exit 0
+fi
+
 # Auto-reinvoca con bash si no está corriendo con bash
 if [ -z "$BASH_VERSION" ]; then
     exec bash "$0" "$@"
