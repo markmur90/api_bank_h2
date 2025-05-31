@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# 🔔 Notificaciones VPS
+alias d_notify_start="systemctl --user start notificar_vps.service && echo '🟢 Servicio de notificación iniciado.'"
+alias d_notify_stop="systemctl --user stop notificar_vps.service && echo '🔴 Servicio de notificación detenido.'"
+alias d_notify_status="systemctl --user status notificar_vps.service"
+alias d_notify_restart="systemctl --user restart notificar_vps.service && echo '🔁 Servicio reiniciado.'"
+
+
 # === CLAVES SSH ===
 
 # === ACCESOS DIRECTOS AL PROYECTO ===
@@ -55,7 +62,7 @@ unalias d_mig 2>/dev/null
 d_mig() {python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && clear "$@"}
 
 unalias d_local 2>/dev/null
-d_local() {api && bash ./01_full.sh --env=local -Z -C -S -Q -I -l && code . "$@"}
+d_local() {api && bash ./01_full.sh --env=local -Z -C -S -Q -I -l "$@"}
 
 unalias d_heroku 2>/dev/null
 d_heroku() {api && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B "$@"}
