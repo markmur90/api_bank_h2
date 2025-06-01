@@ -1,7 +1,0 @@
-
-📅 Fecha de ejecución: 2025-05-31 06:04:40
-📄 Script: 00_15_variables_heroku.sh
-═══════════════════════════════════════════
-🚀 Subiendo variables de entorno a Heroku (apibank2)...
-
-🔧 Desactivando collectstatic en Heroku...
