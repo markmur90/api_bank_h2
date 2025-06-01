@@ -130,7 +130,7 @@ sudo certbot --nginx \
     -d api.coretransapi.com \
     --non-interactive \
     --agree-tos \
-    -m netghostx90@protonmail.com \
+    -m admin@coretransapi.com \
     --redirect
 
 # ----------------------------
