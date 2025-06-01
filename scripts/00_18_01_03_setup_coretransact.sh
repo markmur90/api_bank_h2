@@ -69,8 +69,6 @@ fi
 # ----------------------------
 echo "🌐 Configurando Nginx..."
 sudo tee /etc/nginx/sites-available/coretransapi.conf > /dev/null <<NGINX
-# /etc/nginx/sites-available/coretransapi.conf
-
 server {
     listen 80;
     server_name api.coretransapi.com;
@@ -134,7 +132,7 @@ sudo certbot --nginx \
     -d api.coretransapi.com \
     --non-interactive \
     --agree-tos \
-    -m netghostx90@protonmail.com \
+    -m admin@coretranapi.com \
     --redirect
 
 # Certbot:
