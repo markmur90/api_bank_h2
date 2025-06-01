@@ -127,15 +127,23 @@ sudo rm -f /etc/nginx/sites-enabled/default
 # fi
 
 # ----------------------------
-# 4. Solicitar/renovar certificado SSL
+# 4. Solicitar/renovar certificado SSL con Certbot + Nginx
 # ----------------------------
-echo "🔐 Solicitando certificado SSL con Let's Encrypt..."
+echo "🔐 Solicitando certificado SSL con Let's Encrypt y plugin Nginx…"
 sudo certbot --nginx \
     -d api.coretransapi.com \
     --non-interactive \
     --agree-tos \
-    -m admin@coretransapi.com \
+    -m netghostx90@protonmail.com \
     --redirect
+
+# Certbot:
+# 1) Genera fullchain.pem, privkey.pem
+# 2) Crea /etc/letsencrypt/options-ssl-nginx.conf
+# 3) Crea /etc/letsencrypt/ssl-dhparams.pem
+# 4) Modifica automáticamente el bloque HTTPS para incluir las directivas correctas:
+#    include /etc/letsencrypt/options-ssl-nginx.conf;
+#    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
 # ----------------------------
 # 5. Recargar Nginx
