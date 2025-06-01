@@ -11,8 +11,6 @@ production_old.py
 .devcontainer/
 .github/
 temp/
-ultimate/
-z_njalla/
 servers/
 certs/
 backup/

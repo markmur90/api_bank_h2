@@ -4,7 +4,7 @@
 
 alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" '
 alias BKapi='cd "$HOME/Documentos/GitHub/api_bank_h2_BK" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && code .'
-alias api_heroku='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear'
+alias api_heroku='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" '
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
@@ -15,6 +15,8 @@ alias d_all='api && bash ./01_full.sh -a'
 alias d_debug='api && bash ./01_full.sh -d'
 alias d_menu='api && bash ./01_full.sh --menu'
 alias d_status='api && bash ./scripts/diagnostico_entorno.sh'
+
+alias d_hsync='api && ./01_full.sh -S -H'
 
 
 # === VARIABLES ENTORNOS ===
