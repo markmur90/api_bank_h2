@@ -74,47 +74,13 @@ alias vps_login_user="api && ssh -i \$SSH_KEY -p \$VPS_PORT markmur88@\$VPS_IP"
 alias vps_check="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'netstat -tulnp | grep LISTEN'"
 alias vps_ping="api && timeout 3 bash -c '</dev/tcp/$VPS_IP/$VPS_PORT' && echo '✅ VPS accesible' || echo '❌ Sin respuesta del VPS'"
 
+
+# === Sincronización segura con VPS (solo como markmur88) ===
+alias vps_sync='api && bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_sync.sh'
+
 # 📡 Sincronizar proyecto con VPS desde cualquier subdirectorio
 alias vps_sync_lastlog='
 LOG_DIR=$(git rev-parse --show-toplevel 2>/dev/null || find "$PWD" -type f -name "manage.py" -exec dirname {} \; | head -n1)/scripts/logs/sync
 [ -d "$LOG_DIR" ] && less "$(ls -1t "$LOG_DIR"/*.log 2>/dev/null | head -n1)" || echo "❌ No hay logs de sincronización."
 '
 
-# === Sincronización segura con VPS (solo como markmur88) ===
-alias vps_sync='
-if [[ "$EUID" -eq 0 && "$SUDO_USER" != "markmur88" ]]; then
-  echo "⚠️ No ejecutar como root. Cambiando a usuario markmur88..."
-  exec sudo -u markmur88 "$0" "$@"
-  exit 0
-fi
-
-PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || find "$PWD" -type f -name "manage.py" -exec dirname {} \; | head -n1)
-if [[ -z "$PROJECT_ROOT" ]]; then
-  echo "❌ No se pudo detectar la raíz del proyecto. Abortando."
-  exit 1
-fi
-
-EXCLUDES="$PROJECT_ROOT/scripts/excludes.txt"
-LOG_DIR="$PROJECT_ROOT/scripts/logs/sync"
-mkdir -p "$LOG_DIR"
-LOG_FILE="$LOG_DIR/$(date +%Y%m%d_%H%M%S)_sync.log"
-
-echo "📂 Proyecto: $PROJECT_ROOT" | tee -a "$LOG_FILE"
-echo "🧹 Eliminando en VPS archivos excluidos..." | tee -a "$LOG_FILE"
-
-while IFS= read -r pattern; do
-  [[ -z "$pattern" || "$pattern" =~ ^# ]] && continue
-  echo "🗑 Eliminando: $pattern" | tee -a "$LOG_FILE"
-  ssh -i "$SSH_KEY" -p "$VPS_PORT" "markmur88@$VPS_IP" \
-    "rm -rf /home/markmur88/api_bank_heroku/$pattern" >> "$LOG_FILE" 2>&1
-done < "$EXCLUDES"
-
-echo "🔄 Iniciando sincronización..." | tee -a "$LOG_FILE"
-rsync -avz --delete \
-  --exclude-from="$EXCLUDES" \
-  -e "ssh -i $SSH_KEY -p $VPS_PORT" \
-  "$PROJECT_ROOT/" "markmur88@$VPS_IP:/home/markmur88/api_bank_heroku" \
-  | tee -a "$LOG_FILE"
-
-echo "✅ Sincronización completada." | tee -a "$LOG_FILE"
-'

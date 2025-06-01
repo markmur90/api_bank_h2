@@ -1,5 +1,5 @@
 # Carpetas locales que no deben ir al VPS
-.env/
+#.env/
 __pycache__/
 media/
 *.pyc
@@ -13,10 +13,10 @@ backup/
 *.bak
 .DS_Store
 *.swp
-logs/
-node_modules/
-.envrc
-.env.*
+#logs/
+#node_modules/
+#.envrc
+#.env.*
 temp/
 z_njalla/
 servers/
