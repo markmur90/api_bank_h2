@@ -26,11 +26,27 @@ stdout_logfile=/var/log/supervisor/coretransapi.out.log
 user=markmur88
 group=www-data
 
-# Variables de entorno necesarias para Django
+# Variables de entorno necesarias para Django y la API bancaria
 environment=\
   PATH="/home/markmur88/envAPP/bin",\
   DJANGO_SETTINGS_MODULE="config.settings",\
-  DJANGO_ENV="production"
+  DJANGO_ENV="production",\
+  DEBUG="False",\
+  ALLOWED_HOSTS="api.coretransapi.com",\
+  SECRET_KEY="MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw",\
+  REDIRECT_URI="https://api.coretransapi.com/oauth2/callback/",\
+  ORIGIN="https://api.coretransapi.com",\
+  CLIENT_ID="7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7",\
+  CLIENT_SECRET="L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw",\
+  TOKEN_URL="https://simulator-api.db.com:443/gw/oidc/token",\
+  AUTHORIZE_URL="https://simulator-api.db.com:443/gw/oidc/authorize",\
+  OTP_URL="https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single",\
+  AUTH_URL="https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges",\
+  API_URL="https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer",\
+  SCOPE="sepa_credit_transfers",\
+  TIMEOUT="3600",\
+  TIMEOUT_REQUEST="3600"
+
 SUPERVISOR
 
 echo "🔄 Recargando Supervisor..."
