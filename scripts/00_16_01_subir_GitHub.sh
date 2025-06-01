@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+: "${COMENTARIO_COMMIT:?❌ Faltó COMENTARIO_COMMIT}"
+
 SCRIPT_NAME="$(basename "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
@@ -36,6 +38,19 @@ git commit -m "$COMENTARIO_COMMIT" || echo "ℹ️  Sin cambios para commitear."
 
 echo -e "🌐 Push a GitHub..."
 git push origin api-bank || { echo "❌ Error al subir a GitHub"; exit 1; }
+
+# 📝 Guardar histórico en formato Markdown
+COMMIT_LOG="$SCRIPT_DIR/logs/commits_hist.md"
+mkdir -p "$(dirname "$COMMIT_LOG")"
+
+# Agregar encabezado si el archivo está vacío o no existe
+if [ ! -s "$COMMIT_LOG" ]; then
+    echo -e "| Fecha                | Mensaje de commit                          |\n|----------------------|----------------------------------------------|" > "$COMMIT_LOG"
+fi
+
+# Añadir entrada nueva
+echo "| $(date '+%Y-%m-%d %H:%M:%S') | ${COMENTARIO_COMMIT//|/–} |" >> "$COMMIT_LOG"
+
 
 
 cd "$PROJECT_ROOT"

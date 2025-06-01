@@ -9,12 +9,8 @@ alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get ful
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
 
-
-alias pid_notify="systemctl --user show -p MainPID notificar_vps.service | cut -d'=' -f2"
-alias proc_notify='pgrep -P $(systemctl --user show -p MainPID notificar_vps.service | cut -d"=" -f2) -d , | xargs -r -I {} ps -o pid,etime,cmd --ppid=$(systemctl --user show -p MainPID notificar_vps.service | cut -d"=" -f2),{}'
-alias restart_notificar='bash ~/Documentos/GitHub/api_bank_h2/scripts/notificador_restart.sh'
+alias start_notif_i='bash ~/Documentos/GitHub/api_bank_h2/scripts/start_notificadores_interactivo.sh'
 alias notificadores='bash ~/Documentos/GitHub/api_bank_h2/scripts/gestionar_notificadores.sh'
-
 
 
 alias d_help='api && bash ./01_full.sh --help'
@@ -63,6 +59,7 @@ export VPS_USER="markmur88"
 export VPS_IP="80.78.30.242"
 export VPS_PORT="22"
 export SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
+export VPS_SSH_KEY="/home/markmur88/.ssh/id_ed25519"
 export VPS_API_DIR="/home/markmur88/api_bank_heroku"
 
 ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
@@ -81,6 +78,11 @@ alias vps_status='vps_exec "systemctl status gunicorn"'
 alias vps_cert='vps_exec "sudo certbot renew --dry-run"'
 alias vps_check='vps_exec "netstat -tulnp | grep LISTEN"'
 alias vps_ping='api && timeout 3 bash -c "</dev/tcp/$VPS_IP/$VPS_PORT" && echo "✅ VPS accesible" || echo "❌ Sin respuesta del VPS"'
+
+alias vps_sync_all='bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_local_and_vps.sh'
+
+
+
 
 # === Login directo ===
 alias vps_l_root='api && ssh -i "$SSH_KEY" -p "$VPS_PORT" root@"$VPS_IP"'
