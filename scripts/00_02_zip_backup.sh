@@ -26,14 +26,14 @@ BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
 PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
-BACKUP_DIR="$PROJECT_BASE_DIR/api_bank_h2/zip"
+BACKUP_DIR="$PROJECT_BASE_DIR/api_bank_h2/backup"
 
 DATE=$(date +"%Y%m%d_%H%M%S")
 DATE_SHORT=$(date +"%Y%m%d")
 
 
-CONSEC_GLOBAL_FILE="$HOME/.backup_zip_consecutivo_general"
-CONSEC_DAILY_FILE="$HOME/.backup_zip_consecutivo_diario_$DATE_SHORT"
+CONSEC_GLOBAL_FILE="$BACKUP_DIR/.backup_zip_consecutivo_general"
+CONSEC_DAILY_FILE="$BACKUP_DIR/.backup_zip_consecutivo_diario_$DATE_SHORT"
 
 RESET='\033[0m'
 AMARILLO='\033[1;33m'
