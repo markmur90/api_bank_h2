@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-
-
-
 echo "🚀 Desplegando coretransapi en VPS..."
 
+# ----------------------------
 # 1. Configuración de Supervisor para Gunicorn
+# ----------------------------
 echo "⚙️  Creando configuración de Supervisor..."
 sudo tee /etc/supervisor/conf.d/coretransapi.conf > /dev/null <<SUPERVISOR
 [program:coretransapi]
@@ -46,15 +45,23 @@ environment=\
   SCOPE="sepa_credit_transfers",\
   TIMEOUT="3600",\
   TIMEOUT_REQUEST="3600"
-
 SUPERVISOR
 
 echo "🔄 Recargando Supervisor..."
 sudo supervisorctl reread
 sudo supervisorctl update
-sudo supervisorctl start coretransapi
 
+# Si ya estaba arrancado, puedes detenerlo y volver a iniciarlo:
+if sudo supervisorctl status coretransapi | grep -q "RUNNING"; then
+    echo "⚠ coretransapi ya estaba arrancado; lo reiniciamos..."
+    sudo supervisorctl restart coretransapi
+else
+    sudo supervisorctl start coretransapi
+fi
+
+# ----------------------------
 # 2. Configuración Nginx
+# ----------------------------
 echo "🌐 Configurando Nginx..."
 sudo tee /etc/nginx/sites-available/coretransapi.conf > /dev/null <<NGINX
 server {
@@ -93,22 +100,26 @@ echo "🔗 Habilitando sitio en Nginx..."
 sudo ln -sf /etc/nginx/sites-available/coretransapi.conf /etc/nginx/sites-enabled/
 sudo rm -f /etc/nginx/sites-enabled/default
 
-# 3. Verificar que el dominio apunte aquí
+# ----------------------------
+# 3. Verificar que el dominio apunte a la IP del VPS
+# ----------------------------
 echo "🔍 Verificando DNS..."
-VPS_IPV4=\$(hostname -I | awk '{print \$1}')
-DNS_IP=\$(dig +short api.coretransapi.com | grep -Eo '([0-9]{1,3}\\.){3}[0-9]{1,3}' | head -n1 || true)
+VPS_IPV4=$(hostname -I | awk '{print $1}')
+DNS_IP=$(dig +short api.coretransapi.com | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -n1 || true)
 
-if [[ -z "\$DNS_IP" ]]; then
+if [[ -z "$DNS_IP" ]]; then
     echo "❌ No se obtuvo IP de DNS para api.coretransapi.com. Abortando."
     exit 1
 fi
 
-if [[ "\$DNS_IP" != "\$VPS_IPV4" ]]; then
-    echo "❌ DNS (\$DNS_IP) no coincide con IP local (\$VPS_IPV4). Abortando Certbot."
+if [[ "$DNS_IP" != "$VPS_IPV4" ]]; then
+    echo "❌ DNS ($DNS_IP) no coincide con IP local ($VPS_IPV4). Abortando Certbot."
     exit 1
 fi
 
+# ----------------------------
 # 4. Solicitar/renovar certificado SSL
+# ----------------------------
 echo "🔐 Solicitando certificado SSL con Let's Encrypt..."
 sudo certbot --nginx \
     -d api.coretransapi.com \
@@ -117,13 +128,17 @@ sudo certbot --nginx \
     -m netghostx90@protonmail.com \
     --redirect
 
+# ----------------------------
 # 5. Recargar Nginx
+# ----------------------------
 echo "🔄 Probando configuración Nginx..."
 sudo nginx -t
 echo "✅ Configuración OK, reload Nginx..."
 sudo systemctl reload nginx
 
+# ----------------------------
 # 6. Activar Fail2Ban
+# ----------------------------
 echo "🧼 Activando Fail2Ban..."
 sudo systemctl enable fail2ban --now
 
