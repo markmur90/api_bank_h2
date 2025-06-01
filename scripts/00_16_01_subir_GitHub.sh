@@ -21,12 +21,12 @@ echo -e "═══════════════════════�
 
 trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecución."; exit 1' ERR
 
-# Validación de Heroku CLI
-command -v heroku >/dev/null || { echo "❌ Heroku CLI no está instalado."; exit 1; }
 
 
 echo -e "\n🚀 Subiendo el proyecto a Heroku y GitHub..."
 cd "$HEROKU_ROOT" || { echo "❌ Error al acceder a $HEROKU_ROOT"; exit 1; }
+
+git rm -r --cached .
 
 echo -e "📦 Haciendo git add..."
 git add --all

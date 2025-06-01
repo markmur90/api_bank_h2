@@ -1,19 +1,19 @@
 # *local.py
 
-*.zip
-*.db
-*.sqlite3
+.zip
+.db
+.sqlite3
 .vscode/
 base0.py
 local_old.py
 production_old.py
-.codesandbox/
-.devcontainer/
-.github/
-# temp/
-servers/
-certs/
-backup/
+/.codesandbox/
+/.devcontainer/
+/.github/
+/temp/
+/servers/
+/certs/
+/backup/
 datos_sensibles.txt
 Problema.md
 prompts
