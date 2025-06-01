@@ -42,7 +42,7 @@ SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
 
 echo "📦 Instalando dependencias iniciales en $IP_VPS..."
 
-ssh -i "$SSH_KEY" -p "$PORT_VPS" "$REMOTE_USER@$IP_VPS" bash -s <<EOF
+ssh -i "$SSH_KEY" -p "$PORT_VPS" "$REMOTE_USER@$IP_VPS" bash -s 
 set -e
 
 
@@ -87,7 +87,7 @@ sudo usermod -aG postgres markmur88
 
 
 
-sudo -u postgres psql <<-EOSQL
+sudo -u postgres psql
 DO \$\$
 BEGIN
     -- Verificar si el usuario ya existe
@@ -107,7 +107,7 @@ CREATE DATABASE mydatabase;
 GRANT ALL PRIVILEGES ON DATABASE mydatabase TO markmur88;
 GRANT CONNECT ON DATABASE mydatabase TO markmur88;
 GRANT CREATE ON DATABASE mydatabase TO markmur88;
-EOSQL
+
 
 
 
@@ -134,22 +134,40 @@ sudo hostnamectl set-hostname coretransapi
 
 
 echo "🧭 Configurando Supervisor para Gunicorn..."
-sudo cat > /etc/supervisor/conf.d/coretransapi.conf <<SUPERVISOR
+sudo mkdir -p /var/log/supervisor
+sudo chown root:adm /var/log/supervisor
+sudo chmod 750 /var/log/supervisor
+
+sudo tee /etc/supervisor/conf.d/coretransapi.conf > /dev/null <<SUPERVISOR
 [program:coretransapi]
 directory=/home/markmur88/api_bank_heroku
-command=/home/markmur88/envAPP/bin/gunicorn config.wsgi:application --bind unix:/home/markmur88/api_bank_heroku/api.sock --workers 3
+command=/home/markmur88/envAPP/bin/gunicorn config.wsgi:application \
+  --bind unix:/home/markmur88/api_bank_heroku/api.sock \
+  --workers 3
 autostart=true
 autorestart=true
+# Ajusta el umask para que el socket sea accesible por grupo (www-data)
+umask=007
+
 stderr_logfile=/var/log/supervisor/coretransapi.err.log
 stdout_logfile=/var/log/supervisor/coretransapi.out.log
+
+# Ejecutar como usuario markmur88; grupo www-data permitirá que nginx acceda al socket
 user=markmur88
 group=www-data
-environment=PATH="/home/markmur88/envAPP/bin",DJANGO_SETTINGS_MODULE="config.settings"
+
+# Asegúrate de incluir todas las vars de entorno que necesites:
+environment=\
+  PATH="/home/markmur88/envAPP/bin",\
+  DJANGO_SETTINGS_MODULE="config.settings",\
+  DJANGO_ENV="production"
 SUPERVISOR
 
 sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl start coretransapi
+
+
 
 
 echo "🌐 Configurando Nginx..."
@@ -189,10 +207,16 @@ NGINX
 ln -sf /etc/nginx/sites-available/coretransapi.conf /etc/nginx/sites-enabled/
 rm -f /etc/nginx/sites-enabled/default
 
-if ! host api.coretransapi.com | grep "\$(hostname -I | awk '{print \$1}')" > /dev/null; then
-    echo "❌ El dominio no apunta al VPS. Abortando Certbot."
+sudo nginx -t
+
+VPS_IPV4=$(hostname -I | awk '{print $1}')
+DNS_IP=$(dig +short api.coretransapi.com | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -n1)
+
+if [[ "$DNS_IP" != "$VPS_IPV4" ]]; then
+    echo "❌ DNS ($DNS_IP) no coincide con IP local ($VPS_IPV4). Abortando Certbot."
     exit 1
 fi
+
 
 
 echo "🔐 Solicitando certificado SSL..."
@@ -205,7 +229,7 @@ sudo nginx -t && sudo systemctl reload nginx
 
 echo "🧼 Activando Fail2Ban..."
 sudo systemctl enable fail2ban --now
-
+sudo systemctl reload fail2ban
 
 echo "🧱 Activando firewall UFW..."
 # Paso 1: Permitir el puerto SSH remoto antes de cambiar políticas
