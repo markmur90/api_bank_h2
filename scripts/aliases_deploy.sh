@@ -79,7 +79,7 @@ alias vps_cert='vps_exec "sudo certbot renew --dry-run"'
 alias vps_check='vps_exec "netstat -tulnp | grep LISTEN"'
 alias vps_ping='api && timeout 3 bash -c "</dev/tcp/$VPS_IP/$VPS_PORT" && echo "✅ VPS accesible" || echo "❌ Sin respuesta del VPS"'
 
-alias vps_sync_all='bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_local_and_vps.sh'
+alias vps_sync_all='bash ~/Documentos/GitHub/api_bank_h2/scripts/00_14_sincronizacion_archivos.sh && bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_local_and_vps.sh'
 
 
 
