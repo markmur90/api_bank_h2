@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+  <h2>🔍 Diagnóstico de Red Bancaria</h2>
+  <ul class="list-group mt-3">
+    <li class="list-group-item">
+      <strong>IP local del servidor:</strong> {{ ip_local }}
+    </li>
+    <li class="list-group-item">
+      <strong>Resolución de DNS bancario (pain.banco.priv):</strong> {{ dns_banco }}
+    </li>
+    <li class="list-group-item">
+      <strong>¿Está en red simulada del banco?</strong>
+      {% if en_red_simulada %}
+        ✅ Sí
+      {% else %}
+        ❌ No
+      {% endif %}
+    </li>
+  </ul>
+</div>
+{% endblock %}
