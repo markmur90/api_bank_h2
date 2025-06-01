@@ -60,11 +60,11 @@ ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
 
 # === ALIAS VPS ===
 alias vps_tor="api && ssh -i \$SSH_KEY -p \$VPS_PORT \$VPS_USER@\$VPS_IP 'sudo cat /var/lib/tor/hidden_service/hostname'"
-alias vps_logs="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'journalctl -u gunicorn.service -f'"
-alias vps_nginx="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'tail -f /var/log/nginx/error.log'"
-alias vps_reload="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'systemctl restart gunicorn && systemctl reload nginx'"
-alias vps_status="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'systemctl status gunicorn'"
-alias vps_cert="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'sudo certbot renew --dry-run'"
+alias vps_logs="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'journalctl -u gunicorn.service -f'"
+alias vps_nginx="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'tail -f /var/log/nginx/error.log'"
+alias vps_reload="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'systemctl restart gunicorn && systemctl reload nginx'"
+alias vps_status="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'systemctl status gunicorn'"
+alias vps_cert="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'sudo certbot renew --dry-run'"
 
 alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1:5432 root@80.78.30.242'
 # psql -h 127.0.0.1 -p 5433 -U <usuario_db> -d <nombre_db>

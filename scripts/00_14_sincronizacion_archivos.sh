@@ -42,7 +42,6 @@ EXCLUDES=(
     "--exclude=ultimate/"
     "--exclude=z_njalla/"
     "--exclude=servers/"
-    "--exclude=media/"
     "--exclude=certs/"
     "--exclude=backup/"
     "--exclude=datos_sensibles.txt"

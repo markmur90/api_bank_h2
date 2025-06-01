@@ -25,6 +25,21 @@ sudo apt install -y git curl build-essential ufw fail2ban \
     python3 python3-pip python3-venv python3-dev libpq-dev \
     postgresql postgresql-contrib nginx certbot python3-certbot-nginx supervisor
 
+sudo apt install -y \
+  libcairo2 \
+  libpango-1.0-0 \
+  libpangoft2-1.0-0 \
+  libpangocairo-1.0-0 \
+  libgdk-pixbuf2.0-0 \
+  libffi-dev \
+  shared-mime-info \
+  libxml2 \
+  libxml2-dev \
+  libxslt1-dev
+source ~/envAPP/bin/activate
+pip install --no-cache-dir --force-reinstall weasyprint
+
+
 echo "🧱 Activando firewall UFW..."
 sudo ufw default allow incoming
 sudo ufw default allow outgoing

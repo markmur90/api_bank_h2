@@ -46,37 +46,37 @@ ssh -i "$SSH_KEY" -p "$PORT_VPS" "$REMOTE_USER@$IP_VPS" bash -s <<EOF
 set -e
 
 
-echo "👤 Creando usuario $APP_USER..."
+echo "👤 Creando usuario markmur88..."
 
 # Define la contraseña directamente (podés cambiarla desde una variable de entorno si querés mayor seguridad)
 APP_PASSWD="Ptf8454Jd55"
 
-useradd -m -s /bin/bash "$APP_USER"
-echo "$APP_USER:$APP_PASSWD" | chpasswd
-usermod -aG sudo "$APP_USER"
-echo "$APP_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$APP_USER
+useradd -m -s /bin/bash "markmur88"
+echo "markmur88:$APP_PASSWD" | chpasswd
+usermod -aG sudo "markmur88"
+echo "markmur88 ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/markmur88
 
 # Configuración de SSH
-mkdir -p /home/$APP_USER/.ssh
-cp /root/.ssh/authorized_keys /home/$APP_USER/.ssh/
-chown -R $APP_USER:$APP_USER /home/$APP_USER/.ssh
-chmod 700 /home/$APP_USER/.ssh
-chmod 600 /home/$APP_USER/.ssh/authorized_keys
+mkdir -p /home/markmur88/.ssh
+cp /root/.ssh/authorized_keys /home/markmur88/.ssh/
+chown -R markmur88:markmur88 /home/markmur88/.ssh
+chmod 700 /home/markmur88/.ssh
+chmod 600 /home/markmur88/.ssh/authorized_keys
 
 # Cambia automáticamente al nuevo usuario
-echo "✅ Usuario $APP_USER creado con acceso sudo y SSH configurado."
-su - "$APP_USER"
+echo "✅ Usuario markmur88 creado con acceso sudo y SSH configurado."
+su - "markmur88"
 
 
 echo "📥 Clonando proyecto Django..."
-git clone "$REPO_GIT" /home/$APP_USER/$REPO_DIR
+git clone "$REPO_GIT" /home/markmur88/api_bank_heroku
 
 
 echo "🐍 Configurando entorno virtual..."
-python3 -m venv /home/$APP_USER/envAPP
-source /home/$APP_USER/envAPP/bin/activate
+python3 -m venv /home/markmur88/envAPP
+source /home/markmur88/envAPP/bin/activate
 pip install --upgrade pip
-pip install -r /home/$APP_USER/$REPO_DIR/requirements.txt
+pip install -r /home/markmur88/api_bank_heroku/requirements.txt
 
 
 echo "🛠 Configurando base de datos PostgreSQL..."
@@ -84,32 +84,37 @@ sudo systemctl enable postgresql
 sudo systemctl start postgresql
 sudo usermod -aG postgres markmur88
 
+
+
+
 sudo -u postgres psql <<-EOSQL
 DO \$\$
 BEGIN
     -- Verificar si el usuario ya existe
-    IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = '${DB_USER}') THEN
-        CREATE USER ${DB_USER} WITH PASSWORD '${DB_PASS}';
+    IF NOT EXISTS (SELECT FROM pg_catalog.pg_roles WHERE rolname = 'markmur88') THEN
+        CREATE USER markmur88 WITH PASSWORD 'Ptf8454Jd55';
     END IF;
 END
 \$\$;
 -- Asignar permisos al usuario
-ALTER USER ${DB_USER} WITH SUPERUSER;
-GRANT USAGE, CREATE ON SCHEMA public TO ${DB_USER};
-GRANT ALL PRIVILEGES ON SCHEMA public TO ${DB_USER};
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO ${DB_USER};
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO ${DB_USER};
-ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO ${DB_USER};
-CREATE DATABASE ${DB_NAME};
-GRANT ALL PRIVILEGES ON DATABASE ${DB_NAME} TO ${DB_USER};
-GRANT CONNECT ON DATABASE ${DB_NAME} TO ${DB_USER};
-GRANT CREATE ON DATABASE ${DB_NAME} TO ${DB_USER};
+ALTER USER markmur88 WITH SUPERUSER;
+GRANT USAGE, CREATE ON SCHEMA public TO markmur88;
+GRANT ALL PRIVILEGES ON SCHEMA public TO markmur88;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON FUNCTIONS TO markmur88;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON SEQUENCES TO markmur88;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO markmur88;
+CREATE DATABASE mydatabase;
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO markmur88;
+GRANT CONNECT ON DATABASE mydatabase TO markmur88;
+GRANT CREATE ON DATABASE mydatabase TO markmur88;
 EOSQL
 
 
+
+
 echo "⚙ Migraciones y archivos estáticos..."
-cd /home/$APP_USER/$REPO_DIR
-source /home/$APP_USER/envAPP/bin/activate
+cd /home/markmur88/api_bank_heroku
+source /home/markmur88/envAPP/bin/activate
 find . -path "*/__pycache__" -type d -exec rm -rf {} +
 find . -name "*.pyc" -delete
 find . -path "*/migrations/*.py" -not -name "__init__.py" -delete
@@ -119,7 +124,9 @@ python manage.py migrate
 python manage.py collectstatic --noinput
 
 
-chown -R $APP_USER:www-data /home/$APP_USER/$REPO_DIR
+
+
+chown -R markmur88:www-data /home/markmur88/api_bank_heroku
 
 
 echo "🎯 Hostname y zona horaria..."
@@ -129,15 +136,15 @@ sudo hostnamectl set-hostname coretransapi
 echo "🧭 Configurando Supervisor para Gunicorn..."
 sudo cat > /etc/supervisor/conf.d/coretransapi.conf <<SUPERVISOR
 [program:coretransapi]
-directory=/home/$APP_USER/$REPO_DIR
-command=/home/$APP_USER/envAPP/bin/gunicorn config.wsgi:application --bind unix:/home/$APP_USER/$REPO_DIR/api.sock --workers 3
+directory=/home/markmur88/api_bank_heroku
+command=/home/markmur88/envAPP/bin/gunicorn config.wsgi:application --bind unix:/home/markmur88/api_bank_heroku/api.sock --workers 3
 autostart=true
 autorestart=true
 stderr_logfile=/var/log/supervisor/coretransapi.err.log
 stdout_logfile=/var/log/supervisor/coretransapi.out.log
-user=$APP_USER
+user=markmur88
 group=www-data
-environment=PATH="/home/$APP_USER/envAPP/bin",DJANGO_SETTINGS_MODULE="config.settings"
+environment=PATH="/home/markmur88/envAPP/bin",DJANGO_SETTINGS_MODULE="config.settings"
 SUPERVISOR
 
 sudo supervisorctl reread
@@ -165,16 +172,16 @@ server {
     client_max_body_size 20M;
 
     location /static/ {
-        alias /home/$APP_USER/$REPO_DIR/static/;
+        alias /home/markmur88/api_bank_heroku/static/;
     }
 
     location /media/ {
-        alias /home/$APP_USER/$REPO_DIR/media/;
+        alias /home/markmur88/api_bank_heroku/media/;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/$APP_USER/$REPO_DIR/api.sock;
+        proxy_pass http://unix:/home/markmur88/api_bank_heroku/api.sock;
     }
 }
 NGINX
@@ -189,7 +196,7 @@ fi
 
 
 echo "🔐 Solicitando certificado SSL..."
-sudo certbot --nginx -d api.coretransapi.com --non-interactive --agree-tos -m $EMAIL_SSL --redirect
+sudo certbot --nginx -d api.coretransapi.com --non-interactive --agree-tos -m netghostx90@protonmail.com --redirect
 
 
 echo "🔄 Reiniciando Nginx..."
