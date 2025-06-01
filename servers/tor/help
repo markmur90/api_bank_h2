@@ -1,13 +1,15 @@
-1. Ubuntu / Debian
+# 1. Ubuntu / Debian
 
     Agregar el repositorio oficial de Tor (opcional, pero recomendado para obtener versiones más recientes):
 
-# Instalar dependencias necesarias
+## Instalar dependencias necesarias
+
 sudo apt update
 sudo apt install -y apt-transport-https ca-certificates curl
 
-# Añadir la clave GPG de Tor Project
-curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo gpg --dearmor -o /usr/share/keyrings/tor-archive-keyring.gpg
+## Añadir la clave GPG de Tor Project
+
+curl <https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc> | sudo gpg --dearmor -o /usr/share/keyrings/tor-archive-keyring.gpg
 
 # Añadir el repositorio a sources.list
 echo "deb [arch=amd64 signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org $(lsb_release -cs) main" \

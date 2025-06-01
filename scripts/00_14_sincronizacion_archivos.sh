@@ -28,6 +28,7 @@ NJALLA_ROOT="$HOME/Documentos/GitHub/coretransapi"
 
 
 EXCLUDES=(
+    "--exclude=*.zip"
     "--exclude=*.db"
     "--exclude=*.sqlite3"
     "--exclude=.vscode/"

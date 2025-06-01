@@ -28317,5 +28317,5 @@ zip error: Interrupted (aborting)
   adding: api_bank_h2/schemas/certs/desarrollo.key (deflated 23%)
   adding: api_bank_h2/schemas/certs/desarrollo.crt (deflated 33%)
   adding: api_bank_h2/schemas/zCod.md (deflated 27%)
-[1;32m[OK]   Proyecto comprimido exitosamente en: /home/markmur88/Documentos/GitHub/backup/zip/backup_completo_20250601_025231_G0451_D004.zip[0m
+[1;32m[OK]   Proyecto comprimido exitosamente en: /home/markmur88/Documentos/GitHub/backup/zip/backup_completo_20250601_044030_G0452_D005.zip[0m
 [1;32m[OK]   ✅ Script finalizado correctamente. Log disponible en: /home/markmur88/Documentos/GitHub/api_bank_h2/scripts/logs/backup/00_02_zip_backup_.log[0m

@@ -308,7 +308,7 @@ COPY 0
 (1 fila)
 
 [1;36m✅ Restauración completada.[0m
-📅 Fecha: 2025-06-01 02:53:29
+📅 Fecha: 2025-06-01 04:41:48
 📄 Script: 00_09_cargar_json.sh
 📂 Restaurando desde → /home/markmur88/Documentos/GitHub/api_bank_h2/backup/sql/backup_local.sql.gpg
 ════════════════════════════════════════
