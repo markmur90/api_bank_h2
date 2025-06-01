@@ -1,7 +1,12 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "🚀 Desplegando coretransapi en VPS..."
+# ------------------------------------
+#  Varible fija con la IP pública del VPS
+# ------------------------------------
+IP_VPS="80.78.30.242"
+
+echo "🚀 Desplegando coretransapi en VPS (IP_VPS=$IP_VPS)..."
 
 # ----------------------------
 # 1. Configuración de Supervisor para Gunicorn
@@ -101,19 +106,19 @@ sudo ln -sf /etc/nginx/sites-available/coretransapi.conf /etc/nginx/sites-enable
 sudo rm -f /etc/nginx/sites-enabled/default
 
 # ----------------------------
-# 3. Verificar que el dominio apunte a la IP del VPS (usando host en lugar de dig)
+# 3. Verificar que el dominio apunte a la IP fija del VPS
 # ----------------------------
-echo "🔍 Verificando DNS..."
-VPS_IPV4=$(hostname -I | awk '{print $1}')
-DNS_IP=$(host api.coretransapi.com 2>/dev/null | awk '/has address/ { print \$4; exit }' || true)
+echo "🔍 Verificando DNS contra IP_VPS fija ($IP_VPS)..."
+# Obtenemos la primera IPv4 que devuelva `host` para el dominio
+DNS_IP=$(host api.coretransapi.com 2>/dev/null | awk '/has address/ { print $4; exit }' || true)
 
 if [[ -z "$DNS_IP" ]]; then
     echo "❌ No se obtuvo IP de DNS para api.coretransapi.com. Abortando."
     exit 1
 fi
 
-if [[ "$DNS_IP" != "$VPS_IPV4" ]]; then
-    echo "❌ DNS ($DNS_IP) no coincide con IP local ($VPS_IPV4). Abortando Certbot."
+if [[ "$DNS_IP" != "$IP_VPS" ]]; then
+    echo "❌ DNS ($DNS_IP) no coincide con IP fija del VPS ($IP_VPS). Abortando Certbot."
     exit 1
 fi
 
@@ -133,7 +138,7 @@ sudo certbot --nginx \
 # ----------------------------
 echo "🔄 Probando configuración Nginx..."
 sudo nginx -t
-echo "✅ Configuración OK, reload Nginx..."
+echo "✅ Configuración OK, recargando Nginx..."
 sudo systemctl reload nginx
 
 # ----------------------------
