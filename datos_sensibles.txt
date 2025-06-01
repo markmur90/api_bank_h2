@@ -1,0 +1,73 @@
+
+
+
+ssh -i ~/.ssh/vps_njalla_nueva root@80.78.30.242
+
+
+
+¡Eso es progreso!
+
+Ese último intento sin especificar el puerto (ssh -i ~/.ssh/vps_njalla_nueva root@80.78.30.242) te mostró el fingerprint y te pidió confirmación. Eso significa:
+
+✅ El servidor está escuchando por el puerto 22, no 49222.
+🔧 Entonces: el puerto correcto en la nueva IP es el 22 (por ahora).
+
+Aceptá la conexión escribiendo:
+
+yes
+
+Y deberías entrar. Si todo va bien, podemos seguir con:
+
+    Crear un usuario no-root con sudo.
+
+    Configurar claves para ese usuario.
+
+    Instalar fail2ban, ufw, y endurecer SSH.
+
+    Luego mover el puerto a 49222 si querés.
+
+¿Te conectaste bien tras aceptar el fingerprint?
+Dijiste:
+si
+ChatGPT dijo:
+
+¡Perfecto! 🎯 Ya con acceso como root, vamos a hacer el primer hardening del servidor.
+🛡️ Paso 1: Crear usuario no-root con sudo
+
+adduser deployer
+usermod -aG sudo deployer
+
+Podés usar cualquier nombre en lugar de deployer si preferís.
+🔐 Paso 2: Copiar tu clave SSH al nuevo usuario
+
+mkdir -p /home/deployer/.ssh
+cp ~/.ssh/authorized_keys /home/deployer/.ssh/
+chown -R deployer:deployer /home/deployer/.ssh
+chmod 700 /home/deployer/.ssh
+chmod 600 /home/deployer/.ssh/authorized_keys
+
+🚫 Paso 3: Deshabilitar login de root por SSH
+
+Editá /etc/ssh/sshd_config con nano o vim:
+
+nano /etc/ssh/sshd_config
+
+Y cambiá o asegurate de tener:
+
+PermitRootLogin no
+PasswordAuthentication no
+Port 22
+
+(Después lo cambiamos a 49222 si querés.)
+
+Reiniciá SSH:
+
+systemctl restart ssh
+
+✅ Test final
+
+Abrí una nueva terminal y probá conectarte como deployer:
+
+ssh -i ~/.ssh/vps_njalla_nueva deployer@80.78.30.242
+
+¿Querés que siga con la parte del setup de ufw, fail2ban y dependencias base para Django?
