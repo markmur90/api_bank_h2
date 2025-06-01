@@ -274,34 +274,34 @@ ejecutar() {
 
 
 usage() {
-    echo -e "\n\033[1;36mUSO:\033[0m"
+    echo -e "\n\033[1;36m🧰 USO:\033[0m"
     echo -e "  bash ./01_full.sh [opciones]\n"
 
-    echo -e "\033[1;36mOPCIONES DISPONIBLES:\033[0m"
+    echo -e "\n\033[1;36m⚙️  OPCIONES DISPONIBLES:\033[0m"
     echo -e "  \033[1;33m-a\033[0m, \033[1;33m--all\033[0m               Ejecutar sin confirmaciones interactivas"
     echo -e "  \033[1;33m-s\033[0m, \033[1;33m--step\033[0m              Activar modo paso a paso (pregunta todo)"
     echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m             Mostrar diagnóstico y variables actuales"
     echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m              Mostrar esta ayuda y salir"
 
-    echo -e "\033[1;36mTAREAS DE DESARROLLO LOCAL:\033[0m"
+    echo -e "\n\033[1;36m💻 TAREAS DE DESARROLLO LOCAL:\033[0m"
     echo -e "  \033[1;33m-L\033[0m, \033[1;33m--do-local\033[0m          Descargar archivos locales .json/.env"
     echo -e "  \033[1;33m-l\033[0m, \033[1;33m--do-load-local\033[0m     Subir archivos locales .json/.env"
     echo -e "  \033[1;33m-Q\033[0m, \033[1;33m--do-pgsql\033[0m          Configurar PostgreSQL local"
     echo -e "  \033[1;33m-I\033[0m, \033[1;33m--do-migra\033[0m          Aplicar migraciones Django"
     echo -e "  \033[1;33m-U\033[0m, \033[1;33m--do-create-user\033[0m    Crear usuario del sistema"
 
-    echo -e "\033[1;36mBACKUPS:\033[0m"
+    echo -e "\n\033[1;36m🗄️ BACKUPS:\033[0m"
     echo -e "  \033[1;33m-C\033[0m, \033[1;33m--do-clean\033[0m          Limpiar respaldos antiguos"
     echo -e "  \033[1;33m-Z\033[0m, \033[1;33m--do-zip\033[0m            Generar backups ZIP + SQL"
 
-    echo -e "\033[1;36mDEPLOY HEROKU:\033[0m"
+    echo -e "\n\033[1;36m🚀 DEPLOY HEROKU:\033[0m"
     echo -e "  \033[1;33m-S\033[0m, \033[1;33m--do-sync\033[0m           Sincronizar archivos locales"
     echo -e "  \033[1;33m-B\033[0m, \033[1;33m--do-bdd\033[0m            Sincronizar BDD remota"
     echo -e "  \033[1;33m-Gi\033[0m, \033[1;33m--do-github\033[0m         Desplegar a GitHub"
     echo -e "  \033[1;33m-H\033[0m, \033[1;33m--do-heroku\033[0m         Desplegar a Heroku"
     echo -e "  \033[1;33m-u\033[0m, \033[1;33m--do-varher\033[0m         Configurar variables Heroku"
 
-    echo -e "\033[1;36mENTORNO Y CONFIGURACIÓN:\033[0m"
+    echo -e "\n\033[1;36m🔧 ENTORNO Y CONFIGURACIÓN:\033[0m"
     echo -e "  \033[1;33m-Y\033[0m, \033[1;33m--do-sys\033[0m            Actualizar sistema y dependencias"
     echo -e "  \033[1;33m-P\033[0m, \033[1;33m--do-ports\033[0m          Cerrar puertos abiertos conflictivos"
     echo -e "  \033[1;33m-D\033[0m, \033[1;33m--do-docker\033[0m         Cerrar contenedores abiertos conflictivos"
@@ -310,12 +310,12 @@ usage() {
     echo -e "  \033[1;33m-p\033[0m, \033[1;33m--do-pem\033[0m            Generar claves PEM locales"
     echo -e "  \033[1;33m-E\033[0m, \033[1;33m--do-cert\033[0m           Generar certificados SSL locales"
 
-    echo -e "\033[1;36mEJECUCIÓN Y TESTING:\033[0m"
+    echo -e "\n\033[1;36m🧪 EJECUCIÓN Y TESTING:\033[0m"
     echo -e "  \033[1;33m-r\033[0m, \033[1;33m--do-local-ssl\033[0m      Ejecutar entorno local con SSL (Gunicorn + Nginx 8443) 🚀"
     echo -e "  \033[1;33m-G\033[0m, \033[1;33m--do-gunicorn\033[0m       Ejecutar Gunicorn"
     echo -e "  \033[1;33m-V\033[0m, \033[1;33m--do-verif-trans\033[0m    Verificar transferencias SEPA"
 
-    echo -e "\033[1;36mPOST DEPLOY VPS:\033[0m"
+    echo -e "\n\033[1;36m🛰️ POST DEPLOY VPS:\033[0m"
     echo -e "  \033[1;33m-v\033[0m, \033[1;33m--do-vps\033[0m            Desplegar a VPS (Njalla)"
     echo -e "  \033[1;33m-N\033[0m, \033[1;33m--do-njalla\033[0m         Setup coretransapi"
     echo -e "  \033[1;33m-t\033[0m, \033[1;33m--do-headers\033[0m        Verifica encabezados HTTPS"
@@ -326,6 +326,31 @@ usage() {
     echo -e "  \033[1;33m-k\033[0m, \033[1;33m--do-status\033[0m         Estado del servicio coretransapi"
     echo -e "  \033[1;33m-m\033[0m, \033[1;33m--do-ssl\033[0m            Verifica certificados SSL y puertos"
     echo -e "  \033[1;33m-A\033[0m, \033[1;33m--do-allstatus\033[0m      Ejecuta todos los chequeos de status"
+
+    echo -e "\n\033[1;36m📌 ALIAS RÁPIDOS DISPONIBLES:\033[0m"
+    echo -e "  \033[1;33md_local\033[0m                 Ejecuta despliegue local (env=local)"
+    echo -e "  \033[1;33md_heroku\033[0m                Despliega a Heroku (env=production)"
+    echo -e "  \033[1;33md_njalla\033[0m                Despliega a VPS Njalla (full sync + GitHub)"
+    echo -e "  \033[1;33md_env\033[0m                   Activa entorno virtual local"
+    echo -e "  \033[1;33md_mig\033[0m                   Aplica migraciones, colecta estáticos y limpia"
+    echo -e "  \033[1;33mvps_root\033[0m                Acceso root al VPS por SSH"
+    echo -e "  \033[1;33mvps_user\033[0m                Acceso root al VPS por SSH"
+    echo -e "  \033[1;33mvps_reload\033[0m              Reinicia Gunicorn + recarga Nginx"
+    echo -e "  \033[1;33mvps_cert\033[0m                Ejecuta renovación de certificados SSL"
+    echo -e "  \033[1;33mvps_logs\033[0m                Muestra logs del servicio Gunicorn"
+    echo -e "  \033[1;33mvps_sync\033[0m                Sincroniza proyecto actual con VPS"
+    echo -e "  \033[1;33mvps_sync_lastlog\033[0m        Muestra último log de sincronización"
+    echo -e "  \033[1;33mpg_njalla_local\033[0m         Túnel SSH para acceder a PostgreSQL remoto en local"
+
+    echo -e "\n\033[1;36m📢 NOTIFICADORES:\033[0m"
+    echo -e "  \033[1;33mnotify_service_time <min>\033[0m     Cambia el intervalo del notificador usado por systemd"
+    echo -e "  \033[1;33mnotify_clock_time <min>\033[0m       Lanza notificaciones exactas al reloj desde notificador_30.sh"
+    echo -e "  \033[1;33mpid_notify\033[0m                    Muestra el PID del servicio notificador"
+    echo -e "  \033[1;33mproc_notify\033[0m                   Lista procesos del servicio y sus hijos"
+    echo -e "  \033[1;33mrestart_notificar\033[0m             Muestra, pregunta y reinicia el servicio notificador"
+    echo -e "  \033[1;33mnotificadores\033[0m                 Muestra, pregunta y reinicia el servicio notificador"
+
+
 }
 
 

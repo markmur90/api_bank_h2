@@ -9,6 +9,14 @@ alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get ful
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
 
+
+alias pid_notify="systemctl --user show -p MainPID notificar_vps.service | cut -d'=' -f2"
+alias proc_notify='pgrep -P $(systemctl --user show -p MainPID notificar_vps.service | cut -d"=" -f2) -d , | xargs -r -I {} ps -o pid,etime,cmd --ppid=$(systemctl --user show -p MainPID notificar_vps.service | cut -d"=" -f2),{}'
+alias restart_notificar='bash ~/Documentos/GitHub/api_bank_h2/scripts/notificador_restart.sh'
+alias notificadores='bash ~/Documentos/GitHub/api_bank_h2/scripts/gestionar_notificadores.sh'
+
+
+
 alias d_help='api && bash ./01_full.sh --help'
 alias d_step='api && bash ./01_full.sh -s'
 alias d_all='api && bash ./01_full.sh -a'
@@ -59,30 +67,35 @@ export VPS_API_DIR="/home/markmur88/api_bank_heroku"
 
 ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
 
+# === FUNCIÓN AUXILIAR ===
+vps_exec() {
+    api && ssh -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" "$@"
+}
 
 # === ALIAS VPS ===
-alias vps_tor="api && ssh -i \$SSH_KEY -p \$VPS_PORT \$VPS_USER@\$VPS_IP 'sudo cat /var/lib/tor/hidden_service/hostname'"
-alias vps_logs="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'journalctl -u gunicorn.service -f'"
-alias vps_nginx="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'tail -f /var/log/nginx/error.log'"
-alias vps_reload="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'systemctl restart gunicorn && systemctl reload nginx'"
-alias vps_status="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'systemctl status gunicorn'"
-alias vps_cert="api && ssh -i \$SSH_KEY -p \$VPS_PORT $VPS_USER@$VPS_IP 'sudo certbot renew --dry-run'"
+alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
+alias vps_logs='vps_exec "sudo journalctl -u gunicorn.service -f"'
+alias vps_nginx='vps_exec "tail -f /var/log/nginx/error.log"'
+alias vps_reload='vps_exec "systemctl restart gunicorn && systemctl reload nginx"'
+alias vps_status='vps_exec "systemctl status gunicorn"'
+alias vps_cert='vps_exec "sudo certbot renew --dry-run"'
+alias vps_check='vps_exec "netstat -tulnp | grep LISTEN"'
+alias vps_ping='api && timeout 3 bash -c "</dev/tcp/$VPS_IP/$VPS_PORT" && echo "✅ VPS accesible" || echo "❌ Sin respuesta del VPS"'
 
+# === Login directo ===
+alias vps_root='api && ssh -i "$SSH_KEY" -p "$VPS_PORT" root@"$VPS_IP"'
+alias vps_user='api && ssh -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP"'
+
+# === PostgreSQL Local desde VPS ===
 alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1:5432 root@80.78.30.242'
 # psql -h 127.0.0.1 -p 5433 -U <usuario_db> -d <nombre_db>
 
-alias vps_login_root="api && ssh -i \$SSH_KEY -p \$VPS_PORT root@\$VPS_IP"
-alias vps_login_user="api && ssh -i \$SSH_KEY -p \$VPS_PORT markmur88@\$VPS_IP"
-alias vps_check="api && ssh -i $SSH_KEY -p $VPS_PORT $VPS_USER@$VPS_IP 'netstat -tulnp | grep LISTEN'"
-alias vps_ping="api && timeout 3 bash -c '</dev/tcp/$VPS_IP/$VPS_PORT' && echo '✅ VPS accesible' || echo '❌ Sin respuesta del VPS'"
-
-
-# === Sincronización segura con VPS (solo como markmur88) ===
+# === Sincronización segura ===
 alias vps_sync='api && bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_sync.sh'
 
-# 📡 Sincronizar proyecto con VPS desde cualquier subdirectorio
 alias vps_sync_lastlog='
 LOG_DIR=$(git rev-parse --show-toplevel 2>/dev/null || find "$PWD" -type f -name "manage.py" -exec dirname {} \; | head -n1)/scripts/logs/sync
 [ -d "$LOG_DIR" ] && less "$(ls -1t "$LOG_DIR"/*.log 2>/dev/null | head -n1)" || echo "❌ No hay logs de sincronización."
 '
+
 
