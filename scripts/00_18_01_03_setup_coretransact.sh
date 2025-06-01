@@ -2,7 +2,6 @@
 set -euo pipefail
 
 
-#cclear && cd .. && rm -rf api_bank_heroku && git clone git@github.com:markmur90/api_bank_heroku.git && cd api_bank_heroku && git pull && ls
 
 
 echo "🚀 Desplegando coretransapi en VPS..."
