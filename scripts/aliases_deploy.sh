@@ -16,7 +16,7 @@ alias d_debug='api && bash ./01_full.sh -d'
 alias d_menu='api && bash ./01_full.sh --menu'
 alias d_status='api && bash ./scripts/diagnostico_entorno.sh'
 
-alias d_hsync='api && ./01_full.sh -S -H'
+alias d_Gsync='api && ./01_full.sh -S -Gi'
 
 
 # === VARIABLES ENTORNOS ===

@@ -187,6 +187,7 @@ DO_VERIF_TRANSF=false
 DO_SYNC_LOCAL=false
 DO_VARHER=false
 DO_HEROKU=false
+DO_GITHUB=false
 DO_SYNC_REMOTE_DB=false
 
 DO_DEPLOY_VPS=false
@@ -296,6 +297,7 @@ usage() {
     echo -e "\033[1;36mDEPLOY HEROKU:\033[0m"
     echo -e "  \033[1;33m-S\033[0m, \033[1;33m--do-sync\033[0m           Sincronizar archivos locales"
     echo -e "  \033[1;33m-B\033[0m, \033[1;33m--do-bdd\033[0m            Sincronizar BDD remota"
+    echo -e "  \033[1;33m-Gi\033[0m, \033[1;33m--do-github\033[0m         Desplegar a GitHub"
     echo -e "  \033[1;33m-H\033[0m, \033[1;33m--do-heroku\033[0m         Desplegar a Heroku"
     echo -e "  \033[1;33m-u\033[0m, \033[1;33m--do-varher\033[0m         Configurar variables Heroku"
 
@@ -353,6 +355,7 @@ PROMPT_MODE=false ;;
         -W|--dry-run)         DRY_RUN=true ;;
         -B|--do-bdd)          DO_SYNC_REMOTE_DB=true ;;
         -H|--do-heroku)       DO_HEROKU=true ;;
+        -Gi|--do-github)       DO_GITHUB=true ;;
         -u|--do-varher)       DO_VARHER=true ;;
         -G|--do-gunicorn)     DO_GUNICORN=true ;;
         -C|--do-clean)        DO_CLEAN=true ;;
@@ -409,7 +412,7 @@ confirmar() {
 }
 
 # === SOLICITAR COMENTARIO PARA COMMIT SI NO SE OMITE HEROKU ===
-if [[ "$DO_HEROKU" == true ]]; then
+if [[ "$DO_HEROKU" == true ]] || [[ "$DO_GITHUB" == true ]]; then
     echo -e "\033[1;30m🔐 Se solicitarán privilegios sudo para operaciones posteriores...[0m"
     sudo -v
 
@@ -638,6 +641,13 @@ rotar_logs_si_grandes
 centrar_texto_coloreado $'\033[7;33mVARIABLES A HEROKU\033[0m'
 centrar_texto "VARIABLES A HEROKU" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_VARHER" "Subir variables a Heroku" "bash $SCRIPTS_DIR/00_15_variables_heroku.sh"
+# echo -e "\n\n"
+pausa_y_limpiar
+
+# === 16-01 ===
+centrar_texto_coloreado $'\033[7;33mSUBIR A GITHUB\033[0m'
+centrar_texto "SUBIR A GITHUB" >> "$LOG_DEPLOY"
+ejecutar_si_activo "DO_GITHUB" "Subir el proyecto al repositorio" "bash $SCRIPTS_DIR/00_16_01_subir_GitHub.sh"
 # echo -e "\n\n"
 pausa_y_limpiar
 
