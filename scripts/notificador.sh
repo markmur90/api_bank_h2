@@ -22,7 +22,7 @@ while true; do
     (
       zenity --info --title="🔔 VPS Njalla" \
         --text="$MENSAJE\nHora local: $HORA_LOCAL\nHora Bogotá: $HORA_BOGOTA" \
-        --timeout=10
+        --timeout=5
     ) &
     paplay "$SONIDO" &
 

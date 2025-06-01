@@ -1,0 +1,310 @@
+📅 Fecha: 2025-06-01 02:39:00
+📄 Script: 00_09_cargar_json.sh
+📂 Restaurando desde → /home/markmur88/Documentos/GitHub/api_bank_h2/backup/sql/backup_local.sql.gpg
+════════════════════════════════════════
+[1;36m🔓 Descifrando backup...[0m
+💾 Restaurando con psql...
+SET
+SET
+SET
+SET
+SET
+SET
+ set_config 
+------------
+ 
+(1 fila)
+
+SET
+SET
+SET
+SET
+SET
+SET
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+COPY 0
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+    196
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+     49
+(1 fila)
+
+ setval 
+--------
+     40
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+ setval 
+--------
+      1
+(1 fila)
+
+[1;36m✅ Restauración completada.[0m

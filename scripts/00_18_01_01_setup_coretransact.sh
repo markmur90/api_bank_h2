@@ -26,7 +26,6 @@ verificar_huella_ssh "$IP_VPS"
 REMOTE_USER="root"
 APP_USER="markmur88"
 
-REPO_GIT="https://github.com/markmur90/api_bank_heroku.git"
 REPO_DIR="api_bank_heroku"
 
 DB_NAME="mydatabase"
@@ -34,7 +33,10 @@ DB_USER="markmur88"
 DB_PASS="Ptf8454Jd55"
 DB_HOST="localhost"
 
+REPO_GIT="git@github.com:${APP_USER}/${REPO_DIR}.git"
+
 EMAIL_SSL="netghostx90@protonmail.com"
+
 SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
 
 
@@ -217,56 +219,48 @@ systemctl enable fail2ban --now
 
 
 echo "🧱 Activando firewall UFW..."
-# Políticas seguras por defecto
-sudo ufw default allow incoming
+# Paso 1: Permitir el puerto SSH remoto antes de cambiar políticas
+sudo ufw allow 22/tcp        # ⚠️ Primero permitir el acceso actual
+sudo ufw limit 22/tcp        # Mitigación básica de fuerza bruta
+
+# Paso 2: Configurar políticas por defecto
+sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
-# Accesos remotos permitidos
-sudo ufw allow 49222/tcp   # Puerto SSH personalizado
-sudo ufw allow 22/tcp      # SSH fallback (si aún se usa)
-sudo ufw allow 80/tcp      # HTTP
-sudo ufw allow 443/tcp     # HTTPS
-
-# Servicios internos / loopback
-sudo ufw allow from 127.0.0.1 to any port 8000
-sudo ufw allow from 127.0.0.1 to any port 8011
-sudo ufw allow from 127.0.0.1 to any port 8001
+# Paso 3: Agregar el resto de reglas (HTTP, HTTPS, servicios locales, etc.)
+# 🌐 Accesos esenciales
+sudo ufw allow 80/tcp         # HTTP
+sudo ufw allow 443/tcp        # HTTPS
+sudo ufw allow 49222/tcp      # SSH personalizado (limitado)
+sudo ufw limit 49222/tcp      # SSH con rate limiting (protección fuerza bruta)
+# 🔒 PostgreSQL solo local
 sudo ufw allow from 127.0.0.1 to any port 5432
-
-# Honeypot SSH
-sudo ufw allow 2222/tcp
-
-# Supervisor local
+# 🐍 Gunicorn local
+sudo ufw allow from 127.0.0.1 to any port 8000
+sudo ufw allow from 127.0.0.1 to any port 8001
+sudo ufw allow from 127.0.0.1 to any port 8011
+# ⚙️ Supervisor y servicios internos
 sudo ufw allow from 127.0.0.1 to any port 9001
-
-# Tor
 sudo ufw allow from 127.0.0.1 to any port 9050
 sudo ufw allow from 127.0.0.1 to any port 9051
-
-# Salida DNS, NTP, Push
+# 🌍 DNS y NTP salientes
 sudo ufw allow out 53
 sudo ufw allow out 123/udp
 sudo ufw allow out to any port 443 proto tcp
+# 🧹 Limpieza (opcional si venís con reglas anteriores)
+sudo ufw delete allow 22/tcp || true
+sudo ufw delete allow 22/tcp (v6) || true
+sudo ufw delete allow 2222/tcp || true
+sudo ufw delete allow 2222/tcp (v6) || true
 
-# SSH
-sudo ufw allow ssh
-
-# Políticas seguras por defecto
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw logging full
-
-# Activación
+# Paso 4: Activar UFW si aún no está
 sudo ufw enable
-sudo ufw reload
 
 
 echo "🔄 Cambiando puerto SSH..."
 sed -i "s/^#Port 22/Port 49222/" /etc/ssh/sshd_config
 sed -i "s/^PermitRootLogin yes/PermitRootLogin no/" /etc/ssh/sshd_config
 systemctl restart sshd
-
-
 
 EOF
 
