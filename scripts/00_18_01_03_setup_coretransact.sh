@@ -51,7 +51,7 @@ echo "🔄 Recargando Supervisor..."
 sudo supervisorctl reread
 sudo supervisorctl update
 
-# Si ya estaba arrancado, puedes detenerlo y volver a iniciarlo:
+# Si ya estaba arrancado, reiniciamos; si no, lo arrancamos
 if sudo supervisorctl status coretransapi | grep -q "RUNNING"; then
     echo "⚠ coretransapi ya estaba arrancado; lo reiniciamos..."
     sudo supervisorctl restart coretransapi
@@ -101,11 +101,11 @@ sudo ln -sf /etc/nginx/sites-available/coretransapi.conf /etc/nginx/sites-enable
 sudo rm -f /etc/nginx/sites-enabled/default
 
 # ----------------------------
-# 3. Verificar que el dominio apunte a la IP del VPS
+# 3. Verificar que el dominio apunte a la IP del VPS (usando host en lugar de dig)
 # ----------------------------
 echo "🔍 Verificando DNS..."
 VPS_IPV4=$(hostname -I | awk '{print $1}')
-DNS_IP=$(dig +short api.coretransapi.com | grep -Eo '([0-9]{1,3}\.){3}[0-9]{1,3}' | head -n1 || true)
+DNS_IP=$(host api.coretransapi.com 2>/dev/null | awk '/has address/ { print \$4; exit }' || true)
 
 if [[ -z "$DNS_IP" ]]; then
     echo "❌ No se obtuvo IP de DNS para api.coretransapi.com. Abortando."
