@@ -69,20 +69,24 @@ fi
 # ----------------------------
 echo "🌐 Configurando Nginx..."
 sudo tee /etc/nginx/sites-available/coretransapi.conf > /dev/null <<NGINX
+# /etc/nginx/sites-available/coretransapi.conf
+
 server {
     listen 80;
     server_name api.coretransapi.com;
-    return 301 https://\$host\$request_uri;
+    return 301 https://$host$request_uri;
 }
 
 server {
     listen 443 ssl;
     server_name api.coretransapi.com;
 
-    ssl_certificate /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
+    # SSL temporal: Certbot añadirá las directivas completas (incl. options-ssl-nginx.conf y ssl_dhparam)
+    ssl_certificate     /etc/letsencrypt/live/api.coretransapi.com/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/api.coretransapi.com/privkey.pem;
-    include /etc/letsencrypt/options-ssl-nginx.conf;
-    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
+    # <——– Estas dos líneas se usan tras que Certbot genere los archivos y agregue 'include /etc/letsencrypt/options-ssl-nginx.conf;'
+    # include /etc/letsencrypt/options-ssl-nginx.conf;
+    # ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem;
 
     client_max_body_size 20M;
 
