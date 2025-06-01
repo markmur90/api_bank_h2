@@ -86,3 +86,31 @@ bound to 192.168.0.200 -- renewal in 36055 seconds.
 🧭 IP Tor anterior : 45.84.107.198
 🛰️ IP Tor actual   : 192.42.116.211
 =========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+Killed old client process
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/f2:09:33:c7:97:d4
+Sending on   LPF/wlan0/f2:09:33:c7:97:d4
+Sending on   Socket/fallback
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 4
+DHCPOFFER of 192.168.0.106 from 192.168.0.1
+DHCPREQUEST for 192.168.0.106 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.106 from 192.168.0.1
+bound to 192.168.0.106 -- renewal in 41997 seconds.
+
+=========================================
+📅 Fecha           : 2025-06-01 07:23:56
+🛰️ Interfaz        : wlan0
+🧭 MAC anterior    : 52:02:c4:68:92:6f
+✨ MAC actual      : f2:09:33:c7:97:d4
+🧭 IP anterior     : 192.168.0.106
+192.168.0.199
+🛰️ IP actual       : 192.168.0.106
+🧭 IP Tor anterior : 185.40.4.150
+🛰️ IP Tor actual   : 80.67.167.81
+=========================================

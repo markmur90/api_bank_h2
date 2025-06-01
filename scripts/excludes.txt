@@ -1,0 +1,23 @@
+# Carpetas locales que no deben ir al VPS
+.env/
+__pycache__/
+media/
+*.pyc
+*.log
+*.sqlite3
+.vscode/
+*.asc
+*.gpg
+*.zip
+backup/
+*.bak
+.DS_Store
+*.swp
+logs/
+node_modules/
+.envrc
+.env.*
+temp/
+z_njalla/
+servers/
+certs/
