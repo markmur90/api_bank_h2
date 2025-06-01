@@ -60,32 +60,25 @@ sudo apt-get update && sudo apt-get install -y tor deb.torproject.org-keyring &&
 
 
 echo "👤 Creando usuario $APP_USER..."
-useradd -m -s /bin/bash $APP_USER
-usermod -aG sudo $APP_USER
+
+# Define la contraseña directamente (podés cambiarla desde una variable de entorno si querés mayor seguridad)
+APP_PASSWD="Ptf8454Jd55"
+
+useradd -m -s /bin/bash "$APP_USER"
+echo "$APP_USER:$APP_PASSWD" | chpasswd
+usermod -aG sudo "$APP_USER"
 echo "$APP_USER ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/$APP_USER
+
+# Configuración de SSH
 mkdir -p /home/$APP_USER/.ssh
 cp /root/.ssh/authorized_keys /home/$APP_USER/.ssh/
 chown -R $APP_USER:$APP_USER /home/$APP_USER/.ssh
 chmod 700 /home/$APP_USER/.ssh
 chmod 600 /home/$APP_USER/.ssh/authorized_keys
-su - $APP_USER
 
-
-echo "👤 Creando usuario markmur88..."
-useradd -m -s /bin/bash markmur88
-usermod -aG sudo markmur88
-echo "markmur88 ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/markmur88
-
-mkdir -p /home/markmur88/.ssh
-cp /root/.ssh/authorized_keys /home/markmur88/.ssh/
-chown -R markmur88:markmur88 /home/markmur88/.ssh
-chmod 700 /home/markmur88/.ssh
-chmod 600 /home/markmur88/.ssh/authorized_keys
-su - markmur88
-
-echo "🛠 Configurando SSH..."
-sudo systemctl enable ssh
-sudo systemctl start ssh
+# Cambia automáticamente al nuevo usuario
+echo "✅ Usuario $APP_USER creado con acceso sudo y SSH configurado."
+su - "$APP_USER"
 
 
 echo "📥 Clonando proyecto Django..."
@@ -100,8 +93,10 @@ pip install -r /home/$APP_USER/$REPO_DIR/requirements.txt
 
 
 echo "🛠 Configurando base de datos PostgreSQL..."
-systemctl enable postgresql
-systemctl start postgresql
+sudo systemctl enable postgresql
+sudo systemctl start postgresql
+usermod -aG postgres "$APP_USER"
+
 sudo -u postgres psql <<-EOSQL
 DO \$\$
 BEGIN
@@ -141,11 +136,11 @@ chown -R $APP_USER:www-data /home/$APP_USER/$REPO_DIR
 
 
 echo "🎯 Hostname y zona horaria..."
-hostnamectl set-hostname coretransapi
+sudo hostnamectl set-hostname coretransapi
 
 
 echo "🧭 Configurando Supervisor para Gunicorn..."
-cat > /etc/supervisor/conf.d/coretransapi.conf <<SUPERVISOR
+sudo cat > /etc/supervisor/conf.d/coretransapi.conf <<SUPERVISOR
 [program:coretransapi]
 directory=/home/$APP_USER/$REPO_DIR
 command=/home/$APP_USER/envAPP/bin/gunicorn config.wsgi:application --bind unix:/home/$APP_USER/$REPO_DIR/api.sock --workers 3
@@ -158,13 +153,13 @@ group=www-data
 environment=PATH="/home/$APP_USER/envAPP/bin",DJANGO_SETTINGS_MODULE="config.settings"
 SUPERVISOR
 
-supervisorctl reread
-supervisorctl update
-supervisorctl start coretransapi
+sudo supervisorctl reread
+sudo supervisorctl update
+sudo supervisorctl start coretransapi
 
 
 echo "🌐 Configurando Nginx..."
-cat > /etc/nginx/sites-available/coretransapi.conf <<NGINX
+sudo cat > /etc/nginx/sites-available/coretransapi.conf <<NGINX
 server {
     listen 80;
     server_name api.coretransapi.com;
@@ -207,15 +202,15 @@ fi
 
 
 echo "🔐 Solicitando certificado SSL..."
-certbot --nginx -d api.coretransapi.com --non-interactive --agree-tos -m $EMAIL_SSL --redirect
+sudo certbot --nginx -d api.coretransapi.com --non-interactive --agree-tos -m $EMAIL_SSL --redirect
 
 
 echo "🔄 Reiniciando Nginx..."
-nginx -t && systemctl reload nginx
+sudo nginx -t && sudo systemctl reload nginx
 
 
 echo "🧼 Activando Fail2Ban..."
-systemctl enable fail2ban --now
+sudo systemctl enable fail2ban --now
 
 
 echo "🧱 Activando firewall UFW..."
@@ -257,10 +252,15 @@ sudo ufw delete allow 2222/tcp (v6) || true
 sudo ufw enable
 
 
+echo "🛠 Configurando SSH..."
+sudo systemctl enable ssh
+
 echo "🔄 Cambiando puerto SSH..."
 sed -i "s/^#Port 22/Port 49222/" /etc/ssh/sshd_config
 sed -i "s/^PermitRootLogin yes/PermitRootLogin no/" /etc/ssh/sshd_config
-systemctl restart sshd
+
+sudo systemctl start ssh
+sudo systemctl restart sshd
 
 EOF
 

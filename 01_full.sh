@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-clear
+# clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
 DO_CLEAR=false
 TIME_SLEEP=1

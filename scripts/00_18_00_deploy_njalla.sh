@@ -51,6 +51,6 @@ if ! bash "${SCRIPTS_DIR}/00_18_01_01_setup_coretransact.sh" "$DJANGO_ENV" >> "$
 fi
 
 echo -e "\n\033[1;36m🔍 Instalando la segunda fase...\033[0m" | tee -a $LOG_DEPLOY
-bash "$SCRIPTS_DIR/00_18_01_02_setup_coretransact.sh" || echo -e "\033[1;31m⚠️ Error al instalar la segunda fase\033[0m"
+bash "$SCRIPTS_DIR/00_18_02_verificar_https_headers.sh" || echo -e "\033[1;31m⚠️ Error al instalar la segunda fase\033[0m"
 
 echo -e "\033[1;32m✅ Despliegue remoto al VPS completado.\033[0m" | tee -a $LOG_DEPLOY
