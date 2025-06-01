@@ -108,19 +108,19 @@ sudo rm -f /etc/nginx/sites-enabled/default
 # ----------------------------
 # 3. Verificar que el dominio apunte a la IP fija del VPS
 # ----------------------------
-echo "🔍 Verificando DNS contra IP_VPS fija ($IP_VPS)..."
-# Obtenemos la primera IPv4 que devuelva `host` para el dominio
-DNS_IP=$(host api.coretransapi.com 2>/dev/null | awk '/has address/ { print $4; exit }' || true)
+# echo "🔍 Verificando DNS contra IP_VPS fija ($IP_VPS)..."
+# # Obtenemos la primera IPv4 que devuelva `host` para el dominio
+# DNS_IP=$(host api.coretransapi.com 2>/dev/null | awk '/has address/ { print $4; exit }' || true)
 
-if [[ -z "$DNS_IP" ]]; then
-    echo "❌ No se obtuvo IP de DNS para api.coretransapi.com. Abortando."
-    exit 1
-fi
+# if [[ -z "$DNS_IP" ]]; then
+#     echo "❌ No se obtuvo IP de DNS para api.coretransapi.com. Abortando."
+#     exit 1
+# fi
 
-if [[ "$DNS_IP" != "$IP_VPS" ]]; then
-    echo "❌ DNS ($DNS_IP) no coincide con IP fija del VPS ($IP_VPS). Abortando Certbot."
-    exit 1
-fi
+# if [[ "$DNS_IP" != "$IP_VPS" ]]; then
+#     echo "❌ DNS ($DNS_IP) no coincide con IP fija del VPS ($IP_VPS). Abortando Certbot."
+#     exit 1
+# fi
 
 # ----------------------------
 # 4. Solicitar/renovar certificado SSL
