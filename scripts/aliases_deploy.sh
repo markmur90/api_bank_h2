@@ -25,7 +25,7 @@ d_local() {api && bash ./01_full.sh --env=local -Z -C -S -Q -I -l "$@"}
 unalias d_heroku 2>/dev/null
 d_heroku() {api && bash ./01_full.sh --env=production -Z -C -S -Q -I -l -H -B "$@"}
 unalias d_njalla 2>/dev/null
-d_njalla() {api && bash ./01_full.sh --env=production -Y -P -D -M -x -Z -C -S -Q -I -l -H -B -v "$@"}
+d_njalla() {api && bash ./01_full.sh --env=production -Y -P -D -M -x -Z -C -S -Q -I -l -Gi "$@"}
 
 
 # === VARIABLES LOCALES ===
