@@ -26,3 +26,6 @@ README.md
 .asc
 .key
 .json
+vps_backup/
+gpg_keys/
+conexion_segura_db/
