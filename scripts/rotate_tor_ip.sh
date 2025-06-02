@@ -3,7 +3,7 @@ set -euo pipefail
 
 # === CONFIGURACIÓN ===
 CONTROL_PORT="9051"
-CONTROL_PASS="tu_password_aqui"  # Reemplaza o exporta como variable
+CONTROL_PASS="Ptf8454Jd55"  # Reemplaza o exporta como variable
 
 echo "🔄 Solicitando nueva identidad a Tor..."
 

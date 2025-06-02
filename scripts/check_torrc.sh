@@ -1,46 +1,41 @@
 #!/usr/bin/env bash
+
 set -e
 
-GREEN="\033[1;32m"
-RED="\033[1;31m"
-CYAN="\033[1;36m"
-NC="\033[0m"
+echo -e "\n🔍 Verificando configuración de Tor..."
 
-echo -e "${CYAN}🔍 Verificando estado de Tor...${NC}"
-
-# Verifica si tor está instalado
-if ! command -v tor &> /dev/null; then
-    echo -e "${RED}❌ Tor no está instalado.${NC}"
-    exit 1
-fi
-
-# Verifica si el servicio Tor está activo
+# Verificar si el servicio Tor está activo
 if systemctl is-active --quiet tor; then
-    echo -e "${GREEN}✅ Servicio Tor activo${NC}"
+    echo -e "✅ Tor está activo."
 else
-    echo -e "${RED}❌ Servicio Tor inactivo${NC}"
+    echo -e "❌ Tor no está activo. Iniciando servicio..."
+    sudo systemctl start tor
+fi
+
+# Verificar existencia del archivo torrc
+TORRC_PATH="/etc/tor/torrc"
+if [ -f "$TORRC_PATH" ]; then
+    echo -e "✅ Archivo de configuración torrc encontrado en $TORRC_PATH."
+else
+    echo -e "❌ Archivo de configuración torrc no encontrado en $TORRC_PATH."
     exit 1
 fi
 
-# Verifica conectividad con puerto SOCKS
-if timeout 2 bash -c "</dev/tcp/127.0.0.1/9050"; then
-    echo -e "${GREEN}✅ Puerto SOCKS (9050) responde${NC}"
+# Verificar existencia del servicio oculto
+HIDDEN_SERVICE_DIR="/var/lib/tor/hidden_service"
+if [ -d "$HIDDEN_SERVICE_DIR" ]; then
+    echo -e "✅ Directorio de servicio oculto encontrado."
+    if [ -f "$HIDDEN_SERVICE_DIR/hostname" ]; then
+        echo -e "🧅 Dirección .onion: $(cat $HIDDEN_SERVICE_DIR/hostname)"
+    else
+        echo -e "⚠️ Archivo hostname no encontrado en el directorio de servicio oculto."
+    fi
 else
-    echo -e "${RED}❌ Puerto SOCKS no responde${NC}"
+    echo -e "❌ Directorio de servicio oculto no encontrado en $HIDDEN_SERVICE_DIR."
 fi
 
-# Verifica generación de hidden_service
-HS_FILE="/var/lib/tor/hidden_service/hostname"
-if [[ -f "$HS_FILE" ]]; then
-    echo -e "${GREEN}✅ Dirección .onion generada:${NC} $(cat $HS_FILE)"
-else
-    echo -e "${RED}❌ No se encontró la dirección .onion${NC}"
-fi
+# Verificar puertos en uso
+echo -e "\n📡 Puertos en uso por Tor:"
+sudo netstat -tulnp | grep tor || echo "No se encontraron puertos en uso por Tor."
 
-# Verifica errores de configuración
-echo -e "${CYAN}📄 Validando configuración torrc...${NC}"
-if tor --verify-config &> /dev/null; then
-    echo -e "${GREEN}✅ torrc válido${NC}"
-else
-    echo -e "${RED}❌ Error en torrc. Revisar configuración.${NC}"
-fi
+echo -e "\n✅ Verificación completada."
