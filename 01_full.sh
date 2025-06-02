@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 
-# clear
+clear
 # === CONTROLES DE PAUSA Y LIMPIEZA DE PANTALLA ===
 DO_CLEAR=false
 TIME_SLEEP=1
@@ -15,34 +15,34 @@ pausa_y_limpiar() {
 
 
 
-cat <<'EOF'
-# ╔═════════════════════════════════════════════════════════════════════════════╗
-# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2               ║
-# ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
-# ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
-# ║                                                                             ║
-# ║  === ALIAS DISPONIBLES (desde aliases_deploy.sh) ===                        ║
-# ║  🖥️  Local:                                                                 ║
-# ║    - api         → Activa entorno + entra al proyecto principal             ║
-# ║    - d_local     → Despliegue local con flags de prueba                     ║
-# ║    - d_heroku    → Despliegue heroku                                        ║
-# ║    - d_env       → Activa solo el entorno virtual                           ║
-# ║    - d_mig       → makemigrations + migrate + collectstatic                 ║
-# ║                                                                             ║
-# ║  🌐 VPS Njalla:                                                             ║
-# ║    - vps_login   → Conexión SSH al servidor                                 ║
-# ║    - vps_reload  → Reinicia Gunicorn y recarga Nginx                        ║
-# ║    - vps_logs    → Log live del servicio Gunicorn                           ║
-# ║    - vps_status  → Verifica estado actual de Gunicorn                       ║
-# ║    - vps_sync    → Sincroniza código local al servidor (rsync)              ║
-# ║    - vps_cert    → Testea renovación automática de Certbot                  ║
-# ║    - vps_ping    → Test de conexión TCP hacia el VPS                        ║
-# ║                                                                             ║
-# ║  Usa `source scripts/aliases_deploy.sh` para habilitarlos en la terminal.   ║
-# ║  Autor: markmur88                                                           ║
-# ╚═════════════════════════════════════════════════════════════════════════════╝
-EOF
-pausa_y_limpiar
+# cat <<'EOF'
+# # ╔═════════════════════════════════════════════════════════════════════════════╗
+# # ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2               ║
+# # ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
+# # ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
+# # ║                                                                             ║
+# # ║  === ALIAS DISPONIBLES (desde aliases_deploy.sh) ===                        ║
+# # ║  🖥️  Local:                                                                 ║
+# # ║    - api         → Activa entorno + entra al proyecto principal             ║
+# # ║    - d_local     → Despliegue local con flags de prueba                     ║
+# # ║    - d_heroku    → Despliegue heroku                                        ║
+# # ║    - d_env       → Activa solo el entorno virtual                           ║
+# # ║    - d_mig       → makemigrations + migrate + collectstatic                 ║
+# # ║                                                                             ║
+# # ║  🌐 VPS Njalla:                                                             ║
+# # ║    - vps_login   → Conexión SSH al servidor                                 ║
+# # ║    - vps_reload  → Reinicia Gunicorn y recarga Nginx                        ║
+# # ║    - vps_logs    → Log live del servicio Gunicorn                           ║
+# # ║    - vps_status  → Verifica estado actual de Gunicorn                       ║
+# # ║    - vps_sync    → Sincroniza código local al servidor (rsync)              ║
+# # ║    - vps_cert    → Testea renovación automática de Certbot                  ║
+# # ║    - vps_ping    → Test de conexión TCP hacia el VPS                        ║
+# # ║                                                                             ║
+# # ║  Usa `source scripts/aliases_deploy.sh` para habilitarlos en la terminal.   ║
+# # ║  Autor: markmur88                                                           ║
+# # ╚═════════════════════════════════════════════════════════════════════════════╝
+# EOF
+# pausa_y_limpiar
 
 
 set -euo pipefail
@@ -99,35 +99,6 @@ else
 fi
 
 COMENTARIO_COMMIT=""
-
-# ╔═════════════════════════════════════════════════════════════════════════════╗
-# ║                    SCRIPT MAESTRO DE DESPLIEGUE - api_bank_h2               ║
-# ║  Automatización total: setup, backups, deploy, limpieza y seguridad         ║
-# ║  Soporte para 30 combinaciones de despliegue con alias `d_*`                ║
-# ║  Ejecuta `deploy_menu` para selección interactiva con FZF                   ║
-# ║  Ejecuta `d_help` para ver ejemplos combinados y sus parámetros             ║
-# ║                                                                             ║
-# ║  === ALIAS DISPONIBLES (desde aliases_deploy.sh) ===                       ║
-# ║                                                                             ║
-# ║  🖥️  Local:                                                                 ║
-# ║    - api         → Activa entorno + entra al proyecto principal            ║
-# ║    - d_local     → Despliegue local con flags de prueba                    ║
-# ║    - d_env       → Activa solo el entorno virtual                          ║
-# ║    - d_mig       → makemigrations + migrate + collectstatic                ║
-# ║                                                                             ║
-# ║  🌐 VPS Njalla:                                                             ║
-# ║    - vps_login   → Conexión SSH al servidor                                ║
-# ║    - vps_reload  → Reinicia Gunicorn y recarga Nginx                       ║
-# ║    - vps_logs    → Log live del servicio Gunicorn                          ║
-# ║    - vps_status  → Verifica estado actual de Gunicorn                      ║
-# ║    - vps_sync    → Sincroniza código local al servidor (rsync)            ║
-# ║    - vps_cert    → Testea renovación automática de Certbot                ║
-# ║    - vps_ping    → Test de conexión TCP hacia el VPS                       ║
-# ║                                                                             ║
-# ║  Usa `source scripts/aliases_deploy.sh` para habilitarlos en la terminal. ║
-
-# ║  Autor: markmur88                                                           ║
-# ╚═════════════════════════════════════════════════════════════════════════════╝
 
 # === CARGA DEL ENTORNO (.env) ===
 ENV_FILE=".env"
@@ -274,14 +245,11 @@ ejecutar() {
 
 
 usage() {
-    echo -e "\n\033[1;36m🧰 USO:\033[0m"
-    echo -e "  bash ./01_full.sh [opciones]\n"
-
-    echo -e "\n\033[1;36m⚙️  OPCIONES DISPONIBLES:\033[0m"
-    echo -e "  \033[1;33m-a\033[0m, \033[1;33m--all\033[0m               Ejecutar sin confirmaciones interactivas"
-    echo -e "  \033[1;33m-s\033[0m, \033[1;33m--step\033[0m              Activar modo paso a paso (pregunta todo)"
-    echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m             Mostrar diagnóstico y variables actuales"
-    echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m              Mostrar esta ayuda y salir"
+    # echo -e "\n\033[1;36m⚙️  OPCIONES DISPONIBLES:\033[0m"
+    # echo -e "  \033[1;33m-a\033[0m, \033[1;33m--all\033[0m               Ejecutar sin confirmaciones interactivas"
+    # echo -e "  \033[1;33m-s\033[0m, \033[1;33m--step\033[0m              Activar modo paso a paso (pregunta todo)"
+    # echo -e "  \033[1;33m-d\033[0m, \033[1;33m--debug\033[0m             Mostrar diagnóstico y variables actuales"
+    # echo -e "  \033[1;33m-h\033[0m, \033[1;33m--help\033[0m              Mostrar esta ayuda y salir"
 
     echo -e "\n\033[1;36m💻 TAREAS DE DESARROLLO LOCAL:\033[0m"
     echo -e "  \033[1;33m-L\033[0m, \033[1;33m--do-local\033[0m          Descargar archivos locales .json/.env"
@@ -312,7 +280,7 @@ usage() {
 
     echo -e "\n\033[1;36m🧪 EJECUCIÓN Y TESTING:\033[0m"
     echo -e "  \033[1;33m-r\033[0m, \033[1;33m--do-local-ssl\033[0m      Ejecutar entorno local con SSL (Gunicorn + Nginx 8443) 🚀"
-    echo -e "  \033[1;33m-G\033[0m, \033[1;33m--do-gunicorn\033[0m       Ejecutar Gunicorn"
+    # echo -e "  \033[1;33m-G\033[0m, \033[1;33m--do-gunicorn\033[0m       Ejecutar Gunicorn"
     echo -e "  \033[1;33m-V\033[0m, \033[1;33m--do-verif-trans\033[0m    Verificar transferencias SEPA"
 
     echo -e "\n\033[1;36m🛰️ POST DEPLOY VPS:\033[0m"
@@ -320,35 +288,19 @@ usage() {
     echo -e "  \033[1;33m-N\033[0m, \033[1;33m--do-njalla\033[0m         Setup coretransapi"
     echo -e "  \033[1;33m-t\033[0m, \033[1;33m--do-headers\033[0m        Verifica encabezados HTTPS"
     echo -e "  \033[1;33m-e\033[0m, \033[1;33m--do-health\033[0m         Reporte de salud del VPS"
-    echo -e "  \033[1;33m-g\033[0m, \033[1;33m--do-pgp\033[0m            Genera clave PGP Njalla"
-    echo -e "  \033[1;33m-y\033[0m, \033[1;33m--do-update\033[0m         Ejecuta deploy incremental"
-    echo -e "  \033[1;33m-j\033[0m, \033[1;33m--do-restart\033[0m        Reinicia servicio coretransapi"
-    echo -e "  \033[1;33m-k\033[0m, \033[1;33m--do-status\033[0m         Estado del servicio coretransapi"
-    echo -e "  \033[1;33m-m\033[0m, \033[1;33m--do-ssl\033[0m            Verifica certificados SSL y puertos"
+    # echo -e "  \033[1;33m-g\033[0m, \033[1;33m--do-pgp\033[0m            Genera clave PGP Njalla"
+    # echo -e "  \033[1;33m-y\033[0m, \033[1;33m--do-update\033[0m         Ejecuta deploy incremental"
+    # echo -e "  \033[1;33m-j\033[0m, \033[1;33m--do-restart\033[0m        Reinicia servicio coretransapi"
+    # echo -e "  \033[1;33m-k\033[0m, \033[1;33m--do-status\033[0m         Estado del servicio coretransapi"
+    # echo -e "  \033[1;33m-m\033[0m, \033[1;33m--do-ssl\033[0m            Verifica certificados SSL y puertos"
     echo -e "  \033[1;33m-A\033[0m, \033[1;33m--do-allstatus\033[0m      Ejecuta todos los chequeos de status"
 
-    echo -e "\n\033[1;36m📌 ALIAS RÁPIDOS DISPONIBLES:\033[0m"
-    echo -e "  \033[1;33md_local\033[0m                 Ejecuta despliegue local (env=local)"
-    echo -e "  \033[1;33md_heroku\033[0m                Despliega a Heroku (env=production)"
-    echo -e "  \033[1;33md_njalla\033[0m                Despliega a VPS Njalla (full sync + GitHub)"
-    echo -e "  \033[1;33md_env\033[0m                   Activa entorno virtual local"
-    echo -e "  \033[1;33md_mig\033[0m                   Aplica migraciones, colecta estáticos y limpia"
-    echo -e "  \033[1;33mvps_root\033[0m                Acceso root al VPS por SSH"
-    echo -e "  \033[1;33mvps_user\033[0m                Acceso root al VPS por SSH"
-    echo -e "  \033[1;33mvps_reload\033[0m              Reinicia Gunicorn + recarga Nginx"
-    echo -e "  \033[1;33mvps_cert\033[0m                Ejecuta renovación de certificados SSL"
-    echo -e "  \033[1;33mvps_logs\033[0m                Muestra logs del servicio Gunicorn"
-    echo -e "  \033[1;33mvps_sync\033[0m                Sincroniza proyecto actual con VPS"
-    echo -e "  \033[1;33mvps_sync_lastlog\033[0m        Muestra último log de sincronización"
-    echo -e "  \033[1;33mpg_njalla_local\033[0m         Túnel SSH para acceder a PostgreSQL remoto en local"
-
-    echo -e "\n\033[1;36m📢 NOTIFICADORES:\033[0m"
-    echo -e "  \033[1;33mnotify_service_time <min>\033[0m     Cambia el intervalo del notificador usado por systemd"
-    echo -e "  \033[1;33mnotify_clock_time <min>\033[0m       Lanza notificaciones exactas al reloj desde notificador_30.sh"
-    echo -e "  \033[1;33mpid_notify\033[0m                    Muestra el PID del servicio notificador"
-    echo -e "  \033[1;33mproc_notify\033[0m                   Lista procesos del servicio y sus hijos"
-    echo -e "  \033[1;33mrestart_notificar\033[0m             Muestra, pregunta y reinicia el servicio notificador"
-    echo -e "  \033[1;33mnotificadores\033[0m                 Muestra, pregunta y reinicia el servicio notificador"
+    echo -e "\n\033[1;36m📌 COMANDOS DE AYUDA RÁPIDA:\033[0m"
+    echo -e "  \033[1;33md_hp_aliases\033[0m             Ver todos los alias disponibles"
+    echo -e "  \033[1;33md_hp_scripts\033[0m             Ver scripts clave y de sincronización"
+    echo -e "  \033[1;33md_hp_notif\033[0m               Ver opciones de notificación interactiva"
+    echo -e "  \033[1;33md_hp_logs\033[0m                Ver rutas de logs útiles"
+    echo -e "  \033[1;33md_hp_full\033[0m                Mostrar todo el conjunto de ayudas anteriores"
 
 
 }
