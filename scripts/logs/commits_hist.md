@@ -17,3 +17,4 @@
 | 2025-06-02 04:23:21 | sincronización alias |
 | 2025-06-02 05:24:33 | sincronización tor |
 | 2025-06-02 05:41:22 | sync para Tor |
+| 2025-06-02 06:33:20 | script conf tor sup nginx |
