@@ -8,10 +8,8 @@ alias api_heroku='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
-
 alias start_notif_i='bash ~/Documentos/GitHub/api_bank_h2/scripts/start_notificadores_interactivo.sh'
 alias notificadores='bash ~/Documentos/GitHub/api_bank_h2/scripts/gestionar_notificadores.sh'
-
 
 alias d_help='api && bash ./01_full.sh --help'
 alias d_step='api && bash ./01_full.sh -s'
@@ -71,18 +69,31 @@ vps_exec() {
 
 # === ALIAS VPS ===
 alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
-alias vps_logs='vps_exec "sudo journalctl -u gunicorn.service -f"'
-alias vps_nginx='vps_exec "tail -f /var/log/nginx/error.log"'
-alias vps_reload='vps_exec "systemctl restart gunicorn && systemctl reload nginx"'
-alias vps_status='vps_exec "systemctl status gunicorn"'
+
+# ─── 📦 Logs del sistema ────────────────────────────────
+alias vps_supervisor='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log"'
+
+# ─── 🌐 Logs de NGINX ──────────────────────────────────
+alias vps_nginx_err='vps_exec "tail -f /var/log/nginx/error.log"'
+alias vps_nginx_access='vps_exec "tail -f /var/log/nginx/access.log"'
+alias vps_nginx_all='vps_exec "tail -f /var/log/nginx/error.log /var/log/nginx/access.log"'
+
+# 🪵 Alias resumen rápido (errores supervisor + nginx)
+alias vps_logs_all='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log /var/log/nginx/error.log"'
+
+
+
+
+# Recarga Gunicorn vía Supervisor + NGINX
+alias vps_reload='vps_exec "sudo supervisorctl restart coretransapi && sudo systemctl reload nginx"'
+
+# Ver estado general del servicio de app
+alias vps_status='vps_exec "sudo supervisorctl status coretransapi"'
+
 alias vps_cert='vps_exec "sudo certbot renew --dry-run"'
 alias vps_check='vps_exec "netstat -tulnp | grep LISTEN"'
+
 alias vps_ping='api && timeout 3 bash -c "</dev/tcp/$VPS_IP/$VPS_PORT" && echo "✅ VPS accesible" || echo "❌ Sin respuesta del VPS"'
-
-alias vps_sync_all='bash ~/Documentos/GitHub/api_bank_h2/scripts/00_14_sincronizacion_archivos.sh && bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_local_and_vps.sh && api'
-
-
-
 
 # === Login directo ===
 alias vps_l_root='api && ssh -i "$SSH_KEY" -p "$VPS_PORT" root@"$VPS_IP"'
@@ -94,6 +105,10 @@ alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1
 
 # === Sincronización segura ===
 alias vps_sync='api && bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_sync.sh'
+
+# === Sincronización por GitHub ===
+
+alias vps_sync_all='bash ~/Documentos/GitHub/api_bank_h2/scripts/00_14_sincronizacion_archivos.sh && bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_local_and_vps.sh && api'
 
 alias vps_sync_lastlog='
 LOG_DIR=$(git rev-parse --show-toplevel 2>/dev/null || find "$PWD" -type f -name "manage.py" -exec dirname {} \; | head -n1)/scripts/logs/sync
