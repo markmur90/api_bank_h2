@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Banco - Dashboard{% endblock %}</title>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+    <style>
+        body {
+            background-image: url('{% static "images/background.png" %}');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+        main {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .contenido {
+            width: 100%;
+            max-width: 1200px;
+            height: 100%;
+            max-height: 800px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+        }
+        footer {
+            background-color: #f8f9fa;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    {% include 'partials/header.html' %}
+
+    {% load custom_filters %}
+
+    {% if user.is_authenticated %}
+        <!-- Asegúrate de que el nav tenga id="navbar" -->
+        <nav id="navbar">
+            {% include 'partials/navGeneral.html' %}
+        </nav>
+    {% endif %}
+
+    <main id="main-content">
+        <div class="contenido">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+    {% include 'partials/footer.html' %}
+
+    <!-- Overlay que bloquea toda la UI al expirar la sesión -->
+    <div id="session-expired-overlay"
+         style="display:none;
+                position:fixed;
+                top:0; left:0;
+                width:100vw; height:100vh;
+                background:rgba(0,0,0,0.75);
+                color:#fff;
+                z-index:9999;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                text-align:center;
+                padding:2rem;">
+        <div>
+            <h2>Sesión caducada</h2>
+            <p>Tu sesión ha terminado. Serás redirigido al inicio de sesión.</p>
+        </div>
+    </div>
+
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Script para detectar expiración de sesión -->
+    <script>
+        (function() {
+            // 1. Tiempo de vida de la cookie (en segundos), definido en settings.py
+            const sessionAgeSeconds = {{ settings.SESSION_COOKIE_AGE }};
+            const sessionAgeMs = sessionAgeSeconds * 1000;
+
+            // 2. Calculamos la "fecha teórica" de expiración al cargar la página
+            const expirationTime = Date.now() + sessionAgeMs;
+
+            // 3. Función que se ejecuta cuando expira la sesión
+            function onSessionExpire() {
+                // Mostrar overlay y bloquear UI
+                const overlay = document.getElementById('session-expired-overlay');
+                overlay.style.display = 'flex';
+
+                // Deshabilitar interacciones sobre el nav y el contenido
+                const nav = document.getElementById('navbar');
+                const main = document.getElementById('main-content');
+                if (nav) {
+                    nav.style.pointerEvents = 'none';
+                    nav.style.opacity = '0.5';
+                }
+                if (main) {
+                    main.style.pointerEvents = 'none';
+                    main.style.opacity = '0.5';
+                }
+
+                // 3 segundos después, redirigimos al login
+                setTimeout(() => {
+                    window.location.href = "{% url 'login' %}";
+                }, 3000);
+            }
+
+            // 4. Programar temporizador según lo que quede
+            const timeLeft = expirationTime - Date.now();
+            if (timeLeft > 0) {
+                setTimeout(onSessionExpire, timeLeft);
+            } else {
+                // Si ya expiró al cargar la página
+                window.location.href = "{% url 'login' %}";
+            }
+        })();
+    </script>
+</body>
+</html>
