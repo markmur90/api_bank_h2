@@ -87,7 +87,7 @@ def hacer_request_banco(request, path="/api", metodo="GET", datos=None, headers=
         return hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
     # Modo normal/local
     registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
-    url = f"https://80.78.30.242:9000{path}"
+    url = f"https://80.78.30.242:9001{path}"
     try:
         respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=TIMEOUT)
         return respuesta.json()

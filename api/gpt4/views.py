@@ -940,8 +940,8 @@ def diagnostico_banco(request):
 
     try:
         resolver = dns.resolver.Resolver()
-        resolver.nameservers = ["192.168.10.12"]
-        respuesta = resolver.resolve("pain.banco.priv")
+        resolver.nameservers = ["160.83.58.33"]
+        respuesta = resolver.resolve("AS8373")
         dns_resuelto = respuesta[0].to_text()
     except Exception as e:
         dns_resuelto = f"❌ Error resolviendo dominio bancario: {e}"
@@ -949,7 +949,7 @@ def diagnostico_banco(request):
     return render(request, "api/extras/diagnostico_banco.html", {
         "ip_local": ip_local,
         "dns_banco": dns_resuelto,
-        "en_red_simulada": ip_local.startswith("192.168.10.")
+        "en_red_simulada": ip_local.startswith("193.150.166.")
     })
 
 

@@ -8,6 +8,14 @@ alias api_heroku='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
+alias vps_proc_notify='for pid in $(pgrep -f notificador); do echo -e "\n🔹 PID $pid"; ps -p $pid -o pid,ppid,etime,cmd; pgrep -P $pid | xargs -r ps -o pid,ppid,etime,cmd; done'
+alias vps_notif_status='bash ~/Documentos/GitHub/api_bank_h2/scripts/estado_notificadores.sh'
+alias 5_notify='systemctl --user start notificador_bin.service'
+alias 5_stop='systemctl --user stop notificador_bin.service'
+alias 30_notify='systemctl --user start notificador_30.service'
+alias 30_stop='systemctl --user stop notificador_30.service'
+
+
 alias start_notif_i='bash ~/Documentos/GitHub/api_bank_h2/scripts/start_notificadores_interactivo.sh'
 alias notificadores='bash ~/Documentos/GitHub/api_bank_h2/scripts/gestionar_notificadores.sh'
 
@@ -72,6 +80,7 @@ alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
 alias tor_diag='bash ~/Documentos/GitHub/api_bank_h2/scripts/check_torrc.sh'
 alias tor_newip='bash ~/Documentos/GitHub/api_bank_h2/scripts/rotate_tor_ip.sh'
 alias tor_refresh='tor_diag && tor_newip'
+
 alias sync_configs='bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_configs_from_vps.sh'
 alias push_configs='bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_configs_to_vps.sh'
 

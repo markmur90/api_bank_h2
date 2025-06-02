@@ -10,8 +10,15 @@ INTERVALO_MINUTOS="${2:-30}"
 
 # Ruta al archivo de sonido (asegúrate de que exista)
 SONIDO="/usr/share/sounds/freedesktop/stereo/complete.oga"
+TIEMPO_INICIO=$(date +%s)
 
 echo "🟢 Notificaciones activadas cada $INTERVALO_MINUTOS minutos exactos del reloj."
+
+# Evitar duplicados
+if pgrep -f "notificador_30.sh 30" > /dev/null; then
+  echo "⚠ Ya hay un notificador_30.sh corriendo con intervalo 30 minutos. Abortando."
+  exit 1
+fi
 
 while true; do
     # Obtener la hora actual en ambas zonas horarias
@@ -19,10 +26,14 @@ while true; do
     HORA_BOGOTA=$(TZ=America/Bogota date '+%H:%M:%S')
 
     # Enviar notificación visual con zenity y sonido en paralelo
+    TIEMPO_ACTUAL=$(date +%s)
+    MINUTOS_TRANSCURRIDOS=$(( (TIEMPO_ACTUAL - TIEMPO_INICIO) / 60 ))
+
     (
-      zenity --info --title="🔔 VPS Njalla" \
+    zenity --info \
+        --title="🔔 Tiempo transcurrido: $MINUTOS_TRANSCURRIDOS minutos" \
         --text="$MENSAJE\nHora local: $HORA_LOCAL\nHora Bogotá: $HORA_BOGOTA" \
-        --timeout=5
+        --timeout=3
     ) &
     paplay "$SONIDO" &
 
