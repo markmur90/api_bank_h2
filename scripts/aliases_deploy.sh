@@ -77,12 +77,12 @@ vps_exec() {
 
 # === TOR ===
 alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
-alias tor_diag='bash ~/Documentos/GitHub/api_bank_h2/scripts/check_torrc.sh'
-alias tor_newip='bash ~/Documentos/GitHub/api_bank_h2/scripts/rotate_tor_ip.sh'
+alias tor_diag='vps_exec "bash ~/Documentos/GitHub/api_bank_h2/scripts/check_torrc.sh"'
+alias tor_newip='vps_exec "bash ~/Documentos/GitHub/api_bank_h2/scripts/rotate_tor_ip.sh"'
 alias tor_refresh='tor_diag && tor_newip'
 
-alias sync_configs='bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_configs_from_vps.sh'
-alias push_configs='bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_configs_to_vps.sh'
+alias sync_configs='vps_exec "bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_configs_from_vps.sh"'
+alias push_configs='vps_exec "bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_configs_to_vps.sh"'
 
 
 
@@ -100,7 +100,7 @@ alias vps_logs_all='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log /
 
 
 
-
+alias vps_remote_check='bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_remote_check.sh'
 
 # Recarga Gunicorn vía Supervisor + NGINX
 alias vps_reload='vps_exec "sudo supervisorctl restart coretransapi && sudo systemctl reload nginx"'
@@ -122,7 +122,7 @@ alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1
 # psql -h 127.0.0.1 -p 5433 -U <usuario_db> -d <nombre_db>
 
 # === Sincronización segura ===
-alias vps_locsync='api && bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_sync.sh'
+alias vps_locsync='vps_exec "bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_sync.sh"'
 
 # === Sincronización por GitHub ===
 

@@ -10,9 +10,9 @@ STATUS_SCRIPT_CONTENT='#!/usr/bin/env bash
 print_section() {
     local title="$1"
     echo
-    echo "========================================"
+    echo "========================================================================"
     printf "     %s\n" "$title"
-    echo "========================================"
+    echo "========================================================================"
 }
 print_section "1. INFORMACIÓN DEL SISTEMA"
 if [ -f /etc/os-release ]; then

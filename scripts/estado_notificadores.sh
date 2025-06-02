@@ -15,10 +15,3 @@ else
     echo "❌ notificador_30.sh no está activo."
 fi
 
-# Verificar el servicio systemd
-estado=$(systemctl --user is-active notificar_vps.service 2>/dev/null)
-if [[ "$estado" == "active" ]]; then
-    echo "✅ notificar_vps.service activo en systemd."
-else
-    echo "❌ notificar_vps.service está en estado: $estado"
-fi
