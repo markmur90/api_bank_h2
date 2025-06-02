@@ -18,7 +18,7 @@ datos_sensibles.txt
 Problema.md
 prompts.txt
 *.log
-z_najalla
+z_njalla
 importar_env_a_db.py
 README.md
 .pem
@@ -29,3 +29,5 @@ README.md
 vps_backup/
 gpg_keys/
 conexion_segura_db/
+.env*
+api.sock
