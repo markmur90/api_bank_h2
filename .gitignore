@@ -29,5 +29,4 @@ README.md
 vps_backup/
 gpg_keys/
 conexion_segura_db/
-.env*
 api.sock
