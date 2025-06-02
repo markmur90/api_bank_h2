@@ -5,9 +5,9 @@ import os
 
 from api.gpt4.utils import registrar_log
 
-DNS_BANCO = "192.168.10.12"
-DOMINIO_BANCO = "pain.banco.priv"
-RED_SEGURA_PREFIX = "192.168.10."  # IP local esperada al estar en red bancaria/VPN
+DNS_BANCO = "160.83.58.33"
+DOMINIO_BANCO = "internet.dbbank-de"
+RED_SEGURA_PREFIX = "193.150.166."
 TIMEOUT = 10
 
 def esta_en_red_segura():
