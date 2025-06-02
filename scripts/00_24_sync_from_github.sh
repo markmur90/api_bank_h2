@@ -16,7 +16,7 @@ GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519" git pull origin api-bank
 
 
 echo "🔁 Actualizar Django..."
-python3 manage.py makemigration
+python3 manage.py makemigrations
 python3 manage.py migrate
 python3 manage.py collectstatic --noinput
 
