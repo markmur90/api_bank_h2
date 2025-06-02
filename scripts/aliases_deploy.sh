@@ -122,7 +122,7 @@ alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1
 # psql -h 127.0.0.1 -p 5433 -U <usuario_db> -d <nombre_db>
 
 # === Sincronización segura ===
-alias vps_locsync='vps_exec "bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_sync.sh"'
+alias vps_locsync='bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_sync.sh'
 
 # === Sincronización por GitHub ===
 
