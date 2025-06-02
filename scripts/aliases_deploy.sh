@@ -67,8 +67,14 @@ vps_exec() {
     clear && api && ssh -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" "$@"
 }
 
-# === ALIAS VPS ===
+# === TOR ===
 alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
+alias tor_diag='bash ~/Documentos/GitHub/api_bank_h2/scripts/check_torrc.sh'
+alias tor_newip='bash ~/Documentos/GitHub/api_bank_h2/scripts/rotate_tor_ip.sh'
+alias tor_refresh='tor_diag && tor_newip'
+
+
+
 
 # ─── 📦 Logs del sistema ────────────────────────────────
 alias vps_supervisor='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log"'
@@ -122,15 +128,15 @@ echo -e "\n\033[1;36m📌 ALIAS RÁPIDOS DISPONIBLES:\033[0m"
 echo -e "  \033[1;33md_local\033[0m                 Despliegue local completo (env=local)"
 echo -e "  \033[1;33md_heroku\033[0m                Despliegue completo a Heroku (env=production)"
 echo -e "  \033[1;33md_njalla\033[0m                Despliegue completo a VPS Njalla (env=production + GitHub)"
-echo -e "  \033[1;33md_env\033[0m                   Activa entorno virtual local"
-echo -e "  \033[1;33md_mig\033[0m                   Aplica migraciones y colecta estáticos"
+# echo -e "  \033[1;33md_env\033[0m                   Activa entorno virtual local"
+# echo -e "  \033[1;33md_mig\033[0m                   Aplica migraciones y colecta estáticos"
 
 echo -e "  \033[1;33md_pgm\033[0m                   Carga PostgreSQL y migraciones"
 echo -e "  \033[1;33md_back\033[0m                  Ejecuta backup clean + zip"
 echo -e "  \033[1;33md_sys\033[0m                   Ejecuta ajustes de sistema VPS (UFW, puertos, etc.)"
-echo -e "  \033[1;33md_hek\033[0m                   Ejecuta deploy Heroku completo"
-echo -e "  \033[1;33md_cep\033[0m                   Genera claves PEM + certificados SSL"
-echo -e "  \033[1;33md_vps\033[0m                   Ejecuta post-deploy en VPS (coretransapi)"
+# echo -e "  \033[1;33md_hek\033[0m                   Ejecuta deploy Heroku completo"
+# echo -e "  \033[1;33md_cep\033[0m                   Genera claves PEM + certificados SSL"
+# echo -e "  \033[1;33md_vps\033[0m                   Ejecuta post-deploy en VPS (coretransapi)"
 
 echo -e "\n  \033[1;33mvps_l_user\033[0m              Acceso SSH al VPS como usuario markmur88"
 echo -e "  \033[1;33mvps_l_root\033[0m              Acceso SSH al VPS como root"
