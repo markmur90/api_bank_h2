@@ -22,3 +22,4 @@
 | 2025-06-02 07:39:53 | sync after delete |
 | 2025-06-02 09:23:19 | configuraciones |
 | 2025-06-02 09:24:32 | temp |
+| 2025-06-02 09:40:40 | eliminar temp |
