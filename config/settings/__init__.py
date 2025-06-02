@@ -5,7 +5,7 @@ import environ
 from pathlib import Path
 
 # Define entorno: 'local', 'heroku', 'production', etc.
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'local').lower()
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'production').lower()
 print(f"[settings] DJANGO_ENV = {DJANGO_ENV}")
 
 # Cargar .env.<entorno> correspondiente

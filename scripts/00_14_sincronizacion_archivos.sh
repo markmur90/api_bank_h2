@@ -50,7 +50,7 @@ if os.path.exists(settings_path):
     new_lines = []
     for line in lines:
         if "DJANGO_ENV = os.getenv(" in line and "'local'" in line:
-            new_lines.append(line.replace("'local'", "'local'"))
+            new_lines.append(line.replace("'local'", "'production'"))
             updated = True
         else:
             new_lines.append(line)
