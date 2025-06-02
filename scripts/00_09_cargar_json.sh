@@ -43,7 +43,7 @@ export PGUSER="$LOCAL_DB_USER"
 export PGHOST="$LOCAL_DB_HOST"
 
 DATE=$(date +"%Y%m%d_%H%M%S")
-BACKUP_DIR="$HOME/Documentos/GitHub/backup/sql/"
+BACKUP_DIR="$HOME/backup/sql/"
 BACKUP_FILE="${BACKUP_DIR}backup_local.sql"
 
 if ! command -v pv > /dev/null 2>&1; then
