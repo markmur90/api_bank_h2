@@ -1,0 +1,266 @@
+{% extends 'base.html' %}
+{% load form_filters %}
+
+{% block content %}
+
+<!-- Estilo Ghost Bancario Oscuro -->
+<style>
+  body {
+    background-color: #111;
+    color: #eee;
+  }
+  .card {
+    background-color: #1c1c1c;
+    border: 1px solid #333;
+  }
+  .form-label {
+    color: #ccc;
+  }
+  .form-control,
+  .form-select,
+  .form-check-input {
+    background-color: #1c1c1c;
+    color: #fff;
+    border: 1px solid #444;
+  }
+  .form-check-label {
+    color: #ccc;
+  }
+  .btn-dark {
+    background-color: #333;
+    border-color: #444;
+    color: #eee;
+  }
+  .btn-dark:hover {
+    background-color: #222;
+    border-color: #333;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card shadow-lg rounded-4">
+        <div class="card-body p-5">
+          <h3 class="card-title text-center mb-4 text-info">🚀 Ejecutar Ghost Recon</h3>
+
+
+
+
+          <hr class="my-5">
+          <div class="alert alert-info">
+            <h5 class="text-light mb-3">📌 ¿Cómo usar esta página?</h5>
+            <ul class="mb-0">
+              <li><strong>Modo de ejecución:</strong> Escoge entre usar URLs seleccionadas, todas o ingresar una manual.</li>
+              <li><strong>URLs disponibles:</strong> Visible si eliges <code>lista</code>.</li>
+              <li><strong>URL personalizada:</strong> Visible si eliges <code>manual</code>.</li>
+              <li><strong>Identificadores:</strong> Lista como <code>usuario, ip, correo, token, session_id, admin, debug, clave</code>.</li>
+              <li><strong>Repeticiones:</strong> Cuántas veces ejecutar.</li>
+              <li><strong>Delay:</strong> Espera entre repeticiones (segundos).</li>
+            </ul>
+          </div>
+
+
+
+          <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="mb-4">
+              <label class="form-label d-block">{{ form.modo.label }}</label>
+
+
+
+
+                {% for radio in form.modo %}
+                <div class="form-check form-check-inline">
+                    {{ radio.tag }}
+                    <label class="form-check-label ms-1" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                </div>
+                {% endfor %}
+
+            </div>
+
+            <div id="urls_section" class="mb-4" style="display: none;">
+            <label class="form-label d-block">{{ form.urls.label }}</label>
+            {% for checkbox in form.urls %}
+            <div class="form-check">
+              {{ checkbox.tag }}
+              <label class="form-check-label" for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
+            </div>
+            {% endfor %}
+            </div>
+
+            <div id="manual_section" class="mb-4" style="display: none;">
+              <label class="form-label">{{ form.url_manual.label }}</label>
+              {{ form.url_manual|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">{{ form.identificadores.label }}</label>
+              {{ form.identificadores|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">{{ form.repeticiones.label }}</label>
+              {{ form.repeticiones|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">{{ form.delay.label }}</label>
+              {{ form.delay|add_class:"form-control" }}
+            </div>
+
+            <div class="mb-4" id="tiempo_navegacion_section">
+            <label class="form-label">{{ form.tiempo_navegacion.label }}</label>
+            {{ form.tiempo_navegacion|add_class:"form-control" }}
+            {% if form.tiempo_navegacion.help_text %}
+                <div class="form-text text-muted">{{ form.tiempo_navegacion.help_text }}</div>
+            {% endif %}
+            </div>
+
+            <div id="barra-cuenta" class="mt-4" style="display: none;">
+              <h5 class="text-light">⏳ Tiempo restante: <span id="tiempo-restante"></span> segundos</h5>
+              <div class="progress" style="height: 20px;">
+                <div id="progreso-tiempo" class="progress-bar progress-bar-striped bg-info" role="progressbar" style="width: 100%"></div>
+              </div>
+            </div>
+
+            <div id="alerta-identificador" class="alert alert-danger mt-4 d-none" role="alert">
+              ⚠️ Se detectó un identificador sensible en una de las páginas durante la navegación.
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-dark btn-lg rounded-pill">
+                <i class="bi bi-rocket-takeoff"></i> Lanzar Análisis
+              </button>
+            </div>
+
+          </form>
+
+          {% if messages %}
+            <div class="mt-4">
+              {% for msg in messages %}
+                <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                  {{ msg }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const modoRadios = document.querySelectorAll('input[name="modo"]');
+    const urlsSection = document.getElementById("urls_section");
+    const manualSection = document.getElementById("manual_section");
+    const tiempoNavegacionSection = document.getElementById("tiempo_navegacion_section");
+
+    function toggleSections() {
+      const selected = document.querySelector('input[name="modo"]:checked');
+      if (!selected) return;
+      const value = selected.value;
+      urlsSection.style.display = value === "lista" ? "block" : "none";
+      manualSection.style.display = value === "manual" ? "block" : "none";
+      tiempoNavegacionSection.style.display = "block";
+    }
+
+    modoRadios.forEach(r => r.addEventListener('change', toggleSections));
+    toggleSections();
+  });
+
+  document.querySelector("form").addEventListener("submit", function(e) {
+    const modo = document.querySelector('input[name="modo"]:checked')?.value;
+    if (modo === "manual" || modo === "lista") {
+      e.preventDefault();
+
+      const tiempoField = document.getElementById("id_tiempo_navegacion");
+      const tiempo = parseInt(tiempoField?.value);
+
+      if (!tiempo || tiempo < 10) {
+        alert("Debes ingresar un tiempo de navegación válido (mínimo 10 segundos).");
+        tiempoField.focus();
+        return;
+      }
+      let urls = [];
+
+      if (modo === "manual") {
+        const urlManual = document.getElementById("id_url_manual")?.value;
+        if (urlManual) urls.push(urlManual);
+      }
+
+      if (modo === "lista") {
+        document.querySelectorAll('#urls_section input[type="checkbox"]:checked').forEach(cb => {
+          urls.push(cb.value);
+        });
+      }
+
+      if (urls.length === 0) return;
+
+      let ventanas = urls.map(url => window.open(url, "_blank", "noopener,noreferrer"));
+
+      // Mostrar barra de cuenta regresiva
+      const barra = document.getElementById("barra-cuenta");
+      const texto = document.getElementById("tiempo-restante");
+      const progreso = document.getElementById("progreso-tiempo");
+      barra.style.display = "block";
+
+      let restante = tiempo;
+      texto.textContent = restante;
+      progreso.style.width = "100%";
+
+      const intervaloCuenta = setInterval(() => {
+        restante--;
+        texto.textContent = restante;
+        progreso.style.width = `${(restante / tiempo) * 100}%`;
+        if (restante <= 0) {
+            clearInterval(intervaloCuenta);
+            ventanas.forEach(w => {
+                if (w && !w.closed) w.close();
+            });
+            document.querySelector("form").submit();
+        }
+      }, 1000);
+
+      // Verificación de reconocimiento cada 3 segundos
+      const alerta = document.getElementById("alerta-identificador");
+      const audio = new Audio("https://notificationsounds.com/storage/sounds/file-sounds-1153-pristine.mp3");
+      const verificador = setInterval(async () => {
+        try {
+          const res = await fetch("/api/ultimos_intentos/");
+          const data = await res.json();
+
+          if (Array.isArray(data)) {
+            for (let intento of data) {
+              if (intento.reconocio) {
+                alerta.classList.remove("d-none");
+                audio.play();
+                clearInterval(verificador);
+                break;
+              }
+            }
+          }
+        } catch (err) {
+          console.warn("Error verificando reconocimiento:", err);
+        }
+      }, 3000);
+    }
+  });
+</script>
+{% endblock %}

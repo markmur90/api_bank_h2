@@ -1,0 +1,52 @@
+Tareas:
+- Todo debe buscarse y relacionarse dentro de mi proyecto.
+- los conf de nginx, supervisor, gunicorn, deben buscarse y configurarse dentro de servers.
+- optimizar el uso de .log para que se guarden y usen los necesarios.
+- los log deben registrarse dentro de logs.
+- los reconocimientos se guardan dentro de reports/ultimos_reconocimientos
+- los archivos cron_wrapper.py, ghost_recon_ultimate.py, ghost_runner.py deben estar en una carpera.
+- optimizar las riguientes rutas para que se usen en todo el proyecto
+	PROJECT_NAME="bank_ghost"
+	PROJECT_NAME_SOCK="ghost"
+	PROJECT_DIR="/home/markmur88/Documentos/GitHub/zIncognito/bank_ghost"
+	VENV_DIR="${PROJECT_DIR}/venv"
+	SERVERS_DIR="${PROJECT_DIR}/servers"
+	SD_GUN="${SERVERS_DIR}/gunicorn"
+	SD_NGI="${SERVERS_DIR}/nginx/sites-available"
+	SD_SUP="${SERVERS_DIR}/supervisor/conf.d"
+	SOCK_DIR="${SD_GUN}"
+	SOCK_FILE="${SOCK_DIR}/ghost.sock"
+	GUNICORN_LOG="${SOCK_DIR}/gunicorn.log"
+	LOG_DIR="${PROJECT_DIR}/logs"
+	ERROR_LOG="${LOG_DIR}/error.log"
+	SUPERVISOR_CONF="${SD_SUP}/${PROJECT_NAME}.conf"
+	NGINX_CONF="${SD_NGI}/${PROJECT_NAME}"
+	USER="markmur88"
+- el proyecto será migrado a otras plataformas y otros directorios.
+- supervisor, nginx y gunicorn se deben activar solo para el proyecto y no afectar la navegación externa.
+- revisar que se registren correctamente los intentos tanto en archivos como en base.
+- revisar que se muestren en lista llamando a la base de datos presentados en el dashboard.
+- obligar a que cuando se ejecuta un reconocimiento, la ventana se abra en una nueva ventana las urls que llame.
+- obligar a que cuando se termina el tiempo de navegación se cierren a la fuerza esas ventanas y se registre siempre y compruebe el registro y muestre en el dashboard.
+- revisar y corregir cuando de cambia de verificación a  Backend sale error.
+- el script xx_run_ghost.sh no debe usarse para ningún boton, utilizalo como referencia para crear las views necesarias para los otros botones.
+- revisar y configurar correctamente el botoón de reintentar.
+- revisar y configurar correctamente el boton de reinicio seguro y aplicar el mismo estilo del botón reintentar.
+- cambiar el diseño del botón Modo Claro/Obscuro tenga el mismo que Dashboard, Intentos, PDF, Ejecutar, Salir.
+- el logo de Ghost Recon en modo claro no se ve.
+- agrega enlace par cuando se cambian e incrementa información en la plantillas se pueda refrescar el navegador.
+- revisar que función tiene el botón Reintentar y si es posible suprimirlo.
+- presenta una opción de nav con estos cambios y otra organizando de la siguiente forma:
+LOGO		Dashboard	Ejecutar	Cambiar Verificación	Nueva Identidad		Reinicio Seguro		PDF	Modo Claro/Oscuro	Salir
+IP Local: 192.168.0.181 → 192.168.0.179			IP Pública: 2a02:6ea0:1703:5033::34		activo/error
+MAC: 5a:a8:2e:87:89:86 → 02:73:a6:4b:dc:f1								Modo actual:
+
+
+
+
+
+
+
+
+
+
