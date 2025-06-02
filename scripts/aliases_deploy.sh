@@ -78,8 +78,9 @@ alias vps_nginx_err='vps_exec "tail -f /var/log/nginx/error.log"'
 alias vps_nginx_access='vps_exec "tail -f /var/log/nginx/access.log"'
 alias vps_nginx_all='vps_exec "tail -f /var/log/nginx/error.log /var/log/nginx/access.log"'
 
-# 🪵 Alias resumen rápido (errores supervisor + nginx)
-alias vps_logs_all='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log /var/log/nginx/error.log"'
+# 🪵 Todos los logs críticos juntos
+alias vps_logs_all='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log /var/log/nginx/error.log /var/log/nginx/access.log"'
+
 
 
 
