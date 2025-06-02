@@ -3,6 +3,7 @@ set -euo pipefail
 
 echo "📡 Sincronizando VPS con GitHub..."
 cd ~/api_bank_heroku
+source ~/envAPP/bin/activate
 
 # Verificar y stashear si hay cambios locales
 if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
