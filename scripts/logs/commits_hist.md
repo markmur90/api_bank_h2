@@ -16,3 +16,4 @@
 | 2025-06-02 02:25:09 | sync |
 | 2025-06-02 04:23:21 | sincronización alias |
 | 2025-06-02 05:24:33 | sincronización tor |
+| 2025-06-02 05:41:22 | sync para Tor |

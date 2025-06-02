@@ -72,6 +72,8 @@ alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
 alias tor_diag='bash ~/Documentos/GitHub/api_bank_h2/scripts/check_torrc.sh'
 alias tor_newip='bash ~/Documentos/GitHub/api_bank_h2/scripts/rotate_tor_ip.sh'
 alias tor_refresh='tor_diag && tor_newip'
+alias sync_configs='bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_configs_from_vps.sh'
+alias push_configs='bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_configs_to_vps.sh'
 
 
 
@@ -107,7 +109,7 @@ alias vps_l_root='api && ssh -i "$SSH_KEY" -p "$VPS_PORT" root@"$VPS_IP"'
 alias vps_l_user='api && ssh -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP"'
 
 # === PostgreSQL Local desde VPS ===
-alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1:5432 root@80.78.30.242'
+alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1:5432 markmur88@80.78.30.242'
 # psql -h 127.0.0.1 -p 5433 -U <usuario_db> -d <nombre_db>
 
 # === Sincronización segura ===

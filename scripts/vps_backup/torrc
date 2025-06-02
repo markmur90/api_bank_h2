@@ -1,7 +1,7 @@
 ############### ⚙️ CONFIGURACIÓN GENERAL ###############
 
 # Puerto SOCKS accesible (desde localhost o LAN si está habilitado)
-SocksPort 127.0.0.1:9050
+SocksPort 0.0.0.0:9050
 
 # Logs de eventos importantes
 Log notice file /var/log/tor/notices.log

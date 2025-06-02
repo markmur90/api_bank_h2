@@ -13,14 +13,14 @@ fi
 # Pull usando clave correcta
 GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519" git pull origin api-bank
 
-# echo "🔁 Reiniciando servicios..."
-# sudo supervisorctl restart coretransapi
+echo "🔁 Reiniciando servicios..."
+sudo supervisorctl restart coretransapi
 
-# sudo systemctl reload nginx
+sudo systemctl reload nginx
 
-# echo "✅ Servicios reiniciados. Estado:"
+echo "✅ Servicios reiniciados. Estado:"
 
-# echo "📋 Estado del servicio coretransapi:"
-# sudo supervisorctl status coretransapi
-# echo "📄 Últimos logs de error:"
-# tail -n 10 /var/log/supervisor/coretransapi.err.log
+echo "📋 Estado del servicio coretransapi:"
+sudo supervisorctl status coretransapi
+echo "📄 Últimos logs de error:"
+tail -n 10 /var/log/supervisor/coretransapi.err.log
