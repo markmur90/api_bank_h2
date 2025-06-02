@@ -16,5 +16,13 @@ production_old.py
 /backup/
 datos_sensibles.txt
 Problema.md
-prompts
+prompts.txt
 *.log
+z_najalla
+importar_env_a_db.py
+README.md
+.pem
+.crt
+.asc
+.key
+.json
