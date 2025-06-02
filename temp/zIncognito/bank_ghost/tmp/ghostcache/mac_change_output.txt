@@ -1,3 +1,0 @@
-Current MAC:   82:72:e6:7b:5b:58 (unknown)
-Permanent MAC: c0:e4:34:95:bd:5b (unknown)
-New MAC:       02:73:a6:4b:dc:f1 (unknown)
