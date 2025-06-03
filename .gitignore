@@ -14,11 +14,12 @@ production_old.py
 /servers/
 /certs/
 /backup/
+/scripts/
 datos_sensibles.txt
 Problema.md
 prompts.txt
 *.log
-z_njalla
+/z_njalla/
 importar_env_a_db.py
 README.md
 .pem
