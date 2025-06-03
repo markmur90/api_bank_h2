@@ -216,3 +216,47 @@ echo -e "  \033[1;33mvps_logs_all\033[0m            Ver todos los logs críticos
 echo -e "  \033[1;33mvps_supervisor\033[0m          Solo errores del servicio supervisado"
 echo -e "  \033[1;33mvps_nginx_all\033[0m           Errores + accesos de NGINX"
 '
+
+
+RESET='\033[0m'
+AMARILLO='\033[1;33m'
+VERDE='\033[1;32m'
+ROJO='\033[1;31m'
+AZUL='\033[1;34m'
+
+log_info()  { echo -e "\n${AZUL} $1${RESET}"; }
+log_ok()    { echo -e "${VERDE}-   $1${RESET}"; }
+log_error() { echo -e "${ROJO}[ERR]  $1${RESET}"; }
+
+alias d_hp_vps='clear && 
+log_info "📁 VPS TOR:"
+log_ok "vps_tor"
+log_ok "tor_dialog"
+log_ok "tor_newip"
+log_ok "tor_refresh"
+
+log_info "📁 VPS SYNC CONFIG:"
+log_ok "sync_configs"
+log_ok "push_configs"
+
+log_info "📁 VPS SYNC FILES:"
+log_ok "vps_locsync"
+log_ok "vps_gitsync"
+
+log_info "📁 VPS LOGS:"
+log_ok "vps_nginx_err"
+log_ok "vps_nginx_access"
+log_ok "vps_nginx_all"
+log_ok "vps_logs_all"
+log_ok "vps_logsync"
+log_ok "vps_remote_check"
+
+log_info "📁 VPS COMANDS:"
+log_ok "vps_reload"
+log_ok "vps_status"
+log_ok "vps_check"
+log_ok "vps_ping"
+log_ok "vps_l_root"
+log_ok "vps_l_user"
+log_ok "pg_njalla_local"
+'
