@@ -33,7 +33,7 @@ trap '{
 #   echo "🔐 Activando entorno virtual..."
 #   source "$SCRIPT_DIR/../../venv/bin/activate"
 
-  PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2"
+  PROJECT_DIR="$HOME/api_bank_h2"
   cd "$PROJECT_DIR"
 
   CERT_DIR="$PROJECT_DIR/certs"

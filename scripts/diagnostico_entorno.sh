@@ -69,7 +69,7 @@ PGUSER=markmur88 psql -d postgres -c '\conninfo' 2>/dev/null || echo "❌ Conexi
 # Verificar certificados
 echo "" | tee -a $LOG_SISTEMA
 echo "🔐 Verificando certificados SSL..." | tee -a $LOG_SISTEMA
-CERT_PATH="$HOME/Documentos/GitHub/api_bank_h2/certs/desarrollo.crt"
+CERT_PATH="$HOME/api_bank_h2/certs/desarrollo.crt"
 [[ -f "$CERT_PATH" ]] && echo "✅ Certificado encontrado: $CERT_PATH" || echo "❌ Certificado no encontrado"
 
 echo "" | tee -a $LOG_SISTEMA

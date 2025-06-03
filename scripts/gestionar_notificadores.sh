@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SCRIPT_DIR="$HOME/Documentos/GitHub/api_bank_h2/scripts"
+SCRIPT_DIR="$HOME/api_bank_h2/scripts"
 LOG_DIR="$SCRIPT_DIR/.logs"
 
 NOTIF1="$SCRIPT_DIR/notificador.sh"

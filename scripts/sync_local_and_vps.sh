@@ -13,7 +13,7 @@ notify_error() {
 trap notify_error ERR
 
 echo "🚀 Subiendo cambios a GitHub..."
-bash ~/Documentos/GitHub/api_bank_h2/scripts/00_16_01_subir_GitHub.sh
+bash ~/api_bank_h2/scripts/00_16_01_subir_GitHub.sh
 
 echo "📦 Llamando al VPS para sincronizar..."
 ssh -i ~/.ssh/vps_njalla_nueva -p 22 markmur88@80.78.30.242 \

@@ -23,7 +23,7 @@ mkdir -p "$(dirname $LOG_DEPLOY)"
 
 
 # === VARIABLES BASE ===
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_ROOT="$HOME/api_bank_h2"
 VENV_PATH="$HOME/Documentos/Entorno/envAPP"
 SCRIPTS_DIR="$PROJECT_ROOT/scripts"
 LOG_DIR="$PROJECT_ROOT/logs"

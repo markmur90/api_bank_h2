@@ -2,22 +2,22 @@
 
 # === ACCESOS DIRECTOS AL PROYECTO ===
 
-alias api='cd "$HOME/Documentos/GitHub/api_bank_h2" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" '
-alias BKapi='cd "$HOME/Documentos/GitHub/api_bank_h2_BK" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" && clear && code .'
-alias api_heroku='cd "$HOME/Documentos/GitHub/api_bank_heroku" && source "$HOME/Documentos/Entorno/envAPP/bin/activate" '
+alias api='cd "$HOME/api_bank_h2" && source "$HOME/envAPP/bin/activate" '
+alias BKapi='cd "$HOME/api_bank_h2_BK" && source "$HOME/envAPP/bin/activate" && clear && code .'
+alias api_heroku='cd "$HOME/api_bank_heroku" && source "$HOME/envAPP/bin/activate" '
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
 alias vps_proc_notify='for pid in $(pgrep -f notificador); do echo -e "\n🔹 PID $pid"; ps -p $pid -o pid,ppid,etime,cmd; pgrep -P $pid | xargs -r ps -o pid,ppid,etime,cmd; done'
-alias vps_notif_status='bash ~/Documentos/GitHub/api_bank_h2/scripts/estado_notificadores.sh'
+alias vps_notif_status='bash ~/api_bank_h2/scripts/estado_notificadores.sh'
 alias 5_notify='systemctl --user start notificador_bin.service'
 alias 5_stop='systemctl --user stop notificador_bin.service'
 alias 30_notify='systemctl --user start notificador_30.service'
 alias 30_stop='systemctl --user stop notificador_30.service'
 
 
-alias start_notif_i='bash ~/Documentos/GitHub/api_bank_h2/scripts/start_notificadores_interactivo.sh'
-alias notificadores='bash ~/Documentos/GitHub/api_bank_h2/scripts/gestionar_notificadores.sh'
+alias start_notif_i='bash ~/api_bank_h2/scripts/start_notificadores_interactivo.sh'
+alias notificadores='bash ~/api_bank_h2/scripts/gestionar_notificadores.sh'
 
 alias d_help='api && bash ./01_full.sh --help'
 alias d_step='api && bash ./01_full.sh -s'
@@ -40,7 +40,7 @@ d_njalla() {api && bash ./01_full.sh --env=production -Y -P -D -M -x -Z -C -S -Q
 
 # === VARIABLES LOCALES ===
 unalias d_env 2>/dev/null
-d_env() {source "$HOME/Documentos/Entorno/envAPP/bin/activate" "$@"}
+d_env() {source "$HOME/envAPP/bin/activate" "$@"}
 unalias d_mig 2>/dev/null
 d_mig() {python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && clear "$@"}
 
@@ -100,7 +100,7 @@ alias vps_logs_all='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log /
 
 
 
-alias vps_remote_check='bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_remote_check.sh'
+alias vps_remote_check='bash $HOME/api_bank_h2/scripts/vps_remote_check.sh'
 
 # Recarga Gunicorn vía Supervisor + NGINX
 alias vps_reload='vps_exec "sudo supervisorctl restart coretransapi && sudo systemctl reload nginx"'
@@ -122,11 +122,13 @@ alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1
 # psql -h 127.0.0.1 -p 5433 -U <usuario_db> -d <nombre_db>
 
 # === Sincronización segura ===
-alias vps_locsync='bash $HOME/Documentos/GitHub/api_bank_h2/scripts/vps_sync.sh'
+alias vps_locsync='bash $HOME/api_bank_h2/scripts/vps_sync.sh'
+alias vps_up_copy='bash $HOME/api_bank_h2/scripts/vps_copy_up_files.sh'
+alias vps_down_copy='bash $HOME/api_bank_h2/scripts/vps_copy_files.sh'
 
 # === Sincronización por GitHub ===
 
-alias vps_gitsync='bash ~/Documentos/GitHub/api_bank_h2/scripts/00_14_sincronizacion_archivos.sh && bash ~/Documentos/GitHub/api_bank_h2/scripts/sync_local_and_vps.sh && api'
+alias vps_gitsync='bash ~/api_bank_h2/scripts/00_14_sincronizacion_archivos.sh && bash ~/api_bank_h2/scripts/sync_local_and_vps.sh && api'
 
 alias vps_logsync='
 LOG_DIR=$(git rev-parse --show-toplevel 2>/dev/null || find "$PWD" -type f -name "manage.py" -exec dirname {} \; | head -n1)/scripts/logs/sync
@@ -193,14 +195,14 @@ alias d_hp_logs='clear &&
 echo -e "\n\033[1;36m🪵 LOGS DISPONIBLES:\033[0m"
 
 echo -e "\n\033[1;33m🔁 Sincronización:\033[0m"
-echo -e "  ~/Documentos/GitHub/api_bank_h2/scripts/logs/sync/*.log"
+echo -e "  ~/api_bank_h2/scripts/logs/sync/*.log"
 echo -e "  Último log con: \033[1;33mvps_sync_lastlog\033[0m"
 
 echo -e "\n\033[1;33m📦 Despliegue y push:\033[0m"
-echo -e "  ~/Documentos/GitHub/api_bank_h2/scripts/logs/01_full_deploy/full_deploy.log"
-echo -e "  ~/Documentos/GitHub/api_bank_h2/scripts/logs/despliegue/*.log"
+echo -e "  ~/api_bank_h2/scripts/logs/01_full_deploy/full_deploy.log"
+echo -e "  ~/api_bank_h2/scripts/logs/despliegue/*.log"
 echo -e "  Historial de commits Markdown:"
-echo -e "  ~/Documentos/GitHub/api_bank_h2/scripts/logs/commits_hist.md"
+echo -e "  ~/api_bank_h2/scripts/logs/commits_hist.md"
 
 echo -e "\n\033[1;33m🌐 VPS - Servicios:\033[0m"
 echo -e "  /var/log/supervisor/coretransapi.err.log"
@@ -241,24 +243,28 @@ log_ok "tor_refresh"
 
 log_info "📁 VPS SYNC FILES:"
 log_ok "vps_locsync"
-# log_ok "vps_gitsync"
+log_ok "vps_gitsync"
 
-log_info "📁 VPS LOGS:"
-log_ok "vps_nginx_err"
-log_ok "vps_nginx_access"
-log_ok "vps_nginx_all"
-log_ok "vps_logs_all"
-log_ok "vps_logsync"
-log_ok "vps_remote_check"
+log_info "📁 VPS COPY FILES:"
+log_ok "vps_up_copy"
+log_ok "vps_down_copy"
 
-log_info "📁 VPS COMANDS:"
-log_ok "vps_reload"
-log_ok "vps_status"
-log_ok "vps_check"
-log_ok "vps_ping"
-# log_ok "vps_l_root"
-# log_ok "vps_l_user"
-log_ok "pg_njalla_local"
+# log_info "📁 VPS LOGS:"
+# log_ok "vps_nginx_err"
+# log_ok "vps_nginx_access"
+# log_ok "vps_nginx_all"
+# log_ok "vps_logs_all"
+# log_ok "vps_logsync"
+# log_ok "vps_remote_check"
+
+# log_info "📁 VPS COMANDS:"
+# log_ok "vps_reload"
+# log_ok "vps_status"
+# log_ok "vps_check"
+# log_ok "vps_ping"
+# # log_ok "vps_l_root"
+# # log_ok "vps_l_user"
+# log_ok "pg_njalla_local"
 
 log_info "📁 NOTIFICADORES:"
 log_ok "vps_proc_notify"

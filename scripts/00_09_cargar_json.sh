@@ -28,7 +28,7 @@ mkdir -p "$(dirname $LOG_DEPLOY)"
 
 # echo -e "\033[7;30m🚀 Restaurando base de datos desde respaldo SQL...\033[0m" | tee -a "$LOG_DEPLOY"
 
-# BACKUP_DIR_SQL="$HOME/Documentos/GitHub/backup/sql"
+# BACKUP_DIR_SQL="$HOME/backup/sql"
 # export PGPASSWORD="Ptf8454Jd55"
 # psql -U markmur88 -h 127.0.0.1 -p 5432 -d mydatabase \
 #   < "$BACKUP_DIR_SQL/backup_local.sql" 2>>"$LOG_DEPLOY"

@@ -6,7 +6,7 @@ VPS_USER="markmur88"
 VPS_IP="80.78.30.242"
 VPS_PORT="22"
 SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
-SRC_DIR="$HOME/Documentos/GitHub/api_bank_h2/scripts/vps_backup"
+SRC_DIR="$HOME/api_bank_h2/scripts/vps_backup"
 
 # Archivos a sobrescribir
 declare -A FILES_VPS=(

@@ -24,8 +24,8 @@ mkdir -p "$(dirname $LOG_BACKUP)"
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
+PROJECT_ROOT="$HOME/api_bank_h2"
+PROJECT_BASE_DIR="$HOME"
 BACKUP_DIR="$PROJECT_BASE_DIR/backup/zip"
 
 DATE=$(date +"%Y%m%d_%H%M%S")

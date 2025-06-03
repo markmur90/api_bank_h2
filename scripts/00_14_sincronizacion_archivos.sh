@@ -22,9 +22,9 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/$(basename "$0" .sh)_.log"
 mkdir -p "$(dirname $LOG_DEPLOY)"
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-NJALLA_ROOT="$HOME/Documentos/GitHub/coretransapi"
-HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
+PROJECT_ROOT="$HOME/api_bank_h2"
+NJALLA_ROOT="$HOME/coretransapi"
+HEROKU_ROOT="$HOME/api_bank_heroku"
 
 
 EXCLUDES=(

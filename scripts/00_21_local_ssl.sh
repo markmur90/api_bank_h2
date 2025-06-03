@@ -28,7 +28,7 @@ mkdir -p "$(dirname $LOG_DEPLOY)"
 echo "🔐 Activando entorno virtual..." | tee -a $LOG_DEPLOY
 source "/home/markmur88/Documentos/Entorno/envAPP/bin/activate"
 
-PROJECT_DIR="/home/markmur88/Documentos/GitHub/api_bank_h2"
+PROJECT_DIR="/home/markmur88/api_bank_h2"
 cd "$PROJECT_DIR"
 
 CERT_CRT="$PROJECT_DIR/schemas/certs/desarrollo.crt"

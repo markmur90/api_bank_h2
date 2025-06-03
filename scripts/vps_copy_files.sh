@@ -14,7 +14,7 @@ fi
 HOME_DIR="/home/markmur88"
 KEY="$HOME_DIR/.ssh/vps_njalla_nueva"
 REMOTE_BASE="/home/markmur88"
-DEST_DIR="$HOME_DIR/Documentos/GitHub/api_bank_h2"
+DEST_DIR="$HOME_DIR/api_bank_h2"
 
 # 3) Preparar directorio de logs
 LOG_DIR="$DEST_DIR/logs"

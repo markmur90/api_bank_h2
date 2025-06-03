@@ -28,7 +28,7 @@ echo "⚙️ Configurando Gunicorn para dominio api.coretransapi.com..." | tee -
 PROJECT_NAME="api_bank_h2"
 USER="markmur88"
 VENV_PATH="/home/${USER}/Documentos/Entorno/envAPP"
-PROJECT_DIR="/home/${USER}/Documentos/GitHub/${PROJECT_NAME}"
+PROJECT_DIR="/home/${USER}/${PROJECT_NAME}"
 SOCK_FILE="${PROJECT_DIR}/servers/gunicorn/api.sock"
 GUNICORN_DIR="${PROJECT_DIR}/servers/gunicorn"
 SERVICE_DIR="/etc/systemd/system"

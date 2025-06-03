@@ -2,8 +2,8 @@
 set -euo pipefail
 
 # === Configuración local ===
-DIR_LOCAL="$HOME/Documentos/GitHub/api_bank_h2"
-BACKUP_DIR="$HOME/Documentos/GitHub/backup"
+DIR_LOCAL="$HOME/api_bank_h2"
+BACKUP_DIR="$HOME/backup"
 source "$DIR_LOCAL/.env.production"
 
 LOG_FILE="$DIR_LOCAL/logs/master_run.log"

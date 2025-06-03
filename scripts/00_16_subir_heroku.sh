@@ -3,8 +3,8 @@ set -euo pipefail
 
 SCRIPT_NAME="$(basename "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
+PROJECT_ROOT="$HOME/api_bank_h2"
+HEROKU_ROOT="$HOME/api_bank_heroku"
 ENV_FILE="$PROJECT_ROOT/.env.production"
 HEROKU_APP=apibank2
 PEM_PATH="$PROJECT_ROOT/schemas/keys/private_key.pem"

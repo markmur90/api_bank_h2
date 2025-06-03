@@ -42,7 +42,7 @@ echo -e "\033[7;32m✅ Respaldo SQL generado correctamente.\033[0m" | tee -a "$L
 # python3 manage.py dumpdata --indent 2 > bdd_local.json
 # echo -e "\033[7;30m✅ ¡Respaldo JSON Local creado!\033[0m" | tee -a $LOG_DEPLOY
 
-# BACKUP_DIR_SQL="$HOME/Documentos/GitHub/backup/sql"
+# BACKUP_DIR_SQL="$HOME/backup/sql"
 
 # echo -e "\033[7;30m🚀 Creando respaldo de datos de local...\033[0m" | tee -a "$LOG_DEPLOY"
 # export PGPASSWORD="Ptf8454Jd55"

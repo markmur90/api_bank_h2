@@ -36,7 +36,7 @@ gunicorn api.wsgi:application \
 echo -e "\n\033[1;34m🧠 Consejo:\033[0m Abre https://0.0.0.0:8000 en tu navegador y acepta el riesgo para continuar.\n" | tee -a $LOG_DEPLOY
 
 
-PROJECT_DIR="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_DIR="$HOME/api_bank_h2"
 cd "$PROJECT_DIR"
 
 CERT_DIR="$PROJECT_DIR/certs"

@@ -3,10 +3,10 @@ set -euo pipefail
 
 SCRIPT_NAME="$(basename "$0")"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_ROOT="$HOME/api_bank_h2"
 ENV_FILE="$PROJECT_ROOT/.env.production"
 HEROKU_APP="${1:-apibank2}"
-PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/private_key.pem"
+PEM_PATH="$HOME/api_bank_h2/schemas/keys/private_key.pem"
 
 LOG_FILE="$SCRIPT_DIR/logs/01_full_deploy/full_deploy.log"
 LOG_DEPLOY="$SCRIPT_DIR/logs/despliegue/${SCRIPT_NAME%.sh}.log"

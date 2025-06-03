@@ -55,8 +55,8 @@ limpiar_respaldo_por_hora() {
     cd - >/dev/null
 }
 
-BACKUP_DIR_ZIP=$HOME/Documentos/GitHub/backup/zip
-BACKUP_DIR_SQL=$HOME/Documentos/GitHub/backup/sql
+BACKUP_DIR_ZIP=$HOME/backup/zip
+BACKUP_DIR_SQL=$HOME/backup/sql
 
 limpiar_respaldo_por_hora "$BACKUP_DIR_ZIP"
 limpiar_respaldo_por_hora "$BACKUP_DIR_SQL"
