@@ -1,0 +1,29 @@
+Creando una tecla SSH
+
+Para acceder a un VPS de NJalla, debe usar la autenticación basada en la clave SSH.Puede usar una clave existente o si es necesario generar una nueva.
+Para generar una nueva clave, abra un terminal (Linux u OS X) o si está utilizando Windows, instale un subsistema de Windows para Linux y abra un terminal con eso.
+Para nuevas teclas, recomendamos las teclas ED25519, pero también puede continuar usando las teclas RSA.Para generar la clave, ingrese el siguiente comando:
+
+$ ssh -keygen -t ed25519
+
+Presione ENTER en todas las preguntas solicitadas para usar el valor predeterminado, tenga en cuenta que si usa una ruta personalizada, le dice a SSH dónde está su clave privada.
+Ahora que ha creado la clave, obtenga el contenido de ~/.ssh/id_ed25519.pub (o la ruta que proporcionó).
+
+$ cat ~/.ssh/id_ed25519.pub
+
+Copie y pegue la clave pública completa en el formulario mientras crea un nuevo servidor.Tiene 3 partes y se ve así:
+
+SSH- <Algorithm> <Datos clave> <comentario>
+
+Para iniciar sesión en el servidor, ahora puede escribir:
+
+ssh root@<ip de su servidor>
+
+Si usó una ruta personalizada para su tecla SSH, puede proporcionarla pasando el comando -i
+
+ssh -i ~/escritorio/njalla-ed25519-key root@<ip de su servidor>
+
+Asegúrese de hacer una copia de seguridad de la parte privada de su tecla SSH, sin ella, no podrá iniciar sesión en su servidor.
+
+Si no desea cargar su clave pública a los servidores de clave pública, puede soltarla aquí para que todos los correos electrónicos de Njalla se encuentren con usted.
+

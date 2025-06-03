@@ -28,7 +28,7 @@ trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecu
 echo -e "\n🚀 Subiendo el proyecto a Heroku y GitHub..."
 cd "$HEROKU_ROOT" || { echo "❌ Error al acceder a $HEROKU_ROOT"; exit 1; }
 
-git rm -r --cached .
+# git rm -r --cached .
 
 echo -e "📦 Haciendo git add..."
 git add --all

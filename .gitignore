@@ -14,66 +14,7 @@ production_old.py
 /servers/
 /certs/
 /backup/
-# /scripts/
 datos_sensibles.txt
 Problema.md
-prompts.txt
+prompts
 *.log
-/z_njalla/
-importar_env_a_db.py
-# README.md
-# .pem
-# .crt
-# .asc
-# .key
-# .json
-# vps_backup/
-# gpg_keys/
-# conexion_segura_db/
-# api.sock
-# .env*
-# 01_full.sh
-base2.py
-# _pycache_/
-# *.pyc
-# *.pyo
-# 0001_initial.py
-
-# /api/accounts/
-# /api/collection/
-# /api/gpt/
-# /api/gpt2/
-# /api/sandbox/
-# /api/sct/
-# /api/sepa_payment/
-
-# /config/schemas/
-
-# /media/claves/
-
-# /schemas/certs/
-# /schemas/keys/
-
-zCod.md
-
-# /templates/api/GPT/
-# /templates/api/SCT/
-# /templates/api/SEPA/
-# /templates/api/accounts/
-# /templates/api/collection/
-# /templates/api/core/
-# /templates/api/sandbox/
-# /templates/api/sepa_payment/
-# /templates/api/transactions/
-# /templates/api/transfers/
-# /templates/api/forms/
-
-# /templates/partials/navGeneral/
-/templates/partials/navGeneral2.html
-/templates/partials/navGeneralFuncional.html
-
-# /tmp/
-# /staticfiles/
-# .gitignore
-
-# requirements.txt

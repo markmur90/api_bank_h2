@@ -1,72 +1,9 @@
-# from datetime import timedelta
-# import os
-# from pathlib import Path
-# import environ
-# from django.core.exceptions import ImproperlyConfigured
-# import dj_database_url
-
-
-# BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# # 1. Creamos el lector de .env
-# env = environ.Env()
-
-# # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-# DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
-
-# env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.local')
-# if not env_file.exists():
-#     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-# env.read_env(env_file)
-
-# # Cargar dinámicamente variables desde la BD
-# try:
-#     from api.configuraciones_api.loader import cargar_variables_entorno
-#     cargar_variables_entorno(DJANGO_ENV)
-# except Exception as e:
-#     print(f"⚠️  Configuración dinámica no aplicada: {e}")
-    
-    
-from datetime import timedelta
 import os
 from pathlib import Path
-import environ
-from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
-from django.apps import apps
+from datetime import timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# 1. Creamos el lector de .env
-env = environ.Env()
-
-# 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
-
-# Cargar dinámicamente variables desde la BD
-def intentar_cargar_variables(entorno):
-    if not apps.ready:
-        print("⚠️ Django apps aún no están listas. Configuración dinámica omitida.")
-        return
-    try:
-        from api.configuraciones_api.loader import cargar_variables_entorno
-        cargar_variables_entorno(entorno)
-    except Exception as e:
-        print(f"⚠️  Configuración dinámica no aplicada: {e}")
-
-intentar_cargar_variables(DJANGO_ENV)
-
-env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.local')
-if not env_file.exists():
-    raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-env.read_env(env_file)
-
-# 3. Variables críticas
-SECRET_KEY = "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw"
-DEBUG      = False
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'apibank2-54644cdf263f.herokuapp.com', 'api.coretransapi.com', '80.78.30.242']
-
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -85,8 +22,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'markdownify',
     'sslserver',
-    
-    'api.configuraciones_api',
+
     'api.transfers',
     'api.core',
     'api.authentication',
@@ -95,10 +31,10 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     "api.middleware.ExceptionLoggingMiddleware",
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -122,7 +58,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'api.context_processors.entorno_actual', 
             ],
         },
     },
@@ -130,32 +65,7 @@ TEMPLATES = [
 
 INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '192.168.0.143']
 
-
-
-# 5. Plantillas de base de datos
-DATABASES_HEROKU = {
-    'default': dj_database_url.config(default=env('DATABASE_URL'))
-}
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-DATABASE_SQLITE = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
-DATABASE_PSQL = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
-        'USER': 'markmur88',
-        'PASSWORD': 'Ptf8454Jd55',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
-DATABASES = DATABASE_PSQL
 
 AUTH_PASSWORD_VALIDATORS = [
     {'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator'},
@@ -197,57 +107,6 @@ REST_FRAMEWORK = {
     ),
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.AllowAny',),
 }
-
-OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
-
-
-REDIRECT_URI = env('REDIRECT_URI')
-CLIENT_ID = env('CLIENT_ID')
-CLIENT_SECRET = env('CLIENT_SECRET')
-ORIGIN = env('ORIGIN')
-TOKEN_URL = env('TOKEN_URL')
-OTP_URL = env('OTP_URL')
-AUTH_URL = env('AUTH_URL')
-API_URL = env('API_URL')
-AUTHORIZE_URL = env('AUTHORIZE_URL')
-SCOPE = env('SCOPE')
-TIMEOUT_REQUEST = 3600
-ACCESS_TOKEN = env('ACCESS_TOKEN')
-
-# from .configuración_dinamica import (
-#     REDIRECT_URI,
-#     CLIENT_ID,
-#     CLIENT_SECRET,
-#     ORIGIN,
-#     TOKEN_URL,
-#     OTP_URL,
-#     AUTH_URL,
-#     API_URL,
-#     AUTHORIZE_URL,
-#     SCOPE,
-#     TIMEOUT_REQUEST,
-#     ACCESS_TOKEN,
-# )
-# Configuración de OAuth2
-
-OAUTH2 = {
-    'CLIENT_ID': CLIENT_ID,
-    'CLIENT_SECRET': CLIENT_SECRET,
-    'ACCESS_TOKEN': ACCESS_TOKEN,
-    'ORIGIN': ORIGIN,
-    'OTP_URL': OTP_URL,
-    'AUTH_URL': AUTH_URL,
-    'API_URL': API_URL,
-    'TOKEN_URL': TOKEN_URL,
-    'AUTHORIZE_URL': AUTHORIZE_URL,
-    'SCOPE': SCOPE,
-    'REDIRECT_URI': REDIRECT_URI,
-    'TIMEOUT': 3600,
-    'TIMEOUT_REQUEST': 3600,
-
-}
-
-
 
 JWT_SIGNING_KEY = 'Ptf8454Jd55'
 JWT_VERIFYING_KEY = 'Ptf8454Jd55'
@@ -307,17 +166,39 @@ LOGGING = {
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/dashboard/'
-SESSION_COOKIE_AGE = 600
+SESSION_COOKIE_AGE = 1800
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
+CLIENT_ID = '7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7'
+CLIENT_SECRET = 'L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw'
+TOKEN_URL = 'https://simulator-api.db.com:443/gw/oidc/token'
+OTP_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single'
+AUTH_URL = 'https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges'
+API_URL = 'https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer'
+AUTHORIZE_URL = 'https://simulator-api.db.com:443/gw/oidc/authorize'
+SCOPE = 'sepa_credit_transfers'
+TIMEOUT_REQUEST = '3600'
+
+ACCESS_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ0Njk1MTE5LCJpYXQiOjE3NDQ2OTMzMTksImp0aSI6ImUwODBhMTY0YjZlZDQxMjA4NzdmZTMxMDE0YmE4Y2Y5IiwidXNlcl9pZCI6MX0.432cmStSF3LXLG2j2zLCaLWmbaNDPuVm38TNSfQclMg'
+
+PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'schemas/keys/private_key.pem')
+PRIVATE_KEY_KID = '7ed9e904-a421-4d49-8e9d-4a453b2d63c8'
+
+OAUTH2 = {
+    "CLIENT_ID": CLIENT_ID,
+    "CLIENT_SECRET": CLIENT_SECRET,
+    "AUTHORIZE_URL": AUTHORIZE_URL,
+    "AUTH_URL": AUTH_URL,
+    "TOKEN_URL": TOKEN_URL,
+    "SCOPE": SCOPE,
+    "TIMEOUT": TIMEOUT_REQUEST,
+    "TIMEOUT_REQUEST": TIMEOUT_REQUEST,
+}
 
 
 import django_heroku
 django_heroku.settings(locals())
-
-PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
-PRIVATE_KEY_KID = '6316220d-fc7b-4678-902c-1cdf60acbc8e'
