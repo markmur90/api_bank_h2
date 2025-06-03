@@ -37,7 +37,7 @@ echo -e "📝 Commit con mensaje: $COMENTARIO_COMMIT"
 git commit -m "$COMENTARIO_COMMIT" || echo "ℹ️  Sin cambios para commitear."
 
 echo -e "🌐 Push a GitHub..."
-git push origin api-bank || { echo "❌ Error al subir a GitHub"; exit 1; }
+git push -u origin api-bank || { echo "❌ Error al subir a GitHub"; exit 1; }
 
 # 📝 Guardar histórico en formato Markdown
 COMMIT_LOG="$SCRIPT_DIR/logs/commits_hist.md"
