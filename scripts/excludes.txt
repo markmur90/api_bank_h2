@@ -2,29 +2,5 @@
 .db
 .sqlite3
 .vscode/
-
-base0.py
-local_old.py
-production_old.py
-datos_sensibles.txt
-Problema.md
-prompts.txt
-importar_env_a_db.py
-base2.py
-
-/.codesandbox/
-/.devcontainer/
-/.github/
-/temp/
-/servers/
-/certs/
-/backup/
-
-/z_njalla/
-
-/templates/partials/navGeneral2.html
-/templates/partials/navGeneralFuncional.html
-
-
-.gitignore
+* copy*.*
 

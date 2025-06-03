@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 set -e
 
-# --- logging ---
-mkdir -p "$HOME/logs_notificadores"
-LOG_FILE="$HOME/logs_notificadores/$(basename "$0").log"
-exec > >(tee -a "$LOG_FILE") 2>&1
-echo -e "\n🔄 Inicio $(date '+%F %T')"
+# # --- logging ---
+# mkdir -p "$HOME/logs_notificadores"
+# LOG_FILE="$HOME/logs_notificadores/$(basename "$0").log"
+# exec > >(tee -a "$LOG_FILE") 2>&1
+# echo -e "\n🔄 Inicio $(date '+%F %T')"
 
 
-export DISPLAY=:0.0
+export DISPLAY=:0
 export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
 
 
