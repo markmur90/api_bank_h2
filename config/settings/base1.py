@@ -41,7 +41,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
 
 # Cargar dinámicamente variables desde la BD
 def intentar_cargar_variables(entorno):
