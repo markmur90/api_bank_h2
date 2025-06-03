@@ -64,7 +64,7 @@ env.read_env(env_file)
 # 3. Variables críticas
 SECRET_KEY = "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw"
 DEBUG      = False
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'apibank2-54644cdf263f.herokuapp.com', 'api.coretransapi.com', '80.78.30.242']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'apibank2-54644cdf263f.herokuapp.com', 'api.coretransapi.com', '80.78.30.242', 'sixjt4orn6atjm423vtmrno25a4d47g222gtd6bnazvx3jiyxnbmfbyd.onion']
 
 
 
