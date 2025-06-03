@@ -2,8 +2,8 @@
 set -e
 
 # # --- logging ---
-# mkdir -p "$HOME/logs_notificadores"
-# LOG_FILE="$HOME/logs_notificadores/$(basename "$0").log"
+# mkdir -p "$HOME/scripts/logs_notificadores"
+# LOG_FILE="$HOME/scripts/logs_notificadores/$(basename "$0").log"
 # exec > >(tee -a "$LOG_FILE") 2>&1
 # echo -e "\n🔄 Inicio $(date '+%F %T')"
 

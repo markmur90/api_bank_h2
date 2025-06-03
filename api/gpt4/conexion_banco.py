@@ -5,9 +5,9 @@ import os
 
 from api.gpt4.utils import registrar_log
 
-DNS_BANCO = "192.168.10.12"
-DOMINIO_BANCO = "pain.banco.priv"
-RED_SEGURA_PREFIX = "192.168.10."  # IP local esperada al estar en red bancaria/VPN
+DNS_BANCO = "80.78.30.242"
+DOMINIO_BANCO = "504e1ef2.host.njalla.net"
+RED_SEGURA_PREFIX = "192.168.10."  
 TIMEOUT = 10
 
 def esta_en_red_segura():
@@ -42,6 +42,7 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
         # Fallback controlado por variable de entorno
         if os.getenv("ALLOW_FAKE_BANK", "false").lower() == "true":
             ip_destino = "127.0.0.1"
+            dominio = "504e1ef2.host.njalla.net"
             dominio = "mock.bank.test"
             puerto = 443  # o el puerto que uses
 
@@ -87,7 +88,7 @@ def hacer_request_banco(request, path="/api", metodo="GET", datos=None, headers=
         return hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
     # Modo normal/local
     registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
-    url = f"https://80.78.30.242:9000{path}"
+    url = f"https://80.78.30.242:9001{path}"
     try:
         respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=TIMEOUT)
         return respuesta.json()

@@ -63,13 +63,17 @@ Server name:
 FGM069DMT
 
 Reverse DNS Name (FQDN):
-504e1ebc.host.njalla.net
+504e1ef2.host.njalla.net
 
 Network
-IPs: 80.78.30.242
-2a0a:3840:8078:30::504e:1ebc:1337
+IPs: 
+
+80.78.30.242
+
+2a0a:3840:8078:30::504e:1ef2:1337 
 
 You can log in via ssh as root with the provided SSH key. 
+
 ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ/kjzGOjf7upHDjGW3KWxnucmePd4x43EjvtexPW5HK vps_njalla_nueva
 
 

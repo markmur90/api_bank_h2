@@ -21,117 +21,94 @@ touch "$TODO_FILE"
 # ------------------------------------------
 function manage_todos() {
     while true; do
-        mapfile -t tasks < "$TODO_FILE"
+        mapfile -t raw_tasks < "$TODO_FILE"
 
-        # Mostrar lista de tareas actuales si existen
+        tasks=()
+        for line in "${raw_tasks[@]}"; do
+            if [[ "$line" =~ ^\[X\] ]]; then
+                task_text="${line:4}"
+                tasks+=("✔ $(echo "$task_text" | sed 's/^/~/' | sed 's/$/~/' )")  # efecto visual de tachado
+            elif [[ "$line" =~ ^\[ \] ]]; then
+                tasks+=("• ${line:4}")
+            fi
+        done
+
         if [ ${#tasks[@]} -gt 0 ]; then
-            # Preparar texto con viñeta por cada tarea
-            task_list=$(printf "• %s\n" "${tasks[@]}")
-            # Diálogo scrollable para que el usuario vea todas las tareas
+            task_list=$(printf "%s\n" "${tasks[@]}")
             echo -e "$task_list" | zenity --text-info \
                                           --title="📋 Tareas actuales" \
-                                          --width=400 \
-                                          --height=600
+                                          --width=600 \
+                                          --height=400
         fi
 
-        # Si no hay tareas, preguntar directamente si quiere agregar una
-        if [ ${#tasks[@]} -eq 0 ]; then
-            if zenity --question \
-                       --title="📋 Lista de pendientes" \
-                       --text="No hay tareas pendientes. ¿Deseas agregar una nueva?"; then
-                new_task=$(zenity --entry \
-                                  --title="➕ Agregar tarea" \
-                                  --text="Ingresa la descripción de la nueva tarea:")
+        if [ ${#raw_tasks[@]} -eq 0 ]; then
+            if zenity --question --title="📋 Lista de pendientes" \
+                      --text="No hay tareas pendientes. ¿Deseas agregar una nueva?"; then
+                new_task=$(zenity --entry --title="➕ Agregar tarea" --text="Ingresa la descripción:")
                 if [ -n "$new_task" ]; then
-                    echo "$new_task" >> "$TODO_FILE"
-                    continue   # Volver a reevaluar, ya que ahora existe al menos 1 tarea
-                else
-                    # Si el usuario dejó vacío o canceló, volvemos a preguntar
-                    continue
+                    echo "[ ] $new_task" >> "$TODO_FILE"
                 fi
+                continue
             else
-                # El usuario elige “No” → salir de gestión de pendientes
                 break
             fi
         fi
 
-        # Si hay tareas, primero preguntamos WHAT-TO-DO: Marcar completadas / Agregar nueva / Salir
         action=$(zenity --list --radiolist \
                         --title="📋 Gestión de pendientes" \
-                        --text="Tienes ${#tasks[@]} tarea(s) pendiente(s).\n¿Qué deseas hacer?" \
+                        --text="¿Qué deseas hacer?" \
                         --column="" --column="Acción" \
                         TRUE "Salir" FALSE "Marcar completadas" FALSE "Agregar nueva" \
                         --width=600 --height=350)
-        exit_code=$?
-
-        if [ $exit_code -ne 0 ] || [ -z "$action" ] || [ "$action" == "Salir" ]; then
-            # Si pulsa “Cancelar” / cierra diálogo / elige “Salir”: salimos de manage_todos
-            break
-        fi
+        [ $? -ne 0 ] && break
+        [ "$action" == "Salir" ] && break
 
         if [ "$action" == "Agregar nueva" ]; then
-            # Mostrar cuadro de entrada para la descripción de la nueva tarea
-            new_task=$(zenity --entry \
-                              --title="➕ Agregar tarea" \
-                              --text="Ingresa la descripción de la nueva tarea:")
-            if [ -n "$new_task" ]; then
-                echo "$new_task" >> "$TODO_FILE"
-            fi
-            # Regresar al inicio del bucle para reevaluar el menú (podríamos querer agregar más o marcar)
+            new_task=$(zenity --entry --title="➕ Agregar tarea" --text="Ingresa la descripción:")
+            [ -n "$new_task" ] && echo "[ ] $new_task" >> "$TODO_FILE"
             continue
         fi
 
         if [ "$action" == "Marcar completadas" ]; then
-            # Construir args para checklist: cada línea = FALSE + "texto de la tarea"
             checklist_args=()
-            for task in "${tasks[@]}"; do
-                checklist_args+=(FALSE "$task")
+            for line in "${raw_tasks[@]}"; do
+                if [[ "$line" =~ ^\[ \] ]]; then
+                    checklist_args+=(FALSE "${line:4}")
+                fi
             done
 
-            # Mostrar checklist: cada tarea aparece con un checkbox inicial sin marcar
             result=$(zenity --list \
                             --checklist \
                             --title="✔️ Marcar tareas completadas" \
-                            --text="Selecciona las tareas que ya hayas completado:" \
+                            --text="Selecciona las tareas completadas:" \
                             --column="" --column="Tarea" \
                             "${checklist_args[@]}" \
-                            --width=400 \
-                            --height=600 \
-                            --ok-label="Eliminar seleccionadas" \
+                            --width=500 \
+                            --height=800 \
+                            --ok-label="Marcar como hechas" \
                             --cancel-label="Volver")
-            code_list=$?
+            [ $? -ne 0 ] && continue
+            [ -z "$result" ] && continue
 
-            if [ $code_list -eq 1 ] || [ -z "$result" ]; then
-                # Si pulsa “Volver” o cierra sin nada seleccionado, regresa al menú principal
-                continue
-            fi
-
-            # Zenity devuelve las tareas seleccionadas separadas por '|'
             IFS="|" read -r -a done_tasks <<< "$result"
-
-            # Crear temporal para solo guardar las no seleccionadas
             tmpfile=$(mktemp)
             while IFS= read -r line; do
-                skip=false
+                updated=false
                 for done in "${done_tasks[@]}"; do
-                    if [ "$line" == "$done" ]; then
-                        skip=true
+                    if [[ "$line" == "[ ] $done" ]]; then
+                        echo "[X] $done" >> "$tmpfile"
+                        updated=true
                         break
                     fi
                 done
-                if ! $skip; then
-                    echo "$line" >> "$tmpfile"
-                fi
+                [ "$updated" = false ] && echo "$line" >> "$tmpfile"
             done < "$TODO_FILE"
-
-            # Reemplazar archivo original
             mv "$tmpfile" "$TODO_FILE"
-            # Tras eliminar, ya volvemos al menú inicial: si quedan tareas, volverá a preguntar
             continue
         fi
-
     done
 }
+
 
 TIEMPO_INICIO=$(date +%s)
 
@@ -142,11 +119,11 @@ echo "🟢 Notificaciones activadas cada $INTERVALO_MINUTOS minutos exactos del 
 # Bucle principal de notificaciones
 # ------------------------------------------
 
-# Evitar duplicados
-if pgrep -f "notificador.sh 5" > /dev/null; then
-  echo "⚠ Ya hay un notificador.sh corriendo con intervalo 5 minutos. Abortando."
-  exit 1
-fi
+# # Evitar duplicados
+# if pgrep -f "notificador.sh 5" > /dev/null; then
+#   echo "⚠ Ya hay un notificador.sh corriendo con intervalo 5 minutos. Abortando."
+#   exit 1
+# fi
 
 
 while true; do

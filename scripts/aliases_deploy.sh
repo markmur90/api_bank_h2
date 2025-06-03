@@ -8,16 +8,16 @@ alias api_heroku='cd "$HOME/api_bank_heroku" && source "$HOME/envAPP/bin/activat
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
-alias vps_proc_notify='for pid in $(pgrep -f notificador); do echo -e "\n🔹 PID $pid"; ps -p $pid -o pid,ppid,etime,cmd; pgrep -P $pid | xargs -r ps -o pid,ppid,etime,cmd; done'
-alias vps_notif_status='bash ~/api_bank_h2/scripts/estado_notificadores.sh'
 alias 5_notify='systemctl --user start notificador_bin.service'
 alias 5_stop='systemctl --user stop notificador_bin.service'
 alias 30_notify='systemctl --user start notificador_30.service'
 alias 30_stop='systemctl --user stop notificador_30.service'
 
-
-alias start_notif_i='bash ~/api_bank_h2/scripts/start_notificadores_interactivo.sh'
-alias notificadores='bash ~/api_bank_h2/scripts/gestionar_notificadores.sh'
+alias proc_notify='for pid in $(pgrep -f notificador); do echo -e "\n🔹 PID $pid"; ps -p $pid -o pid,ppid,etime,cmd; pgrep -P $pid | xargs -r ps -o pid,ppid,etime,cmd; done'
+alias status_notify='bash ~/api_bank_h2/scripts/estado_notificadores.sh'
+alias start_notify='bash ~/api_bank_h2/scripts/start_notificadores_interactivo.sh'
+alias gest_notify='bash ~/api_bank_h2/scripts/gestionar_notificadores.sh'
+alias restart_notify='bash ~/api_bank_h2/scripts/notificador_restart.sh'
 
 alias d_help='api && bash ./01_full.sh --help'
 alias d_step='api && bash ./01_full.sh -s'
@@ -183,13 +183,14 @@ echo -e "  \033[1;33mdiagnostico_entorno.sh\033[0m     Diagnóstico del sistema 
 '
 alias d_hp_notif='clear && 
 echo -e "\n\033[1;36m🔔 HERRAMIENTAS DE NOTIFICACIÓN:\033[0m"
-echo -e "  \033[1;33mstart_notif_i\033[0m              Inicia notificaciones pidiendo intervalo interactivo"
-echo -e "  \033[1;33mnotificadores\033[0m              Script interactivo para iniciar/detener/reiniciar notificadores"
-echo -e "  \033[1;33mnotify_service_time <min>\033[0m  Cambia intervalo de notificador con systemd (si estuviera activo)"
-echo -e "  \033[1;33mnotify_clock_time <min>\033[0m    Notificador de reloj exacto (notificador_30.sh)"
-# echo -e "  \033[1;33mpid_notify\033[0m                 Muestra el PID del proceso notificador"
-# echo -e "  \033[1;33mproc_notify\033[0m                Lista procesos relacionados al notificador"
-# echo -e "  \033[1;33mrestart_notificar\033[0m          Reinicia el notificador interactivamente"
+echo -e "  \033[1;33mstart_notify\033[0m               Inicia notificaciones pidiendo intervalo interactivo"
+echo -e "  \033[1;33mgest_notify\033[0m                Script interactivo para iniciar/detener/reiniciar notificadores"
+echo -e "  \033[1;33mproc_notify\033[0m                Lista procesos relacionados al notificador"
+echo -e "  \033[1;33mrestart_notify\033[0m             Reinicia el notificador interactivamente"
+echo -e "  \033[1;33m5_notify\033[0m                   Init el notificador 5"
+echo -e "  \033[1;33m30_notify\033[0m                  Init el notificador 30"
+echo -e "  \033[1;33m5_stop\033[0m                     Stop el notificador 5"
+echo -e "  \033[1;33m30_stop\033[0m                    Stop el notificador 30"
 '
 alias d_hp_logs='clear && 
 echo -e "\n\033[1;36m🪵 LOGS DISPONIBLES:\033[0m"
@@ -241,9 +242,6 @@ log_ok "tor_refresh"
 # log_ok "sync_configs"
 # log_ok "push_configs"
 
-log_info "📁 VPS SYNC FILES:"
-log_ok "vps_locsync"
-log_ok "vps_gitsync"
 
 log_info "📁 VPS COPY FILES:"
 log_ok "vps_up_copy"
@@ -265,14 +263,4 @@ log_ok "vps_down_copy"
 # # log_ok "vps_l_root"
 # # log_ok "vps_l_user"
 # log_ok "pg_njalla_local"
-
-log_info "📁 NOTIFICADORES:"
-log_ok "vps_proc_notify"
-log_ok "vps_notif_status"
-log_ok "5_notify"
-log_ok "5_stop"
-log_ok "30_notify"
-log_ok "30_stop"
-log_ok "start_notifi_i"
-log_ok "notificadores"
 '
