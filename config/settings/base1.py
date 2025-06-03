@@ -41,7 +41,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
 
 # Cargar dinámicamente variables desde la BD
 def intentar_cargar_variables(entorno):
@@ -134,7 +134,7 @@ TEMPLATES = [
     },
 ]
 
-INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '192.168.0.143']
+INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '192.168.0.143', '80.78.30.242']
 
 
 
