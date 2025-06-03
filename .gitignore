@@ -30,4 +30,3 @@ vps_backup/
 gpg_keys/
 conexion_segura_db/
 api.sock
-*.env

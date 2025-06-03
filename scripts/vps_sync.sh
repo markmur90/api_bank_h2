@@ -9,11 +9,14 @@ SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
 VPS_API_DIR="/home/$VPS_USER/api_bank_heroku"
 
 # === Detectar raíz del proyecto ===
-PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || find "$PWD" -type f -name "manage.py" -exec dirname {} \; | head -n1)
-if [[ -z "$PROJECT_ROOT" ]]; then
-  echo "❌ No se pudo detectar la raíz del proyecto. Abortando."
-  exit 1
-fi
+# PROJECT_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || find "$PWD" -type f -name "manage.py" -exec dirname {} \; | head -n1)
+# if [[ -z "$PROJECT_ROOT" ]]; then
+#   echo "❌ No se pudo detectar la raíz del proyecto. Abortando."
+#   exit 1
+# fi
+
+PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_heroku"
+
 
 EXCLUDES="$PROJECT_ROOT/scripts/excludes.txt"
 LOG_DIR="$PROJECT_ROOT/scripts/logs/sync"
