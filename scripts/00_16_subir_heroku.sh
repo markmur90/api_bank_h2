@@ -24,9 +24,16 @@ trap 'echo -e "\n❌ Error en línea $LINENO: \"$BASH_COMMAND\"\nAbortando ejecu
 # Validación de Heroku CLI
 command -v heroku >/dev/null || { echo "❌ Heroku CLI no está instalado."; exit 1; }
 
-
 echo -e "\n🚀 Subiendo el proyecto a Heroku y GitHub..."
 cd "$HEROKU_ROOT" || { echo "❌ Error al acceder a $HEROKU_ROOT"; exit 1; }
+
+# Asegura que el remoto heroku esté configurado
+if ! git remote | grep -q "^heroku$"; then
+    echo -e "🔗 Agregando remoto Heroku..."
+    heroku git:remote -a "$HEROKU_APP"
+else
+    echo -e "✅ Remoto Heroku ya configurado."
+fi
 
 echo -e "📦 Haciendo git add..."
 git add --all

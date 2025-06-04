@@ -7,9 +7,9 @@
 base0.py
 local_old.py
 production_old.py
-/.codesandbox/
-/.devcontainer/
-/.github/
+# /.codesandbox/
+# /.devcontainer/
+# /.github/
 /temp/
 /servers/
 certs/
