@@ -756,9 +756,9 @@ URL_NJALLA="https://api.coretransapi.com/"
 
 # === FIN: CORREGIDO EL BLOQUE PROBLEMÁTICO ===
 URL="$URL_LOCAL"
-notify-send "api_bank_h2" "✅ Proyecto iniciado correctamente en:
-$URL
-$URL_HEROKU
+notify-send "api_bank_h2" "✅ Proyecto iniciado correctamente ✅
+# $URL
+# $URL_HEROKU
 🏁 ¡Todo completado con éxito!"
 
 

@@ -960,3 +960,90 @@ def prueba_conexion_banco(request):
     if respuesta is None:
         return JsonResponse({"estado": "fallo", "detalle": "No se obtuvo respuesta."}, status=502)
     return JsonResponse({"estado": "ok", "respuesta": respuesta})
+
+
+
+
+
+# ============================
+# Simulación de red bancaria
+# ============================
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+from django.http import HttpResponse
+from datetime import timedelta
+from api.gpt4 import conexion_banco
+from api.gpt4.models import (
+    Debtor, DebtorAccount, Creditor, CreditorAccount, CreditorAgent,
+    PaymentIdentification, Transfer, ClientID, Kid
+)
+import uuid
+
+@method_decorator(staff_member_required, name='dispatch')
+class SimulacionTransferenciaView(View):
+    def get(self, request):
+        # Forzamos red segura
+        conexion_banco.esta_en_red_segura = lambda: True
+
+        # Usuario con permisos: usar username existente de oficial
+        User = get_user_model()
+        oficial = User.objects.get(username='oficial_cuentas')  # cambia este username
+
+        # Crear entidades necesarias
+        debtor = Debtor.objects.create(
+            name="Cliente Simulado",
+            customer_id="SIMU1234567890",
+            postal_address_country="ES",
+            postal_address_street="Calle Falsa 123",
+            postal_address_city="Madrid"
+        )
+        debtor_account = DebtorAccount.objects.create(
+            debtor=debtor,
+            iban="ES7620770024003102575766"
+        )
+        creditor = Creditor.objects.create(
+            name="Beneficiario Externo",
+            postal_address_country="DE",
+            postal_address_street="Berlinerstrasse 99",
+            postal_address_city="Berlin"
+        )
+        creditor_account = CreditorAccount.objects.create(
+            creditor=creditor,
+            iban="DE89370400440532013000"
+        )
+        creditor_agent = CreditorAgent.objects.create(
+            bic="MARKDEF1100",
+            financial_institution_id="BANKDEFFXXX",
+            other_information="Banco Externo XYZ"
+        )
+        payment_ident = PaymentIdentification.objects.create(
+            instruction_id=str(uuid.uuid4()),
+            end_to_end_id=str(uuid.uuid4())
+        )
+        clientid = ClientID.objects.first()
+        kid = Kid.objects.first()
+
+        transfer = Transfer.objects.create(
+            payment_id=str(uuid.uuid4()),
+            client=clientid,
+            kid=kid,
+            debtor=debtor,
+            debtor_account=debtor_account,
+            creditor=creditor,
+            creditor_account=creditor_account,
+            creditor_agent=creditor_agent,
+            instructed_amount=1000.00,
+            currency="EUR",
+            purpose_code="GDSV",
+            requested_execution_date=timezone.now().date() + timedelta(days=1),
+            remittance_information_unstructured="Simulación de transferencia SEPA",
+            status="CREA",
+            payment_identification=payment_ident,
+            auth_id="simu-auth"
+        )
+
+        return HttpResponse(f"✅ Transferencia simulada creada con ID: {transfer.payment_id}")

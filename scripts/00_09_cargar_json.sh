@@ -51,7 +51,7 @@ if ! command -v pv > /dev/null 2>&1; then
     exit 1
 fi
 
-DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
+DATABASE_URL="postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase"
 
 
 

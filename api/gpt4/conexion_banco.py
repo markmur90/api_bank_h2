@@ -2,15 +2,27 @@ import dns.resolver
 import requests
 import socket
 import os
+from django.conf import settings
 
-from api.gpt4.utils import registrar_log
+from api.gpt4.utils import registrar_log, get_conf
+from functools import lru_cache
+from api.configuraciones_api.helpers import get_conf
 
-DNS_BANCO = "80.78.30.242"
-DOMINIO_BANCO = "504e1ef2.host.njalla.net"
-RED_SEGURA_PREFIX = "192.168.10."  
-TIMEOUT = 10
+@lru_cache
+def get_settings():
+    timeout = int(600)
+    port = int(443)
+    return {
+        "DNS_BANCO":            get_conf("DNS_BANCO"),
+        "DOMINIO_BANCO":        get_conf("DOMINIO_BANCO"),
+        "RED_SEGURA_PREFIX":    get_conf("RED_SEGURA_PREFIX"),
+        "TIMEOUT":              timeout,
+        "MOCK_PORT":            port,
+    }
 
 def esta_en_red_segura():
+    settings = get_settings()
+    RED_SEGURA_PREFIX = settings["RED_SEGURA_PREFIX"]
     try:
         hostname = socket.gethostname()
         ip_local = socket.gethostbyname(hostname)
@@ -19,6 +31,9 @@ def esta_en_red_segura():
         return False
 
 def resolver_ip_dominio(dominio):
+    settings = get_settings()
+    DNS_BANCO = settings["DNS_BANCO"]
+    
     resolver = dns.resolver.Resolver()
     resolver.nameservers = [DNS_BANCO]
     try:
@@ -31,6 +46,11 @@ def resolver_ip_dominio(dominio):
         return None
 
 def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers=None):
+    settings = get_settings()
+    DOMINIO_BANCO = settings["DOMINIO_BANCO"]
+    MOCK_PORT = settings["MOCK_PORT"]
+    TIMEOUT = settings["TIMEOUT"]
+    
     headers = headers or {}
     
     if esta_en_red_segura():
@@ -39,19 +59,16 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
             registrar_log("conexion", f"❌ No se pudo resolver {dominio} vía DNS bancario.")
             return None
     else:
-        # Fallback controlado por variable de entorno
         if os.getenv("ALLOW_FAKE_BANK", "false").lower() == "true":
             ip_destino = "127.0.0.1"
-            dominio = "504e1ef2.host.njalla.net"
-            dominio = "mock.bank.test"
-            puerto = 443  # o el puerto que uses
+            dominio = DOMINIO_BANCO
+            puerto = MOCK_PORT
 
             if not puerto_activo(ip_destino, puerto):
                 registrar_log("conexion", f"❌ Mock local en {ip_destino}:{puerto} no está activo. Cancelando.")
                 return None
 
             registrar_log("conexion", f"⚠️ Red no segura. Usando servidor local mock en {ip_destino}:{puerto}.")
-
         else:
             registrar_log("conexion", "🚫 Red no segura y ALLOW_FAKE_BANK desactivado. Cancelando.")
             return None
@@ -61,7 +78,7 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
 
     try:
         if metodo.upper() == "GET":
-            r = requests.get(url, headers=headers, timeout=TIMEOUT, verify=False)  # en mock se puede desactivar SSL
+            r = requests.get(url, headers=headers, timeout=TIMEOUT, verify=False)
         else:
             r = requests.post(url, headers=headers, json=datos, timeout=TIMEOUT, verify=False)
         registrar_log("conexion", f"✅ Petición a {dominio}{path} → {r.status_code}")
@@ -70,25 +87,26 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
         registrar_log("conexion", f"❌ Error en petición HTTPS a {dominio}: {str(e)}")
         return None
 
-def puerto_activo(host, puerto, timeout=2):
+def puerto_activo(host, puerto, timeout=int(2)):
     try:
         with socket.create_connection((host, puerto), timeout=timeout):
             return True
     except Exception:
         return False
-    
-# ============================
-# Wrapper inteligente por sesión
-# ============================
-from django.conf import settings
 
 def hacer_request_banco(request, path="/api", metodo="GET", datos=None, headers=None):
+    settings = get_settings()
+    DOMINIO_BANCO = settings["DOMINIO_BANCO"]
+    DNS_BANCO = settings["DNS_BANCO"]
+    MOCK_PORT = settings["MOCK_PORT"]
+    TIMEOUT = settings["TIMEOUT"]
+
     usar_conexion = request.session.get("usar_conexion_banco", False)
     if usar_conexion:
         return hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
-    # Modo normal/local
+
     registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
-    url = f"https://80.78.30.242:9001{path}"
+    url = f"https://{DNS_BANCO}:{MOCK_PORT}{path}"
     try:
         respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=TIMEOUT)
         return respuesta.json()

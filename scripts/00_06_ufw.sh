@@ -29,6 +29,10 @@ sudo ufw default allow outgoing
 sudo ufw allow 22/tcp      # SSH
 sudo ufw allow 80/tcp      # HTTP
 sudo ufw allow 8000/tcp    # HTTPS
+sudo ufw allow 8888/tcp    # HTTPS
+sudo ufw allow 8887/tcp    # HTTPS
+sudo ufw allow 8886/tcp    # HTTPS
+sudo ufw allow 9080/tcp    # HTTPS
 # sudo ufw allow 18080/tcp    # HTTPS
 # sudo ufw allow 18081/tcp    # HTTPS
 # sudo ufw allow 28080/tcp    # HTTPS

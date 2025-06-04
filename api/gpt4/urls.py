@@ -53,4 +53,8 @@ urlpatterns = [
     path("toggle_banco/", views.toggle_conexion_banco, name="toggle_conexion_banco"),
     path("probar_banco/", views.prueba_conexion_banco, name="prueba_conexion_banco"),
     path("diagnostico_banco/", views.diagnostico_banco, name="diagnostico_banco"),
+    
+    path("simular_transferencia/", views.SimulacionTransferenciaView.as_view(), name="simular_transferencia"),
+
+
 ]

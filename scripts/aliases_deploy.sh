@@ -2,7 +2,8 @@
 
 # === ACCESOS DIRECTOS AL PROYECTO ===
 
-alias api='cd "$HOME/api_bank_h2" && source "$HOME/envAPP/bin/activate" '
+alias api='cd "$HOME/api_bank_h2" && source "$HOME/envAPP/bin/activate" && clear '
+alias freedom='cd "$HOME/FreedomGPT" && source "$HOME/venvAPI/bin/activate" && clear '
 alias BKapi='cd "$HOME/api_bank_h2_BK" && source "$HOME/envAPP/bin/activate" && clear && code .'
 alias api_heroku='cd "$HOME/api_bank_heroku" && source "$HOME/envAPP/bin/activate" '
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
@@ -18,6 +19,27 @@ alias status_notify='bash ~/api_bank_h2/scripts/estado_notificadores.sh'
 alias start_notify='bash ~/api_bank_h2/scripts/start_notificadores_interactivo.sh'
 alias gest_notify='bash ~/api_bank_h2/scripts/gestionar_notificadores.sh'
 alias restart_notify='bash ~/api_bank_h2/scripts/notificador_restart.sh'
+alias gtareas_status='bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gtareas_status.sh'
+
+alias 000gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor_tareas/usr/local/bin/gestor_tareas.sh >/dev/null 2>&1 & disown'
+alias 00gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_00.sh >/dev/null 2>&1 & disown'
+alias 01gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_01.sh >/dev/null 2>&1 & disown'
+alias 02gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_02.sh >/dev/null 2>&1 & disown'
+alias 03gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_03.sh >/dev/null 2>&1 & disown'
+alias 04gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_04.sh >/dev/null 2>&1 & disown'
+alias 05gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_05.sh >/dev/null 2>&1 & disown'
+alias 06gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_06.sh >/dev/null 2>&1 & disown'
+alias 07gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_07.sh >/dev/null 2>&1 & disown'
+alias 08gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_08.sh >/dev/null 2>&1 & disown'
+alias 09gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_09.sh >/dev/null 2>&1 & disown'
+alias 10gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_10.sh >/dev/null 2>&1 & disown'
+alias 11gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_11.sh >/dev/null 2>&1 & disown'
+alias 12gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_12.sh >/dev/null 2>&1 & disown'
+alias 13gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_13.sh >/dev/null 2>&1 & disown'
+alias 14gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_14.sh >/dev/null 2>&1 & disown'
+alias 15gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_15.sh >/dev/null 2>&1 & disown'
+alias 16gtareas='nohup bash ~/api_bank_h2/scripts/gestor-tareas/gestor/gestor_tareas_16.sh >/dev/null 2>&1 & disown'
+
 
 alias d_help='api && bash ./01_full.sh --help'
 alias d_step='api && bash ./01_full.sh -s'
@@ -191,6 +213,7 @@ echo -e "  \033[1;33m5_notify\033[0m                   Init el notificador 5"
 echo -e "  \033[1;33m30_notify\033[0m                  Init el notificador 30"
 echo -e "  \033[1;33m5_stop\033[0m                     Stop el notificador 5"
 echo -e "  \033[1;33m30_stop\033[0m                    Stop el notificador 30"
+echo -e "  \033[1;33mgtareas_status\033[0m             Status Gestor de Tareas"
 '
 alias d_hp_logs='clear && 
 echo -e "\n\033[1;36m🪵 LOGS DISPONIBLES:\033[0m"
@@ -246,6 +269,28 @@ log_ok "tor_refresh"
 log_info "📁 VPS COPY FILES:"
 log_ok "vps_up_copy"
 log_ok "vps_down_copy"
+
+log_info "📁 VPS NOTIFY:"
+log_ok "gtareas_status"
+log_ok "000gtareas"
+log_ok "00gtareas"
+log_ok "01gtareas"
+log_ok "02gtareas"
+log_ok "03gtareas"
+log_ok "04gtareas"
+log_ok "05gtareas"
+log_ok "06gtareas"
+log_ok "07gtareas"
+log_ok "08gtareas"
+log_ok "09gtareas"
+log_ok "10gtareas"
+log_ok "11gtareas"
+log_ok "12gtareas"
+log_ok "13gtareas"
+log_ok "14gtareas"
+log_ok "15gtareas"
+log_ok "16gtareas"
+
 
 # log_info "📁 VPS LOGS:"
 # log_ok "vps_nginx_err"
