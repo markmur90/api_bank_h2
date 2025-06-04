@@ -4,3 +4,5 @@ Test
 Gestor
 Seleccionar y analizar archivo
 Conexión segura
+
+http://2a0a:3840:8078:30:0:504e:1ef2:1337:9080/api/gpt4/recibir/
