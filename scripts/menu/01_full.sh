@@ -557,7 +557,7 @@ centrar_texto "CAMBIO MAC" >> "$LOG_DEPLOY"
 ejecutar_si_activo "DO_MAC" "Cambiar MAC" "bash $SYSTE_DIR/00_05_mac.sh"
 # echo -e "\n\n"
 pausa_y_limpiar
-verificar_vpn_segura
+# verificar_vpn_segura
 # === 06 ===
 centrar_texto_coloreado $'\033[7;33mUFW\033[0m'
 centrar_texto "UFW" >> "$LOG_DEPLOY"
@@ -621,7 +621,7 @@ ejecutar_si_activo "DO_SYNC_LOCAL" "Sincronizar Archivos Locales" "bash $BACKU_D
 # echo -e "\n\n"
 pausa_y_limpiar
 
-verificar_vpn_segura
+# verificar_vpn_segura
 
 # === 15 ===
 centrar_texto_coloreado $'\033[7;33mVARIABLES A HEROKU\033[0m'
