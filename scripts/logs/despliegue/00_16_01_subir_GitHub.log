@@ -81572,3 +81572,58 @@ To github.com:markmur90/api_bank_heroku.git
 rama 'api-bank' configurada para rastrear 'origin/api-bank'.
 
 🎉 ✅ ¡Puss a GitHub completo!
+
+📅 Inicio ejecución: 2025-06-05 11:26:09
+📄 Script: 00_16_01_subir_GitHub.sh
+═══════════════════════════════════════════
+
+🚀 Subiendo el proyecto a Heroku y GitHub...
+📦 Haciendo git add...
+📝 Commit con mensaje: Simulador bancario
+[api-bank 00473a86] Simulador bancario
+ 72 files changed, 35597 insertions(+), 148 deletions(-)
+ create mode 100644 scripts/logs/sync/20250605_065830_sync.log
+ create mode 100644 scripts/logs/sync/20250605_073519_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_074529_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_074641_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_080428_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_080938_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_080957_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_081104_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_081220_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_081735_sync.log
+ create mode 100644 scripts/logs/sync/20250605_081751_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_081914_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_082417_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_082954_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_083546_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_083721_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_083844_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_084252_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_084434_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_084953_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_085227_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_085340_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_085604_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_085937_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_090714_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_090904_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_091117_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_091519_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_091859_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_111443_sync_clean.log
+ create mode 100644 scripts/logs/sync/20250605_112241_sync_clean.log
+ create mode 100644 scripts/utils/simulator_bank/agregar_hidden_simulador.sh
+ create mode 100644 scripts/utils/simulator_bank/check_tor_simulator.sh
+ create mode 100644 scripts/utils/simulator_bank/gestor_simulador.sh
+ create mode 100644 scripts/utils/simulator_bank/instalar_simulador.sh
+🌐 Push a GitHub...
+remote: 
+remote: GitHub found 22 vulnerabilities on markmur90/api_bank_heroku's default branch (2 critical, 11 high, 6 moderate, 3 low). To find out more, visit:        
+remote:      https://github.com/markmur90/api_bank_heroku/security/dependabot        
+remote: 
+To github.com:markmur90/api_bank_heroku.git
+   237f4450..00473a86  api-bank -> api-bank
+rama 'api-bank' configurada para rastrear 'origin/api-bank'.
+
+🎉 ✅ ¡Puss a GitHub completo!

@@ -152,6 +152,10 @@ alias sim_bank_ins='vps_exec "bash \"$SM_BK_DIR/instalar_simulador.sh\""'
 alias sim_bank_chk='vps_exec "bash \"$SM_BK_DIR/check_tor_simulator.sh\""' 
 alias sim_bank_mon='vps_exec "bash \"$SM_BK_DIR/monitor_logs.sh\""' 
 alias sim_bank_ges='vps_exec "bash \"$SM_BK_DIR/gestor_simulador.sh\""' 
+alias sim_bank_ping="torsocks curl --silent --fail http://\$(vps_exec 'cat /opt/simulador_banco/tor/hidden_service/hostname') || echo '[ERROR] No se pudo conectar al servicio oculto'"
+alias sim_bank_ping_d="torsocks curl --silent --fail http://\$(vps_exec 'cat /opt/simulador_banco/tor/hidden_service/hostname') | grep -qi 'django' && echo '[OK] Servicio oculto responde con Django' || echo '[ERROR] No se detectó Django en la respuesta'"
+alias sync_onion='bash ~/api_bank_h2/scripts/utils/simulator_bank/sync_onion_local.sh'
+alias sim_fix_logs='vps_exec "bash \"$SM_BK_DIR/fix_sim_logs.sh\""' 
 
 
 # ─── 📦 Logs del sistema ────────────────────────────────
@@ -193,6 +197,7 @@ alias vps_locsycl='bash $DP_VP_DIR/vps_sync_clean.sh'
 alias vps_locsync='bash $DP_VP_DIR/vps_sync.sh'
 alias vps_up_copy='bash $DP_VP_DIR/vps_copy_up_files.sh'
 alias vps_down_copy='bash $DP_VP_DIR/vps_copy_files.sh'
+alias vps_restart='bash ~/api_bank_h2/scripts/utils/simulator_bank/reiniciar_servicios.sh'
 
 # === Sincronización por GitHub ===
 
@@ -292,14 +297,19 @@ log_ok "vps_locsycl    → Sube archivos al VPS de los 3 directorios"
 log_ok "vps_locsync    → Sube archivos al VPS"
 log_ok "vps_up_copy    → Sube archivos al VPS"
 log_ok "vps_down_copy  → Baja archivos del VPS"
+log_ok "vps_restart  → Baja archivos del VPS"
 log_info "🔔 NOTIFICADORES"
 log_ok "gtareas_status → Estado general"
 log_ok "000gtareas ... 17gtareas → Lanzadores por ID"
 log_info "📄 SIMULADOR"
 log_ok "sim_bank_ins   → Instala Simulador al VPS"
 log_ok "sim_bank_chk   → Chequea Simulador del VPS"
+log_ok "sim_fix_logs   → Chequea Simulador del VPS"
+log_ok "sync_onion   → Chequea Simulador del VPS"
 log_ok "sim_bank_mon   → Monitorea Simulador del VPS"
 log_ok "sim_bank_ges   → Gestiona Simulador del VPS"
+log_ok "sim_bank_ping   → Gestiona Simulador del VPS"
+log_ok "sim_bank_ping_d   → Gestiona Simulador del VPS"
 log_info "🛠️ COMANDOS"
 log_ok "vps_reload / status / check / ping"
 log_ok "vps_l_root / vps_l_user"

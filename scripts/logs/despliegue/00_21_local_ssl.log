@@ -1,10 +1,10 @@
-[2025-06-05 06:58:28 +0200] [64046] [INFO] Starting gunicorn 23.0.0
-[2025-06-05 06:58:28 +0200] [64046] [INFO] Listening at: http://0.0.0.0:8000 (64046)
-[2025-06-05 06:58:28 +0200] [64046] [INFO] Using worker: sync
-[2025-06-05 06:58:28 +0200] [64048] [INFO] Booting worker with pid: 64048
-[2025-06-05 10:55:37 +0200] [64046] [INFO] Handling signal: hup
-[2025-06-05 10:55:37 +0200] [64046] [INFO] Hang up: Master
-[2025-06-05 10:55:37 +0200] [199300] [INFO] Booting worker with pid: 199300
-[2025-06-05 10:55:37 +0200] [64046] [INFO] Handling signal: term
-[2025-06-05 10:55:37 +0200] [64046] [ERROR] Worker (pid:64048) was sent SIGHUP!
-[2025-06-05 10:56:07 +0200] [64046] [INFO] Shutting down: Master
+[2025-06-05 11:28:45 +0200] [21588] [INFO] Starting gunicorn 23.0.0
+[2025-06-05 11:28:45 +0200] [21588] [INFO] Listening at: http://0.0.0.0:8000 (21588)
+[2025-06-05 11:28:45 +0200] [21588] [INFO] Using worker: sync
+[2025-06-05 11:28:45 +0200] [21590] [INFO] Booting worker with pid: 21590
+[2025-06-05 13:26:30 +0200] [21588] [ERROR] Worker (pid:21590) was sent SIGHUP!
+[2025-06-05 13:26:30 +0200] [21588] [INFO] Handling signal: hup
+[2025-06-05 13:26:30 +0200] [21588] [INFO] Hang up: Master
+[2025-06-05 13:26:30 +0200] [21588] [INFO] Handling signal: term
+[2025-06-05 13:26:30 +0200] [90020] [INFO] Booting worker with pid: 90020
+[2025-06-05 13:27:00 +0200] [21588] [INFO] Shutting down: Master

@@ -1,34 +1,28 @@
 #!/bin/bash
-set -euo pipefail
+echo "🔧 Instalando simulador oculto con Tor..."
 
-BASE_DIR="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank"
-SYSTEMD_DIR="/etc/systemd/system"
+# Variables
+HIDDEN_DIR="/opt/simulador_banco/tor/hidden_service"
+ONION_COPY="/home/markmur88/simulador_hostname.txt"
 
-echo "🚀 Iniciando instalación del Simulador Bancario..."
+# Crear directorios y dar permisos
+sudo mkdir -p "$HIDDEN_DIR"
+sudo chown -R debian-tor:debian-tor "$HIDDEN_DIR"
+sudo chmod 700 "$HIDDEN_DIR"
 
-# 1. Copiar archivos .service
-echo "🛠️ Copiando servicios systemd..."
-sudo cp "$BASE_DIR/simulador_banco.service" "$SYSTEMD_DIR/"
-sudo cp "$BASE_DIR/tor_simulador_onion.service" "$SYSTEMD_DIR/"
-
-# 2. Desplegar la aplicación Django
-echo "📦 Ejecutando despliegue del simulador..."
-cd "$BASE_DIR"
-chmod +x deploy_simulador.sh
-./deploy_simulador.sh
-
-# 3. Configurar servicio oculto de Tor
-echo "🧅 Configurando servicio .onion para el simulador..."
-chmod +x agregar_hidden_simulador.sh
-./agregar_hidden_simulador.sh
-
-# 4. Activar servicios
-echo "🔄 Habilitando y arrancando servicios..."
+# Reiniciar tor
+sudo systemctl daemon-reexec
 sudo systemctl daemon-reload
-sudo systemctl enable simulador_banco
-sudo systemctl start simulador_banco
+sudo systemctl restart tor
 
-sudo systemctl enable tor_simulador_onion
-sudo systemctl start tor_simulador_onion
+# Esperar generación del .onion
+sleep 5
 
-echo "✅ Instalación completa. Verificá los logs y el archivo .onion generado."
+# Copiar hostname legible localmente
+if [ -f "$HIDDEN_DIR/hostname" ]; then
+    sudo cp "$HIDDEN_DIR/hostname" "$ONION_COPY"
+    sudo chown markmur88:markmur88 "$ONION_COPY"
+    echo "✅ Dirección .onion disponible en $ONION_COPY"
+else
+    echo "⚠️ No se generó el archivo .onion aún."
+fi
