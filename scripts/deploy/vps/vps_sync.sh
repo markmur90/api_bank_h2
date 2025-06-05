@@ -79,8 +79,8 @@ ssh -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" << EOF | tee -a "$LOG_FILE"
   echo "🔧 Activando entorno virtual en VPS: $VPS_VENV_PATH"
   source "$VPS_VENV_PATH/bin/activate"
 
-  echo "🔁 Ejecutando script 01_full.sh en VPS"
-  bash /home/markmur88/api_bank_heroku/scripts/menu/01_full.sh -Q -I -l
+  # echo "🔁 Ejecutando script 01_full.sh en VPS"
+  # bash /home/markmur88/api_bank_heroku/scripts/menu/01_full.sh -Q -I -l
 
   echo "🔁 Reiniciando servicios en VPS..."
   sudo supervisorctl restart coretransapi

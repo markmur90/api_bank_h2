@@ -81484,3 +81484,48 @@ To github.com:markmur90/api_bank_heroku.git
 rama 'api-bank' configurada para rastrear 'origin/api-bank'.
 
 🎉 ✅ ¡Puss a GitHub completo!
+
+📅 Inicio ejecución: 2025-06-05 06:26:24
+📄 Script: 00_16_01_subir_GitHub.sh
+═══════════════════════════════════════════
+
+🚀 Subiendo el proyecto a Heroku y GitHub...
+📦 Haciendo git add...
+📝 Commit con mensaje: Copy_Backup_sync
+[api-bank ee350613] Copy_Backup_sync
+ 74 files changed, 6799 insertions(+), 2061 deletions(-)
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP/config_01.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP/tareas_01.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP/tiempos_01.log
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP001/config_01.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP001/tareas_01.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP001/tiempos_01.log
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/APP/config_02.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/APP/tareas_02.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/APP/tiempos_02.log
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_03.sh/APP003/config_03.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_03.sh/APP003/tareas_03.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_03.sh/APP003/tiempos_03.log
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_05.sh/APP005/config_05.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_05.sh/APP005/tareas_05.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_05.sh/APP005/tiempos_05.log
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_06.sh/APP006/config_06.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_06.sh/APP006/tareas_06.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_06.sh/APP006/tiempos_06.log
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_10.sh/APP010/config_10.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_10.sh/APP010/tareas_10.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_10.sh/APP010/tiempos_10.log
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_11.sh/APP011/config_11.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_11.sh/APP011/tareas_11.txt
+ create mode 100644 scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_11.sh/APP011/tiempos_11.log
+ create mode 100644 scripts/utils/gestor-tareas/notify/logs_notificadores/.notifier_todos
+🌐 Push a GitHub...
+remote: 
+remote: GitHub found 22 vulnerabilities on markmur90/api_bank_heroku's default branch (2 critical, 11 high, 6 moderate, 3 low). To find out more, visit:        
+remote:      https://github.com/markmur90/api_bank_heroku/security/dependabot        
+remote: 
+To github.com:markmur90/api_bank_heroku.git
+   9de47809..ee350613  api-bank -> api-bank
+rama 'api-bank' configurada para rastrear 'origin/api-bank'.
+
+🎉 ✅ ¡Puss a GitHub completo!

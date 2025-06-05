@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+clear
+
 # === VARIABLES DE PROYECTO ===
 AP_H2_DIR="/home/markmur88/api_bank_h2"
 AP_BK_DIR="/home/markmur88/api_bank_h2_BK"
