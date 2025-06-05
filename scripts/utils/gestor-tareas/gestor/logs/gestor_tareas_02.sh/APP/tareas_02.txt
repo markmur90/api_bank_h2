@@ -1,0 +1,8 @@
+Copy_backup
+Copy_h2
+Sync_heroku
+Copy_heroku
+Deploy_simulador
+Readme_Simulador
+Transferencia_simulador
+Deploy|pendiente

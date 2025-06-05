@@ -126,7 +126,7 @@ fi
 COMENTARIO_COMMIT=""
 
 # === CARGA DEL ENTORNO (.env) ===
-ENV_FILE=".env"
+ENV_FILE="$AP_H2_DIR/.env"
 if [[ -f "$ENV_FILE" ]]; then
     export $(grep -v '^#' "$ENV_FILE" | xargs)
     echo "🌍 Entorno cargado desde $ENV_FILE"
@@ -425,11 +425,11 @@ if [[ "${DEBUG_MODE:-false}" == false ]]; then
     echo ""
     echo -e "\033[1;36m============================= VARIABLES ACTUALES =============================\033[0m"
     printf "%-20s =\t%s\n" "INTERFAZ"            "$INTERFAZ"
-    printf "%-20s =\t%s\n" "SCRIPTS_DIR"         "$PROJECT_ROOT/scripts"
-    printf "%-20s =\t%s\n" "PRIVATE_KEY_PATH"    "$PROJECT_ROOT/schemas/keys/private_key.pem"
-    printf "%-20s =\t%s\n" "SERVERS_DIR"         "$PROJECT_ROOT/servers"
-    printf "%-20s =\t%s\n" "CACHE_DIR"           "$PROJECT_ROOT/tmp"
-    printf "%-20s =\t%s\n" "PROJECT_ROOT"        "$PROJECT_ROOT"
+    printf "%-20s =\t%s\n" "SCRIPTS_DIR"         "$AP_H2_DIR/scripts"
+    printf "%-20s =\t%s\n" "PRIVATE_KEY_PATH"    "$AP_H2_DIR/schemas/keys/private_key.pem"
+    printf "%-20s =\t%s\n" "SERVERS_DIR"         "$AP_H2_DIR/servers"
+    printf "%-20s =\t%s\n" "CACHE_DIR"           "$AP_H2_DIR/tmp"
+    printf "%-20s =\t%s\n" "AP_H2_DIR"        "$AP_H2_DIR"
     printf "%-20s =\t%s\n" "LOG_DIR"             "$LOG_DIR"
     echo -e "\033[1;36m==============================================================================\033[0m"
     echo ""
@@ -464,7 +464,7 @@ rotar_logs_si_grandes() {
 }
 
 verificar_configuracion_segura() {
-    archivo_env="$PROJECT_ROOT/.env"
+    archivo_env="$AP_H2_DIR/.env"
     if grep -q "DEBUG=True" "$archivo_env"; then
         echo "❌ DEBUG está activo en producción. Revisa tu .env"
         exit 1

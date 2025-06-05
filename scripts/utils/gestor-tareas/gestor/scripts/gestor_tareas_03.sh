@@ -45,7 +45,7 @@ PROY_DIR="$BASE_DIR/$PROYECTO"
 TASK_FILE="$PROY_DIR/tareas_03.txt"
 CONFIG_FILE="$PROY_DIR/config_03.txt"
 TIME_LOG="$PROY_DIR/tiempos_03.log"
-ACTIVE_FILE="$AP_H2_DIR/scripts/gestor-tareas/gestor/gestor_activo_$PROYECTO.flag"
+ACTIVE_FILE="$AP_H2_DIR/scripts/gestor-tareas/gestor/.gestor_tareas/gestor_activo_$PROYECTO.flag"
 mkdir -p "$PROY_DIR"
 touch "$TASK_FILE" "$CONFIG_FILE" "$TIME_LOG"
 DEFAULT_INTERVAL=5

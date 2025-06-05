@@ -622,3 +622,46 @@ bound to 192.168.0.132 -- renewal in 42192 seconds.
 🧭 IP Tor anterior : {"error": "Too Many Requests"}
 🛰️ IP Tor actual   : {"error": "Too Many Requests"}
 =========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/12:55:d0:a2:55:38
+Sending on   LPF/wlan0/12:55:d0:a2:55:38
+Sending on   Socket/fallback
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 6
+DHCPOFFER of 192.168.0.135 from 192.168.0.1
+DHCPREQUEST for 192.168.0.135 on wlan0 to 255.255.255.255 port 67
+DHCPREQUEST for 192.168.0.135 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.135 from 192.168.0.1
+bound to 192.168.0.135 -- renewal in 38590 seconds.
+⚠ IP no ha cambiado tras el primer intento. Reintentando...
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/ae:fd:1d:1f:9e:6d
+Sending on   LPF/wlan0/ae:fd:1d:1f:9e:6d
+Sending on   Socket/fallback
+DHCPREQUEST for 192.168.0.135 on wlan0 to 255.255.255.255 port 67
+DHCPREQUEST for 192.168.0.135 on wlan0 to 255.255.255.255 port 67
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 5
+DHCPOFFER of 192.168.0.177 from 192.168.0.1
+DHCPREQUEST for 192.168.0.177 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.177 from 192.168.0.1
+bound to 192.168.0.177 -- renewal in 40475 seconds.
+
+=========================================
+📅 Fecha           : 2025-06-05 06:25:31
+🛰️ Interfaz        : wlan0
+🧭 MAC anterior    : c0:e4:34:95:bd:5b
+✨ MAC actual      : ae:fd:1d:1f:9e:6d
+🧭 IP anterior     : 192.168.0.135
+🛰️ IP actual       : 192.168.0.177
+🧭 IP Tor anterior : {"error": "Too Many Requests"}
+🛰️ IP Tor actual   : {"error": "Too Many Requests"}
+=========================================

@@ -28,11 +28,10 @@ BASE_DIR="$AP_H2_DIR"
 
 set -euo pipefail
 
-SCRIPT_DIR="$AP_H2_DIR/scripts"
-LOG_DIR="$SCRIPTS_DIR/.logs"
+LOG_DIR="$GT_NT_DIR/logs_notificadores"
 
-NOTIF1="$SCRIPTS_DIR/notificador.sh"
-NOTIF2="$SCRIPTS_DIR/notificador_30.sh"
+NOTIF1="$GT_NT_DIR/notificador.sh"
+NOTIF2="$GT_NT_DIR/notificador_30.sh"
 
 mkdir -p "$LOG_DIR"
 

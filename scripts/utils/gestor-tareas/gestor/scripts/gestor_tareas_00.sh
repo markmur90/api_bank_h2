@@ -1,8 +1,24 @@
 #!/bin/bash
+set -o errexit -o nounset -o pipefail
+export SHELL=/bin/bash
 
-# gestor_tareas.sh
-# Gestor de tareas con zenity y notificaciones
-# MIT License – SHA-256 se genera en empaquetado
+# -----------------------------------------------------------------------------
+# Script: gestor_tareas_02.sh
+# Propósito: Gestor de tareas gráfico con Zenity, por proyecto.
+# - Selecciona o crea un proyecto.
+# - Agrega/edita/elimina/actualiza tareas en archivos de texto.
+# - Registra tiempo de ejecución por sesión.
+# - Cicla intervalo de notificaciones.
+# - Desactiva el gestor cuando se elija.
+# -----------------------------------------------------------------------------
+
+# 1. Comprobar entorno gráfico
+if [ -z "${DISPLAY:-}" ]; then
+  echo "ERROR: no se detecta un entorno gráfico (DISPLAY no definido)." >&2
+  exit 1
+fi
+
+# 2. Definir directorio base oculto para proyectos
 
 AP_H2_DIR="/home/markmur88/api_bank_h2"
 AP_BK_DIR="/home/markmur88/api_bank_h2_BK"
@@ -27,6 +43,11 @@ GT_GE_DIR="$UT_GT_DIR/gestor"
 GT_NT_DIR="$UT_GT_DIR/notify"
 GE_LG_DIR="$GT_GE_DIR/logs"
 GE_SH_DIR="$GT_GE_DIR/scripts"
+
+
+SCRIPT_NAME="$(basename "$0")"
+BASE_DIR="$GE_LG_DIR/$SCRIPT_NAME"
+mkdir -p "$BASE_DIR"
 
 
 TASK_FILE="$AP_H2_DIR/scripts/gestor-tareas/gestor/tareas_gestor_00.txt"

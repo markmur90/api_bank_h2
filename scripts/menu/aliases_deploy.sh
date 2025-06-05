@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+
 # === VARIABLES DE PROYECTO ===
 AP_H2_DIR="/home/markmur88/api_bank_h2"
 AP_BK_DIR="/home/markmur88/api_bank_h2_BK"
@@ -23,32 +24,6 @@ GT_GE_DIR="$UT_GT_DIR/gestor"
 GT_NT_DIR="$UT_GT_DIR/notify"
 GE_LG_DIR="$GT_GE_DIR/logs"
 GE_SH_DIR="$GT_GE_DIR/scripts"
-
-BASE_DIR="$AP_H2_DIR"
-# === VARIABLES DE PROYECTO ===
-AP_H2_DIR="/home/markmur88/api_bank_h2"
-AP_BK_DIR="/home/markmur88/api_bank_h2_BK"
-AP_HK_DIR="/home/markmur88/api_bank_heroku"
-VENV_PATH="/home/markmur88/envAPP"
-SCRIPTS_DIR="$AP_H2_DIR/scripts"
-BACKU_DIR='$SCRIPTS_DIR/backup'
-CERTS_DIR='$SCRIPTS_DIR/certs'
-DP_DJ_DIR='$SCRIPTS_DIR/deploy/django'
-DP_GH_DIR='$SCRIPTS_DIR/deploy/github'
-DP_HK_DIR='$SCRIPTS_DIR/deploy/heroku'
-DP_VP_DIR='$SCRIPTS_DIR/deploy/vps'
-SERVI_DIR='$SCRIPTS_DIR/service'
-SYSTE_DIR='$SCRIPTS_DIR/src'
-TORSY_DIR='$SCRIPTS_DIR/tor'
-UTILS_DIR='$SCRIPTS_DIR/utils'
-CO_SE_DIR='$UTILS_DIR/conexion_segura_db'
-UT_GT_DIR='$UTILS_DIR/gestor-tareas'
-SM_BK_DIR='$UTILS_DIR/simulator_bank'
-TOKEN_DIR='$UTILS_DIR/token'
-GT_GE_DIR='$UT_GT_DIR/gestor'
-GT_NT_DIR='$UT_GT_DIR/notify'
-GE_LG_DIR='$GT_GE_DIR/logs'
-GE_SH_DIR='$GT_GE_DIR/scripts'
 
 
 # === VARIABLES VPS (personalizables) ===
@@ -81,38 +56,39 @@ log_error() { echo -e "${ROJO}[ERR]  $1${RESET}"; }
 # === ACCESOS DIRECTOS AL PROYECTO ===
 
 alias freedom='cd "/home/markmur88/FreedomGPT" && source "/home/markmur88/venvAPI/bin/activate" && clear '
-alias BKapi='cd "$AP_H2_DIR_BK" && source "$VENV_PATH" && clear && code .'
+alias BKapi='cd "$AP_BK_DIR" && source "$VENV_PATH" && clear && code .'
 alias api_heroku='cd "$AP_HK_DIR" && source "$VENV_PATH" '
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
 
-alias status_notify='bash "$GT_NT_DIR/"estado_notificadores.sh'
-alias start_notify='bash "$GT_NT_DIR/"start_notificadores_interactivo.sh'
-alias gest_notify='bash "$GT_NT_DIR/"gestionar_notificadores.sh'
-alias restart_notify='bash "$GT_NT_DIR/"notificador_restart.sh'
+alias status_notify='bash $GT_NT_DIR/estado_notificadores.sh'
+alias start_notify='bash $GT_NT_DIR/start_notificadores_interactivo.sh'
+alias gest_notify='bash $GT_NT_DIR/gestionar_notificadores.sh'
+alias restart_notify='bash $GT_NT_DIR/notificador_restart.sh'
+alias notificador='nohup bash $GT_NT_DIR/notificador.sh >/dev/null 2>&1 & disown'
 
-alias gtareas_status='bash "$GE_SH_DIR/"gtareas_status.sh'
-
-alias 000gtareas='nohup bash "$UT_GT_DIR/"deb/gestor_tareas/usr/local/bin/gestor_tareas.sh >/dev/null 2>&1 & disown'
-alias 00gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_00.sh >/dev/null 2>&1 & disown'
-alias 01gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_01.sh >/dev/null 2>&1 & disown'
-alias 02gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_02.sh >/dev/null 2>&1 & disown'
-alias 03gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_03.sh >/dev/null 2>&1 & disown'
-alias 04gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_04.sh >/dev/null 2>&1 & disown'
-alias 05gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_05.sh >/dev/null 2>&1 & disown'
-alias 06gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_06.sh >/dev/null 2>&1 & disown'
-alias 07gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_07.sh >/dev/null 2>&1 & disown'
-alias 08gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_08.sh >/dev/null 2>&1 & disown'
-alias 09gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_09.sh >/dev/null 2>&1 & disown'
-alias 10gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_10.sh >/dev/null 2>&1 & disown'
-alias 11gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_11.sh >/dev/null 2>&1 & disown'
-alias 12gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_12.sh >/dev/null 2>&1 & disown'
-alias 13gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_13.sh >/dev/null 2>&1 & disown'
-alias 14gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_14.sh >/dev/null 2>&1 & disown'
-alias 15gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_15.sh >/dev/null 2>&1 & disown'
-alias 16gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_16.sh >/dev/null 2>&1 & disown'
-alias 17gtareas='nohup bash "$GT_GE_DIR/"gestor_tareas_17.sh >/dev/null 2>&1 & disown'
+alias gtareas_status='bash $GE_SH_DIR/gtareas_status.sh'
+alias gtareas_stop='bash $GE_SH_DIR/detener_tareas.sh'
+alias 000gtareas='nohup bash $UT_GT_DIR/deb/gestor_tareas/usr/local/bin/gestor_tareas.sh >/dev/null 2>&1 & disown'
+alias 00gtareas='nohup bash $GE_SH_DIR/gestor_tareas_00.sh >/dev/null 2>&1 & disown'
+alias 01gtareas='nohup bash $GE_SH_DIR/gestor_tareas_01.sh >/dev/null 2>&1 & disown'
+alias 02gtareas='nohup bash $GE_SH_DIR/gestor_tareas_02.sh >/dev/null 2>&1 & disown'
+alias 03gtareas='nohup bash $GE_SH_DIR/gestor_tareas_03.sh >/dev/null 2>&1 & disown'
+alias 04gtareas='nohup bash $GE_SH_DIR/gestor_tareas_04.sh >/dev/null 2>&1 & disown'
+alias 05gtareas='nohup bash $GE_SH_DIR/gestor_tareas_05.sh >/dev/null 2>&1 & disown'
+alias 06gtareas='nohup bash $GE_SH_DIR/gestor_tareas_06.sh >/dev/null 2>&1 & disown'
+alias 07gtareas='nohup bash $GE_SH_DIR/gestor_tareas_07.sh >/dev/null 2>&1 & disown'
+alias 08gtareas='nohup bash $GE_SH_DIR/gestor_tareas_08.sh >/dev/null 2>&1 & disown'
+alias 09gtareas='nohup bash $GE_SH_DIR/gestor_tareas_09.sh >/dev/null 2>&1 & disown'
+alias 10gtareas='nohup bash $GE_SH_DIR/gestor_tareas_10.sh >/dev/null 2>&1 & disown'
+alias 11gtareas='nohup bash $GE_SH_DIR/gestor_tareas_11.sh >/dev/null 2>&1 & disown'
+alias 12gtareas='nohup bash $GE_SH_DIR/gestor_tareas_12.sh >/dev/null 2>&1 & disown'
+alias 13gtareas='nohup bash $GE_SH_DIR/gestor_tareas_13.sh >/dev/null 2>&1 & disown'
+alias 14gtareas='nohup bash $GE_SH_DIR/gestor_tareas_14.sh >/dev/null 2>&1 & disown'
+alias 15gtareas='nohup bash $GE_SH_DIR/gestor_tareas_15.sh >/dev/null 2>&1 & disown'
+alias 16gtareas='nohup bash $GE_SH_DIR/gestor_tareas_16.sh >/dev/null 2>&1 & disown'
+alias 17gtareas='nohup bash $GE_SH_DIR/gestor_tareas_17.sh >/dev/null 2>&1 & disown'
 
 
 # === VARIABLES ENTORNOS ===
@@ -120,7 +96,7 @@ unalias envAPP 2>/dev/null
 envAPP() {source "$VENV_PATH" "$@"; }
 
 alias api='cd "$AP_H2_DIR" && envAPP && clear '
-alias deploy_full='bash "$SCRIPTS_DIR/menu/01_full.sh"'
+alias deploy_full='api && bash "$SCRIPTS_DIR/menu/01_full.sh"'
 
 alias d_help='api && deploy_full --help'
 alias d_step='api && deploy_full -s'
@@ -164,12 +140,12 @@ d_vps() {d_env && deploy_full -v "$@"; }
 
 # === TOR ===
 alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
-alias tor_diag='vps_exec "bash "$TORSY_DIR/"check_torrc.sh"'
-alias tor_newip='vps_exec "bash "$TORSY_DIR/"rotate_tor_ip.sh"'
+alias tor_diag='vps_exec "bash "$TORSY_DIR/check_torrc.sh"'
+alias tor_newip='vps_exec "bash "$TORSY_DIR/rotate_tor_ip.sh"'
 alias tor_refresh='tor_diag && tor_newip'
 
-alias sync_configs='vps_exec "bash "$DP_VP_DIR/"sync_configs_from_vps.sh"'
-alias push_configs='vps_exec "bash "$DP_VP_DIR/"sync_configs_to_vps.sh"'
+alias sync_configs='vps_exec "bash $DP_VP_DIR/sync_configs_from_vps.sh"'
+alias push_configs='vps_exec "bash $DP_VP_DIR/sync_configs_to_vps.sh"'
 
 
 
@@ -215,20 +191,51 @@ alias vps_down_copy='bash $DP_VP_DIR/vps_copy_files.sh'
 
 # === Sincronización por GitHub ===
 
-alias vps_gitsync='bash $BACKU_DIR/00_14_sincronizacion_archivos.sh && bash ~/api_bank_h2/scripts/sync_local_and_vps.sh && api'
+alias vps_gitsync='bash $BACKU_DIR/00_14_sincronizacion_archivos.sh && bash $DP_VP_DIR/sync_local_and_vps.sh && api'
 
-alias vps_logsync='
-LOG_DIR=$(git rev-parse --show-toplevel 2>/dev/null || find "$PWD" -type f -name "manage.py" -exec dirname {} \; | head -n1)/scripts/logs/sync
-[ -d "$LOG_DIR" ] && less "$(ls -1t "$LOG_DIR"/*.log 2>/dev/null | head -n1)" || echo "❌ No hay logs de sincronización."
-'
+# Logs de sincronización
+alias log_sync_last='less "$(ls -1t $SCRIPTS_DIR/logs/sync/*.log 2>/dev/null | head -n1)"'
+
+# Logs de despliegue general
+alias log_deploy='less "$SCRIPTS_DIR/logs/01_full_deploy/full_deploy.log"'
+
+# Logs de despliegue individuales
+alias log_push='less "$SCRIPTS_DIR/logs/despliegue/00_16_01_subir_GitHub.log"'
+alias log_sync_arch='less "$SCRIPTS_DIR/logs/despliegue/00_14_sincronizacion_archivos.log"'
+
+# Historial de commits
+alias log_commits='less "$SCRIPTS_DIR/logs/commits_hist.md"'
+
+# Logs del VPS
+alias log_vps_supervisor='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log"'
+alias log_vps_nginx_err='vps_exec "tail -f /var/log/nginx/error.log"'
+alias log_vps_nginx_acc='vps_exec "tail -f /var/log/nginx/access.log"'
+alias log_vps_all='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log /var/log/nginx/error.log /var/log/nginx/access.log"'
 
 
 
 # ───📚 ALIAS DE AYUDA - MENÚ COMPLETO────────────────────────
 alias d_hp_all='clear &&
-log_info "📚 GUÍA COMPLETA DE ALIAS Y FUNCIONES"
-d_hp_aliases && echo && d_hp_scripts && echo && d_hp_notif && echo && d_hp_logs && echo && d_hp_vps
+log_info "📚 GUÍA COMPLETA DE AYUDA DISPONIBLE"
+log_ok "d_hp_aliases    → Alias generales y comandos del entorno"
+log_ok "d_hp_notif      → Gestión de notificadores y tareas"
+log_ok "d_hp_logs       → Visualización de logs locales y VPS"
+log_ok "d_hp_vps        → Comandos y utilidades para VPS + TOR"
 '
+
+alias d_hp_notif='clear &&
+log_info "🔔 HERRAMIENTAS DE NOTIFICACIÓN"
+log_ok "start_notify     → Inicia notificaciones (interactivo)"
+log_ok "gest_notify      → Gestor interactivo de notificadores"
+log_ok "gtareas_status   → Estado de gestor de tareas"
+log_ok "000gtareas       → Lanzador de tareas paralelas"
+log_ok "00gtareas        → Lanzador de tareas paralelas"
+log_ok "01gtareas        → Lanzador de tareas paralelas"
+log_ok "02gtareas        → Lanzador de tareas paralelas"
+log_ok "03gtareas        → Lanzador de tareas paralelas"
+log_ok "04gtareas ... 17gtareas → Otros lanzadores de tareas"
+'
+
 
 alias d_hp_aliases='clear &&
 log_info "🧰 ALIAS GENERALES DISPONIBLES"
@@ -251,50 +258,23 @@ log_ok "d_cep             → Certificados SSL"
 log_ok "d_vps             → Post-deploy VPS"
 '
 
-alias d_hp_scripts='clear &&
-log_info "📜 SCRIPTS DEL PROYECTO"
-log_ok "01_full.sh                    → Script principal"
-log_ok "00_16_01_subir_GitHub.sh     → Push a GitHub + Heroku"
-log_ok "00_14_sincronizacion_archivos.sh → Sync estáticos"
-log_ok "vps_sync.sh                  → Sync directo a VPS"
-log_ok "sync_local_and_vps.sh        → Push + Pull remoto"
-log_ok "00_24_sync_from_github.sh    → Pull en VPS + restart"
-log_ok "diagnostico_entorno.sh       → Diagnóstico entorno"
-log_ok "estado_notificadores.sh      → Estado notificadores"
-log_ok "start_notificadores_interactivo.sh → Lanzador interactivo"
-log_ok "gestionar_notificadores.sh   → Admin general de notificadores"
-log_ok "notificador_restart.sh       → Reinicio notificadores"
-'
-
-alias d_hp_notif='clear &&
-log_info "🔔 HERRAMIENTAS DE NOTIFICACIÓN"
-log_ok "start_notify     → Inicia notificaciones (interactivo)"
-log_ok "gest_notify      → Gestor interactivo de notificadores"
-log_ok "proc_notify      → Lista procesos activos"
-log_ok "restart_notify   → Reinicio general"
-log_ok "5_notify         → Activa notificador 5m"
-log_ok "30_notify        → Activa notificador 30m"
-log_ok "5_stop           → Detiene notificador 5m"
-log_ok "30_stop          → Detiene notificador 30m"
-log_ok "gtareas_status   → Estado de gestor de tareas"
-log_ok "000gtareas ... 17gtareas → Lanzadores paralelos de tareas"
-'
-
 alias d_hp_logs='clear &&
 log_info "🪵 LOGS DISPONIBLES"
 log_info "🔁 Sincronización"
-log_ok "$SCRIPTS_DIR/logs/sync/*.log"
-log_ok "vps_sync_lastlog → Último log"
+log_ok "log_sync_last                           → Último log de sincronización"
 log_info "📦 Despliegue y Push"
-log_ok "$SCRIPTS_DIR/logs/01_full_deploy/full_deploy.log"
-log_ok "$SCRIPTS_DIR/logs/despliegue/*.log"
-log_ok "$SCRIPTS_DIR/logs/commits_hist.md  → Historial de commits"
+log_ok "log_deploy                              → Log de full deploy"
+log_ok "log_push                                → Log de push a GitHub"
+log_ok "log_sync_arch                           → Log de sincronización de archivos"
+log_ok "log_commits                             → Historial de commits"
 log_info "🌐 VPS - Servicios"
-log_ok "/var/log/supervisor/coretransapi.err.log"
-log_ok "/var/log/nginx/*.log"
-log_info "🧭 Ver rápido"
-log_ok "vps_logs_all, vps_supervisor, vps_nginx_all, vps_logsync"
+log_ok "log_vps_supervisor                      → Logs de supervisor"
+log_ok "log_vps_nginx_err                       → Logs de error NGINX"
+log_ok "log_vps_nginx_acc                       → Logs de acceso NGINX"
+log_ok "log_vps_all                             → Todos los logs críticos del VPS"
 '
+
+
 
 alias d_hp_vps='clear &&
 log_info "🌐 VPS & TOR"
