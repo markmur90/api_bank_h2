@@ -1,0 +1,757 @@
+🟢 Notificaciones activadas cada 30 minutos exactos del reloj.
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.911: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.912: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.912: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.912: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.913: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.914: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.914: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.914: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.914: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.917: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.918: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.918: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.918: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.919: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:60737): Gtk-WARNING **: 13:14:16.919: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:60737): Gtk-WARNING **: 13:14:18.583: Trying to measure GtkLabel 0x5577510809a0 for width of 252, but it needs at least 297
+
+(zenity:60737): Gtk-WARNING **: 13:14:18.584: Trying to measure GtkLabel 0x5577510809a0 for width of 149, but it needs at least 297
+
+(zenity:60737): Gtk-WARNING **: 13:14:18.585: Trying to measure GtkLabel 0x5577510809a0 for width of 247, but it needs at least 297
+
+(zenity:60737): Gtk-WARNING **: 13:14:18.585: Trying to measure GtkLabel 0x5577510809a0 for width of 272, but it needs at least 297
+
+(zenity:60737): Gtk-WARNING **: 13:14:18.585: Trying to measure GtkLabel 0x5577510809a0 for width of 251, but it needs at least 297
+
+(zenity:60737): Gtk-WARNING **: 13:14:18.585: Trying to measure GtkLabel 0x5577510809a0 for width of 249, but it needs at least 297
+
+(zenity:60737): Gtk-WARNING **: 13:14:18.585: Trying to measure GtkLabel 0x5577510809a0 for width of 250, but it needs at least 297
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.112: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.113: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.114: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.114: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.114: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.114: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.114: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.119: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.119: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.119: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.119: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.120: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.120: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.632: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 252, but it needs at least 304
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.632: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 149, but it needs at least 304
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.633: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 247, but it needs at least 304
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.633: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 297, but it needs at least 304
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.633: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 272, but it needs at least 304
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.633: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 260, but it needs at least 304
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.633: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 254, but it needs at least 304
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.633: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 257, but it needs at least 304
+
+(zenity:72331): Gtk-WARNING **: 13:30:01.634: Trying to measure GtkLabel 0x55fbd4cd0d50 for width of 256, but it needs at least 304
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.081: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.082: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.083: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.083: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.083: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.083: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.083: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.085: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.086: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.086: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.086: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.086: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.086: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.432: Trying to measure GtkLabel 0x56264a7f3560 for width of 252, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.433: Trying to measure GtkLabel 0x56264a7f3560 for width of 149, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.433: Trying to measure GtkLabel 0x56264a7f3560 for width of 247, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.433: Trying to measure GtkLabel 0x56264a7f3560 for width of 297, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.433: Trying to measure GtkLabel 0x56264a7f3560 for width of 272, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.433: Trying to measure GtkLabel 0x56264a7f3560 for width of 260, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.433: Trying to measure GtkLabel 0x56264a7f3560 for width of 254, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.433: Trying to measure GtkLabel 0x56264a7f3560 for width of 257, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.434: Trying to measure GtkLabel 0x56264a7f3560 for width of 259, but it needs at least 307
+
+(zenity:88139): Gtk-WARNING **: 14:00:01.434: Trying to measure GtkLabel 0x56264a7f3560 for width of 258, but it needs at least 307
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.113: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.114: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.115: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.115: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.115: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.115: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.115: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.117: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.117: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.117: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.118: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.118: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.118: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.468: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 252, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.469: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 149, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.469: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 247, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.469: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 297, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.469: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 272, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.469: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 260, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.469: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 254, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.469: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 257, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.470: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 259, but it needs at least 305
+
+(zenity:104452): Gtk-WARNING **: 14:30:01.470: Trying to measure GtkLabel 0x55fcecd3d6f0 for width of 258, but it needs at least 305
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.130: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.131: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.132: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.132: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.132: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.132: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.132: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.135: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.135: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.135: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.135: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.136: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.136: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.513: Trying to measure GtkLabel 0x55580e40f670 for width of 252, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.513: Trying to measure GtkLabel 0x55580e40f670 for width of 149, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.514: Trying to measure GtkLabel 0x55580e40f670 for width of 247, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.514: Trying to measure GtkLabel 0x55580e40f670 for width of 297, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.514: Trying to measure GtkLabel 0x55580e40f670 for width of 272, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.514: Trying to measure GtkLabel 0x55580e40f670 for width of 260, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.514: Trying to measure GtkLabel 0x55580e40f670 for width of 266, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.514: Trying to measure GtkLabel 0x55580e40f670 for width of 269, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.514: Trying to measure GtkLabel 0x55580e40f670 for width of 268, but it needs at least 316
+
+(zenity:120250): Gtk-WARNING **: 15:00:01.515: Trying to measure GtkLabel 0x55580e40f670 for width of 267, but it needs at least 316
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.133: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.133: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.133: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.133: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.134: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.135: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.135: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.137: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.137: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.137: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.137: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.137: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.138: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.493: Trying to measure GtkLabel 0x55b1c5341a60 for width of 252, but it needs at least 315
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.493: Trying to measure GtkLabel 0x55b1c5341a60 for width of 149, but it needs at least 315
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.493: Trying to measure GtkLabel 0x55b1c5341a60 for width of 247, but it needs at least 315
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.494: Trying to measure GtkLabel 0x55b1c5341a60 for width of 297, but it needs at least 315
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.494: Trying to measure GtkLabel 0x55b1c5341a60 for width of 272, but it needs at least 315
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.494: Trying to measure GtkLabel 0x55b1c5341a60 for width of 260, but it needs at least 315
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.494: Trying to measure GtkLabel 0x55b1c5341a60 for width of 266, but it needs at least 315
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.494: Trying to measure GtkLabel 0x55b1c5341a60 for width of 263, but it needs at least 315
+
+(zenity:136198): Gtk-WARNING **: 15:30:01.494: Trying to measure GtkLabel 0x55b1c5341a60 for width of 265, but it needs at least 315
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.181: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.182: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.183: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.183: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.183: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.183: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.184: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.184: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.184: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.184: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.186: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.187: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.187: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.187: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.187: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.187: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.573: Trying to measure GtkLabel 0x55ed588b9600 for width of 252, but it needs at least 316
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.574: Trying to measure GtkLabel 0x55ed588b9600 for width of 149, but it needs at least 316
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.574: Trying to measure GtkLabel 0x55ed588b9600 for width of 247, but it needs at least 316
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.574: Trying to measure GtkLabel 0x55ed588b9600 for width of 297, but it needs at least 316
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.574: Trying to measure GtkLabel 0x55ed588b9600 for width of 272, but it needs at least 316
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.575: Trying to measure GtkLabel 0x55ed588b9600 for width of 260, but it needs at least 316
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.575: Trying to measure GtkLabel 0x55ed588b9600 for width of 266, but it needs at least 316
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.575: Trying to measure GtkLabel 0x55ed588b9600 for width of 263, but it needs at least 316
+
+(zenity:151998): Gtk-WARNING **: 16:00:01.575: Trying to measure GtkLabel 0x55ed588b9600 for width of 265, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.197: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.198: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.199: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.199: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.199: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.199: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.201: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.201: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.201: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.201: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.202: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.202: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.549: Trying to measure GtkLabel 0x55d588456c60 for width of 252, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.549: Trying to measure GtkLabel 0x55d588456c60 for width of 149, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.549: Trying to measure GtkLabel 0x55d588456c60 for width of 247, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.550: Trying to measure GtkLabel 0x55d588456c60 for width of 297, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.550: Trying to measure GtkLabel 0x55d588456c60 for width of 272, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.550: Trying to measure GtkLabel 0x55d588456c60 for width of 260, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.550: Trying to measure GtkLabel 0x55d588456c60 for width of 266, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.550: Trying to measure GtkLabel 0x55d588456c60 for width of 263, but it needs at least 316
+
+(zenity:172418): Gtk-WARNING **: 16:30:01.550: Trying to measure GtkLabel 0x55d588456c60 for width of 265, but it needs at least 316
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.227: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.228: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.229: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.229: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.229: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.229: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.229: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.231: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.231: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.231: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.231: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.232: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.232: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.584: Trying to measure GtkLabel 0x55616e73cc40 for width of 252, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.584: Trying to measure GtkLabel 0x55616e73cc40 for width of 149, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.585: Trying to measure GtkLabel 0x55616e73cc40 for width of 247, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.585: Trying to measure GtkLabel 0x55616e73cc40 for width of 297, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.585: Trying to measure GtkLabel 0x55616e73cc40 for width of 272, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.585: Trying to measure GtkLabel 0x55616e73cc40 for width of 260, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.585: Trying to measure GtkLabel 0x55616e73cc40 for width of 266, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.585: Trying to measure GtkLabel 0x55616e73cc40 for width of 269, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.585: Trying to measure GtkLabel 0x55616e73cc40 for width of 268, but it needs at least 317
+
+(zenity:188213): Gtk-WARNING **: 17:00:01.585: Trying to measure GtkLabel 0x55616e73cc40 for width of 267, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.245: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.245: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.245: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.246: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.247: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.247: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.247: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.247: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.250: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.250: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.250: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.250: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.251: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.251: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.605: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 252, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.605: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 149, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.606: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 247, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.606: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 297, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.606: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 272, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.606: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 260, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.606: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 266, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.607: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 269, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.607: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 268, but it needs at least 317
+
+(zenity:204171): Gtk-WARNING **: 17:30:01.607: Trying to measure GtkLabel 0x55ed8a4233b0 for width of 267, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.269: Theme parser error: gtk.css:3995:3-22: No property named "-gtk-outline-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.269: Theme parser error: gtk.css:4112:3-29: No property named "-GtkWidget-window-dragging"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.269: Theme parser error: gtk.css:4126:9-37: No property named "-gtk-outline-top-left-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.269: Theme parser error: gtk.css:4128:9-38: No property named "-gtk-outline-top-right-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.269: Theme parser error: gtk.css:4131:9-40: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.269: Theme parser error: gtk.css:4133:9-41: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.269: Theme parser error: gtk.css:4136:5-33: No property named "-gtk-outline-top-left-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4138:5-34: No property named "-gtk-outline-top-right-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4141:5-36: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4143:5-37: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4149:7-36: No property named "-gtk-outline-top-right-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4151:7-39: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4154:7-35: No property named "-gtk-outline-top-left-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4156:7-38: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4230:23-37: Not a valid image
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4269:3-31: No property named "-gtk-outline-top-left-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.270: Theme parser error: gtk.css:4271:3-32: No property named "-gtk-outline-top-right-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.271: Theme parser error: gtk.css:4278:3-34: No property named "-gtk-outline-bottom-left-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.271: Theme parser error: gtk.css:4280:3-35: No property named "-gtk-outline-bottom-right-radius"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.273: Theme parser error: gtk.css:4948:12-17: "shade" is not a valid color name.
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.273: Theme parser error: gtk.css:5008:12-17: "shade" is not a valid color name.
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.273: Theme parser error: gtk.css:5035:12-15: "mix" is not a valid color name.
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.273: Theme parser error: gtk.css:5039:12-15: "mix" is not a valid color name.
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.273: Theme parser warning: gtk.css:5240:3-5241:1: Expected ';' at end of block
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.274: Theme parser error: gtk.css:5271:3-19: No property named "-gtk-icon-effect"
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.628: Trying to measure GtkLabel 0x561ed948ece0 for width of 252, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.628: Trying to measure GtkLabel 0x561ed948ece0 for width of 149, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.629: Trying to measure GtkLabel 0x561ed948ece0 for width of 247, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.629: Trying to measure GtkLabel 0x561ed948ece0 for width of 297, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.629: Trying to measure GtkLabel 0x561ed948ece0 for width of 272, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.629: Trying to measure GtkLabel 0x561ed948ece0 for width of 260, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.629: Trying to measure GtkLabel 0x561ed948ece0 for width of 266, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.629: Trying to measure GtkLabel 0x561ed948ece0 for width of 269, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.629: Trying to measure GtkLabel 0x561ed948ece0 for width of 268, but it needs at least 317
+
+(zenity:219963): Gtk-WARNING **: 18:00:00.629: Trying to measure GtkLabel 0x561ed948ece0 for width of 267, but it needs at least 317

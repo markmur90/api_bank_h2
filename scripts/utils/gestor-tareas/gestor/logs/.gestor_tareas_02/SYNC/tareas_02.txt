@@ -1,0 +1,5 @@
+Copy_Backup|pendiente
+h2|pendiente
+Heroku|pendiente
+Simulador|pendiente
+Transfer|pendiente

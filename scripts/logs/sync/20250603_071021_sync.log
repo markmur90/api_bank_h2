@@ -1,0 +1,42 @@
+📂 Proyecto local: /home/markmur88/Documentos/GitHub/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: .zip
+🔄 Iniciando sincronización local -> VPS...
+sending incremental file list
+scripts/vps_sync.sh
+scripts/logs/sync/
+scripts/logs/sync/20250603_070935_sync.log
+scripts/logs/sync/20250603_071021_sync.log
+
+sent 31.881 bytes  received 535 bytes  4.987,08 bytes/sec
+total size is 45.199.858  speedup is 1.394,37
+📡 Ejecutando comandos remotos en el VPS...
+Linux coretransapi 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+🌐 Entrando en directorio remoto: /home/markmur88/api_bank_heroku
+🔧 Activando entorno virtual en VPS: /home/markmur88/envAPP
+🔁 Ejecutando script 01_full.sh en VPS
+🔁 Reiniciando servicios en VPS...
+coretransapi: stopped
+coretransapi: started
+📋 Estado del servicio coretransapi en VPS:
+coretransapi                     RUNNING   pid 72308, uptime 0:00:02
+📄 Últimos logs de error en VPS:
+    return getattr(self.sock, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'getsockname'
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Starting gunicorn 23.0.0
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Listening at: unix:/home/markmur88/api_bank_heroku/api.sock (68381)
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Using worker: sync
+[2025-06-03 03:47:34 +0000] [68382] [INFO] Booting worker with pid: 68382
+[2025-06-03 03:49:30 +0000] [68381] [INFO] Handling signal: quit
+[2025-06-03 05:49:30 +0200] [68382] [INFO] Worker exiting (pid: 68382)
+[2025-06-03 03:49:30 +0000] [68381] [INFO] Shutting down: Master
+✅ Comandos remotos completados.
+✅ Sincronización completada.

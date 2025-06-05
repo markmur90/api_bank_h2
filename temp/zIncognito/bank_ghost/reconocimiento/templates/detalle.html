@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% load form_tags %}
+
+{% block title %}Detalle del Intento | Ghost Recon{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">🕵️‍♂️ Detalle del Intento</h2>
+    <ul class="list-group mb-4">
+        <li class="list-group-item"><strong>📅 Fecha:</strong> {{ intento.fecha }}</li>
+        <li class="list-group-item"><strong>🌐 URL:</strong> {{ intento.url }}</li>
+        <li class="list-group-item"><strong>🧬 Identificadores:</strong> {{ intento.identificadores }}</li>
+        <li class="list-group-item"><strong>🎯 Reconocido:</strong> {% if intento.reconocio %}<span class="badge bg-danger">Sí</span>{% else %}<span class="badge bg-secondary">No</span>{% endif %}</li>
+        <li class="list-group-item"><strong>🖥️ User-Agent:</strong> {{ intento.user_agent }}</li>
+    </ul>
+
+    <div class="mb-4">
+        <h5>📥 Headers de Petición</h5>
+        <pre class="bg-light p-3 border">{{ intento.request_headers }}</pre>
+    </div>
+
+    <div class="mb-4">
+        <h5>📤 Headers de Respuesta</h5>
+        <pre class="bg-light p-3 border">{{ intento.response_headers }}</pre>
+    </div>
+
+    {% if intento.captura %}
+    <img src="{{ intento.captura.url }}" class="img-fluid rounded border"/>
+    {% else %}
+    <div class="alert alert-warning">⚠️ Captura no disponible.</div>
+    {% endif %}
+
+    {% if intento.log %}
+    <a href="{{ intento.log.url }}" target="_blank" class="btn btn-outline-secondary">Ver log completo</a>
+    {% else %}
+    <div class="alert alert-warning">⚠️ Log no disponible.</div>
+    {% endif %}
+
+</div>
+{% endblock %}

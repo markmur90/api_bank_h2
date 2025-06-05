@@ -1,0 +1,83 @@
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+=========================================
+🔁 Cambio de red realizado (2025-05-16 09:14:48)
+🖧 Interfaz: wlan0
+🔍 MAC anterior: b6:26:4a:5e:e2:e0
+🎉 MAC actual:   ae:7c:c3:f5:8a:19
+🌐 IP anterior:  192.168.0.188
+🌐 IP actual:    192.168.0.189
+=========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+=========================================
+🔁 Cambio de red realizado (2025-05-16 09:23:55)
+🖧 Interfaz: wlan0
+🔍 MAC anterior: ae:7c:c3:f5:8a:19
+🎉 MAC actual:   d2:e8:2c:4d:1b:d5
+🌐 IP anterior:  192.168.0.189
+🌐 IP actual:    192.168.0.190
+=========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+=========================================
+🔁 Cambio de red realizado (2025-05-16 09:36:46)
+🖧 Interfaz: wlan0
+🔍 MAC anterior: d2:e8:2c:4d:1b:d5
+🎉 MAC actual:   46:a2:08:8a:23:0f
+🌐 IP anterior:  192.168.0.190
+192.168.0.169
+🌐 IP actual:    192.168.0.190
+=========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+=========================================
+🔁 Cambio de red realizado (2025-05-16 09:39:48)
+🖧 Interfaz: wlan0
+🔍 MAC anterior: 46:a2:08:8a:23:0f
+🎉 MAC actual:   f2:a6:91:47:66:7e
+🌐 IP anterior:  192.168.0.190
+🌐 IP actual:    192.168.0.191
+=========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+=========================================
+🔁 Cambio de red realizado (2025-05-16 07:43:02)
+🖧 Interfaz: wlan0
+🔍 MAC anterior: 
+🎉 MAC actual:   
+🌐 IP anterior:  192.168.0.191
+🌐 IP actual:    192.168.0.191
+=========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+=========================================
+🔁 Cambio de red realizado (2025-05-16 09:43:57)
+🖧 Interfaz: wlan0
+🔍 MAC anterior: f2:a6:91:47:66:7e
+🎉 MAC actual:   b2:6b:c7:e9:22:24
+🌐 IP anterior:  192.168.0.191
+🌐 IP actual:    192.168.0.192
+=========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+=========================================
+🔁 Cambio de red realizado (2025-05-16 07:54:05)
+🖧 Interfaz: wlan0
+🔍 MAC anterior: 
+🎉 MAC actual:   
+🌐 IP anterior:  192.168.0.192
+🌐 IP actual:    192.168.0.192
+=========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+=========================================
+🔁 Cambio de red realizado (2025-05-16 10:07:26)
+🖧 Interfaz: wlan0
+🔍 MAC anterior: b2:6b:c7:e9:22:24
+🎉 MAC actual:   26:a1:87:df:67:cd
+🌐 IP anterior:  192.168.0.192
+192.168.0.167
+192.168.0.163
+🌐 IP actual:    192.168.0.192
+=========================================

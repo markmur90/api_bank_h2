@@ -1,0 +1,8 @@
+Package: gestor-tareas
+Version: 1.0
+Section: utils
+Priority: optional
+Architecture: all
+Depends: zenity, libnotify-bin
+Maintainer: Tu Nombre <tu.email@example.com>
+Description: Gestor de tareas con recordatorios y notificaciones de escritorio

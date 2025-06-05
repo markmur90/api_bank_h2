@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% load static form_filters %}
+
+{% block title %}Ejecutar Ghost Recon{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg rounded-4">
+                <div class="card-body p-5">
+                    <h3 class="card-title text-center mb-4 text-info">🚀 Ejecutar Ghost Recon</h3>
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label d-block">{{ form.modo.label }}</label>
+                                {% for radio in form.modo %}
+                                    <div class="form-check">
+                                        {{ radio.tag }}
+                                        <label class="form-check-label ms-1" for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="col-md-6" id="urls_section" style="display: none;">
+                                <label class="form-label d-block">{{ form.urls.label }}</label>
+                                {% for checkbox in form.urls %}
+                                    <div class="form-check">
+                                        {{ checkbox.tag }}
+                                        <label class="form-check-label" for="{{ checkbox.id_for_label }}">{{ checkbox.choice_label }}</label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="mb-4" id="manual_section" style="display: none;">
+                            <label class="form-label">{{ form.url_manual.label }}</label>
+                            {{ form.url_manual|add_class:"form-control" }}
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-6">
+                                <label class="form-label">{{ form.modo_calculo.label }}</label>
+                                {{ form.modo_calculo|add_class:"form-select" }}
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">{{ form.identificadores.label }}</label>
+                                {{ form.identificadores|add_class:"form-control" }}
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-md-4">
+                                <label class="form-label">{{ form.repeticiones.label }}</label>
+                                {{ form.repeticiones|add_class:"form-control" }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">{{ form.delay.label }}</label>
+                                {{ form.delay|add_class:"form-control" }}
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">{{ form.tiempo_navegacion.label }}</label>
+                                {{ form.tiempo_navegacion|add_class:"form-control" }}
+                                {% if form.tiempo_navegacion.help_text %}
+                                    <div class="form-text text-muted">{{ form.tiempo_navegacion.help_text }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="mt-4" id="barra-cuenta" style="display: none;">
+                            <h5 class="text-light">⏳ Tiempo restante: <span id="tiempo-restante"></span> segundos</h5>
+                            <div class="progress" style="height: 20px;">
+                                <div class="progress-bar progress-bar-striped bg-info" id="progreso-tiempo" role="progressbar" style="width: 100%"></div>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-danger mt-4 d-none" id="alerta-identificador" role="alert">
+                            ⚠️ Se detectó un identificador sensible en una de las páginas durante la navegación.
+                        </div>
+
+                        <div class="d-grid">
+                            <button id="lanzar-analisis" class="btn btn-primary btn-lg rounded-pill" type="button">
+                                <i class="bi bi-rocket-takeoff"></i> Lanzar Análisis
+                            </button>
+                        </div>
+
+                        {% if messages %}
+                            <div class="mt-4">
+                                {% for msg in messages %}
+                                    <div class="alert alert-{{ msg.tags }} alert-dismissible fade show" role="alert">
+                                        {{ msg }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
+                        <div class="alert alert-info mt-3" id="resultado-estimado">
+                            ⏱️ Tiempo estimado total: <strong>0</strong> segundos
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const modoCalculo      = document.getElementById("id_modo_calculo");
+    const repeticionesInput= document.getElementById("id_repeticiones");
+    const delayInput       = document.getElementById("id_delay");
+    const tiempoInput      = document.getElementById("id_tiempo_navegacion");
+
+    function recalcular() {
+        const modo = modoCalculo.value;
+        let rep = parseInt(repeticionesInput.value) || 0;
+        let del = parseInt(delayInput.value) || 0;
+        let tiem = parseInt(tiempoInput.value) || 0;
+
+        repeticionesInput.disabled = false;
+        delayInput.disabled       = false;
+        tiempoInput.disabled      = false;
+
+        if (modo === "calcular_repeticiones" && tiem && del) {
+            repeticionesInput.value = Math.floor(tiem / del);
+            repeticionesInput.disabled = true;
+        } else if (modo === "calcular_espera" && tiem && rep) {
+            delayInput.value = Math.floor(tiem / rep);
+            delayInput.disabled = true;
+        } else if (modo === "calcular_tiempo" && rep && del) {
+            tiempoInput.value = rep * del;
+            tiempoInput.disabled = true;
+        }
+    }
+
+    [modoCalculo, repeticionesInput, delayInput, tiempoInput].forEach(el => {
+        if (el) el.addEventListener("input", recalcular);
+    });
+    modoCalculo.addEventListener("change", recalcular);
+    recalcular();
+
+    const radios = document.querySelectorAll('input[name="modo"]');
+    const urlsSec = document.getElementById("urls_section");
+    const manSec  = document.getElementById("manual_section");
+
+    function toggleSections() {
+        const val = document.querySelector('input[name="modo"]:checked')?.value;
+        urlsSec.style.display   = val === "lista"   ? "block" : "none";
+        manSec.style.display    = val === "manual"  ? "block" : "none";
+    }
+    radios.forEach(r => r.addEventListener("change", toggleSections));
+    toggleSections();
+
+    document.getElementById("lanzar-analisis").addEventListener("click", function () {
+        const urlField = document.getElementById("id_url_manual");
+        const tiempo   = parseInt(document.getElementById("id_tiempo_navegacion").value) || 60;
+        if (urlField && urlField.value) {
+            const newWin = window.open(urlField.value, "_blank", "noopener,noreferrer");
+            let restantes = tiempo;
+            const progreso = document.getElementById("progreso-tiempo");
+            const spanTime = document.getElementById("tiempo-restante");
+            const barra    = document.getElementById("barra-cuenta");
+            barra.style.display = "block";
+
+            const intervalo = setInterval(() => {
+                restantes--;
+                progreso.style.width = `${(restantes / tiempo) * 100}%`;
+                spanTime.innerText   = restantes;
+                if (restantes <= 0) {
+                    clearInterval(intervalo);
+                    if (newWin) newWin.close();
+                    barra.style.display = "none";
+                    document.querySelector("form").submit();
+                }
+            }, 1000);
+        }
+    });
+});
+</script>
+{% endblock %}
