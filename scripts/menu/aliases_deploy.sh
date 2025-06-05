@@ -4,6 +4,7 @@
 AP_H2_DIR="/home/markmur88/api_bank_h2"
 AP_BK_DIR="/home/markmur88/api_bank_h2_BK"
 AP_HK_DIR="/home/markmur88/api_bank_heroku"
+BACKUPDIR="/home/markmur88/backup"
 VENV_PATH="/home/markmur88/envAPP"
 SCRIPTS_DIR="$AP_H2_DIR/scripts"
 BACKU_DIR="$SCRIPTS_DIR/backup"
@@ -95,7 +96,7 @@ alias 17gtareas='nohup bash $GE_SH_DIR/gestor_tareas_17.sh >/dev/null 2>&1 & dis
 unalias envAPP 2>/dev/null
 envAPP() {source "$VENV_PATH" "$@"; }
 
-alias api='cd "$AP_H2_DIR" && envAPP && clear '
+alias api="cd $AP_H2_DIR && envAPP && clear"
 alias deploy_full='api && bash "$SCRIPTS_DIR/menu/01_full.sh"'
 
 alias d_help='api && deploy_full --help'
@@ -140,14 +141,17 @@ d_vps() {d_env && deploy_full -v "$@"; }
 
 # === TOR ===
 alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
-alias tor_diag='vps_exec "bash "$TORSY_DIR/check_torrc.sh"'
-alias tor_newip='vps_exec "bash "$TORSY_DIR/rotate_tor_ip.sh"'
+alias tor_diag='vps_exec "bash \"$TORSY_DIR/check_torrc.sh\""' 
+alias tor_newip='vps_exec "bash \"$TORSY_DIR/rotate_tor_ip.sh\""' 
 alias tor_refresh='tor_diag && tor_newip'
 
 alias sync_configs='vps_exec "bash $DP_VP_DIR/sync_configs_from_vps.sh"'
 alias push_configs='vps_exec "bash $DP_VP_DIR/sync_configs_to_vps.sh"'
 
-
+alias sim_bank_ins='vps_exec "bash \"$SM_BK_DIR/instalar_simulador.sh\""' 
+alias sim_bank_chk='vps_exec "bash \"$SM_BK_DIR/check_tor_simulator.sh\""' 
+alias sim_bank_mon='vps_exec "bash \"$SM_BK_DIR/monitor_logs.sh\""' 
+alias sim_bank_ges='vps_exec "bash \"$SM_BK_DIR/gestor_simulador.sh\""' 
 
 
 # ─── 📦 Logs del sistema ────────────────────────────────
@@ -185,6 +189,7 @@ alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1
 # psql -h 127.0.0.1 -p 5433 -U <usuario_db> -d <nombre_db>
 
 # === Sincronización segura ===
+alias vps_locsycl='bash $DP_VP_DIR/vps_sync_clean.sh'
 alias vps_locsync='bash $DP_VP_DIR/vps_sync.sh'
 alias vps_up_copy='bash $DP_VP_DIR/vps_copy_up_files.sh'
 alias vps_down_copy='bash $DP_VP_DIR/vps_copy_files.sh'
@@ -283,14 +288,18 @@ log_ok "tor_diag       → Verifica config torrc"
 log_ok "tor_newip      → Fuerza IP nueva"
 log_ok "tor_refresh    → Diagnóstico + IP nueva"
 log_info "📁 COPY FILES"
+log_ok "vps_locsycl    → Sube archivos al VPS de los 3 directorios"
+log_ok "vps_locsync    → Sube archivos al VPS"
 log_ok "vps_up_copy    → Sube archivos al VPS"
 log_ok "vps_down_copy  → Baja archivos del VPS"
 log_info "🔔 NOTIFICADORES"
 log_ok "gtareas_status → Estado general"
 log_ok "000gtareas ... 17gtareas → Lanzadores por ID"
-log_info "📄 LOGS"
-log_ok "vps_nginx_err / access / all"
-log_ok "vps_logs_all / logsync / remote_check"
+log_info "📄 SIMULADOR"
+log_ok "sim_bank_ins   → Instala Simulador al VPS"
+log_ok "sim_bank_chk   → Chequea Simulador del VPS"
+log_ok "sim_bank_mon   → Monitorea Simulador del VPS"
+log_ok "sim_bank_ges   → Gestiona Simulador del VPS"
 log_info "🛠️ COMANDOS"
 log_ok "vps_reload / status / check / ping"
 log_ok "vps_l_root / vps_l_user"

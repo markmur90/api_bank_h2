@@ -5,8 +5,10 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/opt/simulador_banco
-ExecStart=/opt/simulador_banco/venv/bin/gunicorn simulador_banco.wsgi:application --bind 0.0.0.0:9080
+ExecStart=/opt/simulador_banco/venv/bin/gunicorn simulador_banco.wsgi:application --bind 0.0.0.0:9180
 Restart=always
+StandardOutput=append:/opt/simulador_banco/logs/simulador_banco.log
+StandardError=append:/opt/simulador_banco/logs/simulador_banco_error.log
 
 [Install]
 WantedBy=multi-user.target

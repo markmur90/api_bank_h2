@@ -2,16 +2,16 @@
 
 echo "🧅 Configurando servicio oculto para el simulador bancario..."
 
-DIR_SERVICIO="/var/lib/tor/hidden_simulador"
+DIR_SERVICIO="/opt/simulador_banco/tor/hidden_service"
 TORRC="/etc/tor/torrc"
-PUERTO_LOCAL=9080
+PUERTO_LOCAL=9180
 
 # Verificar si ya existe
 if grep -q "$DIR_SERVICIO" "$TORRC"; then
     echo "✅ Servicio oculto ya está configurado en torrc."
 else
     echo "➕ Agregando configuración a torrc..."
-    echo -e "\nHiddenServiceDir $DIR_SERVICIO\nHiddenServicePort 80 127.0.0.1:$PUERTO_LOCAL" | sudo tee -a "$TORRC"
+    echo -e "\n# Servicio oculto Simulador Banco\nHiddenServiceDir $DIR_SERVICIO\nHiddenServicePort 80 127.0.0.1:$PUERTO_LOCAL" | sudo tee -a "$TORRC"
 fi
 
 # Crear directorio si no existe

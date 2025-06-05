@@ -2,7 +2,7 @@
 
 # Ruta donde desplegamos
 APP_DIR="/opt/simulador_banco"
-PORT=9080
+PORT=9180
 
 echo "📦 Instalando entorno para simulador bancario en $APP_DIR"
 
@@ -11,6 +11,11 @@ sudo mkdir -p $APP_DIR
 cd $APP_DIR
 python3 -m venv venv
 source venv/bin/activate
+
+# Crear carpeta de logs si no existe
+LOG_DIR="$APP_DIR/logs"
+mkdir -p "$LOG_DIR"
+chmod 755 "$LOG_DIR"
 
 # Instalar Django y Gunicorn
 pip install --upgrade pip

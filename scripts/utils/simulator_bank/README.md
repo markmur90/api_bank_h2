@@ -3,15 +3,18 @@
 ## 🛠️ Orden de Implementación Recomendado
 
 1. **Preparación del VPS**
+
    - Tener instalado: Python, pip, virtualenv, NGINX, Gunicorn, Tor, Supervisor.
    - Verificar puertos libres (`9080` para simulador, `9001`, `9050` Tor).
 
 2. **Subir scripts al VPS**
+
    ```bash
    scp deploy_simulador.sh monitor_logs.sh configurar_tor_onion.sh root@<IP>:/root/
    ```
 
 3. **Desplegar la app bancaria**
+
    ```bash
    ssh root@<IP>
    chmod +x deploy_simulador.sh
@@ -19,6 +22,7 @@
    ```
 
 4. **Activar servicio systemd del simulador**
+
    ```bash
    cp simulador_banco.service /etc/systemd/system/
    systemctl daemon-reload
@@ -27,12 +31,14 @@
    ```
 
 5. **Configurar y activar servicio oculto .onion**
+
    ```bash
    chmod +x configurar_tor_onion.sh
    ./configurar_tor_onion.sh
    ```
 
 6. **(Opcional) Servicio persistente para .onion**
+
    ```bash
    cp tor_simulador_onion.service /etc/systemd/system/
    systemctl daemon-reload
@@ -40,13 +46,13 @@
    ```
 
 7. **Monitorear logs del simulador**
+
    ```bash
    ./monitor_logs.sh
    ```
 
 8. **(Local) Configurar `.env` para conexión externa simulada**
    - Ver sección `.env sugerido`
-
 
 Este entorno emula un sistema bancario con soporte de transferencias SEPA, validación de IP segura, conexión vía DNS bancario, y un servidor simulado accesible tanto por IP pública como por la red Tor.
 
@@ -64,7 +70,8 @@ Este entorno emula un sistema bancario con soporte de transferencias SEPA, valid
 
 ## 🚀 Despliegue en VPS
 
-1. Subí y ejecutá el script:
+1.Subí y ejecutá el script:
+
 ```bash
 scp deploy_simulador.sh root@504e1ef2.host.njalla.net:/root/
 ssh root@504e1ef2.host.njalla.net
@@ -72,7 +79,8 @@ chmod +x deploy_simulador.sh
 ./deploy_simulador.sh
 ```
 
-2. Activá como servicio persistente:
+2.Activá como servicio persistente:
+
 ```bash
 scp simulador_banco_logs.service root@504e1ef2.host.njalla.net:/etc/systemd/system/simulador_banco.service
 systemctl daemon-reload
@@ -80,7 +88,8 @@ systemctl enable simulador_banco
 systemctl start simulador_banco
 ```
 
-3. Monitoreo en tiempo real:
+3.Monitoreo en tiempo real:
+
 ```bash
 ./monitor_logs.sh
 ```
@@ -99,6 +108,7 @@ chmod +x configurar_tor_onion.sh
 - `.onion` generado en: `/var/lib/tor/hidden_simulador/hostname`
 
 Para activarlo en cada reinicio:
+
 ```bash
 scp tor_simulador_onion.service root@504e1ef2.host.njalla.net:/etc/systemd/system/
 systemctl daemon-reload

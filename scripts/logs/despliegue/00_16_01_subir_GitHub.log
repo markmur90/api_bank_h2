@@ -81551,3 +81551,24 @@ To github.com:markmur90/api_bank_heroku.git
 rama 'api-bank' configurada para rastrear 'origin/api-bank'.
 
 🎉 ✅ ¡Puss a GitHub completo!
+
+📅 Inicio ejecución: 2025-06-05 06:55:56
+📄 Script: 00_16_01_subir_GitHub.sh
+═══════════════════════════════════════════
+
+🚀 Subiendo el proyecto a Heroku y GitHub...
+📦 Haciendo git add...
+📝 Commit con mensaje: syncronización 01_full.sh
+[api-bank 237f4450] syncronización 01_full.sh
+ 26 files changed, 2961 insertions(+), 12 deletions(-)
+ create mode 100644 scripts/logs/sync/20250605_064742_sync.log
+🌐 Push a GitHub...
+remote: 
+remote: GitHub found 22 vulnerabilities on markmur90/api_bank_heroku's default branch (2 critical, 11 high, 6 moderate, 3 low). To find out more, visit:        
+remote:      https://github.com/markmur90/api_bank_heroku/security/dependabot        
+remote: 
+To github.com:markmur90/api_bank_heroku.git
+   b52fda84..237f4450  api-bank -> api-bank
+rama 'api-bank' configurada para rastrear 'origin/api-bank'.
+
+🎉 ✅ ¡Puss a GitHub completo!
