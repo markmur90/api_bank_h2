@@ -1,1 +1,0 @@
-python -c "import secrets; import string; print(''.join(secrets.choice(string.ascii_letters + string.digits + '!$%^&*(-_=+)') for i in range(50)))"

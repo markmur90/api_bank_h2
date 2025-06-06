@@ -1,7 +1,0 @@
-.zip
-.db
-.sqlite3
-.vscode/
-* copy*.*
-
-

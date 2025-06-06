@@ -1,2 +1,0 @@
-GHOST|completada
-Simulador|pendiente

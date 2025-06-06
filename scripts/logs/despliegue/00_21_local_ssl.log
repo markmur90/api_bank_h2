@@ -1,4 +1,0 @@
-[2025-06-05 21:01:18 +0200] [25855] [INFO] Starting gunicorn 23.0.0
-[2025-06-05 21:01:18 +0200] [25855] [INFO] Listening at: http://0.0.0.0:8000 (25855)
-[2025-06-05 21:01:18 +0200] [25855] [INFO] Using worker: sync
-[2025-06-05 21:01:18 +0200] [25866] [INFO] Booting worker with pid: 25866
