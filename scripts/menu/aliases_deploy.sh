@@ -96,7 +96,7 @@ alias 17gtareas='nohup bash $GE_SH_DIR/gestor_tareas_17.sh >/dev/null 2>&1 & dis
 unalias envAPP 2>/dev/null
 envAPP() {source "$VENV_PATH" "$@"; }
 
-alias api="cd $AP_H2_DIR && envAPP && clear"
+alias api="cd $AP_H2_DIR && envAPP"
 alias deploy_full='api && bash "$SCRIPTS_DIR/menu/01_full.sh"'
 
 alias d_help='api && deploy_full --help'
@@ -140,20 +140,20 @@ d_vps() {d_env && deploy_full -v "$@"; }
 
 
 # === TOR ===
-alias vps_tor='vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
-alias tor_diag='vps_exec "bash \"$TORSY_DIR/check_torrc.sh\""' 
-alias tor_newip='vps_exec "bash \"$TORSY_DIR/rotate_tor_ip.sh\""' 
-alias tor_refresh='tor_diag && tor_newip'
+alias vps_tor='api && vps_exec "sudo cat /var/lib/tor/hidden_service/hostname"'
+alias tor_diag='api && vps_exec "bash $TORSY_DIR/check_torrc.sh"' 
+alias tor_newip='api && vps_exec "bash $TORSY_DIR/rotate_tor_ip.sh"' 
+alias tor_refresh='api && tor_diag && tor_newip'
 
 alias sync_configs='vps_exec "bash $DP_VP_DIR/sync_configs_from_vps.sh"'
 alias push_configs='vps_exec "bash $DP_VP_DIR/sync_configs_to_vps.sh"'
 
-alias sim_bank_ins='vps_exec "bash \"$SM_BK_DIR/instalar_simulador.sh\""' 
-alias sim_bank_chk='vps_exec "bash \"$SM_BK_DIR/check_tor_simulator.sh\""' 
-alias sim_bank_mon='vps_exec "bash \"$SM_BK_DIR/monitor_logs.sh\""' 
-alias sim_bank_ges='vps_exec "bash \"$SM_BK_DIR/gestor_simulador.sh\""' 
-alias sim_bank_ping="torsocks curl --silent --fail http://\$(vps_exec 'cat /opt/simulador_banco/tor/hidden_service/hostname') || echo '[ERROR] No se pudo conectar al servicio oculto'"
-alias sim_bank_ping_d="torsocks curl --silent --fail http://\$(vps_exec 'cat /opt/simulador_banco/tor/hidden_service/hostname') | grep -qi 'django' && echo '[OK] Servicio oculto responde con Django' || echo '[ERROR] No se detectó Django en la respuesta'"
+alias sim_bank_ins='vps_exec "bash $SM_BK_DIR/instalar_simulador.sh"' 
+alias sim_bank_chk='vps_exec "bash $SM_BK_DIR/check_tor_simulator.sh"' 
+alias sim_bank_mon='vps_exec "bash $SM_BK_DIR/monitor_logs.sh"' 
+alias sim_bank_ges='vps_exec "bash $SM_BK_DIR/gestor_simulador.sh"' 
+alias sim_bank_ping="torsocks curl --silent --fail http://\$(vps_exec 'cat /var/lib/tor/hidden_service/hostname') || echo '[ERROR] No se pudo conectar al servicio oculto'"
+alias sim_bank_ping_d="torsocks curl --silent --fail http://\$(vps_exec 'cat /var/lib/tor/hidden_service/hostname') | grep -qi 'django' && echo '[OK] Servicio oculto responde con Django' || echo '[ERROR] No se detectó Django en la respuesta'"
 alias sync_onion='bash ~/api_bank_h2/scripts/utils/simulator_bank/sync_onion_local.sh'
 alias sim_fix_logs='vps_exec "bash \"$SM_BK_DIR/fix_sim_logs.sh\""' 
 
@@ -222,6 +222,11 @@ alias log_vps_nginx_err='vps_exec "tail -f /var/log/nginx/error.log"'
 alias log_vps_nginx_acc='vps_exec "tail -f /var/log/nginx/access.log"'
 alias log_vps_all='vps_exec "tail -f /var/log/supervisor/coretransapi.err.log /var/log/nginx/error.log /var/log/nginx/access.log"'
 
+NOTIF_DIR="/home/markmur88/notas"
+TG_CONF_SCRIPT="$NOTIF_DIR/telegram_config.sh"
+
+# Alias para configurar Telegram
+alias tg_bot_conf='bash "$TG_CONF_SCRIPT"'
 
 
 # ───📚 ALIAS DE AYUDA - MENÚ COMPLETO────────────────────────

@@ -3,7 +3,7 @@ set -e
 
 TORRC="/etc/tor/torrc"
 BACKUP="/etc/tor/torrc.bak_$(date +%Y%m%d_%H%M%S)"
-HIDDEN_DIR="/opt/simulador_banco/tor/hidden_service"
+HIDDEN_DIR="/var/lib/tor/hidden_service"
 PORT=9180
 
 echo "🔒 Haciendo backup de torrc en $BACKUP"

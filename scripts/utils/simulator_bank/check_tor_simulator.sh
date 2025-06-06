@@ -2,7 +2,7 @@
 echo "🔍 Verificando estado de Tor y servicio oculto del simulador..."
 
 TOR_SERVICE="tor"
-HIDDEN_DIR="/opt/simulador_banco/tor/hidden_service"
+HIDDEN_DIR="/var/lib/tor/hidden_service"
 ONION_COPY="/home/markmur88/simulador_hostname.txt"
 
 # Verificar si Tor está activo

@@ -1,10 +1,52 @@
-#!/usr/bin/env bash
-set -e
-export DISPLAY=:0.0
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
-exec 2>/dev/null
+#!/bin/bash
+set -o errexit -o nounset -o pipefail
+export SHELL=/bin/bash
 
-BASE_DIR="$AP_H2_DIR/scripts/gestor-tareas/gestor/.gestor_tareas"
+# -----------------------------------------------------------------------------
+# Script: gestor_tareas_02.sh
+# Propósito: Gestor de tareas gráfico con Zenity, por proyecto.
+# - Selecciona o crea un proyecto.
+# - Agrega/edita/elimina/actualiza tareas en archivos de texto.
+# - Registra tiempo de ejecución por sesión.
+# - Cicla intervalo de notificaciones.
+# - Desactiva el gestor cuando se elija.
+# -----------------------------------------------------------------------------
+
+# 1. Comprobar entorno gráfico
+if [ -z "${DISPLAY:-}" ]; then
+  echo "ERROR: no se detecta un entorno gráfico (DISPLAY no definido)." >&2
+  exit 1
+fi
+
+# 2. Definir directorio base oculto para proyectos
+
+AP_H2_DIR="/home/markmur88/api_bank_h2"
+AP_BK_DIR="/home/markmur88/api_bank_h2_BK"
+AP_HK_DIR="/home/markmur88/api_bank_heroku"
+VENV_PATH="/home/markmur88/envAPP"
+SCRIPTS_DIR="$AP_H2_DIR/scripts"
+BACKU_DIR="$SCRIPTS_DIR/backup"
+CERTS_DIR="$SCRIPTS_DIR/certs"
+DP_DJ_DIR="$SCRIPTS_DIR/deploy/django"
+DP_GH_DIR="$SCRIPTS_DIR/deploy/github"
+DP_HK_DIR="$SCRIPTS_DIR/deploy/heroku"
+DP_VP_DIR="$SCRIPTS_DIR/deploy/vps"
+SERVI_DIR="$SCRIPTS_DIR/service"
+SYSTE_DIR="$SCRIPTS_DIR/src"
+TORSY_DIR="$SCRIPTS_DIR/tor"
+UTILS_DIR="$SCRIPTS_DIR/utils"
+CO_SE_DIR="$UTILS_DIR/conexion_segura_db"
+UT_GT_DIR="$UTILS_DIR/gestor-tareas"
+SM_BK_DIR="$UTILS_DIR/simulator_bank"
+TOKEN_DIR="$UTILS_DIR/token"
+GT_GE_DIR="$UT_GT_DIR/gestor"
+GT_NT_DIR="$UT_GT_DIR/notify"
+GE_LG_DIR="$GT_GE_DIR/logs"
+GE_SH_DIR="$GT_GE_DIR/scripts"
+
+
+SCRIPT_NAME="$(basename "$0")"
+BASE_DIR="$GE_LG_DIR/$SCRIPT_NAME"
 mkdir -p "$BASE_DIR"
 
 get_proyectos() {

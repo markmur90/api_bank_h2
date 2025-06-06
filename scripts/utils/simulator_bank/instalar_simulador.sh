@@ -2,7 +2,7 @@
 echo "🔧 Instalando simulador oculto con Tor..."
 
 # Variables
-HIDDEN_DIR="/opt/simulador_banco/tor/hidden_service"
+HIDDEN_DIR="/var/lib/tor/hidden_service"
 ONION_COPY="/home/markmur88/simulador_hostname.txt"
 
 # Crear directorios y dar permisos

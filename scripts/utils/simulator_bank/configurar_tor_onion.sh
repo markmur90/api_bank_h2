@@ -2,7 +2,7 @@
 
 echo "🧅 Configurando servicio oculto para el simulador bancario..."
 
-DIR_SERVICIO="/opt/simulador_banco/tor/hidden_service"
+DIR_SERVICIO="/var/lib/tor/hidden_service"
 TORRC="/etc/tor/torrc"
 PUERTO_LOCAL=9180
 

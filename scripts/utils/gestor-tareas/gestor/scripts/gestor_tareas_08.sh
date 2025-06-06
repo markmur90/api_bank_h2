@@ -1,10 +1,24 @@
-#!/usr/bin/env bash
-set -e
+#!/bin/bash
+set -o errexit -o nounset -o pipefail
+export SHELL=/bin/bash
 
-export DISPLAY=:0.0
-export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+# -----------------------------------------------------------------------------
+# Script: gestor_tareas_02.sh
+# Propósito: Gestor de tareas gráfico con Zenity, por proyecto.
+# - Selecciona o crea un proyecto.
+# - Agrega/edita/elimina/actualiza tareas en archivos de texto.
+# - Registra tiempo de ejecución por sesión.
+# - Cicla intervalo de notificaciones.
+# - Desactiva el gestor cuando se elija.
+# -----------------------------------------------------------------------------
 
-exec 2>/dev/null
+# 1. Comprobar entorno gráfico
+if [ -z "${DISPLAY:-}" ]; then
+  echo "ERROR: no se detecta un entorno gráfico (DISPLAY no definido)." >&2
+  exit 1
+fi
+
+# 2. Definir directorio base oculto para proyectos
 
 AP_H2_DIR="/home/markmur88/api_bank_h2"
 AP_BK_DIR="/home/markmur88/api_bank_h2_BK"
