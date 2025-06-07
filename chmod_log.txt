@@ -1,0 +1,3 @@
+✅ chmod +x -> ./scripts/utils/ver_ips.sh
+✅ chmod +x -> ./temp/staging_markmur/config/gunicorn_staging.conf.py
+✅ chmod +x -> ./temp/staging_markmur/scripts/deploy_staging.sh
