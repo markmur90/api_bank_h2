@@ -910,8 +910,9 @@ class ClaveGeneradaDeleteView(DeleteView):
 
 
 @require_GET
+@requiere_conexion_banco
 def prueba_conexion_banco(request):
-    respuesta = hacer_request_banco(request, path="/api/test")
+    respuesta = hacer_request_banco(request, path="/api/transferencia")
     if respuesta is None:
         return JsonResponse({"estado": "fallo", "detalle": "No se obtuvo respuesta."}, status=502)
     return JsonResponse({"estado": "ok", "respuesta": respuesta})
@@ -923,7 +924,12 @@ def toggle_conexion_banco(request):
     messages.success(request, f"Conexión bancaria {estado}.")
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
-
+# @require_GET
+# def prueba_conexion_banco(request):
+#     respuesta = hacer_request_banco(request, path="/api/test")
+#     if respuesta is None:
+#         return JsonResponse({"estado": "fallo", "detalle": "No se obtuvo respuesta."}, status=502)
+#     return JsonResponse({"estado": "ok", "respuesta": respuesta})
 
 
 # ============================
@@ -953,13 +959,7 @@ def diagnostico_banco(request):
     })
 
 
-@require_GET
-@requiere_conexion_banco
-def prueba_conexion_banco(request):
-    respuesta = hacer_request_banco(request, path="/api/test")
-    if respuesta is None:
-        return JsonResponse({"estado": "fallo", "detalle": "No se obtuvo respuesta."}, status=502)
-    return JsonResponse({"estado": "ok", "respuesta": respuesta})
+
 
 
 
@@ -991,7 +991,7 @@ class SimulacionTransferenciaView(View):
 
         # Usuario con permisos: usar username existente de oficial
         User = get_user_model()
-        oficial = User.objects.get(username='oficial_cuentas')  # cambia este username
+        oficial = User.objects.get(username='493069k1')  # cambia este username
 
         # Crear entidades necesarias
         debtor = Debtor.objects.create(

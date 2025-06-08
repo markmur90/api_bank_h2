@@ -94,6 +94,56 @@ def puerto_activo(host, puerto, timeout=int(2)):
     except Exception:
         return False
 
+def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, headers=None):
+    settings = get_settings()
+    DOMINIO_BANCO = settings["DOMINIO_BANCO"]
+    DNS_BANCO = settings["DNS_BANCO"]
+    MOCK_PORT = settings["MOCK_PORT"]
+    TIMEOUT = settings["TIMEOUT"]
+
+    usar_conexion = request.session.get("usar_conexion_banco", False)
+    if usar_conexion:
+        return hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
+
+    registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
+    url = f"https://{DNS_BANCO}:{MOCK_PORT}{path}"
+    try:
+        respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=TIMEOUT)
+        return respuesta.json()
+    except Exception as e:
+        registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
+        return None
+
+
+# api/gpt4/conexion_banco.py (al final del archivo)
+# Requiere: tener 'requests' importado + `get_settings()` ya disponible
+from api.gpt4.utils import registrar_log
+import requests
+
+def obtener_token_desde_simulador(username, password):
+    settings_data = get_settings()
+    dominio = settings_data["DOMINIO_BANCO"]
+    url = f"https://{dominio}/api/login/"
+    try:
+        r = requests.post(url, json={"username": username, "password": password}, verify=False)
+        if r.status_code == 200:
+            return r.json().get("token")
+        registrar_log("conexion", f"Login fallido: {r.text}")
+    except Exception as e:
+        registrar_log("conexion", f"❌ Error al obtener token del simulador: {e}")
+    return None
+
+def hacer_request_banco_autenticado(request, path="/api", metodo="GET", datos=None, username="493069k1", password="bar1588623"):
+    token = obtener_token_desde_simulador(username, password)
+    if not token:
+        return {"error": "No se pudo obtener token del simulador"}
+    
+    # Si ya hay headers, los respeta y solo añade el JWT
+    headers = {"Authorization": f"Bearer {token}"}
+    return hacer_request_banco(request, path=path, metodo=metodo, datos=datos, headers=headers)
+
+
+
 def hacer_request_banco(request, path="/api", metodo="GET", datos=None, headers=None):
     settings = get_settings()
     DOMINIO_BANCO = settings["DOMINIO_BANCO"]
@@ -102,6 +152,17 @@ def hacer_request_banco(request, path="/api", metodo="GET", datos=None, headers=
     TIMEOUT = settings["TIMEOUT"]
 
     usar_conexion = request.session.get("usar_conexion_banco", False)
+
+    headers = headers or {}
+
+    if usar_conexion == "oficial":
+        token = obtener_token_desde_simulador("493069k1", "bar1588623")
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+        else:
+            registrar_log("conexion", "❌ No se pudo obtener token del simulador para oficial.")
+            return {"error": "Fallo autenticación oficial"}
+
     if usar_conexion:
         return hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
 
