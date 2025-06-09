@@ -94,3 +94,27 @@
   },
   "error": null
 }
+{
+  "timestamp": "2025-06-09 14:12:07",
+  "accion": "inicio_autorizacion",
+  "estado": "exito",
+  "metadata": {
+    "state": "cc08aefc2613489fb82686edfef26d3e",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7&redirect_uri=https://api.coretransapi.com/oauth2/callback/&scope=sepa_credit_transfers&state=cc08aefc2613489fb82686edfef26d3e&code_challenge_method=S256&code_challenge=r8XLy4S1bixT7dsRoWpW35WqhUIxLvEbrCPNvtQqCrg",
+    "code_challenge": "r8XLy4S1bixT7dsRoWpW35WqhUIxLvEbrCPNvtQqCrg",
+    "payment_id": "1280a515-64a7-404f-883d-bb49f39aaf66"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-09 14:12:07",
+  "accion": "inicio_autorizacion",
+  "estado": "exito",
+  "metadata": {
+    "state": "cc08aefc2613489fb82686edfef26d3e",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7&redirect_uri=https://api.coretransapi.com/oauth2/callback/&scope=sepa_credit_transfers&state=cc08aefc2613489fb82686edfef26d3e&code_challenge_method=S256&code_challenge=r8XLy4S1bixT7dsRoWpW35WqhUIxLvEbrCPNvtQqCrg",
+    "code_challenge": "r8XLy4S1bixT7dsRoWpW35WqhUIxLvEbrCPNvtQqCrg",
+    "payment_id": "1280a515-64a7-404f-883d-bb49f39aaf66"
+  },
+  "error": null
+}
