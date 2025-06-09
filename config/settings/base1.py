@@ -63,7 +63,7 @@ env.read_env(env_file)
 
 # 3. Variables críticas
 SECRET_KEY = "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw"
-DEBUG      = False
+DEBUG      = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '.herokuapp.com', '.coretransapi.com', '80.78.30.242', '.onion', ]
 
 

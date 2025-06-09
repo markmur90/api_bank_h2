@@ -118,12 +118,39 @@ def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, header
 
     usar_conexion = request.session.get("usar_conexion_banco", False)
     if usar_conexion:
-        return hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
-
+        registrar_log(
+            "conexion",
+            headers_enviados=headers,
+            request_body=datos,
+            extra_info=f"{metodo} {path} via conexion segura"
+        )
+        resp = hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
+        if isinstance(resp, requests.Response):
+            registrar_log(
+                "conexion",
+                response_headers=dict(resp.headers),
+                response_text=resp.text,
+                extra_info="Respuesta conexion segura"
+            )
+        return resp
+        
+        
     registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
     url = f"https://{DNS_BANCO}:{MOCK_PORT}{path}"
     try:
+        registrar_log(
+            "conexion",
+            headers_enviados=headers,
+            request_body=datos,
+            extra_info=f"{metodo} {path} via mock"
+        )
         respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=TIMEOUT)
+        registrar_log(
+            "conexion",
+            response_headers=dict(respuesta.headers),
+            response_text=respuesta.text,
+            extra_info="Respuesta mock"
+        )
         return respuesta.json()
     except Exception as e:
         registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
@@ -190,6 +217,67 @@ def hacer_request_banco(request, path="/api", metodo="GET", datos=None, headers=
         registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
         return None
 
+
+
+def enviar_transferencia_conexion(request, transfer, token: str, otp: str):
+    """Envía una transferencia usando :func:`hacer_request_banco`."""
+    body = transfer.to_schema_data()
+    pid = transfer.payment_id
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {token}",
+        "Idempotency-Id": pid,
+        "Correlation-Id": pid,
+        "Otp": otp,
+    }
+
+    registrar_log(pid, headers_enviados=headers, request_body=body,
+                 tipo_log="TRANSFER", extra_info="Enviando transferencia vía conexion_banco")
+
+    resp = hacer_request_banco(
+        request, path="/api/transferencia", metodo="POST", datos=body, headers=headers
+    )
+
+    if resp is None:
+        registrar_log(pid, tipo_log="ERROR", error="Sin respuesta de conexion_banco")
+        raise Exception("Sin respuesta de la conexión bancaria")
+
+    if isinstance(resp, requests.Response):
+        response_headers = dict(resp.headers)
+        text = resp.text
+        try:
+            resp.raise_for_status()
+        except requests.RequestException as e:
+            registrar_log(pid, error=str(e), tipo_log="ERROR",
+                         extra_info="Error HTTP conexión bancaria")
+            raise
+        data = resp.json()
+    else:
+        response_headers = {}
+        text = json.dumps(resp)
+        data = resp
+
+    registrar_log(pid, tipo_log="TRANSFER", response_text=text,
+                 headers_enviados=response_headers,
+                 extra_info="Respuesta del API SEPA (conexion)")
+
+    transfer.auth_id = data.get("authId")
+    transfer.status = data.get("transactionStatus", transfer.status)
+    transfer.save()
+
+    registrar_log(pid, tipo_log="TRANSFER", extra_info="Transferencia enviada con éxito via conexion_banco")
+
+    try:
+        xml_path = generar_xml_pain001(transfer, pid)
+        aml_path = generar_archivo_aml(transfer, pid)
+        validar_xml_pain001(xml_path)
+        validar_aml_con_xsd(aml_path)
+        registrar_log(pid, tipo_log="TRANSFER", extra_info="Validación XML/AML completada")
+    except Exception as e:
+        registrar_log(pid, error=str(e), tipo_log="ERROR", extra_info="Error generando XML/AML posterior")
+
+    return resp
 
 def enviar_transferencia_conexion(request, transfer, token: str, otp: str):
     """Envía una transferencia usando :func:`hacer_request_banco`."""
