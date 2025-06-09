@@ -935,9 +935,35 @@ def toggle_conexion_banco(request):
 # ============================
 # Diagnóstico de red bancaria
 # ============================
+# ==== Configuración general ====
+from functools import lru_cache
+from api.configuraciones_api.helpers import get_conf
+
+@lru_cache
+def get_settings():
+    timeout = int(600)
+    port = int(get_conf("MOCK_PORT"))
+    return {
+        "DNS_BANCO":            get_conf("DNS_BANCO"),
+        "DOMINIO_BANCO":        get_conf("DOMINIO_BANCO"),
+        "RED_SEGURA_PREFIX":    get_conf("RED_SEGURA_PREFIX"),
+        "TIMEOUT":              timeout,
+        "MOCK_PORT":            port,
+    }
+
+
+# Ejemplo de uso:
+# settings = get_settings()
+# token_url = settings["TOKEN_URL"]
+
 
 @require_GET
 def diagnostico_banco(request):
+    settings = get_settings()
+    dns_banco = settings["DNS_BANCO"]
+    dominio_banco = settings["DOMINIO_BANCO"]
+    red_segura_prefix = settings["RED_SEGURA_PREFIX"]
+    
     try:
         hostname = socket.gethostname()
         ip_local = socket.gethostbyname(hostname)
@@ -946,8 +972,8 @@ def diagnostico_banco(request):
 
     try:
         resolver = dns.resolver.Resolver()
-        resolver.nameservers = ["192.168.10.12"]
-        respuesta = resolver.resolve("pain.banco.priv")
+        resolver.nameservers = dns_banco
+        respuesta = resolver.resolve(dominio_banco)
         dns_resuelto = respuesta[0].to_text()
     except Exception as e:
         dns_resuelto = f"❌ Error resolviendo dominio bancario: {e}"
@@ -955,7 +981,7 @@ def diagnostico_banco(request):
     return render(request, "api/extras/diagnostico_banco.html", {
         "ip_local": ip_local,
         "dns_banco": dns_resuelto,
-        "en_red_simulada": ip_local.startswith("192.168.10.")
+        "en_red_simulada": ip_local.startswith(red_segura_prefix)
     })
 
 

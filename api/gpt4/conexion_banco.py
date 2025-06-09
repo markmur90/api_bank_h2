@@ -11,7 +11,7 @@ from api.configuraciones_api.helpers import get_conf
 @lru_cache
 def get_settings():
     timeout = int(600)
-    port = int(443)
+    port = int(get_conf("MOCK_PORT"))
     return {
         "DNS_BANCO":            get_conf("DNS_BANCO"),
         "DOMINIO_BANCO":        get_conf("DOMINIO_BANCO"),
