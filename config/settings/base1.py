@@ -103,7 +103,7 @@ MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'api.middleware.oficial_session.DetectarOficialMiddleware',
+    'middleware.oficial_session.DetectarOficialMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'api.core.middleware.CurrentUserMiddleware',
