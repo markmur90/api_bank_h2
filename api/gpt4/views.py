@@ -957,31 +957,69 @@ def get_settings():
 # token_url = settings["TOKEN_URL"]
 
 
+from django.views.decorators.http import require_GET
+from django.shortcuts import render
+import socket
+
+try:
+    import netifaces
+    usar_netifaces = True
+except ImportError:
+    usar_netifaces = False
+
 @require_GET
 def diagnostico_banco(request):
     settings = get_settings()
-    dns_banco = settings["DNS_BANCO"]
     dominio_banco = settings["DOMINIO_BANCO"]
     red_segura_prefix = settings["RED_SEGURA_PREFIX"]
-    
-    try:
-        hostname = socket.gethostname()
-        ip_local = socket.gethostbyname(hostname)
-    except Exception as e:
-        ip_local = f"❌ Error obteniendo IP local: {e}"
+    puerto_mock = settings["MOCK_PORT"]
 
+    # === IP Local y Red Segura ===
+    ip_local = "❌ No detectada"
+    en_red_segura = False
     try:
-        resolver = dns.resolver.Resolver()
-        resolver.nameservers = dns_banco
-        respuesta = resolver.resolve(dominio_banco)
-        dns_resuelto = respuesta[0].to_text()
+        if usar_netifaces:
+            interfaces = netifaces.interfaces()
+            for iface in interfaces:
+                addrs = netifaces.ifaddresses(iface)
+                if netifaces.AF_INET in addrs:
+                    for link in addrs[netifaces.AF_INET]:
+                        ip = link['addr']
+                        if ip.startswith(red_segura_prefix):
+                            ip_local = ip
+                            en_red_segura = True
+                            break
+        else:
+            hostname = socket.gethostname()
+            ip = socket.gethostbyname(hostname)
+            ip_local = ip
+            en_red_segura = ip.startswith(red_segura_prefix)
     except Exception as e:
-        dns_resuelto = f"❌ Error resolviendo dominio bancario: {e}"
-   
+        ip_local = f"❌ Error detectando IP: {e}"
+
+    # === DNS del dominio ===
+    try:
+        ip_remoto = socket.gethostbyname(dominio_banco)
+        dns_status = f"✅ {dominio_banco} → {ip_remoto}"
+    except Exception as e:
+        ip_remoto = None
+        dns_status = f"❌ Error resolviendo {dominio_banco}: {e}"
+
+    # === Acceso al puerto del mock ===
+    try:
+        if ip_remoto:
+            with socket.create_connection((ip_remoto, puerto_mock), timeout=5):
+                conexion_status = f"✅ Puerto {puerto_mock} accesible en {ip_remoto}"
+        else:
+            conexion_status = "⛔ No se resolvió IP, no se prueba puerto"
+    except Exception as e:
+        conexion_status = f"❌ Puerto {puerto_mock} no accesible: {e}"
+
     return render(request, "api/extras/diagnostico_banco.html", {
         "ip_local": ip_local,
-        "dns_banco": dns_resuelto,
-        "en_red_simulada": ip_local.startswith(red_segura_prefix)
+        "dns_status": dns_status,
+        "conexion_status": conexion_status,
+        "en_red_segura": en_red_segura,
     })
 
 

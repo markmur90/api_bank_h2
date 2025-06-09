@@ -3,6 +3,7 @@ import requests
 import socket
 import os
 from django.conf import settings
+import netifaces
 
 from api.gpt4.utils import registrar_log, get_conf
 from functools import lru_cache
@@ -33,9 +34,15 @@ def esta_en_red_segura():
 def resolver_ip_dominio(dominio):
     settings = get_settings()
     DNS_BANCO = settings["DNS_BANCO"]
-    
+
     resolver = dns.resolver.Resolver()
-    resolver.nameservers = [DNS_BANCO]
+
+    # Aseguramos que nameservers sea una lista de IPs
+    if isinstance(DNS_BANCO, str):
+        DNS_BANCO = [ip.strip() for ip in DNS_BANCO.split(',') if ip.strip()]
+
+    resolver.nameservers = DNS_BANCO
+
     try:
         respuesta = resolver.resolve(dominio)
         ip = respuesta[0].to_text()
@@ -44,6 +51,7 @@ def resolver_ip_dominio(dominio):
     except Exception as e:
         registrar_log("conexion", f"❌ Error DNS bancario: {e}")
         return None
+
 
 def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers=None):
     settings = get_settings()
@@ -123,7 +131,7 @@ import requests
 def obtener_token_desde_simulador(username, password):
     settings_data = get_settings()
     dominio = settings_data["DOMINIO_BANCO"]
-    url = f"https://{dominio}/api/login/"
+    url = f"https://{dominio}/api/token/"
     try:
         r = requests.post(url, json={"username": username, "password": password}, verify=False)
         if r.status_code == 200:
