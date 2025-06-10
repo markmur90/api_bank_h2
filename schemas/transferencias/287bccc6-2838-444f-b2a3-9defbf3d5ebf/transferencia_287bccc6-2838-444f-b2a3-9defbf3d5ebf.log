@@ -1,0 +1,97 @@
+
+================================================================================
+Fecha y hora: 2025-06-09 14:00:20
+================================================================================
+=== Info ===
+Transferencia creada
+
+
+================================================================================
+Fecha y hora: 2025-06-09 14:00:20
+================================================================================
+=== Info ===
+XML pain.001 generado en schemas/transferencias/287bccc6-2838-444f-b2a3-9defbf3d5ebf/pain001_287bccc6-2838-444f-b2a3-9defbf3d5ebf.xml
+
+
+================================================================================
+Fecha y hora: 2025-06-09 14:00:20
+================================================================================
+=== Info ===
+Archivo AML generado en schemas/transferencias/287bccc6-2838-444f-b2a3-9defbf3d5ebf/aml_287bccc6-2838-444f-b2a3-9defbf3d5ebf.xml
+
+
+================================================================================
+Fecha y hora: 2025-06-09 14:00:36
+================================================================================
+=== Info ===
+OAuth no iniciado o token expirado
+
+=== Error ===
+Token no disponible
+
+================================================================================
+Fecha y hora: 2025-06-09 14:00:36
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "400c974dee504570abe7c706a82e6b98",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7&redirect_uri=https://api.coretransapi.com/oauth2/callback/&scope=sepa_credit_transfers&state=400c974dee504570abe7c706a82e6b98&code_challenge_method=S256&code_challenge=LcDZAuWGK17WZtgnPRifVckwEJx5nF9MjJEAlJt6rr0",
+    "code_challenge": "LcDZAuWGK17WZtgnPRifVckwEJx5nF9MjJEAlJt6rr0",
+    "payment_id": "287bccc6-2838-444f-b2a3-9defbf3d5ebf"
+}
+
+
+================================================================================
+Fecha y hora: 2025-06-09 14:00:37
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "riPAYl3jmJN5EHv4sZHWUZqcz_wsqQ8HZ-iVgE4E96qc7lDbU61FP6ggbZPAyPLWkY1WyVnKRXc6w9A-hG9V5Q",
+    "challenge": "LcDZAuWGK17WZtgnPRifVckwEJx5nF9MjJEAlJt6rr0",
+    "state": "400c974dee504570abe7c706a82e6b98"
+}
+
+
+================================================================================
+Fecha y hora: 2025-06-09 14:04:40
+================================================================================
+=== Info ===
+OAuth no iniciado o token expirado
+
+=== Error ===
+Token no disponible
+
+================================================================================
+Fecha y hora: 2025-06-09 14:04:40
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "fe9838ffe6504c51b4d7c1b637206c26",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7&redirect_uri=https://api.coretransapi.com/oauth2/callback/&scope=sepa_credit_transfers&state=fe9838ffe6504c51b4d7c1b637206c26&code_challenge_method=S256&code_challenge=fO3iqqGUpfbchNqm2Tq5OHwa5m0N_6fJ29mMUALwi5k",
+    "code_challenge": "fO3iqqGUpfbchNqm2Tq5OHwa5m0N_6fJ29mMUALwi5k",
+    "payment_id": "287bccc6-2838-444f-b2a3-9defbf3d5ebf"
+}
+
+
+================================================================================
+Fecha y hora: 2025-06-09 14:04:40
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "0Thcz91BivS2LbZjjPI8Lwmho4WEmBIopkXxFLgN6rtjKzVLBe_Csh7o5xSulUOE75XvQcymGzfgTrn1URiljQ",
+    "challenge": "fO3iqqGUpfbchNqm2Tq5OHwa5m0N_6fJ29mMUALwi5k",
+    "state": "fe9838ffe6504c51b4d7c1b637206c26"
+}
+
