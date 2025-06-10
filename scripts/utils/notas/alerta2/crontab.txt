@@ -1,8 +1,0 @@
-
-
-
-🕒 Cronjob para alerta horaria (cada hora)
-0 * * * * /bin/bash $HOME/api_bank_h2/scripts/alerta_horaria.sh
-
-📦 Cronjob para respaldo diario (todos los días a las 10:00)
-0 10 * * * /bin/bash $HOME/api_bank_h2/scripts/respaldo_automatico.sh
