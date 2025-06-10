@@ -1,0 +1,34 @@
+📂 Proyecto: /home/markmur88/api_bank_h2
+🧹 Limpiando en VPS (api_bank_heroku) archivos excluidos...
+🗑 Eliminando: .zip
+🧹 Limpiando en VPS (bank_ghost) archivos excluidos...
+🗑 Eliminando: .zip
+🔄 Sincronizando proyecto hacia api_bank_heroku (con exclusiones)...
+sending incremental file list
+scripts/deploy/vps/vps_sync_clean.sh
+scripts/logs/sync/
+scripts/logs/sync/20250605_083546_sync_clean.log
+scripts/logs/sync/20250605_083721_sync_clean.log
+
+sent 34.911 bytes  received 322 bytes  5.420,46 bytes/sec
+total size is 64.261.056  speedup is 1.823,89
+🔄 Sincronizando proyecto hacia api_bank_h2 (sin exclusiones)...
+sending incremental file list
+scripts/deploy/vps/vps_sync_clean.sh
+scripts/logs/sync/
+scripts/logs/sync/20250605_083546_sync_clean.log
+scripts/logs/sync/20250605_083721_sync_clean.log
+
+sent 60.817 bytes  received 471 bytes  9.428,92 bytes/sec
+total size is 112.111.272  speedup is 1.829,25
+🔄 Sincronizando carpeta de backup...
+sending incremental file list
+
+sent 61.013 bytes  received 417 bytes  9.450,77 bytes/sec
+total size is 605.799.888  speedup is 9.861,63
+🔄 Sincronizando carpeta de bank_ghost...
+sending incremental file list
+
+sent 6.882 bytes  received 64 bytes  1.262,91 bytes/sec
+total size is 5.422.311  speedup is 780,64
+✅ Sincronización completada.

@@ -1,0 +1,90 @@
+📂 Proyecto: /home/markmur88/api_bank_h2
+🧹 Limpiando en VPS (api_bank_heroku) archivos excluidos...
+🗑 Eliminando: .zip
+🔄 Sincronizando proyecto hacia api_bank_heroku (con exclusiones)...
+sending incremental file list
+deleting api.sock
+./
+scripts_ord.zip
+scripts_ord_2.zip
+scripts_ord_3.zip
+scripts_para_ordenar.zip
+deleting api/__pycache__/middleware.cpython-311.pyc
+deleting api/__pycache__/__init__.cpython-311.pyc
+deleting api/authentication/__pycache__/models.cpython-311.pyc
+deleting api/authentication/__pycache__/apps.cpython-311.pyc
+deleting api/authentication/__pycache__/admin.cpython-311.pyc
+deleting api/authentication/__pycache__/__init__.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/models.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/apps.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/admin.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/__init__.cpython-311.pyc
+deleting api/core/__pycache__/models.cpython-311.pyc
+deleting api/core/__pycache__/mixin.cpython-311.pyc
+deleting api/core/__pycache__/middleware.cpython-311.pyc
+deleting api/core/__pycache__/choices.cpython-311.pyc
+deleting api/core/__pycache__/apps.cpython-311.pyc
+deleting api/core/__pycache__/admin.cpython-311.pyc
+deleting api/core/__pycache__/__init__.cpython-311.pyc
+deleting api/gpt3/__pycache__/models.cpython-311.pyc
+deleting api/gpt3/__pycache__/apps.cpython-311.pyc
+deleting api/gpt3/__pycache__/admin.cpython-311.pyc
+deleting api/gpt3/__pycache__/__init__.cpython-311.pyc
+deleting api/gpt4/__pycache__/models.cpython-311.pyc
+deleting api/gpt4/__pycache__/apps.cpython-311.pyc
+deleting api/gpt4/__pycache__/admin.cpython-311.pyc
+deleting api/gpt4/__pycache__/__init__.cpython-311.pyc
+deleting api/transfers/__pycache__/models.cpython-311.pyc
+deleting api/transfers/__pycache__/apps.cpython-311.pyc
+deleting api/transfers/__pycache__/admin.cpython-311.pyc
+deleting api/transfers/__pycache__/__init__.cpython-311.pyc
+deleting config/__pycache__/wsgi.cpython-311.pyc
+deleting config/__pycache__/__init__.cpython-311.pyc
+deleting config/settings/__pycache__/production.cpython-311.pyc
+deleting config/settings/__pycache__/local.cpython-311.pyc
+deleting config/settings/__pycache__/base1.cpython-311.pyc
+deleting config/settings/__pycache__/__init__.cpython-311.pyc
+api/configuraciones_api.zip
+api/gpt4.zip
+api/__pycache__/
+api/authentication/__pycache__/
+api/configuraciones_api/__pycache__/
+api/core/__pycache__/
+api/gpt3/__pycache__/
+api/gpt4/__pycache__/
+api/transfers/__pycache__/
+config/__pycache__/
+config/settings/__pycache__/
+scripts/deploy/vps/excludes.txt
+scripts/deploy/vps/vps_sync_clean.sh
+scripts/logs/sync/
+scripts/logs/sync/20250605_081735_sync.log
+scripts/logs/sync/20250605_081751_sync_clean.log
+scripts/logs/sync/20250605_081914_sync_clean.log
+
+sent 11.391.876 bytes  received 3.065 bytes  785.858,00 bytes/sec
+total size is 64.252.669  speedup is 5,64
+🔄 Sincronizando proyecto hacia api_bank_h2 (sin exclusiones)...
+sending incremental file list
+scripts/deploy/vps/excludes.txt
+scripts/deploy/vps/vps_sync.sh
+scripts/deploy/vps/vps_sync_clean.sh
+scripts/logs/sync/
+scripts/logs/sync/20250605_081735_sync.log
+scripts/logs/sync/20250605_081751_sync_clean.log
+scripts/logs/sync/20250605_081914_sync_clean.log
+scripts/menu/aliases_deploy.sh
+
+sent 87.430 bytes  received 683 bytes  16.020,55 bytes/sec
+total size is 112.105.328  speedup is 1.272,29
+🔄 Sincronizando carpeta de backup...
+sending incremental file list
+
+sent 61.013 bytes  received 417 bytes  9.450,77 bytes/sec
+total size is 605.799.888  speedup is 9.861,63
+🔄 Sincronizando carpeta de bank_ghost...
+sending incremental file list
+
+sent 6.882 bytes  received 64 bytes  1.262,91 bytes/sec
+total size is 5.422.311  speedup is 780,64
+✅ Sincronización completada.

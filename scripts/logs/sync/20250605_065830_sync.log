@@ -1,0 +1,256 @@
+📂 Proyecto local: /home/markmur88/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: .zip
+🔄 Iniciando sincronización local -> VPS...
+sending incremental file list
+deleting api.sock
+./
+deleting api/__pycache__/views.cpython-311.pyc
+deleting api/__pycache__/urls.cpython-311.pyc
+deleting api/__pycache__/middleware.cpython-311.pyc
+deleting api/__pycache__/context_processors.cpython-311.pyc
+deleting api/__pycache__/__init__.cpython-311.pyc
+deleting api/authentication/__pycache__/views.cpython-311.pyc
+deleting api/authentication/__pycache__/urls.cpython-311.pyc
+deleting api/authentication/__pycache__/serializers.cpython-311.pyc
+deleting api/authentication/__pycache__/models.cpython-311.pyc
+deleting api/authentication/__pycache__/apps.cpython-311.pyc
+deleting api/authentication/__pycache__/admin.cpython-311.pyc
+deleting api/authentication/__pycache__/__init__.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/views.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/urls.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/models.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/helpers.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/forms.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/apps.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/admin.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/__init__.cpython-311.pyc
+deleting api/core/__pycache__/views.cpython-311.pyc
+deleting api/core/__pycache__/urls.cpython-311.pyc
+deleting api/core/__pycache__/services.cpython-311.pyc
+deleting api/core/__pycache__/serializers.cpython-311.pyc
+deleting api/core/__pycache__/models.cpython-311.pyc
+deleting api/core/__pycache__/mixin.cpython-311.pyc
+deleting api/core/__pycache__/middleware.cpython-311.pyc
+deleting api/core/__pycache__/forms.cpython-311.pyc
+deleting api/core/__pycache__/choices.cpython-311.pyc
+deleting api/core/__pycache__/bank_services.cpython-311.pyc
+deleting api/core/__pycache__/auth_services.cpython-311.pyc
+deleting api/core/__pycache__/apps.cpython-311.pyc
+deleting api/core/__pycache__/admin.cpython-311.pyc
+deleting api/core/__pycache__/__init__.cpython-311.pyc
+deleting api/core/templatetags/__pycache__/custom_filters.cpython-311.pyc
+deleting api/gpt3/__pycache__/views2.cpython-311.pyc
+deleting api/gpt3/__pycache__/utils2.cpython-311.pyc
+deleting api/gpt3/__pycache__/urls.cpython-311.pyc
+deleting api/gpt3/__pycache__/schemas.cpython-311.pyc
+deleting api/gpt3/__pycache__/models.cpython-311.pyc
+deleting api/gpt3/__pycache__/helpers.cpython-311.pyc
+deleting api/gpt3/__pycache__/forms.cpython-311.pyc
+deleting api/gpt3/__pycache__/apps.cpython-311.pyc
+deleting api/gpt3/__pycache__/admin.cpython-311.pyc
+deleting api/gpt3/__pycache__/__init__.cpython-311.pyc
+deleting api/gpt4/__pycache__/views.cpython-311.pyc
+deleting api/gpt4/__pycache__/utils.cpython-311.pyc
+deleting api/gpt4/__pycache__/urls.cpython-311.pyc
+deleting api/gpt4/__pycache__/models.cpython-311.pyc
+deleting api/gpt4/__pycache__/forms.cpython-311.pyc
+deleting api/gpt4/__pycache__/decorators.cpython-311.pyc
+deleting api/gpt4/__pycache__/conexion_banco.cpython-311.pyc
+deleting api/gpt4/__pycache__/apps.cpython-311.pyc
+deleting api/gpt4/__pycache__/admin.cpython-311.pyc
+deleting api/gpt4/__pycache__/__init__.cpython-311.pyc
+deleting api/transactions/__pycache__/views.cpython-311.pyc
+deleting api/transfers/__pycache__/views_copy.cpython-311.pyc
+deleting api/transfers/__pycache__/views_com2.cpython-311.pyc
+deleting api/transfers/__pycache__/views_api.cpython-311.pyc
+deleting api/transfers/__pycache__/views_all.cpython-311.pyc
+deleting api/transfers/__pycache__/views.cpython-311.pyc
+deleting api/transfers/__pycache__/urls.cpython-311.pyc
+deleting api/transfers/__pycache__/serializers.cpython-311.pyc
+deleting api/transfers/__pycache__/models.cpython-311.pyc
+deleting api/transfers/__pycache__/forms.cpython-311.pyc
+deleting api/transfers/__pycache__/apps.cpython-311.pyc
+deleting api/transfers/__pycache__/admin.cpython-311.pyc
+deleting api/transfers/__pycache__/__init__.cpython-311.pyc
+deleting config/__pycache__/wsgi.cpython-311.pyc
+deleting config/__pycache__/urls.cpython-311.pyc
+deleting config/__pycache__/__init__.cpython-311.pyc
+deleting config/settings/__pycache__/production.cpython-311.pyc
+deleting config/settings/__pycache__/local.cpython-311.pyc
+deleting config/settings/__pycache__/base1.cpython-311.pyc
+deleting config/settings/__pycache__/__init__.cpython-311.pyc
+api/
+api/__pycache__/
+api/__pycache__/__init__.cpython-313.pyc
+api/__pycache__/middleware.cpython-313.pyc
+api/__pycache__/urls.cpython-313.pyc
+api/__pycache__/views.cpython-313.pyc
+api/authentication/
+api/authentication/__pycache__/
+api/authentication/__pycache__/__init__.cpython-313.pyc
+api/authentication/__pycache__/admin.cpython-313.pyc
+api/authentication/__pycache__/apps.cpython-313.pyc
+api/authentication/__pycache__/models.cpython-313.pyc
+api/authentication/__pycache__/serializers.cpython-313.pyc
+api/authentication/__pycache__/urls.cpython-313.pyc
+api/authentication/__pycache__/views.cpython-313.pyc
+api/authentication/migrations/
+api/authentication/migrations/0001_initial.py
+api/authentication/migrations/__pycache__/
+api/authentication/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/authentication/migrations/__pycache__/__init__.cpython-313.pyc
+api/configuraciones_api/
+api/configuraciones_api/__pycache__/
+api/configuraciones_api/__pycache__/__init__.cpython-313.pyc
+api/configuraciones_api/__pycache__/admin.cpython-313.pyc
+api/configuraciones_api/__pycache__/apps.cpython-313.pyc
+api/configuraciones_api/__pycache__/forms.cpython-313.pyc
+api/configuraciones_api/__pycache__/helpers.cpython-313.pyc
+api/configuraciones_api/__pycache__/models.cpython-313.pyc
+api/configuraciones_api/__pycache__/urls.cpython-313.pyc
+api/configuraciones_api/__pycache__/views.cpython-313.pyc
+api/configuraciones_api/migrations/
+api/configuraciones_api/migrations/0001_initial.py
+api/configuraciones_api/migrations/__pycache__/
+api/configuraciones_api/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/configuraciones_api/migrations/__pycache__/__init__.cpython-313.pyc
+api/core/
+api/core/__pycache__/
+api/core/__pycache__/__init__.cpython-313.pyc
+api/core/__pycache__/admin.cpython-313.pyc
+api/core/__pycache__/apps.cpython-313.pyc
+api/core/__pycache__/auth_services.cpython-313.pyc
+api/core/__pycache__/bank_services.cpython-313.pyc
+api/core/__pycache__/choices.cpython-313.pyc
+api/core/__pycache__/forms.cpython-313.pyc
+api/core/__pycache__/middleware.cpython-313.pyc
+api/core/__pycache__/mixin.cpython-313.pyc
+api/core/__pycache__/models.cpython-313.pyc
+api/core/__pycache__/serializers.cpython-313.pyc
+api/core/__pycache__/services.cpython-313.pyc
+api/core/__pycache__/urls.cpython-313.pyc
+api/core/__pycache__/views.cpython-313.pyc
+api/core/migrations/
+api/core/migrations/0001_initial.py
+api/core/migrations/__pycache__/
+api/core/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/core/migrations/__pycache__/__init__.cpython-313.pyc
+api/core/templatetags/
+api/core/templatetags/__pycache__/
+api/core/templatetags/__pycache__/custom_filters.cpython-313.pyc
+api/gpt3/
+api/gpt3/__pycache__/
+api/gpt3/__pycache__/__init__.cpython-313.pyc
+api/gpt3/__pycache__/admin.cpython-313.pyc
+api/gpt3/__pycache__/apps.cpython-313.pyc
+api/gpt3/__pycache__/forms.cpython-313.pyc
+api/gpt3/__pycache__/helpers.cpython-313.pyc
+api/gpt3/__pycache__/models.cpython-313.pyc
+api/gpt3/__pycache__/schemas.cpython-313.pyc
+api/gpt3/__pycache__/urls.cpython-313.pyc
+api/gpt3/__pycache__/utils2.cpython-313.pyc
+api/gpt3/__pycache__/views2.cpython-313.pyc
+api/gpt3/migrations/
+api/gpt3/migrations/0001_initial.py
+api/gpt3/migrations/__pycache__/
+api/gpt3/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/gpt3/migrations/__pycache__/__init__.cpython-313.pyc
+api/gpt4/
+api/gpt4/__pycache__/
+api/gpt4/__pycache__/__init__.cpython-313.pyc
+api/gpt4/__pycache__/admin.cpython-313.pyc
+api/gpt4/__pycache__/apps.cpython-313.pyc
+api/gpt4/__pycache__/conexion_banco.cpython-313.pyc
+api/gpt4/__pycache__/decorators.cpython-313.pyc
+api/gpt4/__pycache__/forms.cpython-313.pyc
+api/gpt4/__pycache__/models.cpython-313.pyc
+api/gpt4/__pycache__/urls.cpython-313.pyc
+api/gpt4/__pycache__/utils.cpython-313.pyc
+api/gpt4/__pycache__/views.cpython-313.pyc
+api/gpt4/migrations/
+api/gpt4/migrations/0001_initial.py
+api/gpt4/migrations/__pycache__/
+api/gpt4/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/gpt4/migrations/__pycache__/__init__.cpython-313.pyc
+api/transactions/
+api/transactions/__pycache__/
+api/transactions/__pycache__/views.cpython-313.pyc
+api/transfers/
+api/transfers/__pycache__/
+api/transfers/__pycache__/__init__.cpython-313.pyc
+api/transfers/__pycache__/admin.cpython-313.pyc
+api/transfers/__pycache__/apps.cpython-313.pyc
+api/transfers/__pycache__/forms.cpython-313.pyc
+api/transfers/__pycache__/models.cpython-313.pyc
+api/transfers/__pycache__/serializers.cpython-313.pyc
+api/transfers/__pycache__/urls.cpython-313.pyc
+api/transfers/__pycache__/views.cpython-313.pyc
+api/transfers/__pycache__/views_all.cpython-313.pyc
+api/transfers/__pycache__/views_api.cpython-313.pyc
+api/transfers/__pycache__/views_com2.cpython-313.pyc
+api/transfers/__pycache__/views_copy.cpython-313.pyc
+api/transfers/migrations/
+api/transfers/migrations/0001_initial.py
+api/transfers/migrations/__pycache__/
+api/transfers/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/transfers/migrations/__pycache__/__init__.cpython-313.pyc
+config/
+config/__pycache__/
+config/__pycache__/__init__.cpython-313.pyc
+config/__pycache__/urls.cpython-313.pyc
+config/__pycache__/wsgi.cpython-313.pyc
+config/settings/
+config/settings/__pycache__/
+config/settings/__pycache__/__init__.cpython-313.pyc
+config/settings/__pycache__/base1.cpython-313.pyc
+config/settings/__pycache__/local.cpython-313.pyc
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/backup/00_02_zip_backup_.log
+scripts/logs/backup/00_19_borrar_zip_sql_.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_09_cargar_json_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/despliegue/00_16_subir_heroku.log
+scripts/logs/despliegue/00_21_local_ssl.log
+scripts/logs/despliegue/00_21_local_ssl_.log
+scripts/logs/sync/
+scripts/logs/sync/20250605_064742_sync.log
+scripts/logs/sync/20250605_065830_sync.log
+scripts/menu/01_full.sh
+scripts/utils/simulator_bank/README.md
+
+sent 73.536 bytes  received 66.869 bytes  18.720,67 bytes/sec
+total size is 111.457.256  speedup is 793,83
+📡 Ejecutando comandos remotos en el VPS...
+Linux coretransapi 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+🌐 Entrando en directorio remoto: /home/markmur88/api_bank_heroku
+🔧 Activando entorno virtual en VPS: /home/markmur88/envAPP
+🔁 Reiniciando servicios en VPS...
+coretransapi: stopped
+coretransapi: started
+📋 Estado del servicio coretransapi en VPS:
+coretransapi                     RUNNING   pid 113883, uptime 0:00:02
+📄 Últimos logs de error en VPS:
+    return getattr(self.sock, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'getsockname'
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Starting gunicorn 23.0.0
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Listening at: unix:/home/markmur88/api_bank_heroku/api.sock (68381)
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Using worker: sync
+[2025-06-03 03:47:34 +0000] [68382] [INFO] Booting worker with pid: 68382
+[2025-06-03 03:49:30 +0000] [68381] [INFO] Handling signal: quit
+[2025-06-03 05:49:30 +0200] [68382] [INFO] Worker exiting (pid: 68382)
+[2025-06-03 03:49:30 +0000] [68381] [INFO] Shutting down: Master
+✅ Comandos remotos completados.
+✅ Sincronización completada.

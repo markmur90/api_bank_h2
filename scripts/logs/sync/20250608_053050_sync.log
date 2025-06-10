@@ -1,0 +1,77 @@
+📂 Proyecto local: /home/markmur88/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: *.zip
+🔄 Iniciando sincronización local -> VPS...
+sending incremental file list
+deleting api.sock
+./
+api/
+api/authentication/
+api/authentication/migrations/
+api/authentication/migrations/0001_initial.py
+api/configuraciones_api/
+api/configuraciones_api/migrations/
+api/configuraciones_api/migrations/0001_initial.py
+api/core/
+api/core/migrations/
+api/core/migrations/0001_initial.py
+api/core/templatetags/
+api/gpt3/
+api/gpt3/migrations/
+api/gpt3/migrations/0001_initial.py
+api/gpt4/
+api/gpt4/migrations/
+api/gpt4/migrations/0001_initial.py
+api/transactions/
+api/transfers/
+api/transfers/migrations/
+api/transfers/migrations/0001_initial.py
+config/
+config/settings/
+scripts/backup/00_14_sincronizacion_archivos.sh
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/backup/00_02_zip_backup_.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_09_cargar_json_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/despliegue/00_21_local_ssl.log
+scripts/logs/despliegue/00_21_local_ssl_.log
+scripts/logs/sync/
+scripts/logs/sync/20250608_051700_sync.log
+scripts/logs/sync/20250608_053050_sync.log
+scripts/menu/aliases_deploy.sh
+
+sent 725.053 bytes  received 76.391 bytes  59.366,22 bytes/sec
+total size is 538.787.367  speedup is 672,27
+📡 Ejecutando comandos remotos en el VPS...
+Linux coretransapi 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+🌐 Entrando en directorio remoto: /home/markmur88/api_bank_heroku
+🔧 Activando entorno virtual en VPS: /home/markmur88/envAPP
+🔁 Reiniciando servicios en VPS...
+coretransapi: stopped
+coretransapi: started
+📋 Estado del servicio coretransapi en VPS:
+coretransapi                     RUNNING   pid 59832, uptime 0:00:06
+📄 Últimos logs de error en VPS:
+    sock.close_sockets(self.LISTENERS, unlink)
+  File "/home/markmur88/envAPP/lib/python3.11/site-packages/gunicorn/sock.py", line 212, in close_sockets
+    os.unlink(sock_name)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/markmur88/api_bank_heroku/api.sock'
+[2025-06-08 05:31:11 +0200] [59832] [INFO] Starting gunicorn 23.0.0
+[2025-06-08 05:31:11 +0200] [59832] [INFO] Listening at: unix:/home/markmur88/api_bank_heroku/api.sock (59832)
+[2025-06-08 05:31:11 +0200] [59832] [INFO] Using worker: sync
+[2025-06-08 05:31:11 +0200] [59833] [INFO] Booting worker with pid: 59833
+[2025-06-08 05:31:11 +0200] [59834] [INFO] Booting worker with pid: 59834
+[2025-06-08 05:31:11 +0200] [59835] [INFO] Booting worker with pid: 59835
+✅ Comandos remotos completados.
+✅ Sincronización completada.

@@ -1,0 +1,5 @@
+# *local.py
+*.env
+temp/
+z_njalla/
+*.zip
