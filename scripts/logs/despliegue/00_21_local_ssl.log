@@ -2,3 +2,4 @@
 [2025-06-10 07:42:53 +0200] [165297] [INFO] Listening at: http://0.0.0.0:8000 (165297)
 [2025-06-10 07:42:53 +0200] [165297] [INFO] Using worker: sync
 [2025-06-10 07:42:53 +0200] [165299] [INFO] Booting worker with pid: 165299
+Unauthorized: /login/
