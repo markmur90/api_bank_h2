@@ -1,0 +1,3 @@
+Sincronizacion|pendiente
+Simulador|pendiente
+Transfer|pendiente

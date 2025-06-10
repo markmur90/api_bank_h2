@@ -1,0 +1,293 @@
+📂 Proyecto local: /home/markmur88/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: .zip
+🔄 Iniciando sincronización local -> VPS...
+sending incremental file list
+deleting scripts.zip
+deleting api.sock
+./
+deleting api/__pycache__/views.cpython-311.pyc
+deleting api/__pycache__/urls.cpython-311.pyc
+deleting api/__pycache__/middleware.cpython-311.pyc
+deleting api/__pycache__/context_processors.cpython-311.pyc
+deleting api/__pycache__/__init__.cpython-311.pyc
+deleting api/authentication/__pycache__/views.cpython-311.pyc
+deleting api/authentication/__pycache__/urls.cpython-311.pyc
+deleting api/authentication/__pycache__/serializers.cpython-311.pyc
+deleting api/authentication/__pycache__/models.cpython-311.pyc
+deleting api/authentication/__pycache__/apps.cpython-311.pyc
+deleting api/authentication/__pycache__/admin.cpython-311.pyc
+deleting api/authentication/__pycache__/__init__.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/views.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/urls.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/models.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/helpers.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/forms.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/apps.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/admin.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/__init__.cpython-311.pyc
+deleting api/core/__pycache__/views.cpython-311.pyc
+deleting api/core/__pycache__/urls.cpython-311.pyc
+deleting api/core/__pycache__/services.cpython-311.pyc
+deleting api/core/__pycache__/serializers.cpython-311.pyc
+deleting api/core/__pycache__/models.cpython-311.pyc
+deleting api/core/__pycache__/mixin.cpython-311.pyc
+deleting api/core/__pycache__/middleware.cpython-311.pyc
+deleting api/core/__pycache__/forms.cpython-311.pyc
+deleting api/core/__pycache__/choices.cpython-311.pyc
+deleting api/core/__pycache__/bank_services.cpython-311.pyc
+deleting api/core/__pycache__/auth_services.cpython-311.pyc
+deleting api/core/__pycache__/apps.cpython-311.pyc
+deleting api/core/__pycache__/admin.cpython-311.pyc
+deleting api/core/__pycache__/__init__.cpython-311.pyc
+deleting api/core/templatetags/__pycache__/custom_filters.cpython-311.pyc
+deleting api/gpt3/__pycache__/views2.cpython-311.pyc
+deleting api/gpt3/__pycache__/utils2.cpython-311.pyc
+deleting api/gpt3/__pycache__/urls.cpython-311.pyc
+deleting api/gpt3/__pycache__/schemas.cpython-311.pyc
+deleting api/gpt3/__pycache__/models.cpython-311.pyc
+deleting api/gpt3/__pycache__/helpers.cpython-311.pyc
+deleting api/gpt3/__pycache__/forms.cpython-311.pyc
+deleting api/gpt3/__pycache__/apps.cpython-311.pyc
+deleting api/gpt3/__pycache__/admin.cpython-311.pyc
+deleting api/gpt3/__pycache__/__init__.cpython-311.pyc
+deleting api/gpt4/__pycache__/views.cpython-311.pyc
+deleting api/gpt4/__pycache__/utils.cpython-311.pyc
+deleting api/gpt4/__pycache__/urls.cpython-311.pyc
+deleting api/gpt4/__pycache__/models.cpython-311.pyc
+deleting api/gpt4/__pycache__/forms.cpython-311.pyc
+deleting api/gpt4/__pycache__/decorators.cpython-311.pyc
+deleting api/gpt4/__pycache__/conexion_banco.cpython-311.pyc
+deleting api/gpt4/__pycache__/apps.cpython-311.pyc
+deleting api/gpt4/__pycache__/admin.cpython-311.pyc
+deleting api/gpt4/__pycache__/__init__.cpython-311.pyc
+deleting api/transactions/__pycache__/views.cpython-311.pyc
+deleting api/transfers/__pycache__/views_copy.cpython-311.pyc
+deleting api/transfers/__pycache__/views_com2.cpython-311.pyc
+deleting api/transfers/__pycache__/views_api.cpython-311.pyc
+deleting api/transfers/__pycache__/views_all.cpython-311.pyc
+deleting api/transfers/__pycache__/views.cpython-311.pyc
+deleting api/transfers/__pycache__/urls.cpython-311.pyc
+deleting api/transfers/__pycache__/serializers.cpython-311.pyc
+deleting api/transfers/__pycache__/models.cpython-311.pyc
+deleting api/transfers/__pycache__/forms.cpython-311.pyc
+deleting api/transfers/__pycache__/apps.cpython-311.pyc
+deleting api/transfers/__pycache__/admin.cpython-311.pyc
+deleting api/transfers/__pycache__/__init__.cpython-311.pyc
+deleting config/__pycache__/wsgi.cpython-311.pyc
+deleting config/__pycache__/urls.cpython-311.pyc
+deleting config/__pycache__/__init__.cpython-311.pyc
+deleting config/settings/__pycache__/production.cpython-311.pyc
+deleting config/settings/__pycache__/local.cpython-311.pyc
+deleting config/settings/__pycache__/base1.cpython-311.pyc
+deleting config/settings/__pycache__/__init__.cpython-311.pyc
+deleting scripts/logs/sync/20250603_074353_sync.log
+api/
+api/__pycache__/
+api/accounts/
+api/accounts/migrations/
+api/authentication/
+api/authentication/__pycache__/
+api/authentication/migrations/
+api/authentication/migrations/__pycache__/
+api/collection/
+api/collection/migrations/
+api/configuraciones_api/
+api/configuraciones_api/__pycache__/
+api/configuraciones_api/migrations/
+api/configuraciones_api/migrations/__pycache__/
+api/core/
+api/core/__pycache__/
+api/core/management/
+api/core/management/commands/
+api/core/migrations/
+api/core/migrations/__pycache__/
+api/core/templatetags/
+api/core/templatetags/__pycache__/
+api/gpt/
+api/gpt/migrations/
+api/gpt2/
+api/gpt2/migrations/
+api/gpt3/
+api/gpt3/__pycache__/
+api/gpt3/migrations/
+api/gpt3/migrations/__pycache__/
+api/gpt4/
+api/gpt4/__pycache__/
+api/gpt4/migrations/
+api/gpt4/migrations/__pycache__/
+api/sandbox/
+api/sandbox/migrations/
+api/sct/
+api/sct/migrations/
+api/sepa_payment/
+api/sepa_payment/migrations/
+api/transactions/
+api/transactions/__pycache__/
+api/transactions/migrations/
+api/transfers/
+api/transfers/__pycache__/
+api/transfers/migrations/
+api/transfers/migrations/__pycache__/
+bin/
+config/
+config/__pycache__/
+config/schemas/
+config/settings/
+config/settings/__pycache__/
+config/utils/
+media/
+media/claves/
+middleware/
+schemas/
+schemas/certs/
+schemas/keys/
+schemas/keys/logs/
+schemas/transferencias/
+schemas/xsd/
+scripts/
+scripts/00_02_zip_backup copy.sh
+scripts/00_02_zip_backup.sh
+scripts/00_09_cargar_json.sh
+scripts/00_11_hacer_json.sh
+scripts/00_14_sincronizacion_archivos.sh
+scripts/00_15_variables_heroku copy.sh
+scripts/00_15_variables_heroku.sh
+scripts/00_16_01_subir_GitHub.sh
+scripts/00_16_subir_heroku.sh
+scripts/00_17_sincronizar_bdd.sh
+scripts/00_19_borrar_zip_sql.sh
+scripts/00_20_ssl.sh
+scripts/00_20_ssl2.sh
+scripts/00_21_local_ssl.sh
+scripts/00_22_gunicorn.sh
+scripts/aliases_deploy.sh
+scripts/configurar_gunicorn.sh
+scripts/diagnostico_entorno.sh
+scripts/gestionar_notificadores.sh
+scripts/notificador.sh
+scripts/run_local_ssl_env.sh
+scripts/start_notificadores_interactivo.sh
+scripts/sync_configs_from_vps.sh
+scripts/sync_configs_to_vps.sh
+scripts/sync_local_and_vps.sh
+scripts/vps_copy_files.sh
+scripts/vps_sync.sh
+scripts/.logs/
+scripts/.logs/notificador.log
+scripts/.logs/notificador_30.log
+scripts/conexion_segura_db/
+scripts/gpg_keys/
+scripts/logs/
+scripts/logs/00_18_00_deploy_njalla/
+scripts/logs/00_18_05_deploy_update/
+scripts/logs/01_full_deploy/
+scripts/logs/archivados/
+scripts/logs/backup/
+scripts/logs/deploy_coretransapi/
+scripts/logs/despliegue/
+scripts/logs/sistema/
+scripts/logs/sync/
+scripts/logs/sync/20250603_074707_sync.log
+scripts/utils/
+scripts/utils/21_deploy_ghost_njalla.sh
+scripts/vps_backup/
+static/
+static/css/
+static/images/
+static/js/
+staticfiles/
+staticfiles/admin/
+staticfiles/admin/css/
+staticfiles/admin/css/vendor/
+staticfiles/admin/css/vendor/select2/
+staticfiles/admin/img/
+staticfiles/admin/img/gis/
+staticfiles/admin/js/
+staticfiles/admin/js/admin/
+staticfiles/admin/js/vendor/
+staticfiles/admin/js/vendor/jquery/
+staticfiles/admin/js/vendor/select2/
+staticfiles/admin/js/vendor/select2/i18n/
+staticfiles/admin/js/vendor/xregexp/
+staticfiles/css/
+staticfiles/debug_toolbar/
+staticfiles/debug_toolbar/css/
+staticfiles/debug_toolbar/js/
+staticfiles/drf-yasg/
+staticfiles/drf-yasg/redoc-old/
+staticfiles/drf-yasg/redoc/
+staticfiles/drf-yasg/swagger-ui-dist/
+staticfiles/images/
+staticfiles/js/
+staticfiles/rest_framework/
+staticfiles/rest_framework/css/
+staticfiles/rest_framework/docs/
+staticfiles/rest_framework/docs/css/
+staticfiles/rest_framework/docs/img/
+staticfiles/rest_framework/docs/js/
+staticfiles/rest_framework/fonts/
+staticfiles/rest_framework/img/
+staticfiles/rest_framework/js/
+templates/
+templates/api/
+templates/api/GPT/
+templates/api/GPT3/
+templates/api/GPT4/
+templates/api/SCT/
+templates/api/SEPA/
+templates/api/accounts/
+templates/api/claves/
+templates/api/collection/
+templates/api/configuraciones/
+templates/api/core/
+templates/api/extras/
+templates/api/sandbox/
+templates/api/sepa_payment/
+templates/api/transactions/
+templates/api/transfers/
+templates/forms/
+templates/partials/
+templates/partials/navGeneral/
+templates/partials/navGeneral/accounts/
+templates/partials/navGeneral/auth/
+templates/partials/navGeneral/collection/
+templates/partials/navGeneral/core/
+templates/partials/navGeneral/sct/
+templates/partials/navGeneral/sepa_payment/
+templates/partials/navGeneral/transactions/
+templates/partials/navGeneral/transfers/
+tmp/
+
+sent 43.154 bytes  received 6.047 bytes  6.560,13 bytes/sec
+total size is 45.200.803  speedup is 918,70
+📡 Ejecutando comandos remotos en el VPS...
+Linux coretransapi 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+🌐 Entrando en directorio remoto: /home/markmur88/api_bank_heroku
+🔧 Activando entorno virtual en VPS: /home/markmur88/envAPP
+🔁 Ejecutando script 01_full.sh en VPS
+🔁 Reiniciando servicios en VPS...
+coretransapi: stopped
+coretransapi: started
+📋 Estado del servicio coretransapi en VPS:
+coretransapi                     RUNNING   pid 72676, uptime 0:00:02
+📄 Últimos logs de error en VPS:
+    return getattr(self.sock, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'getsockname'
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Starting gunicorn 23.0.0
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Listening at: unix:/home/markmur88/api_bank_heroku/api.sock (68381)
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Using worker: sync
+[2025-06-03 03:47:34 +0000] [68382] [INFO] Booting worker with pid: 68382
+[2025-06-03 03:49:30 +0000] [68381] [INFO] Handling signal: quit
+[2025-06-03 05:49:30 +0200] [68382] [INFO] Worker exiting (pid: 68382)
+[2025-06-03 03:49:30 +0000] [68381] [INFO] Shutting down: Master
+✅ Comandos remotos completados.
+✅ Sincronización completada.

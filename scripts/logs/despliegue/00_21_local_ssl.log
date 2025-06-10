@@ -1,0 +1,4 @@
+[2025-06-10 05:49:27 +0200] [79280] [INFO] Starting gunicorn 23.0.0
+[2025-06-10 05:49:27 +0200] [79280] [INFO] Listening at: http://0.0.0.0:8000 (79280)
+[2025-06-10 05:49:27 +0200] [79280] [INFO] Using worker: sync
+[2025-06-10 05:49:27 +0200] [79282] [INFO] Booting worker with pid: 79282

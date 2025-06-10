@@ -1,0 +1,91 @@
+📂 Proyecto local: /home/markmur88/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: .zip
+🔄 Iniciando sincronización local -> VPS...
+sending incremental file list
+deleting api.sock
+./
+deleting api/__pycache__/middleware.cpython-311.pyc
+deleting api/__pycache__/__init__.cpython-311.pyc
+deleting api/authentication/__pycache__/models.cpython-311.pyc
+deleting api/authentication/__pycache__/apps.cpython-311.pyc
+deleting api/authentication/__pycache__/admin.cpython-311.pyc
+deleting api/authentication/__pycache__/__init__.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/models.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/apps.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/admin.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/__init__.cpython-311.pyc
+deleting api/core/__pycache__/models.cpython-311.pyc
+deleting api/core/__pycache__/mixin.cpython-311.pyc
+deleting api/core/__pycache__/middleware.cpython-311.pyc
+deleting api/core/__pycache__/choices.cpython-311.pyc
+deleting api/core/__pycache__/apps.cpython-311.pyc
+deleting api/core/__pycache__/admin.cpython-311.pyc
+deleting api/core/__pycache__/__init__.cpython-311.pyc
+deleting api/gpt3/__pycache__/models.cpython-311.pyc
+deleting api/gpt3/__pycache__/apps.cpython-311.pyc
+deleting api/gpt3/__pycache__/admin.cpython-311.pyc
+deleting api/gpt3/__pycache__/__init__.cpython-311.pyc
+deleting api/gpt4/__pycache__/models.cpython-311.pyc
+deleting api/gpt4/__pycache__/apps.cpython-311.pyc
+deleting api/gpt4/__pycache__/admin.cpython-311.pyc
+deleting api/gpt4/__pycache__/__init__.cpython-311.pyc
+deleting api/transfers/__pycache__/models.cpython-311.pyc
+deleting api/transfers/__pycache__/apps.cpython-311.pyc
+deleting api/transfers/__pycache__/admin.cpython-311.pyc
+deleting api/transfers/__pycache__/__init__.cpython-311.pyc
+deleting config/__pycache__/wsgi.cpython-311.pyc
+deleting config/__pycache__/__init__.cpython-311.pyc
+deleting config/settings/__pycache__/production.cpython-311.pyc
+deleting config/settings/__pycache__/local.cpython-311.pyc
+deleting config/settings/__pycache__/base1.cpython-311.pyc
+deleting config/settings/__pycache__/__init__.cpython-311.pyc
+api/__pycache__/
+api/authentication/__pycache__/
+api/configuraciones_api/__pycache__/
+api/core/__pycache__/
+api/gpt3/__pycache__/
+api/gpt4/__pycache__/
+api/transfers/__pycache__/
+config/__pycache__/
+config/settings/__pycache__/
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sync/
+scripts/logs/sync/20250604_085855_sync.log
+scripts/logs/sync/20250604_090149_sync.log
+
+sent 65.643 bytes  received 26.823 bytes  14.225,54 bytes/sec
+total size is 100.616.512  speedup is 1.088,15
+📡 Ejecutando comandos remotos en el VPS...
+Linux coretransapi 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+🌐 Entrando en directorio remoto: /home/markmur88/api_bank_heroku
+🔧 Activando entorno virtual en VPS: /home/markmur88/envAPP
+🔁 Ejecutando script 01_full.sh en VPS
+🔁 Reiniciando servicios en VPS...
+coretransapi: stopped
+coretransapi: started
+📋 Estado del servicio coretransapi en VPS:
+coretransapi                     RUNNING   pid 88053, uptime 0:00:01
+📄 Últimos logs de error en VPS:
+    return getattr(self.sock, name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'getsockname'
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Starting gunicorn 23.0.0
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Listening at: unix:/home/markmur88/api_bank_heroku/api.sock (68381)
+[2025-06-03 03:47:34 +0000] [68381] [INFO] Using worker: sync
+[2025-06-03 03:47:34 +0000] [68382] [INFO] Booting worker with pid: 68382
+[2025-06-03 03:49:30 +0000] [68381] [INFO] Handling signal: quit
+[2025-06-03 05:49:30 +0200] [68382] [INFO] Worker exiting (pid: 68382)
+[2025-06-03 03:49:30 +0000] [68381] [INFO] Shutting down: Master
+✅ Comandos remotos completados.
+✅ Sincronización completada.

@@ -1,0 +1,94 @@
+# === Configuración básica de Tor ===
+
+# Registro en archivo
+
+Log notice file /var/log/tor/notices.log
+
+# Directorio de datos
+
+DataDirectory /var/lib/tor
+
+# Puerto SOCKS (para redirigir tráfico de apps como curl, navegador, etc.)
+
+SocksPort 9050
+
+# Puerto para control de Tor (útil para autenticación y automatización)
+
+ControlPort 9051
+CookieAuthentication 1
+
+# Puedes usar contraseña en lugar de cookie
+
+# HashedControlPassword <HASH_GENERADO_CON tor --hash-password>
+
+# Limitar a localhost
+
+SocksListenAddress 127.0.0.1
+ControlListenAddress 127.0.0.1
+
+# Opcional: si quieres enrutar TODO el tráfico de salida del sistema por Tor (¡con cuidado!)
+
+#DNSPort 5353
+#AutomapHostsOnResolve 1
+#TransPort 9040
+
+# === Servicio oculto opcional (comenta si no lo usás) ===
+
+# HiddenServiceDir /var/lib/tor/hidden_service/
+
+# HiddenServicePort 80 127.0.0.1:8000
+
+# === Mejoras de seguridad y rendimiento ===
+
+AvoidDiskWrites 1
+ClientUseIPv6 1
+
+# ============================================================================================================
+
+GNU nano 7.2 /etc/tor/torrc  
+Log notice file /var/log/tor/notices.log
+
+############### 🔄 RELAY NODE (NO EXIT) ################
+
+# Puerto para aceptar conexiones de otros nodos Tor
+
+ORPort 9001
+
+# Puerto para anunciar al directorio de nodos (opcional)
+
+DirPort 9030
+
+# Este nodo NO será de salida
+
+ExitRelay 0
+
+# Identificador público del nodo (podés cambiarlo)
+
+Nickname MiRelayTor
+
+# Límites de ancho de banda (ajustá según tu VPS)
+
+RelayBandwidthRate 100 KB
+RelayBandwidthBurst 200 KB
+
+############### 🧅 SERVICIO OCULTO (HIDDEN SERVICE) ####
+
+# 🧅 Servicio oculto a través de NGINX
+
+HiddenServiceDir /var/lib/tor/hidden_service/
+HiddenServicePort 80 127.0.0.1:80
+
+############### 🔐 CONTROL REMOTO OPCIONAL #############
+
+# Puerto de control (usado por Nyx o scripts externos)
+
+ControlPort 9051
+CookieAuthentication 0
+HashedControlPassword 16:EFA9E4EC36A7678360EB3C68FDEF2CA3FA3E7B82C713DF785E9D884BD1
+
+# ============================================================================================================
+
+sudo systemctl restart tor
+sudo systemctl status tor
+
+curl --socks5 127.0.0.1:9050 https://check.torproject.org
