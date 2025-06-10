@@ -1,4 +1,3 @@
-# *local.py
 *.env
 *.env.local
 *.env.production
@@ -19,3 +18,4 @@ chmod_log.txt
 datos_sensibles.txt
 pendientes.txt
 prompts.txt
+READMEcopy.md
