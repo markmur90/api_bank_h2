@@ -19,3 +19,7 @@ datos_sensibles.txt
 pendientes.txt
 prompts.txt
 READMEcopy.md
+__pycache__/
+*.pyc
+.env
+media/
