@@ -1,7 +1,7 @@
 # *local.py
-# .env
-# .env.local
-# .env.production
+.env
+.env.local
+.env.production
 temp/
 z_njalla/
 .zip
