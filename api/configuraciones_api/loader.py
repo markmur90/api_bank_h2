@@ -14,7 +14,22 @@ from django.core.exceptions import ImproperlyConfigured
 #         else:
 #             raise ImproperlyConfigured(f"Error cargando configuración desde BD: {e}")
 
+from functools import lru_cache
+from api.configuraciones_api.helpers import get_conf
 
+@lru_cache
+def get_settings():
+    timeout = int(600)
+    port = int(get_conf("MOCK_PORT"))
+    return {
+        "DNS_BANCO":            get_conf("DNS_BANCO"),
+        "DOMINIO_BANCO":        get_conf("DOMINIO_BANCO"),
+        "RED_SEGURA_PREFIX":    get_conf("RED_SEGURA_PREFIX"),
+        "ALLOW_FAKE_BANK":      get_conf("ALLOW_FAKE_BANK"),
+        "TIMEOUT":              timeout,
+        "MOCK_PORT":            port,
+    }
+    
 def cargar_variables_entorno(entorno=None, request=None):
     from api.configuraciones_api.models import ConfiguracionAPI
 

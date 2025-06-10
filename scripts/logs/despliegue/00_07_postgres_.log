@@ -1049,3 +1049,19 @@ La base de datos mydatabase existe. Eliminándola...
 📦 Instalando dependencias...
 ⚠️ Borrando base de datos existente: mydatabase
 [7;30m✅ Base de datos y usuario listos.[0m
+
+📅 Fecha de ejecución: 2025-06-10 07:10:58
+📄 Script: 00_07_postgres.sh
+═══════════════════════════════════════════
+🔍 Verificando PostgreSQL...
+📦 Instalando dependencias...
+⚠️ Borrando base de datos existente: mydatabase
+[7;30m✅ Base de datos y usuario listos.[0m
+
+📅 Fecha de ejecución: 2025-06-10 07:13:04
+📄 Script: 00_07_postgres.sh
+═══════════════════════════════════════════
+🔍 Verificando PostgreSQL...
+📦 Instalando dependencias...
+⚠️ Borrando base de datos existente: mydatabase
+[7;30m✅ Base de datos y usuario listos.[0m

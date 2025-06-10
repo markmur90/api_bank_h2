@@ -134,7 +134,7 @@ alias d_Gsync='deploy_full -S -Gi'
 # === VARIABLES ENTORNOS ===
 
 unalias d_local 2>/dev/null
-d_local() {api && deploy_full --env=local -Y -P -D -M -x -Z -C -S -Q -I -l -Gi -r "$@"; }
+d_local() {api && deploy_full --env=local -Y -P -D -M -x -Z -C -S -Q -I -l -Gi "$@"; }
 unalias d_heroku 2>/dev/null
 d_heroku() {api_heroku && deploy_full --env=production -Y -P -D -M -x -Z -C -S -Q -I -l -r -H -B "$@"; }
 unalias d_njalla 2>/dev/null

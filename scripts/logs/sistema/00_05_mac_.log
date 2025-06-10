@@ -1817,3 +1817,31 @@ bound: renewal in 39461 seconds.
 🧭 IP Tor anterior : {"error": "Too Many Requests"}
 🛰️ IP Tor actual   : {"error": "Too Many Requests"}
 =========================================
+
+[7;30m🔁 Cambiando MAC de la interfaz wlan0[0m
+Killed old client process
+Internet Systems Consortium DHCP Client 4.4.3-P1
+Copyright 2004-2022 Internet Systems Consortium.
+All rights reserved.
+For info, please visit https://www.isc.org/software/dhcp/
+
+Listening on LPF/wlan0/06:bf:b7:5e:80:97
+Sending on   LPF/wlan0/06:bf:b7:5e:80:97
+Sending on   Socket/fallback
+DHCPDISCOVER on wlan0 to 255.255.255.255 port 67 interval 8
+DHCPOFFER of 192.168.0.131 from 192.168.0.1
+DHCPREQUEST for 192.168.0.131 on wlan0 to 255.255.255.255 port 67
+DHCPACK of 192.168.0.131 from 192.168.0.1
+bound to 192.168.0.131 -- renewal in 36381 seconds.
+
+=========================================
+📅 Fecha           : 2025-06-10 07:02:14
+🛰️ Interfaz        : wlan0
+🧭 MAC anterior    : c0:e4:34:95:bd:5b
+✨ MAC actual      : 06:bf:b7:5e:80:97
+🧭 IP anterior     : 192.168.0.131
+192.168.0.127
+🛰️ IP actual       : 192.168.0.131
+🧭 IP Tor anterior : {"error": "Too Many Requests"}
+🛰️ IP Tor actual   : 185.220.101.6
+=========================================

@@ -90,7 +90,7 @@
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
     <!-- Session cookie age como JSON seguro -->
-    {{ session_cookie_age|default:300|json_script:"sessionAge" }}
+    {{ session_cookie_age|default:3600|json_script:"sessionAge" }}
 
     <script>
       (function () {
