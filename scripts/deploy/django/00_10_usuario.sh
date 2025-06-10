@@ -47,7 +47,8 @@ mkdir -p "$(dirname "$LOG_DEPLOY")"
 
 echo -e "\033[7;30m🚀 Creando usuario...\033[0m" | tee -a "$LOG_DEPLOY"
 
-python3 manage.py shell <<EOF | tee -a "$LOG_DEPLOY"
+source $VENV_PATH/bin/activate
+python manage.py shell <<EOF | tee -a "$LOG_DEPLOY"
 from django.contrib.auth import get_user_model
 User = get_user_model()
 username = "493069k1"

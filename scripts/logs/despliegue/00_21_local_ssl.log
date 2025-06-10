@@ -1,4 +1,174 @@
-[2025-06-10 05:49:27 +0200] [79280] [INFO] Starting gunicorn 23.0.0
-[2025-06-10 05:49:27 +0200] [79280] [INFO] Listening at: http://0.0.0.0:8000 (79280)
-[2025-06-10 05:49:27 +0200] [79280] [INFO] Using worker: sync
-[2025-06-10 05:49:27 +0200] [79282] [INFO] Booting worker with pid: 79282
+[2025-06-10 06:30:35 +0200] [112546] [INFO] Starting gunicorn 23.0.0
+[2025-06-10 06:30:35 +0200] [112546] [INFO] Listening at: http://0.0.0.0:8000 (112546)
+[2025-06-10 06:30:35 +0200] [112546] [INFO] Using worker: sync
+[2025-06-10 06:30:35 +0200] [112549] [INFO] Booting worker with pid: 112549
+Session data corrupted
+Session data corrupted
+Session data corrupted
+Session data corrupted
+Error en /configuraciones/editar/5/: llave duplicada viola restricción de unicidad «configuraciones_api_nombre_key»
+DETAIL:  Ya existe la llave (nombre)=(API_URL).
+Traceback (most recent call last):
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: llave duplicada viola restricción de unicidad «configuraciones_api_nombre_key»
+DETAIL:  Ya existe la llave (nombre)=(API_URL).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/api_bank_h2/api/configuraciones_api/views.py", line 28, in editar_configuracion
+    form.save()
+    ~~~~~~~~~^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/forms/models.py", line 554, in save
+    self.instance.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 1283, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 2059, in execute_sql
+    row_count = super().execute_sql(result_type)
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 235, in execute
+    return self._record(super().execute, sql, params)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 160, in _record
+    return method(sql, params)
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: llave duplicada viola restricción de unicidad «configuraciones_api_nombre_key»
+DETAIL:  Ya existe la llave (nombre)=(API_URL).
+
+Internal Server Error: /configuraciones/editar/5/
+Traceback (most recent call last):
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+psycopg2.errors.UniqueViolation: llave duplicada viola restricción de unicidad «configuraciones_api_nombre_key»
+DETAIL:  Ya existe la llave (nombre)=(API_URL).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/markmur88/api_bank_h2/api/configuraciones_api/views.py", line 28, in editar_configuracion
+    form.save()
+    ~~~~~~~~~^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/forms/models.py", line 554, in save
+    self.instance.save()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/query.py", line 1283, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 2059, in execute_sql
+    row_count = super().execute_sql(result_type)
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1622, in execute_sql
+    cursor.execute(sql, params)
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 235, in execute
+    return self._record(super().execute, sql, params)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/debug_toolbar/panels/sql/tracking.py", line 160, in _record
+    return method(sql, params)
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sql, params, many=False, executor=self._execute
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+django.db.utils.IntegrityError: llave duplicada viola restricción de unicidad «configuraciones_api_nombre_key»
+DETAIL:  Ya existe la llave (nombre)=(API_URL).
+
+Session data corrupted
+Session data corrupted
+Session data corrupted
+Session data corrupted
+Session data corrupted
