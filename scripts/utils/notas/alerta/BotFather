@@ -1,0 +1,5 @@
+
+@AFCx1B_CE_bot
+6983248274:AAH2qeYxpkIQR88prtuvt4YSJGAKU__wF4o
+
+curl -s "https://api.telegram.org/6983248274:AAH2qeYxpkIQR88prtuvt4YSJGAKU__wF4o/getUpdates"

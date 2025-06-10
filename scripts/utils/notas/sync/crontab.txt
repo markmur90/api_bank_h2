@@ -1,0 +1,14 @@
+
+
+Para ejecutar startup_sync.sh al inicio del sistema:
+crontab -e
+# Agregar:
+@reboot /home/markmur88/scripts/startup_sync.sh
+
+
+
+
+Para ejecutar daily_backup.sh a las 10:00 AM todos los días:
+crontab -e
+# Agregar:
+0 10 * * * /home/markmur88/scripts/daily_backup.sh
