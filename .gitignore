@@ -1,6 +1,21 @@
 # *local.py
-.env*
+.env
+.env.local
+.env.production
 temp/
 z_njalla/
 .zip
 scripts/
+.codesandbox/
+.devcontainer/
+.github/
+servers/
+certs/
+01_full0.sh
+Problema.md
+chatgpt.md
+chmod_log.txt
+.log
+datos_sensibles.txt
+pendientes.txt
+prompts.txt
