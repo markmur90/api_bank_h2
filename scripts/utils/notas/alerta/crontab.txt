@@ -1,5 +1,0 @@
-⏰ Agregar a crontab para que corra cada hora
-
-crontab -e
-# Agregar línea al final:
-0 * * * * /home/markmur88/scripts/alerta_horaria.sh
