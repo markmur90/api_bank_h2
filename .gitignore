@@ -1,10 +1,10 @@
 # *local.py
-.env
-.env.local
-.env.production
+*.env
+*.env.local
+*.env.production
 temp/
 z_njalla/
-.zip
+*.zip
 scripts/
 .codesandbox/
 .devcontainer/
@@ -15,7 +15,7 @@ certs/
 Problema.md
 chatgpt.md
 chmod_log.txt
-.log
+*.log
 datos_sensibles.txt
 pendientes.txt
 prompts.txt
