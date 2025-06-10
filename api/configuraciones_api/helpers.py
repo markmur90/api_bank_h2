@@ -1,3 +1,4 @@
+import os
 from api.configuraciones_api.models import ConfiguracionAPI
 
 def obtener_config(nombre, entorno='production', por_defecto=None):
