@@ -24,6 +24,7 @@ def get_settings():
         "DNS_BANCO":            get_conf("DNS_BANCO"),
         "DOMINIO_BANCO":        get_conf("DOMINIO_BANCO"),
         "RED_SEGURA_PREFIX":    get_conf("RED_SEGURA_PREFIX"),
+        "ALLOW_FAKE_BANK":      get_conf("ALLOW_FAKE_BANK"),
         "TIMEOUT":              timeout,
         "MOCK_PORT":            port,
     }
@@ -63,8 +64,10 @@ def resolver_ip_dominio(dominio):
 def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers=None):
     settings = get_settings()
     DOMINIO_BANCO = settings["DOMINIO_BANCO"]
+    DNS_BANCO = settings["DNS_BANCO"]
     MOCK_PORT = settings["MOCK_PORT"]
     TIMEOUT = settings["TIMEOUT"]
+    ALLOW_FAKE_BANK = settings["ALLOW_FAKE_BANK"]
     
     headers = headers or {}
     
@@ -74,8 +77,8 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
             registrar_log("conexion", f"❌ No se pudo resolver {dominio} vía DNS bancario.")
             return None
     else:
-        if os.getenv("ALLOW_FAKE_BANK", "false").lower() == "true":
-            ip_destino = "127.0.0.1"
+        if ALLOW_FAKE_BANK:
+            ip_destino = DNS_BANCO
             dominio = DOMINIO_BANCO
             puerto = MOCK_PORT
 
@@ -101,6 +104,7 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
     except requests.RequestException as e:
         registrar_log("conexion", f"❌ Error en petición HTTPS a {dominio}: {str(e)}")
         return None
+
 
 def puerto_activo(host, puerto, timeout=int(2)):
     try:
