@@ -1,7 +1,9 @@
 READMEcopy.md
 .db
 .env
-.env.*
+.env.local
+.env.production
+.env.sandbox
 .sqlite3
 .vscode/
 base0.py
