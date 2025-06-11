@@ -1,0 +1,115 @@
+
+================================================================================
+Fecha y hora: 2025-06-09 13:17:10
+================================================================================
+=== Info ===
+Transferencia creada
+
+
+================================================================================
+Fecha y hora: 2025-06-09 13:17:10
+================================================================================
+=== Info ===
+XML pain.001 generado en schemas/transferencias/5e69f476-53df-4b55-a0bb-9356096dbfcd/pain001_5e69f476-53df-4b55-a0bb-9356096dbfcd.xml
+
+
+================================================================================
+Fecha y hora: 2025-06-09 13:17:10
+================================================================================
+=== Info ===
+Archivo AML generado en schemas/transferencias/5e69f476-53df-4b55-a0bb-9356096dbfcd/aml_5e69f476-53df-4b55-a0bb-9356096dbfcd.xml
+
+
+================================================================================
+Fecha y hora: 2025-06-09 13:29:56
+================================================================================
+=== Info ===
+Errores en validación
+
+=== Error ===
+Formulario inválido
+
+================================================================================
+Fecha y hora: 2025-06-09 13:30:07
+================================================================================
+=== Info ===
+Errores en validación
+
+=== Error ===
+Formulario inválido
+
+================================================================================
+Fecha y hora: 2025-06-09 13:30:19
+================================================================================
+=== Info ===
+OAuth no iniciado o token expirado
+
+=== Error ===
+Token no disponible
+
+================================================================================
+Fecha y hora: 2025-06-09 13:30:19
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "44ae868f97984c9ca4c746a695f06826",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7&redirect_uri=https://api.coretransapi.com/oauth2/callback/&scope=sepa_credit_transfers&state=44ae868f97984c9ca4c746a695f06826&code_challenge_method=S256&code_challenge=Uyfrwp1PgzMfZmmDaOxWxw1KMrO8-88GTaTMHlgNX2o",
+    "code_challenge": "Uyfrwp1PgzMfZmmDaOxWxw1KMrO8-88GTaTMHlgNX2o",
+    "payment_id": "5e69f476-53df-4b55-a0bb-9356096dbfcd"
+}
+
+
+================================================================================
+Fecha y hora: 2025-06-09 13:30:19
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "Jd2HTKZ_XCgck39cwk2fG7Mderu99LerI6TdMdvM8zC8B7ONd9cMFYoI7e0ZuIoSMK8KvlQ1Sm0VgFkKXJ9k0A",
+    "challenge": "Uyfrwp1PgzMfZmmDaOxWxw1KMrO8-88GTaTMHlgNX2o",
+    "state": "44ae868f97984c9ca4c746a695f06826"
+}
+
+
+================================================================================
+Fecha y hora: 2025-06-09 13:43:14
+================================================================================
+=== Info ===
+OAuth no iniciado o token expirado
+
+=== Error ===
+Token no disponible
+
+================================================================================
+Fecha y hora: 2025-06-09 13:43:15
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "93642d9f57ea4204a944934398d84bda",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7&redirect_uri=https://api.coretransapi.com/oauth2/callback/&scope=sepa_credit_transfers&state=93642d9f57ea4204a944934398d84bda&code_challenge_method=S256&code_challenge=3-WD2Se7HdpuKmRPP1wfwbY8WcEcdQVmQJIKY6TDiHc",
+    "code_challenge": "3-WD2Se7HdpuKmRPP1wfwbY8WcEcdQVmQJIKY6TDiHc",
+    "payment_id": "5e69f476-53df-4b55-a0bb-9356096dbfcd"
+}
+
+
+================================================================================
+Fecha y hora: 2025-06-09 13:43:15
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "mJ1SzKsOiqhVhlLTMkMjx6Nl9vX5QlQdoheSCsFuYwI_k8Z-uxVfz30mboyhXouq5IQ__Rck-sqPObcnadd3-g",
+    "challenge": "3-WD2Se7HdpuKmRPP1wfwbY8WcEcdQVmQJIKY6TDiHc",
+    "state": "93642d9f57ea4204a944934398d84bda"
+}
+

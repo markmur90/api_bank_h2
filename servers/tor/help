@@ -1,0 +1,163 @@
+# 1. Ubuntu / Debian
+
+    Agregar el repositorio oficial de Tor (opcional, pero recomendado para obtener versiones más recientes):
+
+## Instalar dependencias necesarias
+
+sudo apt update
+sudo apt install -y apt-transport-https ca-certificates curl
+
+## Añadir la clave GPG de Tor Project
+
+curl https://deb.torproject.org/torproject.org/A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89.asc | sudo gpg --dearmor -o /usr/share/keyrings/tor-archive-keyring.gpg
+
+# Añadir el repositorio a sources.list
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/tor-archive-keyring.gpg] https://deb.torproject.org/torproject.org $(lsb_release -cs) main" \
+    | sudo tee /etc/apt/sources.list.d/tor.list
+
+Instalar el daemon Tor:
+
+sudo apt update
+sudo apt install -y tor deb.torproject.org-keyring
+
+    El paquete deb.torproject.org-keyring contiene la clave GPG oficial, garantizando la autenticidad del repositorio.
+
+Habilitar y arrancar el servicio Tor:
+
+sudo systemctl enable tor
+sudo systemctl start tor
+
+    Verificar estado:
+
+sudo systemctl status tor
+
+    Salida esperada:
+
+        ● tor.service - Anonymizing overlay network for TCP
+           Loaded: loaded (/lib/systemd/system/tor.service; enabled; vendo>
+           Active: active (running) since Fri 2025-05-30 14:22:10 UTC; 1min >
+          Main PID: 1524 (tor)
+           Tasks: 1 (limit: 19121)
+          Memory: 9.4M
+          CGroup: /system.slice/tor.service
+                  └─1524 /usr/bin/tor -f /etc/tor/torrc
+
+(Opcional) Instalar Tor Browser Launcher:
+Si lo que quieres es únicamente un navegador Tor, instala el paquete “torbrowser-launcher”:
+
+sudo apt install -y torbrowser-launcher
+
+Luego, ejecútalo con:
+
+torbrowser-launcher
+
+Esto descargará, verificará y configurará automáticamente la última versión de Tor Browser.
+
+
+
+5. Configuración básica de torrc (opcional, pero recomendado)
+
+Tras instalar el daemon Tor, el archivo de configuración principal se encuentra en /etc/tor/torrc. Aquí algunos ajustes comunes:
+
+    Ubicación del archivo:
+
+/etc/tor/torrc
+
+Ejemplo mínimo para cliente/anónimo (por defecto ya funciona sin tocar nada):
+
+# Usar la red Tor como proxy SOCKS en el puerto 9050
+SocksPort 0.0.0.0:9050
+
+# Si quieres forzar usar solo nodos guardados en tu caché (para arranque más rápido):
+# UseEntryGuards 1
+# EntryNodes {us}       ← por ejemplo, solo nodos de Estados Unidos
+# ExitNodes {us}
+
+# Opciones de registro (log)
+Log notice file /var/log/tor/notices.log
+
+Convertir el servidor en un “Relay” (miembro de la red Tor):
+
+# Para ser relay de tráfico (no exit node)
+ORPort 9001
+ExitRelay 0
+DirPort 9030
+
+# Nombre amigable para identificar tu relay
+Nickname MiRelayTor
+
+# Limites de ancho de banda (opcional)
+RelayBandwidthRate 100 KB  # velocidad promedio
+RelayBandwidthBurst 200 KB # pico
+
+Levantar un “Hidden Service” (servicio oculto):
+
+# Carpeta donde Tor guardará las claves y la dirección .onion
+HiddenServiceDir /var/lib/tor/hidden_service/
+# Puerto interno en tu servidor al que apunta (ej. servidor web Django que corre en localhost:8000)
+HiddenServicePort 80 127.0.0.1:8000
+
+    Después de reiniciar Tor, se generará en /var/lib/tor/hidden_service/ un archivo hostname con la dirección .onion.
+
+    Para reiniciar Tor:
+
+sudo systemctl restart tor
+
+
+
+6. Ejemplo de flujo completo en Debian/Ubuntu (instalación + configuración mínima)
+
+    Instalar Tor:
+
+sudo apt update
+sudo apt install -y tor deb.torproject.org-keyring
+
+Verificar la versión instalada:
+
+tor --version
+# Salida esperada:
+# Tor version 0.4.8.10 (git-...) ...
+
+Editar /etc/tor/torrc (ajuste mínimo para levantar un Hidden Service de un sitio Django):
+
+sudo nano /etc/tor/torrc
+
+    Añadir al final:
+
+    HiddenServiceDir /var/lib/tor/mi_servicio_django/
+    HiddenServicePort 80 127.0.0.1:8000
+
+Crear el directorio y dar permisos correctos (Tor creará el hostname automáticamente):
+
+sudo mkdir -p /var/lib/tor/mi_servicio_django
+sudo chown -R debian-tor:debian-tor /var/lib/tor/mi_servicio_django
+chmod 700 /var/lib/tor/mi_servicio_django
+
+Reiniciar Tor:
+
+sudo systemctl restart tor
+
+Verificar estado y obtener la dirección .onion:
+
+sudo systemctl status tor
+sudo cat /var/lib/tor/mi_servicio_django/hostname
+# Ejemplo de salida del hostname:
+# abcdefghijklmnop.onion
+
+Probar localmente:
+
+    Asegúrate de que tu servidor Django esté levantado en 127.0.0.1:8000.
+
+    Con Tor Browser o herramienta curl usando proxy SOCKS:
+
+        curl --socks5 127.0.0.1:9050 http://abcdefghijklmno.onion
+
+7. Apertura de puertos en el firewall (si aplica)
+
+    Ubuntu / Debian (ufw):
+
+# Permitir puerto Tor por defecto (SocksPort 9050)
+sudo ufw allow 9050/tcp
+# Si levantas un relay con ORPort (ej. 9001):
+sudo ufw allow 9001/tcp
+sudo ufw reload
