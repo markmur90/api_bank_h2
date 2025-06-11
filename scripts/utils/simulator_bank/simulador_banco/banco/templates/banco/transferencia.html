@@ -1,0 +1,14 @@
+
+{% extends 'banco/base.html' %}
+{% block title %}Transferencia{% endblock %}
+{% block content %}
+<h2>Realizar Transferencia</h2>
+<form method="post">
+    {% csrf_token %}
+    <label for="destinatario">Destinatario:</label>
+    <input type="text" name="destinatario" required>
+    <label for="monto">Monto:</label>
+    <input type="number" name="monto" step="0.01" required>
+    <button type="submit">Enviar</button>
+</form>
+{% endblock %}

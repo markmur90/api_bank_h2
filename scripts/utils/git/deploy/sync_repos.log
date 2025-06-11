@@ -1,0 +1,47 @@
+ERROR: Repository not found.
+fatal: No se pudo leer del repositorio remoto.
+
+Por favor asegúrate de que tengas los permisos de acceso correctos
+y que el repositorio exista.
+✖ No se pudo leer remoto: git@github.com:markmur90/api_bank_h2.git
+Everything up-to-date
+rama 'api-bank' configurada para rastrear 'origin/api-bank'.
+■ La clave ya existe en markmur90/api_bank_heroku
+ERROR: Repository not found.
+fatal: No se pudo leer del repositorio remoto.
+
+Por favor asegúrate de que tengas los permisos de acceso correctos
+y que el repositorio exista.
+✖ No se pudo leer remoto: git@github.com:markmur90/Simulador.git
+ERROR: Repository not found.
+fatal: No se pudo leer del repositorio remoto.
+
+Por favor asegúrate de que tengas los permisos de acceso correctos
+y que el repositorio exista.
+✖ No se pudo leer remoto: git@github.com:markmur90/Notas.git
+→ Procesando markmur90/api_bank_h2 en /home/markmur88/api_bank_h2 (rama: main)
+ERROR: Repository not found.
+fatal: No se pudo leer del repositorio remoto.
+
+Por favor asegúrate de que tengas los permisos de acceso correctos
+y que el repositorio exista.
+✖ falló git fetch en markmur90/api_bank_h2
+→ Procesando markmur90/api_bank_heroku en /home/markmur88/api_bank_heroku (rama: api-bank)
+Everything up-to-date
+rama 'api-bank' configurada para rastrear 'origin/api-bank'.
+/home/markmur88/api_bank_h2/scripts/utils/git/sync_repos.sh: línea 41: : No existe el fichero o el directorio
+■ La deploy key ya existe en markmur90/api_bank_heroku
+→ Procesando markmur90/Simulador en /home/markmur88/api_bank_h2/scripts/utils/simulator_bank (rama: main)
+ERROR: Repository not found.
+fatal: No se pudo leer del repositorio remoto.
+
+Por favor asegúrate de que tengas los permisos de acceso correctos
+y que el repositorio exista.
+✖ falló git fetch en markmur90/Simulador
+→ Procesando markmur90/Notas en /home/markmur88/Notas (rama: main)
+ERROR: Repository not found.
+fatal: No se pudo leer del repositorio remoto.
+
+Por favor asegúrate de que tengas los permisos de acceso correctos
+y que el repositorio exista.
+✖ falló git fetch en markmur90/Notas

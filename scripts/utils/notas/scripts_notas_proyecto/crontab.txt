@@ -1,0 +1,5 @@
+# Cron para resumen diario a las 21:00
+0 21 * * * /bin/bash ~/resumen_dia.sh >> ~/notas/resumen_diario.log
+
+# Cron para alerta horaria
+0 * * * * notify-send "⏰ Alerta horaria: $(date '+%H:%M')" && echo "$(date '+%Y-%m-%d %H:%M')" >> ~/notas/log_alertas.txt
