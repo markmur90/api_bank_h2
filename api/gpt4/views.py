@@ -39,7 +39,7 @@ from api.gpt4.utils import (
     refresh_access_token, registrar_log, registrar_log_oauth,
     resolver_challenge_pushtan, send_transfer, update_sca_request
 )
-from api.gpt4.conexion_banco import hacer_request_banco, enviar_transferencia_conexion
+from api.gpt4.conexion_banco import hacer_request_banco, enviar_transferencia_conexion, obtener_token_desde_simulador
 from api.gpt4.decorators import requiere_conexion_banco
 from api.gpt4.forms import (
     ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm,

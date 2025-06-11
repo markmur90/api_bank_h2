@@ -1,0 +1,10 @@
+📂 Proyecto: /home/markmur88/Documentos/GitHub/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: .env*
+🔄 Iniciando sincronización...
+sending incremental file list
+scripts/logs/sync/
+
+sent 27.021 bytes  received 162 bytes  4.942,36 bytes/sec
+total size is 24.176.210  speedup is 889,39
+✅ Sincronización completada.

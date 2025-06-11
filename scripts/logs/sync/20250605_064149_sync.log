@@ -1,0 +1,731 @@
+📂 Proyecto local: /home/markmur88/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: .zip
+🔄 Iniciando sincronización local -> VPS...
+sending incremental file list
+deleting scripts_orgenados.zip
+deleting api.sock
+deleting 01_full.sh
+./
+.env
+.gitignore
+01_full0.sh
+scripts_ord.zip
+scripts_ord_2.zip
+scripts_ord_3.zip
+scripts_para_ordenar.zip
+deleting api/__pycache__/views.cpython-311.pyc
+deleting api/__pycache__/urls.cpython-311.pyc
+deleting api/__pycache__/middleware.cpython-311.pyc
+deleting api/__pycache__/context_processors.cpython-313.pyc
+deleting api/__pycache__/context_processors.cpython-311.pyc
+deleting api/__pycache__/__init__.cpython-311.pyc
+deleting api/authentication/__pycache__/views.cpython-311.pyc
+deleting api/authentication/__pycache__/urls.cpython-311.pyc
+deleting api/authentication/__pycache__/serializers.cpython-311.pyc
+deleting api/authentication/__pycache__/models.cpython-311.pyc
+deleting api/authentication/__pycache__/apps.cpython-311.pyc
+deleting api/authentication/__pycache__/admin.cpython-311.pyc
+deleting api/authentication/__pycache__/__init__.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/views.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/urls.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/models.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/helpers.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/forms.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/apps.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/admin.cpython-311.pyc
+deleting api/configuraciones_api/__pycache__/__init__.cpython-311.pyc
+deleting api/core/__pycache__/views.cpython-311.pyc
+deleting api/core/__pycache__/urls.cpython-311.pyc
+deleting api/core/__pycache__/services.cpython-311.pyc
+deleting api/core/__pycache__/serializers.cpython-311.pyc
+deleting api/core/__pycache__/models.cpython-311.pyc
+deleting api/core/__pycache__/mixin.cpython-311.pyc
+deleting api/core/__pycache__/middleware.cpython-311.pyc
+deleting api/core/__pycache__/forms.cpython-311.pyc
+deleting api/core/__pycache__/choices.cpython-311.pyc
+deleting api/core/__pycache__/bank_services.cpython-311.pyc
+deleting api/core/__pycache__/auth_services.cpython-311.pyc
+deleting api/core/__pycache__/apps.cpython-311.pyc
+deleting api/core/__pycache__/admin.cpython-311.pyc
+deleting api/core/__pycache__/__init__.cpython-311.pyc
+deleting api/core/templatetags/__pycache__/custom_filters.cpython-311.pyc
+deleting api/gpt3/__pycache__/views2.cpython-311.pyc
+deleting api/gpt3/__pycache__/utils2.cpython-311.pyc
+deleting api/gpt3/__pycache__/urls.cpython-311.pyc
+deleting api/gpt3/__pycache__/schemas.cpython-311.pyc
+deleting api/gpt3/__pycache__/models.cpython-311.pyc
+deleting api/gpt3/__pycache__/helpers.cpython-311.pyc
+deleting api/gpt3/__pycache__/forms.cpython-311.pyc
+deleting api/gpt3/__pycache__/apps.cpython-311.pyc
+deleting api/gpt3/__pycache__/admin.cpython-311.pyc
+deleting api/gpt3/__pycache__/__init__.cpython-311.pyc
+deleting api/gpt4/__pycache__/views.cpython-311.pyc
+deleting api/gpt4/__pycache__/utils.cpython-311.pyc
+deleting api/gpt4/__pycache__/urls.cpython-311.pyc
+deleting api/gpt4/__pycache__/models.cpython-311.pyc
+deleting api/gpt4/__pycache__/forms.cpython-311.pyc
+deleting api/gpt4/__pycache__/decorators.cpython-311.pyc
+deleting api/gpt4/__pycache__/conexion_banco.cpython-311.pyc
+deleting api/gpt4/__pycache__/apps.cpython-311.pyc
+deleting api/gpt4/__pycache__/admin.cpython-311.pyc
+deleting api/gpt4/__pycache__/__init__.cpython-311.pyc
+deleting api/transactions/__pycache__/views.cpython-311.pyc
+deleting api/transfers/__pycache__/views_copy.cpython-311.pyc
+deleting api/transfers/__pycache__/views_com2.cpython-311.pyc
+deleting api/transfers/__pycache__/views_api.cpython-311.pyc
+deleting api/transfers/__pycache__/views_all.cpython-311.pyc
+deleting api/transfers/__pycache__/views.cpython-311.pyc
+deleting api/transfers/__pycache__/urls.cpython-311.pyc
+deleting api/transfers/__pycache__/serializers.cpython-311.pyc
+deleting api/transfers/__pycache__/models.cpython-311.pyc
+deleting api/transfers/__pycache__/forms.cpython-311.pyc
+deleting api/transfers/__pycache__/apps.cpython-311.pyc
+deleting api/transfers/__pycache__/admin.cpython-311.pyc
+deleting api/transfers/__pycache__/__init__.cpython-311.pyc
+deleting config/__pycache__/wsgi.cpython-311.pyc
+deleting config/__pycache__/urls.cpython-311.pyc
+deleting config/__pycache__/__init__.cpython-311.pyc
+deleting config/settings/__pycache__/production.cpython-311.pyc
+deleting config/settings/__pycache__/local.cpython-311.pyc
+deleting config/settings/__pycache__/base1.cpython-311.pyc
+deleting config/settings/__pycache__/__init__.cpython-311.pyc
+deleting scripts/vps_backup/torrc
+deleting scripts/vps_backup/supervisor_coretransapi.conf
+deleting scripts/vps_backup/nginx_coretransapi.conf
+deleting scripts/vps_backup/
+deleting scripts/vps/
+deleting scripts/token/pem/validate_token_db.py
+deleting scripts/token/pem/validate_token.py
+deleting scripts/token/pem/public.pem
+deleting scripts/token/pem/private.pem
+deleting scripts/token/pem/generated_token_pem.json
+deleting scripts/token/pem/generated_token_jwt.txt
+deleting scripts/token/pem/generate_token.py
+deleting scripts/token/pem/generate_jwt.py
+deleting scripts/token/pem/generate_iban.py
+deleting scripts/token/pem/codes_s256.txt
+deleting scripts/token/pem/codeS256.py
+deleting scripts/token/pem/
+deleting scripts/token/jwks/validar_jwt.py
+deleting scripts/token/jwks/resultado_jwt.txt
+deleting scripts/token/jwks/print_jwks_public.py
+deleting scripts/token/jwks/jwks_public.json
+deleting scripts/token/jwks/jwks_private.json
+deleting scripts/token/jwks/firmar_jwt_prod.py
+deleting scripts/token/jwks/firmar_jwt.py
+deleting scripts/token/jwks/ejecutar_todo.sh
+deleting scripts/token/jwks/ejecutar_jwt.sh
+deleting scripts/token/jwks/crear_jwks.py
+deleting scripts/token/jwks/client_assertion.jwt
+deleting scripts/token/jwks/access_token.json
+deleting scripts/token/jwks/
+deleting scripts/token/api_db_smart/jwks_public.json
+deleting scripts/token/api_db_smart/generate_ecdsa_keypair.py
+deleting scripts/token/api_db_smart/ecdsa_public_key.pem
+deleting scripts/token/api_db_smart/ecdsa_private_key.pem
+deleting scripts/token/api_db_smart/api_db_smart_access.py
+deleting scripts/token/api_db_smart/
+deleting scripts/token/0AUTH/credenciales_oauth2/resumen.txt
+deleting scripts/token/0AUTH/credenciales_oauth2/log.txt
+deleting scripts/token/0AUTH/credenciales_oauth2/jwks.json
+deleting scripts/token/0AUTH/credenciales_oauth2/firma_log.txt
+deleting scripts/token/0AUTH/credenciales_oauth2/client_assertion.jwt
+deleting scripts/token/0AUTH/credenciales_oauth2/clave_publica.pem
+deleting scripts/token/0AUTH/credenciales_oauth2/clave_privada.pem
+deleting scripts/token/0AUTH/credenciales_oauth2/
+deleting scripts/token/0AUTH/generar_claves_oauth2.py
+deleting scripts/token/0AUTH/
+deleting scripts/token/url_help.md
+deleting scripts/token/token.md
+deleting scripts/token/pem_help.txt
+deleting scripts/token/URL_TOKEN.md
+deleting scripts/token/
+deleting scripts/sistema/
+deleting scripts/simulator_bank/tor_simulador_onion.service
+deleting scripts/simulator_bank/simulador_banco.service
+deleting scripts/simulator_bank/monitor_logs.sh
+deleting scripts/simulator_bank/help
+deleting scripts/simulator_bank/deploy_simulador.sh
+deleting scripts/simulator_bank/configurar_tor_onion.sh
+deleting scripts/simulator_bank/README.md
+deleting scripts/simulator_bank/
+deleting scripts/gpg_keys/jmoltke_public.asc
+deleting scripts/gpg_keys/jmoltke_private.asc
+deleting scripts/gpg_keys/fingerprint.txt
+deleting scripts/gpg_keys/
+deleting scripts/github/
+deleting scripts/gestor-tareas/notify/start_notificadores_interactivo.sh
+deleting scripts/gestor-tareas/notify/notificador_restart.sh
+deleting scripts/gestor-tareas/notify/notificador_30.sh
+deleting scripts/gestor-tareas/notify/notificador3.sh
+deleting scripts/gestor-tareas/notify/notificador2.sh
+deleting scripts/gestor-tareas/notify/notificador.sh
+deleting scripts/gestor-tareas/notify/gestionar_notificadores.sh
+deleting scripts/gestor-tareas/notify/
+deleting scripts/gestor-tareas/gestor_tareas/usr/local/bin/gestor_tareas.sh
+deleting scripts/gestor-tareas/gestor_tareas/usr/local/bin/
+deleting scripts/gestor-tareas/gestor_tareas/usr/local/
+deleting scripts/gestor-tareas/gestor_tareas/usr/
+deleting scripts/gestor-tareas/gestor_tareas/DEBIAN/control
+deleting scripts/gestor-tareas/gestor_tareas/DEBIAN/
+deleting scripts/gestor-tareas/gestor_tareas/
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_12.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_11.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_10.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_09.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_08.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_07.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_06.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_05.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_04.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_03.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_02.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tiempos_01.log
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_12.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_11.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_10.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_09.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_08.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_07.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_06.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_05.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_04.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_03.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_02.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/tareas_01.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_12.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_11.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_10.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_09.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_08.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_07.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_06.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_05.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_04.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_03.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_02.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/config_01.txt
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/APP/
+deleting scripts/gestor-tareas/gestor/.gestor_tareas/
+deleting scripts/gestor-tareas/gestor/tareas_gestor_000.txt
+deleting scripts/gestor-tareas/gestor/tareas_gestor_00.txt
+deleting scripts/gestor-tareas/gestor/gtareas_status.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_16.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_15.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_14.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_13.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_12.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_11.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_10.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_09.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_08.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_07.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_06.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_05.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_04.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_03.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_02.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_01.sh
+deleting scripts/gestor-tareas/gestor/gestor_tareas_00.sh
+deleting scripts/gestor-tareas/gestor/gestor_config_000.txt
+deleting scripts/gestor-tareas/gestor/gestor_config_00.txt
+deleting scripts/gestor-tareas/gestor/crear_paquete.sh
+deleting scripts/gestor-tareas/gestor/
+deleting scripts/gestor-tareas/zenity_test.sh
+deleting scripts/gestor-tareas/gestor-tareas_1.2.deb
+deleting scripts/gestor-tareas/gestor-tareas_1.1.deb
+deleting scripts/gestor-tareas/gestor-tareas_1.0.deb.sha256
+deleting scripts/gestor-tareas/gestor-tareas_1.0.deb
+deleting scripts/gestor-tareas/
+deleting scripts/django/
+deleting scripts/conexion_segura_db/conexion_banco.py
+deleting scripts/conexion_segura_db/README.txt
+deleting scripts/conexion_segura_db/.env.example
+deleting scripts/conexion_segura_db/
+deleting scripts/vps_sync_clean.sh
+deleting scripts/vps_sync.sh
+deleting scripts/vps_status.sh
+deleting scripts/vps_remote_check.sh
+deleting scripts/vps_copy_up_files.sh
+deleting scripts/vps_copy_files.sh
+deleting scripts/torrc
+deleting scripts/sync_local_and_vps.sh
+deleting scripts/sync_configs_to_vps.sh
+deleting scripts/sync_configs_from_vps.sh
+deleting scripts/summarize_logs.sh
+deleting scripts/set_heroku_env.sh
+deleting scripts/run_local_ssl_env.sh
+deleting scripts/rotate_tor_ip.sh
+deleting scripts/resumen_logs.sh
+deleting scripts/reiniciar_servicios.sh
+deleting scripts/instalar_tor.sh
+deleting scripts/generar_clave_gpg.sh
+deleting scripts/excludes.txt
+deleting scripts/estado_notificadores.sh
+deleting scripts/eliminar_moltke_todas.sh
+deleting scripts/eliminar_claves_moltke.sh
+deleting scripts/diagnostico_entorno.sh
+deleting scripts/configurar_gunicorn.sh
+deleting scripts/check_torrc.sh
+deleting scripts/aliases_deploy.sh
+deleting scripts/00_generar_certificado_local.sh
+deleting scripts/00_eliminar_config_vars.sh
+deleting scripts/00_24_sync_from_github.sh
+deleting scripts/00_23_importar_clave_privada_gpg.sh
+deleting scripts/00_22_gunicorn.sh
+deleting scripts/00_21_local_ssl.sh
+deleting scripts/00_20_ssl2.sh
+deleting scripts/00_20_ssl.sh
+deleting scripts/00_19_borrar_zip_sql.sh
+deleting scripts/00_18_09_all_status_coretransapi.sh
+deleting scripts/00_18_08_check_ssl_ports.sh
+deleting scripts/00_18_07_status_coretransapi.sh
+deleting scripts/00_18_06_restart_coretransapi.sh
+deleting scripts/00_18_05_deploy_update.sh
+deleting scripts/00_18_04_generar_clave_pgp_njalla.sh
+deleting scripts/00_18_03_reporte_salud_vps.sh
+deleting scripts/00_18_02_verificar_https_headers.sh
+deleting scripts/00_18_01_setup_coretransapi.sh
+deleting scripts/00_18_01_03_setup_coretransact.sh
+deleting scripts/00_18_01_02_setup_coretransact.sh
+deleting scripts/00_18_01_01_setup_coretransact.sh
+deleting scripts/00_18_00_deploy_njalla.sh
+deleting scripts/00_17_sincronizar_bdd.sh
+deleting scripts/00_16_subir_heroku.sh
+deleting scripts/00_16_01_subir_GitHub.sh
+deleting scripts/00_15_variables_heroku.sh
+deleting scripts/00_14_sincronizacion_archivos.sh
+deleting scripts/00_13_verificar_transferencias.sh
+deleting scripts/00_12_pem.sh
+deleting scripts/00_11_hacer_json.sh
+deleting scripts/00_10_usuario.sh
+deleting scripts/00_09_cargar_json.sh
+deleting scripts/00_08_migraciones.sh
+deleting scripts/00_07_postgres.sh
+deleting scripts/00_06_ufw.sh
+deleting scripts/00_05_mac.sh
+deleting scripts/00_04_container.sh
+deleting scripts/00_03_puertos.sh
+deleting scripts/00_02_zip_backup.sh
+deleting scripts/00_01_sistema.sh
+deleting scripts/utils/sync.sh
+deleting scripts/utils/26_backup_sync_encrypt.sh
+deleting scripts/utils/25_update_ddns_njalla.sh
+deleting scripts/utils/24_rsync_project.sh
+deleting scripts/utils/21_deploy_ghost_njalla.sh
+api/
+api/__pycache__/
+api/__pycache__/__init__.cpython-313.pyc
+api/__pycache__/middleware.cpython-313.pyc
+api/__pycache__/urls.cpython-313.pyc
+api/__pycache__/views.cpython-313.pyc
+api/authentication/
+api/authentication/__pycache__/
+api/authentication/__pycache__/__init__.cpython-313.pyc
+api/authentication/__pycache__/admin.cpython-313.pyc
+api/authentication/__pycache__/apps.cpython-313.pyc
+api/authentication/__pycache__/models.cpython-313.pyc
+api/authentication/__pycache__/serializers.cpython-313.pyc
+api/authentication/__pycache__/urls.cpython-313.pyc
+api/authentication/__pycache__/views.cpython-313.pyc
+api/authentication/migrations/
+api/authentication/migrations/0001_initial.py
+api/authentication/migrations/__pycache__/
+api/authentication/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/authentication/migrations/__pycache__/__init__.cpython-313.pyc
+api/configuraciones_api/
+api/configuraciones_api/__pycache__/
+api/configuraciones_api/__pycache__/__init__.cpython-313.pyc
+api/configuraciones_api/__pycache__/admin.cpython-313.pyc
+api/configuraciones_api/__pycache__/apps.cpython-313.pyc
+api/configuraciones_api/__pycache__/forms.cpython-313.pyc
+api/configuraciones_api/__pycache__/helpers.cpython-313.pyc
+api/configuraciones_api/__pycache__/models.cpython-313.pyc
+api/configuraciones_api/__pycache__/urls.cpython-313.pyc
+api/configuraciones_api/__pycache__/views.cpython-313.pyc
+api/configuraciones_api/migrations/
+api/configuraciones_api/migrations/0001_initial.py
+api/configuraciones_api/migrations/__pycache__/
+api/configuraciones_api/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/configuraciones_api/migrations/__pycache__/__init__.cpython-313.pyc
+api/core/
+api/core/__pycache__/
+api/core/__pycache__/__init__.cpython-313.pyc
+api/core/__pycache__/admin.cpython-313.pyc
+api/core/__pycache__/apps.cpython-313.pyc
+api/core/__pycache__/auth_services.cpython-313.pyc
+api/core/__pycache__/bank_services.cpython-313.pyc
+api/core/__pycache__/choices.cpython-313.pyc
+api/core/__pycache__/forms.cpython-313.pyc
+api/core/__pycache__/middleware.cpython-313.pyc
+api/core/__pycache__/mixin.cpython-313.pyc
+api/core/__pycache__/models.cpython-313.pyc
+api/core/__pycache__/serializers.cpython-313.pyc
+api/core/__pycache__/services.cpython-313.pyc
+api/core/__pycache__/urls.cpython-313.pyc
+api/core/__pycache__/views.cpython-313.pyc
+api/core/migrations/
+api/core/migrations/0001_initial.py
+api/core/migrations/__pycache__/
+api/core/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/core/migrations/__pycache__/__init__.cpython-313.pyc
+api/core/templatetags/
+api/core/templatetags/__pycache__/
+api/core/templatetags/__pycache__/custom_filters.cpython-313.pyc
+api/gpt3/
+api/gpt3/__pycache__/
+api/gpt3/__pycache__/__init__.cpython-313.pyc
+api/gpt3/__pycache__/admin.cpython-313.pyc
+api/gpt3/__pycache__/apps.cpython-313.pyc
+api/gpt3/__pycache__/forms.cpython-313.pyc
+api/gpt3/__pycache__/helpers.cpython-313.pyc
+api/gpt3/__pycache__/models.cpython-313.pyc
+api/gpt3/__pycache__/schemas.cpython-313.pyc
+api/gpt3/__pycache__/urls.cpython-313.pyc
+api/gpt3/__pycache__/utils2.cpython-313.pyc
+api/gpt3/__pycache__/views2.cpython-313.pyc
+api/gpt3/migrations/
+api/gpt3/migrations/0001_initial.py
+api/gpt3/migrations/__pycache__/
+api/gpt3/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/gpt3/migrations/__pycache__/__init__.cpython-313.pyc
+api/gpt4/
+api/gpt4/__pycache__/
+api/gpt4/__pycache__/__init__.cpython-313.pyc
+api/gpt4/__pycache__/admin.cpython-313.pyc
+api/gpt4/__pycache__/apps.cpython-313.pyc
+api/gpt4/__pycache__/conexion_banco.cpython-313.pyc
+api/gpt4/__pycache__/decorators.cpython-313.pyc
+api/gpt4/__pycache__/forms.cpython-313.pyc
+api/gpt4/__pycache__/models.cpython-313.pyc
+api/gpt4/__pycache__/urls.cpython-313.pyc
+api/gpt4/__pycache__/utils.cpython-313.pyc
+api/gpt4/__pycache__/views.cpython-313.pyc
+api/gpt4/migrations/
+api/gpt4/migrations/0001_initial.py
+api/gpt4/migrations/__pycache__/
+api/gpt4/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/gpt4/migrations/__pycache__/__init__.cpython-313.pyc
+api/transactions/
+api/transactions/__pycache__/
+api/transactions/__pycache__/views.cpython-313.pyc
+api/transfers/
+api/transfers/__pycache__/
+api/transfers/__pycache__/__init__.cpython-313.pyc
+api/transfers/__pycache__/admin.cpython-313.pyc
+api/transfers/__pycache__/apps.cpython-313.pyc
+api/transfers/__pycache__/forms.cpython-313.pyc
+api/transfers/__pycache__/models.cpython-313.pyc
+api/transfers/__pycache__/serializers.cpython-313.pyc
+api/transfers/__pycache__/urls.cpython-313.pyc
+api/transfers/__pycache__/views.cpython-313.pyc
+api/transfers/__pycache__/views_all.cpython-313.pyc
+api/transfers/__pycache__/views_api.cpython-313.pyc
+api/transfers/__pycache__/views_com2.cpython-313.pyc
+api/transfers/__pycache__/views_copy.cpython-313.pyc
+api/transfers/migrations/
+api/transfers/migrations/0001_initial.py
+api/transfers/migrations/__pycache__/
+api/transfers/migrations/__pycache__/0001_initial.cpython-313.pyc
+api/transfers/migrations/__pycache__/__init__.cpython-313.pyc
+config/
+config/__pycache__/
+config/__pycache__/__init__.cpython-313.pyc
+config/__pycache__/urls.cpython-313.pyc
+config/__pycache__/wsgi.cpython-313.pyc
+config/settings/
+config/settings/__pycache__/
+config/settings/__pycache__/__init__.cpython-313.pyc
+config/settings/__pycache__/base1.cpython-313.pyc
+config/settings/__pycache__/local.cpython-313.pyc
+scripts/
+scripts/dirs.sh
+scripts/.logs/
+scripts/.logs/notificador.log
+scripts/.logs/notificador_30.log
+scripts/backup/
+scripts/backup/00_02_zip_backup.sh
+scripts/backup/00_14_sincronizacion_archivos.sh
+scripts/backup/00_17_sincronizar_bdd.sh
+scripts/backup/00_19_borrar_zip_sql.sh
+scripts/certs/
+scripts/certs/00_12_pem.sh
+scripts/certs/00_20_ssl.sh
+scripts/certs/00_20_ssl2.sh
+scripts/certs/00_21_local_ssl.sh
+scripts/certs/00_23_importar_clave_privada_gpg.sh
+scripts/certs/00_generar_certificado_local.sh
+scripts/certs/eliminar_claves_moltke.sh
+scripts/certs/eliminar_moltke_todas.sh
+scripts/certs/generar_clave_gpg.sh
+scripts/deploy/
+scripts/deploy/django/
+scripts/deploy/django/00_07_postgres.sh
+scripts/deploy/django/00_08_migraciones.sh
+scripts/deploy/django/00_09_cargar_json.sh
+scripts/deploy/django/00_10_usuario.sh
+scripts/deploy/django/00_11_hacer_json.sh
+scripts/deploy/django/00_13_verificar_transferencias.sh
+scripts/deploy/github/
+scripts/deploy/github/00_16_01_subir_GitHub.sh
+scripts/deploy/github/00_24_sync_from_github.sh
+scripts/deploy/heroku/
+scripts/deploy/heroku/00_15_variables_heroku.sh
+scripts/deploy/heroku/00_16_subir_heroku.sh
+scripts/deploy/heroku/00_eliminar_config_vars.sh
+scripts/deploy/heroku/set_heroku_env.sh
+scripts/deploy/vps/
+scripts/deploy/vps/00_18_00_deploy_njalla.sh
+scripts/deploy/vps/00_18_01_01_setup_coretransact.sh
+scripts/deploy/vps/00_18_01_02_setup_coretransact.sh
+scripts/deploy/vps/00_18_01_03_setup_coretransact.sh
+scripts/deploy/vps/00_18_01_setup_coretransapi.sh
+scripts/deploy/vps/00_18_02_verificar_https_headers.sh
+scripts/deploy/vps/00_18_03_reporte_salud_vps.sh
+scripts/deploy/vps/00_18_04_generar_clave_pgp_njalla.sh
+scripts/deploy/vps/00_18_05_deploy_update.sh
+scripts/deploy/vps/00_18_06_restart_coretransapi.sh
+scripts/deploy/vps/00_18_07_status_coretransapi.sh
+scripts/deploy/vps/00_18_08_check_ssl_ports.sh
+scripts/deploy/vps/00_18_09_all_status_coretransapi.sh
+scripts/deploy/vps/21_deploy_ghost_njalla.sh
+scripts/deploy/vps/24_rsync_project.sh
+scripts/deploy/vps/25_update_ddns_njalla.sh
+scripts/deploy/vps/26_backup_sync_encrypt.sh
+scripts/deploy/vps/excludes.txt
+scripts/deploy/vps/sync.sh
+scripts/deploy/vps/sync_configs_from_vps.sh
+scripts/deploy/vps/sync_configs_to_vps.sh
+scripts/deploy/vps/sync_local_and_vps.sh
+scripts/deploy/vps/vps_copy_files.sh
+scripts/deploy/vps/vps_copy_up_files.sh
+scripts/deploy/vps/vps_remote_check.sh
+scripts/deploy/vps/vps_status.sh
+scripts/deploy/vps/vps_sync.sh
+scripts/deploy/vps/vps_sync_clean.sh
+scripts/deploy/vps/vps_backup/
+scripts/deploy/vps/vps_backup/nginx_coretransapi.conf
+scripts/deploy/vps/vps_backup/supervisor_coretransapi.conf
+scripts/deploy/vps/vps_backup/torrc
+scripts/logs/
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/backup/00_02_zip_backup_.log
+scripts/logs/backup/00_19_borrar_zip_sql_.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_09_cargar_json_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/despliegue/00_16_subir_heroku.log
+scripts/logs/despliegue/00_17_sincronizar_bdd_.log
+scripts/logs/despliegue/00_21_local_ssl.log
+scripts/logs/despliegue/00_21_local_ssl_.log
+scripts/logs/gpg_keys/
+scripts/logs/gpg_keys/fingerprint.txt
+scripts/logs/gpg_keys/jmoltke_private.asc
+scripts/logs/gpg_keys/jmoltke_public.asc
+scripts/logs/sistema/00_01_sistema_.log
+scripts/logs/sistema/00_03_puertos_.log
+scripts/logs/sistema/00_04_container_.log
+scripts/logs/sistema/00_05_mac_.log
+scripts/logs/sistema/00_06_ufw_.log
+scripts/logs/sync/
+scripts/logs/sync/20250604_092254_sync.log
+scripts/logs/sync/20250605_064149_sync.log
+scripts/menu/
+scripts/menu/01_full.sh
+scripts/menu/aliases_deploy.sh
+scripts/service/
+scripts/service/00_22_gunicorn.sh
+scripts/service/configurar_gunicorn.sh
+scripts/service/diagnostico_entorno.sh
+scripts/service/reiniciar_servicios.sh
+scripts/service/resumen_logs.sh
+scripts/service/run_local_ssl_env.sh
+scripts/service/summarize_logs.sh
+scripts/src/
+scripts/src/00_01_sistema.sh
+scripts/src/00_03_puertos.sh
+scripts/src/00_04_container.sh
+scripts/src/00_05_mac.sh
+scripts/src/00_06_ufw.sh
+scripts/tor/
+scripts/tor/check_torrc.sh
+scripts/tor/instalar_tor.sh
+scripts/tor/rotate_tor_ip.sh
+scripts/tor/torrc
+scripts/tor/tree
+scripts/utils/
+scripts/utils/conexion_segura_db/
+scripts/utils/conexion_segura_db/.env.example
+scripts/utils/conexion_segura_db/README.txt
+scripts/utils/conexion_segura_db/conexion_banco.py
+scripts/utils/gestor-tareas/
+scripts/utils/gestor-tareas/deb/
+scripts/utils/gestor-tareas/deb/gestor-tareas_1.0.deb
+scripts/utils/gestor-tareas/deb/gestor-tareas_1.0.deb.sha256
+scripts/utils/gestor-tareas/deb/gestor-tareas_1.1.deb
+scripts/utils/gestor-tareas/deb/gestor-tareas_1.2.deb
+scripts/utils/gestor-tareas/deb/gestor_tareas/
+scripts/utils/gestor-tareas/deb/gestor_tareas/DEBIAN/
+scripts/utils/gestor-tareas/deb/gestor_tareas/DEBIAN/control
+scripts/utils/gestor-tareas/deb/gestor_tareas/usr/
+scripts/utils/gestor-tareas/deb/gestor_tareas/usr/local/
+scripts/utils/gestor-tareas/deb/gestor_tareas/usr/local/bin/
+scripts/utils/gestor-tareas/deb/gestor_tareas/usr/local/bin/gestor_tareas.sh
+scripts/utils/gestor-tareas/gestor/
+scripts/utils/gestor-tareas/gestor/.gestor_tareas/
+scripts/utils/gestor-tareas/gestor/logs/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_00.sh/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP/config_01.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP/tareas_01.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP/tiempos_01.log
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP001/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP001/config_01.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP001/tareas_01.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_01.sh/APP001/tiempos_01.log
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/APP/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/APP/config_02.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/APP/gestor_activo.flag
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/APP/tareas_02.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_02.sh/APP/tiempos_02.log
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_03.sh/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_03.sh/APP003/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_03.sh/APP003/config_03.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_03.sh/APP003/tareas_03.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_03.sh/APP003/tiempos_03.log
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_05.sh/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_05.sh/APP005/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_05.sh/APP005/config_05.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_05.sh/APP005/tareas_05.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_05.sh/APP005/tiempos_05.log
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_06.sh/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_06.sh/APP006/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_06.sh/APP006/config_06.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_06.sh/APP006/tareas_06.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_06.sh/APP006/tiempos_06.log
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_10.sh/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_10.sh/APP010/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_10.sh/APP010/config_10.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_10.sh/APP010/tareas_10.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_10.sh/APP010/tiempos_10.log
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_11.sh/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_11.sh/APP011/
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_11.sh/APP011/config_11.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_11.sh/APP011/tareas_11.txt
+scripts/utils/gestor-tareas/gestor/logs/gestor_tareas_11.sh/APP011/tiempos_11.log
+scripts/utils/gestor-tareas/gestor/scripts/
+scripts/utils/gestor-tareas/gestor/scripts/crear_paquete.sh
+scripts/utils/gestor-tareas/gestor/scripts/detener_tareas.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_00.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_01.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_02.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_03.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_04.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_05.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_06.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_07.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_08.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_09.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_10.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_11.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_12.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_13.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_14.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_15.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_16.sh
+scripts/utils/gestor-tareas/gestor/scripts/gestor_tareas_17.sh
+scripts/utils/gestor-tareas/gestor/scripts/gtareas_status.sh
+scripts/utils/gestor-tareas/gestor/scripts/zenity_test.sh
+scripts/utils/gestor-tareas/notify/
+scripts/utils/gestor-tareas/notify/estado_notificadores.sh
+scripts/utils/gestor-tareas/notify/gestionar_notificadores.sh
+scripts/utils/gestor-tareas/notify/notificador.sh
+scripts/utils/gestor-tareas/notify/notificador2.sh
+scripts/utils/gestor-tareas/notify/notificador3.sh
+scripts/utils/gestor-tareas/notify/notificador_30.sh
+scripts/utils/gestor-tareas/notify/notificador_restart.sh
+scripts/utils/gestor-tareas/notify/start_notificadores_interactivo.sh
+scripts/utils/gestor-tareas/notify/logs_notificadores/
+scripts/utils/gestor-tareas/notify/logs_notificadores/.notifier_todos
+scripts/utils/simulator_bank/
+scripts/utils/simulator_bank/README.md
+scripts/utils/simulator_bank/configurar_tor_onion.sh
+scripts/utils/simulator_bank/deploy_simulador.sh
+scripts/utils/simulator_bank/help
+scripts/utils/simulator_bank/monitor_logs.sh
+scripts/utils/simulator_bank/simulador_banco.service
+scripts/utils/simulator_bank/tor_simulador_onion.service
+scripts/utils/token/
+scripts/utils/token/URL_TOKEN.md
+scripts/utils/token/pem_help.txt
+scripts/utils/token/token.md
+scripts/utils/token/url_help.md
+scripts/utils/token/0AUTH/
+scripts/utils/token/0AUTH/generar_claves_oauth2.py
+scripts/utils/token/0AUTH/credenciales_oauth2/
+scripts/utils/token/0AUTH/credenciales_oauth2/clave_privada.pem
+scripts/utils/token/0AUTH/credenciales_oauth2/clave_publica.pem
+scripts/utils/token/0AUTH/credenciales_oauth2/client_assertion.jwt
+scripts/utils/token/0AUTH/credenciales_oauth2/firma_log.txt
+scripts/utils/token/0AUTH/credenciales_oauth2/jwks.json
+scripts/utils/token/0AUTH/credenciales_oauth2/log.txt
+scripts/utils/token/0AUTH/credenciales_oauth2/resumen.txt
+scripts/utils/token/api_db_smart/
+scripts/utils/token/api_db_smart/api_db_smart_access.py
+scripts/utils/token/api_db_smart/ecdsa_private_key.pem
+scripts/utils/token/api_db_smart/ecdsa_public_key.pem
+scripts/utils/token/api_db_smart/generate_ecdsa_keypair.py
+scripts/utils/token/api_db_smart/jwks_public.json
+scripts/utils/token/jwks/
+scripts/utils/token/jwks/access_token.json
+scripts/utils/token/jwks/client_assertion.jwt
+scripts/utils/token/jwks/crear_jwks.py
+scripts/utils/token/jwks/ejecutar_jwt.sh
+scripts/utils/token/jwks/ejecutar_todo.sh
+scripts/utils/token/jwks/firmar_jwt.py
+scripts/utils/token/jwks/firmar_jwt_prod.py
+scripts/utils/token/jwks/jwks_private.json
+scripts/utils/token/jwks/jwks_public.json
+scripts/utils/token/jwks/print_jwks_public.py
+scripts/utils/token/jwks/resultado_jwt.txt
+scripts/utils/token/jwks/validar_jwt.py
+scripts/utils/token/pem/
+scripts/utils/token/pem/codeS256.py
+scripts/utils/token/pem/codes_s256.txt
+scripts/utils/token/pem/generate_iban.py
+scripts/utils/token/pem/generate_jwt.py
+scripts/utils/token/pem/generate_token.py
+scripts/utils/token/pem/generated_token_jwt.txt
+scripts/utils/token/pem/generated_token_pem.json
+scripts/utils/token/pem/private.pem
+scripts/utils/token/pem/public.pem
+scripts/utils/token/pem/validate_token.py
+scripts/utils/token/pem/validate_token_db.py
+tmp/ip_actual.txt
+tmp/ip_antes.txt
+tmp/ip_tor_antes.txt
+tmp/ip_tor_despues.txt
+tmp/mac_antes.txt
+
+sent 11.466.308 bytes  received 79.074 bytes  659.736,11 bytes/sec
+total size is 110.987.124  speedup is 9,61
+📡 Ejecutando comandos remotos en el VPS...
+Linux coretransapi 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+🌐 Entrando en directorio remoto: /home/markmur88/api_bank_heroku
+🔧 Activando entorno virtual en VPS: /home/markmur88/envAPP
+🔁 Ejecutando script 01_full.sh en VPS
+🔐 Solicitando acceso sudo...
+❌ No se pudo obtener acceso sudo. Abortando.

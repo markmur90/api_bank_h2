@@ -1,0 +1,7 @@
+📅 Fecha: 2025-06-01 02:37:27
+📄 Script: 00_11_hacer_json.sh
+📦 Backup local → /home/markmur88/Documentos/GitHub/api_bank_h2/backup/sql/backup_local.sql.gpg
+════════════════════════════════════════
+[1;32m🚀 Dump de PostgreSQL...[0m
+🔐 Cifrando con GPG...
+[1;32m✅ Backup cifrado en: /home/markmur88/Documentos/GitHub/api_bank_h2/backup/sql/backup_local.sql.gpg[0m

@@ -1,0 +1,223 @@
+🆕 [H2] Proyecto local: /home/markmur88/api_bank_h2
+🧹 [H2] Eliminando patrones excluidos en VPS...
+🗑 [H2] Borrando: *.zip
+🔄 [H2] Iniciando rsync local→VPS...
+sending incremental file list
+api/
+api/authentication/
+api/authentication/migrations/
+api/authentication/migrations/0001_initial.py
+api/configuraciones_api/
+api/configuraciones_api/migrations/
+api/configuraciones_api/migrations/0001_initial.py
+api/core/
+api/core/migrations/
+api/core/migrations/0001_initial.py
+api/core/templatetags/
+api/gpt3/
+api/gpt3/migrations/
+api/gpt3/migrations/0001_initial.py
+api/gpt4/
+api/gpt4/migrations/
+api/gpt4/migrations/0001_initial.py
+api/transactions/
+api/transfers/
+api/transfers/migrations/
+api/transfers/migrations/0001_initial.py
+config/
+config/settings/
+middleware/
+scripts/backup/00_14_sincronizacion_archivos.sh
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sync/
+scripts/logs/sync/20250611_214953_sync.log
+scripts/logs/sync/20250611_215555_sync.log
+scripts/utils/simulator_bank/tor_data/
+scripts/utils/simulator_bank/tor_data/state
+
+sent 61.691 bytes  received 37.582 bytes  15.272,77 bytes/sec
+total size is 243.504.875  speedup is 2.452,88
+✅ [H2] Sincronización completada.
+🆕 [HK] Proyecto local: /home/markmur88/api_bank_heroku
+🧹 [HK] Eliminando patrones excluidos en VPS...
+🗑 [HK] Borrando: *.zip
+🔄 [HK] Iniciando rsync local→VPS...
+sending incremental file list
+deleting schemas/xsd/pain.002.001.03.xsd
+deleting schemas/xsd/pain.001.001.03.xsd
+deleting schemas/xsd/aml_transaction_report.xsd
+deleting schemas/xsd/
+deleting schemas/transferencias/OAUTH_LOGS/oauth_general.log
+deleting schemas/transferencias/OAUTH_LOGS/
+deleting schemas/transferencias/5e69f476-53df-4b55-a0bb-9356096dbfcd/transferencia_5e69f476-53df-4b55-a0bb-9356096dbfcd.log
+deleting schemas/transferencias/5e69f476-53df-4b55-a0bb-9356096dbfcd/pain001_5e69f476-53df-4b55-a0bb-9356096dbfcd.xml
+deleting schemas/transferencias/5e69f476-53df-4b55-a0bb-9356096dbfcd/aml_5e69f476-53df-4b55-a0bb-9356096dbfcd.xml
+deleting schemas/transferencias/5e69f476-53df-4b55-a0bb-9356096dbfcd/
+deleting schemas/transferencias/287bccc6-2838-444f-b2a3-9defbf3d5ebf/transferencia_287bccc6-2838-444f-b2a3-9defbf3d5ebf.log
+deleting schemas/transferencias/287bccc6-2838-444f-b2a3-9defbf3d5ebf/pain001_287bccc6-2838-444f-b2a3-9defbf3d5ebf.xml
+deleting schemas/transferencias/287bccc6-2838-444f-b2a3-9defbf3d5ebf/aml_287bccc6-2838-444f-b2a3-9defbf3d5ebf.xml
+deleting schemas/transferencias/287bccc6-2838-444f-b2a3-9defbf3d5ebf/
+deleting schemas/transferencias/1280a515-64a7-404f-883d-bb49f39aaf66/transferencia_1280a515-64a7-404f-883d-bb49f39aaf66.log
+deleting schemas/transferencias/1280a515-64a7-404f-883d-bb49f39aaf66/pain001_1280a515-64a7-404f-883d-bb49f39aaf66.xml
+deleting schemas/transferencias/1280a515-64a7-404f-883d-bb49f39aaf66/aml_1280a515-64a7-404f-883d-bb49f39aaf66.xml
+deleting schemas/transferencias/1280a515-64a7-404f-883d-bb49f39aaf66/
+deleting schemas/transferencias/sepaCreditTransferRequestSchema.json
+deleting schemas/transferencias/global_errors.log
+deleting schemas/transferencias/
+deleting schemas/zCod.md
+deleting schemas/pain.002.001.03.xsd
+deleting schemas/pain.001.001.03.xsd
+deleting schemas/__init__.py
+deleting schemas/
+deleting .env.sandbox
+deleting .env.production
+deleting .env.local
+./
+chmod_log.txt
+deleting config/schemas/pain.002.001.03.xsd
+deleting config/schemas/pain.001.001.03.xsd
+deleting config/schemas/
+deleting templates/api/transfers/transfer_list.html
+deleting templates/api/transfers/transfer_form.html
+deleting templates/api/transfers/transfer_confirm_delete.html
+deleting templates/api/transfers/sepa_transfer_form.html
+deleting templates/api/transfers/sepa_transaction_list.html
+deleting templates/api/transfers/sepa_transaction_form.html
+deleting templates/api/transfers/
+deleting templates/api/extras/transfer_form.html
+deleting templates/api/extras/diagnostico_banco.html
+deleting templates/api/extras/
+deleting templates/api/core/iban_list.html
+deleting templates/api/core/iban_form.html
+deleting templates/api/core/iban_confirm_delete.html
+deleting templates/api/core/debtor_list.html
+deleting templates/api/core/debtor_form.html
+deleting templates/api/core/debtor_confirm_delete.html
+deleting templates/api/core/core_model_list.html
+deleting templates/api/core/core_model_form.html
+deleting templates/api/core/core_model_confirm_delete.html
+deleting templates/api/core/
+deleting templates/api/configuraciones/lista.html
+deleting templates/api/configuraciones/formulario.html
+deleting templates/api/configuraciones/eliminar.html
+deleting templates/api/configuraciones/
+deleting templates/api/claves/lista.html
+deleting templates/api/claves/formulario.html
+deleting templates/api/claves/eliminar.html
+deleting templates/api/claves/
+deleting templates/api/SEPA/transfer_list.html
+deleting templates/api/SEPA/transfer_form.html
+deleting templates/api/SEPA/transfer_confirm_delete.html
+deleting templates/api/SEPA/
+deleting templates/api/GPT4/transfer_sca.html
+deleting templates/api/GPT4/transfer_detail1.html
+deleting templates/api/GPT4/transfer_detail.html
+deleting templates/api/GPT4/send_transfer_conexion.html
+deleting templates/api/GPT4/send_transfer.html
+deleting templates/api/GPT4/oauth2_callback.html
+deleting templates/api/GPT4/oauth2_authorize2.html
+deleting templates/api/GPT4/oauth2_authorize.html
+deleting templates/api/GPT4/list_transfer.html
+deleting templates/api/GPT4/list_logs.html
+deleting templates/api/GPT4/list_debtor_accounts.html
+deleting templates/api/GPT4/list_debtor.html
+deleting templates/api/GPT4/list_creditors.html
+deleting templates/api/GPT4/list_creditor_agents.html
+deleting templates/api/GPT4/list_creditor_accounts.html
+deleting templates/api/GPT4/edit_transfer.html
+deleting templates/api/GPT4/create_transfer.html
+deleting templates/api/GPT4/create_kid.html
+deleting templates/api/GPT4/create_debtor_account.html
+deleting templates/api/GPT4/create_debtor.html
+deleting templates/api/GPT4/create_creditor_agent.html
+deleting templates/api/GPT4/create_creditor_account.html
+deleting templates/api/GPT4/create_creditor.html
+deleting templates/api/GPT4/create_clientid.html
+deleting templates/api/GPT4/
+deleting templates/api/GPT3/send_bulk_success.html
+deleting templates/api/GPT3/postal_address_list.html
+deleting templates/api/GPT3/listar_transferencias.html
+deleting templates/api/GPT3/listar_bulk.html
+deleting templates/api/GPT3/financial_institution_list.html
+deleting templates/api/GPT3/estado_bulk_success.html
+deleting templates/api/GPT3/detalle_transferencia.html
+deleting templates/api/GPT3/detalle_bulk.html
+deleting templates/api/GPT3/debtor_list.html
+deleting templates/api/GPT3/creditor_list.html
+deleting templates/api/GPT3/create_postal_address.html
+deleting templates/api/GPT3/create_financial_institution.html
+deleting templates/api/GPT3/create_debtor.html
+deleting templates/api/GPT3/create_creditor.html
+deleting templates/api/GPT3/create_amount.html
+deleting templates/api/GPT3/create_account.html
+deleting templates/api/GPT3/crear_transferencia.html
+deleting templates/api/GPT3/crear_bulk.html
+deleting templates/api/GPT3/cancel_success.html
+deleting templates/api/GPT3/amount_list.html
+deleting templates/api/GPT3/account_list.html
+deleting templates/api/GPT3/
+deleting templates/api/
+api/
+api/authentication/
+api/authentication/migrations/
+api/authentication/migrations/0001_initial.py
+api/configuraciones_api/
+api/configuraciones_api/migrations/
+api/configuraciones_api/migrations/0001_initial.py
+api/core/
+api/core/migrations/
+api/core/migrations/0001_initial.py
+api/core/templatetags/
+api/gpt3/
+api/gpt3/migrations/
+api/gpt3/migrations/0001_initial.py
+api/gpt4/
+api/gpt4/migrations/
+api/gpt4/migrations/0001_initial.py
+api/transactions/
+api/transfers/
+api/transfers/migrations/
+api/transfers/migrations/0001_initial.py
+config/
+config/settings/
+config/settings/__init__.py
+config/settings/base0.py
+config/settings/base2.py
+middleware/
+templates/partials/navGeneral2.html
+templates/partials/navGeneralFuncional.html
+templates/partials/navGeneral/
+templates/partials/navGeneral/accounts/
+templates/partials/navGeneral/accounts/index.html
+templates/partials/navGeneral/auth/
+templates/partials/navGeneral/auth/index.html
+templates/partials/navGeneral/collection/
+templates/partials/navGeneral/collection/index.html
+templates/partials/navGeneral/core/
+templates/partials/navGeneral/core/index.html
+templates/partials/navGeneral/sct/
+templates/partials/navGeneral/sct/index.html
+templates/partials/navGeneral/sepa_payment/
+templates/partials/navGeneral/sepa_payment/index.html
+templates/partials/navGeneral/transactions/
+templates/partials/navGeneral/transactions/index.html
+templates/partials/navGeneral/transfers/
+templates/partials/navGeneral/transfers/index.html
+
+sent 22.647 bytes  received 6.159 bytes  5.237,45 bytes/sec
+total size is 23.248.375  speedup is 807,07
+✅ [HK] Sincronización completada.
+📡 Ejecutando tareas remotas en el VPS...
+Linux coretransapi 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.

@@ -1,0 +1,166 @@
+Eres un ingeniero de software especializado en arquitectura backend, frontend, seguridad informática, diseño de APIs,  y automatización de flujos transaccionales. Tu tarea es analizar y mejorar un sistema de transferencias bancarias que incluye conexión a un simulador bancario. A continuación, se describe lo que debes hacer:
+
+Realizar una auditoría de configuración de seguridad para una red Wi-Fi corporativa, identificando cualquier configuración predeterminada o débil y recomiende las mejores prácticas para endurecer para la empresa:
+
+Auditoría corporativa de la Corporación de Seguridad Wi-Fi Network
+
+Esta auditoría describe los pasos para identificar vulnerabilidades de seguridad en su red de Wi-Fi corporativa y sugiere mejores prácticas para fortalecer sus defensas.
+
+Fase 1: Análisis de red
+1. Puntos de acceso de inventario (APS):
+- Identifique todos los puntos de acceso (que incluyen los administrados y potencialmente deshonestos).
+- Documente sus ubicaciones, modelos, versiones de firmware y configuraciones.
+2. Revise las políticas de seguridad:
+- Asegúrese de que exista una política de seguridad Wi-Fi documentada, que cubre el control de acceso, los estándares de cifrado, la complejidad de la contraseña y el acceso a la red GUES.
+3. Analiza los registros de firewall del último mes de la red de un SME' identificando cualquier patron de acceso inusual o posibles intentos de violación.
+4. Revise las alertas de un sistema de detección de intruciones (IDS) durante la última semana para una red gubernamental, clasificando las alertas por severidad y sugiriendo respuestas aplicables para alertas de alta severidad.
+5. Examine los registros de correo electrónico en busca de cualquier signo de intentos de phishing en el último mes dentro de una empresa minorista, delineando patrones característicos y sugiriendo un sistema de módulo de capacitación para que los empleados reconozcan tales amenazas.
+6. Proporcione una lista de verificación de seguridad detallada para realizar revisiones de código en aplicaciones de Android, centrándose en vulnerabilidades comunes con el manejo inadecuado de sesiones y el almacenamiento de datos inseguros
+
+# ============================
+Eres un ingeniero de software especializado en arquitectura backend, frontend, seguridad informática, diseño de APIs,  y automatización de flujos transaccionales. Tu tarea es analizar y mejorar un sistema de transferencias bancarias que incluye conexión a un simulador bancario. A continuación, se describe lo que debes hacer:
+
+1. **Análisis exhaustivo del código existente**
+   - Revisa a fondo el archivo `api.gpt4` (simulando el comportamiento de GPT-4 si fuera necesario).
+   - Analiza el archivo `conexion_banco.py`, enfocándote especialmente en:
+     - Flujo de autenticación.
+     - Generación de token desde backend.
+     - Integración con el simulador bancario.
+     - Gestión de OTP (challenge-response).
+     - Envío y estado final de la transferencia.
+   - Evalúa cómo se usan las templates actuales y cómo se aplican al proceso de transferencia.
+
+2. **Diseño e implementación de nueva funcionalidad aplicado de acuerdo al entorno y conexion_banco**
+   - Crea una nueva plantilla HTML/JS llamada `transfer_send_conexion.html` que sea consistente visualmente con el resto del proyecto.
+   - Esta plantilla debe:
+     - Mostrar los detalles de la transferencia antes de enviarla.
+     - Iniciar la conexión con el simulador bancario.
+     - Obtener el token desde el backend.
+     - Realizar el challenge para generar el OTP (el cual será resuelto desde el frontend).
+     - Enviar la transferencia con todos los datos necesarios.
+     - Esperar y mostrar el estado final de la operación.
+     - Incluir IP del simulador si aplica.
+   - Utiliza estilos y componentes reutilizables para mantener uniformidad con otras pantallas del sistema.
+
+3. **Manejo de configuraciones y flujos alternativos**
+   - Implementa un flujo alternativo cuando la variable `ALLOW_FAKE_BANK = True`.
+   - Este flujo debe:
+     - Crear nuevas rutas y plantillas exclusivas para el modo simulado.
+     - Mostrar u ocultar elementos dinámicamente según el estado de esta bandera.
+     - Simular procesos como obtención de token, generación de OTP y respuesta de transferencia.
+     - Ocultar opciones o componentes no relevantes en este modo.
+   - Asegúrate de que el cambio entre modos real/simulado sea transparente para el usuario y seguro en el backend.
+
+4. **Registro de logs**
+   - Configura un sistema de logging que guarde:
+     - Registros en archivos de texto (`logs/app.log`) por cada ejecución del proceso de transferencia.
+     - Registro en base de datos con campos como:
+       - Fecha/hora
+       - Usuario
+       - Detalles de la transacción
+       - Estado final
+       - Token utilizado
+       - IP del simulador (si aplica)
+   - Asegúrate de que los logs sean útiles para auditoría y diagnóstico de errores.
+
+5. **Integración técnica**
+   - Describe cómo se conecta el frontend con el backend para:
+     - Obtener el token.
+     - Recibir el desafío (challenge) y enviar el OTP generado.
+     - Consultar el estado de la transferencia.
+   - Define las nuevas rutas API necesarias, como:
+     - `/api/bank_sim/token`
+     - `/api/bank_sim/challenge`
+     - `/api/bank_sim/send-transfer`
+     - `/api/bank_sim/status-transfer`
+
+6. **Consideraciones finales Globales**
+   - Todo el desarrollo debe seguir buenas prácticas de seguridad.
+   - El OTP debe generarse en frontend tras recibir el challenge, pero validarse en backend.
+   - Usa variables de entorno para controlar modos (real/simulado).
+   - Mantén compatibilidad con el resto del sistema.
+
+Entrega:
+- Un informe técnico del análisis realizado.
+- Código fuente de nuevas plantillas y endpoints.
+- Diagrama de secuencia del proceso completo.
+- Recomendaciones de mejora adicional si aplica.
+
+# ============================
+Eres un ingeniero de software especializado en arquitectura backend, frontend, diseño de APIs y automatización de flujos transaccionales. Tu tarea es analizar y mejorar un sistema de transferencias bancarias que se conecta con un **simulador bancario externo alojado en un VPS**. A continuación, se describe lo que debes hacer:
+
+1. **Análisis exhaustivo del código existente**
+   - Revisa a fondo el archivo `api.gpt4` (si aplica como interfaz o guía de comportamiento).
+   - Analiza el archivo `conexion_banco.py`, enfocándote especialmente en:
+     - Conectividad con el VPS donde reside el simulador.
+     - Gestión de endpoints REST expuestos por el simulador.
+     - Autenticación y obtención de token desde el backend hacia el VPS.
+     - Envío de datos de transferencia al simulador.
+     - Manejo de respuesta del simulador (ej.: estado de la operación).
+     - Generación y validación del OTP mediante challenge-response entre frontend y backend.
+   - Evalúa cómo se usan las templates actuales y cómo se aplican al proceso de transferencia.
+
+2. **Diseño e implementación de nueva funcionalidad aplicado de acuerdo al entorno y conexion_banco**
+   - Crea una nueva plantilla HTML/JS llamada `transfer_send_conexion.html` que sea consistente visualmente con el resto del proyecto.
+   - Esta plantilla debe:
+     - Mostrar los detalles de la transferencia antes de enviarla.
+     - Iniciar la conexión con el simulador bancario en el VPS.
+     - Obtener el token desde el backend (hacia el VPS) de forma segura.
+     - Realizar el challenge para generar el OTP (el cual será resuelto desde el frontend).
+     - Enviar la transferencia con todos los datos necesarios al VPS.
+     - Esperar y mostrar el estado final de la operación.
+     - Registrar y mostrar la IP pública del VPS si aplica.
+   - Utiliza estilos y componentes reutilizables para mantener uniformidad con otras pantallas del sistema.
+
+3. **Manejo de configuraciones y flujos alternativos**
+   - Implementa un flujo alternativo cuando la variable `ALLOW_FAKE_BANK = True`.
+   - Este flujo debe:
+     - Crear nuevas rutas y plantillas exclusivas para el modo simulado local (sin conexión al VPS).
+     - Mostrar u ocultar elementos dinámicamente según el estado de esta bandera.
+     - Simular procesos como obtención de token, generación de OTP y respuesta de transferencia.
+     - Ocultar opciones o componentes no relevantes en este modo.
+   - Asegúrate de que el cambio entre modos real (VPS)/simulado sea transparente para el usuario y seguro en el backend.
+
+4. **Registro de logs**
+   - Configura un sistema de logging que guarde:
+     - Registros en archivos de texto (`logs/app.log`) por cada ejecución del proceso de transferencia.
+     - Registro en base de datos con campos como:
+       - Fecha/hora
+       - Usuario
+       - Detalles de la transacción
+       - Estado final
+       - Token utilizado
+       - IP del VPS (si aplica)
+       - Respuesta del simulador
+   - Asegúrate de que los logs sean útiles para auditoría y diagnóstico de errores.
+
+5. **Integración técnica con el VPS**
+   - Describe cómo se establece la conexión desde tu backend hacia el VPS:
+     - Uso de HTTPS con certificado válido (si aplica).
+     - Validación de certificados SSL/TLS si el VPS tiene dominio seguro.
+     - Manejo de errores de conexión (timeout, denegado, etc.).
+   - Define las nuevas rutas API necesarias, como:
+     - `/api/bank_sim/token` → Obtiene token del simulador en el VPS.
+     - `/api/bank_sim/challenge` → Recibe el desafío del VPS.
+     - `/api/bank_sim/send-transfer` → Envia la transferencia al VPS.
+     - `/api/bank_sim/status-transfer` → Consulta el estado de la transferencia.
+
+6. **Seguridad y buenas prácticas**
+   - Todo el desarrollo debe seguir buenas prácticas de seguridad:
+     - Uso de variables de entorno para claves sensibles.
+     - Protección contra inyecciones y ataques CSRF/XSS.
+     - Validación de respuestas del VPS.
+     - Límites de intentos de OTP.
+     - Manejo seguro de tokens temporales.
+
+7. **Consideraciones finales Globales aplica a todo el gpt4, entorno y conexión**
+   - Usa variables de entorno para controlar modos (real/simulado).
+   - Mantén compatibilidad con el resto del sistema.
+   - El OTP debe generarse en frontend tras recibir el challenge, pero validarse en backend.
+   - Si el VPS requiere IP blanca, asegúrate de registrar la IP pública del servidor que hace la conexión.
+
+Entrega:
+- Un informe técnico del análisis realizado.
+- Código fuente de nuevas plantillas y endpoints.
+- Diagrama de secuencia del proceso completo (desde frontend hasta el VPS).
+- Recomendaciones de mejora adicional si aplica.
