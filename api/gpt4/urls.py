@@ -36,6 +36,7 @@ urlpatterns = [
     path("transfers/create/", views.create_transfer, name="create_transferGPT4"),
     path("transfers/<str:payment_id>/send/", views.send_transfer_view, name="send_transfer_viewGPT4"),
     path("transfers/<str:payment_id>/send-banco/", views.send_transfer_conexion_view, name="send_transfer_conexion_viewGPT4"),
+    path("transfers/<str:payment_id>/send-fake/", views.send_transfer_fake_view, name="send_transfer_fake_viewGPT4"),
     # path("transfers/<str:payment_id>/send/", views.send_transfer_view4, name="send_transfer_viewGPT4"),
     path("transfers/<str:payment_id>/sca/", views.transfer_update_sca, name="transfer_update_scaGPT4"),
     path("transfers/<str:payment_id>/", views.transfer_detail, name="transfer_detailGPT4"),
@@ -54,6 +55,10 @@ urlpatterns = [
     path("toggle_banco/", views.toggle_conexion_banco, name="toggle_conexion_banco"),
     path("probar_banco/", views.prueba_conexion_banco, name="prueba_conexion_banco"),
     path("diagnostico_banco/", views.diagnostico_banco, name="diagnostico_banco"),
+    path("api/bank_sim/token", views.bank_sim_token, name="bank_sim_token"),
+    path("api/bank_sim/challenge", views.bank_sim_challenge, name="bank_sim_challenge"),
+    path("api/bank_sim/send-transfer", views.bank_sim_send_transfer, name="bank_sim_send_transfer"),
+    path("api/bank_sim/status-transfer", views.bank_sim_status_transfer, name="bank_sim_status_transfer"),
     
     path("simular_transferencia/", views.SimulacionTransferenciaView.as_view(), name="simular_transferencia"),
 

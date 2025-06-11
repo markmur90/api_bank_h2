@@ -282,6 +282,12 @@ LOGGING = {
             "filename": BASE_DIR / "logs" / "errors.log",
             "formatter": "verbose",
         },
+        "app_file": {
+            "level": "INFO",
+            "class": "logging.FileHandler",
+            "filename": BASE_DIR / "logs" / "app.log",
+            "formatter": "verbose",
+        },
         "console": {
             "level": "INFO",
             "class": "logging.StreamHandler",
@@ -299,7 +305,7 @@ LOGGING = {
             "propagate": True
         },
         "bank_services": {
-            "handlers": ["file", "console"],
+            "handlers": ["file", "console", "app_file"],
             "level": "INFO",
             "propagate": False
         },

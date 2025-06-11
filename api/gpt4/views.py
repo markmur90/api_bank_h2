@@ -4,6 +4,7 @@ import os
 import socket
 import time
 import uuid
+import requests
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import FileResponse, HttpResponse, JsonResponse, HttpResponseForbidden
 from django.contrib import messages
@@ -1193,3 +1194,68 @@ class SimulacionTransferenciaView(View):
         )
 
         return HttpResponse(f"✅ Transferencia simulada creada con ID: {transfer.payment_id}")
+
+
+@require_POST
+def bank_sim_token(request):
+    """Obtiene un token desde el simulador bancario"""
+    username = get_conf("BANK_SIM_USER", "493069k1")
+    password = get_conf("BANK_SIM_PASS", "bar1588623")
+    token = obtener_token_desde_simulador(username, password)
+    if token:
+        registrar_log("BANK_SIM", tipo_log="AUTH", extra_info="Token obtenido")
+        return JsonResponse({"token": token})
+    return JsonResponse({"error": "No se pudo obtener token"}, status=500)
+
+
+@require_POST
+def bank_sim_challenge(request):
+    data = json.loads(request.body.decode("utf-8"))
+    payment_id = data.get("payment_id")
+    token = data.get("token")
+    transfer = get_object_or_404(Transfer, payment_id=payment_id)
+    challenge_id = crear_challenge_mtan(transfer, token, payment_id)
+    registrar_log(payment_id, tipo_log="OTP", extra_info=f"Challenge creado {challenge_id}")
+    return JsonResponse({"challenge_id": challenge_id})
+
+
+@require_POST
+def bank_sim_send_transfer(request):
+    data = json.loads(request.body.decode("utf-8"))
+    payment_id = data.get("payment_id")
+    token = data.get("token")
+    otp = data.get("otp")
+    transfer = get_object_or_404(Transfer, payment_id=payment_id)
+    resp = enviar_transferencia_conexion(request, transfer, token, otp)
+    if isinstance(resp, requests.Response):
+        result = resp.json()
+    else:
+        result = resp
+    return JsonResponse(result)
+
+
+@require_GET
+def bank_sim_status_transfer(request):
+    payment_id = request.GET.get("payment_id")
+    token = request.GET.get("token")
+    path = f"/api/transferencia/{payment_id}" if payment_id else "/api/transferencia"
+    headers = {"Authorization": f"Bearer {token}"} if token else {}
+    resp = hacer_request_banco(request, path=path, headers=headers)
+    if isinstance(resp, requests.Response):
+        data = resp.json()
+    else:
+        data = resp
+    return JsonResponse(data)
+
+
+def send_transfer_fake_view(request, payment_id):
+    """Vista simplificada para el modo de banco simulado local"""
+    if not get_settings()["ALLOW_FAKE_BANK"]:
+        return HttpResponseForbidden("Modo simulado desactivado")
+    transfer = get_object_or_404(Transfer, payment_id=payment_id)
+    if request.method == "POST":
+        transfer.status = "ACSP"
+        transfer.save()
+        registrar_log(payment_id, tipo_log="TRANSFER", extra_info="Transferencia simulada completada")
+        return JsonResponse({"status": transfer.status})
+    return render(request, "api/GPT4/transfer_send_conexion.html", {"transfer": transfer})
