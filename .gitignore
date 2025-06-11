@@ -1,7 +1,7 @@
 READMEcopy.md
 .db
 .env
-*.env.local
+*.*env.local
 .env.production
 .env.sandbox
 .sqlite3
