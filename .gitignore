@@ -1,5 +1,7 @@
 READMEcopy.md
 .db
+.env
+.env.*
 .sqlite3
 .vscode/
 base0.py
