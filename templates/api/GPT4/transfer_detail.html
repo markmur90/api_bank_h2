@@ -65,14 +65,24 @@
         <a href="{% url 'oauth2_authorize' %}?payment_id={{ transfer.payment_id }}" class="btn btn-outline-info btn-sm">
           <i class="bi bi-shield-lock"></i> OAuth2
         </a>
-        {% endif %} {% if request.session.usar_conexion_banco %}
-        <a href="{% url 'send_transfer_conexion_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
-          <i class="bi bi-send-check"></i> Enviar Banco
-        </a>
+        {% endif %}
+        {% if request.session.usar_conexion_banco %}
+          {% if allow_fake_bank %}
+          <a href="{% url 'send_transfer_simulator_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
+            <i class="bi bi-send-check"></i> Enviar Simulador
+          </a>
+          {% else %}
+          <a href="{% url 'send_transfer_conexion_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
+            <i class="bi bi-send-check"></i> Enviar Banco
+          </a>
+          {% endif %}
         {% else %}
         <a href="{% url 'send_transfer_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
           <i class="bi bi-send-check"></i> Enviar
         </a>
+          <a href="{% url 'send_transfer_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
+            <i class="bi bi-send-check"></i> Enviar
+          </a>        
         {% endif %}
         <a href="{% url 'transfer_detailGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm" title="Refrescar estado">
           <i class="bi bi-arrow-clockwise"></i> Refrescar
