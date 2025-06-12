@@ -24,8 +24,6 @@ urlpatterns = [
 
     # Transfers
     # path('transfers/create/', views.create_transfer, name='create_transferGPT4'),
-    # path('transfers/', views.list_transfers, name='list_transfersGPT4'),
-    # path('transfers/<int:transfer_id>/', views.transfer_detail, name='transfer_detailGPT4'),
     # path('transfers/<int:transfer_id>/send/', views.send_transfer_view, name='send_transfer_viewGPT4'),
     # path('transfer/<str:payment_id>/sca/', views.transfer_update_sca, name='transfer_update_scaGPT4'),
     

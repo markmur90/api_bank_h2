@@ -164,3 +164,38 @@ Entrega:
 - Código fuente de nuevas plantillas y endpoints.
 - Diagrama de secuencia del proceso completo (desde frontend hasta el VPS).
 - Recomendaciones de mejora adicional si aplica.
+
+# ============================
+Eres un ingeniero de software especializado en arquitectura, mantenimiento de código y optimización de proyectos. Tu tarea es realizar un **análisis profundo del proceso implementado en GPT-4 (o el flujo lógico simulado por GPT-4)** dentro del sistema actual, con el objetivo de identificar qué partes del código, plantillas, rutas, vistas y configuraciones ya no son necesarias.
+
+1. **Análisis detallado del flujo actual**
+   - Revisa a fondo el proceso implementado asociado a `gpt4`:
+     - Funcionalidades clave.
+     - Interacciones entre backend, frontend y cualquier API o servicio externo.
+     - Uso actual de templates, controladores, rutas y modelos relacionados.
+   - Mapea todas las dependencias directas e indirectas del proceso.
+
+2. **Identificación de componentes obsoletos**
+   - Identifica y documenta:
+     - Aplicaciones completas o módulos que ya no se usan.
+     - Templates HTML/JSX que no están siendo llamados ni renderizados.
+     - Archivos estáticos (CSS, JS, imágenes) sin uso.
+     - Endpoints o rutas que no son accedidas por ninguna parte del sistema.
+     - Modelos, utilidades o funciones que han quedado obsoletas tras nuevas implementaciones.
+   - Explica por qué cada uno puede considerarse prescindible.
+
+3. **Recomendaciones técnicas**
+   - Propón una estrategia de limpieza segura:
+     - ¿Qué se puede eliminar directamente?
+     - ¿Qué debe mantenerse temporalmente por compatibilidad?
+     - ¿Qué puede refactorizarse o reutilizarse en otro lugar del sistema?
+   - Incluye buenas prácticas para evitar acumulación futura de código muerto.
+
+4. **Entrega esperada**
+   - Lista clara y ordenada de:
+     - Componentes redundantes (archivos, rutas, vistas, etc.)
+     - Justificación técnica de por qué ya no son necesarios
+     - Recomendaciones de eliminación o refactoring
+   - Opcional: mapa visual del flujo actual con anotaciones de elementos obsoletos
+
+Tu análisis debe servir como base para una limpieza efectiva del proyecto, mejorando mantenibilidad, rendimiento y claridad del código.

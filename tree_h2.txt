@@ -1,0 +1,1552 @@
+                                                                                  
+┌──(markmur88㉿coretransapi)-[~/api_bank_h2]
+└─$ tree
+.
+├── 01_full0.sh
+├── api
+│   ├── accounts
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── authentication
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── generated_token.txt
+│   │   ├── generate_jwt.py
+│   │   ├── generate_token.py
+│   │   ├── __init__.py
+│   │   ├── jwt_token_utils.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── 0001_initial.cpython-311.pyc
+│   │   │       └── __init__.cpython-311.pyc
+│   │   ├── models.py
+│   │   ├── __pycache__
+│   │   │   ├── admin.cpython-311.pyc
+│   │   │   ├── apps.cpython-311.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── models.cpython-311.pyc
+│   │   │   ├── serializers.cpython-311.pyc
+│   │   │   ├── urls.cpython-311.pyc
+│   │   │   └── views.cpython-311.pyc
+│   │   ├── serializers.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── collection
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── configuraciones_api
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── helpers.py
+│   │   ├── __init__.py
+│   │   ├── loader.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── 0001_initial.cpython-311.pyc
+│   │   │       └── __init__.cpython-311.pyc
+│   │   ├── models.py
+│   │   ├── __pycache__
+│   │   │   ├── admin.cpython-311.pyc
+│   │   │   ├── apps.cpython-311.pyc
+│   │   │   ├── forms.cpython-311.pyc
+│   │   │   ├── helpers.cpython-311.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── models.cpython-311.pyc
+│   │   │   ├── urls.cpython-311.pyc
+│   │   │   └── views.cpython-311.pyc
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── context_processors.py
+│   ├── core
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── auth_services.py
+│   │   ├── bank_services.py
+│   │   ├── choices.py
+│   │   ├── forms.py
+│   │   ├── __init__.py
+│   │   ├── management
+│   │   │   └── commands
+│   │   │       ├── genkeyBDD.py
+│   │   │       ├── genkey.py
+│   │   │       ├── __init__.py
+│   │   │       └── verificar_transferencias.py
+│   │   ├── middleware.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── 0001_initial.cpython-311.pyc
+│   │   │       └── __init__.cpython-311.pyc
+│   │   ├── mixin.py
+│   │   ├── models.py
+│   │   ├── __pycache__
+│   │   │   ├── admin.cpython-311.pyc
+│   │   │   ├── apps.cpython-311.pyc
+│   │   │   ├── auth_services.cpython-311.pyc
+│   │   │   ├── bank_services.cpython-311.pyc
+│   │   │   ├── choices.cpython-311.pyc
+│   │   │   ├── forms.cpython-311.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── middleware.cpython-311.pyc
+│   │   │   ├── mixin.cpython-311.pyc
+│   │   │   ├── models.cpython-311.pyc
+│   │   │   ├── serializers.cpython-311.pyc
+│   │   │   ├── services.cpython-311.pyc
+│   │   │   ├── urls.cpython-311.pyc
+│   │   │   └── views.cpython-311.pyc
+│   │   ├── serializers.py
+│   │   ├── services.py
+│   │   ├── templatetags
+│   │   │   ├── custom_filters.py
+│   │   │   └── __pycache__
+│   │   │       └── custom_filters.cpython-311.pyc
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   ├── utils.py
+│   │   ├── validator.py
+│   │   └── views.py
+│   ├── gpt
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── helpers.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── urls.py
+│   │   ├── utils.py
+│   │   ├── views2.py
+│   │   └── views.py
+│   ├── gpt2
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── helpers.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── urls.py
+│   │   ├── utils.py
+│   │   └── views.py
+│   ├── gpt3
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── bank_client.py
+│   │   ├── forms.py
+│   │   ├── generate_aml.py
+│   │   ├── generate_xml.py
+│   │   ├── helpers.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── 0001_initial.cpython-311.pyc
+│   │   │       └── __init__.cpython-311.pyc
+│   │   ├── models.py
+│   │   ├── __pycache__
+│   │   │   ├── admin.cpython-311.pyc
+│   │   │   ├── apps.cpython-311.pyc
+│   │   │   ├── forms.cpython-311.pyc
+│   │   │   ├── helpers.cpython-311.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── models.cpython-311.pyc
+│   │   │   ├── schemas.cpython-311.pyc
+│   │   │   ├── urls.cpython-311.pyc
+│   │   │   ├── utils2.cpython-311.pyc
+│   │   │   └── views2.cpython-311.pyc
+│   │   ├── schemas.py
+│   │   ├── urls.py
+│   │   ├── utils2.py
+│   │   └── views2.py
+│   ├── gpt4
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── conexion_banco copy.py
+│   │   ├── conexion_banco.py
+│   │   ├── decorators.py
+│   │   ├── forms.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── 0001_initial.cpython-311.pyc
+│   │   │       └── __init__.cpython-311.pyc
+│   │   ├── models.py
+│   │   ├── __pycache__
+│   │   │   ├── admin.cpython-311.pyc
+│   │   │   ├── apps.cpython-311.pyc
+│   │   │   ├── conexion_banco.cpython-311.pyc
+│   │   │   ├── decorators.cpython-311.pyc
+│   │   │   ├── forms.cpython-311.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── models.cpython-311.pyc
+│   │   │   ├── urls.cpython-311.pyc
+│   │   │   ├── utils.cpython-311.pyc
+│   │   │   └── views.cpython-311.pyc
+│   │   ├── urls.py
+│   │   ├── utils.py
+│   │   ├── utils_transfer.py
+│   │   └── views.py
+│   ├── __init__.py
+│   ├── middleware
+│   ├── middleware.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── middleware.cpython-311.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   └── views.cpython-311.pyc
+│   ├── sandbox
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── serializers.py
+│   │   ├── services.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── sct
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── diagrama_proceso.txt
+│   │   ├── forms.py
+│   │   ├── generate_aml.py
+│   │   ├── generate_pdf.py
+│   │   ├── generate_xml2.py
+│   │   ├── generate_xml3.py
+│   │   ├── generate_xml.py
+│   │   ├── helpers.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── process_bank_json_xml_aml.py
+│   │   ├── process_bank.py
+│   │   ├── process_deutsche_bank.py
+│   │   ├── process_json.py
+│   │   ├── process_transfer.py
+│   │   ├── process_xml_send2.py
+│   │   ├── process_xml_send.py
+│   │   ├── serializers.py
+│   │   ├── services.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── sepa_payment
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── services.py
+│   │   ├── signals.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   └── views.py
+│   ├── transactions
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── migrations
+│   │   │   └── __init__.py
+│   │   ├── models.py
+│   │   ├── __pycache__
+│   │   │   └── views.cpython-311.pyc
+│   │   ├── serializers.py
+│   │   ├── tests.py
+│   │   ├── urls copy.py
+│   │   ├── views.py
+│   │   ├── views_sepa.py
+│   │   ├── views_sepa_transactions.txt
+│   │   └── views_transactions.txt
+│   ├── transfers
+│   │   ├── admin.py
+│   │   ├── apps.py
+│   │   ├── forms.py
+│   │   ├── __init__.py
+│   │   ├── migrations
+│   │   │   ├── 0001_initial.py
+│   │   │   ├── __init__.py
+│   │   │   └── __pycache__
+│   │   │       ├── 0001_initial.cpython-311.pyc
+│   │   │       └── __init__.cpython-311.pyc
+│   │   ├── models.py
+│   │   ├── __pycache__
+│   │   │   ├── admin.cpython-311.pyc
+│   │   │   ├── apps.cpython-311.pyc
+│   │   │   ├── forms.cpython-311.pyc
+│   │   │   ├── __init__.cpython-311.pyc
+│   │   │   ├── models.cpython-311.pyc
+│   │   │   ├── serializers.cpython-311.pyc
+│   │   │   ├── urls.cpython-311.pyc
+│   │   │   ├── views_all.cpython-311.pyc
+│   │   │   ├── views_api.cpython-311.pyc
+│   │   │   ├── views_com2.cpython-311.pyc
+│   │   │   ├── views_copy.cpython-311.pyc
+│   │   │   └── views.cpython-311.pyc
+│   │   ├── serializers.py
+│   │   ├── tests.py
+│   │   ├── urls.py
+│   │   ├── views_all.py
+│   │   ├── views_api_copy.py
+│   │   ├── views_api.py
+│   │   ├── views_com2.py
+│   │   ├── views_com.txt
+│   │   ├── views_copy.py
+│   │   ├── views_copy_transfers.txt
+│   │   ├── views.py
+│   │   └── views_transfers.txt
+│   ├── urls.py
+│   ├── utils
+│   │   └── jwt_simulador.py
+│   └── views.py
+├── api.sock
+├── backup_local.sql
+├── bin
+│   └── post_compile
+├── certs
+│   ├── desarrollo.crt
+│   └── desarrollo.key
+├── chatgpt.md
+├── chmod_log.txt
+├── config
+│   ├── asgi.py
+│   ├── __init__.py
+│   ├── __pycache__
+│   │   ├── __init__.cpython-311.pyc
+│   │   ├── urls.cpython-311.pyc
+│   │   └── wsgi.cpython-311.pyc
+│   ├── schemas
+│   │   ├── pain.001.001.03.xsd
+│   │   └── pain.002.001.03.xsd
+│   ├── settings
+│   │   ├── base0.py
+│   │   ├── base1.py
+│   │   ├── base2.py
+│   │   ├── configuración_dinamica.py
+│   │   ├── __init__.py
+│   │   ├── local copy.py
+│   │   ├── local_old.py
+│   │   ├── local.py
+│   │   ├── production copy.py
+│   │   ├── production_old.py
+│   │   ├── production.py
+│   │   └── __pycache__
+│   │       ├── base1.cpython-311.pyc
+│   │       ├── __init__.cpython-311.pyc
+│   │       └── local.cpython-311.pyc
+│   ├── urls.py
+│   ├── utils
+│   │   ├── __init__.py
+│   │   └── validar_entorno.py
+│   └── wsgi.py
+├── datos_sensibles.txt
+├── env.txt
+├── LICENSE
+├── manage.py
+├── media
+│   └── claves
+│       ├── jwks_6316220d-fc7b-4678-902c-1cdf60acbc8e.json
+│       ├── priv_6316220d-fc7b-4678-902c-1cdf60acbc8e.pem
+│       └── pub_6316220d-fc7b-4678-902c-1cdf60acbc8e.pem
+├── middleware
+│   ├── configuracion_entorno.py
+│   ├── oficial_session.py
+│   └── __pycache__
+│       └── oficial_session.cpython-311.pyc
+├── pendientes.txt
+├── Problema.md
+├── Procfile
+├── prompts.txt
+├── READMEcopy.md
+├── README.md
+├── requirements.txt
+├── restore_and_upload_force.sh
+├── restore_and_upload.sh
+├── schemas
+│   ├── certs
+│   │   ├── desarrollo.crt
+│   │   └── desarrollo.key
+│   ├── __init__.py
+│   ├── keys
+│   │   ├── client_id.key
+│   │   ├── client_secret.key
+│   │   ├── ecdsa_private_key.pem
+│   │   ├── ecdsa_public_key.pem
+│   │   ├── jwks_public.json
+│   │   ├── logs
+│   │   │   └── clave_gen.log
+│   │   ├── private_key.pem
+│   │   ├── public_key.pem
+│   │   └── secret.key
+│   ├── pain.001.001.03.xsd
+│   ├── pain.002.001.03.xsd
+│   ├── transferencias
+│   │   ├── 1280a515-64a7-404f-883d-bb49f39aaf66
+│   │   │   ├── aml_1280a515-64a7-404f-883d-bb49f39aaf66.xml
+│   │   │   ├── pain001_1280a515-64a7-404f-883d-bb49f39aaf66.xml
+│   │   │   └── transferencia_1280a515-64a7-404f-883d-bb49f39aaf66.log
+│   │   ├── 287bccc6-2838-444f-b2a3-9defbf3d5ebf
+│   │   │   ├── aml_287bccc6-2838-444f-b2a3-9defbf3d5ebf.xml
+│   │   │   ├── pain001_287bccc6-2838-444f-b2a3-9defbf3d5ebf.xml
+│   │   │   └── transferencia_287bccc6-2838-444f-b2a3-9defbf3d5ebf.log
+│   │   ├── 5e69f476-53df-4b55-a0bb-9356096dbfcd
+│   │   │   ├── aml_5e69f476-53df-4b55-a0bb-9356096dbfcd.xml
+│   │   │   ├── pain001_5e69f476-53df-4b55-a0bb-9356096dbfcd.xml
+│   │   │   └── transferencia_5e69f476-53df-4b55-a0bb-9356096dbfcd.log
+│   │   ├── global_errors.log
+│   │   ├── OAUTH_LOGS
+│   │   │   └── oauth_general.log
+│   │   └── sepaCreditTransferRequestSchema.json
+│   ├── xsd
+│   │   ├── aml_transaction_report.xsd
+│   │   ├── pain.001.001.03.xsd
+│   │   └── pain.002.001.03.xsd
+│   └── zCod.md
+├── scripts
+│   ├── backup
+│   │   ├── 00_02_zip_backup copy.sh
+│   │   ├── 00_02_zip_backup.sh
+│   │   ├── 00_14_sincronizacion_archivos.sh
+│   │   ├── 00_17_sincronizar_bdd.sh
+│   │   └── 00_19_borrar_zip_sql.sh
+│   ├── cache
+│   ├── chmod_log.txt
+│   ├── deploy
+│   │   ├── django
+│   │   │   ├── 00_07_postgres.sh
+│   │   │   ├── 00_08_migraciones.sh
+│   │   │   ├── 00_09_cargar_json copy.sh
+│   │   │   ├── 00_09_cargar_json.sh
+│   │   │   ├── 00_10_usuario.sh
+│   │   │   ├── 00_11_hacer_json copy.sh
+│   │   │   ├── 00_11_hacer_json.sh
+│   │   │   └── 00_13_verificar_transferencias.sh
+│   │   ├── github
+│   │   │   ├── 00_16_01_subir_GitHub.sh
+│   │   │   ├── 00_24_sync_from_github.sh
+│   │   │   └── deploy_full.sh
+│   │   ├── heroku
+│   │   │   ├── 00_15_variables_heroku.sh
+│   │   │   ├── 00_16_subir_heroku.sh
+│   │   │   ├── 00_eliminar_config_vars.sh
+│   │   │   └── set_heroku_env.sh
+│   │   └── vps
+│   │       ├── 00_18_00_deploy_njalla.sh
+│   │       ├── 00_18_01_00_setup_coretransact.sh
+│   │       ├── 00_18_01_01_setup_coretransact.sh
+│   │       ├── 00_18_01_02_setup_coretransact.sh
+│   │       ├── 00_18_01_03_setup_coretransact.sh
+│   │       ├── 00_18_01_04_setup_coretransact.sh
+│   │       ├── 00_18_01_05_setup_coretransact.sh
+│   │       ├── 00_18_01_setup_coretransapi.sh
+│   │       ├── 00_18_02_verificar_https_headers.sh
+│   │       ├── 00_18_03_reporte_salud_vps.sh
+│   │       ├── 00_18_04_generar_clave_pgp_njalla.sh
+│   │       ├── 00_18_05_deploy_update.sh
+│   │       ├── 00_18_06_restart_coretransapi.sh
+│   │       ├── 00_18_07_status_coretransapi.sh
+│   │       ├── 00_18_08_check_ssl_ports.sh
+│   │       ├── 00_18_09_all_status_coretransapi.sh
+│   │       ├── 21_deploy_ghost_njalla.sh
+│   │       ├── 24_rsync_project.sh
+│   │       ├── 25_update_ddns_njalla.sh
+│   │       ├── 26_backup_sync_encrypt.sh
+│   │       ├── excludes.txt
+│   │       ├── sync_configs_from_vps.sh
+│   │       ├── sync_configs_to_vps.sh
+│   │       ├── sync_dir.sh
+│   │       ├── sync_local_and_vps.sh
+│   │       ├── sync.sh
+│   │       ├── vps_backup
+│   │       │   ├── 00_18_01_01_setup_coretransact_root copy.sh
+│   │       │   ├── 00_18_01_01_setup_coretransact_root_FASE1.sh
+│   │       │   ├── 00_18_01_01_setup_coretransact_root_FASE2.sh
+│   │       │   ├── 00_18_01_01_setup_coretransact_root.sh
+│   │       │   ├── 00_18_01_01_setup_coretransact.sh
+│   │       │   └── torrc
+│   │       ├── vps_copy_files.sh
+│   │       ├── vps_copy_up_files.sh
+│   │       ├── vps_remote_check.sh
+│   │       ├── vps_status.sh
+│   │       ├── vps_sync_clean.sh
+│   │       └── vps_sync.sh
+│   ├── dirs.sh
+│   ├── logs
+│   │   ├── 00_18_00_deploy_njalla
+│   │   │   └── 00_18_00_deploy_njalla.log
+│   │   ├── 00_18_01_00_deploy_njalla
+│   │   │   └── 00_18_00_deploy_njalla.log
+│   │   ├── 00_18_01_01_deploy_njalla
+│   │   │   └── 00_18_00_deploy_njalla.log
+│   │   ├── 00_18_01_05_deploy_njalla
+│   │   │   └── 00_18_00_deploy_njalla.log
+│   │   ├── 00_18_05_deploy_update
+│   │   │   └── 00_18_05_deploy_update.log
+│   │   ├── 01_full_deploy
+│   │   │   └── full_deploy.log
+│   │   ├── archivados
+│   │   ├── backup
+│   │   │   ├── 00_02_zip_backup_.log
+│   │   │   └── 00_19_borrar_zip_sql_.log
+│   │   ├── commits_hist.md
+│   │   ├── deploy_coretransapi
+│   │   ├── deploy_njalla.log
+│   │   ├── despliegue
+│   │   │   ├── 00_07_postgres_.log
+│   │   │   ├── 00_08_migraciones_.log
+│   │   │   ├── 00_09_cargar_json.log
+│   │   │   ├── 00_09_cargar_json_.log
+│   │   │   ├── 00_10_usuario_.log
+│   │   │   ├── 00_11_hacer_json_.log
+│   │   │   ├── 00_14_sincronizacion_archivos_.log
+│   │   │   ├── 00_16_01_subir_GitHub.log
+│   │   │   ├── 00_16_subir_heroku.log
+│   │   │   ├── 00_17_sincronizar_bdd_.log
+│   │   │   ├── 00_18_00_deploy_njalla_.log
+│   │   │   ├── 00_18_01_01_deploy_njalla_.log
+│   │   │   ├── 00_21_local_ssl.log
+│   │   │   ├── 00_21_local_ssl_.log
+│   │   │   ├── deploy_njalla_.log
+│   │   │   └── restart_gunicorn.log
+│   │   ├── gpg_keys
+│   │   │   ├── fingerprint.txt
+│   │   │   ├── jmoltke_private.asc
+│   │   │   └── jmoltke_public.asc
+│   │   ├── respaldo_local_cifrado.log
+│   │   ├── restaurar_local_descifrado.log
+│   │   ├── sistema
+│   │   │   ├── 00_01_sistema_.log
+│   │   │   ├── 00_03_puertos_.log
+│   │   │   ├── 00_04_container_.log
+│   │   │   ├── 00_05_mac_.log
+│   │   │   ├── 00_06_ufw_.log
+│   │   │   └── ports_stop_.log
+│   │   └── sync
+│   │       ├── 20250601_070242_sync.log
+│   │       ├── 20250601_072018_sync.log
+│   │       ├── 20250601_072106_sync.log
+│   │       ├── 20250601_072748_sync.log
+│   │       ├── 20250601_072754_sync.log
+│   │       ├── 20250601_074006_sync.log
+│   │       ├── 20250601_074154_sync.log
+│   │       ├── 20250601_075413_sync.log
+│   │       ├── 20250602_190124_sync.log
+│   │       ├── 20250602_190306_sync.log
+│   │       ├── 20250602_190339_sync.log
+│   │       ├── 20250602_191021_sync.log
+│   │       ├── 20250602_193439_sync.log
+│   │       ├── 20250603_045422_sync.log
+│   │       ├── 20250603_070935_sync.log
+│   │       ├── 20250603_071021_sync.log
+│   │       ├── 20250603_074707_sync.log
+│   │       ├── 20250603_075621_sync.log
+│   │       ├── 20250603_082506_sync.log
+│   │       ├── 20250603_082614_sync.log
+│   │       ├── 20250603_085144_sync.log
+│   │       ├── 20250603_110933_sync.log
+│   │       ├── 20250604_085855_sync.log
+│   │       ├── 20250604_090149_sync.log
+│   │       ├── 20250604_090909_sync.log
+│   │       ├── 20250604_092254_sync.log
+│   │       ├── 20250605_064149_sync.log
+│   │       ├── 20250605_064742_sync.log
+│   │       ├── 20250605_065830_sync.log
+│   │       ├── 20250605_073519_sync_clean.log
+│   │       ├── 20250605_074529_sync_clean.log
+│   │       ├── 20250605_074641_sync_clean.log
+│   │       ├── 20250605_080428_sync_clean.log
+│   │       ├── 20250605_080938_sync_clean.log
+│   │       ├── 20250605_080957_sync_clean.log
+│   │       ├── 20250605_081104_sync_clean.log
+│   │       ├── 20250605_081220_sync_clean.log
+│   │       ├── 20250605_081735_sync.log
+│   │       ├── 20250605_081751_sync_clean.log
+│   │       ├── 20250605_081914_sync_clean.log
+│   │       ├── 20250605_082417_sync_clean.log
+│   │       ├── 20250605_082954_sync_clean.log
+│   │       ├── 20250605_083546_sync_clean.log
+│   │       ├── 20250605_083721_sync_clean.log
+│   │       ├── 20250605_083844_sync_clean.log
+│   │       ├── 20250605_084252_sync_clean.log
+│   │       ├── 20250605_084434_sync_clean.log
+│   │       ├── 20250605_084953_sync_clean.log
+│   │       ├── 20250605_085227_sync_clean.log
+│   │       ├── 20250605_085340_sync_clean.log
+│   │       ├── 20250605_085604_sync_clean.log
+│   │       ├── 20250605_085937_sync_clean.log
+│   │       ├── 20250605_090714_sync_clean.log
+│   │       ├── 20250605_090904_sync_clean.log
+│   │       ├── 20250605_091117_sync_clean.log
+│   │       ├── 20250605_091519_sync_clean.log
+│   │       ├── 20250605_091859_sync_clean.log
+│   │       ├── 20250605_111443_sync_clean.log
+│   │       ├── 20250605_112241_sync_clean.log
+│   │       ├── 20250605_112847_sync_clean.log
+│   │       ├── 20250605_125217_sync_clean.log
+│   │       ├── 20250605_131942_sync_clean.log
+│   │       ├── 20250605_211807_sync_clean.log
+│   │       ├── 20250606_005452_sync_clean.log
+│   │       ├── 20250606_025448_sync_clean.log
+│   │       ├── 20250606_033107_sync_clean.log
+│   │       ├── 20250606_033314_sync_clean.log
+│   │       ├── 20250606_053221_sync_clean.log
+│   │       ├── 20250606_060635_sync_clean.log
+│   │       ├── 20250606_062746_sync_clean.log
+│   │       ├── 20250606_063720_sync_clean.log
+│   │       ├── 20250606_064619_sync_clean.log
+│   │       ├── 20250606_065204_sync_clean.log
+│   │       ├── 20250606_065410_sync_clean.log
+│   │       ├── 20250606_073012_sync_clean.log
+│   │       ├── 20250606_073621_sync_clean.log
+│   │       ├── 20250606_075528_sync_clean.log
+│   │       ├── 20250606_080037_sync_clean.log
+│   │       ├── 20250606_081801_sync_clean.log
+│   │       ├── 20250606_082112_sync_clean.log
+│   │       ├── 20250606_082355_sync_clean.log
+│   │       ├── 20250606_084511_sync_clean.log
+│   │       ├── 20250606_085108_sync_clean.log
+│   │       ├── 20250606_104750_sync_clean.log
+│   │       ├── 20250606_124046_sync_clean.log
+│   │       ├── 20250606_130352_sync_clean.log
+│   │       ├── 20250606_132757_sync_clean.log
+│   │       ├── 20250606_133000_sync_clean.log
+│   │       ├── 20250606_134818_sync_clean.log
+│   │       ├── 20250606_153913_sync.log
+│   │       ├── 20250607_081558_sync_clean.log
+│   │       ├── 20250607_083749_sync_clean.log
+│   │       ├── 20250607_084403_sync_clean.log
+│   │       ├── 20250607_084836_sync_clean.log
+│   │       ├── 20250607_085117_sync_clean.log
+│   │       ├── 20250607_085412_sync_clean.log
+│   │       ├── 20250607_085626_sync_clean.log
+│   │       ├── 20250607_090425_sync_clean.log
+│   │       ├── 20250607_092857_sync_clean.log
+│   │       ├── 20250607_093501_sync_clean.log
+│   │       ├── 20250607_104234_sync_clean.log
+│   │       ├── 20250607_110301_sync_clean.log
+│   │       ├── 20250607_115008_sync_clean.log
+│   │       ├── 20250607_133217_sync_clean.log
+│   │       ├── 20250607_133616_sync_clean.log
+│   │       ├── 20250607_133817_sync_clean.log
+│   │       ├── 20250607_134357_sync_clean.log
+│   │       ├── 20250607_134803_sync_clean.log
+│   │       ├── 20250607_135314_sync_clean.log
+│   │       ├── 20250607_135620_sync_clean.log
+│   │       ├── 20250607_140105_sync_clean.log
+│   │       ├── 20250607_140400_sync_clean.log
+│   │       ├── 20250607_142247_sync_clean.log
+│   │       ├── 20250607_143252_sync_clean.log
+│   │       ├── 20250607_144750_sync_clean.log
+│   │       ├── 20250607_145248_sync_clean.log
+│   │       ├── 20250607_150411_sync_clean.log
+│   │       ├── 20250607_150637_sync_clean.log
+│   │       ├── 20250607_151413_sync_clean.log
+│   │       ├── 20250607_152634_sync_clean.log
+│   │       ├── 20250607_153702_sync_clean.log
+│   │       ├── 20250607_154153_sync_clean.log
+│   │       ├── 20250608_023017_sync_clean.log
+│   │       ├── 20250608_024050_sync_clean.log
+│   │       ├── 20250608_031447_sync_clean.log
+│   │       ├── 20250608_031826_sync_clean.log
+│   │       ├── 20250608_034809_sync_clean.log
+│   │       ├── 20250608_044439_sync_clean.log
+│   │       ├── 20250608_051323_sync.log
+│   │       ├── 20250608_051700_sync.log
+│   │       ├── 20250608_053050_sync.log
+│   │       ├── 20250608_053437_sync.log
+│   │       ├── 20250608_054658_sync_clean.log
+│   │       ├── 20250608_055637_sync_clean.log
+│   │       ├── 20250608_101201_sync_clean.log
+│   │       ├── 20250608_103913_sync_clean.log
+│   │       ├── 20250608_110755_sync_clean.log
+│   │       ├── 20250608_111845_sync_clean.log
+│   │       ├── 20250608_112814_sync_clean.log
+│   │       ├── 20250608_113245_sync_clean.log
+│   │       ├── 20250608_114736_sync_clean.log
+│   │       ├── 20250608_121218_sync_clean.log
+│   │       ├── 20250608_122315_sync_clean.log
+│   │       ├── 20250608_122859_sync_clean.log
+│   │       ├── 20250608_123033_sync_clean.log
+│   │       ├── 20250608_123436_sync_clean.log
+│   │       ├── 20250608_124032_sync_clean.log
+│   │       ├── 20250608_150914_sync_clean.log
+│   │       ├── 20250608_152555_sync_clean.log
+│   │       ├── 20250608_160825_sync_clean.log
+│   │       ├── 20250609_044928_sync_clean.log
+│   │       ├── 20250609_050301_sync_clean.log
+│   │       ├── 20250609_052236_sync_clean.log
+│   │       ├── 20250609_104617_sync_clean.log
+│   │       ├── 20250609_105000_sync_clean.log
+│   │       ├── 20250609_110819_sync.log
+│   │       ├── 20250609_112839_sync.log
+│   │       ├── 20250609_121034_sync_clean.log
+│   │       ├── 20250609_125331_sync_clean.log
+│   │       ├── 20250609_131036_sync_clean.log
+│   │       ├── 20250609_131155_sync.log
+│   │       ├── 20250609_135903_sync.log
+│   │       ├── 20250610_044428_sync.log
+│   │       ├── 20250610_053030_sync.log
+│   │       ├── 20250610_054246_sync.log
+│   │       ├── 20250610_054612_sync.log
+│   │       ├── 20250610_055015_sync_clean.log
+│   │       ├── 20250610_060921_sync_clean.log
+│   │       ├── 20250610_070227_sync_clean.log
+│   │       ├── 20250610_070840_sync.log
+│   │       ├── 20250610_075107_sync_clean.log
+│   │       ├── 20250610_130317_sync_clean.log
+│   │       ├── 20250610_130600_sync_clean.log
+│   │       ├── 20250610_235854_sync.log
+│   │       ├── 20250611_000301_sync.log
+│   │       ├── 20250611_001157_sync_clean.log
+│   │       ├── 20250611_010430_sync_clean.log
+│   │       ├── 20250611_010628_sync.log
+│   │       ├── 20250611_011104_sync.log
+│   │       ├── 20250611_011826_sync.log
+│   │       ├── 20250611_011901_sync.log
+│   │       ├── 20250611_013118_sync.log
+│   │       ├── 20250611_013225_sync.log
+│   │       ├── 20250611_013241_sync_clean.log
+│   │       ├── 20250611_013758_sync_clean.log
+│   │       ├── 20250611_212543_sync.log
+│   │       ├── 20250611_214953_sync.log
+│   │       ├── 20250611_215555_sync.log
+│   │       ├── 20250611_215847_sync.log
+│   │       ├── 20250611_220301_scp_sync.log
+│   │       ├── 20250611_222707_scp_sync.log
+│   │       ├── 20250611_222947_scp_sync.log
+│   │       ├── 20250611_223232_sync.log
+│   │       ├── 20250611_223730_sync.log
+│   │       ├── 20250611_224829_sync.log
+│   │       ├── 20250611_225448_sync.log
+│   │       ├── 20250611_230120_sync.log
+│   │       ├── 20250611_230212_sync.log
+│   │       ├── 20250611_230542_sync.log
+│   │       ├── 20250611_230718_sync.log
+│   │       ├── 20250611_230824_sync.log
+│   │       ├── 20250611_231843_sync.log
+│   │       ├── 20250611_232027_sync.log
+│   │       ├── 20250611_235351_sync.log
+│   │       ├── 20250612_013925_sync.log
+│   │       └── 20250612_015301_sync.log
+│   ├── menu
+│   │   ├── 01_full.sh
+│   │   ├── aliases_deploy.sh
+│   │   └── s
+│   ├── service
+│   │   ├── 00_22_gunicorn.sh
+│   │   ├── configurar_gunicorn.sh
+│   │   ├── diagnostico_entorno.sh
+│   │   ├── reiniciar_servicios.sh
+│   │   ├── resumen_logs.sh
+│   │   ├── run_local_ssl_env.sh
+│   │   └── summarize_logs.sh
+│   ├── src
+│   │   ├── 00_01_sistema.sh
+│   │   ├── 00_03_puertos.sh
+│   │   ├── 00_04_container.sh
+│   │   ├── 00_05_mac.sh
+│   │   ├── 00_06_ufw copy.sh
+│   │   ├── 00_06_ufw.sh
+│   │   └── ufw_produccion.sh
+│   ├── tor
+│   │   ├── check_torrc.sh
+│   │   ├── instalar_tor.sh
+│   │   ├── reparar_y_levantar_tor.sh
+│   │   ├── rotate_tor_ip.sh
+│   │   ├── torrc
+│   │   └── tree
+│   └── utils
+│       ├── chmod_all.sh
+│       ├── chmod_log.txt
+│       ├── conexion_segura_db
+│       │   ├── conexion_banco.py
+│       │   └── README.txt
+│       ├── gestor-tareas
+│       │   ├── deb
+│       │   │   ├── gestor_tareas
+│       │   │   │   ├── DEBIAN
+│       │   │   │   │   └── control
+│       │   │   │   └── usr
+│       │   │   │       └── local
+│       │   │   ├── gestor-tareas_1.0.deb
+│       │   │   ├── gestor-tareas_1.0.deb.sha256
+│       │   │   ├── gestor-tareas_1.1.deb
+│       │   │   └── gestor-tareas_1.2.deb
+│       │   ├── gestor
+│       │   │   ├── logs
+│       │   │   │   ├── gestor_tareas_00.sh
+│       │   │   │   ├── gestor_tareas_01.sh
+│       │   │   │   │   ├── APP
+│       │   │   │   │   │   ├── config_01.txt
+│       │   │   │   │   │   ├── tareas_01.txt
+│       │   │   │   │   │   └── tiempos_01.log
+│       │   │   │   │   └── APP001
+│       │   │   │   │       ├── config_01.txt
+│       │   │   │   │       ├── tareas_01.txt
+│       │   │   │   │       └── tiempos_01.log
+│       │   │   │   ├── gestor_tareas_02.sh
+│       │   │   │   │   └── APP
+│       │   │   │   │       ├── config_02.txt
+│       │   │   │   │       ├── tareas_02.txt
+│       │   │   │   │       └── tiempos_02.log
+│       │   │   │   ├── gestor_tareas_03.sh
+│       │   │   │   │   └── APP003
+│       │   │   │   │       ├── config_03.txt
+│       │   │   │   │       ├── tareas_03.txt
+│       │   │   │   │       └── tiempos_03.log
+│       │   │   │   ├── gestor_tareas_05.sh
+│       │   │   │   │   └── APP005
+│       │   │   │   │       ├── config_05.txt
+│       │   │   │   │       ├── tareas_05.txt
+│       │   │   │   │       └── tiempos_05.log
+│       │   │   │   ├── gestor_tareas_06.sh
+│       │   │   │   │   └── APP006
+│       │   │   │   │       ├── config_06.txt
+│       │   │   │   │       ├── tareas_06.txt
+│       │   │   │   │       └── tiempos_06.log
+│       │   │   │   ├── gestor_tareas_10.sh
+│       │   │   │   │   └── APP010
+│       │   │   │   │       ├── config_10.txt
+│       │   │   │   │       ├── tareas_10.txt
+│       │   │   │   │       └── tiempos_10.log
+│       │   │   │   └── gestor_tareas_11.sh
+│       │   │   │       └── APP011
+│       │   │   │           ├── config_11.txt
+│       │   │   │           ├── tareas_11.txt
+│       │   │   │           └── tiempos_11.log
+│       │   │   └── scripts
+│       │   │       ├── crear_paquete.sh
+│       │   │       ├── detener_tareas.sh
+│       │   │       ├── gestor_tareas_00.sh
+│       │   │       ├── gestor_tareas_01.sh
+│       │   │       ├── gestor_tareas_02 copy.sh
+│       │   │       ├── gestor_tareas_02.sh
+│       │   │       ├── gestor_tareas_03.sh
+│       │   │       ├── gestor_tareas_04.sh
+│       │   │       ├── gestor_tareas_05.sh
+│       │   │       ├── gestor_tareas_06.sh
+│       │   │       ├── gestor_tareas_07.sh
+│       │   │       ├── gestor_tareas_08.sh
+│       │   │       ├── gestor_tareas_09.sh
+│       │   │       ├── gestor_tareas_10.sh
+│       │   │       ├── gestor_tareas_11.sh
+│       │   │       ├── gestor_tareas_12.sh
+│       │   │       ├── gestor_tareas_13.sh
+│       │   │       ├── gestor_tareas_14.sh
+│       │   │       ├── gestor_tareas_15.sh
+│       │   │       ├── gestor_tareas_16.sh
+│       │   │       ├── gestor_tareas_17.sh
+│       │   │       ├── gtareas_status.sh
+│       │   │       └── zenity_test.sh
+│       │   └── notify
+│       │       ├── estado_notificadores.sh
+│       │       ├── gestionar_notificadores.sh
+│       │       ├── logs_notificadores
+│       │       ├── notificador2.sh
+│       │       ├── notificador_30.sh
+│       │       ├── notificador3.sh
+│       │       ├── notificador copy.sh
+│       │       ├── notificador_restart.sh
+│       │       ├── notificador.sh
+│       │       └── start_notificadores_interactivo.sh
+│       ├── git
+│       │   ├── deploy
+│       │   │   ├── sync_repos.log
+│       │   │   └── sync_repos.sh
+│       │   ├── heroku
+│       │   │   ├── cuenta.config
+│       │   │   ├── gen-ssh-key.sh
+│       │   │   └── git-ssh-config.sh
+│       │   └── sync_repos.log
+│       ├── notas
+│       │   ├── alerta
+│       │   │   ├── alerta_horaria_audio.sh
+│       │   │   ├── alerta_horaria_full.sh
+│       │   │   ├── alerta_horaria.sh
+│       │   │   ├── BotFather
+│       │   │   ├── crontab.txt
+│       │   │   ├── get_telegram_chat_id.sh
+│       │   │   └── get_telegram_chat_id_test.sh
+│       │   ├── alerta2
+│       │   │   ├── alerta_horaria.sh
+│       │   │   ├── crontab.txt
+│       │   │   └── respaldo_automatico.sh
+│       │   ├── aliases_deploy.sh
+│       │   ├── instalador
+│       │   │   ├── Final
+│       │   │   │   ├── notas_3.11_all.deb
+│       │   │   │   └── notas_refactorizadas
+│       │   │   │       ├── nota_texto.sh
+│       │   │   │       ├── nota_voz.sh
+│       │   │   │       ├── resumen_audio.sh
+│       │   │   │       ├── resumen_dia.sh
+│       │   │   │       └── resumen_proyecto.sh
+│       │   │   ├── notas
+│       │   │   │   ├── alerta_horaria.sh
+│       │   │   │   ├── alias_notas.sh
+│       │   │   │   ├── backup_and_sync.sh
+│       │   │   │   ├── configurar_entorno_notas.sh
+│       │   │   │   ├── control
+│       │   │   │   ├── crontab.txt
+│       │   │   │   ├── daily_backup.sh
+│       │   │   │   ├── enviar_telegram.sh
+│       │   │   │   ├── get_telegram_chat_id_test.sh
+│       │   │   │   ├── instalar_notas_3.11.sh
+│       │   │   │   ├── logs
+│       │   │   │   ├── notas
+│       │   │   │   ├── nota_texto.sh
+│       │   │   │   ├── nota_voz.sh
+│       │   │   │   ├── respaldo_automatico.sh
+│       │   │   │   ├── resumen_audio.sh
+│       │   │   │   ├── resumen_dia.sh
+│       │   │   │   ├── resumen_proyecto.sh
+│       │   │   │   ├── setup_startup_service.sh
+│       │   │   │   ├── startup_sync.sh
+│       │   │   │   ├── telegram_config.sh
+│       │   │   │   └── tiempos
+│       │   │   ├── notas-inst_1.0_all (copia 1).deb
+│       │   │   ├── notas-inst_1.0_all.deb
+│       │   │   ├── notas-inst_2.6_all.deb
+│       │   │   ├── notas-inst_2.7_all.deb
+│       │   │   ├── notas-inst_2.8_all.deb
+│       │   │   ├── notas-inst_2.9_all.deb
+│       │   │   ├── notas-inst_3.0_all.deb
+│       │   │   ├── notas_instalador (copia 1).tar.gz
+│       │   │   ├── notas_instalador.tar.gz
+│       │   │   ├── notpod_1.7_all.deb
+│       │   │   ├── notpod_1.8_all.deb
+│       │   │   ├── notpod_1.9_all.deb
+│       │   │   ├── notpod_2.3_all.deb
+│       │   │   ├── notpod_2.4_all.deb
+│       │   │   ├── README.md
+│       │   │   ├── README_NotPod_v1.7.md
+│       │   │   ├── README_NotPod_v1.8.md
+│       │   │   ├── README_NotPod_v1.9.md
+│       │   │   └── README_NotPod_v2.3.md
+│       │   ├── instalar_notas.sh
+│       │   ├── logs
+│       │   │   └── notas
+│       │   │       └── 2025-06-06
+│       │   │           └── nota_texto.txt
+│       │   ├── notificaciones
+│       │   │   └── telegram_config.sh
+│       │   ├── scripts_auto_tiempo
+│       │   │   ├── alerta_acumulada.sh
+│       │   │   ├── backup_and_sync.sh
+│       │   │   ├── crontab.txt
+│       │   │   ├── README.md
+│       │   │   └── resumen_audio.sh
+│       │   ├── scripts_auto_tiempo.tar.gz
+│       │   ├── scripts_notas_proyecto
+│       │   │   ├── crontab.txt
+│       │   │   ├── nota_texto.sh
+│       │   │   ├── nota_voz.sh
+│       │   │   ├── resumen_dia.sh
+│       │   │   └── resumen_proyecto.sh
+│       │   ├── setup_startup_service.sh
+│       │   └── sync
+│       │       ├── crontab.txt
+│       │       ├── daily_backup.sh
+│       │       └── startup_sync.sh
+│       ├── restart_stack.sh
+│       ├── restart_tor_onion.sh
+│       ├── simulator_bank
+│       │   ├── chmod_log.txt
+│       │   ├── config
+│       │   │   ├── gunicorn.conf.py
+│       │   │   └── torrc_simulador
+│       │   ├── logs
+│       │   │   ├── gunicorn_access.log
+│       │   │   ├── gunicorn_error.log
+│       │   │   ├── gunicorn.log
+│       │   │   ├── nginx_access.log
+│       │   │   ├── nginx_error.log
+│       │   │   ├── supervisord.log
+│       │   │   ├── supervisord.pid
+│       │   │   ├── supervisord.sock
+│       │   │   ├── supervisor.log
+│       │   │   ├── tor_error.log
+│       │   │   └── tor.log
+│       │   ├── README.md
+│       │   ├── scripts
+│       │   │   ├── env_setup.sh
+│       │   │   ├── ports_stop.sh
+│       │   │   ├── restart_supervisor.sh
+│       │   │   ├── run_simulador.sh
+│       │   │   ├── start_all.sh
+│       │   │   ├── start_stack.sh
+│       │   │   ├── status.sh
+│       │   │   ├── stop_all.sh
+│       │   │   └── test_simulador_curl.sh
+│       │   ├── simulador_banco
+│       │   │   ├── banco
+│       │   │   │   ├── admin.py
+│       │   │   │   ├── api_login.py
+│       │   │   │   ├── __init__.py
+│       │   │   │   ├── models.py
+│       │   │   │   ├── templates
+│       │   │   │   │   └── banco
+│       │   │   │   │       ├── base.html
+│       │   │   │   │       ├── dashboard.html
+│       │   │   │   │       ├── login.html
+│       │   │   │   │       ├── registro.html
+│       │   │   │   │       └── transferencia.html
+│       │   │   │   ├── urls.py
+│       │   │   │   └── views.py
+│       │   │   ├── manage.py
+│       │   │   ├── middleware
+│       │   │   │   ├── allow_internal_network.py
+│       │   │   │   ├── generar_jwt.py
+│       │   │   │   └── jwt_auth.py
+│       │   │   ├── requirements.txt
+│       │   │   └── simulador_banco
+│       │   │       ├── asgi.py
+│       │   │       ├── __init__.py
+│       │   │       ├── settings.py
+│       │   │       ├── urls.py
+│       │   │       └── wsgi.py
+│       │   └── tor_data
+│       │       ├── cached-certs
+│       │       ├── cached-microdesc-consensus
+│       │       ├── cached-microdescs.new
+│       │       ├── hidden_service
+│       │       │   ├── authorized_clients
+│       │       │   ├── hostname
+│       │       │   ├── hs_ed25519_public_key
+│       │       │   └── hs_ed25519_secret_key
+│       │       ├── keys
+│       │       ├── lock
+│       │       └── state
+│       ├── token
+│       │   ├── 0AUTH
+│       │   │   ├── credenciales_oauth2
+│       │   │   │   ├── clave_privada.pem
+│       │   │   │   ├── clave_publica.pem
+│       │   │   │   ├── client_assertion.jwt
+│       │   │   │   ├── firma_log.txt
+│       │   │   │   ├── jwks.json
+│       │   │   │   ├── log.txt
+│       │   │   │   └── resumen.txt
+│       │   │   └── generar_claves_oauth2.py
+│       │   ├── api_db_smart
+│       │   │   ├── api_db_smart_access.py
+│       │   │   ├── ecdsa_private_key.pem
+│       │   │   ├── ecdsa_public_key.pem
+│       │   │   ├── generate_ecdsa_keypair.py
+│       │   │   └── jwks_public.json
+│       │   ├── jwks
+│       │   │   ├── access_token.json
+│       │   │   ├── client_assertion.jwt
+│       │   │   ├── crear_jwks.py
+│       │   │   ├── ejecutar_jwt.sh
+│       │   │   ├── ejecutar_todo.sh
+│       │   │   ├── firmar_jwt_prod.py
+│       │   │   ├── firmar_jwt.py
+│       │   │   ├── jwks_private.json
+│       │   │   ├── jwks_public.json
+│       │   │   ├── print_jwks_public.py
+│       │   │   ├── resultado_jwt.txt
+│       │   │   └── validar_jwt.py
+│       │   ├── pem
+│       │   │   ├── codeS256.py
+│       │   │   ├── codes_s256.txt
+│       │   │   ├── generated_token_jwt.txt
+│       │   │   ├── generated_token_pem.json
+│       │   │   ├── generate_iban.py
+│       │   │   ├── generate_jwt.py
+│       │   │   ├── generate_token.py
+│       │   │   ├── private.pem
+│       │   │   ├── public.pem
+│       │   │   ├── validate_token_db.py
+│       │   │   └── validate_token.py
+│       │   ├── pem_help.txt
+│       │   ├── token.md
+│       │   ├── url_help.md
+│       │   └── URL_TOKEN.md
+│       └── ver_ips.sh
+├── static
+│   ├── css
+│   │   ├── bootstrap.min.css
+│   │   └── styles.css
+│   ├── favicon.ico
+│   ├── images
+│   │   └── background.png
+│   └── js
+│       └── bootstrap.bundle.min.js
+├── staticfiles
+│   ├── admin
+│   │   ├── css
+│   │   │   ├── autocomplete.css
+│   │   │   ├── base.css
+│   │   │   ├── changelists.css
+│   │   │   ├── dark_mode.css
+│   │   │   ├── dashboard.css
+│   │   │   ├── forms.css
+│   │   │   ├── login.css
+│   │   │   ├── nav_sidebar.css
+│   │   │   ├── responsive.css
+│   │   │   ├── responsive_rtl.css
+│   │   │   ├── rtl.css
+│   │   │   ├── unusable_password_field.css
+│   │   │   ├── vendor
+│   │   │   │   └── select2
+│   │   │   │       ├── LICENSE-SELECT2.md
+│   │   │   │       ├── select2.css
+│   │   │   │       └── select2.min.css
+│   │   │   └── widgets.css
+│   │   ├── img
+│   │   │   ├── calendar-icons.svg
+│   │   │   ├── gis
+│   │   │   │   ├── move_vertex_off.svg
+│   │   │   │   └── move_vertex_on.svg
+│   │   │   ├── icon-addlink.svg
+│   │   │   ├── icon-alert.svg
+│   │   │   ├── icon-calendar.svg
+│   │   │   ├── icon-changelink.svg
+│   │   │   ├── icon-clock.svg
+│   │   │   ├── icon-deletelink.svg
+│   │   │   ├── icon-hidelink.svg
+│   │   │   ├── icon-no.svg
+│   │   │   ├── icon-unknown-alt.svg
+│   │   │   ├── icon-unknown.svg
+│   │   │   ├── icon-viewlink.svg
+│   │   │   ├── icon-yes.svg
+│   │   │   ├── inline-delete.svg
+│   │   │   ├── LICENSE
+│   │   │   ├── README.txt
+│   │   │   ├── search.svg
+│   │   │   ├── selector-icons.svg
+│   │   │   ├── sorting-icons.svg
+│   │   │   ├── tooltag-add.svg
+│   │   │   └── tooltag-arrowright.svg
+│   │   └── js
+│   │       ├── actions.js
+│   │       ├── admin
+│   │       │   ├── DateTimeShortcuts.js
+│   │       │   └── RelatedObjectLookups.js
+│   │       ├── autocomplete.js
+│   │       ├── calendar.js
+│   │       ├── cancel.js
+│   │       ├── change_form.js
+│   │       ├── core.js
+│   │       ├── filters.js
+│   │       ├── inlines.js
+│   │       ├── jquery.init.js
+│   │       ├── nav_sidebar.js
+│   │       ├── popup_response.js
+│   │       ├── prepopulate_init.js
+│   │       ├── prepopulate.js
+│   │       ├── SelectBox.js
+│   │       ├── SelectFilter2.js
+│   │       ├── theme.js
+│   │       ├── unusable_password_field.js
+│   │       ├── urlify.js
+│   │       └── vendor
+│   │           ├── jquery
+│   │           │   ├── jquery.js
+│   │           │   ├── jquery.min.js
+│   │           │   └── LICENSE.txt
+│   │           ├── select2
+│   │           │   ├── i18n
+│   │           │   │   ├── af.js
+│   │           │   │   ├── ar.js
+│   │           │   │   ├── az.js
+│   │           │   │   ├── bg.js
+│   │           │   │   ├── bn.js
+│   │           │   │   ├── bs.js
+│   │           │   │   ├── ca.js
+│   │           │   │   ├── cs.js
+│   │           │   │   ├── da.js
+│   │           │   │   ├── de.js
+│   │           │   │   ├── dsb.js
+│   │           │   │   ├── el.js
+│   │           │   │   ├── en.js
+│   │           │   │   ├── es.js
+│   │           │   │   ├── et.js
+│   │           │   │   ├── eu.js
+│   │           │   │   ├── fa.js
+│   │           │   │   ├── fi.js
+│   │           │   │   ├── fr.js
+│   │           │   │   ├── gl.js
+│   │           │   │   ├── he.js
+│   │           │   │   ├── hi.js
+│   │           │   │   ├── hr.js
+│   │           │   │   ├── hsb.js
+│   │           │   │   ├── hu.js
+│   │           │   │   ├── hy.js
+│   │           │   │   ├── id.js
+│   │           │   │   ├── is.js
+│   │           │   │   ├── it.js
+│   │           │   │   ├── ja.js
+│   │           │   │   ├── ka.js
+│   │           │   │   ├── km.js
+│   │           │   │   ├── ko.js
+│   │           │   │   ├── lt.js
+│   │           │   │   ├── lv.js
+│   │           │   │   ├── mk.js
+│   │           │   │   ├── ms.js
+│   │           │   │   ├── nb.js
+│   │           │   │   ├── ne.js
+│   │           │   │   ├── nl.js
+│   │           │   │   ├── pl.js
+│   │           │   │   ├── ps.js
+│   │           │   │   ├── pt-BR.js
+│   │           │   │   ├── pt.js
+│   │           │   │   ├── ro.js
+│   │           │   │   ├── ru.js
+│   │           │   │   ├── sk.js
+│   │           │   │   ├── sl.js
+│   │           │   │   ├── sq.js
+│   │           │   │   ├── sr-Cyrl.js
+│   │           │   │   ├── sr.js
+│   │           │   │   ├── sv.js
+│   │           │   │   ├── th.js
+│   │           │   │   ├── tk.js
+│   │           │   │   ├── tr.js
+│   │           │   │   ├── uk.js
+│   │           │   │   ├── vi.js
+│   │           │   │   ├── zh-CN.js
+│   │           │   │   └── zh-TW.js
+│   │           │   ├── LICENSE.md
+│   │           │   ├── select2.full.js
+│   │           │   └── select2.full.min.js
+│   │           └── xregexp
+│   │               ├── LICENSE.txt
+│   │               ├── xregexp.js
+│   │               └── xregexp.min.js
+│   ├── css
+│   │   ├── bootstrap.min.css
+│   │   └── styles.css
+│   ├── debug_toolbar
+│   │   ├── css
+│   │   │   ├── print.css
+│   │   │   └── toolbar.css
+│   │   └── js
+│   │       ├── history.js
+│   │       ├── redirect.js
+│   │       ├── timer.js
+│   │       ├── toolbar.js
+│   │       └── utils.js
+│   ├── drf-yasg
+│   │   ├── immutable.js
+│   │   ├── immutable.min.js
+│   │   ├── insQ.js
+│   │   ├── insQ.min.js
+│   │   ├── README
+│   │   ├── redoc
+│   │   │   ├── LICENSE
+│   │   │   ├── redoc-logo.png
+│   │   │   ├── redoc.min.js
+│   │   │   └── redoc.standalone.js.map
+│   │   ├── redoc-init.js
+│   │   ├── redoc-old
+│   │   │   ├── LICENSE
+│   │   │   ├── redoc.min.js
+│   │   │   └── redoc.min.js.map
+│   │   ├── style.css
+│   │   ├── swagger-ui-dist
+│   │   │   ├── absolute-path.js
+│   │   │   ├── favicon-32x32.png
+│   │   │   ├── index.css
+│   │   │   ├── index.js
+│   │   │   ├── LICENSE
+│   │   │   ├── NOTICE
+│   │   │   ├── oauth2-redirect.html
+│   │   │   ├── swagger-initializer.js
+│   │   │   ├── swagger-ui-bundle.js
+│   │   │   ├── swagger-ui-bundle.js.map
+│   │   │   ├── swagger-ui.css
+│   │   │   ├── swagger-ui.css.map
+│   │   │   ├── swagger-ui-es-bundle-core.js
+│   │   │   ├── swagger-ui-es-bundle-core.js.map
+│   │   │   ├── swagger-ui-es-bundle.js
+│   │   │   ├── swagger-ui-es-bundle.js.map
+│   │   │   ├── swagger-ui.js.map
+│   │   │   ├── swagger-ui-standalone-preset.js
+│   │   │   └── swagger-ui-standalone-preset.js.map
+│   │   └── swagger-ui-init.js
+│   ├── favicon.ico
+│   ├── images
+│   │   └── background.png
+│   ├── js
+│   │   └── bootstrap.bundle.min.js
+│   └── rest_framework
+│       ├── css
+│       │   ├── bootstrap.min.css
+│       │   ├── bootstrap.min.css.map
+│       │   ├── bootstrap-theme.min.css
+│       │   ├── bootstrap-theme.min.css.map
+│       │   ├── bootstrap-tweaks.css
+│       │   ├── default.css
+│       │   ├── font-awesome-4.0.3.css
+│       │   └── prettify.css
+│       ├── docs
+│       │   ├── css
+│       │   │   ├── base.css
+│       │   │   ├── highlight.css
+│       │   │   └── jquery.json-view.min.css
+│       │   ├── img
+│       │   │   ├── favicon.ico
+│       │   │   └── grid.png
+│       │   └── js
+│       │       ├── api.js
+│       │       ├── highlight.pack.js
+│       │       └── jquery.json-view.min.js
+│       ├── fonts
+│       │   ├── fontawesome-webfont.eot
+│       │   ├── fontawesome-webfont.svg
+│       │   ├── fontawesome-webfont.ttf
+│       │   ├── fontawesome-webfont.woff
+│       │   ├── glyphicons-halflings-regular.eot
+│       │   ├── glyphicons-halflings-regular.svg
+│       │   ├── glyphicons-halflings-regular.ttf
+│       │   ├── glyphicons-halflings-regular.woff
+│       │   └── glyphicons-halflings-regular.woff2
+│       ├── img
+│       │   ├── glyphicons-halflings.png
+│       │   ├── glyphicons-halflings-white.png
+│       │   └── grid.png
+│       └── js
+│           ├── ajax-form.js
+│           ├── bootstrap.min.js
+│           ├── coreapi-0.1.1.js
+│           ├── csrf.js
+│           ├── default.js
+│           ├── jquery-3.7.1.min.js
+│           ├── load-ajax-form.js
+│           └── prettify-min.js
+├── templates
+│   ├── api
+│   │   ├── accounts
+│   │   │   ├── account_confirm_delete.html
+│   │   │   ├── account_form.html
+│   │   │   └── account_list.html
+│   │   ├── claves
+│   │   │   ├── eliminar.html
+│   │   │   ├── formulario.html
+│   │   │   └── lista.html
+│   │   ├── collection
+│   │   │   ├── collection_confirm_delete.html
+│   │   │   ├── collection_form.html
+│   │   │   ├── collection_list.html
+│   │   │   ├── mandate_confirm_delete.html
+│   │   │   ├── mandate_form.html
+│   │   │   └── mandate_list.html
+│   │   ├── configuraciones
+│   │   │   ├── eliminar.html
+│   │   │   ├── formulario.html
+│   │   │   └── lista.html
+│   │   ├── core
+│   │   │   ├── core_model_confirm_delete.html
+│   │   │   ├── core_model_form.html
+│   │   │   ├── core_model_list.html
+│   │   │   ├── debtor_confirm_delete.html
+│   │   │   ├── debtor_form.html
+│   │   │   ├── debtor_list.html
+│   │   │   ├── iban_confirm_delete.html
+│   │   │   ├── iban_form.html
+│   │   │   └── iban_list.html
+│   │   ├── extras
+│   │   │   ├── diagnostico_banco.html
+│   │   │   └── transfer_form.html
+│   │   ├── GPT
+│   │   │   ├── account_list.html
+│   │   │   ├── amount_list.html
+│   │   │   ├── cancel_success.html
+│   │   │   ├── create_account.html
+│   │   │   ├── create_amount.html
+│   │   │   ├── create_creditor.html
+│   │   │   ├── create_debtor.html
+│   │   │   ├── create_financial_institution.html
+│   │   │   ├── create_party.html
+│   │   │   ├── create_payment_identification.html
+│   │   │   ├── create_postal_address.html
+│   │   │   ├── creditor_list.html
+│   │   │   ├── debtor_list.html
+│   │   │   ├── financial_institution_list.html
+│   │   │   ├── initiate_transfer.html
+│   │   │   ├── postal_address_list.html
+│   │   │   ├── retry_success.html
+│   │   │   ├── transfer_list.html
+│   │   │   ├── transfer_status.html
+│   │   │   └── transfer_success.html
+│   │   ├── GPT3
+│   │   │   ├── account_list.html
+│   │   │   ├── amount_list.html
+│   │   │   ├── cancel_success.html
+│   │   │   ├── crear_bulk.html
+│   │   │   ├── crear_transferencia copy.html
+│   │   │   ├── crear_transferencia.html
+│   │   │   ├── create_account.html
+│   │   │   ├── create_amount.html
+│   │   │   ├── create_creditor.html
+│   │   │   ├── create_debtor.html
+│   │   │   ├── create_financial_institution.html
+│   │   │   ├── create_postal_address.html
+│   │   │   ├── creditor_list.html
+│   │   │   ├── debtor_list.html
+│   │   │   ├── detalle_bulk.html
+│   │   │   ├── detalle_transferencia.html
+│   │   │   ├── estado_bulk_success.html
+│   │   │   ├── financial_institution_list.html
+│   │   │   ├── listar_bulk.html
+│   │   │   ├── listar_transferencias.html
+│   │   │   ├── postal_address_list.html
+│   │   │   └── send_bulk_success.html
+│   │   ├── GPT4
+│   │   │   ├── create_clientid.html
+│   │   │   ├── create_creditor_account.html
+│   │   │   ├── create_creditor_agent.html
+│   │   │   ├── create_creditor.html
+│   │   │   ├── create_debtor_account.html
+│   │   │   ├── create_debtor.html
+│   │   │   ├── create_kid.html
+│   │   │   ├── create_transfer.html
+│   │   │   ├── edit_transfer copy 2.html
+│   │   │   ├── edit_transfer copy.html
+│   │   │   ├── edit_transfer.html
+│   │   │   ├── list_creditor_accounts.html
+│   │   │   ├── list_creditor_agents.html
+│   │   │   ├── list_creditors.html
+│   │   │   ├── list_debtor_accounts.html
+│   │   │   ├── list_debtor.html
+│   │   │   ├── list_logs.html
+│   │   │   ├── list_transfer.html
+│   │   │   ├── oauth2_authorize2.html
+│   │   │   ├── oauth2_authorize copy 2.html
+│   │   │   ├── oauth2_authorize.html
+│   │   │   ├── oauth2_callback.html
+│   │   │   ├── send_transfer_conexion.html
+│   │   │   ├── send_transfer copy 2.html
+│   │   │   ├── send_transfer copy 3.html
+│   │   │   ├── send_transfer copy.html
+│   │   │   ├── send_transfer.html
+│   │   │   ├── send_transfer_simulator.html
+│   │   │   ├── transfer_detail1.html
+│   │   │   ├── transfer_detail copy.html
+│   │   │   ├── transfer_detail.html
+│   │   │   ├── transfer_sca.html
+│   │   │   └── transfer_send_conexion.html
+│   │   ├── sandbox
+│   │   │   ├── incomingcollection_form.html
+│   │   │   └── incomingcollection_list.html
+│   │   ├── SCT
+│   │   │   ├── cancel_success.html
+│   │   │   ├── create_account.html
+│   │   │   ├── create_address.html
+│   │   │   ├── create_creditor_agent.html
+│   │   │   ├── create_creditor.html
+│   │   │   ├── create_debtor.html
+│   │   │   ├── create_instructed_amount.html
+│   │   │   ├── initiate_transfer.html
+│   │   │   ├── sct_list5.html
+│   │   │   ├── sct_proc5.html
+│   │   │   ├── sct_send5.html
+│   │   │   ├── sct_upda5.html
+│   │   │   ├── transfer_confirm_delete.html
+│   │   │   ├── transfer_form.html
+│   │   │   ├── transfer_list2.html
+│   │   │   ├── transfer_list.html
+│   │   │   ├── transfer_status.html
+│   │   │   └── transfer_success.html
+│   │   ├── SEPA
+│   │   │   ├── transfer_confirm_delete.html
+│   │   │   ├── transfer_form.html
+│   │   │   └── transfer_list.html
+│   │   ├── sepa_payment
+│   │   │   ├── list_transfers.html
+│   │   │   ├── status.html
+│   │   │   └── transfer.html
+│   │   ├── transactions
+│   │   │   ├── transaction_confirm_delete.html
+│   │   │   ├── transaction_detail.html
+│   │   │   ├── transaction_form.html
+│   │   │   └── transaction_list.html
+│   │   └── transfers
+│   │       ├── sepa_transaction_form.html
+│   │       ├── sepa_transaction_list.html
+│   │       ├── sepa_transfer_form.html
+│   │       ├── transfer_confirm_delete.html
+│   │       ├── transfer_form.html
+│   │       └── transfer_list.html
+│   ├── base copy.html
+│   ├── base.html
+│   ├── dashboard copy 2.html
+│   ├── dashboard copy 3.html
+│   ├── dashboard copy 4.html
+│   ├── dashboard copy 5.html
+│   ├── dashboard copy.html
+│   ├── dashboard.html
+│   ├── ebics_table.html
+│   ├── forms
+│   │   ├── base_confirm_delete.html
+│   │   ├── base_form.html
+│   │   └── base_list.html
+│   ├── home.html
+│   ├── layout.html
+│   ├── login copy.html
+│   ├── login.html
+│   ├── partials
+│   │   ├── footer.html
+│   │   ├── header.html
+│   │   ├── navGeneral
+│   │   │   ├── accounts
+│   │   │   │   └── index.html
+│   │   │   ├── auth
+│   │   │   │   └── index.html
+│   │   │   ├── collection
+│   │   │   │   └── index.html
+│   │   │   ├── core
+│   │   │   │   └── index.html
+│   │   │   ├── sct
+│   │   │   │   └── index.html
+│   │   │   ├── sepa_payment
+│   │   │   │   └── index.html
+│   │   │   ├── transactions
+│   │   │   │   └── index.html
+│   │   │   └── transfers
+│   │   │       └── index.html
+│   │   ├── navGeneral2.html
+│   │   ├── navGeneral copy.html
+│   │   ├── navGeneralFuncional.html
+│   │   └── navGeneral.html
+│   ├── readme copy.html
+│   ├── readme.html
+│   └── signup.html
+└── upload_env_to_postgres.sh
+
+233 directories, 1314 files

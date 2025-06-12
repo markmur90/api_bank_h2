@@ -323,3 +323,50 @@ total size is 343.849.125  speedup is 83,63
 🧹 [HK] Eliminando patrones excluidos en VPS...
 🗑 [HK] Borrando: *.zip
 🔄 [HK] Iniciando rsync local→VPS...
+sending incremental file list
+api/
+api/authentication/
+api/authentication/migrations/
+api/authentication/migrations/0001_initial.py
+api/configuraciones_api/
+api/configuraciones_api/migrations/
+api/configuraciones_api/migrations/0001_initial.py
+api/core/
+api/core/migrations/
+api/core/migrations/0001_initial.py
+api/core/templatetags/
+api/gpt3/
+api/gpt3/migrations/
+api/gpt3/migrations/0001_initial.py
+api/gpt4/
+api/gpt4/forms.py
+api/gpt4/urls.py
+api/gpt4/views.py
+api/gpt4/migrations/
+api/gpt4/migrations/0001_initial.py
+api/transactions/
+api/transfers/
+api/transfers/migrations/
+api/transfers/migrations/0001_initial.py
+config/
+config/settings/
+config/settings/__init__.py
+middleware/
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/despliegue/00_21_local_ssl.log
+scripts/logs/despliegue/00_21_local_ssl_.log
+scripts/logs/sync/
+scripts/logs/sync/20250612_013925_sync.log
+
+sent 49.343 bytes  received 40.166 bytes  13.770,62 bytes/sec
+total size is 245.083.821  speedup is 2.738,09
+✅ [HK] Sincronización completada.
+📡 Ejecutando comandos remotos en el VPS...
+🎉 Todo listo, sincronizaciones y despliegue en VPS finalizados.
