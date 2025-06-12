@@ -1,0 +1,575 @@
+📂 Proyecto: /home/markmur88/Documentos/GitHub/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: .zip
+🔄 Iniciando sincronización...
+sending incremental file list
+deleting .git/refs/tags/
+deleting .git/refs/remotes/origin/api-bank
+deleting .git/refs/remotes/origin/
+deleting .git/refs/remotes/
+deleting .git/refs/heads/api-bank
+deleting .git/refs/heads/
+deleting .git/refs/
+deleting .git/objects/pack/pack-d7f44fd9f20d9a5a896b099e27f5c41a62c0377a.pack
+deleting .git/objects/pack/pack-d7f44fd9f20d9a5a896b099e27f5c41a62c0377a.idx
+deleting .git/objects/pack/
+deleting .git/objects/info/
+deleting .git/objects/ff/316b4fceadaa8958348d7059d6b3cb94360957
+deleting .git/objects/ff/
+deleting .git/objects/fe/cb11be0d9838c64d2c06dfe3b8c268e8ac2b93
+deleting .git/objects/fe/
+deleting .git/objects/fc/f675435c38fdcdab2acf2528988ff59f06dc54
+deleting .git/objects/fc/a68ea45cc0dee68ff96c9698e53d5b5062c0f9
+deleting .git/objects/fc/
+deleting .git/objects/fb/b798822e15b368396890d99fe64ff03aeb5aab
+deleting .git/objects/fb/
+deleting .git/objects/fa/08302820c22bb07c1452f1c9cc1bac0ae386de
+deleting .git/objects/fa/
+deleting .git/objects/f9/bf1d14b87429bdd3028a8822bbcf91ba9be5dd
+deleting .git/objects/f9/889277b3ac720207be628a4487baf32370db8b
+deleting .git/objects/f9/
+deleting .git/objects/f7/eae7ec19aace41ccc0ca1c946c4de3477c7e97
+deleting .git/objects/f7/b3da58cda0f64d7610e6b94d383a3e2707774f
+deleting .git/objects/f7/23e3c2cc475ffa393f067c6e7648599b26d9a1
+deleting .git/objects/f7/
+deleting .git/objects/f6/0e30256518455e4d71729c552f93c9c3010ba4
+deleting .git/objects/f6/
+deleting .git/objects/f4/de92877c709f0b9539b0e877b7261a0e0f7c2e
+deleting .git/objects/f4/ca3bbfe0fe746906dc5438c6ddd3e38c01a8b7
+deleting .git/objects/f4/22723f19d7817e61a0b1acd041b3ebccb39d6d
+deleting .git/objects/f4/183a13617b58d21ab51cd670b497114f08ce82
+deleting .git/objects/f4/
+deleting .git/objects/f3/ec0cecb6206a074c9b098ddb5890c28fe568c2
+deleting .git/objects/f3/c849d1629a270c86deede83a714e2b9d31f762
+deleting .git/objects/f3/
+deleting .git/objects/f1/4b801cd7017f6047b6c8fe52ee1ce3ce8e6af3
+deleting .git/objects/f1/1f8523b2d6b3e1619fa4a0e446378c41db107b
+deleting .git/objects/f1/
+deleting .git/objects/f0/e068d5546d4e247bbc55c77e5916bb48488ca4
+deleting .git/objects/f0/4412e2e3376f9454bd086da2f516bf6e4ca8bc
+deleting .git/objects/f0/0d203ef85457234b9c060f928847e23b5c69b4
+deleting .git/objects/f0/
+deleting .git/objects/ee/d7f834c3b1a3e0d3b474ab696adc0f92da072d
+deleting .git/objects/ee/af0960459a4a7941c5e89d9fc1b1dd247b66da
+deleting .git/objects/ee/93772eb7009a3a84e2818772b950f8a0e6106f
+deleting .git/objects/ee/
+deleting .git/objects/ec/c3c9d36a2a05de8e9f6a680e50c19e6f3919fa
+deleting .git/objects/ec/
+deleting .git/objects/eb/3529fc38b807fd3c1c719eda900ff8c8a2c003
+deleting .git/objects/eb/2aa2e2aa216588dcc0d47c0e299c13f2f30958
+deleting .git/objects/eb/
+deleting .git/objects/e9/f568d995cc20c05e1fe08d79cf625490cb8d71
+deleting .git/objects/e9/
+deleting .git/objects/e8/84b720d4a5b2626b9654b76138fbc4c3f049b5
+deleting .git/objects/e8/
+deleting .git/objects/e6/44557029e4d7262194090ea2aa7e70781206a8
+deleting .git/objects/e6/
+deleting .git/objects/e5/f33bff1088407d89a30e867f03c7be63272856
+deleting .git/objects/e5/
+deleting .git/objects/e3/c59fbeeb2563b963e8e1213ae86c6e84bf4f4b
+deleting .git/objects/e3/
+deleting .git/objects/e1/bd3f1544916e6a006e580f8d17319c4eadafbe
+deleting .git/objects/e1/
+deleting .git/objects/e0/513cbdd348f6e4dabe6d43d011990deda84cf5
+deleting .git/objects/e0/
+deleting .git/objects/df/4aed0892372f8036fbf2eeb626cf41b4cfffea
+deleting .git/objects/df/165dc651c076fbd21093bdf80bde8d9d18a45c
+deleting .git/objects/df/
+deleting .git/objects/de/bd2395d87052931dff2d51a8cadd22c9b564ee
+deleting .git/objects/de/
+deleting .git/objects/dd/1f1b2ec75aef07db1d8beb8d2bc02b81aa2f79
+deleting .git/objects/dd/
+deleting .git/objects/dc/4b953141ff5cd638b57b1e84abef4f72e52a19
+deleting .git/objects/dc/
+deleting .git/objects/db/7b5697e77d219b9acccc658614dfbf0e0505fe
+deleting .git/objects/db/722e178a6dccfaa3579997235d6cf21124668e
+deleting .git/objects/db/
+deleting .git/objects/da/c4124eb96b1011fb40dd1d9debe7e5aa275c17
+deleting .git/objects/da/
+deleting .git/objects/d7/f2187195414baff2b5137092b4fc78ee5b8a30
+deleting .git/objects/d7/
+deleting .git/objects/d6/4e0e911b57ebed960f181e973fff116f8b2c19
+deleting .git/objects/d6/
+deleting .git/objects/d5/e6e7c881569ba85ae537fcaaac91e3cf8ae47c
+deleting .git/objects/d5/b26bf0503b9c09bd6bc2da7e2c3a4e73710b0b
+deleting .git/objects/d5/017e16b612af07a7d914792a108f7e080ec338
+deleting .git/objects/d5/
+deleting .git/objects/d2/e47555f965d26ee9f4ae2f5170ae5c236b5e19
+deleting .git/objects/d2/859bcb24369281dce0cdc6fdf5b6af3d2771a1
+deleting .git/objects/d2/
+deleting .git/objects/d1/efdb7d89186c117dbe67018193ec7ed8b3a026
+deleting .git/objects/d1/
+deleting .git/objects/d0/bf29ac47be619c686fc9a2aaccb3a7f33af254
+deleting .git/objects/d0/
+deleting .git/objects/ce/4f75b5f7c84ce50247d9ac33cd5ca8dced3cc4
+deleting .git/objects/ce/
+deleting .git/objects/cd/e70fe661c212da4d1c9e0d741f20514547cbf9
+deleting .git/objects/cd/abaa8535eb5e8915de4e44d38653c86a3d7ed5
+deleting .git/objects/cd/
+deleting .git/objects/cb/ea32ac94f7e472f32cb89469372c27e5757bbe
+deleting .git/objects/cb/e5ea7dc84904313d143339d4e3e120023e06d6
+deleting .git/objects/cb/71a8c99ac10d1368dd8144519c4b9df5ef826a
+deleting .git/objects/cb/
+deleting .git/objects/c9/d726b2fe097cb8b1ec2e4106ed06f55dff3fc1
+deleting .git/objects/c9/457e664422bdcc3f9da3cc14996c83052cb73c
+deleting .git/objects/c9/
+deleting .git/objects/c7/ca2f3d4775b43dc60ade6f942f4de58b55ae6d
+deleting .git/objects/c7/76f6818fc0fe9722ed3367a92b1effd0735b3e
+deleting .git/objects/c7/53b56ee3707e8fba004a92cfea2fb0f3434ee2
+deleting .git/objects/c7/1915d2f61975858ebd5c8e29c7d3cd764e1c9f
+deleting .git/objects/c7/
+deleting .git/objects/c5/7235d01faec0f55b8ab85927b93670346a05ef
+deleting .git/objects/c5/
+deleting .git/objects/c4/f2a33ade01ded38aacb0b2c6976d6034fede1a
+deleting .git/objects/c4/
+deleting .git/objects/c2/d64ba294761f78b94829134e8e6e86c3478564
+deleting .git/objects/c2/af65ef051522b28acd3ddd813c515d8b9fc033
+deleting .git/objects/c2/0ed49d6819fff0159346269342efe8aea589cb
+deleting .git/objects/c2/
+deleting .git/objects/c1/b67fcac546964db3a9ef4253ca71f8f0a6fa2c
+deleting .git/objects/c1/670b12cc35ad6a58fc0ed500d711ee624100ce
+deleting .git/objects/c1/
+deleting .git/objects/bf/94ee77c3eb276baffb297bdab1ec4b4bb9e2ed
+deleting .git/objects/bf/
+deleting .git/objects/be/ec73872a368dc165892726df78dd47489c4920
+deleting .git/objects/be/3d2f38ed80e1ea54a2bfc4b9e4d1cefffa2e15
+deleting .git/objects/be/
+deleting .git/objects/bd/4eb6c98c47d4bf63c0081a11b2f3beee7a8b57
+deleting .git/objects/bd/12b9de8eb1bda85bcf876f72f3e0fe98fc61f7
+deleting .git/objects/bd/
+deleting .git/objects/bb/76a1e1b9f9b113a32e17a57355f43d27737d28
+deleting .git/objects/bb/
+deleting .git/objects/ba/8b192287e37822bf14dfedd8f23869df0b88f7
+deleting .git/objects/ba/
+deleting .git/objects/b8/45f8fd99fd4dcd7175fdf28ceb3fa04b19f69e
+deleting .git/objects/b8/
+deleting .git/objects/b6/709870065b21643858af6fd1a6d00b9ddbe4f8
+deleting .git/objects/b6/
+deleting .git/objects/b4/d4548a92f9a3e8ef841f5283d42ab8074e7ae7
+deleting .git/objects/b4/
+deleting .git/objects/b2/274fbb640097f0b04d76aa16f9c7331e4e6e8f
+deleting .git/objects/b2/1851901d4ba30cc6bf0417b35ead8043b92981
+deleting .git/objects/b2/0957d16817cf6dadc7ac499511f7c897131616
+deleting .git/objects/b2/
+deleting .git/objects/b0/007c1f637e083b506a43b613c22c007df68629
+deleting .git/objects/b0/
+deleting .git/objects/af/f827feba5a1b9201f1b68336460631d02c5130
+deleting .git/objects/af/4a1929d9123dcac07c49708945b8751c37fdee
+deleting .git/objects/af/
+deleting .git/objects/ae/923e9b6e5b4c689b473087e8ffe8c03a77a6ff
+deleting .git/objects/ae/636173528c480050f2878ae81c70c1419e91dd
+deleting .git/objects/ae/
+deleting .git/objects/ad/bd59f6e7179b5ca1c07eadc3bab093bcb8e6ac
+deleting .git/objects/ad/
+deleting .git/objects/ab/6698dd099c1ba0469f366196ec7271453ad3d8
+deleting .git/objects/ab/
+deleting .git/objects/aa/fe8f8578933dc270be2ce3aaa8e565616b7022
+deleting .git/objects/aa/49585e58ea50b556b691b16b69faefcd51b001
+deleting .git/objects/aa/
+deleting .git/objects/a9/ed3ee95a5f5ee2964d4ce4c9b1720e11c1d8fb
+deleting .git/objects/a9/08a4f132c152a315d8a427af0bf82ee71b9787
+deleting .git/objects/a9/
+deleting .git/objects/a8/fde24427763bc5037c210ddc0e95f9f6d97ecd
+deleting .git/objects/a8/
+deleting .git/objects/a7/fc1c765b5e5aa3d9fe1e12823c3fbf702c6e89
+deleting .git/objects/a7/
+deleting .git/objects/a5/7853470e12fd7180e653c13c8fc46819d7c2be
+deleting .git/objects/a5/
+deleting .git/objects/a3/70c53cf626c20b6d85314ff683ea62bbe772b0
+deleting .git/objects/a3/
+deleting .git/objects/a2/f402d4c7fd25233a23f7a921ae45565185eead
+deleting .git/objects/a2/f3b332ae2a5880cd2eb6cee86cdb192a0eb3fc
+deleting .git/objects/a2/c3639bfc51cac64568bfb4fb68e882124332af
+deleting .git/objects/a2/
+deleting .git/objects/9f/689b777659af5238cc2268bac8dcdaaaad3bdc
+deleting .git/objects/9f/
+deleting .git/objects/9e/be6705636ccd0755e8c98544b5bd8ae6bd9566
+deleting .git/objects/9e/
+deleting .git/objects/9c/dea016b2951a5b74fa2f30337b006c65f8e511
+deleting .git/objects/9c/1fd3f2e4637d4ec268826b58966a4156bc9b6a
+deleting .git/objects/9c/
+deleting .git/objects/99/d57844ff66ce27f0b4d1d53ad5c3e4febfa215
+deleting .git/objects/99/
+deleting .git/objects/98/3667c0d77f4ef61d7311c109fb76c2ca443965
+deleting .git/objects/98/
+deleting .git/objects/95/fd3139191d55321f81434bf46b2b32fae7adda
+deleting .git/objects/95/
+deleting .git/objects/94/fdd02a7ad9af12733b6947adbf5f9129806760
+deleting .git/objects/94/2d656b75fc55945550f5c29d8c3760156d02ee
+deleting .git/objects/94/
+deleting .git/objects/93/d3674692b7381e51f359c27eb876cc067430c7
+deleting .git/objects/93/
+deleting .git/objects/92/eb3adee0ec9689d5e7e9c629265c920079d802
+deleting .git/objects/92/c6f15850b921ca309e96014929f6b70cbe5423
+deleting .git/objects/92/
+deleting .git/objects/91/c36fb764cb23d44fd42d5d1ec047839335d5af
+deleting .git/objects/91/
+deleting .git/objects/8d/7b4425c90d849453b5536cd061536e6117946b
+deleting .git/objects/8d/38967db40107e2f7214a023ede06b10c34b800
+deleting .git/objects/8d/
+deleting .git/objects/8c/9bfc84cac769b086b1fa2dc682a146e2d9144e
+deleting .git/objects/8c/
+deleting .git/objects/8a/a8da8169021e2daecd10d293dab9e58b874b60
+deleting .git/objects/8a/238d7d74537da12e7d8386197b7358cf1da4b7
+deleting .git/objects/8a/
+deleting .git/objects/88/74071641b09fbf75bf1d3b7d3a0d7b5e4f7713
+deleting .git/objects/88/
+deleting .git/objects/87/ce765be38a2e08f2991109bff6ddd5dad53555
+deleting .git/objects/87/6703002b04e5d41a1131487af6e2087396eca2
+deleting .git/objects/87/
+deleting .git/objects/86/4e1240cc45812cfddbebb1c15ab0734bef08d4
+deleting .git/objects/86/0c40c9972dd1e34b6e946863d3c7de8bf51a85
+deleting .git/objects/86/
+deleting .git/objects/85/41e279b717027e54648cc0fffbbc4735e81a77
+deleting .git/objects/85/
+deleting .git/objects/84/1da65dbf78b6d8a955ba2e8f1efe025521f88d
+deleting .git/objects/84/
+deleting .git/objects/82/377759eeff4b72cc6a23ba28f36e2456724200
+deleting .git/objects/82/
+deleting .git/objects/81/fa1db34342cf01309e591a836e1359b3465a85
+deleting .git/objects/81/e89c8824f75a8758aa045082ff8ee36aa888f8
+deleting .git/objects/81/78fe2902672d079bca600446e2fa8c1bc2aedc
+deleting .git/objects/81/
+deleting .git/objects/7a/ca01a5b58f3321f3b879c1b26df79dce192d29
+deleting .git/objects/7a/bd199b874628683863ba728791521a593b78d9
+deleting .git/objects/7a/b8784cec27a3c7ba8c8f613d44bc2cd32c304b
+deleting .git/objects/7a/
+deleting .git/objects/79/1f9788a2e8745d90eda97e045edb03cc4ca811
+deleting .git/objects/79/
+deleting .git/objects/78/32cc345b44819e4afcc982e5137c3174c99953
+deleting .git/objects/78/
+deleting .git/objects/77/bab68c676889449c6bbb64609e42bfefd57a64
+deleting .git/objects/77/5be5b34dadd37f623899631f1fdeca634b22b5
+deleting .git/objects/77/0ec241eaa5159a6b1aa6613546f616ccd75a94
+deleting .git/objects/77/
+deleting .git/objects/76/476b62328d2480743f619d62509316c2ed73f9
+deleting .git/objects/76/
+deleting .git/objects/74/b3951702424efda060f037bb7899b633177b7f
+deleting .git/objects/74/3054f4890ed7e798f8f6ba916154ef86226e4d
+deleting .git/objects/74/
+deleting .git/objects/73/21d0c1cf606d3ce59f0763d54ecbb7576a4c5f
+deleting .git/objects/73/
+deleting .git/objects/70/42dfe18c3025b778d2dc8890703a75d328cb61
+deleting .git/objects/70/
+deleting .git/objects/6e/6428ad29375578c153ffe93a28312287291b0d
+deleting .git/objects/6e/0660ba1ee1e053618d9df7fc0ba928f56396a2
+deleting .git/objects/6e/
+deleting .git/objects/6d/a96def7915b77f62b1a2a8d71e7cd6cbb1db21
+deleting .git/objects/6d/86e0d7cda96723f327add9bc09f0bf4a183a0f
+deleting .git/objects/6d/6281121c69f2b93fa2260d328be37f37db0be7
+deleting .git/objects/6d/
+deleting .git/objects/6c/93d654b27d8171d66dcf68428032e5c39d8696
+deleting .git/objects/6c/80f122b1e79729422e7dceaece9e0fbbed9ecf
+deleting .git/objects/6c/70cde5f4958165e1438c3c49874ca2ac6ab5f1
+deleting .git/objects/6c/
+deleting .git/objects/6b/8bf17b9bb10b2f466d3ff51cf1fc078a50cf1e
+deleting .git/objects/6b/
+deleting .git/objects/69/a1689d148fab42b6c3ea7218d428ba15bab225
+deleting .git/objects/69/4b8935faef4e60c06d13b18218a9b2cce55707
+deleting .git/objects/69/
+deleting .git/objects/66/3b712a3b459d0d0410fec62274f8f2aabfa819
+deleting .git/objects/66/0ea2a7007f73329162441d5d0d5e6152112e22
+deleting .git/objects/66/
+deleting .git/objects/65/3b04604eca428ef06c16a23c1d1679c683ad6b
+deleting .git/objects/65/
+deleting .git/objects/63/85fac73f3a54eea89be59dfd927b245e20013b
+deleting .git/objects/63/
+deleting .git/objects/61/913062ea0c9b129e313cd16c04505015a3c122
+deleting .git/objects/61/
+deleting .git/objects/60/e0bff46531ac6a028f46b34bdc2a8a8f019871
+deleting .git/objects/60/872ccc64151a6029d8e346c28149d60033234b
+deleting .git/objects/60/
+deleting .git/objects/5e/efd1b3de4dabffd5d53cdc2630118926b7848f
+deleting .git/objects/5e/bd3e6d68fe54f663281a718cd7bb4b8ca1a205
+deleting .git/objects/5e/3574dfcc1b38d532197fe998a77be291634664
+deleting .git/objects/5e/
+deleting .git/objects/5a/8e78f316aeabd2866a13f231b833fbf63065fd
+deleting .git/objects/5a/
+deleting .git/objects/59/fbafe59a98851ff43922c37f183c7a223ee7a0
+deleting .git/objects/59/f7ece6ac694852243a29593ea92b2999c620f0
+deleting .git/objects/59/
+deleting .git/objects/58/8828015cc08172a71bcbd9b58dd29ddc84b0e9
+deleting .git/objects/58/6d1b0d322310974f206209410930b7149a55b3
+deleting .git/objects/58/2559278fcec28a11f4312fc15983707ab298f2
+deleting .git/objects/58/20a9a5d3a38a335617f563e49e18a675b25877
+deleting .git/objects/58/
+deleting .git/objects/57/be128c677ba36cbeef4064816842b728c643b5
+deleting .git/objects/57/182c611081a97b737912abee7310752032c8ba
+deleting .git/objects/57/
+deleting .git/objects/56/0e530b953e59f98b4acdb28e9d07c2ccbae997
+deleting .git/objects/56/
+deleting .git/objects/53/663fb3d43715010affa622bf341f957418e9a1
+deleting .git/objects/53/
+deleting .git/objects/52/4d462a6556bd63797a0e5a26be2575169ec833
+deleting .git/objects/52/
+deleting .git/objects/50/b79069c2c620c68cd261eb7f71cbf686b58722
+deleting .git/objects/50/
+deleting .git/objects/4f/b6a8407fa46c702b2401db40edba44e17765e1
+deleting .git/objects/4f/
+deleting .git/objects/4e/c7105c05e5c0be9dcaa7cf8a8694e3494307ad
+deleting .git/objects/4e/ba0d23eaeb300dab1cb5dacef00320e23bf59c
+deleting .git/objects/4e/5697ffef8dfbc7851fb0698cde0d1fd973f418
+deleting .git/objects/4e/
+deleting .git/objects/4c/6d2f6ab1ca7571ce379a06ce14938d45c3651f
+deleting .git/objects/4c/
+deleting .git/objects/4a/08d279cd3b594c9593d416ab8ac553d1eb61cf
+deleting .git/objects/4a/
+deleting .git/objects/49/14b489d6409acebb80b7aecf73c9663919eb9d
+deleting .git/objects/49/02676ffa1a6cf8c96d24dc3f8b716b90ff551b
+deleting .git/objects/49/
+deleting .git/objects/48/56b8f6e48ba98f0be53906bec0b75ed60c7855
+deleting .git/objects/48/
+deleting .git/objects/45/457f38224e5eddc38a58fa078f6214bdf14970
+deleting .git/objects/45/
+deleting .git/objects/43/44c01af1f4b49cb334c8be5ca2827a648c007b
+deleting .git/objects/43/3996a24d37452d94571c4c794c5ea188dbc064
+deleting .git/objects/43/
+deleting .git/objects/42/94f760cf0a1959dc93882c11b7f14b69714243
+deleting .git/objects/42/
+deleting .git/objects/41/3efea8a8b28ad7556efdf52d8421cd03efabee
+deleting .git/objects/41/38f8b055c143905b4a5f808643274cef39a71e
+deleting .git/objects/41/
+deleting .git/objects/3f/f5adb1fccb5747851b2156c39e197cacf1df8e
+deleting .git/objects/3f/
+deleting .git/objects/3d/df648c7e2c42e3d594b791d85540224972d39f
+deleting .git/objects/3d/90c3aafb907b518f2dee7e40a758e9927dd1f7
+deleting .git/objects/3d/
+deleting .git/objects/3c/4b3cd81780b753340fc3cfdd4a0b333611629c
+deleting .git/objects/3c/2cfe393baae341c03f3bc0e31fb1372246cd7b
+deleting .git/objects/3c/
+deleting .git/objects/3b/b350a52a140cb71c8197d792199fa3c80fff46
+deleting .git/objects/3b/
+deleting .git/objects/3a/d8a529b15fc4404957b213a6c69634a8fbf229
+deleting .git/objects/3a/
+deleting .git/objects/39/62d6cf46fcb76bc09fc069133bfb2bbdbe0701
+deleting .git/objects/39/
+deleting .git/objects/38/f47e5f742f1f0195cf0c5dabbc5f043eea790f
+deleting .git/objects/38/
+deleting .git/objects/35/7d8216e83b92d6a52f2bbd4616dec882e7802b
+deleting .git/objects/35/
+deleting .git/objects/34/8e59cacceb0b8da2e04aebb6fcb8839a2e6830
+deleting .git/objects/34/523985a5ff27dc0b916cba3c5c3714b898709c
+deleting .git/objects/34/
+deleting .git/objects/33/e64c43ae6cc7b020473f9af0267f38a99eb3fd
+deleting .git/objects/33/4f3691e3e89c9c6e4b247471842dac618c8734
+deleting .git/objects/33/
+deleting .git/objects/32/37269bf7fc4a42f3d73f11bc493dcc2cc4999e
+deleting .git/objects/32/
+deleting .git/objects/31/94a473877462f697207b274330d3d33cfedc90
+deleting .git/objects/31/
+deleting .git/objects/2f/6ebe852bf680d6037de29974d2e415bb4ac333
+deleting .git/objects/2f/56adc29e45c68eb46d591924f6ad8259890952
+deleting .git/objects/2f/
+deleting .git/objects/2e/eaf82dbc31c7e386144cb56ca981c935f99d2d
+deleting .git/objects/2e/daa1571f61cb4ffe155a3a1a835354f9a5f1d3
+deleting .git/objects/2e/d8fa096e3d41240fb3b4431c33f3016da036d1
+deleting .git/objects/2e/ce66fc513275ecf3e39e980cfe8781785cadc6
+deleting .git/objects/2e/
+deleting .git/objects/2c/f8d18dcf5c70719382bf60e492e63b3e042766
+deleting .git/objects/2c/786e247cf0eaced5ef04333e350d261e91bd0d
+deleting .git/objects/2c/6cab34233808814fe5429ae3ee590e52a8f30b
+deleting .git/objects/2c/11f030b880675d4a30af53180afc0eb131a726
+deleting .git/objects/2c/
+deleting .git/objects/2b/7f6687647cc1585d498e3d72cf635c187b7a4e
+deleting .git/objects/2b/
+deleting .git/objects/2a/904b185b42876a3c3b521bafd4011d43906e7f
+deleting .git/objects/2a/
+deleting .git/objects/29/bb73f63a154c9dfccb91660413babfb0443a57
+deleting .git/objects/29/
+deleting .git/objects/28/0a13e30024ac6569d49051425987f8d8efdfcc
+deleting .git/objects/28/
+deleting .git/objects/25/71e8edba4590b5f314c8900ab3a046df249423
+deleting .git/objects/25/
+deleting .git/objects/23/e8a6f32b9d765b2ddb31cc509ffbfe1051e959
+deleting .git/objects/23/08b7bd06b54550f25fe06163b05287c87826df
+deleting .git/objects/23/
+deleting .git/objects/20/d5e093b44c4131f54b59ca3ae25132a1c5e352
+deleting .git/objects/20/9899209b5ae219c8e97bea395e094cc5c1a402
+deleting .git/objects/20/
+deleting .git/objects/1f/68c7dec552e10e1aa85be0318c565de1e7cf53
+deleting .git/objects/1f/
+deleting .git/objects/1e/0036c1cdb561c8de067d3b89c50156c37c9d95
+deleting .git/objects/1e/
+deleting .git/objects/1b/21ed634b7a3b419e8dd01fec2c8d066409fb80
+deleting .git/objects/1b/
+deleting .git/objects/1a/8659b6939b72a2784847c27089a18b71b38ecd
+deleting .git/objects/1a/
+deleting .git/objects/19/fd46c00c74043c3538de9b47f798c0615da9ce
+deleting .git/objects/19/61f84607e1f5be94cd7951c72d10610f224411
+deleting .git/objects/19/0f3e0e3e6a3ebc427b240bb77b626572dacdef
+deleting .git/objects/19/
+deleting .git/objects/18/996679e7d561e8ba0225e9a0d194af2e8b6701
+deleting .git/objects/18/2d41101f6f497a6acf8106880184381c7d2454
+deleting .git/objects/18/
+deleting .git/objects/16/ffd551f7315cfcdb1fa4963162181aa3159b26
+deleting .git/objects/16/
+deleting .git/objects/15/cca74de71b662a710abb77fbf201fc2654bf0f
+deleting .git/objects/15/32381fc201ceada4f225ed23f1e5517cc3a8ef
+deleting .git/objects/15/
+deleting .git/objects/14/6e7dfe7806acc3ca936948528031ec108bd215
+deleting .git/objects/14/
+deleting .git/objects/13/d2f8debb63cfb0fcd5a32d0c948045cafc5c08
+deleting .git/objects/13/12881834afcb9b9f6612a39d82a5eb254b81b5
+deleting .git/objects/13/
+deleting .git/objects/11/d131521be4425afa952f5a08cebd7692823901
+deleting .git/objects/11/33d88f4d95a8e08ee1bfa337388aa4003c29b6
+deleting .git/objects/11/
+deleting .git/objects/10/67b5a8109c92a51e751750c000baa6a3058d62
+deleting .git/objects/10/
+deleting .git/objects/0f/2e0cd7449f4211fc717cb0e624b4838c6ade73
+deleting .git/objects/0f/
+deleting .git/objects/0e/f5fd261831f3ab84f74642dcde7126593987fc
+deleting .git/objects/0e/e93ed3a06777f8bd8202308d36e83dcdc15b65
+deleting .git/objects/0e/c396d852affc0e5eb435a5be8edbef5407cc88
+deleting .git/objects/0e/
+deleting .git/objects/0c/3f512768fead36792a292a2ddbffbe9845c1e4
+deleting .git/objects/0c/
+deleting .git/objects/0a/920965cad0829485554b404b5845fe77022d04
+deleting .git/objects/0a/
+deleting .git/objects/08/3f86db3b1a6ec0129f2c3c7827cb3f413c4be1
+deleting .git/objects/08/
+deleting .git/objects/06/2dea89615651524aaf76abbd627b51d75658b6
+deleting .git/objects/06/
+deleting .git/objects/03/890ff35fd4b95eec455a7ad3ed2f18fd429c37
+deleting .git/objects/03/
+deleting .git/objects/01/bca6c520fafa095a9de6e8175b0ac1eecd6d12
+deleting .git/objects/01/b9aa0c7e2526ed21618802ad06d5747000ddc1
+deleting .git/objects/01/540ff9057ff50a127796b4e108acbb987fbdf8
+deleting .git/objects/01/
+deleting .git/objects/00/4017e074f709b3bdad2a8fdf02442072c50bd4
+deleting .git/objects/00/
+deleting .git/objects/
+deleting .git/logs/refs/remotes/origin/api-bank
+deleting .git/logs/refs/remotes/origin/
+deleting .git/logs/refs/remotes/
+deleting .git/logs/refs/heads/api-bank
+deleting .git/logs/refs/heads/
+deleting .git/logs/refs/
+deleting .git/logs/HEAD
+deleting .git/logs/
+deleting .git/info/exclude
+deleting .git/info/
+deleting .git/hooks/update.sample
+deleting .git/hooks/push-to-checkout.sample
+deleting .git/hooks/prepare-commit-msg.sample
+deleting .git/hooks/pre-receive.sample
+deleting .git/hooks/pre-rebase.sample
+deleting .git/hooks/pre-push.sample
+deleting .git/hooks/pre-merge-commit.sample
+deleting .git/hooks/pre-commit.sample
+deleting .git/hooks/pre-applypatch.sample
+deleting .git/hooks/post-update.sample
+deleting .git/hooks/fsmonitor-watchman.sample
+deleting .git/hooks/commit-msg.sample
+deleting .git/hooks/applypatch-msg.sample
+deleting .git/hooks/
+deleting .git/branches/
+deleting .git/packed-refs
+deleting .git/index
+deleting .git/description
+deleting .git/config
+deleting .git/HEAD
+deleting .git/FETCH_HEAD
+deleting .git/COMMIT_EDITMSG
+deleting .git/
+.env
+.env.local
+.env.production
+README.md
+tor_onion_ready.zip
+api/configuraciones_api.zip
+api/transactions/urls copy.py
+api/transfers/views_api_copy.py
+api/transfers/views_copy.py
+api/transfers/views_copy_transfers.txt
+api/transfers/__pycache__/views_copy.cpython-313.pyc
+config/settings/__init__.py
+config/settings/base1.py
+config/settings/local copy.py
+config/settings/production copy.py
+schemas/keys/logs/clave_gen.log
+scripts/00_02_zip_backup copy.sh
+scripts/00_09_cargar_json copy.sh
+scripts/00_11_hacer_json copy.sh
+scripts/00_15_variables_heroku copy.sh
+scripts/00_18_01_01_setup_coretransact copy.sh
+scripts/00_24_sync_from_github.sh
+scripts/aliases_deploy.sh
+scripts/excludes.txt
+scripts/notificador copy.sh
+scripts/vps_copy_files.sh
+scripts/vps_copy_up_files.sh
+scripts/vps_sync.sh
+scripts/.logs/notificador.log
+scripts/.logs/notificador_30.log
+scripts/conexion_segura_db/
+scripts/conexion_segura_db/.env.example
+scripts/conexion_segura_db/README.txt
+scripts/conexion_segura_db/conexion_banco.py
+scripts/gpg_keys/
+scripts/gpg_keys/fingerprint.txt
+scripts/gpg_keys/jmoltke_private.asc
+scripts/gpg_keys/jmoltke_public.asc
+scripts/logs/commits_hist.md
+scripts/logs/respaldo_local_cifrado.log
+scripts/logs/restaurar_local_descifrado.log
+scripts/logs/00_18_00_deploy_njalla/00_18_00_deploy_njalla.log
+scripts/logs/00_18_05_deploy_update/00_18_05_deploy_update.log
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/backup/00_02_zip_backup_.log
+scripts/logs/backup/00_19_borrar_zip_sql_.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_09_cargar_json.log
+scripts/logs/despliegue/00_09_cargar_json_.log
+scripts/logs/despliegue/00_11_hacer_json_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/despliegue/00_16_subir_heroku.log
+scripts/logs/despliegue/00_17_sincronizar_bdd_.log
+scripts/logs/despliegue/00_18_00_deploy_njalla_.log
+scripts/logs/despliegue/00_21_local_ssl.log
+scripts/logs/despliegue/00_21_local_ssl_.log
+scripts/logs/sistema/00_01_sistema_.log
+scripts/logs/sistema/00_03_puertos_.log
+scripts/logs/sistema/00_04_container_.log
+scripts/logs/sistema/00_05_mac_.log
+scripts/logs/sistema/00_06_ufw_.log
+scripts/logs/sync/
+scripts/logs/sync/20250601_070242_sync.log
+scripts/logs/sync/20250601_072018_sync.log
+scripts/logs/sync/20250601_072106_sync.log
+scripts/logs/sync/20250601_072748_sync.log
+scripts/logs/sync/20250601_072754_sync.log
+scripts/logs/sync/20250601_074006_sync.log
+scripts/logs/sync/20250601_074154_sync.log
+scripts/logs/sync/20250601_075413_sync.log
+scripts/logs/sync/20250602_190124_sync.log
+scripts/logs/sync/20250602_190306_sync.log
+scripts/logs/sync/20250602_190339_sync.log
+scripts/logs/sync/20250602_191021_sync.log
+scripts/logs/sync/20250602_193439_sync.log
+scripts/logs/sync/20250603_045422_sync.log
+scripts/vps_backup/
+scripts/vps_backup/nginx_coretransapi.conf
+scripts/vps_backup/supervisor_coretransapi.conf
+scripts/vps_backup/torrc
+templates/dashboard copy 2.html
+templates/dashboard copy 3.html
+templates/dashboard copy 4.html
+templates/dashboard copy 5.html
+templates/dashboard copy.html
+templates/login copy.html
+templates/readme copy.html
+templates/api/GPT3/crear_transferencia copy.html
+templates/api/GPT4/edit_transfer copy 2.html
+templates/api/GPT4/edit_transfer copy.html
+templates/api/GPT4/oauth2_authorize copy 2.html
+templates/api/GPT4/send_transfer copy 2.html
+templates/api/GPT4/send_transfer copy 3.html
+templates/api/GPT4/send_transfer copy.html
+templates/api/GPT4/transfer_detail copy.html
+templates/partials/navGeneral copy.html
+
+sent 536.278 bytes  received 21.855 bytes  85.866,62 bytes/sec
+total size is 44.228.845  speedup is 79,24

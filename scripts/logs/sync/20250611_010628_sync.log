@@ -1,0 +1,56 @@
+📂 Proyecto local: /home/markmur88/api_bank_h2
+🧹 Eliminando en VPS archivos excluidos...
+🗑 Eliminando: *.zip
+🔄 Iniciando sincronización local -> VPS...
+sending incremental file list
+deleting api.sock
+./
+api/
+api/authentication/
+api/configuraciones_api/
+api/core/
+api/core/templatetags/
+api/gpt3/
+api/gpt4/
+api/transactions/
+api/transfers/
+config/
+config/settings/
+middleware/
+scripts/deploy/github/00_16_01_subir_GitHub.sh
+scripts/logs/sync/
+scripts/logs/sync/20250611_010430_sync_clean.log
+scripts/logs/sync/20250611_010628_sync.log
+scripts/menu/aliases_deploy.sh
+
+sent 46.147 bytes  received 779 bytes  8.532,00 bytes/sec
+total size is 237.841.915  speedup is 5.068,45
+📡 Ejecutando comandos remotos en el VPS...
+Linux coretransapi 6.1.0-37-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.140-1 (2025-05-22) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+🌐 Entrando en directorio remoto: /home/markmur88/api_bank_heroku
+🔧 Activando entorno virtual en VPS: /home/markmur88/envAPP
+🔁 Reiniciando servicios en VPS...
+coretransapi: stopped
+coretransapi: started
+📋 Estado del servicio coretransapi en VPS:
+coretransapi                     RUNNING   pid 120597, uptime 0:00:06
+📄 Últimos logs de error en VPS:
+    sock.close_sockets(self.LISTENERS, unlink)
+  File "/home/markmur88/envAPP/lib/python3.11/site-packages/gunicorn/sock.py", line 212, in close_sockets
+    os.unlink(sock_name)
+FileNotFoundError: [Errno 2] No such file or directory: '/home/markmur88/api_bank_heroku/api.sock'
+[2025-06-11 01:06:42 +0200] [120597] [INFO] Starting gunicorn 23.0.0
+[2025-06-11 01:06:42 +0200] [120597] [INFO] Listening at: unix:/home/markmur88/api_bank_heroku/api.sock (120597)
+[2025-06-11 01:06:42 +0200] [120597] [INFO] Using worker: sync
+[2025-06-11 01:06:42 +0200] [120598] [INFO] Booting worker with pid: 120598
+[2025-06-11 01:06:43 +0200] [120599] [INFO] Booting worker with pid: 120599
+[2025-06-11 01:06:43 +0200] [120600] [INFO] Booting worker with pid: 120600
+✅ Comandos remotos completados.
+✅ Sincronización completada.

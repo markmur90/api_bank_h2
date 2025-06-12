@@ -5,7 +5,6 @@
 bin/
 certs/
 media/claves/
-scripts/
 servers/
 temp/
 tmp/
@@ -21,3 +20,6 @@ pendientes.txt
 prompts.txt
 restore_and_upload.sh
 upload_env_to_postgres.sh
+tree_h2.txt
+tree_heroku.txt
+
