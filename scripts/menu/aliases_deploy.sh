@@ -206,8 +206,8 @@ alias vps_check='vps_exec "netstat -tulnp | grep LISTEN"'
 alias vps_ping='api && timeout 3 bash -c "</dev/tcp/$VPS_IP/$VPS_PORT" && echo "✅ VPS accesible" || echo "❌ Sin respuesta del VPS"'
 
 # === Login directo ===
-alias vps_l_root='api && ssh-keygen -f "/home/markmur88/.ssh/known_hosts" -R "80.78.30.242" && ssh -i "$SSH_KEY" -p "$VPS_PORT" root@"$VPS_IP"'
-alias vps_l_user='api && ssh -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP"'
+alias vps_l_root='api && ssh-keygen -f "/home/markmur88/.ssh/known_hosts" -R "80.78.30.242" && ssh -i "$SSH_KEY" -p "$VPS_PORT" root@"$VPS_IP" && clear && ls'
+alias vps_l_user='api && ssh -t -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" "clear; ls; exec \$SHELL -l"'
 
 # === PostgreSQL Local desde VPS ===
 alias pg_njalla_local='ssh -i ~/.ssh/vps_njalla_nueva -p 49222 -L 5433:127.0.0.1:5432 markmur88@80.78.30.242'
@@ -392,6 +392,12 @@ alias cMEN='code ~/api_bank_h2/scripts/menu'
 alias testSIM='bash ~/Simulador/scripts/test_simulador_curl.sh'
 alias localup='api && deploy_full -Q -I -r'
 alias express='api && deploy_full -S -Q -I -Gi -r'
+alias nt_dir='cd $HOME/Notas && clear && ls'
+alias gt_dir='cd $HOME/git && clear && ls'
+alias h2_dir='cd $HOME/api_bank_h2 && clear && ls'
+alias hk_dir='cd $HOME/api_bank_heroku && clear && ls'
+alias sm_dir='cd $HOME/Simulador && clear && ls'
+alias bk_dir='cd $HOME/backup && clear && ls'
 
 
 2menu() {
