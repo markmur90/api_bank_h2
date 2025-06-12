@@ -1,4 +1,7 @@
-[2025-06-12 11:17:50 +0200] [122137] [INFO] Starting gunicorn 23.0.0
-[2025-06-12 11:17:50 +0200] [122137] [INFO] Listening at: http://0.0.0.0:8000 (122137)
-[2025-06-12 11:17:50 +0200] [122137] [INFO] Using worker: sync
-[2025-06-12 11:17:50 +0200] [122139] [INFO] Booting worker with pid: 122139
+[2025-06-12 11:22:26 +0200] [126521] [INFO] Starting gunicorn 23.0.0
+[2025-06-12 11:22:26 +0200] [126521] [INFO] Listening at: http://0.0.0.0:8000 (126521)
+[2025-06-12 11:22:26 +0200] [126521] [INFO] Using worker: sync
+[2025-06-12 11:22:26 +0200] [126524] [INFO] Booting worker with pid: 126524
+[2025-06-12 11:26:36 +0200] [126521] [INFO] Handling signal: term
+[2025-06-12 11:26:36 +0200] [126521] [ERROR] Worker (pid:126524) was sent SIGHUP!
+[2025-06-12 11:26:36 +0200] [126521] [INFO] Shutting down: Master
