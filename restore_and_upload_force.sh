@@ -107,5 +107,6 @@ done
 unset PGPASSWORD
 set +e
 
+
 echo ""
 echo "✅ Proceso combinado completado con éxito."

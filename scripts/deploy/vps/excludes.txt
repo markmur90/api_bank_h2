@@ -16,6 +16,5 @@ datos_sensibles.txt
 *.codesandbox
 chatgpt.md
 certs
-bin
 01_full0.sh
 zbk

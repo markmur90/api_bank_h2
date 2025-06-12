@@ -52,36 +52,31 @@ reporte_estado() {
     fi
 }
 
-echo ""
-echo "📥 Actualizando repositorio Django..."
-cd /home/markmur88/api_bank_heroku || exit 1
-git pull origin main
-reporte_estado $? "Pull de código"
 
 echo ""
 echo "🐍 Activando entorno virtual..."
 source /home/markmur88/envAPP/bin/activate
+pip install -r /home/markmur88/api_bank_h2/requirements.txt
 reporte_estado $? "Activación de entorno virtual"
-
-echo ""
-echo "📦 Instalando dependencias..."
-pip install --upgrade pip && pip install -r requirements.txt
-reporte_estado $? "Instalación de dependencias"
-
+sleep 2
 echo ""
 echo "📂 Ejecutando restore_and_upload_force.sh..."
+cd /home/markmur88/api_bank_heroku
 bash restore_and_upload_force.sh
 reporte_estado $? "restore_and_upload_force.sh"
+sleep 2
 
 echo ""
 echo "⚙️ Ejecutando migraciones..."
 python manage.py migrate
 reporte_estado $? "Migraciones"
+sleep 2
 
 echo ""
 echo "🎨 Recolectando archivos estáticos..."
 python manage.py collectstatic --noinput
 reporte_estado $? "Recolección de estáticos"
+sleep 2
 
 echo ""
 echo "🧠 Reiniciando coretransapi via Supervisor..."
@@ -89,11 +84,13 @@ sudo supervisorctl reread
 sudo supervisorctl update
 sudo supervisorctl restart all
 reporte_estado $? "Reinicio Supervisor"
+sleep 2
 
 echo ""
 echo "🌐 Verificando configuración de Nginx..."
 sudo nginx -t
 reporte_estado $? "Chequeo configuración Nginx"
+sleep 2
 
 echo ""
 echo "♻️ Recargando Nginx y PostgreSQL..."
@@ -101,10 +98,13 @@ sudo systemctl reload nginx
 sudo systemctl restart nginx
 sudo systemctl restart postgresql
 reporte_estado $? "Recarga Nginx y PostgreSQL"
+sleep 2
 
 echo ""
 echo "📋 **RESUMEN FINAL EN VPS**"
 echo "🟢 Verificación final de servicios completada."
+sleep 2
+
 EOF
 
 echo ""

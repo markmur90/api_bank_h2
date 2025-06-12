@@ -51,6 +51,7 @@ mkdir -p "$(dirname $LOG_DEPLOY)"
 
 cd "$BASE_DIR"
 source "$VENV_PATH/bin/activate"
+pip install -r requirements.txt
 echo "🧹 Eliminando cachés de Python y migraciones anteriores..." | tee -a $LOG_DEPLOY
 find . -path "*/__pycache__" -type d -exec rm -rf {} +
 find . -name "*.pyc" -delete
