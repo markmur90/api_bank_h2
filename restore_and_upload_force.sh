@@ -64,7 +64,6 @@ procesar_archivo_env() {
 
     case "$archivo" in
         *.env.production) entorno="production" ;;
-        *.env.sandbox) entorno="sandbox" ;;
         *.env.local) entorno="local" ;;
     esac
 
@@ -93,7 +92,7 @@ procesar_archivo_env() {
 }
 
 # Ejecución principal para la subida de .env
-ARCHIVOS_ENV=(".env.local" ".env.sandbox" ".env.production")
+ARCHIVOS_ENV=(".env.local" ".env.production")
 
 for archivo in "${ARCHIVOS_ENV[@]}"; do
     if [ -f "$archivo" ]; then

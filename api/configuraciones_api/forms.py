@@ -8,7 +8,7 @@ class ConfiguracionAPIForm(forms.ModelForm):
         widgets = {
             'entorno': forms.Select(attrs={'class': 'form-control'}),
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'valor': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
+            'valor': forms.TextInput(attrs={'class': 'form-control'),
             'descripcion': forms.Textarea(attrs={'class': 'form-control', 'rows': 2}),
             'activo': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
