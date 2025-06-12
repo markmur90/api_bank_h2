@@ -473,3 +473,51 @@ Tu entrega debe incluir:
 ✅ Recomendaciones técnicas de mejora, seguridad y escalabilidad.
 ✅ Lista de archivos y configuraciones revisadas.
 ✅ Guía de instalación y despliegue del paquete ZIP.
+
+# ============================
+
+"Revisa a fondo el proyecto Django proporcionado, que corresponde a un simulador bancario web  con las siguientes características clave: 
+
+    El sistema permite que los clientes ingresen mediante autenticación por usuario y contraseña , validando credenciales y generando un token de sesión seguro .
+    Antes de realizar transferencias, se implementa un challenge de OTP (One-Time Password)  como capa adicional de seguridad.
+    Una vez confirmada la transferencia, se ejecuta el proceso correspondiente y se devuelve una respuesta clara al cliente o API consumidora.
+    Incluye un dashboard administrativo  desde el cual se pueden crear y gestionar clientes, acreedores, transacciones y otros datos esenciales del sistema.
+    Debe recibir transferencias entrantes desde backends externos (por ejemplo, por Internet), procesándolas correctamente según lógica bancaria simulada.
+    Utiliza SQLite  como base de datos principal.
+    No utiliza REST Framework ni APIs RESTful; todo el frontend está construido con HTML y plantillas Django  de buen diseño, siguiendo estándares actuales de usabilidad y experiencia de usuario.
+      
+
+Tu labor consiste en: 
+
+    Analizar exhaustivamente  el código actual: 
+        Verificar estructura del proyecto (aplicaciones, directorios, archivos).
+        Evaluar modelos de datos, vistas, formularios, URLs, templates, settings y seguridad.
+        Identificar errores, bugs, código redundante, malas prácticas, posibles vulnerabilidades de seguridad y puntos de mejora.
+          
+
+    Refactorizar completamente  el proyecto para dejarlo totalmente funcional, seguro, bien organizado y escalable, aplicando lo siguiente: 
+        Implementación correcta de autenticación y manejo de sesiones seguras.
+        Generación, envío y verificación de tokens OTP (pueden ser simulados si no hay integración real con SMS/email).
+        Lógica clara y segura para validar y procesar transferencias.
+        Dashboard intuitivo y seguro para la gestión de usuarios, acreedores y transacciones.
+        Recepción y procesamiento adecuado de transferencias entrantes desde sistemas externos (simuladas o reales).
+        Diseño limpio y moderno en las plantillas HTML, usando estándares actuales de UX/UI (sin frameworks frontend como React, solo HTML, CSS y JS básico si aplica).
+        Cumplimiento de buenas prácticas de seguridad: protección contra CSRF, XSS, inyecciones SQL, configuración segura de settings.py, etc.
+        Manejo correcto de errores, logs y mensajes de usuario claros.
+          
+
+    Realizar pruebas internas completas  de todas las funcionalidades antes de entregar el proyecto corregido: 
+        Pruebas manuales o automatizadas de inicio de sesión, autenticación multifactor (OTP), creación de clientes, transferencias, recepción de transacciones, etc.
+        Validación de que cada parte funciona correctamente tanto individualmente como en conjunto.
+          
+
+    Documentar los cambios realizados , incluyendo: 
+        Explicación de qué partes se corrigieron y por qué.
+        Instrucciones claras para instalar, configurar y ejecutar el proyecto tras la refactorización.
+        Recomendaciones futuras si fuera necesario.
+          
+      
+
+Al finalizar, entrega el proyecto completamente funcional, probado y listo para ejecutarse localmente sin errores." 
+  
+# ============================
