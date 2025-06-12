@@ -572,3 +572,138 @@ Al finalizar, entrega el proyecto completamente funcional, probado y listo para 
 
 # ============================
 
+🧠 Prompt Final: Revisión, Refactorización y Documentación Completa del Proyecto Django - Simulador Bancario  
+
+  "Revisa a fondo el proyecto Django proporcionado, que corresponde a un simulador bancario web . Actualmente contiene una estructura mínima funcional, pero presenta múltiples deficiencias en términos de seguridad, arquitectura, completitud funcional, mantenibilidad y documentación. 
+
+    El repositorio actual tiene los siguientes problemas críticos: 
+
+        Configuración insegura :   
+            SECRET_KEY y otras claves sensibles están codificadas directamente en settings.py, en lugar de cargarse desde variables de entorno.  
+            DEBUG = True está habilitado permanentemente.  
+            ALLOWED_HOSTS = ['*'] lo cual es inseguro para producción.
+             
+
+        Modelos incompletos o rotos :   
+            Existe un modelo OTPChallenge, pero las vistas hacen referencia a modelos inexistentes como DeudorSimulado, AcreedorSimulado, etc., causando errores de importación.  
+            No se han generado migraciones para los modelos existentes.  
+            Se requiere diferenciar entre modelos de prueba/simulación y modelos reales (si aplica).
+             
+
+        Autenticación y OTP :   
+            La autenticación no está completamente implementada.  
+            No existe lógica funcional de generación ni validación de OTP.  
+            No hay entrega simulada por correo/SMS.  
+            Debe usarse login() de Django correctamente, y asegurar cookies seguras (SESSION_COOKIE_SECURE, CSRF_COOKIE_SECURE) cuando corresponda.
+             
+
+        Seguridad general :   
+            Vistas innecesariamente decoradas con @csrf_exempt.  
+            Un script llamado generar_jwt.py dentro de middleware/ que debe eliminarse o convertirse en un comando personalizado de Django.  
+            Middleware con JWT hardcodeado.
+             
+
+        Frontend básico e inconsistente :   
+            Las plantillas HTML son muy básicas y necesitan mejoras de diseño, UX/UI moderna.  
+            El sitio de administración existe, pero carece de datos, formularios adecuados y navegabilidad intuitiva.
+             
+
+        Endpoints incompletos y sin protección :   
+            Se necesita un endpoint protegido (con sesión o JWT) para recibir transferencias entrantes desde backends externos.  
+            Este endpoint debe validar datos y crear objetos de transferencia usando transfer_services.TransferService.
+             
+
+        Falta de pruebas e instrucciones :   
+            No hay tests unitarios ni funcionales.  
+            No hay un archivo README.md con instrucciones claras de instalación, configuración y ejecución.  
+            No hay documentación sobre cómo simular el envío de OTP durante el desarrollo.
+  
+    🔨 Tareas requeridas durante la refactorización completa:  
+      1. Estructura del proyecto  
+
+          Organiza el proyecto siguiendo buenas prácticas de Django: separación clara de apps, directorios de templates, static, settings, etc.
+          Elimina archivos/scripts obsoletos o conviértelos en comandos personalizados (management/commands).
+          Crea modelos faltantes (DeudorSimulado, AcreedorSimulado, etc.) o elimina referencias si no son necesarios.
+          Genera todas las migraciones necesarias para cada modelo.
+          
+
+      2. Seguridad  
+
+          Mueve SECRET_KEY, JWT_SECRET_KEY y cualquier clave sensible a variables de entorno.
+          Desactiva DEBUG y restringe ALLOWED_HOSTS.
+          Asegúrate de usar CsrfViewMiddleware y elimina @csrf_exempt donde no sea necesario.
+          Usa cookies seguras (SESSION_COOKIE_SECURE, CSRF_COOKIE_SECURE) cuando se use HTTPS.
+          Configura protección contra ataques XSS, CSRF, inyecciones SQL, etc.
+          
+
+      3. Autenticación y OTP  
+
+          Implementa correctamente el flujo de autenticación con usuario y contraseña.
+          Crea un servicio de generación y validación de OTP (en consola o email/SMS simulado para desarrollo).
+          Usa login() de Django correctamente y crea una vista de logout para cerrar sesiones.
+          Maneja tokens de sesión de forma segura.
+          
+
+      4. Panel de control y transferencias  
+
+          Construye formularios con Django.forms o crispy-forms para mejorar UX y validación.
+          Implementa un dashboard funcional para crear clientes, acreedores y transacciones.
+          Registra transferencias en un modelo LogTransferencia y muéstralas en el panel de administración.
+          Garantiza procesamiento idempotente y estados claros de transferencias (PENDIENTE, CONFIRMADA, RECHAZADA, etc.).
+          
+
+      5. Transferencias entrantes  
+
+          Crea un endpoint seguro (ej. /api/transferencias/entrantes/) que acepte JSON y valide con JWT o sesión activa.
+          Utiliza transfer_services.TransferService para crear nuevas transferencias desde este endpoint.
+          Valida datos de entrada y responde con códigos HTTP apropiados.
+          
+
+      6. Plantillas y diseño  
+
+          Mejora significativamente el diseño de las plantillas HTML, manteniendo compatibilidad con Django templates.
+          Usa CSS limpio y moderno, sin frameworks frontend como React o Vue.
+          Mantén consistencia visual y accesibilidad básica.
+          
+
+      7. Documentación  
+
+          Crea un archivo README.md con:
+              Instrucciones paso a paso para instalar el proyecto: virtualenv, dependencias, variables de entorno, migraciones.
+              Descripción del flujo de OTP y cómo simularlo durante el desarrollo.
+              Explicación de cómo probar manualmente las principales funcionalidades.
+              
+          Incluye instrucciones sobre cómo ejecutar pruebas una vez escritas (futuras).
+          
+
+      8. Pruebas internas  
+
+          Realiza pruebas manuales exhaustivas antes de entregar:
+              Inicio de sesión seguro.
+              Validación de OTP.
+              Creación de usuarios, acreedores, transferencias.
+              Recepción de transferencias desde sistemas externos.
+              Cierre de sesión y manejo de errores.
+              
+          
+
+      9. Organización del código  
+
+          Separa responsabilidades: servicios, utilidades, managers, etc.
+          Renombra funciones, clases y archivos que tengan nombres ambiguos o incorrectos.
+          Comenta partes críticas del código y deja documentación interna clara.
+        
+
+    📦 Entrega final esperada: 
+
+        Código completamente refactorizado, funcional y seguro.
+        Archivos actualizados:
+            settings.py: con variables de entorno y configuraciones seguras.
+            urls.py, views.py, models.py: organizados, limpios y funcionales.
+            Plantillas HTML mejoradas.
+            Archivo README.md completo.
+            Estructura de migraciones generada.
+            
+        Pruebas realizadas y verificación de funcionalidad completa.
+        Recomendaciones adicionales (opcional) para futuras mejoras.
+
