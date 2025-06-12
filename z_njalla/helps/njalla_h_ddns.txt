@@ -1,0 +1,25 @@
+Dynamic DNS (DDNS)
+
+Njalla supports dynamic DNS records, once you added a 'Dynamic' entry to your domain, you can update the record with a simple HTTPS GET call. There are several options to update the record. You can set an IPv4 and/or IPv6 address or you can use the address used to make the request. You can get a JSON response with the current status of your record or only look for HTTP Response status:
+
+In the DNS Settings of your domain you get a key for each dynamic subdomain you define. with that you can construct the following URLs:
+
+Set IPv4:
+
+https://njal.la/update/?h=<subdomain>&k=<key>&a=192.168.1.1
+
+Set IPv6:
+
+https://njal.la/update/?h=<subdomain>&k=<key>&aaaa=::1
+
+Set IPv4 and IPv6:
+
+https://njal.la/update/?h=<subdomain>&k=<key>&a=192.168.1.1&aaaa=::1
+
+Use IP from request, can be IPv4 or IPv6:
+
+https://njal.la/update/?h=<subdomain>&k=<key>&auto
+
+Return empty response on success with status 200, print errors:
+
+https://njal.la/update/?h=<subdomain>&k=<key>&auto&quiet

@@ -1,0 +1,98 @@
+
+
+📍 Información General
+
+🛫 HUB principal: ____________________ TACCA
+🏗️ Nivel del HUB: ____________________ 60862
+
+💰 Capital disponible: _______________ $3,034,691
+⭐ Puntos AM: ________________________ 142
+🎖️ ¿Cuenta Premium?: _________________ No
+
+🎯 Objetivo actual:
+_____________________________________ crecer rápido, largo alcance, mantener rentabilidad
+
+
+✈️ Flota actual
+
+Modelo:                   Cessna172
+Cantidad:                 1
+Antigüedad (si sabes):    1mes
+Ruta(s) asignada(s):      SKNC-SEGU
+🕒 Hora salida:           02:01:49
+🕕 Hora llegada:          04:20:06  
+🎫 Precio boleto:         $476
+👥 Asientos Y:            3/1 - $476
+👥 Asientos J:            0
+👥 Asientos F:            0
+_____________________________________
+Modelo:                   F27-600
+Cantidad:                 1
+Antigüedad (si sabes):    1mes
+Ruta(s) asignada(s):      SBUA-SKVP
+🕒 Hora salida:           23:06:08
+🕕 Hora llegada:          06:49:12
+👥 Asientos Y:            35/14 - $717
+👥 Asientos J:            4/2 - $1653
+👥 Asientos F:            0
+_____________________________________
+Modelo:                   ATR-72-500
+Cantidad:                 1
+Antigüedad (si sabes):    1mes
+Ruta(s) asignada(s):      SPJR-SKBO
+🕒 Hora salida:           02:01:49
+🕕 Hora llegada:          07:39:54
+👥 Asientos Y:            64/26 - $732
+👥 Asientos J:            0
+👥 Asientos F:            0
+_____________________________________
+Modelo:                   DC-9-10
+Cantidad:                 1
+Antigüedad (si sabes):    4 dias
+Ruta(s) asignada(s):      SKBO-SPCL
+🕒 Hora salida:           02:01:49
+🕕 Hora llegada:          05:39:08
+👥 Asientos Y:            70/10 - $753
+👥 Asientos J:            10/4 - $1725
+👥 Asientos F:            0
+_____________________________________
+Modelo:                   DC-7C
+Cantidad:                 1
+Antigüedad (si sabes):    1 MES
+Ruta(s) asignada(s):      KYKN-KLEB
+🕒 Hora salida:           02:01:49
+🕕 Hora llegada:          04:26:13
+👥 Asientos Y:            93/39 - $980
+👥 Asientos J:            6/3 - $2180
+👥 Asientos F:            0
+_____________________________________
+Modelo:                   B727-100
+Cantidad:                 1
+Antigüedad (si sabes):    4 DIAS
+Ruta(s) asignada(s):      KAFW-KLEB
+🕒 Hora salida:           02:01:49
+🕕 Hora llegada:          07:27:46
+👥 Asientos Y:            91/37 - $1158
+👥 Asientos J:            20/8 - $2536
+👥 Asientos F:            0
+_____________________________________
+Modelo:                   B737-800
+Cantidad:                 1
+Antigüedad (si sabes):    1 MES
+Ruta(s) asignada(s):      SKBO-KBOS
+🕒 Hora salida:           02:01:49
+🕕 Hora llegada:          05:37:13
+👥 Asientos Y:            184/72 - $1850
+👥 Asientos J:            0
+👥 Asientos F:            0
+_____________________________________
+
+
+
+
+📈 Costos operativos
+⛽ Combustible: ______________________ $2,360 / 1000L
+🌱 CO₂: _____________________________  $162 / 1000 cuotas
+🔧 Mantenimiento aprox: ______________ (si sabes)
+
+

@@ -1,0 +1,63 @@
+Freedom
+Configurar
+Test
+Gestor
+Seleccionar y analizar archivo
+Conexión segura
+
+# =====================================
+server - Debian 12 (VPS 15)
+# =====================================
+Server name:
+FGM069DMT
+
+Reverse DNS Name (FQDN):
+504e1ef2.host.njalla.net
+
+Network
+IPs: 
+
+80.78.30.242
+
+2a0a:3840:8078:30::504e:1ef2:1337 
+
+You can log in via ssh as root with the provided SSH key. 
+
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJ/kjzGOjf7upHDjGW3KWxnucmePd4x43EjvtexPW5HK vps_njalla_nueva
+
+
+http://2a0a:3840:8078:30:0:504e:1ef2:1337:9080/api/gpt4/recibir/
+
+# Dirección IP del VPS (para DNS interno)
+DNS_BANCO=80.78.30.242
+
+# Dominio FQDN del servidor (resolución DNS)
+DOMINIO_BANCO=504e1ef2.host.njalla.net
+
+# Prefijo de red interna del banco (IP real del entorno productivo)
+RED_SEGURA_PREFIX=193.150.168.
+
+# Puerto donde corre gunicorn en el VPS simulado
+MOCK_PORT=9080
+
+# Permitir simular desde fuera de la red del banco
+ALLOW_FAKE_BANK=true
+
+# URL base de la API (utilizado por send_transfer)
+API_URL=http://504e1ef2.host.njalla.net:9080/api/gpt4/recibir/
+
+
+
+Notas
+
+Se agregaron implementaciones mínimas para los puntos finales del simulador bancario y una plantilla HTML para demostrar el flujo.Es posible que alguna funcionalidad aún necesite endurecer para el uso de producción.
+
+Resumen
+
+Configuración de registro extendida con un nuevo manejador APP_FILE para registros/app.log y la conectó a Bank_Services Logger
+
+Implementadas nuevas vistas de API (bank_sim_token, bank_sim_challenge, bank_sim_send_transfer, bank_sim_status_transfer) y una vista de transferencia falsa simplificada
+
+Registró los nuevos puntos finales y la ruta de transferencia falsa en las URL de la aplicación GPT4
+
+Creó una nueva plantilla transfer_send_conexion.html con JavaScript para obtener el token, crear el desafío y enviar la transferencia a través del simulador
