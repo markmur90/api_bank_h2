@@ -13,9 +13,17 @@ sudo ufw allow 22/tcp              # SSH
 sudo ufw allow 80/tcp              # HTTP
 sudo ufw allow 443/tcp             # HTTPS
 sudo ufw allow 49222/tcp           # Admin personalizado
+sudo ufw allow 9002/tcp           # Simulador
+sudo ufw allow 9181/tcp           # Simulador
+sudo ufw allow 9053/tcp           # Simulador
+sudo ufw allow 9054/tcp           # Simulador
+sudo ufw allow 5432/tcp           # Simulador
+sudo ufw allow 8000/tcp           # Simulador
+
+
 
 # Accesos locales a servicios (loopback)
-for port in 5432 8000 8001 8011 8080 9001 9002 9050 9051 9052 9053 9180 9181; do
+for port in 5432 8000 8001 8011 8080 9001 9002 9100 9050 9051 9052 9053 9054 9180 9181; do
     sudo ufw allow from 127.0.0.1 to any port $port
 done
 sudo ufw allow 9181/tcp comment "Staging - Simulador Gunicorn"

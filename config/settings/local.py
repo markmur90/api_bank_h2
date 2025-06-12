@@ -16,3 +16,5 @@ OAUTH2.update({
     "REDIRECT_URI": REDIRECT_URI,
     "ORIGIN": ORIGIN,
 })
+
+SIMULADOR_SECRET_KEY = "la_clave_del_simulador"  # O desde un .env

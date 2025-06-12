@@ -24,22 +24,22 @@ GT_NT_DIR="$UT_GT_DIR/notify"
 GE_LG_DIR="$GT_GE_DIR/logs"
 GE_SH_DIR="$GT_GE_DIR/scripts"
 
-BASE_DIR="$AP_H2_DIR"
+BASE_DIR="$AP_HK_DIR"
 
 set -euo pipefail
 
 echo "📡 Sincronizando VPS con GitHub..."
-cd ~/api_bank_h2
+cd ~/api_bank_heroku
 source ~/envAPP/bin/activate
 
-# Verificar y stashear si hay cambios locales
-if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
-    echo "🧠 Cambios locales detectados. Haciendo stash automático..."
-    git stash pull -u -m "Stash automático antes de pull remoto"
-fi
+# # Verificar y stashear si hay cambios locales
+# if ! git diff --quiet || ! git diff --cached --quiet || [ -n "$(git ls-files --others --exclude-standard)" ]; then
+#     echo "🧠 Cambios locales detectados. Haciendo stash automático..."
+#     git stash pull -u -m "Stash automático antes de pull remoto"
+# fi
 
-# Pull usando clave correcta
-GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_heroku" git pull origin api-bank
+# # Pull usando clave correcta
+# GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519_heroku" git pull origin api-bank
  
 
 echo "🔁 Actualizar Django..."

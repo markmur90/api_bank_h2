@@ -1,4 +1,4 @@
-[2025-06-12 18:20:57 +0200] [25744] [INFO] Starting gunicorn 23.0.0
-[2025-06-12 18:20:57 +0200] [25744] [INFO] Listening at: http://0.0.0.0:8000 (25744)
-[2025-06-12 18:20:57 +0200] [25744] [INFO] Using worker: sync
-[2025-06-12 18:20:57 +0200] [25746] [INFO] Booting worker with pid: 25746
+[2025-06-12 18:52:31 +0200] [46902] [INFO] Starting gunicorn 23.0.0
+[2025-06-12 18:52:31 +0200] [46902] [INFO] Listening at: http://0.0.0.0:8000 (46902)
+[2025-06-12 18:52:31 +0200] [46902] [INFO] Using worker: sync
+[2025-06-12 18:52:31 +0200] [46904] [INFO] Booting worker with pid: 46904
