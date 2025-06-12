@@ -168,6 +168,8 @@ from api.gpt4.utils import registrar_log
 import requests
 
 def obtener_token_desde_simulador(username, password):
+    """Solicita un token al simulador bancario usando la URL definida en las
+    variables de entorno."""    
     settings_data = get_settings()
     dominio = settings_data["DOMINIO_BANCO"]
     url = f"https://{dominio}/api/token/"
