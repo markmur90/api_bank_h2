@@ -1,0 +1,2 @@
+✅ chmod +x -> ./gen-ssh-key.sh
+✅ chmod +x -> ./git-ssh-config.sh
