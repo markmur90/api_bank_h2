@@ -5,6 +5,7 @@ set -euo pipefail
 
 # === VARIABLES DE PROYECTO ===
 AP_H2_DIR="/home/markmur88/api_bank_h2"
+AP_HK_DIR="/home/markmur88/api_bank_heroku"
 VENV_PATH="/home/markmur88/envAPP"
 SCRIPTS_DIR="$AP_H2_DIR/scripts"
 BASE_DIR="$AP_H2_DIR"
@@ -105,5 +106,5 @@ EOF
 echo -e "\033[7;30m✅ Base de datos y usuario listos.\033[0m" | tee -a $LOG_DEPLOY
 
 # chmodtree
-cd $AP_H2_DIR
+cd $AP_HK_DIR
 bash restore_and_upload_force.sh

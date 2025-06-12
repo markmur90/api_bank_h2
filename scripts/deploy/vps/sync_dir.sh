@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 AP_H2_DIR="/home/markmur88/api_bank_h2"
 AP_HK_DIR="/home/markmur88/api_bank_heroku"
+AP_SM_DIR="/home/markmur88/Simulador"
 VENV_PATH="/home/markmur88/envAPP"
 SCRIPTS_DIR="$AP_H2_DIR/scripts"
 EXCLUDES="$SCRIPTS_DIR/deploy/vps/excludes.txt"
@@ -10,6 +11,7 @@ VPS_PORT="22"
 SSH_KEY="/home/markmur88/.ssh/vps_njalla_nueva"
 VPS_BASE_DIR="/home/markmur88/api_bank_h2"
 VPS_HK_DIR="/home/markmur88/api_bank_heroku"
+VPS_SM_DIR="/home/markmur88/Simulador"
 VPS_VENV_PATH="/home/markmur88/envAPP"
 LOG_DIR="$SCRIPTS_DIR/logs/sync"
 mkdir -p "$LOG_DIR"
@@ -37,13 +39,16 @@ sync_project() {
 
 sync_project "H2" "$AP_H2_DIR" "$VPS_BASE_DIR"
 sync_project "HK" "$AP_HK_DIR" "$VPS_HK_DIR"
+sync_project "SM" "$AP_SM_DIR" "$VPS_SM_DIR"
 
 echo "📡 Ejecutando comandos remotos en el VPS..." | tee -a "$LOG_FILE"
 ssh -tt -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" \
+SUDOPWD="Ptf8454Jd55"
+
 "SUDOPWD='$SUDOPWD'; export TERM=xterm; set -euo pipefail;
- echo '🌐 Entrando en directorio remoto: $VPS_BASE_DIR';
- cd '$VPS_BASE_DIR';
- echo '🔧 Activando entorno virtual en VPS: $VPS_BASE_DIR';
+ echo '🌐 Entrando en directorio remoto: $VPS_HK_DIR';
+ cd '$VPS_HK_DIR';
+ echo '🔧 Activando entorno virtual en VPS: $VPS_HK_DIR';
  source '$VPS_VENV_PATH/bin/activate';
  echo '🔁 Ejecutando script 01_full.sh en VPS';
  bash ~/api_bank_h2/scripts/menu/01_full.sh -Q -I;

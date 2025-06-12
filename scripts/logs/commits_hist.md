@@ -237,3 +237,4 @@
 | 2025-06-12 08:49:02 | Sync BDD |
 | 2025-06-12 09:49:36 | Sync |
 | 2025-06-12 10:03:38 | CCambio directorio del Simulador |
+| 2025-06-12 10:23:45 | Cambios simulador dir |
