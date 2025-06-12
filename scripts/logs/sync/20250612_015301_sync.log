@@ -312,3 +312,14 @@ scripts/logs/despliegue/00_21_local_ssl_.log
 scripts/logs/sync/
 scripts/logs/sync/20250612_013925_sync.log
 scripts/logs/sync/20250612_015301_sync.log
+templates/api/GPT4/
+templates/api/GPT4/send_transfer_simulator.html
+templates/api/GPT4/transfer_detail.html
+
+sent 4.010.797 bytes  received 100.919 bytes  304.571,56 bytes/sec
+total size is 343.849.125  speedup is 83,63
+✅ [H2] Sincronización completada.
+🆕 [HK] Proyecto local: /home/markmur88/api_bank_heroku
+🧹 [HK] Eliminando patrones excluidos en VPS...
+🗑 [HK] Borrando: *.zip
+🔄 [HK] Iniciando rsync local→VPS...
