@@ -165,41 +165,92 @@ Entrega:
 - Diagrama de secuencia del proceso completo (desde frontend hasta el VPS).
 - Recomendaciones de mejora adicional si aplica.
 
+
+
+Eres un ingeniero en prompts revisa y unifica estos 2 prompts para mi, donde la API se ejecuta en Local, y el Simulador en un VPS, estoy generando un zip con los 2 proyectos en basados en Django los 2, debe adicionar un frontend al simulador, 
 # ============================
-Eres un ingeniero de software especializado en arquitectura, mantenimiento de código y optimización de proyectos. Tu tarea es realizar un **análisis profundo del proceso implementado en GPT-4 (o el flujo lógico simulado por GPT-4)** dentro del sistema actual, con el objetivo de identificar qué partes del código, plantillas, rutas, vistas y configuraciones ya no son necesarias.
+API
+# ============================
+Eres un ingeniero de software especializado en arquitectura backend, frontend, diseño de APIs y automatización de flujos transaccionales. Tu tarea es analizar y mejorar un sistema de transferencias bancarias que se conecta con un **simulador bancario externo alojado en un VPS**. A continuación, se describe lo que debes hacer:
 
-1. **Análisis detallado del flujo actual**
-   - Revisa a fondo el proceso implementado asociado a `gpt4`:
-     - Funcionalidades clave.
-     - Interacciones entre backend, frontend y cualquier API o servicio externo.
-     - Uso actual de templates, controladores, rutas y modelos relacionados.
-   - Mapea todas las dependencias directas e indirectas del proceso.
+1. **Análisis exhaustivo del código existente**
+   - Revisa a fondo el archivo `api.gpt4` (si aplica como interfaz o guía de comportamiento).
+   - Analiza el archivo `conexion_banco.py`, enfocándote especialmente en:
+     - Conectividad con el VPS donde reside el simulador.
+     - Gestión de endpoints REST expuestos por el simulador.
+     - Autenticación y obtención de token desde el backend hacia el VPS.
+     - Envío de datos de transferencia al simulador.
+     - Manejo de respuesta del simulador (ej.: estado de la operación).
+     - Generación y validación del OTP mediante challenge-response entre frontend y backend.
+   - Evalúa cómo se usan las templates actuales y cómo se aplican al proceso de transferencia.
 
-2. **Identificación de componentes obsoletos**
-   - Identifica y documenta:
-     - Aplicaciones completas o módulos que ya no se usan.
-     - Templates HTML/JSX que no están siendo llamados ni renderizados.
-     - Archivos estáticos (CSS, JS, imágenes) sin uso.
-     - Endpoints o rutas que no son accedidas por ninguna parte del sistema.
-     - Modelos, utilidades o funciones que han quedado obsoletas tras nuevas implementaciones.
-   - Explica por qué cada uno puede considerarse prescindible.
+2. **Diseño e implementación de nueva funcionalidad aplicado de acuerdo al entorno y conexion_banco**
+   - Crea una nueva plantilla HTML/JS llamada `transfer_send_conexion.html` que sea consistente visualmente con el resto del proyecto.
+   - Esta plantilla debe:
+     - Mostrar los detalles de la transferencia antes de enviarla.
+     - Iniciar la conexión con el simulador bancario en el VPS.
+     - Obtener el token desde el backend (hacia el VPS) de forma segura.
+     - Realizar el challenge para generar el OTP (el cual será resuelto desde el frontend).
+     - Enviar la transferencia con todos los datos necesarios al VPS.
+     - Esperar y mostrar el estado final de la operación.
+     - Registrar y mostrar la IP pública del VPS si aplica.
+   - Utiliza estilos y componentes reutilizables para mantener uniformidad con otras pantallas del sistema.
 
-3. **Recomendaciones técnicas**
-   - Propón una estrategia de limpieza segura:
-     - ¿Qué se puede eliminar directamente?
-     - ¿Qué debe mantenerse temporalmente por compatibilidad?
-     - ¿Qué puede refactorizarse o reutilizarse en otro lugar del sistema?
-   - Incluye buenas prácticas para evitar acumulación futura de código muerto.
+3. **Manejo de configuraciones y flujos alternativos**
+   - Implementa un flujo alternativo cuando la variable `ALLOW_FAKE_BANK = True`.
+   - Este flujo debe:
+     - Crear nuevas rutas y plantillas exclusivas para el modo simulado local (sin conexión al VPS).
+     - Mostrar u ocultar elementos dinámicamente según el estado de esta bandera.
+     - Simular procesos como obtención de token, generación de OTP y respuesta de transferencia.
+     - Ocultar opciones o componentes no relevantes en este modo.
+   - Asegúrate de que el cambio entre modos real (VPS)/simulado sea transparente para el usuario y seguro en el backend.
 
-4. **Entrega esperada**
-   - Lista clara y ordenada de:
-     - Componentes redundantes (archivos, rutas, vistas, etc.)
-     - Justificación técnica de por qué ya no son necesarios
-     - Recomendaciones de eliminación o refactoring
-   - Opcional: mapa visual del flujo actual con anotaciones de elementos obsoletos
+4. **Registro de logs**
+   - Configura un sistema de logging que guarde:
+     - Registros en archivos de texto (`logs/app.log`) por cada ejecución del proceso de transferencia.
+     - Registro en base de datos con campos como:
+       - Fecha/hora
+       - Usuario
+       - Detalles de la transacción
+       - Estado final
+       - Token utilizado
+       - IP del VPS (si aplica)
+       - Respuesta del simulador
+   - Asegúrate de que los logs sean útiles para auditoría y diagnóstico de errores.
 
-Tu análisis debe servir como base para una limpieza efectiva del proyecto, mejorando mantenibilidad, rendimiento y claridad del código.
+5. **Integración técnica con el VPS**
+   - Describe cómo se establece la conexión desde tu backend hacia el VPS:
+     - Uso de HTTPS con certificado válido (si aplica).
+     - Validación de certificados SSL/TLS si el VPS tiene dominio seguro.
+     - Manejo de errores de conexión (timeout, denegado, etc.).
+   - Define las nuevas rutas API necesarias, como:
+     - `/api/bank_sim/token` → Obtiene token del simulador en el VPS.
+     - `/api/bank_sim/challenge` → Recibe el desafío del VPS.
+     - `/api/bank_sim/send-transfer` → Envia la transferencia al VPS.
+     - `/api/bank_sim/status-transfer` → Consulta el estado de la transferencia.
 
+6. **Seguridad y buenas prácticas**
+   - Todo el desarrollo debe seguir buenas prácticas de seguridad:
+     - Uso de variables de entorno para claves sensibles.
+     - Protección contra inyecciones y ataques CSRF/XSS.
+     - Validación de respuestas del VPS.
+     - Límites de intentos de OTP.
+     - Manejo seguro de tokens temporales.
+
+7. **Consideraciones finales Globales aplica a todo el gpt4, entorno y conexión**
+   - Usa variables de entorno para controlar modos (real/simulado).
+   - Mantén compatibilidad con el resto del sistema.
+   - El OTP debe generarse en frontend tras recibir el challenge, pero validarse en backend.
+   - Si el VPS requiere IP blanca, asegúrate de registrar la IP pública del servidor que hace la conexión.
+
+Entrega:
+- Un informe técnico del análisis realizado.
+- Código fuente de nuevas plantillas y endpoints.
+- Diagrama de secuencia del proceso completo (desde frontend hasta el VPS).
+- Recomendaciones de mejora adicional si aplica.
+
+# ============================
+SIMULADOR
 # ============================
 Eres un ingeniero DevOps especializado en arquitectura de servidores, seguridad, automatización y despliegue de aplicaciones web en entornos Linux. Tu tarea es analizar a fondo el servidor bancario alojado en un VPS, con foco en el flujo de transferencias bancarias (obtención de token, generación de OTP y ejecución de la transacción) y en la configuración técnica del entorno de producción donde corren varios servicios en simultáneo.
 
@@ -269,3 +320,156 @@ Tu análisis debe servir como base para garantizar una operación estable, segur
 
 # ============================
 
+
+Eres un ingeniero full-stack especializado en arquitectura backend, frontend, DevOps y automatización de flujos transaccionales , con experiencia en Django, entornos Linux, APIs REST y seguridad web. Tu tarea es analizar, mejorar e integrar dos proyectos basados en Django :   
+
+    API Local:  Servidor backend que gestiona transferencias bancarias y se conecta a un simulador externo.  
+    Simulador Bancario en VPS:  Aplicación que simula un sistema bancario real, expone endpoints y requiere configuración avanzada del servidor.
+     
+
+Ambos proyectos deben ser empaquetados en un archivo ZIP  listo para despliegue o migración futura. Además, debes desarrollar un frontend funcional para el simulador bancario  alojado en el VPS. 
+🔍 1. Análisis del Sistema Completo 
+
+Realiza un análisis exhaustivo de ambos proyectos: 
+📦 Proyecto API Local 
+
+    Revisa los archivos clave:
+        api.gpt4 (si aplica como guía).
+        conexion_banco.py: Conectividad con el VPS, autenticación, envío de datos y manejo de OTP.
+         
+    Evalúa las plantillas actuales y su uso en el proceso de transferencia.
+     
+
+💻 Simulador en VPS 
+
+    Analiza cómo funciona el flujo completo de transferencia desde el frontend hasta el backend:
+        Obtención de token.
+        Generación de OTP (challenge-response).
+        Envío y procesamiento de la transferencia.
+        Recepción y notificación del estado final.
+         
+    Evalúa las interfaces actuales (transfer_send.html, etc.) y propón mejoras UX/UI si aplica.
+     
+
+🛠️ 2. Desarrollo Frontend para el Simulador en VPS 
+
+Crea un nuevo frontend para el simulador bancario alojado en el VPS: 
+
+    Diseña una plantilla HTML/JS llamada transfer_simulator_frontend.html.
+    Incluye:
+        Formulario de prueba de transferencia.
+        Visualización de estados (token, challenge, OTP, resultado).
+        Botones para simular respuestas exitosas/error.
+         
+    Asegúrate de mantener consistencia visual con el resto del sistema.
+    Integra estilos reutilizables y componentes dinámicos.
+     
+
+🌐 3. Integración API Local ↔ Simulador VPS 
+
+Define y configura la comunicación segura entre ambos sistemas: 
+
+    Establece cómo se obtiene el token desde el backend local hacia el VPS.
+    Implementa el flujo de generación de OTP mediante challenge-response.
+    Define nuevas rutas API en el backend local:
+        /api/bank_sim/token
+        /api/bank_sim/challenge
+        /api/bank_sim/send-transfer
+        /api/bank_sim/status-transfer
+         
+     
+
+Asegúrate de: 
+
+    Usar HTTPS con certificados válidos.
+    Validar certificados SSL/TLS si el VPS tiene dominio seguro.
+    Manejar errores de conexión (timeout, denegado, etc.).
+     
+
+🧪 4. Modo Simulado Local (ALLOW_FAKE_BANK) 
+
+Implementa un modo alternativo para desarrollo o pruebas locales cuando ALLOW_FAKE_BANK = True: 
+
+    Crea nuevas rutas y plantillas exclusivas para este modo.
+    Simula:
+        Autenticación y obtención de token.
+        Generación de OTP.
+        Respuesta del simulador (éxito/error).
+         
+    Oculta opciones irrelevantes en este modo.
+    Mantén compatibilidad con el resto del sistema.
+     
+
+📋 5. Registro de Logs y Auditoría 
+
+Configura un sistema integral de logs: 
+
+    Archivos de texto: logs/app.log
+    Base de datos con campos:
+        Fecha/hora
+        Usuario
+        Detalles de la transacción
+        Estado final
+        Token utilizado
+        IP del VPS (si aplica)
+        Respuesta del simulador
+         
+     
+
+Asegúrate de que los logs sean útiles para auditorías y diagnóstico de fallos. 
+⚙️ 6. Configuración Técnica del VPS 
+
+Analiza y documenta la infraestructura del VPS donde corre el simulador bancario: 
+
+    Describe cómo están configurados estos servicios:
+        Gunicorn  – servidor WSGI.
+        Nginx  – proxy inverso y HTTPS.
+        Supervisor  – control de procesos.
+        Fail2Ban  – protección contra ataques.
+        Certbot (Let’s Encrypt)  – certificados SSL.
+        Tor  (opcional) – anonimización de tráfico.
+         
+     
+
+Revisa archivos de configuración clave: 
+
+    /etc/nginx/sites-available/banco.conf
+    /etc/supervisor/conf.d/banco.conf
+    /etc/fail2ban/jail.local
+    Certificados Let's Encrypt
+    Configuración de Tor (si aplica)
+     
+
+Propón ajustes de rendimiento, seguridad y resolución de conflictos entre servicios. 
+🧩 7. Gestión de Dependencias y Seguridad 
+
+Evalúa cómo se gestionan las dependencias y claves sensibles: 
+
+    Uso de requirements.txt, Pipfile, .env, etc.
+    Actualizaciones automáticas o manuales.
+    Protección contra inyecciones, CSRF/XSS.
+    Límites de intentos de OTP.
+    Expiración de tokens temporales.
+     
+
+Incluye buenas prácticas para mantenimiento continuo y actualizaciones seguras. 
+📁 8. Empaquetado Final 
+
+Genera un archivo ZIP que contenga: 
+
+    Código fuente del proyecto API Local.
+    Código fuente del simulador bancario en el VPS (incluyendo el nuevo frontend).
+    Documentación técnica y guía de instalación/despliegue.
+    Diagrama de secuencia del flujo completo de transferencia (desde frontend hasta el VPS).
+     
+
+📄 Entrega Final 
+
+Tu entrega debe incluir: 
+
+✅ Informe técnico detallado del análisis realizado.
+✅ Código fuente de nuevas plantillas, vistas y endpoints.
+✅ Diagrama de secuencia del proceso completo (token → OTP → transferencia → estado).
+✅ Recomendaciones técnicas de mejora, seguridad y escalabilidad.
+✅ Lista de archivos y configuraciones revisadas.
+✅ Guía de instalación y despliegue del paquete ZIP.
