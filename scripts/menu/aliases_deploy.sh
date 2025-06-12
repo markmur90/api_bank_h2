@@ -61,24 +61,24 @@ log_error() { echo -e "${ROJO}[ERR]  $1${RESET}"; }
 
 # ───🎨 SIMULADOR BANCARIO ────────────────────────────
 
-alias vps_sim_bank_chk='vps_exec "[ -f $SM_BK_DIR/tor_data/hidden_service/hostname ] && cat $SM_BK_DIR/tor_data/hidden_service/hostname || echo -e \"${AMARILLO}[WARN] Archivo hostname no encontrado${RESET}\""'
-alias vps_sim_bank_mon='vps_exec "[ -f $SM_BK_DIR/logs/gunicorn.log ] && tail -f $SM_BK_DIR/logs/gunicorn.log $SM_BK_DIR/logs/gunicorn_error.log $SM_BK_DIR/logs/tor.log $SM_BK_DIR/logs/tor_error.log || echo -e \"${AMARILLO}[WARN] No existen los logs aún. ¿Ejecutaste start_all.sh?${RESET}\""'
-alias vps_sim_bank_env='vps_exec "bash $SM_BK_DIR/scripts/env_setup.sh"'
-alias vps_sim_bank_status='vps_exec "cd $SM_BK_DIR/scripts && ./status.sh"'
-alias vps_sim_bank_stop='vps_exec "cd $SM_BK_DIR/scripts && ./stop_all.sh"'
-alias vps_sim_bank_start='vps_exec "cd $SM_BK_DIR/scripts && ./start_stack.sh"'
-alias vps_sim_bank_restart='vps_exec "cd $SM_BK_DIR/scripts && ./restart_supervisor.sh"'
+alias vps_sim_bank_chk='vps_exec "[ -f ~/Simulador/tor_data/hidden_service/hostname ] && cat ~/Simulador/tor_data/hidden_service/hostname || echo -e \"${AMARILLO}[WARN] Archivo hostname no encontrado${RESET}\""'
+alias vps_sim_bank_mon='vps_exec "[ -f ~/Simulador/logs/gunicorn.log ] && tail -f ~/Simulador/logs/gunicorn.log ~/Simulador/logs/gunicorn_error.log ~/Simulador/logs/tor.log ~/Simulador/logs/tor_error.log || echo -e \"${AMARILLO}[WARN] No existen los logs aún. ¿Ejecutaste start_all.sh?${RESET}\""'
+alias vps_sim_bank_env='vps_exec "bash ~/Simulador/env_setup.sh"'
+alias vps_sim_bank_status='vps_exec "cd ~/Simulador && ./status.sh"'
+alias vps_sim_bank_stop='vps_exec "cd ~/Simulador && ./stop_all.sh"'
+alias vps_sim_bank_start='vps_exec "cd ~/Simulador && ./start_stack.sh"'
+alias vps_sim_bank_restart='vps_exec "cd ~/Simulador && ./restart_supervisor.sh"'
 
-alias sim_bank_status='bash $SM_BK_DIR/scripts/status.sh'
-alias sim_bank_env='bash $SM_BK_DIR/scripts/env_setup.sh'
-alias sim_bank_stop='bash $SM_BK_DIR/scripts/stop_all.sh'
-alias sim_bank_start='bash $SM_BK_DIR/scripts/start_stack.sh'
-alias sim_bank_restart='bash $SM_BK_DIR/scripts/restart_supervisor.sh'
+alias sim_bank_status='bash ~/Simulador/status.sh'
+alias sim_bank_env='bash ~/Simulador/env_setup.sh'
+alias sim_bank_stop='bash ~/Simulador/stop_all.sh'
+alias sim_bank_start='bash ~/Simulador/start_stack.sh'
+alias sim_bank_restart='bash ~/Simulador/restart_supervisor.sh'
 
 
-alias vps_sim_bank_ping="torsocks curl --silent --fail http://\$(vps_exec '[ -f $SM_BK_DIR/tor_data/hidden_service/hostname ] && cat $SM_BK_DIR/tor_data/hidden_service/hostname') || echo '[ERROR] No se pudo conectar al servicio oculto'"
-alias vps_sim_bank_ping_d="torsocks curl --silent --fail http://\$(vps_exec '[ -f $SM_BK_DIR/tor_data/hidden_service/hostname ] && cat $SM_BK_DIR/tor_data/hidden_service/hostname') | grep -qi 'django' && echo '[OK] Servicio oculto responde con Django' || echo '[ERROR] No se detectó Django en la respuesta'"
-alias sync_onion="scp -P \"$VPS_PORT\" -i \"$SSH_KEY\" \"$VPS_USER@$VPS_IP:$SM_BK_DIR/tor_data/hidden_service/hostname\" ./simulador_hostname.txt || echo -e \"${AMARILLO}[WARN] No se pudo sincronizar el hostname. ¿Está corriendo Tor en el VPS?${RESET}\""
+alias vps_sim_bank_ping="torsocks curl --silent --fail http://\$(vps_exec '[ -f ~/Simulador/tor_data/hidden_service/hostname ] && cat ~/Simulador/tor_data/hidden_service/hostname') || echo '[ERROR] No se pudo conectar al servicio oculto'"
+alias vps_sim_bank_ping_d="torsocks curl --silent --fail http://\$(vps_exec '[ -f ~/Simulador/tor_data/hidden_service/hostname ] && cat ~/Simulador/tor_data/hidden_service/hostname') | grep -qi 'django' && echo '[OK] Servicio oculto responde con Django' || echo '[ERROR] No se detectó Django en la respuesta'"
+alias sync_onion="scp -P \"$VPS_PORT\" -i \"$SSH_KEY\" \"$VPS_USER@$VPS_IP:~/Simulador/tor_data/hidden_service/hostname\" ./simulador_hostname.txt || echo -e \"${AMARILLO}[WARN] No se pudo sincronizar el hostname. ¿Está corriendo Tor en el VPS?${RESET}\""
 
 # === ACCESOS DIRECTOS AL PROYECTO ===
 
