@@ -18,6 +18,7 @@ mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/$(date +%Y%m%d_%H%M%S)_sync.log"
 SUDOPWD="Ptf8454Jd55"
 set -euo pipefail
+SUDOPWD="Ptf8454Jd55"
 
 sync_project() {
   local name="$1" local local_dir="$2" local remote_dir="$3"
@@ -43,8 +44,6 @@ sync_project "SM" "$AP_SM_DIR" "$VPS_SM_DIR"
 
 echo "📡 Ejecutando comandos remotos en el VPS..." | tee -a "$LOG_FILE"
 ssh -tt -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" \
-SUDOPWD="Ptf8454Jd55"
-
 "SUDOPWD='$SUDOPWD'; export TERM=xterm; set -euo pipefail;
  echo '🌐 Entrando en directorio remoto: $VPS_HK_DIR';
  cd '$VPS_HK_DIR';
