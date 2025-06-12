@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-APP_DIR="/home/markmur88/api_bank_h2"
+APP_DIR="/home/markmur88/api_bank_heroku"
 SOCK_PATH="$APP_DIR/api.sock"
 SUPERVISOR_PROGRAM="coretransapi"
 
