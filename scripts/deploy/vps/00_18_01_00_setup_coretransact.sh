@@ -70,7 +70,7 @@ SIM_DIR="$SM_BK_DIR/simulador_banco"
 PORT=9180
 SERVICE_NAME="simulador_banco"
 HS_DIR="/var/lib/tor/hidden_service_simulador"
-TORRC_ORIG="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank/torrc_simulador_banco"
+TORRC_ORIG="/home/markmur88/Simulador/torrc_simulador_banco"
 TORRC_BKP="/etc/tor/torrc.bkp.simulador"
 
 echo "📁 Preparando entorno del simulador en: $SIM_DIR"

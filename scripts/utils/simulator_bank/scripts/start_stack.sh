@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-BASE_DIR="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank"
+BASE_DIR="/home/markmur88/Simulador"
 TOR_DIR="$BASE_DIR/tor_data/hidden_service"
 SUPERVISORD_CONF="$BASE_DIR/config/supervisor_simulador.conf"
 TORRC="$BASE_DIR/config/torrc_simulador"
@@ -86,7 +86,7 @@ sleep 5
 
 echo ""
 
-SUPERVISOR_CONF="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank/config/supervisor_simulador.conf"
+SUPERVISOR_CONF="/home/markmur88/Simulador/config/supervisor_simulador.conf"
 
 echo "▶️ Servicios arrancados:"
 supervisorctl -c "$SUPERVISOR_CONF" status

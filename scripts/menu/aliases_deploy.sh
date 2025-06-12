@@ -218,7 +218,7 @@ alias vps_locsycl='bash $DP_VP_DIR/vps_sync_clean.sh'
 alias vps_locsync='bash $DP_VP_DIR/vps_sync.sh'
 alias vps_up_copy='bash $DP_VP_DIR/vps_copy_up_files.sh'
 alias vps_down_copy='bash $DP_VP_DIR/vps_copy_files.sh'
-# alias vps_restart='bash ~/api_bank_h2/scripts/utils/simulator_bank/reiniciar_servicios.sh'
+# alias vps_restart='bash ~/Simulador/reiniciar_servicios.sh'
 
 # === Sincronización por GitHub ===
 
@@ -389,7 +389,7 @@ alias cFRE='code ~/FreedomGPT'
 alias cSIM='code ~/Simulador'
 alias cSCR='code ~/api_bank_h2/scripts'
 alias cMEN='code ~/api_bank_h2/scripts/menu'
-alias testSIM='bash ~/api_bank_h2/scripts/utils/simulator_bank/scripts/test_simulador_curl.sh'
+alias testSIM='bash ~/Simulador/scripts/test_simulador_curl.sh'
 alias localup='api && deploy_full -Q -I -r'
 alias express='api && deploy_full -S -Q -I -Gi -r'
 

@@ -21,10 +21,10 @@ SM_BK_DIR="$UTILS_DIR/simulator_bank"
 
 set -e
 
-bash /home/markmur88/api_bank_h2/scripts/utils/simulator_bank/scripts/ports_stop.sh
+bash /home/markmur88/Simulador/scripts/ports_stop.sh
 
 
-SUPERVISOR_CONF="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank/config/supervisor_simulador.conf"
+SUPERVISOR_CONF="/home/markmur88/Simulador/config/supervisor_simulador.conf"
 
 manage_supervised() {
     local svc="$1"
@@ -45,11 +45,11 @@ source $VENV_PATH/bin/activate
 
 echo "⬆️  Actualizando pip e instalando dependencias..."
 pip install --upgrade pip
-pip install -r /home/markmur88/api_bank_h2/scripts/utils/simulator_bank/simulador_banco/requirements.txt
+pip install -r /home/markmur88/Simulador/simulador_banco/requirements.txt
 
 echo "✅ Dependencias instaladas correctamente"
 echo "▶️ Iniciando servicio de supervisión (supervisord)..."
 
-supervisord -c /home/markmur88/api_bank_h2/scripts/utils/simulator_bank/config/supervisor_simulador.conf
+supervisord -c /home/markmur88/Simulador/config/supervisor_simulador.conf
 
 supervisorctl -c "$SUPERVISOR_CONF" status

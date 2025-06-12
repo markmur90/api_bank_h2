@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-SUPERVISOR_CONF="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank/config/supervisor_simulador.conf"
+SUPERVISOR_CONF="/home/markmur88/Simulador/config/supervisor_simulador.conf"
 
 echo "⏹️ Deteniendo todos los procesos supervisados..."
 supervisorctl -c "$SUPERVISOR_CONF" shutdown

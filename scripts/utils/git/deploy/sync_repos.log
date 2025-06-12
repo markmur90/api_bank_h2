@@ -31,7 +31,7 @@ Everything up-to-date
 rama 'api-bank' configurada para rastrear 'origin/api-bank'.
 /home/markmur88/api_bank_h2/scripts/utils/git/sync_repos.sh: línea 41: : No existe el fichero o el directorio
 ■ La deploy key ya existe en markmur90/api_bank_heroku
-→ Procesando markmur90/Simulador en /home/markmur88/api_bank_h2/scripts/utils/simulator_bank (rama: main)
+→ Procesando markmur90/Simulador en /home/markmur88/Simulador (rama: main)
 ERROR: Repository not found.
 fatal: No se pudo leer del repositorio remoto.
 

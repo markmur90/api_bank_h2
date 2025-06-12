@@ -1,18 +1,18 @@
 #!/bin/bash
 set -e
 
-SUPERVISOR_CONF="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank/config/supervisor_simulador.conf"
-SOCK_FILE="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank/logs/supervisord.sock"
-PID_FILE="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank/logs/supervisord.pid"
-LOG_DIR="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank/logs"
+SUPERVISOR_CONF="/home/markmur88/Simulador/config/supervisor_simulador.conf"
+SOCK_FILE="/home/markmur88/Simulador/logs/supervisord.sock"
+PID_FILE="/home/markmur88/Simulador/logs/supervisord.pid"
+LOG_DIR="/home/markmur88/Simulador/logs"
 VENV_PATH="/home/markmur88/envAPP"
 
 # Variables de entorno
-APP_DIR="/home/markmur88/api_bank_h2/scripts/utils/simulator_bank"
+APP_DIR="/home/markmur88/Simulador"
 CONF_PATH="$APP_DIR/config/gunicorn.conf.py"
 DJANGO_WSGI="simulador_banco.wsgi:application"
 
-# bash /home/markmur88/api_bank_h2/scripts/utils/simulator_bank/scripts/ports_stop.sh
+# bash /home/markmur88/Simulador/scripts/ports_stop.sh
 
 # Activar entorno virtual
 source "$VENV_PATH/bin/activate"
