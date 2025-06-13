@@ -1,0 +1,233 @@
+🆕 [H2] Proyecto local: /home/markmur88/api_bank_h2
+🧹 [H2] Eliminando patrones excluidos en VPS...
+🗑 [H2] Borrando: *.zip
+🔄 [H2] Iniciando rsync local→VPS...
+sending incremental file list
+./
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/01_full_deploy/process_ssl.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/despliegue/00_21_local_ssl.log
+scripts/logs/despliegue/00_21_local_ssl_.log
+scripts/logs/sistema/ports_stop_.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_110458_sync.log
+scripts/logs/sync/20250613_195332_sync.log
+templates_gpt4/
+templates_gpt4/base.html
+templates_gpt4/dashboard.html
+templates_gpt4/ebics_table.html
+templates_gpt4/home.html
+templates_gpt4/layout.html
+templates_gpt4/login.html
+templates_gpt4/readme.html
+templates_gpt4/signup.html
+templates_gpt4/api/
+templates_gpt4/api/GPT4/
+templates_gpt4/api/GPT4/create_clientid.html
+templates_gpt4/api/GPT4/create_creditor.html
+templates_gpt4/api/GPT4/create_creditor_account.html
+templates_gpt4/api/GPT4/create_creditor_agent.html
+templates_gpt4/api/GPT4/create_debtor.html
+templates_gpt4/api/GPT4/create_debtor_account.html
+templates_gpt4/api/GPT4/create_kid.html
+templates_gpt4/api/GPT4/create_transfer.html
+templates_gpt4/api/GPT4/edit_transfer copy 2.html
+templates_gpt4/api/GPT4/edit_transfer copy.html
+templates_gpt4/api/GPT4/edit_transfer.html
+templates_gpt4/api/GPT4/list_creditor_accounts.html
+templates_gpt4/api/GPT4/list_creditor_agents.html
+templates_gpt4/api/GPT4/list_creditors.html
+templates_gpt4/api/GPT4/list_debtor.html
+templates_gpt4/api/GPT4/list_debtor_accounts.html
+templates_gpt4/api/GPT4/list_logs.html
+templates_gpt4/api/GPT4/list_transfer.html
+templates_gpt4/api/GPT4/oauth2_authorize copy 2.html
+templates_gpt4/api/GPT4/oauth2_authorize.html
+templates_gpt4/api/GPT4/oauth2_authorize2.html
+templates_gpt4/api/GPT4/oauth2_callback.html
+templates_gpt4/api/GPT4/send_transfer copy 3.html
+templates_gpt4/api/GPT4/send_transfer copy.html
+templates_gpt4/api/GPT4/send_transfer.html
+templates_gpt4/api/GPT4/send_transfer_conexion.html
+templates_gpt4/api/GPT4/send_transfer_simulator.html
+templates_gpt4/api/GPT4/transfer_detail copy.html
+templates_gpt4/api/GPT4/transfer_detail.html
+templates_gpt4/api/GPT4/transfer_detail1.html
+templates_gpt4/api/GPT4/transfer_sca.html
+templates_gpt4/api/GPT4/transfer_send_conexion.html
+templates_gpt4/api/configuraciones/
+templates_gpt4/api/configuraciones/eliminar.html
+templates_gpt4/api/configuraciones/formulario.html
+templates_gpt4/api/configuraciones/lista.html
+templates_gpt4/api/core/
+templates_gpt4/api/core/core_model_confirm_delete.html
+templates_gpt4/api/core/core_model_form.html
+templates_gpt4/api/core/core_model_list.html
+templates_gpt4/api/core/debtor_confirm_delete.html
+templates_gpt4/api/core/debtor_form.html
+templates_gpt4/api/core/debtor_list.html
+templates_gpt4/api/core/iban_confirm_delete.html
+templates_gpt4/api/core/iban_form.html
+templates_gpt4/api/core/iban_list.html
+templates_gpt4/api/extras/
+templates_gpt4/api/extras/diagnostico_banco.html
+templates_gpt4/api/extras/transfer_form.html
+
+sent 77.497 bytes  received 45.755 bytes  16.433,60 bytes/sec
+total size is 254.947.298  speedup is 2.068,50
+✅ [H2] Sincronización completada.
+🆕 [HK] Proyecto local: /home/markmur88/api_bank_heroku
+🧹 [HK] Eliminando patrones excluidos en VPS...
+🗑 [HK] Borrando: *.zip
+🔄 [HK] Iniciando rsync local→VPS...
+sending incremental file list
+deleting proyecto_backup_2025-06-13_17.tar.gz
+deleting db_backup_2025-06-13_17.sql
+./
+config/settings/__init__.py
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/01_full_deploy/process_ssl.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/despliegue/00_21_local_ssl.log
+scripts/logs/despliegue/00_21_local_ssl_.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_110458_sync.log
+templates_gpt4/
+templates_gpt4/base.html
+templates_gpt4/dashboard.html
+templates_gpt4/ebics_table.html
+templates_gpt4/home.html
+templates_gpt4/layout.html
+templates_gpt4/login.html
+templates_gpt4/readme.html
+templates_gpt4/signup.html
+templates_gpt4/api/
+templates_gpt4/api/GPT4/
+templates_gpt4/api/GPT4/create_clientid.html
+templates_gpt4/api/GPT4/create_creditor.html
+templates_gpt4/api/GPT4/create_creditor_account.html
+templates_gpt4/api/GPT4/create_creditor_agent.html
+templates_gpt4/api/GPT4/create_debtor.html
+templates_gpt4/api/GPT4/create_debtor_account.html
+templates_gpt4/api/GPT4/create_kid.html
+templates_gpt4/api/GPT4/create_transfer.html
+templates_gpt4/api/GPT4/edit_transfer.html
+templates_gpt4/api/GPT4/list_creditor_accounts.html
+templates_gpt4/api/GPT4/list_creditor_agents.html
+templates_gpt4/api/GPT4/list_creditors.html
+templates_gpt4/api/GPT4/list_debtor.html
+templates_gpt4/api/GPT4/list_debtor_accounts.html
+templates_gpt4/api/GPT4/list_logs.html
+templates_gpt4/api/GPT4/list_transfer.html
+templates_gpt4/api/GPT4/oauth2_authorize.html
+templates_gpt4/api/GPT4/oauth2_authorize2.html
+templates_gpt4/api/GPT4/oauth2_callback.html
+templates_gpt4/api/GPT4/send_transfer.html
+templates_gpt4/api/GPT4/send_transfer_conexion.html
+templates_gpt4/api/GPT4/send_transfer_simulator.html
+templates_gpt4/api/GPT4/transfer_detail.html
+templates_gpt4/api/GPT4/transfer_detail1.html
+templates_gpt4/api/GPT4/transfer_sca.html
+templates_gpt4/api/GPT4/transfer_send_conexion.html
+templates_gpt4/api/configuraciones/
+templates_gpt4/api/configuraciones/eliminar.html
+templates_gpt4/api/configuraciones/formulario.html
+templates_gpt4/api/configuraciones/lista.html
+templates_gpt4/api/core/
+templates_gpt4/api/core/core_model_confirm_delete.html
+templates_gpt4/api/core/core_model_form.html
+templates_gpt4/api/core/core_model_list.html
+templates_gpt4/api/core/debtor_confirm_delete.html
+templates_gpt4/api/core/debtor_form.html
+templates_gpt4/api/core/debtor_list.html
+templates_gpt4/api/core/iban_confirm_delete.html
+templates_gpt4/api/core/iban_form.html
+templates_gpt4/api/core/iban_list.html
+templates_gpt4/api/extras/
+templates_gpt4/api/extras/diagnostico_banco.html
+templates_gpt4/api/extras/transfer_form.html
+
+sent 68.833 bytes  received 45.561 bytes  17.599,08 bytes/sec
+total size is 254.162.583  speedup is 2.221,82
+✅ [HK] Sincronización completada.
+🆕 [SM] Proyecto local: /home/markmur88/Simulador
+🧹 [SM] Eliminando patrones excluidos en VPS...
+🗑 [SM] Borrando: *.zip
+🔄 [SM] Iniciando rsync local→VPS...
+sending incremental file list
+./
+deleting logs/tor_stdout.log
+deleting logs/tor_stderr.log
+deleting logs/supervisord.sock
+logs/
+logs/gunicorn_access.log
+logs/gunicorn_error.log
+logs/supervisord.log
+logs/supervisord.pid
+templates_gpt4/
+templates_gpt4/base.html
+templates_gpt4/dashboard.html
+templates_gpt4/ebics_table.html
+templates_gpt4/home.html
+templates_gpt4/layout.html
+templates_gpt4/login.html
+templates_gpt4/readme.html
+templates_gpt4/signup.html
+templates_gpt4/api/
+templates_gpt4/api/GPT4/
+templates_gpt4/api/GPT4/create_clientid.html
+templates_gpt4/api/GPT4/create_creditor.html
+templates_gpt4/api/GPT4/create_creditor_account.html
+templates_gpt4/api/GPT4/create_creditor_agent.html
+templates_gpt4/api/GPT4/create_debtor.html
+templates_gpt4/api/GPT4/create_debtor_account.html
+templates_gpt4/api/GPT4/create_kid.html
+templates_gpt4/api/GPT4/create_transfer.html
+templates_gpt4/api/GPT4/edit_transfer.html
+templates_gpt4/api/GPT4/list_creditor_accounts.html
+templates_gpt4/api/GPT4/list_creditor_agents.html
+templates_gpt4/api/GPT4/list_creditors.html
+templates_gpt4/api/GPT4/list_debtor.html
+templates_gpt4/api/GPT4/list_debtor_accounts.html
+templates_gpt4/api/GPT4/list_logs.html
+templates_gpt4/api/GPT4/list_transfer.html
+templates_gpt4/api/GPT4/oauth2_authorize.html
+templates_gpt4/api/GPT4/oauth2_callback.html
+templates_gpt4/api/GPT4/send_transfer.html
+templates_gpt4/api/GPT4/send_transfer_conexion.html
+templates_gpt4/api/GPT4/send_transfer_simulator.html
+templates_gpt4/api/GPT4/transfer_detail.html
+templates_gpt4/api/GPT4/transfer_sca.html
+templates_gpt4/api/GPT4/transfer_send_conexion.html
+templates_gpt4/api/configuraciones/
+templates_gpt4/api/configuraciones/eliminar.html
+templates_gpt4/api/configuraciones/formulario.html
+templates_gpt4/api/configuraciones/lista.html
+templates_gpt4/api/core/
+templates_gpt4/api/core/core_model_confirm_delete.html
+templates_gpt4/api/core/core_model_form.html
+templates_gpt4/api/core/core_model_list.html
+templates_gpt4/api/core/debtor_confirm_delete.html
+templates_gpt4/api/core/debtor_form.html
+templates_gpt4/api/core/debtor_list.html
+templates_gpt4/api/core/iban_confirm_delete.html
+templates_gpt4/api/core/iban_form.html
+templates_gpt4/api/core/iban_list.html
+templates_gpt4/api/extras/
+templates_gpt4/api/extras/diagnostico_banco.html
+templates_gpt4/api/extras/transfer_form.html
+
+sent 28.960 bytes  received 31.166 bytes  9.250,15 bytes/sec
+total size is 60.222.287  speedup is 1.001,60
+✅ [SM] Sincronización completada.
+📡 Ejecutando comandos remotos en el VPS...
+🎉 Todo listo, sincronizaciones y despliegue en VPS finalizados.

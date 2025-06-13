@@ -63,17 +63,17 @@ log_error() { echo -e "${ROJO}[ERR]  $1${RESET}"; }
 
 alias vps_sim_bank_chk='vps_exec "[ -f ~/Simulador/tor_data/hidden_service/hostname ] && cat ~/Simulador/tor_data/hidden_service/hostname || echo -e \"${AMARILLO}[WARN] Archivo hostname no encontrado${RESET}\""'
 alias vps_sim_bank_mon='vps_exec "[ -f ~/Simulador/logs/gunicorn.log ] && tail -f ~/Simulador/logs/gunicorn.log ~/Simulador/logs/gunicorn_error.log ~/Simulador/logs/tor.log ~/Simulador/logs/tor_error.log || echo -e \"${AMARILLO}[WARN] No existen los logs aún. ¿Ejecutaste start_all.sh?${RESET}\""'
-alias vps_sim_bank_env='vps_exec "bash ~/Simulador/scripts/env_setup.sh"'
+alias vps_sim_bank_env='vps_exec "sudo bash ~/Simulador/scripts/env_setup.sh"'
 alias vps_sim_bank_status='vps_exec "bash ~/Simulador/scripts/status.sh"'
-alias vps_sim_bank_stop='vps_exec "bash ~/Simulador/scripts/stop_all.sh"'
-alias vps_sim_bank_start='vps_exec "bash ~/Simulador/scripts/start_stack.sh"'
-alias vps_sim_bank_restart='vps_exec "bash ~/Simulador/scripts/restart_supervisor.sh"'
+alias vps_sim_bank_stop='vps_exec "sudo bash ~/Simulador/scripts/stop_all.sh"'
+alias vps_sim_bank_start='vps_exec "sudo bash ~/Simulador/scripts/start_stack.sh"'
+alias vps_sim_bank_restart='vps_exec "sudo bash ~/Simulador/scripts/restart_supervisor.sh"'
 
-alias sim_bank_status='bash ~/Simulador/scripts/status.sh'
-alias sim_bank_env='bash ~/Simulador/scripts/env_setup.sh'
-alias sim_bank_stop='bash ~/Simulador/scripts/stop_all.sh'
-alias sim_bank_start='bash ~/Simulador/scripts/start_stack.sh'
-alias sim_bank_restart='bash ~/Simulador/scripts/restart_supervisor.sh'
+alias sim_bank_status='sudo bash ~/Simulador/scripts/status.sh'
+alias sim_bank_env='sudo bash ~/Simulador/scripts/env_setup.sh'
+alias sim_bank_stop='sudo bash ~/Simulador/scripts/stop_all.sh'
+alias sim_bank_start='sudo bash ~/Simulador/scripts/start_stack.sh'
+alias sim_bank_restart='sudo bash ~/Simulador/scripts/restart_supervisor.sh'
 
 
 alias vps_sim_bank_ping="torsocks curl --silent --fail http://\$(vps_exec '[ -f ~/Simulador/tor_data/hidden_service/hostname ] && cat ~/Simulador/tor_data/hidden_service/hostname') || echo '[ERROR] No se pudo conectar al servicio oculto'"
