@@ -1,0 +1,3 @@
+alias localstart='$HOME/local/scripts/manage.sh start'
+alias localstatus='$HOME/local/scripts/manage.sh status'
+alias localstop='$HOME/local/scripts/manage.sh stop'

@@ -1,0 +1,3 @@
+✅ chmod +x -> ./scripts/kill_unneeded.sh
+✅ chmod +x -> ./scripts/remove_services_interactive.sh
+✅ chmod +x -> ./scripts/remove_services_by_port.sh

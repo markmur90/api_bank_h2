@@ -34,3 +34,4 @@
 ✅ chmod +x -> ./scripts/utils/security/wifi_audit_tools/audit_firewall_logs.py
 ✅ chmod +x -> ./scripts/utils/security/wifi_audit_tools/analyze_phishing_logs.py
 ✅ chmod +x -> ./scripts/utils/security/wifi_audit_tools/cronjob_example.sh
+✅ chmod +x -> ./scripts/utils/deploy_remote_report.sh
