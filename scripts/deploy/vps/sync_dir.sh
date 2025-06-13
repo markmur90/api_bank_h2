@@ -45,7 +45,7 @@ sync_project "SM" "$AP_SM_DIR" "$VPS_SM_DIR"
 echo "📡 Ejecutando comandos remotos en el VPS..." | tee -a "$LOG_FILE"
 ssh -tt -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" \
 "SUDOPWD='$SUDOPWD'; export TERM=xterm; set -euo pipefail;
- sleep3
+ sleep 3
  echo ""
  echo '🌐 Entrando en directorio remoto: $VPS_HK_DIR';
  cd '$VPS_HK_DIR';
@@ -53,7 +53,7 @@ ssh -tt -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" \
  source '$VPS_VENV_PATH/bin/activate';
  echo '🔁 Ejecutando script 01_full.sh en VPS';
  bash ~/api_bank_h2/scripts/menu/01_full.sh -Q -I;
- sleep3
+ sleep 3
  echo ""
  echo '🔁 Reiniciando servicios en VPS...';
  echo \"\$SUDOPWD\" | sudo -S supervisorctl status | grep -q '^coretransapi' && {
@@ -65,10 +65,10 @@ ssh -tt -i "$SSH_KEY" -p "$VPS_PORT" "$VPS_USER@$VPS_IP" \
  } || {
    echo '⚠️ Servicio coretransapi no está registrado en supervisor. Saltando reinicio...';
  };
- sleep3
+ sleep 3
  echo ""
  echo \"\$SUDOPWD\" | sudo -S systemctl reload nginx;
  echo '✅ Comandos remotos completados.'"
 echo "🎉 Todo listo, sincronizaciones y despliegue en VPS finalizados." | tee -a "$LOG_FILE"
- sleep3
+ sleep 3
  echo ""
