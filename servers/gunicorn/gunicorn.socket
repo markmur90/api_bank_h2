@@ -3,7 +3,7 @@ Description=Gunicorn Socket for api_bank_h2
 PartOf=gunicorn.service
 
 [Socket]
-ListenStream=/home/markmur88/Documentos/GitHub/api_bank_h2/servers/gunicorn/api.sock
+ListenStream=/home/markmur88/api_bank_h2/servers/gunicorn/api.sock
 SocketMode=0660
 SocketUser=www-data
 SocketGroup=www-data

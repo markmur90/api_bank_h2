@@ -141,6 +141,7 @@ Verificar estado y obtener la dirección .onion:
 
 sudo systemctl status tor
 sudo cat /var/lib/tor/mi_servicio_django/hostname
+
 # Ejemplo de salida del hostname:
 # abcdefghijklmnop.onion
 

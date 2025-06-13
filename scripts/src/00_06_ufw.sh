@@ -9,14 +9,23 @@ echo -e "\n🧪 Aplicando reglas de firewall para DESARROLLO LOCAL..."
 sudo ufw --force reset
 
 # Reglas mínimas necesarias para desarrollo
-sudo ufw allow 22/tcp              # SSH (opcional si usás VSCode Remote)
+sudo ufw allow 22/tcp              # SSH
+sudo ufw allow 80/tcp              # HTTP
+sudo ufw allow 443/tcp             # HTTPS
 sudo ufw allow 8000/tcp            # Django dev server
 sudo ufw allow 5432/tcp            # PostgreSQL local
-sudo ufw allow 9181/tcp comment "Simulador local"
+sudo ufw allow 8443/tcp comment "SSL certs"           # PostgreSQL local
+
+sudo ufw allow 9051/tcp comment "Tor ControlPort"
+sudo ufw allow from 127.0.0.1 to port 9100/tcp comment "Supervisor Sim"
+sudo ufw allow from 0.0.0.0 to port 9181/tcp comment "Simulador local"
+sudo ufw allow 9055/tcp comment "Tor SockPort Sim"
+sudo ufw allow 9056/tcp comment "Tor ControlPort Sim"
+sudo ufw allow from 127.0.0.1 to port 9002/tcp comment "Supervisor Hidden Sim"
 
 # Salida libre para desarrollo
+sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw default allow incoming  # No bloquear cosas como Docker u otros servicios locales
 
 # Logging opcional
 sudo ufw logging off
