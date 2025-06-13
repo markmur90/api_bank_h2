@@ -40,14 +40,18 @@ sudo cp "$TORSY_DIR/torrc" /etc/tor/torrc
 # Asegurar permisos
 sudo chown -R markmur88 /var/lib/tor/hidden_service
 sudo chmod 700 /var/lib/tor/hidden_service
+sleep 5
 
 # Reiniciar servicio
 sudo systemctl enable tor
+sleep 5
+
 sudo systemctl restart tor
+sleep 5
 
 # Esperar que genere el hostname
 echo "⌛ Esperando generación del servicio oculto..."
-sleep 5
+sleep 10
 
 if [ -f /var/lib/tor/hidden_service/hostname ]; then
     echo "🧅 Dirección onion generada:"
