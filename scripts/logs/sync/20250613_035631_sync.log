@@ -1,0 +1,99 @@
+🆕 [H2] Proyecto local: /home/markmur88/api_bank_h2
+🧹 [H2] Eliminando patrones excluidos en VPS...
+🗑 [H2] Borrando: *.zip
+🔄 [H2] Iniciando rsync local→VPS...
+sending incremental file list
+requirements.txt
+.git/
+.git/COMMIT_EDITMSG
+.git/config
+.git/index
+.git/logs/HEAD
+.git/logs/refs/heads/main
+.git/logs/refs/remotes/origin/main
+.git/objects/
+.git/objects/05/
+.git/objects/05/b2a756635deadbb45e66d345ca41507b87cff6
+.git/objects/0b/
+.git/objects/0b/1c67faeece86ceb18a88ef6ea0fc27ef4850bf
+.git/objects/24/
+.git/objects/24/3a515abe44d2352b25239590bda4c65563fcb4
+.git/objects/27/
+.git/objects/27/a84d96524bb9f5525db2ee20acd5e68542a31b
+.git/objects/30/
+.git/objects/30/8fbdf09d459cfc900a9d0579e2368a9f58c8ce
+.git/objects/52/
+.git/objects/52/65f61498eb92b0629975456c84efe4f13e5472
+.git/objects/58/
+.git/objects/58/d7ca11e7a516bc7d3f1356a870774263651d8e
+.git/objects/5d/
+.git/objects/5d/d3e70990948ab0d273fb81e45253e96c7b6ce3
+.git/objects/71/
+.git/objects/71/4f4efa672eea88c7c987150c9ba2b18681225c
+.git/objects/b3/
+.git/objects/b3/220002da73dea90902e80850e4c925d800e625
+.git/objects/c3/
+.git/objects/c3/21d42a8b86660054719c8a9ac7f494d810c4fd
+.git/objects/c5/
+.git/objects/c5/455ebc972a0e4d297c07a7d3fa7a52676036cc
+.git/objects/ce/
+.git/objects/ce/9338681cdd16f3f48cfa73bff64f02564f569b
+.git/objects/d6/
+.git/objects/d6/668ddc7783acf715f09b75c4f7f221775abb3f
+.git/objects/e4/
+.git/objects/e4/158bd630d5ecd3e64867740f1e629ba0d36050
+.git/refs/heads/
+.git/refs/heads/main
+.git/refs/remotes/origin/
+.git/refs/remotes/origin/main
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_032040_sync.log
+scripts/logs/sync/20250613_035631_sync.log
+
+sent 2.929.220 bytes  received 44.084 bytes  94.390,60 bytes/sec
+total size is 428.710.651  speedup is 144,19
+✅ [H2] Sincronización completada.
+🆕 [HK] Proyecto local: /home/markmur88/api_bank_heroku
+🧹 [HK] Eliminando patrones excluidos en VPS...
+🗑 [HK] Borrando: *.zip
+🔄 [HK] Iniciando rsync local→VPS...
+sending incremental file list
+requirements.txt
+config/settings/__init__.py
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_032040_sync.log
+
+sent 44.082 bytes  received 40.608 bytes  13.029,23 bytes/sec
+total size is 247.317.944  speedup is 2.920,27
+✅ [HK] Sincronización completada.
+🆕 [SM] Proyecto local: /home/markmur88/Simulador
+🧹 [SM] Eliminando patrones excluidos en VPS...
+🗑 [SM] Borrando: *.zip
+🔄 [SM] Iniciando rsync local→VPS...
+sending incremental file list
+simulador_banco/.env
+simulador_banco/.env.example
+simulador_banco/README.md
+simulador_banco/banco/
+simulador_banco/banco/views.py
+simulador_banco/banco/management/
+simulador_banco/banco/management/commands/
+simulador_banco/banco/management/commands/generate_jwt.py
+
+sent 41.128 bytes  received 493 bytes  6.403,23 bytes/sec
+total size is 108.945.414  speedup is 2.617,56
+✅ [SM] Sincronización completada.
+📡 Ejecutando comandos remotos en el VPS...
+🎉 Todo listo, sincronizaciones y despliegue en VPS finalizados.
