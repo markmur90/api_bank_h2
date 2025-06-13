@@ -1,13 +1,13 @@
 ############### ⚙️ CONFIGURACIÓN CLIENTE TOR ###############
 
 # Puerto SOCKS solo accesible localmente
-SocksPort 127.0.0.1:9050
+SocksPort 0.0.0.0:9050
 
 # Logs de eventos
 Log notice file /var/log/tor/notices.log
 DataDirectory /var/lib/tor
 HiddenServiceDir /var/lib/tor/hidden_service
-HiddenServicePort 80 127.0.0.1:9181
+HiddenServicePort 80 0.0.0.0:9181
 
 # NO actuar como relay
 RunAsDaemon 1

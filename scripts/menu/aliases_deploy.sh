@@ -401,12 +401,14 @@ alias bk_dir='cd $HOME/backup && clear && ls'
 alias lc_ufw='sudo bash /home/markmur88/api_bank_h2/scripts/src/00_06_ufw.sh'
 alias pr_ufw='sudo bash /home/markmur88/api_bank_h2/scripts/src/ufw_produccion.sh'
 alias st_ufw='sudo ufw status verbose && sudo ss -tulno | grep ssh'
+alias tor_ins='sudo bash /home/markmur88/api_bank_h2/scripts/tor/instalar_tor.sh'
 
 2menu() {
     typeset -A alias_groups
     alias_groups=(
         ["Code"]="cAPI cHER cNOT cGIT cFRE cSIM cSCR cMEN"
         ["Ufw"]="lc_ufw pr_ufw st_ufw"
+        ["TOR"]="tor_diag tor_newip tor_refresh tor_ins"
         ["Deploy"]="chmodtree localup express d_local d_njalla api_restart_local"
         ["Simulador"]="testSIM sim_bank_start sim_bank_env sim_bank_stop sim_bank_status sim_bank_restart"
         ["VPS"]="vps_l_root vps_l_user vps_locsycl vps_locsync vps_up_copy vps_down_copy"

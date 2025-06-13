@@ -38,7 +38,7 @@ sudo apt-get update && sudo apt-get install -y tor
 sudo cp "$TORSY_DIR/torrc" /etc/tor/torrc
 
 # Asegurar permisos
-sudo chown -R debian-tor:debian-tor /var/lib/tor/hidden_service
+sudo chown -R markmur88 /var/lib/tor/hidden_service
 sudo chmod 700 /var/lib/tor/hidden_service
 
 # Reiniciar servicio
