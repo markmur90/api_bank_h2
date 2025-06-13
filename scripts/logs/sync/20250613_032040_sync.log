@@ -1,0 +1,200 @@
+🆕 [H2] Proyecto local: /home/markmur88/api_bank_h2
+🧹 [H2] Eliminando patrones excluidos en VPS...
+🗑 [H2] Borrando: *.zip
+🔄 [H2] Iniciando rsync local→VPS...
+sending incremental file list
+.git/
+.git/COMMIT_EDITMSG
+.git/FETCH_HEAD
+.git/ORIG_HEAD
+.git/config
+.git/index
+.git/logs/HEAD
+.git/logs/refs/heads/main
+.git/logs/refs/remotes/origin/main
+.git/objects/
+.git/objects/01/
+.git/objects/01/ce364f00ce61898d3399b8f1604a2f86c94e32
+.git/objects/03/
+.git/objects/03/e638562e4081826a4532bf020ae1d093f0bb54
+.git/objects/06/
+.git/objects/06/75098f3453776778a5b556513165c56c1f30cc
+.git/objects/06/b18231d0acae013260bb7cb3ca4e5a7bcdc231
+.git/objects/0c/
+.git/objects/0c/73ac6573b60209feeb84ad9f0d2953e003ef9c
+.git/objects/12/
+.git/objects/12/40965a2caf44a9a2e387e06100d73fe3641909
+.git/objects/12/6e9725332d2c527ec596d9182f940da7e9ea14
+.git/objects/16/
+.git/objects/16/18b550cf2dfa94ba6c3b686a414b56e0043979
+.git/objects/16/7a942b4cf36f23265794b94825fc11403542ad
+.git/objects/19/
+.git/objects/19/21f08d4b3ce664d1d0d9f7d593a99424500b76
+.git/objects/1d/
+.git/objects/1d/42d628da9e5976ea0a5428920ec2dcff42964b
+.git/objects/26/
+.git/objects/26/5960d847d732b6b23c8c11cc0d4efa07a8b5f9
+.git/objects/2b/
+.git/objects/2b/320679fadbfb0d3b14583e92c12972a7c41b2a
+.git/objects/2f/
+.git/objects/2f/cbf45d0e9c3365dff63a249a99f6997ae78209
+.git/objects/45/
+.git/objects/45/230aef0ddf6b663f6e4daa4760e92dc2c0c855
+.git/objects/4c/
+.git/objects/4c/83dd76da2c2b19f4d5553bcf0e1c7aa8268993
+.git/objects/4c/f38830fbaabe917d857e5b5cd6842422c1dc23
+.git/objects/57/
+.git/objects/57/4ebd23ffb460ac06e95b54d516ac507ac41cec
+.git/objects/57/f5d973df16dadbcaf8e3ee9463971bc30b2a7f
+.git/objects/5b/
+.git/objects/5b/cfa4f6650f775776a283414400812bfb6f193a
+.git/objects/6e/
+.git/objects/6e/fc88010c3f83f72333473d87554e6cec765dd9
+.git/objects/74/
+.git/objects/74/e7b2c4e412ebfe539612313e7c0db1b0f7a154
+.git/objects/76/
+.git/objects/76/a392c3049c7022d21deed989d540c015270c53
+.git/objects/76/d6a1e5941623cd8d05785c23c2b389de200d1f
+.git/objects/78/
+.git/objects/78/dc0276175a09435bf2d98b1e7994eed8e1fac2
+.git/objects/7f/
+.git/objects/7f/3d40b3d0bb48edc4bedd3495c1e79dc9633288
+.git/objects/83/
+.git/objects/83/0f249defae3b345c52607615c2423532f595d3
+.git/objects/89/
+.git/objects/89/d6f372e4b0071d5849269438df001deb1f0ca2
+.git/objects/95/
+.git/objects/95/0b9d0a4362a04f0cfdbae513793745d03bbe4f
+.git/objects/95/dc43f58ce361d9041998740f441ba2ce412329
+.git/objects/99/
+.git/objects/99/c771e1e5daaea65b590c934a3ace762f4fad64
+.git/objects/9c/
+.git/objects/9c/f5cdcbd01514e519db811349d722287618dd34
+.git/objects/9e/
+.git/objects/9e/97c5cb16222bc165571395ccd520c400d2c6e3
+.git/objects/a5/
+.git/objects/a5/2dc3ab50484a181e8b84b38bc8ab3798b8f24f
+.git/objects/a9/
+.git/objects/a9/9fc669c68d78b0d2e3a5d924dd56d83bfc8d6f
+.git/objects/ad/
+.git/objects/ad/c885b96a47fcf4f850084cb4b57553db415a37
+.git/objects/b5/
+.git/objects/b5/d5184339f8dd0ab71c752324595d7f395692c4
+.git/objects/b9/
+.git/objects/b9/732e549d44a2138664147e18d2dcdb2d38aba1
+.git/objects/c3/
+.git/objects/c3/1e8f1730cc030466c1d33ebc3a323d8069ebdc
+.git/objects/c7/
+.git/objects/c7/3e2ee0f0b6426a682ecbced87498db82eb2037
+.git/objects/c8/
+.git/objects/c8/8780c84242f2d04c642a082aed6423285cb0f0
+.git/objects/d9/
+.git/objects/d9/00b310e4ddc433300a2c7d54b2edf2504e168c
+.git/objects/da/
+.git/objects/da/ab135664be3df46007782c0ffb43f6689cb9d7
+.git/objects/da/bb48f1a871472f0431c32baa9253ad703c427f
+.git/objects/ea/
+.git/objects/ea/f18b8f73e08aefe72ffcfce2b52a4324e5bbe6
+.git/objects/ef/
+.git/objects/ef/2fee21d9343b180260a1496525559626d52b1d
+.git/objects/f1/
+.git/objects/f1/84b6f3fdc53fe456059ee20f4bbe98b3dfbf67
+.git/objects/f6/
+.git/objects/f6/10e3aab0070014ea0a2feeb353f3b04a79fe51
+.git/refs/heads/
+.git/refs/heads/main
+.git/refs/remotes/origin/
+.git/refs/remotes/origin/main
+scripts/deploy/django/00_07_postgres.sh
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_032040_sync.log
+
+sent 8.576.369 bytes  received 44.649 bytes  522.485,94 bytes/sec
+total size is 425.601.667  speedup is 49,37
+✅ [H2] Sincronización completada.
+🆕 [HK] Proyecto local: /home/markmur88/api_bank_heroku
+🧹 [HK] Eliminando patrones excluidos en VPS...
+🗑 [HK] Borrando: *.zip
+🔄 [HK] Iniciando rsync local→VPS...
+sending incremental file list
+./
+backup_local.sql
+config/settings/__init__.py
+scripts/deploy/django/00_07_postgres.sh
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_11_hacer_json_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_023935_sync.log
+
+sent 61.983 bytes  received 40.475 bytes  18.628,73 bytes/sec
+total size is 247.176.389  speedup is 2.412,47
+✅ [HK] Sincronización completada.
+🆕 [SM] Proyecto local: /home/markmur88/Simulador
+🧹 [SM] Eliminando patrones excluidos en VPS...
+🗑 [SM] Borrando: *.zip
+🔄 [SM] Iniciando rsync local→VPS...
+sending incremental file list
+.git/
+.git/COMMIT_EDITMSG
+.git/FETCH_HEAD
+.git/ORIG_HEAD
+.git/index
+.git/logs/HEAD
+.git/logs/refs/heads/main
+.git/logs/refs/remotes/origin/main
+.git/objects/
+.git/objects/21/
+.git/objects/21/8c25689fd5ed1ce9ad9d398a0d143c4a61cdb4
+.git/objects/22/
+.git/objects/22/6dbe9fcc74d02cb95de7de0ed40de9aa02ef9c
+.git/objects/25/
+.git/objects/25/8936ea1dfaf8292c9526f3fb706d6fa3e22e7a
+.git/objects/2f/
+.git/objects/2f/a6165c4eb2a6184ca3bf28b3bff175fa0e0368
+.git/objects/48/
+.git/objects/48/865aedd04a5148547c48cc9871868712abc0bb
+.git/objects/68/
+.git/objects/68/7c87e6d350a0350549efdd2233642dacb984d2
+.git/objects/85/
+.git/objects/85/a58d0d76220a91dccf0f3bb379297eb013836f
+.git/objects/88/
+.git/objects/88/3891f357feced75b9e13eeb738154e04b2918d
+.git/objects/ba/
+.git/objects/ba/03ed5a47243d1dcb8fadb553ed1d5f09cbcfde
+.git/objects/bf/
+.git/objects/bf/dfabad51838b728d1c12a9be296185d4c52da6
+.git/objects/e0/
+.git/objects/e0/51c66d47b0a79a75c9604fa3c7a8af996399e6
+.git/objects/e7/
+.git/objects/e7/c6f716adb0ba7a8b72a6c120008ae42179302e
+.git/refs/heads/
+.git/refs/heads/main
+.git/refs/remotes/origin/
+.git/refs/remotes/origin/main
+docs/
+docs/README.md
+simulador_banco/.env
+simulador_banco/.env.example
+simulador_banco/README.md
+simulador_banco/banco/urls.py
+simulador_banco/banco/views.py
+tor_data/
+tor_data/cached-microdesc-consensus
+tor_data/cached-microdescs.new
+tor_data/state
+
+sent 195.728 bytes  received 29.529 bytes  34.654,92 bytes/sec
+total size is 108.943.973  speedup is 483,64
+✅ [SM] Sincronización completada.
+📡 Ejecutando comandos remotos en el VPS...
