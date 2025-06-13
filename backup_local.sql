@@ -1333,6 +1333,8 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$1000000$pfPy0p6yDEvifhvQGSJPew$Po7So6H31kx4iVm204rGuVPuChGF62ijpz/e3/FWHpk=	\N	t	493068k1			j.moltke@db.com	t	t	2025-06-13 03:10:35.381969-05
+2	pbkdf2_sha256$1000000$8KCH95YrQx1eIJivs4BhWE$F4p7aKX8RSq793gb2Od1nvhCJ5IPVf7hDNZyauuMLw0=	2025-06-13 03:12:28.149594-05	t	493069k1			j.moltke@db.com	t	t	2025-06-13 03:12:14.07904-05
 \.
 
 
@@ -1389,6 +1391,56 @@ COPY public.authtoken_token (key, created, user_id) FROM stdin;
 --
 
 COPY public.configuraciones_api (id, entorno, nombre, valor, descripcion, activo) FROM stdin;
+1	local	DEBUG	False		t
+2	local	ALLOWED_HOSTS	apibank2-54644cdf263f.herokuapp.com,api.coretransapi.com,127.0.0.1,0.0.0.0,80.78.30.242		t
+3	local	SECRET_KEY	MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw		t
+4	local	ENVIRONMENT	local		t
+5	local	DJANGO_ENV	local		t
+6	local	REDIRECT_URI	https://api.coretransapi.com/oauth2/callback/		t
+7	local	ORIGIN	https://api.coretransapi.com		t
+8	local	CLIENT_ID	7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7		t
+9	local	CLIENT_SECRET	L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw		t
+10	local	SCOPE	sepa_credit_transfers		t
+11	local	TIMEOUT	300		t
+12	local	TIMEOUT_REQUEST	300		t
+13	local	PRIVATE_KEY_PATH	/home/markmur88/api_bank_heroku/schemas/keys/private_key.pem		t
+14	local	PRIVATE_KEY_KID	57c43e75-3a34-4ef2-8d2b-04f1b117f2881		t
+15	local	DATABASE_URL	postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase		t
+16	local	DNS_BANCO	80.78.30.242		t
+17	local	DOMINIO_BANCO	504e1ef2.host.njalla.net		t
+18	local	RED_SEGURA_PREFIX	193.150.		t
+19	local	MOCK_PORT	9181		t
+20	local	ALLOW_FAKE_BANK	True		t
+21	local	TOKEN_URL	https://80.78.30.242:9181/gw/oidc/token		t
+22	local	AUTHORIZE_URL	https://80.78.30.242:9181/gw/oidc/authorize		t
+23	local	OTP_URL	https://80.78.30.242:9181/gw/dbapi/others/onetimepasswords/v2/single		t
+24	local	AUTH_URL	https://80.78.30.242:9181/gw/dbapi/others/transactionAuthorization/v1/challenges		t
+25	local	API_URL	https://80.78.30.242:9181/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer		t
+26	production	DEBUG	False		t
+27	production	ALLOWED_HOSTS	apibank2-54644cdf263f.herokuapp.com,api.coretransapi.com,127.0.0.1,0.0.0.0,80.78.30.242		t
+28	production	SECRET_KEY	MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw		t
+29	production	ENVIRONMENT	production		t
+30	production	DJANGO_ENV	production		t
+31	production	REDIRECT_URI	https://simulator-api.coretransapi.com/oauth2/callback/		t
+32	production	ORIGIN	https://simulator-api.coretransapi.com		t
+33	production	CLIENT_ID	7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7		t
+34	production	CLIENT_SECRET	L88pwGelUZ5EV1YpfOG3e_r24M8YQ40-Gaay9HC4vt4RIl-Jz2QjtmcKxY8UpOWUInj9CoUILPBSF-H0QvUQqw		t
+35	production	SCOPE	sepa_credit_transfers		t
+36	production	TIMEOUT	300		t
+37	production	TIMEOUT_REQUEST	300		t
+38	production	PRIVATE_KEY_PATH	/home/markmur88/api_bank_heroku/schemas/keys/private_key.pem		t
+39	production	PRIVATE_KEY_KID	57c43e75-3a34-4ef2-8d2b-04f1b117f2881		t
+40	production	DATABASE_URL	postgres://markmur88:Ptf8454Jd55@localhost:5432/mydatabase		t
+41	production	DNS_BANCO	80.78.30.242		t
+42	production	DOMINIO_BANCO	504e1ef2.host.njalla.net		t
+43	production	RED_SEGURA_PREFIX	193.150.		t
+44	production	MOCK_PORT	9181		t
+45	production	ALLOW_FAKE_BANK	True		t
+46	production	TOKEN_URL	https://simulator-api.db.com:443/gw/oidc/token		t
+47	production	AUTHORIZE_URL	https://simulator-api.db.com:443/gw/oidc/authorize		t
+48	production	OTP_URL	https://simulator-api.db.com:443/gw/dbapi/others/onetimepasswords/v2/single		t
+49	production	AUTH_URL	https://simulator-api.db.com:443/gw/dbapi/others/transactionAuthorization/v1/challenges		t
+50	production	API_URL	https://simulator-api.db.com:443/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer		t
 \.
 
 
@@ -1553,6 +1605,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 --
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+15mufz178i1dhj4981rwygwbpc6lyn3f	.eJxVjk0KwyAQhe_iOkiMrRO77L5nkHGcNGmDglEolN69BrJoVw_ez8d7C4e1zK5unN0SxEUMovv1PNKT4x6EB8Z7kpRiyYuXe0Ue6SZvKfB6Pbp_gBm3ua0t9CNZP3k0VpHRxHYERRoChAnOikGzYWOU9wN5QM_GEuBJawrTBH2Dciwpx-SQSsW1MddETTtRN8yu_eLXkmJ7HCmJS8mVP19ji0vN:1uPzWz:GUxm6AxptpLaKLcRKthZd3b9Um7PEpakn25OdwmhI3o	2025-06-13 03:22:57.367988-05
 \.
 
 
@@ -1577,6 +1630,7 @@ COPY public.gpt4_clientid (codigo, "clientId") FROM stdin;
 --
 
 COPY public.gpt4_creditor (id, name, postal_address_country, postal_address_street, postal_address_city) FROM stdin;
+1	Tom Winter	DE	Augsburger Strasse 14a	80337 München
 \.
 
 
@@ -1585,6 +1639,7 @@ COPY public.gpt4_creditor (id, name, postal_address_country, postal_address_stre
 --
 
 COPY public.gpt4_creditoraccount (id, iban, currency, creditor_id) FROM stdin;
+1	DE00500700100200044874	EUR	1
 \.
 
 
@@ -1593,6 +1648,7 @@ COPY public.gpt4_creditoraccount (id, iban, currency, creditor_id) FROM stdin;
 --
 
 COPY public.gpt4_creditoragent (id, bic, financial_institution_id, other_information) FROM stdin;
+1	DEUTDEFFXXX	DEUTDEFFXXX	Deutsche Bank
 \.
 
 
@@ -1601,6 +1657,7 @@ COPY public.gpt4_creditoragent (id, bic, financial_institution_id, other_informa
 --
 
 COPY public.gpt4_debtor (id, name, customer_id, postal_address_country, postal_address_street, postal_address_city, mobile_phone_number) FROM stdin;
+1	Baroness Anna Meyer	10020400400079945	DE	Frankfurter Allee 11	10247 Berlin	+49170123456
 \.
 
 
@@ -1609,6 +1666,7 @@ COPY public.gpt4_debtor (id, name, customer_id, postal_address_country, postal_a
 --
 
 COPY public.gpt4_debtoraccount (id, iban, currency, debtor_id) FROM stdin;
+1	DE00500700100200044824	EUR	1
 \.
 
 
@@ -1748,7 +1806,7 @@ SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.auth_user_id_seq', 1, false);
+SELECT pg_catalog.setval('public.auth_user_id_seq', 2, true);
 
 
 --
@@ -1783,7 +1841,7 @@ SELECT pg_catalog.setval('public.authentication_customuser_user_permissions_id_s
 -- Name: configuraciones_api_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.configuraciones_api_id_seq', 1, false);
+SELECT pg_catalog.setval('public.configuraciones_api_id_seq', 50, true);
 
 
 --
@@ -1853,35 +1911,35 @@ SELECT pg_catalog.setval('public.gpt4_clavegenerada_id_seq', 1, false);
 -- Name: gpt4_creditor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.gpt4_creditor_id_seq', 1, false);
+SELECT pg_catalog.setval('public.gpt4_creditor_id_seq', 1, true);
 
 
 --
 -- Name: gpt4_creditoraccount_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.gpt4_creditoraccount_id_seq', 1, false);
+SELECT pg_catalog.setval('public.gpt4_creditoraccount_id_seq', 1, true);
 
 
 --
 -- Name: gpt4_creditoragent_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.gpt4_creditoragent_id_seq', 1, false);
+SELECT pg_catalog.setval('public.gpt4_creditoragent_id_seq', 1, true);
 
 
 --
 -- Name: gpt4_debtor_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.gpt4_debtor_id_seq', 1, false);
+SELECT pg_catalog.setval('public.gpt4_debtor_id_seq', 1, true);
 
 
 --
 -- Name: gpt4_debtoraccount_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.gpt4_debtoraccount_id_seq', 1, false);
+SELECT pg_catalog.setval('public.gpt4_debtoraccount_id_seq', 1, true);
 
 
 --
