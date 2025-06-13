@@ -67,12 +67,14 @@ alias vps_sim_bank_env='vps_exec "sudo bash /home/markmur88/Simulador/scripts/en
 alias vps_sim_bank_status='vps_exec "sudo bash /home/markmur88/Simulador/scripts/status.sh"'
 alias vps_sim_bank_stop='vps_exec "sudo bash /home/markmur88/Simulador/scripts/stop_all.sh"'
 alias vps_sim_bank_start='vps_exec "sudo bash /home/markmur88/Simulador/scripts/start_stack.sh"'
+alias vps_sim_bank_start2='vps_exec "sudo bash /home/markmur88/Simulador/scripts/start_stack2.sh"'
 alias vps_sim_bank_restart='vps_exec "sudo bash /home/markmur88/Simulador/scripts/restart_supervisor.sh"'
 
 alias sim_bank_status='sudo bash /home/markmur88/Simulador/scripts/status.sh'
 alias sim_bank_env='sudo bash /home/markmur88/Simulador/scripts/env_setup.sh'
 alias sim_bank_stop='sudo bash /home/markmur88/Simulador/scripts/stop_all.sh'
 alias sim_bank_start='sudo bash /home/markmur88/Simulador/scripts/start_stack.sh'
+alias sim_bank_start2='sudo bash /home/markmur88/Simulador/scripts/start_stack2.sh'
 alias sim_bank_restart='sudo bash /home/markmur88/Simulador/scripts/restart_supervisor.sh'
 
 
@@ -410,9 +412,9 @@ alias tor_ins='sudo bash /home/markmur88/api_bank_h2/scripts/tor/instalar_tor.sh
         ["Ufw"]="lc_ufw pr_ufw st_ufw"
         ["TOR"]="tor_diag tor_newip tor_refresh tor_ins"
         ["Deploy"]="chmodtree localup express d_local d_njalla api_restart_local"
-        ["Simulador"]="testSIM sim_bank_start sim_bank_env sim_bank_stop sim_bank_status sim_bank_restart"
+        ["Simulador"]="testSIM sim_bank_start sim_bank_start2 sim_bank_env sim_bank_stop sim_bank_status sim_bank_restart"
         ["VPS"]="vps_l_root vps_l_user vps_locsycl vps_locsync vps_up_copy vps_down_copy"
-        ["VPS_SIM"]="vps_sim_bank_env vps_sim_bank_start vps_sim_bank_stop vps_sim_bank_status vps_sim_bank_restart vps_sim_bank_mon vps_sim_bank_chk vps_sim_bank_ping vps_sim_bank_ping_d"
+        ["VPS_SIM"]="vps_sim_bank_env vps_sim_bank_start vps_sim_bank_start2 vps_sim_bank_stop vps_sim_bank_status vps_sim_bank_restart vps_sim_bank_mon vps_sim_bank_chk vps_sim_bank_ping vps_sim_bank_ping_d"
     )
 
     while true; do
