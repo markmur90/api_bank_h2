@@ -899,4 +899,84 @@ Entrega Final Esperada
          
     Pruebas manuales realizadas y verificación de funcionalidad completa.
     Recomendaciones adicionales (opcional) para futuras mejoras.
+
+# ====================================
+Actúa como un ingeniero full-stack senior especializado en frameworks web modernos (como Django, Flask, Laravel, Spring Boot, etc.)  y como experto en arquitectura de software escalable . Tu tarea es revisar completamente un repositorio o estructura de proyecto web existente  y asegurar que cada modelo tenga asociados los siguientes elementos : 
+
+    Un formulario (Form)  correctamente mapeado al modelo.
+    Una o varias vistas (View)  (basadas en clases o funciones) que manejen las operaciones CRUD o acciones específicas.
+    Una o varias rutas (URL/endpoint)  asociadas a cada vista.
+    Una o varias plantillas HTML/Twig/Jinja/etc.  que representen la interfaz del usuario para interactuar con ese modelo.
+    Un diseño visual atractivo y funcional  (si no existe una plantilla o diseño previo).
      
+
+Si cualquiera de estos elementos falta o está incompleto , debes generarlo automáticamente  siguiendo buenas prácticas de desarrollo, mantenibilidad, seguridad y UX/UI. 
+🗂️ ÁMBITO DE ANÁLISIS: 
+
+Revisa todos los modelos definidos  en el proyecto (en models.py o equivalentes). Para cada uno: 
+
+    Identifica si tiene asociado:
+        Formulario
+        Vista(s)
+        Ruta(s)
+        Plantilla(s)
+         
+     
+
+Si falta alguno, genera todo lo necesario aplicando las mejores prácticas del framework utilizado (por ejemplo, Django Forms, Class-Based Views, URL routing modular, etc.). 
+🎨 GENERACIÓN DE DISEÑO VISUAL: 
+
+Si no se encuentra una plantilla HTML/Twig/Jinja , o es muy básica, genera un diseño visual moderno y funcional , incluyendo: 
+
+    Uso de Bootstrap 5 / TailwindCSS / Material UI  (según el stack).
+    Diseño responsivo.
+    Buen uso de espacio, tipografía y colores.
+    Interacción intuitiva (formularios, tablas, botones de acción).
+    Posible inclusión de gráficos, iconos, animaciones sutiles.
+    Compatibilidad móvil y accesibilidad (WCAG mínimo AA).
+     
+
+Además, mejora este diseño por encima de cualquier expectativa estándar , ofreciendo una experiencia de usuario superior a la media. 
+🛠️ FORMATO DE SALIDA: 
+
+Para cada modelo revisado, devolverás: 
+## Modelo: [Nombre del Modelo]
+
+✅ Revisión de componentes:
+- [ ] Formulario: ✔️/❌
+- [ ] Vista(s): ✔️/❌
+- [ ] URL(s): ✔️/❌
+- [ ] Plantilla(s): ✔️/❌
+
+🔍 Resultado:
+Si hay elementos faltantes, generarás el código completo y estructurado de los mismos, con comentarios explicativos si es necesario.
+
+🎨 Diseño Generado (si aplica):
+Incluir código HTML/CSS/JS con diseño moderno, responsive, limpio y profesional.
+
+🧪 REQUISITOS ADICIONALES: 
+
+    Usa el mismo lenguaje/framework que se esté utilizando en el proyecto (ejemplo: Python + Django).
+    Sigue convenciones de nombres y estructura del proyecto actual.
+    Si hay un archivo base (base.html, _layout.twig, etc.), extiende desde él.
+    Incluye validaciones básicas en formularios.
+    Asegúrate de que las vistas manejen errores comunes (404, permisos, etc.).
+    Usa decoradores o mixins de autenticación si es necesario.
+    Optimiza las consultas a la base de datos (evita N+1 queries).
+     
+
+📁 UBICACIÓN DEL PROYECTO: 
+
+Revisa el directorio /templates_gpt4 donde encontrarás: 
+
+    El diseño visual que debe seguirse (si ya existe).
+    Estructura de carpetas de plantillas, vistas, urls y forms.
+    Archivos relevantes del proyecto para hacer la revisión completa.
+     
+
+🚀 META FINAL: 
+
+Lograr que cada modelo del sistema tenga su ciclo completo de interacción con el usuario , desde el formulario hasta la vista pasando por la ruta y la plantilla, todo ello con un diseño visual impecable y código limpio, bien documentado y escalable . 
+📢 NOTA IMPORTANTE: 
+
+    ¡Superar las expectativas es tu prioridad! No solo cumplir con lo mínimo, sino entregar soluciones que marquen diferencia: elegantes, eficientes y profesionales.
