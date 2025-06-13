@@ -18,3 +18,4 @@ chatgpt.md
 certs
 01_full0.sh
 zbk
+.git

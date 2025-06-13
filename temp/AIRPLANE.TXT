@@ -1,98 +1,87 @@
-
+Eres un especialista en Airline Manager 4, y tu meta es ser el mejor sin gastar ni un dolar de tu bolsillo, vas a llevar esta aerolinea al primer lugar en el menor tiempo posible, para lo cual te entregan éstos datos:
 
 📍 Información General
 
-🛫 HUB principal: ____________________ TACCA
-🏗️ Nivel del HUB: ____________________ 60862
+🛫 HUB principal: ____________________ AIRWAYS D'AMOND659
+🏗️ Nivel del HUB: ____________________ 23363042
 
-💰 Capital disponible: _______________ $3,034,691
-⭐ Puntos AM: ________________________ 142
+💰 Capital disponible: _______________ $2.190.140
+⭐ Puntos AM: ________________________ 125
 🎖️ ¿Cuenta Premium?: _________________ No
 
 🎯 Objetivo actual:
 _____________________________________ crecer rápido, largo alcance, mantener rentabilidad
 
+BASE: BOGOTA - SKBO
 
 ✈️ Flota actual
 
 Modelo:                   Cessna172
 Cantidad:                 1
-Antigüedad (si sabes):    1mes
-Ruta(s) asignada(s):      SKNC-SEGU
-🕒 Hora salida:           02:01:49
-🕕 Hora llegada:          04:20:06  
-🎫 Precio boleto:         $476
-👥 Asientos Y:            3/1 - $476
+Antigüedad (si sabes):    10 DIAS
+Ruta(s) asignada(s):      SKRG-SKBO
+🕒 Hora salida:           20:23:39 UTC
+🕕 Hora llegada:          21:02:45 UTC
+🎫 Precio boleto:         $257
+👥 Asientos Y:            3
+👥 Asientos Ocupados Y:   1
 👥 Asientos J:            0
-👥 Asientos F:            0
-_____________________________________
-Modelo:                   F27-600
-Cantidad:                 1
-Antigüedad (si sabes):    1mes
-Ruta(s) asignada(s):      SBUA-SKVP
-🕒 Hora salida:           23:06:08
-🕕 Hora llegada:          06:49:12
-👥 Asientos Y:            35/14 - $717
-👥 Asientos J:            4/2 - $1653
-👥 Asientos F:            0
-_____________________________________
-Modelo:                   ATR-72-500
-Cantidad:                 1
-Antigüedad (si sabes):    1mes
-Ruta(s) asignada(s):      SPJR-SKBO
-🕒 Hora salida:           02:01:49
-🕕 Hora llegada:          07:39:54
-👥 Asientos Y:            64/26 - $732
-👥 Asientos J:            0
-👥 Asientos F:            0
-_____________________________________
-Modelo:                   DC-9-10
-Cantidad:                 1
-Antigüedad (si sabes):    4 dias
-Ruta(s) asignada(s):      SKBO-SPCL
-🕒 Hora salida:           02:01:49
-🕕 Hora llegada:          05:39:08
-👥 Asientos Y:            70/10 - $753
-👥 Asientos J:            10/4 - $1725
-👥 Asientos F:            0
-_____________________________________
-Modelo:                   DC-7C
-Cantidad:                 1
-Antigüedad (si sabes):    1 MES
-Ruta(s) asignada(s):      KYKN-KLEB
-🕒 Hora salida:           02:01:49
-🕕 Hora llegada:          04:26:13
-👥 Asientos Y:            93/39 - $980
-👥 Asientos J:            6/3 - $2180
-👥 Asientos F:            0
-_____________________________________
-Modelo:                   B727-100
-Cantidad:                 1
-Antigüedad (si sabes):    4 DIAS
-Ruta(s) asignada(s):      KAFW-KLEB
-🕒 Hora salida:           02:01:49
-🕕 Hora llegada:          07:27:46
-👥 Asientos Y:            91/37 - $1158
-👥 Asientos J:            20/8 - $2536
 👥 Asientos F:            0
 _____________________________________
 Modelo:                   B737-800
 Cantidad:                 1
-Antigüedad (si sabes):    1 MES
-Ruta(s) asignada(s):      SKBO-KBOS
-🕒 Hora salida:           02:01:49
-🕕 Hora llegada:          05:37:13
-👥 Asientos Y:            184/72 - $1850
+Antigüedad (si sabes):    10 DIAS
+Ruta(s) asignada(s):      TNCM-SKBO
+🕒 Hora salida:           20:17:39 UTC
+🕕 Hora llegada:          21:55:30 UTC
+🎫 Precio boleto:         $934
+👥 Asientos Y:            184
+👥 Asientos Ocupados Y:   80
 👥 Asientos J:            0
 👥 Asientos F:            0
-_____________________________________
-
-
-
+____________________________
 
 📈 Costos operativos
-⛽ Combustible: ______________________ $2,360 / 1000L
-🌱 CO₂: _____________________________  $162 / 1000 cuotas
+⛽ Combustible: ______________________ $2.010 / 1000L
+🌱 CO₂: _____________________________  $110 / 1000 cuotas
 🔧 Mantenimiento aprox: ______________ (si sabes)
+
+
+Otra Información:
+
+User ID: 23363042 
+Airways Diamond659
+Puesto: 78,780
+ Logotipo 
+ Reputación de la aerolínea
+
+ Charter Reputation
+Get charter
+ Reputación de carga
+Coger la carga
+ Base
+Colombia, Bogota
+ Flota
+2
+ Capacidad del hangar
+30
+ Rutas
+2
+ Centros de conexión
+1
+ Salas de espera
+0
+ Tipo
+PAX
+ Vuelos operados
+8
+ Pasajeros de clase Y
+569
+ Pasajeros de clase J
+0
+ Pasajeros de clase F
+0
+ Nivel
+1
 
 
