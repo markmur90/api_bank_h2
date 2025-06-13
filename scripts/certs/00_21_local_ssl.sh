@@ -24,7 +24,7 @@ GT_NT_DIR="$UT_GT_DIR/notify"
 GE_LG_DIR="$GT_GE_DIR/logs"
 GE_SH_DIR="$GT_GE_DIR/scripts"
 
-BASE_DIR="$AP_HK_DIR"
+BASE_DIR="$AP_H2_DIR"
 
 set -euo pipefail
 
