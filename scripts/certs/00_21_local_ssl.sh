@@ -24,7 +24,7 @@ GT_NT_DIR="$UT_GT_DIR/notify"
 GE_LG_DIR="$GT_GE_DIR/logs"
 GE_SH_DIR="$GT_GE_DIR/scripts"
 
-BASE_DIR="$AP_H2_DIR"
+BASE_DIR="$AP_HK_DIR"
 
 set -euo pipefail
 
@@ -79,11 +79,11 @@ if sudo lsof -i :8443 | grep -q LISTEN; then
     fi
 
     echo "🚀 Ejecutando Gunicorn como backend en http://0.0.0.0:8000" | tee -a $LOG_DEPLOY
-nohup gunicorn config.wsgi:application --bind 0.0.0.0:8000 > scripts/logs/despliegue/00_21_local_ssl.log 2>&1 &
+nohup $HOME/envAPP/bin/gunicorn config.wsgi:application --bind 0.0.0.0:8000 > $HOME/api_bank_h2/scripts/logs/despliegue/00_21_local_ssl.log 2>&1 &
 else
     echo "🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443" | tee -a $LOG_DEPLOY
     echo "🔐 Certificado: $CERT_CRT" | tee -a $LOG_DEPLOY
-nohup gunicorn config.wsgi:application \ > scripts/logs/despliegue/00_21_local_ssl.log 2>&1 &
+nohup $HOME/envAPP/bin/gunicorn config.wsgi:application \ > $HOME/api_bank_h2/scripts/logs/despliegue/00_21_local_ssl.log 2>&1 &
       --certfile="$CERT_CRT" \
       --keyfile="$CERT_KEY" \
       --bind 0.0.0.0:8443
