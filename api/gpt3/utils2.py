@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 # Configuraciones iniciales
 ORIGIN = settings.ORIGIN
 CLIENT_ID = settings.CLIENT_ID
-ACCESS_TOKEN = settings.ACCESS_TOKEN
+# ACCESS_TOKEN = settings.ACCESS_TOKEN
 
 TIMEOUT_REQUEST = 10
 
@@ -79,7 +79,7 @@ def build_complete_sepa_headers(request, method: str) -> CaseInsensitiveDict:
     headers["Origin"] = request.headers.get("Origin", ORIGIN)
     headers["X-Requested-With"] = "XMLHttpRequest"
     headers["Accept"] = "application/json"
-    headers["Authorization"] = f"Bearer {ACCESS_TOKEN}"
+    # headers["Authorization"] = f"Bearer {ACCESS_TOKEN}"
     if method in ['POST', 'PATCH', 'DELETE']:
         headers["Content-Type"] = "application/json"
         headers["otp"] = request.POST.get("otp") or request.headers.get("otp", "SEPA_TRANSFER_GRANT")
@@ -133,14 +133,14 @@ def generar_otp_sepa_transfer():
         registrar_log("", headers, "", str(e))
         return {"success": False, "error": str(e)}
     
-def get_oauth_session(request=None):
-    try:
-        if not ACCESS_TOKEN:
-            raise ValueError("ACCESS_TOKEN no configurado.")
-        return OAuth2Session(client_id=CLIENT_ID, token={"access_token": ACCESS_TOKEN})
-    except Exception as e:
-        registrar_log("", {}, "", str(e))
-        raise
+# def get_oauth_session(request=None):
+#     try:
+#         if not ACCESS_TOKEN:
+#             raise ValueError("ACCESS_TOKEN no configurado.")
+#         return OAuth2Session(client_id=CLIENT_ID, token={"access_token": ACCESS_TOKEN})
+#     except Exception as e:
+#         registrar_log("", {}, "", str(e))
+#         raise
 
 def guardar_pain002_si_aplica(response, payment_id):
     carpeta = obtener_ruta_schema_transferencia(payment_id)

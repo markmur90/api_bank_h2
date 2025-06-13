@@ -90,7 +90,7 @@ INSTALLED_APPS = [
     'api.transfers',
     'api.core',
     'api.authentication',
-    'api.gpt3',
+    # 'api.gpt3',
     'api.gpt4',
 ]
 
@@ -213,7 +213,7 @@ API_URL = env('API_URL')
 AUTHORIZE_URL = env('AUTHORIZE_URL')
 SCOPE = env('SCOPE')
 TIMEOUT_REQUEST = 3600
-ACCESS_TOKEN = env('ACCESS_TOKEN')
+# ACCESS_TOKEN = env('ACCESS_TOKEN')
 
 # from .configuración_dinamica import (
 #     REDIRECT_URI,
@@ -234,7 +234,7 @@ ACCESS_TOKEN = env('ACCESS_TOKEN')
 OAUTH2 = {
     'CLIENT_ID': CLIENT_ID,
     'CLIENT_SECRET': CLIENT_SECRET,
-    'ACCESS_TOKEN': ACCESS_TOKEN,
+    # 'ACCESS_TOKEN': ACCESS_TOKEN,
     'ORIGIN': ORIGIN,
     'OTP_URL': OTP_URL,
     'AUTH_URL': AUTH_URL,

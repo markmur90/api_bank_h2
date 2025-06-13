@@ -1,0 +1,192 @@
+🆕 [H2] Proyecto local: /home/markmur88/api_bank_h2
+🧹 [H2] Eliminando patrones excluidos en VPS...
+🗑 [H2] Borrando: *.zip
+🔄 [H2] Iniciando rsync local→VPS...
+sending incremental file list
+.git/
+.git/COMMIT_EDITMSG
+.git/FETCH_HEAD
+.git/ORIG_HEAD
+.git/config
+.git/index
+.git/logs/HEAD
+.git/logs/refs/heads/main
+.git/logs/refs/remotes/origin/main
+.git/objects/
+.git/objects/03/
+.git/objects/03/041d35eb2092188f6bb6f865e79242a7cd8aa0
+.git/objects/0d/19a7e98c519000974317463bdb1473eac822a4
+.git/objects/1d/
+.git/objects/1d/886bc04eb6f34438b0370c626dfe9c45be757d
+.git/objects/2a/
+.git/objects/2a/a5b89e1a9cd93dccee34cc4439b7fa1ecf49cc
+.git/objects/2b/
+.git/objects/2b/c65ca4c0ba7342545eadcdd5c9a4b7eabb2283
+.git/objects/35/
+.git/objects/35/e46de5f59147ac50f4d7b8faff585446858dd9
+.git/objects/37/490a6720b9935d0b9695e6d37aa4746d74017c
+.git/objects/3b/
+.git/objects/3b/2377e452ae18ee5b0238294ee0b591feb730cf
+.git/objects/41/
+.git/objects/41/bd553ebfa95a95b75968e7851914d3dbc279dc
+.git/objects/4d/
+.git/objects/4d/f7bf2648bf50e0f9cee28b3f4422c1deb02c28
+.git/objects/51/
+.git/objects/51/44c03cc4822901f9651597b26a2a509dfd0cab
+.git/objects/5c/
+.git/objects/5c/5fc0a690715f51dddd34da6ef2fa5042d95807
+.git/objects/5c/ff0ddc9e805b664e971890bb1408941b5b9c2d
+.git/objects/63/4d88705ad004ea6059632b79a2d724af440683
+.git/objects/64/60c5c74abb35a57f3f7db10e3486aa7cd7d1e5
+.git/objects/6d/
+.git/objects/6d/bffb86e073d0f8c5a1ce253bc76d9ffcd5ba4a
+.git/objects/74/
+.git/objects/74/2ca597defb0c33ace4225226c9d69187bd59f6
+.git/objects/79/
+.git/objects/79/1bce6589b9dc15783a4512e7b74e328583a542
+.git/objects/82/
+.git/objects/82/22aaeb7935cba945749b8f4c2618d45278b551
+.git/objects/84/
+.git/objects/84/4c44899b4a8084e768eda68c1afbad5707ca8f
+.git/objects/84/baad2f4dddd2be180ed096ad0380d221fa69a8
+.git/objects/96/b9e821001cb53c6df5e750c68a583c7933355b
+.git/objects/b6/
+.git/objects/b6/545a332a4127f2d7daee0832369ba4530c09a7
+.git/objects/b9/
+.git/objects/b9/d51d0161d7689eabfa5c93d215bc6f7141b7a6
+.git/objects/d0/
+.git/objects/d0/a5d410b62e5ad7e5d6aca36b966abdff542231
+.git/objects/d3/
+.git/objects/d3/e8893caf2ffef02f0c20f6ddd34b43170aa0ee
+.git/objects/d8/
+.git/objects/d8/2a8ced78f61db5bd18a114140b86efe4bab230
+.git/objects/e5/
+.git/objects/e5/975206eff4f6156b108721f9c2b9124271c6f4
+.git/objects/f7/
+.git/objects/f7/6459002da9dc05926c82317c587c3fe248da03
+.git/objects/f8/
+.git/objects/f8/c06e41fab32803521b91ca207cdc5ed50bc9cb
+.git/objects/fe/79a1cfd8ea5399317d0c703527a9a4045ea747
+.git/refs/heads/
+.git/refs/heads/main
+.git/refs/remotes/origin/
+.git/refs/remotes/origin/main
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_013049_sync.log
+
+sent 2.829.969 bytes  received 44.066 bytes  338.121,76 bytes/sec
+total size is 409.885.948  speedup is 142,62
+✅ [H2] Sincronización completada.
+🆕 [HK] Proyecto local: /home/markmur88/api_bank_heroku
+🧹 [HK] Eliminando patrones excluidos en VPS...
+🗑 [HK] Borrando: *.zip
+🔄 [HK] Iniciando rsync local→VPS...
+sending incremental file list
+deleting schemas/transferencias/
+deleting schemas/
+deleting api.sock
+requirements.txt
+restore_and_upload_force.sh
+config/settings/__init__.py
+scripts/deploy/django/00_08_migraciones.sh
+scripts/deploy/vps/00_18_05_deploy_update.sh
+scripts/deploy/vps/excludes.txt
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/despliegue/00_21_local_ssl.log
+scripts/logs/despliegue/00_21_local_ssl_.log
+scripts/logs/sync/
+scripts/logs/sync/20250612_224318_sync.log
+
+sent 48.994 bytes  received 40.353 bytes  13.745,69 bytes/sec
+total size is 246.704.702  speedup is 2.761,20
+✅ [HK] Sincronización completada.
+🆕 [SM] Proyecto local: /home/markmur88/Simulador
+🧹 [SM] Eliminando patrones excluidos en VPS...
+🗑 [SM] Borrando: *.zip
+🔄 [SM] Iniciando rsync local→VPS...
+sending incremental file list
+deleting simulador_seguridades.md
+deleting ayuda.md
+deleting audit.txt
+deleting docs/README_package.md
+.git/
+.git/COMMIT_EDITMSG
+.git/FETCH_HEAD
+.git/ORIG_HEAD
+.git/index
+.git/logs/HEAD
+.git/logs/refs/heads/main
+.git/logs/refs/remotes/origin/main
+.git/objects/
+.git/objects/07/
+.git/objects/07/5590aa8bcaa3bee9701368f9c162aaee97752f
+.git/objects/0d/
+.git/objects/0d/19a7e98c519000974317463bdb1473eac822a4
+.git/objects/16/
+.git/objects/16/c85b868aaaf62dde30686929d01f9298c5ce48
+.git/objects/37/
+.git/objects/37/490a6720b9935d0b9695e6d37aa4746d74017c
+.git/objects/51/
+.git/objects/51/44c03cc4822901f9651597b26a2a509dfd0cab
+.git/objects/63/
+.git/objects/63/4d88705ad004ea6059632b79a2d724af440683
+.git/objects/64/
+.git/objects/64/60c5c74abb35a57f3f7db10e3486aa7cd7d1e5
+.git/objects/6e/
+.git/objects/6e/189fe832028630859b7fd9fa5a626bf7efd50a
+.git/objects/96/
+.git/objects/96/b9e821001cb53c6df5e750c68a583c7933355b
+.git/objects/a0/
+.git/objects/a0/2da2b21d3af6e70fd96ee91a26ece94600e7d4
+.git/objects/a1/
+.git/objects/a1/e2acd2a13ddb6c90694a753f2cc07279a9bf92
+.git/objects/a4/
+.git/objects/a4/af268cf66a3e9d4f921d0481126e9f88f40385
+.git/objects/a5/
+.git/objects/a5/de0da176e548f69ce3ed3307e6fc5c0a0da2f0
+.git/objects/b6/
+.git/objects/b6/049cdd48d83307ed3015c54857ba83370c5ffc
+.git/objects/b9/
+.git/objects/b9/9862bfb8aae1b5821bc0dafb4177028147db75
+.git/objects/cf/
+.git/objects/cf/96b1ca136256331330c94ab3acf3381ad8406e
+.git/objects/dd/
+.git/objects/dd/eb24519b70e5769836149a5b21e272b356636f
+.git/objects/e4/
+.git/objects/e4/4224eb6ae9ae77087141cc20bf6e0921b4868e
+.git/objects/fe/
+.git/objects/fe/79a1cfd8ea5399317d0c703527a9a4045ea747
+.git/refs/heads/
+.git/refs/heads/main
+.git/refs/remotes/origin/
+.git/refs/remotes/origin/main
+docs/
+docs/swanger/
+docs/swanger/dbapi-onetimepasswords.json
+docs/swanger/dbapi-paymentInitiation-payments.json
+docs/swanger/dbapi-processingOrders.json
+docs/swanger/dbapi-sepaCreditTransfer.json
+docs/swanger/dbapi-transactionAuthorization.json
+docs/swanger/dbapi-transactions.json
+logs/gunicorn_error.log
+simulador_banco/
+simulador_banco/requirements.txt
+tor_data/
+tor_data/state
+
+sent 112.997 bytes  received 26.858 bytes  16.453,53 bytes/sec
+total size is 104.682.692  speedup is 748,51
+✅ [SM] Sincronización completada.
+📡 Ejecutando comandos remotos en el VPS...
+🎉 Todo listo, sincronizaciones y despliegue en VPS finalizados.

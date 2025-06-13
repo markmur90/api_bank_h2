@@ -89,7 +89,7 @@ procesar_archivo_env() {
 }
 
 # --- EJECUCIÓN PRINCIPAL ---
-ARCHIVOS_ENV=(".env" ".env.local" ".env.production")
+ARCHIVOS_ENV=(".env.local" ".env.production")
 
 for archivo in "${ARCHIVOS_ENV[@]}"; do
     if [ -f "$archivo" ]; then
