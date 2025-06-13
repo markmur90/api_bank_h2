@@ -2021,3 +2021,11 @@ Abortando.
 
 ❌ Error en línea 110: "bash restore_and_upload_force.sh"
 Abortando.
+
+📅 Fecha de ejecución: 2025-06-13 02:51:01
+📄 Script: 00_07_postgres.sh
+═══════════════════════════════════════════
+🔍 Verificando PostgreSQL...
+📦 Instalando dependencias...
+⚠️ Borrando base de datos existente: mydatabase
+[7;30m✅ Base de datos y usuario listos.[0m

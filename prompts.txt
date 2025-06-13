@@ -729,3 +729,174 @@ Al finalizar, entrega el proyecto completamente funcional, probado y listo para 
         Pruebas realizadas y verificación de funcionalidad completa.
         Recomendaciones adicionales (opcional) para futuras mejoras.
 
+Revisa y refactoriza completamente el proyecto Django/Spring Boot/Simulador Bancario existente, siguiendo buenas prácticas de seguridad, arquitectura y experiencia de usuario. El sistema debe cumplir con los siguientes requisitos: 
+
+    Autenticación segura:  
+        Implementa autenticación con JWT.
+        Agrega soporte para Refresh Token con expiración extendida.
+        Usa variables de entorno para claves sensibles.
+        Desactiva DEBUG y restringe ALLOWED_HOSTS.
+        Integra seguridad CSRF/XSS.
+         
+
+    Auditoría y Logs:  
+        Registra todas las operaciones en un log estructurado.
+        Incluye detalles como: usuario, fecha/hora, IP, tipo de acción, resultado.
+        Ofrece visualización de logs en dashboard web.
+         
+
+    Control de Roles:  
+        Define roles como ADMIN y USER.
+        Protege rutas sensibles para usuarios autorizados.
+        Usa Spring Security o Django Middleware según corresponda.
+         
+
+    Dashboard Web:  
+        Crea una interfaz web para visualizar actividad del sistema.
+        Muestra gráficos interactivos de transferencias diarias, montos por usuario y distribuciones estadísticas.
+        Usa Flask/Bootstrap/Chart.js o Django + templates.
+         
+
+    Gráficos de Estadísticas:  
+        Genera gráficos dinámicos con Python (matplotlib, pandas).
+        Muestra gráficos en HTML con imágenes Base64.
+        Opcional: exportar a PDF o CSV.
+         
+
+    Interfaz Tkinter Mejorada:  
+        Añade opción para mostrar y escanear código QR OTP.
+        Integra análisis de transacciones con GPT-4.
+        Envía notificaciones a Telegram con imágenes adjuntas.
+         
+
+    Análisis con GPT-4:  
+        Detecta patrones sospechosos en transferencias.
+        Genera alertas automáticas.
+        Muestra resultados en GUI o dashboard.
+         
+
+    Notificaciones por Telegram:  
+        Envía mensaje después de cada transferencia.
+        Adjunta imagen del QR o recibo.
+        Maneja errores silenciosamente.
+         
+
+    Pruebas Automatizadas:  
+        Ejecuta flujo completo: login → refresh token → transferencia → OTP → GPT-4 → Telegram → Log.
+        Usa script bash o Python para probar manualmente.
+         
+
+    Dockerización:  
+        Crea Dockerfile para cada servicio.
+        Genera docker-compose.yml para levantar todo junto.
+        Configura variables, puertos, redes y volúmenes.
+         
+     
+
+Al finalizar, entrega el sistema completamente funcional, probado y documentado. Incluye instrucciones de instalación, ejecución y configuración. Debe estar listo para usar localmente o desplegar en VPS."
+
+
+
+# ====================================
+
+Eres un ingeniero en sistemas con experiencia en desarrollo web y seguridad. Tu tarea es realizar una revisión completa y refactorización  de un proyecto Django que simula un sistema bancario con integración hacia una API externa para autenticación y transferencias. 
+
+El sistema debe interactuar con los siguientes endpoints: 
+
+    TOKEN_URL: https://80.78.30.242:9181/gw/oidc/token    
+    AUTHORIZE_URL: https://80.78.30.242:9181/gw/oidc/authorize    
+    OTP_URL: https://80.78.30.242:9181/gw/dbapi/others/onetimepasswords/v2/single    
+    AUTH_URL: https://80.78.30.242:9181/gw/dbapi/others/transactionAuthorization/v1/challenges    
+    API_URL: https://80.78.30.242:9181/gw/dbapi/paymentInitiation/payments/v1/sepaCreditTransfer 
+     
+
+Requisitos Generales del Proyecto 
+1. Arquitectura y Estructura 
+
+    Organiza el proyecto siguiendo las mejores prácticas de Django (apps separadas, directorios claros de templates, static, settings, etc.).
+    Elimina o reestructura scripts obsoletos como generar_jwt.py convirtiéndolos en comandos personalizados (management/commands).
+    Crea modelos faltantes (DeudorSimulado, AcreedorSimulado, LogTransferencia, etc.) o elimina referencias innecesarias.
+    Genera todas las migraciones necesarias.
+     
+
+2. Seguridad 
+
+    Mueve todas las claves sensibles (SECRET_KEY, JWT_SECRET_KEY, tokens) a variables de entorno.
+    Desactiva DEBUG = True y restringe ALLOWED_HOSTS para producción.
+    Elimina uso innecesario de @csrf_exempt. Asegúrate de usar middleware CSRF y protección XSS.
+    Configura cookies seguras (SESSION_COOKIE_SECURE, CSRF_COOKIE_SECURE) cuando se use HTTPS.
+    Implementa autenticación basada en JWT con soporte para refresh token y expiración segura.
+    Registra todas las acciones del usuario en logs estructurados (usuario, fecha/hora, IP, tipo de acción, resultado) y muestra estos logs en el dashboard.
+     
+
+3. Autenticación y OTP 
+
+    Implementa correctamente el flujo de login/logout usando login() de Django.
+    Integra generación y validación de OTP (simulada por consola/email/SMS durante desarrollo).
+    Sincroniza el flujo de OTP con la API externa (endpoint /otp).
+    Usa sesiones seguras y maneja tokens de forma adecuada.
+     
+
+4. Dashboard Web 
+
+    Diseña un panel de control funcional con formularios mejorados (usando Django forms o django-crispy-forms).
+    Muestra gráficos interactivos de transferencias diarias, montos por usuario y distribuciones estadísticas.
+    Integra gráficos dinámicos usando Python (matplotlib, pandas) y muestra imágenes Base64 en HTML.
+    Opcional: permite exportar datos a PDF o CSV.
+     
+
+5. Endpoints y Funcionalidades 
+
+    Crea un endpoint seguro /api/transferencias/entrantes/ que acepte JSON y valide con sesión activa o JWT.
+    Usa transfer_services.TransferService para crear nuevas transferencias desde ese endpoint.
+    Valida datos de entrada y responde con códigos HTTP apropiados.
+    Garantiza procesamiento idempotente y estados claros de transferencias (PENDIENTE, CONFIRMADA, RECHAZADA, etc.).
+     
+
+6. Interfaz Gráfica Mejorada (Tkinter) 
+
+    Añade opción para mostrar y escanear código QR OTP.
+    Integra análisis de transacciones con GPT-4.
+    Envía notificaciones a Telegram con imágenes adjuntas tras cada transferencia.
+     
+
+7. Análisis con GPT-4 
+
+    Detecta patrones sospechosos en transferencias.
+    Genera alertas automáticas.
+    Muestra resultados en GUI o dashboard.
+     
+
+8. Notificaciones por Telegram 
+
+    Envía mensaje automático después de cada transferencia.
+    Adjunta imagen del QR o recibo.
+    Maneja errores silenciosamente.
+     
+
+9. Pruebas Automatizadas 
+
+    Ejecuta flujo completo: login → refresh token → transferencia → OTP → GPT-4 → Telegram → Log.
+    Incluye script bash o Python para probar manualmente.
+     
+
+10. Dockerización 
+
+    Crea Dockerfile para cada servicio.
+    Genera archivo docker-compose.yml para levantar todo junto.
+    Configura variables de entorno, puertos, redes y volúmenes.
+     
+
+Entrega Final Esperada 
+
+    Código completamente refactorizado, funcional y seguro.
+    Archivos actualizados:
+        settings.py: con variables de entorno y configuraciones seguras.
+        urls.py, views.py, models.py, forms.py: organizados, limpios y funcionales.
+        Plantillas HTML mejoradas.
+        Archivo README.md completo con instrucciones detalladas paso a paso de: instalación, configuración, ejecución y pruebas.
+        Estructura de migraciones generada.
+         
+    Pruebas manuales realizadas y verificación de funcionalidad completa.
+    Recomendaciones adicionales (opcional) para futuras mejoras.
+     
