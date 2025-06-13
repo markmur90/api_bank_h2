@@ -354,14 +354,14 @@ menu() {
     )
 
     while true; do
-    # clear
+    clear
         echo -e "\nSelecciona un grupo de alias para ver o ejecutar:"
         select grupo in "${(@k)alias_groups}" "Salir"; do
             if [[ "$grupo" == "Salir" ]]; then
                 return
             elif [[ -n "$grupo" && -n "${alias_groups[$grupo]}" ]]; then
                 while true; do
-                # clear
+                clear
                     echo -e "\nAlias en el grupo: $grupo"
                     alias_list=("${(s: :)alias_groups[$grupo]}")
                     select alias_cmd in "${alias_list[@]}" "Volver"; do

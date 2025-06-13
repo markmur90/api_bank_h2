@@ -105,6 +105,8 @@ echo "📋 **RESUMEN FINAL EN VPS**"
 echo "🟢 Verificación final de servicios completada."
 sleep 2
 
+sudo bash /home/markmur88/api_bank_h2/scripts/src/ufw_produccion.sh
+
 EOF
 
 echo ""
