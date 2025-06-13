@@ -2165,3 +2165,11 @@ GRANT ALL PRIVILEGES ON SCHEMA public TO ${DB_USER};
 EOF
 "
 Abortando.
+
+📅 Fecha de ejecución: 2025-06-13 09:30:13
+📄 Script: 00_07_postgres.sh
+═══════════════════════════════════════════
+🔍 Verificando PostgreSQL...
+📦 Instalando dependencias...
+⚠️ Borrando base de datos existente: mydatabase
+[7;30m✅ Base de datos y usuario listos.[0m
