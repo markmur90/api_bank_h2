@@ -1,4 +1,12 @@
-[2025-06-13 09:34:27 +0200] [56601] [INFO] Starting gunicorn 23.0.0
-[2025-06-13 09:34:27 +0200] [56601] [INFO] Listening at: http://0.0.0.0:8000 (56601)
-[2025-06-13 09:34:27 +0200] [56601] [INFO] Using worker: sync
-[2025-06-13 09:34:27 +0200] [56609] [INFO] Booting worker with pid: 56609
+[2025-06-13 09:38:33 +0200] [60475] [INFO] Starting gunicorn 23.0.0
+[2025-06-13 09:38:33 +0200] [60475] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-06-13 09:38:33 +0200] [60475] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-06-13 09:38:34 +0200] [60475] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-06-13 09:38:34 +0200] [60475] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-06-13 09:38:35 +0200] [60475] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-06-13 09:38:35 +0200] [60475] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-06-13 09:38:36 +0200] [60475] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-06-13 09:38:36 +0200] [60475] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-06-13 09:38:37 +0200] [60475] [ERROR] Connection in use: ('0.0.0.0', 8000)
+[2025-06-13 09:38:37 +0200] [60475] [ERROR] connection to ('0.0.0.0', 8000) failed: [Errno 98] Address already in use
+[2025-06-13 09:38:38 +0200] [60475] [ERROR] Can't connect to ('0.0.0.0', 8000)

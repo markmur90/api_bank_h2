@@ -516,3 +516,6 @@
 🔐 Activando entorno virtual...
 🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443
 🔐 Certificado: /home/markmur88/api_bank_h2/schemas/certs/desarrollo.crt
+🔐 Activando entorno virtual...
+🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443
+🔐 Certificado: /home/markmur88/api_bank_h2/schemas/certs/desarrollo.crt
