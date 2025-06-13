@@ -63,17 +63,17 @@ log_error() { echo -e "${ROJO}[ERR]  $1${RESET}"; }
 
 alias vps_sim_bank_chk='vps_exec "[ -f ~/Simulador/tor_data/hidden_service/hostname ] && cat ~/Simulador/tor_data/hidden_service/hostname || echo -e \"${AMARILLO}[WARN] Archivo hostname no encontrado${RESET}\""'
 alias vps_sim_bank_mon='vps_exec "[ -f ~/Simulador/logs/gunicorn.log ] && tail -f ~/Simulador/logs/gunicorn.log ~/Simulador/logs/gunicorn_error.log ~/Simulador/logs/tor.log ~/Simulador/logs/tor_error.log || echo -e \"${AMARILLO}[WARN] No existen los logs aún. ¿Ejecutaste start_all.sh?${RESET}\""'
-alias vps_sim_bank_env='vps_exec "sudo bash ~/Simulador/scripts/env_setup.sh"'
-alias vps_sim_bank_status='vps_exec "bash ~/Simulador/scripts/status.sh"'
-alias vps_sim_bank_stop='vps_exec "sudo bash ~/Simulador/scripts/stop_all.sh"'
-alias vps_sim_bank_start='vps_exec "sudo bash ~/Simulador/scripts/start_stack.sh"'
-alias vps_sim_bank_restart='vps_exec "sudo bash ~/Simulador/scripts/restart_supervisor.sh"'
+alias vps_sim_bank_env='vps_exec "sudo bash /home/markmur88/Simulador/scripts/env_setup.sh"'
+alias vps_sim_bank_status='vps_exec "sudo bash /home/markmur88/Simulador/scripts/status.sh"'
+alias vps_sim_bank_stop='vps_exec "sudo bash /home/markmur88/Simulador/scripts/stop_all.sh"'
+alias vps_sim_bank_start='vps_exec "sudo bash /home/markmur88/Simulador/scripts/start_stack.sh"'
+alias vps_sim_bank_restart='vps_exec "sudo bash /home/markmur88/Simulador/scripts/restart_supervisor.sh"'
 
-alias sim_bank_status='sudo bash ~/Simulador/scripts/status.sh'
-alias sim_bank_env='sudo bash ~/Simulador/scripts/env_setup.sh'
-alias sim_bank_stop='sudo bash ~/Simulador/scripts/stop_all.sh'
-alias sim_bank_start='sudo bash ~/Simulador/scripts/start_stack.sh'
-alias sim_bank_restart='sudo bash ~/Simulador/scripts/restart_supervisor.sh'
+alias sim_bank_status='sudo bash /home/markmur88/Simulador/scripts/status.sh'
+alias sim_bank_env='sudo bash /home/markmur88/Simulador/scripts/env_setup.sh'
+alias sim_bank_stop='sudo bash /home/markmur88/Simulador/scripts/stop_all.sh'
+alias sim_bank_start='sudo bash /home/markmur88/Simulador/scripts/start_stack.sh'
+alias sim_bank_restart='sudo bash /home/markmur88/Simulador/scripts/restart_supervisor.sh'
 
 
 alias vps_sim_bank_ping="torsocks curl --silent --fail http://\$(vps_exec '[ -f ~/Simulador/tor_data/hidden_service/hostname ] && cat ~/Simulador/tor_data/hidden_service/hostname') || echo '[ERROR] No se pudo conectar al servicio oculto'"
@@ -400,12 +400,13 @@ alias sm_dir='cd $HOME/Simulador && clear && ls'
 alias bk_dir='cd $HOME/backup && clear && ls'
 alias lc_ufw='sudo bash /home/markmur88/api_bank_h2/scripts/src/00_06_ufw.sh'
 alias pr_ufw='sudo bash /home/markmur88/api_bank_h2/scripts/src/ufw_produccion.sh'
+alias st_ufw='sudo ufw status verbose && sudo ss -tulno | grep ssh'
 
 2menu() {
     typeset -A alias_groups
     alias_groups=(
         ["Code"]="cAPI cHER cNOT cGIT cFRE cSIM cSCR cMEN"
-        ["Ufw"]="lc_ufw pr_ufw"
+        ["Ufw"]="lc_ufw pr_ufw st_ufw"
         ["Deploy"]="chmodtree localup express d_local d_njalla api_restart_local"
         ["Simulador"]="testSIM sim_bank_start sim_bank_env sim_bank_stop sim_bank_status sim_bank_restart"
         ["VPS"]="vps_l_root vps_l_user vps_locsycl vps_locsync vps_up_copy vps_down_copy"

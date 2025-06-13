@@ -17,11 +17,24 @@ sudo ufw allow 5432/tcp            # PostgreSQL local
 sudo ufw allow 8443/tcp comment "SSL certs"           # PostgreSQL local
 
 sudo ufw allow 9051/tcp comment "Tor ControlPort"
-sudo ufw allow from 127.0.0.1 to port 9100/tcp comment "Supervisor Sim"
-sudo ufw allow from 0.0.0.0 to port 9181/tcp comment "Simulador local"
+sudo ufw allow 9181/tcp comment "Simulador local"
 sudo ufw allow 9055/tcp comment "Tor SockPort Sim"
 sudo ufw allow 9056/tcp comment "Tor ControlPort Sim"
-sudo ufw allow from 127.0.0.1 to port 9002/tcp comment "Supervisor Hidden Sim"
+sudo ufw allow 9002/tcp comment "Supervisor Hidden Sim"
+sudo ufw allow 9100/tcp comment "Supervisor Sim"
+
+sudo ufw allow 8001/tcp comment "Extra"
+sudo ufw allow 8080/tcp comment "Extra"
+sudo ufw allow 9001/tcp comment "Extra"
+sudo ufw allow 9002/tcp comment "Extra"
+sudo ufw allow 8001/tcp comment "Extra"
+sudo ufw allow 9050/tcp comment "Extra"
+sudo ufw allow 9052/tcp comment "Extra"
+sudo ufw allow 9053/tcp comment "Extra"
+sudo ufw allow 9054/tcp comment "Extra"
+sudo ufw allow 9055/tcp comment "Extra"
+sudo ufw allow 9056/tcp comment "Extra"
+sudo ufw allow 9180/tcp comment "Extra"
 
 # Salida libre para desarrollo
 sudo ufw default deny incoming
