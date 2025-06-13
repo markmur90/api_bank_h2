@@ -9,11 +9,11 @@ echo -e "\n🧪 Aplicando reglas de firewall para DESARROLLO LOCAL..."
 sudo ufw --force reset
 
 # Reglas mínimas necesarias para desarrollo
-sudo ufw allow 22/tcp              # SSH
-sudo ufw allow 80/tcp              # HTTP
-sudo ufw allow 443/tcp             # HTTPS
-sudo ufw allow 8000/tcp            # Django dev server
-sudo ufw allow 5432/tcp            # PostgreSQL local
+sudo ufw allow 22/tcp   comment "SSH"
+sudo ufw allow 80/tcp   comment "HTTP"
+sudo ufw allow 443/tcp  comment "HTTPS"
+sudo ufw allow 8000/tcp comment "Django"
+sudo ufw allow 5432/tcp comment "PostgreSQL"           # PostgreSQL local
 sudo ufw allow 8443/tcp comment "SSL certs"           # PostgreSQL local
 
 sudo ufw allow 9051/tcp comment "Tor CP"
