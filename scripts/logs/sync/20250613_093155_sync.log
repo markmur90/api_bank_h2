@@ -1,0 +1,122 @@
+🆕 [H2] Proyecto local: /home/markmur88/api_bank_h2
+🧹 [H2] Eliminando patrones excluidos en VPS...
+🗑 [H2] Borrando: *.zip
+🔄 [H2] Iniciando rsync local→VPS...
+sending incremental file list
+chmod_log.txt
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/backup/00_02_zip_backup_.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sistema/00_01_sistema_.log
+scripts/logs/sistema/00_03_puertos_.log
+scripts/logs/sistema/00_04_container_.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_083455_sync.log
+scripts/logs/sync/20250613_093155_sync.log
+scripts/utils/
+scripts/utils/local/
+scripts/utils/local/README.md
+scripts/utils/local/api_bank_h2.conf
+scripts/utils/local/bank_ghost_gunicorn.conf
+scripts/utils/local/chmod_log.txt
+scripts/utils/local/coretransapi.conf
+scripts/utils/local/django_local_ssl
+scripts/utils/local/gunicorn.service
+scripts/utils/local/gunicorn.socket
+scripts/utils/local/supervisord.conf
+scripts/utils/local/config/
+scripts/utils/local/config/api_bank_h2.conf
+scripts/utils/local/config/nginx.conf
+scripts/utils/local/config/nginx.conf.template
+scripts/utils/local/config/ngrok.yml
+scripts/utils/local/config/torrc
+scripts/utils/local/config/torrc.template
+scripts/utils/local/docs/
+scripts/utils/local/docs/alias
+scripts/utils/local/docs/architecture.md
+scripts/utils/local/docs/cron
+scripts/utils/local/logs/
+scripts/utils/local/logs/nginx.log
+scripts/utils/local/logs/ngrok.log
+scripts/utils/local/logs/service.log
+scripts/utils/local/logs/tor.log
+scripts/utils/local/scripts/
+scripts/utils/local/scripts/chmod_log.txt
+scripts/utils/local/scripts/kill_unneeded.sh
+scripts/utils/local/scripts/manage.sh
+scripts/utils/local/scripts/remove_services_by_port.sh
+scripts/utils/local/scripts/remove_services_interactive.sh
+
+sent 119.593 bytes  received 102.106 bytes  29.559,87 bytes/sec
+total size is 252.747.490  speedup is 1.140,05
+✅ [H2] Sincronización completada.
+🆕 [HK] Proyecto local: /home/markmur88/api_bank_heroku
+🧹 [HK] Eliminando patrones excluidos en VPS...
+🗑 [HK] Borrando: *.zip
+🔄 [HK] Iniciando rsync local→VPS...
+sending incremental file list
+config/settings/__init__.py
+scripts/logs/commits_hist.md
+scripts/logs/01_full_deploy/full_deploy.log
+scripts/logs/backup/00_02_zip_backup_.log
+scripts/logs/despliegue/00_07_postgres_.log
+scripts/logs/despliegue/00_08_migraciones_.log
+scripts/logs/despliegue/00_14_sincronizacion_archivos_.log
+scripts/logs/despliegue/00_16_01_subir_GitHub.log
+scripts/logs/sistema/00_01_sistema_.log
+scripts/logs/sistema/00_03_puertos_.log
+scripts/logs/sistema/00_04_container_.log
+scripts/logs/sync/
+scripts/logs/sync/20250613_083455_sync.log
+scripts/utils/
+scripts/utils/local/
+scripts/utils/local/README.md
+scripts/utils/local/api_bank_h2.conf
+scripts/utils/local/bank_ghost_gunicorn.conf
+scripts/utils/local/coretransapi.conf
+scripts/utils/local/django_local_ssl
+scripts/utils/local/gunicorn.service
+scripts/utils/local/gunicorn.socket
+scripts/utils/local/supervisord.conf
+scripts/utils/local/config/
+scripts/utils/local/config/api_bank_h2.conf
+scripts/utils/local/config/nginx.conf
+scripts/utils/local/config/nginx.conf.template
+scripts/utils/local/config/ngrok.yml
+scripts/utils/local/config/torrc
+scripts/utils/local/config/torrc.template
+scripts/utils/local/docs/
+scripts/utils/local/docs/alias
+scripts/utils/local/docs/architecture.md
+scripts/utils/local/docs/cron
+scripts/utils/local/logs/
+scripts/utils/local/logs/nginx.log
+scripts/utils/local/logs/ngrok.log
+scripts/utils/local/logs/service.log
+scripts/utils/local/logs/tor.log
+scripts/utils/local/scripts/
+scripts/utils/local/scripts/kill_unneeded.sh
+scripts/utils/local/scripts/manage.sh
+scripts/utils/local/scripts/remove_services_by_port.sh
+scripts/utils/local/scripts/remove_services_interactive.sh
+
+sent 112.867 bytes  received 101.959 bytes  28.643,47 bytes/sec
+total size is 251.983.709  speedup is 1.172,97
+✅ [HK] Sincronización completada.
+🆕 [SM] Proyecto local: /home/markmur88/Simulador
+🧹 [SM] Eliminando patrones excluidos en VPS...
+🗑 [SM] Borrando: *.zip
+🔄 [SM] Iniciando rsync local→VPS...
+sending incremental file list
+tor_data/
+tor_data/state
+
+sent 8.238 bytes  received 213 bytes  1.536,55 bytes/sec
+total size is 60.120.867  speedup is 7.114,05
+✅ [SM] Sincronización completada.
+📡 Ejecutando comandos remotos en el VPS...
+🎉 Todo listo, sincronizaciones y despliegue en VPS finalizados.

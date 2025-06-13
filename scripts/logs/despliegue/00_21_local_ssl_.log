@@ -513,3 +513,6 @@
 🔐 Activando entorno virtual...
 🧅 Puerto 8443 ya está en uso (probablemente Nginx).
 🚀 Ejecutando Gunicorn como backend en http://0.0.0.0:8000
+🔐 Activando entorno virtual...
+🌐 Levantando entorno local con Gunicorn + SSL en https://0.0.0.0:8443
+🔐 Certificado: /home/markmur88/api_bank_h2/schemas/certs/desarrollo.crt
