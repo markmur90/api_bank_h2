@@ -265,3 +265,4 @@
 | 2025-06-13 10:48:14 | update deploy |
 | 2025-06-13 11:04:58 | Deploy vps - sim admin |
 | 2025-06-13 19:53:32 | deploy inicial |
+| 2025-06-14 01:06:05 | arreglo sim |
