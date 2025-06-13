@@ -16,12 +16,12 @@ sudo ufw allow 8000/tcp            # Django dev server
 sudo ufw allow 5432/tcp            # PostgreSQL local
 sudo ufw allow 8443/tcp comment "SSL certs"           # PostgreSQL local
 
-sudo ufw allow 9051/tcp comment "Tor ControlPort"
-sudo ufw allow 9181/tcp comment "Simulador local"
-sudo ufw allow 9055/tcp comment "Tor SockPort Sim"
-sudo ufw allow 9056/tcp comment "Tor ControlPort Sim"
-sudo ufw allow 9002/tcp comment "Supervisor Hidden Sim"
-sudo ufw allow 9100/tcp comment "Supervisor Sim"
+sudo ufw allow 9051/tcp comment "Tor CP"
+sudo ufw allow 9181/tcp comment "Sim local"
+sudo ufw allow 9055/tcp comment "Tor SP Sim"
+sudo ufw allow 9056/tcp comment "Tor CP Sim"
+sudo ufw allow 9002/tcp comment "Sup Hd Sim"
+sudo ufw allow 9100/tcp comment "Sup Sim"
 
 sudo ufw allow 8001/tcp comment "Extra"
 sudo ufw allow 8080/tcp comment "Extra"
