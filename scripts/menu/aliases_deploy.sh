@@ -144,7 +144,7 @@ d_njalla() {api && deploy_full --env=production -Y -P -D -M -x -Z -C -S -Q -I -G
 
 # === VARIABLES LOCALES ===
 unalias d_mig 2>/dev/null
-d_mig() {python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && clear}
+d_mig() {source /home/markmur88/envAPP/bin/activate && python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && clear}
 
 alias chmodtree='source ~/.zshrc && bash $UTILS_DIR/chmod_all.sh'
 alias fase2='source ~/.zshrc && bash /home/markmur88/api_bank_h2/scripts/deploy/vps/vps_backup/00_18_01_01_setup_coretransact_root_FASE2.sh'
@@ -399,6 +399,7 @@ alias gt_dir='cd $HOME/git && clear && ls'
 alias h2_dir='cd $HOME/api_bank_h2 && clear && ls'
 alias hk_dir='cd $HOME/api_bank_heroku && clear && ls'
 alias sm_dir='cd $HOME/Simulador && clear && ls'
+alias sm_bnk='cd $HOME/Simulador/simulador_banco && clear && ls'
 alias bk_dir='cd $HOME/backup && clear && ls'
 alias lc_ufw='sudo bash /home/markmur88/api_bank_h2/scripts/src/00_06_ufw.sh'
 alias pr_ufw='sudo bash /home/markmur88/api_bank_h2/scripts/src/ufw_produccion.sh'
