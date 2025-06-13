@@ -14,3 +14,13 @@
 [2025-06-13 10:09:22 +0200] [87111] [ERROR] Connection in use: ('0.0.0.0', 8443)
 [2025-06-13 10:09:22 +0200] [87111] [ERROR] connection to ('0.0.0.0', 8443) failed: [Errno 98] Address already in use
 [2025-06-13 10:09:23 +0200] [87111] [ERROR] Can't connect to ('0.0.0.0', 8443)
+[2025-06-13 11:37:20 +0200] [85921] [INFO] Handling signal: hup
+[2025-06-13 11:37:20 +0200] [85921] [INFO] Hang up: Master
+[2025-06-13 11:37:20 +0200] [85921] [ERROR] Worker (pid:85924) was sent SIGHUP!
+[2025-06-13 11:37:20 +0200] [85921] [ERROR] Worker (pid:85923) was sent SIGHUP!
+[2025-06-13 11:37:20 +0200] [85921] [ERROR] Worker (pid:85925) was sent SIGHUP!
+[2025-06-13 11:37:20 +0200] [150506] [INFO] Booting worker with pid: 150506
+[2025-06-13 11:37:20 +0200] [150507] [INFO] Booting worker with pid: 150507
+[2025-06-13 11:37:20 +0200] [85921] [INFO] Handling signal: term
+[2025-06-13 11:37:20 +0200] [150508] [INFO] Booting worker with pid: 150508
+[2025-06-13 11:37:50 +0200] [85921] [INFO] Shutting down: Master
