@@ -2,7 +2,7 @@
 clear
 # Configuración
 VPS="markmur88@80.78.30.242"
-SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
+SSH_KEY="/home/markmur88/.ssh/vps_njalla_nueva"
 REMOTE_DIR="/home/markmur88/backup"
 LOCAL_BACKUP="/home/markmur88/notas/logs/respaldo_tmp"
 mkdir -p "$LOCAL_BACKUP"

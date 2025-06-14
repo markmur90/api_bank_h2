@@ -41,23 +41,23 @@ fi
 
 # 2) Rutas absolutas
 HOME_DIR="/home/markmur88"
-KEY="$HOME_DIR/.ssh/vps_njalla_nueva"
+KEY="/home/markmur88_DIR/.ssh/vps_njalla_nueva"
 REMOTE_BASE="/home/markmur88"
 
-LOG_DIR="$HOME_DIR/logs"
+LOG_DIR="/home/markmur88_DIR/logs"
 mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/upload_$(date '+%Y%m%d_%H%M%S').log"
 
 echo "📁 INICIO: Navegación LOCAL para seleccionar carpeta a subir."
 
 # --- NAVEGACIÓN LOCAL ---
-current_dir_local="$HOME_DIR"
+current_dir_local="/home/markmur88_DIR"
 while true; do
     echo
     echo "🗂 Directorio local actual: $current_dir_local"
     echo "   0) [Seleccionar ESTA carpeta: $(basename "$current_dir_local")]"
     idx=1
-    if [ "$current_dir_local" != "$HOME_DIR" ]; then
+    if [ "$current_dir_local" != "/home/markmur88_DIR" ]; then
         echo "   $idx) ../"
         ((idx++))
     fi
@@ -84,7 +84,7 @@ while true; do
     fi
 
     opt_local=0
-    if [ "$current_dir_local" != "$HOME_DIR" ]; then
+    if [ "$current_dir_local" != "/home/markmur88_DIR" ]; then
         if (( choice_local == 1 )); then
             current_dir_local="$(dirname "$current_dir_local")"
             continue

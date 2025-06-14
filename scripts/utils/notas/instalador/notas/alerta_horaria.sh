@@ -10,7 +10,7 @@ echo $$ > "$PIDFILE"
 trap "rm -f $PIDFILE" EXIT
 
 # === RUTAS ===
-LOG_DIR="$HOME/notas/logs"
+LOG_DIR="/home/markmur88/notas/logs"
 mkdir -p "$LOG_DIR"
 
 LOG_ALERTAS="$LOG_DIR/alertas_horas.log"

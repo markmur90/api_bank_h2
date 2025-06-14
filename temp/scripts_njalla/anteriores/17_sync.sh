@@ -76,9 +76,9 @@ actualizar_django_env() {
 
 log_info "🔁 Iniciando sincronización multi-entorno..."
 
-DIR_PRODUCTION="$HOME/Documentos/GitHub/servers/production"
-DIR_api_bank_h2="$HOME/Documentos/GitHub/api_bank_h2"
-DIR_LOCAL="$HOME/Documentos/GitHub/servers/local"
+DIR_PRODUCTION="/home/markmur88/Documentos/GitHub/servers/production"
+DIR_api_bank_h2="/home/markmur88/Documentos/GitHub/api_bank_h2"
+DIR_LOCAL="/home/markmur88/Documentos/GitHub/servers/local"
 
 for destino in "$DIR_PRODUCTION" "$DIR_HEROKU" "$DIR_LOCAL" "$DIR_api_bank_h2"; do
   if [[ ! -d "$destino" ]]; then

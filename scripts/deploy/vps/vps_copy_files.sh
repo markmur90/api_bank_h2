@@ -37,11 +37,11 @@ fi
 
 # 2) Rutas SSH
 HOME_DIR="/home/$USER"
-KEY="$HOME_DIR/.ssh/vps_njalla_nueva"
-REMOTE_BASE="$HOME_DIR"
+KEY="/home/markmur88_DIR/.ssh/vps_njalla_nueva"
+REMOTE_BASE="/home/markmur88_DIR"
 
 # 3) Preparar directorio de logs
-LOG_DIR="$HOME_DIR/transfer_logs"
+LOG_DIR="/home/markmur88_DIR/transfer_logs"
 mkdir -p "$LOG_DIR"
 LOG_FILE="$LOG_DIR/download_$(date '+%Y%m%d_%H%M%S').log"
 
@@ -93,13 +93,13 @@ echo
 echo "📁 Ahora: Selecciona carpeta DESTINO local."
 
 # --- NAVEGACIÓN LOCAL ---
-current_dir_local="$HOME_DIR"
+current_dir_local="/home/markmur88_DIR"
 while true; do
     echo
     echo "🗂 Local: $current_dir_local"
     echo "   0) [Elegir ESTE: $(basename "$current_dir_local")]"
     idx=1
-    if [ "$current_dir_local" != "$HOME_DIR" ]; then
+    if [ "$current_dir_local" != "/home/markmur88_DIR" ]; then
         echo "   $idx) ../"
         ((idx++))
     fi

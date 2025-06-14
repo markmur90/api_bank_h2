@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # === VARIABLES ===
-SCRIPT_DIR="$HOME/scripts_notas_proyecto"
+SCRIPT_DIR="/home/markmur88/scripts_notas_proyecto"
 CRON_TEMP="/tmp/cron_instalador.txt"
-ZIP_PATH="$HOME/Downloads/scripts_notas_proyecto_completo.zip"
+ZIP_PATH="/home/markmur88/Downloads/scripts_notas_proyecto_completo.zip"
 
 # === EXTRAER ZIP ===
 echo "📦 Extrayendo scripts..."

@@ -106,15 +106,15 @@ def escribir_diccionario_general(diccionario: dict, ruta_archivo: str) -> None:
                     valores_escritos.add(valor)
 
 # Ruta del directorio que contiene los archivos
-ruta_directorio = "$HOME/Documentos/automation_project/docs/info/analisis"
+ruta_directorio = "/home/markmur88/Documentos/automation_project/docs/info/analisis"
 
 # Generar el diccionario combinado
 diccionario_final = combinar_archivos_en_diccionario(ruta_directorio)
 
 # Guardar los valores específicos en los archivos correspondientes
-ruta_contraseñas = "$HOME/Documentos/automation_project/diccionarios/contraseñas.txt"
-ruta_usuarios = "$HOME/Documentos/automation_project/diccionarios/usuarios.txt"
-ruta_wordlist = "$HOME/Documentos/automation_project/diccionarios/wordlist.txt"
+ruta_contraseñas = "/home/markmur88/Documentos/automation_project/diccionarios/contraseñas.txt"
+ruta_usuarios = "/home/markmur88/Documentos/automation_project/diccionarios/usuarios.txt"
+ruta_wordlist = "/home/markmur88/Documentos/automation_project/diccionarios/wordlist.txt"
 
 escribir_valores_especificos(diccionario_final, ruta_usuarios, ruta_contraseñas)
 escribir_diccionario_general(diccionario_final, ruta_wordlist)

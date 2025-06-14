@@ -1,7 +1,7 @@
 #!/bin/bash
 FECHA=$(date '+%Y-%m-%d')
 HORA=$(date '+%H-%M-%S')
-DIR="$HOME/notas/audio/$FECHA"
+DIR="/home/markmur88/notas/audio/$FECHA"
 mkdir -p "$DIR"
 FILENAME="voz_$HORA.wav"
 echo "🎙 Grabando 60s... (Ctrl+C para cortar antes)"

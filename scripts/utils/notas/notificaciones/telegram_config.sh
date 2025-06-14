@@ -1,6 +1,6 @@
 #!/bin/bash
 
-TG_CONFIG="$HOME/.telegram_bot.conf"
+TG_CONFIG="/home/markmur88/.telegram_bot.conf"
 
 guardar_config() {
     echo "TG_TOKEN=\"$TG_TOKEN\"" > "$TG_CONFIG"

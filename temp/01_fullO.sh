@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
+PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
 
 LOGS_DIR="$PROJECT_ROOT/logs"
 
@@ -64,11 +64,11 @@ OMIT_LOAD_LOCAL=false
 OMIT_LOAD_WEB=false
 OMIT_USER=false
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
-HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-HEROKU_ROOT2="$HOME/Documentos/GitHub/api_bank"
-VENV_PATH="$HOME/Documentos/Entorno/envAPP"
+PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
+HEROKU_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+HEROKU_ROOT2="/home/markmur88/Documentos/GitHub/api_bank"
+VENV_PATH="/home/markmur88/Documentos/Entorno/envAPP"
 INTERFAZ="wlan0"
 
 DB_NAME="mydatabase"
@@ -547,12 +547,12 @@ if [[ "$OMIT_SYNC_REMOTE_DB" == false ]] && ([[ "$PROMPT_MODE" == false ]] || co
     LOCAL_DB_HOST="0.0.0.0"
     REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
 
-    export PGPASSFILE="$HOME/.pgpass"
+    export PGPASSFILE="/home/markmur88/.pgpass"
     export PGUSER="$LOCAL_DB_USER"
     export PGHOST="$LOCAL_DB_HOST"
 
     DATE=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
+    BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
     BACKUP_FILE="${BACKUP_DIR}backup_${DATE}.sql"
 
     if ! command -v pv > /dev/null 2>&1; then
@@ -589,8 +589,8 @@ clear
 echo -e "\033[7;33m--------------------------------------------------ZIP----------------------------------------------\033[0m"
 if [[ "$OMIT_ZIP_SQL" == false ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
     SOURCE="$PROJECT_ROOT/"
-    DEST="$HOME/Documentos/GitHub/api_bank_h2/"
-    BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
+    DEST="/home/markmur88/Documentos/GitHub/api_bank_h2/"
+    BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
 
     # Obtener la fecha actual (solo día)
     TODAY=$(date +%Y%m%d)

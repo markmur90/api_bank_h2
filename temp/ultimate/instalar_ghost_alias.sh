@@ -8,8 +8,8 @@ SCRIPT="ultimate_ghost.py"
 REQUIREMENTS="requirements.txt"
 ALIAS="ghostrun"
 ALIAS_LINE="alias $ALIAS='source \$(pwd)/$ENTORNO/bin/activate && python3 \$(pwd)/$SCRIPT'"
-SHELL_RC="$HOME/.bashrc"
-[ "$SHELL" == */zsh ] && SHELL_RC="$HOME/.zshrc"
+SHELL_RC="/home/markmur88/.bashrc"
+[ "$SHELL" == */zsh ] && SHELL_RC="/home/markmur88/.zshrc"
 
 # Verificar Python
 if ! command -v python3 &> /dev/null; then

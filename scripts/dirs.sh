@@ -39,5 +39,5 @@ mkdir -p "$(dirname $LOG_BACKUP)"
 
 
 BASE_DIR="$AP_H2_DIR"
-PROJECT_BASE_DIR="$HOME"
+PROJECT_BASE_DIR="/home/markmur88"
 BACKUP_DIR="$PROJECT_BASE_DIR/backup/zip"

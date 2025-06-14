@@ -56,8 +56,8 @@ fi
 
 if confirmar "Configurar entorno Python y PostgreSQL"; then
     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
-    python3 -m venv "$HOME/Documentos/Entorno/envAPP"
-    source "$HOME/Documentos/Entorno/envAPP/bin/activate"
+    python3 -m venv "/home/markmur88/Documentos/Entorno/envAPP"
+    source "/home/markmur88/Documentos/Entorno/envAPP/bin/activate"
     sudo systemctl enable postgresql
     sudo systemctl start postgresql
     echo -e "\033[1;32mEntorno y PostgreSQL listos.\033[0m"
@@ -142,9 +142,9 @@ else
 fi
 
 if confirmar "Copiar proyecto y crear respaldo ZIP"; then
-    SOURCE="$HOME/Documentos/GitHub/api_bank_h2/"
-    DEST="$HOME/Documentos/GitHub/api_bank_h2/"
-    BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
+    SOURCE="/home/markmur88/Documentos/GitHub/api_bank_h2/"
+    DEST="/home/markmur88/Documentos/GitHub/api_bank_h2/"
+    BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
     read -p "Campo adicional para el nombre del ZIP (opcional): " SUFFIX
     TIMESTAMP=$(date +%Y%m%d__%H-%M-%S)
     BACKUP_ZIP="${BACKUP_DIR}${TIMESTAMP}_backup_api_bank_h2${SUFFIX}.zip"
@@ -162,7 +162,7 @@ if confirmar "Sincronizar base de datos remota"; then
 
     # **🕒 Marca de tiempo para el backup**
     DATE=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
+    BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
     # Crear el directorio de backup si no existe
     BACKUP_FILE="${BACKUP_DIR}backup_$DATE.sql"
     if ! command -v pv > /dev/null 2>&1; then

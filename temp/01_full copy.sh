@@ -83,10 +83,10 @@ else
 fi
 
 # === VARIABLES DE PROYECTO ===
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-NJALLA_ROOT="$HOME/Documentos/GitHub/coretransapi"
-VENV_PATH="$HOME/Documentos/Entorno/envAPP"
+PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+HEROKU_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+NJALLA_ROOT="/home/markmur88/Documentos/GitHub/coretransapi"
+VENV_PATH="/home/markmur88/Documentos/Entorno/envAPP"
 INTERFAZ="wlan0"
 LOG_DIR="$PROJECT_ROOT/scripts/logs/01_full_deploy"
 LOG_FILE_SCRIPT="$LOG_DIR/full_deploy.log"

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# filepath: $HOME/Documentos/GitHub/conf3/scripts/setup_postgresql.sh
+# filepath: /home/markmur88/Documentos/GitHub/conf3/scripts/setup_postgresql.sh
 
 # Variables
 NOMBRE_BASE_DATOS="api_db"

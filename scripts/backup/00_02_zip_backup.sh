@@ -53,7 +53,7 @@ mkdir -p "$(dirname $LOG_BACKUP)"
 
 
 
-PROJECT_BASE_DIR="$HOME"
+PROJECT_BASE_DIR="/home/markmur88"
 BACKUP_DIR="$PROJECT_BASE_DIR/backup/zip"
 
 DATE=$(date +"%Y%m%d_%H%M%S")

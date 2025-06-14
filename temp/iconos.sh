@@ -15,10 +15,10 @@ OMIT_LOAD_LOCAL=false
 OMIT_LOAD_WEB=false
 OMIT_USER=false
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
-HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-VENV_PATH="$HOME/Documentos/Entorno/envAPP"
+PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
+HEROKU_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+VENV_PATH="/home/markmur88/Documentos/Entorno/envAPP"
 INTERFAZ="wlan0"
 
 DB_NAME="mydatabase"

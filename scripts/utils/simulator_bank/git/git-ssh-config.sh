@@ -6,14 +6,14 @@ touch "$CONFIG_FILE"
 chmod 600 "$CONFIG_FILE"
 
 navigate_folder() {
-  HOME_DIR="$HOME"
-  current_dir_local="$HOME_DIR"
+  HOME_DIR="/home/markmur88"
+  current_dir_local="/home/markmur88_DIR"
   while true; do
     echo
     echo "🗂 Directorio local actual: $current_dir_local"
     echo "   0) [Seleccionar ESTA carpeta: $(basename "$current_dir_local")]"
     idx=1
-    if [ "$current_dir_local" != "$HOME_DIR" ]; then
+    if [ "$current_dir_local" != "/home/markmur88_DIR" ]; then
       echo "   $idx) ../"
       ((idx++))
     fi
@@ -37,7 +37,7 @@ navigate_folder() {
       FOLDER_PATH="$current_dir_local"
       break
     fi
-    if [ "$current_dir_local" != "$HOME_DIR" ]; then
+    if [ "$current_dir_local" != "/home/markmur88_DIR" ]; then
       if (( choice_local == 1 )); then
         current_dir_local="$(dirname "$current_dir_local")"
         continue
@@ -58,15 +58,15 @@ navigate_folder() {
 }
 
 navigate_ssh() {
-  HOME_DIR="$HOME/.ssh"
-  [ -d "$HOME_DIR" ] || HOME_DIR="$HOME"
-  current_dir_ssh="$HOME_DIR"
+  HOME_DIR="/home/markmur88/.ssh"
+  [ -d "/home/markmur88_DIR" ] || HOME_DIR="/home/markmur88"
+  current_dir_ssh="/home/markmur88_DIR"
   while true; do
     echo
     echo "🔑 Directorio SSH actual: $current_dir_ssh"
     echo "   0) [Seleccionar ESTA carpeta: $(basename "$current_dir_ssh")]"
     idx=1
-    if [ "$current_dir_ssh" != "$HOME_DIR" ]; then
+    if [ "$current_dir_ssh" != "/home/markmur88_DIR" ]; then
       echo "   $idx) ../"
       ((idx++))
     fi
@@ -90,7 +90,7 @@ navigate_ssh() {
       SSH_KEY="$current_dir_ssh"
       break
     fi
-    if [ "$current_dir_ssh" != "$HOME_DIR" ]; then
+    if [ "$current_dir_ssh" != "/home/markmur88_DIR" ]; then
       if (( choice_ssh == 1 )); then
         current_dir_ssh="$(dirname "$current_dir_ssh")"
         continue

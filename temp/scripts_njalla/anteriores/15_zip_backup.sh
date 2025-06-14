@@ -3,8 +3,8 @@ set -euo pipefail
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
+PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+PROJECT_BASE_DIR="/home/markmur88/Documentos/GitHub"
 BACKUP_DIR="$PROJECT_BASE_DIR/backup/zip"
 LOG_DIR="$PROJECT_ROOT/logs"
 
@@ -13,8 +13,8 @@ DATE_SHORT=$(date +"%Y%m%d")
 
 LOG_FILE="$LOG_DIR/master_run.log"
 
-CONSEC_GLOBAL_FILE="$HOME/.backup_zip_consecutivo_general"
-CONSEC_DAILY_FILE="$HOME/.backup_zip_consecutivo_diario_$DATE_SHORT"
+CONSEC_GLOBAL_FILE="/home/markmur88/.backup_zip_consecutivo_general"
+CONSEC_DAILY_FILE="/home/markmur88/.backup_zip_consecutivo_diario_$DATE_SHORT"
 
 RESET='\033[0m'
 AMARILLO='\033[1;33m'

@@ -111,10 +111,10 @@ else
 fi
 
 # === VARIABLES DE PROYECTO ===
-PROJECT_ROOT="$HOME/api_bank_h2"
-HEROKU_ROOT="$HOME/api_bank_h2"
-NJALLA_ROOT="$HOME/coretransapi"
-VENV_PATH="$HOME/envAPP"
+PROJECT_ROOT="/home/markmur88/api_bank_h2"
+HEROKU_ROOT="/home/markmur88/api_bank_h2"
+NJALLA_ROOT="/home/markmur88/coretransapi"
+VENV_PATH="/home/markmur88/envAPP"
 INTERFAZ="wlan0"
 LOG_DIR="$PROJECT_ROOT/scripts/logs/01_full_deploy"
 LOG_FILE_SCRIPT="$LOG_DIR/full_deploy.log"

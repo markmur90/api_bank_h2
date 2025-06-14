@@ -71,7 +71,7 @@ echo -e "${COLOR_TEXT}⚙️ Entorno base y específico (${ENVIRONMENT}) cargado
 
 BASE_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SCRIPTS_DIR="${PROJECT_ROOT}/scripts"
-VENV_DIR="${VENV_DIR:-$HOME/Documentos/Entorno/envAPP}"
+VENV_DIR="${VENV_DIR:-/home/markmur88/Documentos/Entorno/envAPP}"
 
 cd "$BASE_DIR" || exit 1
 

@@ -9,7 +9,7 @@ REMOTE_DB_URL="postgres://ue2erdhkle4v0h:pa1773a2b68d739e66a794acd529d1b60c01673
 
 # **🕒 Marca de tiempo para el backup**
 DATE=$(date +"%Y%m%d_%H%M%S")
-BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
+BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
 # Crear el directorio de backup si no existe
 BACKUP_FILE="${BACKUP_DIR}backup_$DATE.sql"
 if ! command -v pv > /dev/null 2>&1; then

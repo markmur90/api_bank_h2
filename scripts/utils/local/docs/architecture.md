@@ -8,9 +8,9 @@
 ## Cómo generar certificados SSL
 
 ```bash
-mkdir -p $HOME/local/config/certs
+mkdir -p /home/markmur88/local/config/certs
 openssl req -x509 -nodes -days 365 \
   -newkey rsa:2048 \
-  -keyout $HOME/local/config/certs/server.key \
-  -out    $HOME/local/config/certs/server.crt \
+  -keyout /home/markmur88/local/config/certs/server.key \
+  -out    /home/markmur88/local/config/certs/server.crt \
   -subj "/C=US/ST=State/L=City/O=Org/OU=Unit/CN=localhost"

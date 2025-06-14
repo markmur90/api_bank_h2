@@ -55,7 +55,7 @@ echo "🔐 Iniciando configuración básica para VPS: coretransapi"
 # Parámetros
 USER=root
 IP_VPS="80.78.30.242"
-CLAVE_SSH="$HOME/.ssh/vps_njalla_nueva"
+CLAVE_SSH="/home/markmur88/.ssh/vps_njalla_nueva"
 
 # 1. Subir clave pública SSH
 echo "📤 Subiendo clave SSH..."
@@ -167,7 +167,7 @@ gpg (GnuPG) 2.4.7; Copyright (C) 2024 g10 Code GmbH
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 
-gpg: caja de claves '$HOME/.gnupg/pubring.kbx' creada
+gpg: caja de claves '/home/markmur88/.gnupg/pubring.kbx' creada
 Por favor seleccione tipo de clave deseado:
    (1) RSA and RSA
    (2) DSA and Elgamal
@@ -211,9 +211,9 @@ alguna otra tarea (trabajar en otra ventana/consola, mover el ratón, usar
 la red y los discos) durante la generación de números primos. Esto da al
 generador de números aleatorios mayor oportunidad de recoger suficiente
 entropía.
-gpg: $HOME/.gnupg/trustdb.gpg: se ha creado base de datos de confianza
-gpg: creado el directorio '$HOME/.gnupg/openpgp-revocs.d'
-gpg: certificado de revocación guardado como '$HOME/.gnupg/openpgp-revocs.d/1206B430DF0B35D1AF0D6CB9692D61FB9172B56A.rev'
+gpg: /home/markmur88/.gnupg/trustdb.gpg: se ha creado base de datos de confianza
+gpg: creado el directorio '/home/markmur88/.gnupg/openpgp-revocs.d'
+gpg: certificado de revocación guardado como '/home/markmur88/.gnupg/openpgp-revocs.d/1206B430DF0B35D1AF0D6CB9692D61FB9172B56A.rev'
 claves pública y secreta creadas y firmadas.
 
 pub   ed25519 2025-05-22 [SC]

@@ -11,7 +11,7 @@ verificar_huella_ssh() {
     echo "🔍 Verificando huella SSH para $host..."
     ssh -o StrictHostKeyChecking=accept-new -o ConnectTimeout=5 "$host" "exit" >/dev/null 2>&1 || {
         echo "⚠️  Posible conflicto de huella, limpiando..."
-        ssh-keygen -f "$HOME/.ssh/known_hosts" -R "$host" >/dev/null
+        ssh-keygen -f "/home/markmur88/.ssh/known_hosts" -R "$host" >/dev/null
     }
 }
 #!/usr/bin/env bash
@@ -37,7 +37,7 @@ REPO_GIT="git@github.com:${APP_USER}/${REPO_DIR}.git"
 
 EMAIL_SSL="netghostx90@protonmail.com"
 
-SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
+SSH_KEY="/home/markmur88/.ssh/vps_njalla_nueva"
 
 
 echo "📦 Instalando dependencias iniciales en $IP_VPS..."

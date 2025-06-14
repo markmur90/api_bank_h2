@@ -39,10 +39,10 @@ else
 fi
 
 # === VARIABLES DE PROYECTO ===
-PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-HEROKU_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-NJALLA_ROOT="$HOME/Documentos/GitHub/coretransapi"
-VENV_PATH="$HOME/Documentos/Entorno/envAPP"
+PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+HEROKU_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+NJALLA_ROOT="/home/markmur88/Documentos/GitHub/coretransapi"
+VENV_PATH="/home/markmur88/Documentos/Entorno/envAPP"
 INTERFAZ="wlan0"
 LOG_DIR="$PROJECT_ROOT/logs"
 LOG_FILE_SCRIPT="$LOG_DIR/full_deploy.log"
@@ -359,10 +359,10 @@ sleep 1
 echo -e "\033[7;33m----------------------------------------------------ZIP------------------------------------------------\033[0m"
 if [[ "$DO_ZIP_SQL" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Crear zip y sql"); then
     echo -e "\033[7;30mCreando ZIP archivos al destino...\033[0m"
-    bash $HOME/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
+    bash /home/markmur88/Documentos/GitHub/api_bank_h2/scripts/15_zip_backup.sh
     
-    # PROJECT_ROOT="$HOME/Documentos/GitHub/api_bank_h2"
-    # PROJECT_BASE_DIR="$HOME/Documentos/GitHub"
+    # PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
+    # PROJECT_BASE_DIR="/home/markmur88/Documentos/GitHub"
     # BACKUP_DIR="$PROJECT_BASE_DIR/backup"
     # mkdir -p "$BACKUP_DIR"
     # FECHA=$(date +%Y%m%d)
@@ -799,7 +799,7 @@ fi
 #     # # Crear carpeta keys/ si no existe
 #     # mkdir -p keys
 #     # # Ruta esperada del archivo
-#     # PEM_PATH="$HOME/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
+#     # PEM_PATH="/home/markmur88/Documentos/GitHub/api_bank_h2/schemas/keys/ecdsa_private_key.pem"
 #     # # Verificar existencia de la clave privada
 #     # if [[ ! -f "$PEM_PATH" ]]; then
 #     #     echo -e "\033[7;33m⚠️  Clave privada no encontrada. Generando clave ECDSA P-256...\033[0m"
@@ -886,12 +886,12 @@ if [[ "$DO_SYNC_REMOTE_DB" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confi
     LOCAL_DB_HOST="0.0.0.0"
     REMOTE_DB_URL="postgres://u5n97bps7si3fm:pb87bf621ec80bf56093481d256ae6678f268dc7170379e3f74538c315bd549e0@c7lolh640htr57.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dd3ico8cqsq6ra"
 
-    export PGPASSFILE="$HOME/.pgpass"
+    export PGPASSFILE="/home/markmur88/.pgpass"
     export PGUSER="$LOCAL_DB_USER"
     export PGHOST="$LOCAL_DB_HOST"
 
     DATE=$(date +"%Y%m%d_%H%M%S")
-    BACKUP_DIR="$HOME/Documentos/GitHub/backup/sql/"
+    BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/sql/"
     BACKUP_FILE="${BACKUP_DIR}backup_${DATE}.sql"
 
     if ! command -v pv > /dev/null 2>&1; then
@@ -983,8 +983,8 @@ if [[ "$DO_CLEAN" == true ]] && ([[ "$PROMPT_MODE" == false ]] || confirmar "Lim
         cd - >/dev/null
     }
 
-    BACKUP_DIR_ZIP=$HOME/Documentos/GitHub/backup/zip
-    BACKUP_DIR_SQL=$HOME/Documentos/GitHub/backup/sql
+    BACKUP_DIR_ZIP=/home/markmur88/Documentos/GitHub/backup/zip
+    BACKUP_DIR_SQL=/home/markmur88/Documentos/GitHub/backup/sql
 
     limpiar_respaldo_por_hora "$BACKUP_DIR_ZIP"
     limpiar_respaldo_por_hora "$BACKUP_DIR_SQL"
@@ -1051,8 +1051,8 @@ sleep 1
 #         cd - >/dev/null
 #     }
 
-#     BACKUP_DIR_ZIP=$HOME/Documentos/GitHub/backup/zip
-#     BACKUP_DIR_SQL=$HOME/Documentos/GitHub/backup/sql
+#     BACKUP_DIR_ZIP=/home/markmur88/Documentos/GitHub/backup/zip
+#     BACKUP_DIR_SQL=/home/markmur88/Documentos/GitHub/backup/sql
 
 #     limpiar_respaldo "$BACKUP_DIR_ZIP"
 #     limpiar_respaldo "$BACKUP_DIR_SQL"

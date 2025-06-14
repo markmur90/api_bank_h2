@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-BASE="$HOME/local"
+BASE="/home/markmur88/local"
 CONF="$BASE/config"
 LOG="$BASE/logs"
 TMP_CONF="$CONF/nginx.conf"
@@ -29,7 +29,7 @@ case "$1" in
     sleep 3
     echo ""
     echo "=== Iniciando Django en puerto $DJ_PORT ==="
-    cd "$HOME/api_bank_h2" && pip3 install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:$DJ_PORT >> "$LOG/service.log" 2>&1 &
+    cd "/home/markmur88/api_bank_h2" && pip3 install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py collectstatic --noinput && python manage.py runserver 0.0.0.0:$DJ_PORT >> "$LOG/service.log" 2>&1 &
 
     sleep 3
     echo ""
@@ -41,7 +41,7 @@ case "$1" in
     echo ""
     echo "=== Iniciando Tor ==="
     # Genera torrc dinámico
-    sed "s|\$HOME|$HOME|g" "$CONF/torrc.template" > "$CONF/torrc"
+    sed "s|\/home/markmur88|/home/markmur88|g" "$CONF/torrc.template" > "$CONF/torrc"
     tor -f "$CONF/torrc" >> "$LOG/tor.log" 2>&1 &
 
     sleep 3

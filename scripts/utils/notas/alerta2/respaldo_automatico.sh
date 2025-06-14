@@ -2,9 +2,9 @@
 
 # Configuración
 VPS="markmur88@80.78.30.242"
-SSH_KEY="$HOME/.ssh/vps_njalla_nueva"
+SSH_KEY="/home/markmur88/.ssh/vps_njalla_nueva"
 REMOTE_DIR="/home/markmur88/backup"
-LOCAL_BACKUP="$HOME/respaldo_tmp"
+LOCAL_BACKUP="/home/markmur88/respaldo_tmp"
 mkdir -p "$LOCAL_BACKUP"
 
 # Fecha
@@ -27,8 +27,8 @@ ssh -i "$SSH_KEY" "$VPS" "rm -rf /home/markmur88/api_bank_h2 /var/lib/postgresql
 
 # Tiempo acumulado
 DIA=$(date +"%Y-%m-%d")
-PROYECTO_FILE="$HOME/.tiempos/proyecto_total.log"
-DIA_FILE="$HOME/.tiempos/$DIA.log"
+PROYECTO_FILE="/home/markmur88/.tiempos/proyecto_total.log"
+DIA_FILE="/home/markmur88/.tiempos/$DIA.log"
 MINUTOS_HOY=$(awk '{s+=$1} END {print s}' "$DIA_FILE")
 HORAS_HOY=$((MINUTOS_HOY / 60))
 MINUTOS_TOTAL=$(awk '{s+=$1} END {print s}' "$PROYECTO_FILE")
@@ -36,4 +36,4 @@ HORAS_TOTAL=$((MINUTOS_TOTAL / 60))
 
 # Telegram
 MSG="✅ Respaldo diario listo y datos eliminados del VPS.\n🗓️ Hoy: $MINUTOS_HOY min ($HORAS_HOY hs)\n📦 Proyecto: $MINUTOS_TOTAL min ($HORAS_TOTAL hs)"
-"$HOME/api_bank_h2/scripts/utils/token/enviar_telegram.sh" "$MSG"
+"/home/markmur88/api_bank_h2/scripts/utils/token/enviar_telegram.sh" "$MSG"

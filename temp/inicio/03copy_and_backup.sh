@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Ruta de origen y destino para la copia del proyecto
-SOURCE="$HOME/Documentos/GitHub/api_bank_h2/"
-DEST="$HOME/Documentos/GitHub/api_bank_h2/"
+SOURCE="/home/markmur88/Documentos/GitHub/api_bank_h2/"
+DEST="/home/markmur88/Documentos/GitHub/api_bank_h2/"
 
 # Ruta de destino para la copia de seguridad en formato ZIP
-BACKUP_DIR="$HOME/Documentos/GitHub/backup/"
+BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
 BACKUP_ZIP="${BACKUP_DIR}$(date +%Y%m%d__%H-%M-%S)_backup_api_bank_h2.zip"
 
 echo " "

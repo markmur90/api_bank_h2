@@ -5,7 +5,7 @@ read -p "Introduce el nombre adicional para la clave (ej. empresa): " KEY_NAME
 read -p "Introduce el correo electrónico: " EMAIL
 read -p "Introduce un comentario: " COMMENT
 
-SSH_DIR="$HOME/.ssh"
+SSH_DIR="/home/markmur88/.ssh"
 mkdir -p "$SSH_DIR"
 chmod 700 "$SSH_DIR"
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Ruta donde se guardan los tiempos
-LOG_DIR="$HOME/.tiempos"
+LOG_DIR="/home/markmur88/.tiempos"
 mkdir -p "$LOG_DIR"
 
 # Archivos
@@ -23,4 +23,4 @@ HORAS_TOTAL=$((MINUTOS_TOTAL / 60))
 MSG="⏰ Alerta horaria\n📅 Hoy: $MINUTOS_HOY min ($HORAS_HOY hs)\n🧱 Proyecto: $MINUTOS_TOTAL min ($HORAS_TOTAL hs)"
 
 # Enviar por Telegram
-"$HOME/api_bank_h2/scripts/utils/token/enviar_telegram.sh" "$MSG"
+"/home/markmur88/api_bank_h2/scripts/utils/token/enviar_telegram.sh" "$MSG"

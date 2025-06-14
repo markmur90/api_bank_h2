@@ -5,16 +5,16 @@ export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
 
 echo "  "
 
-python3 -m venv $HOME/Documentos/Entorno/envAPP
+python3 -m venv /home/markmur88/Documentos/Entorno/envAPP
 
 echo "  "
 
-source $HOME/Documentos/Entorno/envAPP/bin/activate
+source /home/markmur88/Documentos/Entorno/envAPP/bin/activate
 
 echo "  "
 
 
-pip3 install -r $HOME/Documentos/GitHub/api_bank_h2/requirements.txt
+pip3 install -r /home/markmur88/Documentos/GitHub/api_bank_h2/requirements.txt
 
 echo "  "
 
