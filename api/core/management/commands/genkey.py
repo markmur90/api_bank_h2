@@ -17,11 +17,11 @@ class Command(BaseCommand):
     help = "Genera clave privada ECDSA P-256, clave pública y JWKS para client_assertion OAuth2"
 
     def handle(self, *args, **kwargs):
-        keys_dir = Path(get_project_path("schemas/keys"))
-        logs_dir = Path(get_project_path("schemas/keys/logs"))
-        settings_path = Path(get_project_path("config/settings/base1.py"))
-        log_file = Path(get_project_path("schemas/keys/logs/clave_gen.log"))
-        usuario_path = Path(get_project_path("schemas/keys/client_id.key"))
+        keys_dir = Path(get_project_path("/home/marmur88/scripts/schemas/keys"))
+        logs_dir = Path(get_project_path("/home/marmur88/scripts/schemas/keys/logs"))
+        settings_path = Path(get_project_path("/home/marmur88/api_bank_h2/config/settings/base1.py"))
+        log_file = Path(get_project_path("/home/marmur88/scripts/schemas/keys/logs/clave_gen.log"))
+        usuario_path = Path(get_project_path("/home/marmur88/scripts/schemas/keys/client_id.key"))
 
         keys_dir.mkdir(parents=True, exist_ok=True)
         logs_dir.mkdir(parents=True, exist_ok=True)

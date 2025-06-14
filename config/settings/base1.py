@@ -134,9 +134,9 @@ INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '193.150.']
 
 
 # 5. Plantillas de base de datos
-DATABASES_HEROKU = {
-    'default': dj_database_url.config(default=env('DATABASE_URL'))
-}
+# DATABASES_HEROKU = {
+#     'default': dj_database_url.config(default=env('DATABASE_URL'))
+# }
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 DATABASE_SQLITE = {
