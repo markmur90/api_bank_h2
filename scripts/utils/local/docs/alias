@@ -1,3 +1,0 @@
-alias localstart='/home/markmur88/local/scripts/manage.sh start'
-alias localstatus='/home/markmur88/local/scripts/manage.sh status'
-alias localstop='/home/markmur88/local/scripts/manage.sh stop'

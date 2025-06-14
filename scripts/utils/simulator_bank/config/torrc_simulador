@@ -1,6 +1,0 @@
-SocksPort 9053
-ControlPort 9054
-
-DataDirectory /home/markmur88/Simulador/tor_data
-HiddenServiceDir /home/markmur88/Simulador/tor_data/hidden_service
-HiddenServicePort 80 0.0.0.0:9002
