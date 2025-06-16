@@ -1,0 +1,59 @@
+
+================================================================================
+Fecha y hora: 2025-06-14 10:22:00
+================================================================================
+=== Info ===
+Transferencia creada
+
+
+================================================================================
+Fecha y hora: 2025-06-14 10:22:00
+================================================================================
+=== Info ===
+XML pain.001 generado en schemas/transferencias/30606141-c9a7-4882-86bd-d7c9db77c805/pain001_30606141-c9a7-4882-86bd-d7c9db77c805.xml
+
+
+================================================================================
+Fecha y hora: 2025-06-14 10:22:00
+================================================================================
+=== Info ===
+Archivo AML generado en schemas/transferencias/30606141-c9a7-4882-86bd-d7c9db77c805/aml_30606141-c9a7-4882-86bd-d7c9db77c805.xml
+
+
+================================================================================
+Fecha y hora: 2025-06-14 10:22:13
+================================================================================
+=== Info ===
+OAuth no iniciado o token expirado
+
+=== Error ===
+Token no disponible
+
+================================================================================
+Fecha y hora: 2025-06-14 10:22:13
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "24bc6971dc7f4a39847d22d761ccbdcd",
+    "auth_url": "https://simulator-api.db.com:443/gw/oidc/authorize?response_type=code&client_id=7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7&redirect_uri=https://simulator-api.coretransapi.com/oauth2/callback/&scope=sepa_credit_transfers&state=24bc6971dc7f4a39847d22d761ccbdcd&code_challenge_method=S256&code_challenge=QHiiypwoPn5v7XFFhsaVyyJLNTov6TxB2iQorNqmBAo",
+    "code_challenge": "QHiiypwoPn5v7XFFhsaVyyJLNTov6TxB2iQorNqmBAo",
+    "payment_id": "30606141-c9a7-4882-86bd-d7c9db77c805"
+}
+
+
+================================================================================
+Fecha y hora: 2025-06-14 10:22:13
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "999ARRWTD5MYDGb2MyjU5quhCpaQGP2qWrLUNAnIwTycNn3ndkY_vgljoxwI4hh4EIlO7sthpj7pA_qgrgenqg",
+    "challenge": "QHiiypwoPn5v7XFFhsaVyyJLNTov6TxB2iQorNqmBAo",
+    "state": "24bc6971dc7f4a39847d22d761ccbdcd"
+}
+
