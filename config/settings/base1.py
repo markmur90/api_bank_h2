@@ -203,28 +203,28 @@ OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 from api.configuraciones_api.loader import get_settings
 
-# REDIRECT_URI = env('REDIRECT_URI')
-REDIRECT_URI = redirect_uri
-# CLIENT_ID = env('CLIENT_ID')
-CLIENT_ID = client_id
-# CLIENT_SECRET = env('CLIENT_SECRET')
-CLIENT_SECRET = client_secret
-# ORIGIN = env('ORIGIN')
-ORIGIN = origin
-# TOKEN_URL = env('TOKEN_URL')
-TOKEN_URL = token_url
-# OTP_URL = env('OTP_URL')
-OTP_URL = otp_url
-# AUTH_URL = env('AUTH_URL')
-AUTH_URL = auth_url
-# API_URL = env('API_URL')
-API_URL = api_url
-# AUTHORIZE_URL = env('AUTHORIZE_URL')
-AUTHORIZE_URL = authorize_url
-# SCOPE = env('SCOPE')
-SCOPE = scope
+REDIRECT_URI = env('REDIRECT_URI')
+# REDIRECT_URI = redirect_uri
+CLIENT_ID = env('CLIENT_ID')
+# CLIENT_ID = client_id
+CLIENT_SECRET = env('CLIENT_SECRET')
+# CLIENT_SECRET = client_secret
+ORIGIN = env('ORIGIN')
+# ORIGIN = origin
+TOKEN_URL = env('TOKEN_URL')
+# TOKEN_URL = token_url
+OTP_URL = env('OTP_URL')
+# OTP_URL = otp_url
+AUTH_URL = env('AUTH_URL')
+# AUTH_URL = auth_url
+API_URL = env('API_URL')
+# API_URL = api_url
+AUTHORIZE_URL = env('AUTHORIZE_URL')
+# AUTHORIZE_URL = authorize_url
+SCOPE = env('SCOPE')
+# SCOPE = scope
 TIMEOUT_REQUEST = 3600
-# ACCESS_TOKEN = env('ACCESS_TOKEN')
+ACCESS_TOKEN = env('ACCESS_TOKEN')
 
 # from .configuración_dinamica import (
 #     REDIRECT_URI,
@@ -261,8 +261,8 @@ OAUTH2 = {
 
 
 
-JWT_SIGNING_KEY = jwt_signing_key
-JWT_VERIFYING_KEY = jwt_verifying_key
+JWT_SIGNING_KEY = "Ptf8454Jd55"
+JWT_VERIFYING_KEY = "Ptf8454Jd55"
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
