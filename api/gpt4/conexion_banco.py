@@ -119,54 +119,6 @@ def puerto_activo(host, puerto, timeout=2):
     except Exception:
         return False
 
-
-def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, headers=None):
-    conf = get_settings()
-    dominio_banco = conf["DOMINIO_BANCO"]
-    dns_banco = conf["DNS_BANCO"]
-    mock_port = conf["MOCK_PORT"]
-    timeout = conf["TIMEOUT"]
-
-    usar_conexion = request.session.get("usar_conexion_banco", False)
-    if usar_conexion:
-        registrar_log(
-            "conexion",
-            headers_enviados=headers,
-            request_body=datos,
-            extra_info=f"{metodo} {path} via conexion segura"
-        )
-        resp = hacer_request_seguro(dominio_banco, path, metodo, datos, headers)
-        if isinstance(resp, requests.Response):
-            registrar_log(
-                "conexion",
-                response_headers=dict(resp.headers),
-                response_text=resp.text,
-                extra_info="Respuesta conexion segura"
-            )
-        return resp
-
-    registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
-    url = f"https://{dns_banco}:{mock_port}{path}"
-    try:
-        registrar_log(
-            "conexion",
-            headers_enviados=headers,
-            request_body=datos,
-            extra_info=f"{metodo} {path} via mock"
-        )
-        respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=timeout)
-        registrar_log(
-            "conexion",
-            response_headers=dict(respuesta.headers),
-            response_text=respuesta.text,
-            extra_info="Respuesta mock"
-        )
-        return respuesta.json()
-    except Exception as e:
-        registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
-        return None
-
-
 # Funciones auxiliares para peticiones autenticadas
 
 def obtener_token_desde_simulador(username, password):
