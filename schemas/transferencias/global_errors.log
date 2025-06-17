@@ -15,3 +15,5 @@
 [2025-06-17 19:57:04] ERROR [id7s9ligrgclwe8a3w3euuzsqysaumfk]: cannot access local variable 'transfer' where it is not associated with a value
 [2025-06-17 19:57:12] ERROR [id7s9ligrgclwe8a3w3euuzsqysaumfk]: OAuth2 requiere un payment_id
 [2025-06-17 19:57:13] ERROR [id7s9ligrgclwe8a3w3euuzsqysaumfk]: cannot access local variable 'transfer' where it is not associated with a value
+[2025-06-18 00:54:45] ERROR AL GUARDAR LOG EN DB para conexion: el valor es demasiado largo para el tipo character varying(20)
+

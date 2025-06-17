@@ -561,10 +561,7 @@ def descargar_pdf(request, payment_id):
         return redirect('transfer_detailGPT4', payment_id=transferencia.payment_id)
     return FileResponse(open(pdf_file, 'rb'), content_type='application/pdf', as_attachment=True, filename=os.path.basename(pdf_file))
 
-
 # ==== OAUTH2 ====
-
-
 
 def oauth2_authorize(request):
     if not settings.USE_OAUTH2_UI:
@@ -688,7 +685,6 @@ def oauth2_callback(request):
         return render(request, 'api/GPT4/oauth2_callback.html')
 
 
-
 def get_oauth_logs(request):
 
     session_key = request.GET.get('session_key')
@@ -723,7 +719,6 @@ def get_oauth_logs(request):
     })
 
 
-
 @require_POST
 def toggle_oauth(request):
     request.session['oauth_active'] = 'oauth_active' in request.POST
@@ -751,7 +746,6 @@ def list_logs(request):
         "choices": choices
     })
     
-
 
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timezone
@@ -782,7 +776,6 @@ def log_oauth_visual_inicio(request):
         request=request
     )
     return JsonResponse({"status": "RJCT"})
-
 
 
 def send_transfer_view(request, payment_id):
@@ -867,7 +860,6 @@ def send_transfer_view(request, payment_id):
             return redirect('transfer_detailGPT4', payment_id=payment_id)
 
     return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
-
 
 @requiere_conexion_banco
 def send_transfer_conexion_view(request, payment_id):
@@ -994,12 +986,6 @@ def send_transfer_simulator_view(request, payment_id):
         "transfer": transfer,
         "ip_simulator": ip_sim,
     })
-
-
-
-
-
-# views.py
 
 
 class ClaveGeneradaListView(ListView):
