@@ -381,3 +381,60 @@ def enviar_transferencia_conexion(
         logger.error(f"[ERROR] Validación XML/AML para {pid}: {e}")
 
     return respuesta
+
+
+import time
+import requests
+from django.conf import settings
+from django.core.exceptions import SuspiciousOperation
+
+URL_BASE = settings.BANK_API_BASE_URL
+URL_TOKEN = f"{URL_BASE}/api/token"
+URL_LOGIN = f"{URL_BASE}/api/login"
+URL_CHALLENGE = f"{URL_BASE}/api/challenge"
+URL_SEND_TRANSFER = f"{URL_BASE}/api/send-transfer"
+URL_STATUS_TRANSFER = f"{URL_BASE}/api/status-transfer"
+URL_TRANSFER_ENTRANTES = f"{URL_BASE}/api/transferencias/entrantes"
+
+def get_token(username, password):
+    resp = requests.post(URL_TOKEN, json={"username": username, "password": password}, timeout=10)
+    resp.raise_for_status()
+    return resp.json()["access_token"]
+
+def login(token):
+    headers = {"Authorization": f"Bearer {token}"}
+    resp = requests.post(URL_LOGIN, headers=headers, timeout=10)
+    resp.raise_for_status()
+    return resp.json()
+
+def challenge_otp(token, otp):
+    headers = {"Authorization": f"Bearer {token}"}
+    resp = requests.post(URL_CHALLENGE, headers=headers, json={"otp": otp}, timeout=10)
+    resp.raise_for_status()
+    return resp.json()
+
+def send_transfer(token, data):
+    headers = {"Authorization": f"Bearer {token}", "Content-Type": "application/json"}
+    resp = requests.post(URL_SEND_TRANSFER, headers=headers, json=data, timeout=10)
+    resp.raise_for_status()
+    return resp.json()
+
+def get_transfer_status(token, transfer_id):
+    headers = {"Authorization": f"Bearer {token}"}
+    resp = requests.get(URL_STATUS_TRANSFER, headers=headers, params={"transfer_id": transfer_id}, timeout=10)
+    resp.raise_for_status()
+    return resp.json()
+
+def poll_transfer_status(token, transfer_id, max_attempts=5, interval=2):
+    for _ in range(max_attempts):
+        status = get_transfer_status(token, transfer_id)
+        if status.get("status") in ("COMPLETED", "FAILED"):
+            return status
+        time.sleep(interval)
+    raise SuspiciousOperation("Tiempo de espera excedido para el estado de la transferencia")
+
+def get_incoming_transfers(token):
+    headers = {"Authorization": f"Bearer {token}"}
+    resp = requests.get(URL_TRANSFER_ENTRANTES, headers=headers, timeout=10)
+    resp.raise_for_status()
+    return resp.json().get("transfers", [])

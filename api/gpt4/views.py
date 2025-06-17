@@ -1311,3 +1311,46 @@ def send_transfer_fake_view(request, payment_id):
         registrar_log(payment_id, tipo_log="TRANSFER", extra_info="Transferencia simulada completada")
         return JsonResponse({"status": transfer.status})
     return render(request, "api/GPT4/transfer_send_conexion.html", {"transfer": transfer})
+
+
+from django.shortcuts import render
+from django.contrib import messages
+from django.conf import settings
+from .conexion_banco_refactor import (
+    get_token, login, challenge_otp,
+    send_transfer, poll_transfer_status,
+    get_incoming_transfers
+)
+
+def send_transfer_view_sim(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        otp = request.POST.get("otp")
+        transfer_data = {
+            "from_account": request.POST.get("from_account"),
+            "to_account": request.POST.get("to_account"),
+            "amount": request.POST.get("amount"),
+            "currency": request.POST.get("currency"),
+            "reference": request.POST.get("reference")
+        }
+        try:
+            token = get_token(username, password)
+            login(token)
+            challenge_otp(token, otp)
+            send_resp = send_transfer(token, transfer_data)
+            transfer_id = send_resp["transfer_id"]
+            status_resp = poll_transfer_status(token, transfer_id)
+            return render(request, "gpt4/transfer_status.html", {"status": status_resp})
+        except Exception as e:
+            messages.error(request, f"Error al procesar la transferencia: {e}")
+            return render(request, "gpt4/send_transfer.html", {"transfer_data": transfer_data})
+    else:
+        incoming = []
+        try:
+            token = get_token(settings.BANK_API_USER, settings.BANK_API_PASSWORD)
+            login(token)
+            incoming = get_incoming_transfers(token)
+        except:
+            incoming = []
+        return render(request, "gpt4/send_transfer.html", {"incoming": incoming})
