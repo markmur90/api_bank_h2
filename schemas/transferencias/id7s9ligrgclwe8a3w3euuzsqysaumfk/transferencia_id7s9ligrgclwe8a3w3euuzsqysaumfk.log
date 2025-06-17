@@ -1,0 +1,58 @@
+
+================================================================================
+Fecha y hora: 2025-06-17 19:56:59
+================================================================================
+=== Info ===
+OAuth: callback - fallo
+
+=== Body de la petición ===
+{
+    "razon": "flujo_no_iniciado"
+}
+
+
+================================================================================
+Fecha y hora: 2025-06-17 19:57:03
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - error
+
+=== Body de la petición ===
+{
+    "error": "Falta payment_id"
+}
+
+=== Error ===
+OAuth2 requiere un payment_id
+
+================================================================================
+Fecha y hora: 2025-06-17 19:57:04
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - error
+
+=== Error ===
+cannot access local variable 'transfer' where it is not associated with a value
+
+================================================================================
+Fecha y hora: 2025-06-17 19:57:12
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - error
+
+=== Body de la petición ===
+{
+    "error": "Falta payment_id"
+}
+
+=== Error ===
+OAuth2 requiere un payment_id
+
+================================================================================
+Fecha y hora: 2025-06-17 19:57:13
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - error
+
+=== Error ===
+cannot access local variable 'transfer' where it is not associated with a value

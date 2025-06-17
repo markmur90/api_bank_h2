@@ -214,3 +214,85 @@
   },
   "error": null
 }
+{
+  "timestamp": "2025-06-17 19:56:59",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-17 19:56:59",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-17 19:57:03",
+  "accion": "inicio_autorizacion",
+  "estado": "error",
+  "metadata": {
+    "error": "Falta payment_id"
+  },
+  "error": "OAuth2 requiere un payment_id"
+}
+{
+  "timestamp": "2025-06-17 19:57:03",
+  "accion": "inicio_autorizacion",
+  "estado": "error",
+  "metadata": {
+    "error": "Falta payment_id"
+  },
+  "error": "OAuth2 requiere un payment_id"
+}
+{
+  "timestamp": "2025-06-17 19:57:03",
+  "accion": "inicio_autorizacion",
+  "estado": "error",
+  "metadata": {},
+  "error": "cannot access local variable 'transfer' where it is not associated with a value"
+}
+{
+  "timestamp": "2025-06-17 19:57:03",
+  "accion": "inicio_autorizacion",
+  "estado": "error",
+  "metadata": {},
+  "error": "cannot access local variable 'transfer' where it is not associated with a value"
+}
+{
+  "timestamp": "2025-06-17 19:57:12",
+  "accion": "inicio_autorizacion",
+  "estado": "error",
+  "metadata": {
+    "error": "Falta payment_id"
+  },
+  "error": "OAuth2 requiere un payment_id"
+}
+{
+  "timestamp": "2025-06-17 19:57:12",
+  "accion": "inicio_autorizacion",
+  "estado": "error",
+  "metadata": {
+    "error": "Falta payment_id"
+  },
+  "error": "OAuth2 requiere un payment_id"
+}
+{
+  "timestamp": "2025-06-17 19:57:12",
+  "accion": "inicio_autorizacion",
+  "estado": "error",
+  "metadata": {},
+  "error": "cannot access local variable 'transfer' where it is not associated with a value"
+}
+{
+  "timestamp": "2025-06-17 19:57:12",
+  "accion": "inicio_autorizacion",
+  "estado": "error",
+  "metadata": {},
+  "error": "cannot access local variable 'transfer' where it is not associated with a value"
+}
