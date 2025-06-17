@@ -4,13 +4,8 @@ import socket
 import os
 import json
 from django.conf import settings
-try:
-    import netifaces  # type: ignore
-    HAS_NETIFACES = True
-except Exception:  # pragma: no cover
-    netifaces = None
-    HAS_NETIFACES = False
-    
+import netifaces
+
 from api.gpt4.utils import (
     registrar_log,
     generar_xml_pain001,
@@ -24,8 +19,8 @@ from api.configuraciones_api.helpers import get_conf
 @lru_cache
 def get_settings():
     timeout = int(600)
-    port = int(9181)
-    allow_fake_bank = get_conf("ALLOW_FAKE_BANK", "false").lower() == "true" # type: ignore
+    port = int(get_conf("MOCK_PORT"))
+    allow_fake_bank = get_conf("ALLOW_FAKE_BANK", "false").lower() == "true"
     return {
         "DNS_BANCO":            get_conf("DNS_BANCO"),
         "DOMINIO_BANCO":        get_conf("DOMINIO_BANCO"),
@@ -37,11 +32,11 @@ def get_settings():
 
 def esta_en_red_segura():
     settings = get_settings()
-    prefix = settings["RED_SEGURA_PREFIX"]
+    RED_SEGURA_PREFIX = settings["RED_SEGURA_PREFIX"]
     try:
         hostname = socket.gethostname()
         ip_local = socket.gethostbyname(hostname)
-        return ip_local.startswith(prefix)
+        return ip_local.startswith(RED_SEGURA_PREFIX)
     except Exception:
         return False
 
@@ -59,7 +54,7 @@ def resolver_ip_dominio(dominio):
 
     try:
         respuesta = resolver.resolve(dominio)
-        ip = respuesta[0].to_text() # type: ignore
+        ip = respuesta[0].to_text()
         print(f"🔐 Resuelto {dominio} → {ip}")
         return ip
     except Exception as e:
@@ -79,12 +74,11 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
     
     if esta_en_red_segura():
         ip_destino = resolver_ip_dominio(dominio)
-        puerto = 443
         if not ip_destino:
             registrar_log("conexion", f"❌ No se pudo resolver {dominio} vía DNS bancario.")
             return None
     else:
-        if ALLOW_FAKE_BANK:
+        if ALLOW_FAKE_BANK :
             ip_destino = DNS_BANCO
             dominio = DOMINIO_BANCO
             puerto = MOCK_PORT
@@ -98,7 +92,7 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
             registrar_log("conexion", "🚫 Red no segura y ALLOW_FAKE_BANK desactivado. Cancelando.")
             return None
 
-    url = f"https://{ip_destino}:{puerto}{path}"
+    url = f"https://{ip_destino}{path}"
     headers["Host"] = dominio
 
     try:
@@ -120,52 +114,52 @@ def puerto_activo(host, puerto, timeout=int(2)):
     except Exception:
         return False
 
-# def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, headers=None):
-#     settings = get_settings()
-#     DOMINIO_BANCO = settings["DOMINIO_BANCO"]
-#     DNS_BANCO = settings["DNS_BANCO"]
-#     MOCK_PORT = settings["MOCK_PORT"]
-#     TIMEOUT = settings["TIMEOUT"]
+def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, headers=None):
+    settings = get_settings()
+    DOMINIO_BANCO = settings["DOMINIO_BANCO"]
+    DNS_BANCO = settings["DNS_BANCO"]
+    MOCK_PORT = settings["MOCK_PORT"]
+    TIMEOUT = settings["TIMEOUT"]
 
-#     usar_conexion = request.session.get("usar_conexion_banco", False)
-#     if usar_conexion:
-#         registrar_log(
-#             "conexion",
-#             headers_enviados=headers,
-#             request_body=datos,
-#             extra_info=f"{metodo} {path} via conexion segura"
-#         )
-#         resp = hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
-#         if isinstance(resp, requests.Response):
-#             registrar_log(
-#                 "conexion",
-#                 response_headers=dict(resp.headers),
-#                 response_text=resp.text,
-#                 extra_info="Respuesta conexion segura"
-#             )
-#         return resp
+    usar_conexion = request.session.get("usar_conexion_banco", False)
+    if usar_conexion:
+        registrar_log(
+            "conexion",
+            headers_enviados=headers,
+            request_body=datos,
+            extra_info=f"{metodo} {path} via conexion segura"
+        )
+        resp = hacer_request_seguro(DOMINIO_BANCO, path, metodo, datos, headers)
+        if isinstance(resp, requests.Response):
+            registrar_log(
+                "conexion",
+                response_headers=dict(resp.headers),
+                response_text=resp.text,
+                extra_info="Respuesta conexion segura"
+            )
+        return resp
         
         
-#     registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
-#     url = f"https://{DNS_BANCO}:{MOCK_PORT}{path}"
-#     try:
-#         registrar_log(
-#             "conexion",
-#             headers_enviados=headers,
-#             request_body=datos,
-#             extra_info=f"{metodo} {path} via mock"
-#         )
-#         respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=TIMEOUT)
-#         registrar_log(
-#             "conexion",
-#             response_headers=dict(respuesta.headers),
-#             response_text=respuesta.text,
-#             extra_info="Respuesta mock"
-#         )
-#         return respuesta.json()
-#     except Exception as e:
-#         registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
-#         return None
+    registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
+    url = f"https://{DNS_BANCO}:{MOCK_PORT}{path}"
+    try:
+        registrar_log(
+            "conexion",
+            headers_enviados=headers,
+            request_body=datos,
+            extra_info=f"{metodo} {path} via mock"
+        )
+        respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=TIMEOUT)
+        registrar_log(
+            "conexion",
+            response_headers=dict(respuesta.headers),
+            response_text=respuesta.text,
+            extra_info="Respuesta mock"
+        )
+        return respuesta.json()
+    except Exception as e:
+        registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
+        return None
 
 
 # api/gpt4/conexion_banco.py (al final del archivo)
