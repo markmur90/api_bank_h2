@@ -33,9 +33,13 @@ urlpatterns = [
     path("transfers/<str:payment_id>/edit/", views.edit_transfer, name="edit_transferGPT4"),
     path("transfers/create/", views.create_transfer, name="create_transferGPT4"),
     path("transfers/<str:payment_id>/send/", views.send_transfer_view, name="send_transfer_viewGPT4"),
-    path("transfers/<str:payment_id>/send-banco/", views.send_transfer_conexion_view, name="send_transfer_conexion_viewGPT4"),
-    path("transfers/<str:payment_id>/send-simulador/", views.send_transfer_simulator_view, name="send_transfer_simulator_viewGPT4"),
-    path("transfers/<str:payment_id>/send-fake/", views.send_transfer_fake_view, name="send_transfer_fake_viewGPT4"),
+    
+    path(
+        "transfers/<str:payment_id>/send-banco/",
+        views.send_transfer_gateway_view,
+        name="send_transfer_gateway_viewGPT4",
+    ),  
+    
     # path("transfers/<str:payment_id>/send/", views.send_transfer_view4, name="send_transfer_viewGPT4"),
     path("transfers/<str:payment_id>/sca/", views.transfer_update_sca, name="transfer_update_scaGPT4"),
     path("transfers/<str:payment_id>/", views.transfer_detail, name="transfer_detailGPT4"),

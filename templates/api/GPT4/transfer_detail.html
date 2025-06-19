@@ -68,20 +68,20 @@
         {% endif %}
         {% if request.session.usar_conexion_banco %}
           {% if allow_fake_bank %}
-          <a href="{% url 'send_transfer_simulator_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
-            <i class="bi bi-send-check"></i> Enviar Simulador
+          <a href="{% url 'send_transfer_gateway_viewGPT4' transfer.payment_id %}?mode=simulator" class="btn btn-outline-info btn-sm">
+            <i class="bi bi-send-check"></i> Env Mode Sim
           </a>
           {% else %}
-          <a href="{% url 'send_transfer_conexion_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
-            <i class="bi bi-send-check"></i> Enviar Banco
+          <a href="{% url 'send_transfer_gateway_viewGPT4' transfer.payment_id %}?mode=conexion" class="btn btn-outline-info btn-sm">
+            <i class="bi bi-send-check"></i> Env Mode Con
           </a>
           {% endif %}
         {% else %}
         <a href="{% url 'send_transfer_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
-          <i class="bi bi-send-check"></i> Enviar
+          <i class="bi bi-send-check"></i> Env Mode Cli
         </a>
           <a href="{% url 'send_transfer_viewGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm">
-            <i class="bi bi-send-check"></i> Enviar
+            <i class="bi bi-send-check"></i> Env Mode Cli
           </a>        
         {% endif %}
         <a href="{% url 'transfer_detailGPT4' transfer.payment_id %}" class="btn btn-outline-info btn-sm" title="Refrescar estado">
