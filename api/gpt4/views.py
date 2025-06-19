@@ -20,6 +20,25 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 import hmac
 import hashlib
 from django.utils.encoding import force_bytes
+from django.views.decorators.csrf import csrf_exempt
+from datetime import datetime, timezone
+from django.views.decorators.http import require_GET
+from django.shortcuts import render
+import socket
+from django.contrib.admin.views.decorators import staff_member_required
+from django.utils.decorators import method_decorator
+from django.views import View
+from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+from django.http import HttpResponse
+from datetime import timedelta
+from api.gpt4.conexion import conexion_banco
+from api.gpt4.models import (
+    Debtor, DebtorAccount, Creditor, CreditorAccount, CreditorAgent,
+    PaymentIdentification, Transfer, ClientID, Kid
+)
+import uuid
 
 from config import settings
 from api.configuraciones_api.models import ConfiguracionAPI
@@ -39,7 +58,7 @@ from api.gpt4.utils import (
     refresh_access_token, registrar_log, registrar_log_oauth,
     resolver_challenge_pushtan, send_transfer, update_sca_request
 )
-from api.gpt4.conexion_banco import (
+from api.gpt4.conexion.conexion_banco import (
     hacer_request_banco,
     enviar_transferencia_conexion,
     obtener_token_desde_simulador,
@@ -136,11 +155,6 @@ def handle_notification(request):
             {'status': 'error', 'mensaje': str(e)},
             status=500
         )
-
-
-
-
-
 
 
 # ==== DEBTOR ====
@@ -747,8 +761,7 @@ def list_logs(request):
     })
     
 
-from django.views.decorators.csrf import csrf_exempt
-from datetime import datetime, timezone
+
 
 @csrf_exempt
 def log_oauth_visual_inicio(request):
@@ -1163,20 +1176,7 @@ def diagnostico_banco(request):
 # ============================
 # Simulación de red bancaria
 # ============================
-from django.contrib.admin.views.decorators import staff_member_required
-from django.utils.decorators import method_decorator
-from django.views import View
-from django.shortcuts import render
-from django.contrib.auth import get_user_model
-from django.utils import timezone
-from django.http import HttpResponse
-from datetime import timedelta
-from api.gpt4 import conexion_banco
-from api.gpt4.models import (
-    Debtor, DebtorAccount, Creditor, CreditorAccount, CreditorAgent,
-    PaymentIdentification, Transfer, ClientID, Kid
-)
-import uuid
+
 
 @method_decorator(staff_member_required, name='dispatch')
 class SimulacionTransferenciaView(View):

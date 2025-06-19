@@ -1,5 +1,6 @@
 from django.urls import path
 from api.gpt4 import views
+from api.gpt4.conexion.conexion_views import *
 
 urlpatterns = [
     # Debtor
@@ -39,6 +40,7 @@ urlpatterns = [
         views.send_transfer_gateway_view,
         name="send_transfer_gateway_viewGPT4",
     ),  
+    path("transfers/<str:payment_id>/send-banco/", send_transfer_bank_view, name="send_transfer_bank_viewGPT4"),
     
     # path("transfers/<str:payment_id>/send/", views.send_transfer_view4, name="send_transfer_viewGPT4"),
     path("transfers/<str:payment_id>/sca/", views.transfer_update_sca, name="transfer_update_scaGPT4"),
