@@ -1,8 +1,8 @@
 {
-    "key": "Ctrl+Mayús+J",  // Puedes cambiar el atajo de teclado a tu preferencia
+    "key": "ctrl+shift+v",  // Puedes cambiar el atajo de teclado a tu preferencia
     "command": "extension.runScript",
     "args": {
-        "script": "${workspaceFolder}/home/markmur88/api_bank_h2/file-3t5.py",
+        "script": "${workspaceFolder}/temp/scripts/automate/escaneo/venice_api.py",
         "args": ["Hola, ¿cómo estás?"]
     }
 }

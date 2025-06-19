@@ -35,3 +35,17 @@
 ✅ chmod +x -> ./scripts/utils/security/wifi_audit_tools/analyze_phishing_logs.py
 ✅ chmod +x -> ./scripts/utils/security/wifi_audit_tools/cronjob_example.sh
 ✅ chmod +x -> ./scripts/utils/deploy_remote_report.sh
+✅ chmod +x -> ./api/transfers/migrations/0001_initial.py
+✅ chmod +x -> ./api/gpt4/migrations/0001_initial.py
+✅ chmod +x -> ./api/authentication/migrations/0001_initial.py
+✅ chmod +x -> ./api/configuraciones_api/migrations/0001_initial.py
+✅ chmod +x -> ./api/core/migrations/0001_initial.py
+✅ chmod +x -> ./api/gpt4_conexion/config_loader.py
+✅ chmod +x -> ./api/gpt4_conexion/api/middleware.py
+✅ chmod +x -> ./api/gpt4_conexion/api/transfer_flow.py
+✅ chmod +x -> ./api/gpt4_conexion/api/config.py
+✅ chmod +x -> ./api/gpt4_conexion/transfer_service.py
+✅ chmod +x -> ./api/gpt4_conexion/bank_connector.py
+✅ chmod +x -> ./api/gpt4_conexion/http_client.py
+✅ chmod +x -> ./api/gpt4_conexion/config.py
+✅ chmod +x -> ./file-3t5.py
