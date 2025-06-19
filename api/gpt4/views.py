@@ -65,7 +65,7 @@ from api.gpt4.conexion.conexion_banco import (
     resolver_ip_dominio,
     get_settings as banco_settings,
 )
-from api.gpt4.decorators import requiere_conexion_banco
+from api.gpt4.conexion.decorators import requiere_conexion_banco
 from api.gpt4.forms import (
     ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm,
     DebtorAccountForm, DebtorForm, KidForm, ScaForm,
