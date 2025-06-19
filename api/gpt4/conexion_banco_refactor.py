@@ -1,3 +1,4 @@
+import json
 import os
 import re
 import socket
@@ -6,7 +7,7 @@ from urllib.parse import urljoin
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
-from typing import Optional, Union
+from typing import Any, Dict, Optional, Union
 
 from api.gpt4.utils import generar_archivo_aml, generar_xml_pain001, validar_aml_con_xsd, validar_xml_pain001
 
@@ -184,204 +185,10 @@ handler.addFilter(SensitiveFilter())
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
 
-
-"""
-Módulo de integración de peticiones bancarias usando BankConnector.
-"""
-import logging
-import socket
-import json
-from typing import Optional, Any, Dict
-
-from django.conf import settings
-
-
-
 # Inicialización de configuración y conector
 config = ConfigLoader(prefix='BANK_')
 logger = logging.getLogger('bank_connector')
 connector = BankConnector(config=config, logger=logger)
-
-
-def hacer_request_seguro(
-    path: str = "/api",
-    metodo: str = "GET",
-    datos: Optional[Any] = None,
-    headers: Optional[Dict[str, str]] = None
-) -> Optional[str]:
-    """
-    Realiza una petición segura al banco usando BankConnector.
-    - path: endpoint relativo, p.ej. '/transferencia'
-    - metodo: 'GET' o 'POST'
-    - datos: objeto JSON serializable para POST
-    - headers: cabeceras HTTP adicionales
-    Devuelve el cuerpo de la respuesta como texto o None en caso de error.
-    """
-    headers = headers or {}
-    # Serializar datos si es POST
-    body = None
-    if metodo.upper() != 'GET' and datos is not None:
-        try:
-            body = json.dumps(datos)
-        except (TypeError, ValueError) as e:
-            logger.error(f"Error serializando datos JSON: {e}")
-            return None
-
-    try:
-        response_text = connector.perform_transfer(endpoint=path, headers=headers, body=body)
-        return response_text
-    except Exception as e:
-        logger.error(f"Error en hacer_request_seguro: {e}")
-        return None
-
-
-def puerto_activo(host: str, puerto: int, timeout: int = 2) -> bool:
-    """
-    Comprueba si un puerto está escuchando en un host.
-    """
-    try:
-        with socket.create_connection((host, puerto), timeout=timeout):
-            return True
-    except Exception:
-        return False
-
-
-def obtener_token_desde_simulador(
-    username: str,
-    password: str
-) -> Optional[str]:
-    """
-    Solicita token JWT al simulador bancario.
-    """
-    headers = {'Content-Type': 'application/json'}
-    datos = {"username": username, "password": password}
-    # Siempre usamos POST al endpoint '/token/'
-    raw = hacer_request_seguro(path='/api/token/', metodo='POST', datos=datos, headers=headers)
-    if not raw:
-        logger.error("No se recibió respuesta del simulador para token")
-        return None
-    try:
-        payload = json.loads(raw)
-        return payload.get('token')
-    except json.JSONDecodeError as e:
-        logger.error(f"JSON inválido al leer token: {e}")
-        return None
-
-
-def hacer_request_banco_autenticado(
-    request,
-    path: str = "/api",
-    metodo: str = "GET",
-    datos: Optional[Any] = None,
-    username: str = "",
-    password: str = ""
-) -> Any:
-    """
-    Realiza petición autenticada al banco obteniendo antes JWT.
-    """
-    token = obtener_token_desde_simulador(username, password)
-    if not token:
-        return {"error": "No se pudo obtener token del simulador"}
-    headers = {"Authorization": f"Bearer {token}"}
-    return hacer_request_seguro(path=path, metodo=metodo, datos=datos, headers=headers)
-
-
-def hacer_request_banco(
-    request,
-    path: str = "/api",
-    metodo: str = "GET",
-    datos: Optional[Any] = None,
-    headers: Optional[Dict[str, str]] = None
-) -> Any:
-    """
-    Determina modo de conexión (oficial vs mock) y hace la petición.
-    """
-    usar = request.session.get("usar_conexion_banco")
-    headers = headers or {}
-
-    # Si modo oficial, se autentica
-    if usar == "oficial":
-        token = obtener_token_desde_simulador(
-            settings.BANK_SIM_USER,
-            settings.BANK_SIM_PASS
-        )
-        if token:
-            headers["Authorization"] = f"Bearer {token}"
-        else:
-            return {"error": "Fallo autenticación oficial"}
-
-    # Si se debe usar conexión bancaria (oficial o sandbox)
-    if usar:
-        resultado = hacer_request_seguro(path=path, metodo=metodo, datos=datos, headers=headers)
-        # Intentamos parseo JSON
-        try:
-            return json.loads(resultado) if resultado else None
-        except (TypeError, json.JSONDecodeError):
-            return resultado
-
-    # Modo local mock
-    dns = config.get('DNS_BANCO', default=settings.DNS_BANCO)
-    puerto = int(config.get('MOCK_PORT', default=str(settings.MOCK_PORT)))
-    url = f"https://{dns}:{puerto}{path}"
-    try:
-        resp = connector.http_client.session.request(
-            metodo, url, json=datos, headers=headers, timeout=connector.http_client.timeout
-        )
-        resp.raise_for_status()
-        return resp.json()
-    except Exception as e:
-        logger.error(f"Error al conectar al VPS mock: {e}")
-        return None
-
-
-def enviar_transferencia_conexion(
-    request,
-    transfer,
-    token: str,
-    otp: str
-) -> Any:
-    """
-    Envía transferencia y gestiona logs, respuesta y validaciones.
-    """
-    body = transfer.to_schema_data()
-    pid = transfer.payment_id
-    headers = {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": f"Bearer {token}",
-        "Idempotency-Id": pid,
-        "Correlation-Id": pid,
-        "Otp": otp,
-    }
-
-    logger.info(f"[TRANSFER] Enviando transferencia {pid}")
-    respuesta = hacer_request_banco(request, path='/api/transferencia', metodo='POST', datos=body, headers=headers)
-    if not respuesta:
-        logger.error(f"[TRANSFER] Sin respuesta de conexión bancaria para {pid}")
-        raise Exception("Sin respuesta de la conexión bancaria")
-
-    # Si es dict, asumimos JSON; si string, lo devolvemos bruto
-    if isinstance(respuesta, dict):
-        auth_id = respuesta.get('authId')
-        status = respuesta.get('transactionStatus')
-        transfer.auth_id = auth_id
-        transfer.status = status or transfer.status
-        transfer.save()
-    else:
-        logger.warning(f"[TRANSFER] Respuesta no JSON para {pid}: {respuesta}")
-
-    # Validaciones posteriores
-    try:
-        xml_path = generar_xml_pain001(transfer, pid)
-        aml_path = generar_archivo_aml(transfer, pid)
-        validar_xml_pain001(xml_path)
-        validar_aml_con_xsd(aml_path)
-        logger.info(f"[TRANSFER] Validación XML/AML completada para {pid}")
-    except Exception as e:
-        logger.error(f"[ERROR] Validación XML/AML para {pid}: {e}")
-
-    return respuesta
-
 
 import time
 import requests
@@ -438,3 +245,185 @@ def get_incoming_transfers(token):
     resp = requests.get(URL_TRANSFER_ENTRANTES, headers=headers, timeout=10)
     resp.raise_for_status()
     return resp.json().get("transfers", [])
+
+def hacer_request_seguro(
+    path: str = "/api",
+    metodo: str = "GET",
+    datos: Optional[Any] = None,
+    headers: Optional[Dict[str, str]] = None
+) -> Optional[str]:
+    """
+    Realiza una petición segura al banco usando BankConnector.
+    - path: endpoint relativo, p.ej. '/transferencia'
+    - metodo: 'GET' o 'POST'
+    - datos: objeto JSON serializable para POST
+    - headers: cabeceras HTTP adicionales
+    Devuelve el cuerpo de la respuesta como texto o None en caso de error.
+    """
+    headers = headers or {}
+    # Serializar datos si es POST
+    body = None
+    if metodo.upper() != 'GET' and datos is not None:
+        try:
+            body = json.dumps(datos)
+        except (TypeError, ValueError) as e:
+            logger.error(f"Error serializando datos JSON: {e}")
+            return None
+
+    if body is not None:
+        try:
+            response_text = connector.perform_transfer(endpoint=path, headers=headers, body=body)
+            return response_text
+        except Exception as e:
+            logger.error(f"Error en hacer_request_seguro: {e}")
+    else:
+        logger.error("Body is None in hacer_request_seguro")
+        return None
+
+def puerto_activo(host: str, puerto: int, timeout: int = 2) -> bool:
+    """
+    Comprueba si un puerto está escuchando en un host.
+    """
+    try:
+        with socket.create_connection((host, puerto), timeout=timeout):
+            return True
+    except Exception:
+        return False
+
+def obtener_token_desde_simulador(
+    username: str,
+    password: str
+) -> Optional[str]:
+    """
+    Solicita token JWT al simulador bancario.
+    """
+    headers = {'Content-Type': 'application/json'}
+    datos = {"username": username, "password": password}
+    # Siempre usamos POST al endpoint '/token/'
+    raw = hacer_request_seguro(path='/api/token/', metodo='POST', datos=datos, headers=headers)
+    if not raw:
+        logger.error("No se recibió respuesta del simulador para token")
+        return None
+    try:
+        payload = json.loads(raw)
+        return payload.get('token')
+    except json.JSONDecodeError as e:
+        logger.error(f"JSON inválido al leer token: {e}")
+        return None
+
+def hacer_request_banco_autenticado(
+    request,
+    path: str = "/api",
+    metodo: str = "GET",
+    datos: Optional[Any] = None,
+    username: str = "",
+    password: str = ""
+) -> Any:
+    """
+    Realiza petición autenticada al banco obteniendo antes JWT.
+    """
+    token = obtener_token_desde_simulador(username, password)
+    if not token:
+        return {"error": "No se pudo obtener token del simulador"}
+    headers = {"Authorization": f"Bearer {token}"}
+    return hacer_request_seguro(path=path, metodo=metodo, datos=datos, headers=headers)
+
+def hacer_request_banco(
+    request,
+    path: str = "/api",
+    metodo: str = "GET",
+    datos: Optional[Any] = None,
+    headers: Optional[Dict[str, str]] = None
+) -> Any:
+    """
+    Determina modo de conexión (oficial vs mock) y hace la petición.
+    """
+    usar = request.session.get("usar_conexion_banco")
+    headers = headers or {}
+
+    # Si modo oficial, se autentica
+    if usar == "oficial":
+        token = obtener_token_desde_simulador(
+            settings.BANK_SIM_USER,
+            settings.BANK_SIM_PASS
+        )
+        if token:
+            headers["Authorization"] = f"Bearer {token}"
+        else:
+            return {"error": "Fallo autenticación oficial"}
+
+    # Si se debe usar conexión bancaria (oficial o sandbox)
+    if usar:
+        resultado = hacer_request_seguro(path=path, metodo=metodo, datos=datos, headers=headers)
+        # Intentamos parseo JSON
+        try:
+            return json.loads(resultado) if resultado else None
+        except (TypeError, json.JSONDecodeError):
+            return resultado
+
+    # Modo local mock
+    dns = config.get('DNS_BANCO', default=settings.DNS_BANCO)
+    puerto_str = config.get('MOCK_PORT', default=str(settings.MOCK_PORT))
+    if puerto_str is not None:
+        try:
+            puerto = int(puerto_str)
+            url = f"https://{dns}:{puerto}{path}"
+            resp = connector.http_client.session.request(
+                metodo, url, json=datos, headers=headers, timeout=connector.http_client.timeout
+            )
+            resp.raise_for_status()
+            return resp.json()
+        except Exception as e:
+            logger.error(f"Error al conectar al VPS mock: {e}")
+            return None
+    else:
+        logger.error("MOCK_PORT is None in hacer_request_banco")
+        return None
+
+def enviar_transferencia_conexion(
+    request,
+    transfer,
+    token: str,
+    otp: str
+) -> Any:
+    """
+    Envía transferencia y gestiona logs, respuesta y validaciones.
+    """
+    body = transfer.to_schema_data()
+    pid = transfer.payment_id
+    headers = {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {token}",
+        "Idempotency-Id": pid,
+        "Correlation-Id": pid,
+        "Otp": otp,
+    }
+
+    logger.info(f"[TRANSFER] Enviando transferencia {pid}")
+    respuesta = hacer_request_banco(request, path='/api/transferencia', metodo='POST', datos=body, headers=headers)
+    if not respuesta:
+        logger.error(f"[TRANSFER] Sin respuesta de conexión bancaria para {pid}")
+        raise Exception("Sin respuesta de la conexión bancaria")
+
+    # Si es dict, asumimos JSON; si string, lo devolvemos bruto
+    if isinstance(respuesta, dict):
+        auth_id = respuesta.get('authId')
+        status = respuesta.get('transactionStatus')
+        transfer.auth_id = auth_id
+        transfer.status = status or transfer.status
+        transfer.save()
+    else:
+        logger.warning(f"[TRANSFER] Respuesta no JSON para {pid}: {respuesta}")
+
+    # Validaciones posteriores
+    try:
+        xml_path = generar_xml_pain001(transfer, pid)
+        aml_path = generar_archivo_aml(transfer, pid)
+        validar_xml_pain001(xml_path)
+        validar_aml_con_xsd(aml_path)
+        logger.info(f"[TRANSFER] Validación XML/AML completada para {pid}")
+    except Exception as e:
+        logger.error(f"[ERROR] Validación XML/AML para {pid}: {e}")
+
+    return respuesta
