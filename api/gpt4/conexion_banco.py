@@ -59,9 +59,10 @@ def resolver_ip_dominio(dominio):
 
     try:
         respuesta = resolver.resolve(dominio)
-        ip = respuesta[0].to_text()
-        print(f"🔐 Resuelto {dominio} → {ip}")
-        return ip
+        for rdata in respuesta:
+            ip = rdata.to_text()
+            print(f"🔐 Resuelto {dominio} → {ip}")
+            return ip
     except Exception as e:
         registrar_log("conexion", f"❌ Error DNS bancario: {e}")
         return None
@@ -129,12 +130,20 @@ def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, header
 
     usar_conexion = request.session.get("usar_conexion_banco", False)
     if usar_conexion:
-        registrar_log(
-            "conexion",
-            headers_enviados=headers,
-            request_body=datos,
-            extra_info=f"{metodo} {path} via conexion segura"
-        )
+        if headers is not None:
+            registrar_log(
+                "conexion",
+                headers_enviados=headers,
+                request_body=datos,
+                extra_info=f"{metodo} {path} via conexion segura"
+            )
+        else:
+            registrar_log(
+                "conexion",
+                headers_enviados={},
+                request_body=datos,
+                extra_info=f"{metodo} {path} via conexion segura"
+            )
         resp = hacer_request_seguro(dominio_banco, path, metodo, datos, headers)
         if isinstance(resp, requests.Response):
             registrar_log(
@@ -148,19 +157,21 @@ def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, header
     registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
     url = f"https://{dns_banco}:{mock_port}{path}"
     try:
-        registrar_log(
-            "conexion",
-            headers_enviados=headers,
-            request_body=datos,
-            extra_info=f"{metodo} {path} via mock"
-        )
+        if headers is not None:
+            registrar_log(
+                "conexion",
+                headers_enviados=headers,
+                request_body=datos,
+                extra_info=f"{metodo} {path} via mock"
+            )
+        else:
+            registrar_log(
+                "conexion",
+                headers_enviados={},
+                request_body=datos,
+                extra_info=f"{metodo} {path} via mock"
+            )
         respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=timeout)
-        registrar_log(
-            "conexion",
-            response_headers=dict(respuesta.headers),
-            response_text=respuesta.text,
-            extra_info="Respuesta mock"
-        )
         return respuesta.json()
     except Exception as e:
         registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
