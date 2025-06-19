@@ -49,3 +49,4 @@
 ✅ chmod +x -> ./api/gpt4_conexion/http_client.py
 ✅ chmod +x -> ./api/gpt4_conexion/config.py
 ✅ chmod +x -> ./file-3t5.py
+✅ chmod +x -> ./temp/scripts/automate/escaneo/venice_api.py

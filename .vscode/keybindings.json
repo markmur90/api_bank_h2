@@ -1,8 +1,5 @@
 {
-    "key": "ctrl+shift+v",  // Puedes cambiar el atajo de teclado a tu preferencia
-    "command": "extension.runScript",
-    "args": {
-        "script": "${workspaceFolder}/temp/scripts/automate/escaneo/venice_api.py",
-        "args": ["Hola, ¿cómo estás?"]
-    }
+  "key": "ctrl+shift+j",
+  "command": "workbench.action.tasks.runTask",
+  "args": "start"
 }
