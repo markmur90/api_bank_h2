@@ -37,19 +37,6 @@ SECRET_KEY = "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw"
 DEBUG      = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '.herokuapp.com', '.coretransapi.com', '80.78.30.242', '.onion', ]
 
-# URLs de la API externa
-BASE_URL = str(env('BASE_URL', 'http://80.78.30.242:9181'))
-TOKEN_PATH = str(env('TOKEN_PATH', '/oidc/token'))
-AUTHORIZE_PATH = str(env('AUTHORIZE_PATH', '/oidc/authorize'))
-OTP_PATH = str(env('OTP_PATH', '/otp/single'))
-AUTH_PATH = str(env('AUTH_PATH', '/auth/challenges'))
-API_PATH = str(env('API_PATH', '/payments'))
-
-TOKEN_URL = BASE_URL + TOKEN_PATH
-AUTHORIZE_URL = BASE_URL + AUTHORIZE_PATH
-OTP_URL = BASE_URL + OTP_PATH
-AUTH_URL = BASE_URL + AUTH_PATH
-API_URL = BASE_URL + API_PATH
 
 
 INSTALLED_APPS = [
@@ -185,44 +172,25 @@ OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 from api.configuraciones_api.loader import get_settings
 
-REDIRECT_URI = env('REDIRECT_URI')
-# REDIRECT_URI = redirect_uri
-CLIENT_ID = env('CLIENT_ID')
-# CLIENT_ID = client_id
-CLIENT_SECRET = env('CLIENT_SECRET')
-# CLIENT_SECRET = client_secret
-ORIGIN = env('ORIGIN')
-# ORIGIN = origin
-TOKEN_URL = env('TOKEN_URL')
-# TOKEN_URL = token_url
-OTP_URL = env('OTP_URL')
-# OTP_URL = otp_url
-AUTH_URL = env('AUTH_URL')
-# AUTH_URL = auth_url
-API_URL = env('API_URL')
-# API_URL = api_url
-AUTHORIZE_URL = env('AUTHORIZE_URL')
-# AUTHORIZE_URL = authorize_url
-SCOPE = env('SCOPE')
-# SCOPE = scope
-TIMEOUT_REQUEST = 3600
-ACCESS_TOKEN = env('ACCESS_TOKEN')
 
-# from .configuración_dinamica import (
-#     REDIRECT_URI,
-#     CLIENT_ID,
-#     CLIENT_SECRET,
-#     ORIGIN,
-#     TOKEN_URL,
-#     OTP_URL,
-#     AUTH_URL,
-#     API_URL,
-#     AUTHORIZE_URL,
-#     SCOPE,
-#     TIMEOUT_REQUEST,
-#     ACCESS_TOKEN,
-# )
-# Configuración de OAuth2
+
+# URLs de la API externa
+TOKEN_URL="http://80.78.30.242:9181/oidc/token"
+AUTHORIZE_URL="http://80.78.30.242:9181/oidc/authorize"
+OTP_URL="http://80.78.30.242:9181/otp/single"
+AUTH_URL="http://80.78.30.242:9181/auth/challenges"
+API_URL="http://80.78.30.242:9181/payments"
+REDIRECT_URI="https://api.coretransapi.com/oauth2/callback/"
+ORIGIN="https://api.coretransapi.com"
+
+
+SCOPE = "sepa_credit_transfers"
+TIMEOUT_REQUEST = 3600
+
+ACCESS_TOKEN = env('ACCESS_TOKEN')
+CLIENT_ID = env('CLIENT_ID')
+CLIENT_SECRET = env('CLIENT_SECRET')
+
 
 OAUTH2 = {
     'CLIENT_ID': CLIENT_ID,
