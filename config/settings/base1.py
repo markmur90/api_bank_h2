@@ -1,32 +1,3 @@
-# from datetime import timedelta
-# import os
-# from pathlib import Path
-# import environ
-# from django.core.exceptions import ImproperlyConfigured
-# import dj_database_url
-
-
-# BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# # 1. Creamos el lector de .env
-# env = environ.Env()
-
-# # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-# DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
-
-# env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.local')
-# if not env_file.exists():
-#     raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-# env.read_env(env_file)
-
-# # Cargar dinámicamente variables desde la BD
-# try:
-#     from api.configuraciones_api.loader import cargar_variables_entorno
-#     cargar_variables_entorno(DJANGO_ENV)
-# except Exception as e:
-#     print(f"⚠️  Configuración dinámica no aplicada: {e}")
-    
-    
 from datetime import timedelta
 import os
 from pathlib import Path
@@ -41,7 +12,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
-DJANGO_ENV = os.getenv('DJANGO_ENV', 'production')
+DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
+
+env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.local')
+if not env_file.exists():
+    raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
+env.read_env(env_file)
 
 # Cargar dinámicamente variables desde la BD
 def intentar_cargar_variables(entorno):
@@ -56,16 +32,24 @@ def intentar_cargar_variables(entorno):
 
 intentar_cargar_variables(DJANGO_ENV)
 
-env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.local')
-if not env_file.exists():
-    raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-env.read_env(env_file)
-
 # 3. Variables críticas
 SECRET_KEY = "MX2QfdeWkTc8ihotA_i1Hm7_4gYJQB4oVjOKFnuD6Cw"
 DEBUG      = True
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', '.herokuapp.com', '.coretransapi.com', '80.78.30.242', '.onion', ]
 
+# URLs de la API externa
+BASE_URL = str(env('BASE_URL', 'http://80.78.30.242:9181'))
+TOKEN_PATH = str(env('TOKEN_PATH', '/oidc/token'))
+AUTHORIZE_PATH = str(env('AUTHORIZE_PATH', '/oidc/authorize'))
+OTP_PATH = str(env('OTP_PATH', '/otp/single'))
+AUTH_PATH = str(env('AUTH_PATH', '/auth/challenges'))
+API_PATH = str(env('API_PATH', '/payments'))
+
+TOKEN_URL = BASE_URL + TOKEN_PATH
+AUTHORIZE_URL = BASE_URL + AUTHORIZE_PATH
+OTP_URL = BASE_URL + OTP_PATH
+AUTH_URL = BASE_URL + AUTH_PATH
+API_URL = BASE_URL + API_PATH
 
 
 INSTALLED_APPS = [
@@ -130,8 +114,6 @@ TEMPLATES = [
 ]
 
 INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '193.150.']
-
-
 
 # 5. Plantillas de base de datos
 # DATABASES_HEROKU = {
@@ -259,8 +241,6 @@ OAUTH2 = {
 
 }
 
-
-
 JWT_SIGNING_KEY = "Ptf8454Jd55"
 JWT_VERIFYING_KEY = "Ptf8454Jd55"
 
@@ -331,8 +311,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
-
-
 
 import django_heroku
 django_heroku.settings(locals())
