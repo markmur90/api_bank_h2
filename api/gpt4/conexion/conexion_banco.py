@@ -126,42 +126,6 @@ def puerto_activo(host, puerto, timeout=2):
         return False
 
 
-def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, headers=None):
-    conf = get_settings()
-    dominio_banco = conf["DOMINIO_BANCO"]
-    dns_banco = conf["DNS_BANCO"]
-    mock_port = conf["MOCK_PORT"]
-    timeout = conf["TIMEOUT"]
-
-    usar_conexion = request.session.get("usar_conexion_banco", False)
-    if usar_conexion:
-        if headers is not None:
-            registrar_log(
-                "conexion",
-                headers_enviados=headers,
-                request_body=datos,
-                extra_info=f"{metodo} {path} via conexion segura"
-            )
-        else:
-            registrar_log(
-                "conexion",
-                headers_enviados={},
-                request_body=datos,
-                extra_info=f"{metodo} {path} via conexion segura"
-            )
-        resp = hacer_request_seguro(dominio_banco, path, metodo, datos, headers)
-        if isinstance(resp, requests.Response):
-            registrar_log(
-                "conexion",
-                response_headers=dict(resp.headers),
-                response_text=resp.text,
-                extra_info="Respuesta conexion segura"
-            )
-        return resp
-
-    return hacer_request_seguro(dominio_banco, path, metodo, datos, headers)
-
-
 # Funciones auxiliares para peticiones autenticadas
 
 def obtener_token_desde_simulador(username, password):
