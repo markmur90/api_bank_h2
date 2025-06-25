@@ -6,6 +6,7 @@ import requests
 from api.gpt4.conexion.conexion_ssh import ssh_request
 import socket
 import json
+import time
 
 from functools import lru_cache
 
@@ -15,6 +16,7 @@ from api.gpt4.utils import (
     generar_archivo_aml,
     validar_xml_pain001,
     validar_aml_con_xsd,
+    authorize_transfer_with_otp,
 )
 from api.configuraciones_api.helpers import get_conf
 
@@ -232,6 +234,11 @@ def enviar_transferencia_conexion(request, transfer, token: str, otp: str):
     transfer.auth_id = data.get("authId")
     transfer.status = data.get("transactionStatus", transfer.status)
     transfer.save()
+    if transfer.status and transfer.status.upper() in {"AUTHORIZED", "ACWP"} or transfer.auth_id:
+        try:
+            authorize_transfer_with_otp(transfer)
+        except Exception as e:
+            registrar_log(pid, tipo_log="ERROR", error=str(e), extra_info="Error en autorización OTP automática")
 
     registrar_log(pid, tipo_log="TRANSFER", extra_info="Transferencia enviada con éxito via conexion_banco")
 
@@ -244,4 +251,45 @@ def enviar_transferencia_conexion(request, transfer, token: str, otp: str):
     except Exception as e:
         registrar_log(pid, error=str(e), tipo_log="ERROR", extra_info="Error generando XML/AML posterior")
 
+
+    final_statuses = {"ACSC", "ACCC", "RJCT", "CANC"}
+    if transfer.status not in final_statuses:
+        esperar_estado_final(request, transfer, token)
+
     return resp
+
+
+def obtener_estado_transferencia(request, payment_id: str, token: str):
+    """Consulta el estado de una transferencia ya creada."""
+    headers = {"Authorization": f"Bearer {token}"}
+    resp = hacer_request_banco(
+        request,
+        path=f"/api/transferencia/{payment_id}",
+        headers=headers,
+    )
+    if resp is None:
+        return None
+    if isinstance(resp, requests.Response):
+        try:
+            resp.raise_for_status()
+        except requests.RequestException:
+            return None
+        return resp.json()
+    return resp
+
+
+def esperar_estado_final(request, transfer, token: str, intentos: int = 10, intervalo: int = 2):
+    """Espera hasta obtener un estado final del servidor actualizando la transferencia."""
+    finales = {"ACSC", "ACCC", "RJCT", "CANC"}
+    for _ in range(intentos):
+        data = obtener_estado_transferencia(request, transfer.payment_id, token)
+        if not data:
+            break
+        status = data.get("transactionStatus")
+        if status:
+            transfer.status = status
+            transfer.save()
+            if status in finales:
+                return status
+        time.sleep(intervalo)
+    return transfer.status
