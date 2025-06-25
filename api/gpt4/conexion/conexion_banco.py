@@ -2,6 +2,8 @@
 
 import dns.resolver
 import requests
+
+from api.gpt4.conexion.conexion_ssh import ssh_request
 import socket
 import json
 
@@ -98,17 +100,20 @@ def hacer_request_seguro(dominio, path="/api", metodo="GET", datos=None, headers
             registrar_log("conexion", "🚫 Red no segura y ALLOW_FAKE_BANK desactivado. Cancelando.")
             return None
 
-    url = f"https://{ip_destino}{path}"
     headers["Host"] = dominio
 
     try:
-        if metodo.upper() == "GET":
-            r = requests.get(url, headers=headers, timeout=timeout, verify=False)
-        else:
-            r = requests.post(url, headers=headers, json=datos, timeout=timeout, verify=False)
+        r = ssh_request(
+            metodo.upper(),
+            dominio,
+            path,
+            headers=headers,
+            json=datos,
+            timeout=timeout,
+        )
         registrar_log("conexion", f"✅ Petición a {dominio}{path} → {r.status_code}")
         return r
-    except requests.RequestException as e:
+    except Exception as e:
         registrar_log("conexion", f"❌ Error en petición HTTPS a {dominio}: {str(e)}")
         return None
 
@@ -154,28 +159,7 @@ def hacer_request_banco_O(request, path="/api", metodo="GET", datos=None, header
             )
         return resp
 
-    registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
-    url = f"https://{dns_banco}:{mock_port}{path}"
-    try:
-        if headers is not None:
-            registrar_log(
-                "conexion",
-                headers_enviados=headers,
-                request_body=datos,
-                extra_info=f"{metodo} {path} via mock"
-            )
-        else:
-            registrar_log(
-                "conexion",
-                headers_enviados={},
-                request_body=datos,
-                extra_info=f"{metodo} {path} via mock"
-            )
-        respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=timeout)
-        return respuesta.json()
-    except Exception as e:
-        registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
-        return None
+    return hacer_request_seguro(dominio_banco, path, metodo, datos, headers)
 
 
 # Funciones auxiliares para peticiones autenticadas
@@ -186,9 +170,15 @@ def obtener_token_desde_simulador(username, password):
     conf = get_settings()
     dns_banco = conf["DNS_BANCO"]
     mock_port = conf["MOCK_PORT"]
-    url = f"https://{dns_banco}:{mock_port}/api/token/"
     try:
-        r = requests.post(url, json={"username": username, "password": password}, verify=False)
+        r = ssh_request(
+            "POST",
+            dns_banco,
+            "/api/token/",
+            remote_port=mock_port,
+            json={"username": username, "password": password},
+            timeout=conf["TIMEOUT"],
+        )
         if r.status_code == 200:
             return r.json().get("token")
         registrar_log("conexion", f"Login fallido: {r.text}")
@@ -226,17 +216,10 @@ def hacer_request_banco(request, path="/api", metodo="GET", datos=None, headers=
             registrar_log("conexion", "❌ No se pudo obtener token del simulador para oficial.")
             return {"error": "Fallo autenticación oficial"}
 
-    if usar_conexion:
+    if usar_conexion and usar_conexion == "oficial":
         return hacer_request_seguro(dominio_banco, path, metodo, datos, headers)
 
-    registrar_log("conexion", "🔁 Usando modo local de conexión bancaria")
-    url = f"https://{dns_banco}:{mock_port}{path}"
-    try:
-        respuesta = requests.request(metodo, url, json=datos, headers=headers, timeout=timeout)
-        return respuesta.json()
-    except Exception as e:
-        registrar_log("conexion", f"❌ Error al conectar al VPS mock: {e}")
-        return None
+    return hacer_request_seguro(dominio_banco, path, metodo, datos, headers)
 
 
 def enviar_transferencia_conexion(request, transfer, token: str, otp: str):
