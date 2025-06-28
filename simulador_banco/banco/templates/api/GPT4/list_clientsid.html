@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+  <h1 class="mb-4">ClientIDs</h1>
+  <div class="mb-2 text-end">
+    <a href="{% url 'create_clientidGPT4' %}" class="btn btn-primary">Crear</a>
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary ms-2">Dashboard</a>
+  </div>
+  <table class="table table-striped">
+    <thead><tr><th>Código</th><th>ClientID</th><th class="text-end">Acciones</th></tr></thead>
+    <tbody>
+      {% for c in clientids %}
+      <tr>
+        <td>{{ c.codigo }}</td>
+        <td>{{ c.client_id }}</td>
+        <td class="text-end">
+          <a href="{% url 'edit_clientidGPT4' c.codigo %}" class="btn btn-sm btn-outline-primary">Editar</a>
+          <form method="post" action="{% url 'delete_clientidGPT4' c.codigo %}" class="d-inline">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+          </form>
+        </td>
+      </tr>
+      {% empty %}
+      <tr><td colspan="3" class="text-center">Sin registros.</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

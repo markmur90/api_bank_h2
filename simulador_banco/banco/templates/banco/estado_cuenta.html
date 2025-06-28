@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Estado de cuenta{% endblock %}
+{% block content %}
+<h1>Estado de cuenta - {{ debtor.nombre }}</h1>
+<p>Saldo actual: {{ debtor.saldo }}</p>
+<form method="get" class="mb-3">
+  Desde: <input type="date" name="start" value="{{ request.GET.start }}">
+  Hasta: <input type="date" name="end" value="{{ request.GET.end }}">
+  <select name="tipo">
+    <option value="">Todos</option>
+    <option value="DEPOSITO" {% if request.GET.tipo == 'DEPOSITO' %}selected{% endif %}>Depósito</option>
+    <option value="PAGO" {% if request.GET.tipo == 'PAGO' %}selected{% endif %}>Pago</option>
+  </select>
+  <button class="btn btn-secondary btn-sm">Filtrar</button>
+  <a href="{% url 'sim_debtor_estado_pdf' debtor.id %}?start={{ request.GET.start }}&end={{ request.GET.end }}&tipo={{ request.GET.tipo }}" class="btn btn-sm btn-outline-info">PDF</a>
+</form>
+<table class="table table-striped">
+  <tr><th>Fecha</th><th>Tipo</th><th>Monto</th></tr>
+  {% for m in movimientos %}
+  <tr>
+    <td>{{ m.fecha|date:"Y-m-d" }}</td>
+    <td>{{ m.get_tipo_display }}</td>
+    <td>{{ m.monto }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="3">Sin movimientos</td></tr>
+  {% endfor %}
+</table>
+<a href="{% url 'sim_debtor_movimiento' debtor.id %}" class="btn btn-primary">Nuevo movimiento</a>
+{% endblock %}

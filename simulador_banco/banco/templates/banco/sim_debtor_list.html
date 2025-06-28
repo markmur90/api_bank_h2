@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block title %}Deudores Simulados{% endblock %}
+{% block content %}
+<h1>Deudores Simulados</h1>
+<a href="{% url 'sim_debtor_create' %}" class="btn btn-primary mb-3">Nuevo</a>
+<table class="table table-striped">
+  <tr><th>Nombre</th><th>Saldo</th><th></th></tr>
+  {% for o in objects %}
+  <tr>
+    <td>{{ o.nombre }}</td>
+    <td>{{ o.saldo }}</td>
+    <td>
+      <a href="{% url 'sim_debtor_estado' o.id %}" class="btn btn-sm btn-secondary">Estado</a>
+      <a href="{% url 'sim_debtor_movimiento' o.id %}" class="btn btn-sm btn-primary">Movimiento</a>
+    </td>
+  </tr>
+  {% empty %}
+  <tr><td>No hay registros</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

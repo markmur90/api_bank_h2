@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %}Transferencia{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4">Realizar Transferencia</h2>
+  <form method="post" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="destinatario" class="form-label">Destinatario</label>
+      <input type="text" name="destinatario" id="destinatario" class="form-control" required />
+    </div>
+    <div class="mb-3">
+      <label for="monto" class="form-label">Monto</label>
+      <input type="number" name="monto" id="monto" step="0.01" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Enviar</button>
+  </form>
+</div>
+{% endblock %}

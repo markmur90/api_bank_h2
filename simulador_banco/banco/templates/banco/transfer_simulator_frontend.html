@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Simulador Transferencia{% endblock %}
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4">Simulador de Transferencias</h2>
+  <form id="form" class="row g-3 mb-3">
+    <div class="col-md-6">
+      <label for="payment_id" class="form-label">Payment ID</label>
+      <input type="text" id="payment_id" class="form-control" required />
+    </div>
+    <div class="col-md-6">
+      <label for="monto" class="form-label">Monto</label>
+      <input type="number" id="monto" step="0.01" class="form-control" required />
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Probar</button>
+    </div>
+  </form>
+  <pre id="log" class="bg-light p-3 rounded"></pre>
+  <div class="mt-3">
+    <button id="btnOk" type="button" class="btn btn-success me-2">Simular Éxito</button>
+    <button id="btnFail" type="button" class="btn btn-danger">Simular Error</button>
+  </div>
+</div>
+<script>
+async function ejecutar(simularError){
+  const log = document.getElementById('log');
+  const pid = document.getElementById('payment_id').value;
+  log.textContent = 'Solicitando token...';
+  let res = await fetch('/api/token', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({usuario:'demo', clave:'demo'})});
+  let data = await res.json();
+  const token = data.token;
+  log.textContent += '\nToken: '+token;
+  res = await fetch('/api/challenge', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+    body: JSON.stringify({payment_id: pid})
+  });
+  data = await res.json();
+  const otp = simularError ? '000000' : data.otp;
+  log.textContent += '\nChallenge: '+data.challenge_id+' OTP:'+data.otp;
+  res = await fetch('/api/send-transfer', {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+    body: JSON.stringify({payment_id: pid, otp: otp})
+  });
+  data = await res.json();
+  log.textContent += '\nResultado: '+JSON.stringify(data);
+}

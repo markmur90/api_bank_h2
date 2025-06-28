@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Transferencias Simuladas{% endblock %}
+{% block content %}
+<h1>Transferencias Simuladas</h1>
+<a href="{% url 'sim_transfer_create' %}" class="btn btn-primary mb-3">Nueva</a>
+<table class="table table-striped">
+  <tr><th>Payment ID</th><th>Debtor</th><th>Creditor</th><th>Monto</th></tr>
+  {% for o in objects %}
+  <tr>
+    <td>{{ o.payment_id }}</td><td>{{ o.debtor }}</td><td>{{ o.creditor }}</td><td>{{ o.monto }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">No hay registros</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}

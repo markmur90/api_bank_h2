@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Estado de Cuenta{% endblock %}
+{% block content %}
+<h1>Estado de cuenta de {{ account.debtor.name }}</h1>
+<p>Saldo actual: {{ account.balance }}</p>
+<a href="{% url 'deposito_cuenta' account.id %}" class="btn btn-success">Depósito</a>
+<a href="{% url 'pago_cuenta' account.id %}" class="btn btn-danger">Pago</a>
+<a href="{% url 'estado_cuenta_pdf' account.id %}?inicio={{ request.GET.inicio }}&fin={{ request.GET.fin }}" class="btn btn-secondary">Exportar PDF</a>
+<form method="get" class="mt-3 mb-3">
+  <div class="row g-2">
+    <div class="col"><input type="date" name="inicio" value="{{ request.GET.inicio }}" class="form-control" /></div>
+    <div class="col"><input type="date" name="fin" value="{{ request.GET.fin }}" class="form-control" /></div>
+    <div class="col"><button class="btn btn-primary" type="submit">Filtrar</button></div>
+  </div>
+</form>
+<table class="table table-striped">
+  <tr><th>Fecha</th><th>Tipo</th><th>Monto</th></tr>
+  {% for m in movimientos %}
+  <tr><td>{{ m.fecha|date:'Y-m-d H:i' }}</td><td>{{ m.get_tipo_display }}</td><td>{{ m.monto }}</td></tr>
+  {% empty %}
+  <tr><td colspan="3">Sin movimientos</td></tr>
+  {% endfor %}
+</table>
+{% endblock %}
