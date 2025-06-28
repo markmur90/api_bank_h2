@@ -58,8 +58,10 @@ INSTALLED_APPS = [
     'sslserver',
     
     'api.configuraciones_api',
+    'api.transfers',
     'api.core',
     'api.authentication',
+    # 'api.gpt3',
     'api.gpt4',
 ]
 

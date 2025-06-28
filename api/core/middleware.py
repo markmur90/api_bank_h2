@@ -4,7 +4,9 @@ from threading import local
 _user = local()
 
 class CurrentUserMiddleware:
-    """Middleware para almacenar el usuario actual en una variable de contexto."""
+    """
+    Middleware para almacenar el usuario actual en una variable de contexto.
+    """
     def __init__(self, get_response):
         self.get_response = get_response
 

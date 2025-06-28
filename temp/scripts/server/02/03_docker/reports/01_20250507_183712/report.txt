@@ -1,0 +1,7 @@
+Resultado de validación:
+DNS Responde: ['160.83.58.33']
+Puerto HTTPS abierto: True
+Puerto SSH abierto: True
+SSH Conexión exitosa: False ; motivo: SSHException: No existing session
+HTTPS Status Code: None ; motivo: Error genérico: [Errno 104] Connection reset by peer
+HTTPS Certificado (Subject): None

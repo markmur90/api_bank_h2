@@ -1,0 +1,4 @@
+DataDirectory /home/staging_markmur/tor_data_staging
+ControlPort 9053
+HiddenServiceDir /home/staging_markmur/tor_data_staging/hidden_service
+HiddenServicePort 80 127.0.0.1:9181

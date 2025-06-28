@@ -1,0 +1,11 @@
+{
+  "output": [
+    "Resultado de validaci\u00f3n:",
+    "DNS Responde: ['160.83.58.33']",
+    "Puerto HTTPS abierto: True",
+    "Puerto SSH abierto: True",
+    "SSH Conexi\u00f3n exitosa: False ; motivo: SSHException: No existing session",
+    "HTTPS Status Code: None ; motivo: Error gen\u00e9rico: [Errno 104] Connection reset by peer",
+    "HTTPS Certificado (Subject): None"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "headers": {
+    "idempotency-id": "123e4567-e89b-12d3-a456-426614174000",
+    "otp": "PUSHTAN",
+    "Correlation-Id": "abcd1234-5678-90ef-ghij-klmnopqrstuv"
+  },
+  "pathParameters": {
+    "paymentId": "232ed5b7-fc70-4c67-98bb-bf95b3300001"
+  },
+  "body": {
+    "action": "CREATE",
+    "authId": "232ed5b7-fc70-4c67-98bb-bf95b3300002"
+  }
+}

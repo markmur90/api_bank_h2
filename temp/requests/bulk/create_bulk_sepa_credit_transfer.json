@@ -1,0 +1,48 @@
+{
+  "headers": {
+    "idempotency-id": "123e4567-e89b-12d3-a456-426614174000",
+    "otp": "PUSHTAN",
+    "Correlation-Id": "abcd1234-5678-90ef-ghij-klmnopqrstuv"
+  },
+  "body": {
+    "groupHeader": {
+      "messageId": "Message-ID-4711",
+      "numberOfTransactions": 2,
+      "controlSum": 200.00,
+      "initiatingParty": {
+        "name": "Company ABC"
+      },
+      "createDateTime": "2023-11-01T10:00:00"
+    },
+    "paymentInformation": [
+      {
+        "paymentInformationId": "Payment-Info-123",
+        "paymentMethod": "TRF",
+        "numberOfTransactions": 1,
+        "controlSum": 100.00,
+        "debtor": {
+          "debtorName": "Jane Smith"
+        },
+        "debtorAccount": {
+          "iban": "DE89370400440532013001",
+          "currency": "EUR"
+        },
+        "creditTransferTransactionInformation": [
+          {
+            "creditor": {
+              "creditorName": "John Doe"
+            },
+            "creditorAccount": {
+              "iban": "DE89370400440532013000",
+              "currency": "EUR"
+            },
+            "instructedAmount": {
+              "amount": 100.00,
+              "currency": "EUR"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

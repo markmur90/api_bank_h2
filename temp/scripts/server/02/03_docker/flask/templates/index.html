@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Herramientas Seguridad Informática 🚀</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body class="bg-dark text-white py-4">
+<div class="container">
+    <h2 class="mb-4">🛡️ Panel de Herramientas de Seguridad Informática</h2>
+    <!-- Honeypot -->
+    <div class="card bg-dark">
+        <div class="card-body overflow-auto" style="max-height:420px;">
+            <h5>🍯 Honeypot Logs</h5>
+            <table class="table table-dark table-hover">
+                <thead><tr><th>Fecha</th><th>IP</th><th>Puerto</th><th>Protocolo</th><th>Info</th></tr></thead>
+                <tbody id="honeypotLogs"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Card Superior (Herramientas) -->
+    <div class="card bg-secondary text-white mb-4">
+        <div class="card-body">
+            <!-- Escaneo de Puertos -->
+            <h5>🔍 Escaneo de Puertos</h5>
+            <form id="scanForm" class="row g-2 mb-3">
+                <div class="col-md-4"><input class="form-control" name="ip" placeholder="Ej: 192.168.1.1"></div>
+                <div class="col-md-3"><input class="form-control" name="start_port" placeholder="Desde: 1"></div>
+                <div class="col-md-3"><input class="form-control" name="end_port" placeholder="Hasta: 1024"></div>
+                <div class="col-md-2"><button class="btn btn-primary w-100">Escanear</button></div>
+            </form>
+
+            <!-- Escaneo Avanzado -->
+            <h5>⚙️ Escaneo Avanzado</h5>
+            <form id="advScanForm" class="row g-2 mb-3">
+                <div class="col-md-3"><input class="form-control" name="ip" placeholder="IP: 192.168.1.1"></div>
+                <div class="col-md-3"><input class="form-control" name="ports" placeholder="Puertos: 22,80"></div>
+                <div class="col-md-2"><input class="form-control" name="tools" placeholder="nmap,nc"></div>
+                <div class="col-md-2"><input class="form-control" name="users_file" placeholder="Archivo usuarios"></div>
+                <div class="col-md-2"><input class="form-control" name="passwords_file" placeholder="Archivo passwords"></div>
+                <button class="btn btn-warning mt-2">Escanear Avanzado</button>
+            </form>
+
+            <!-- SSH Brute Force -->
+            <h5>🔐 Fuerza Bruta SSH</h5>
+            <form id="sshBruteForm" class="row g-2 mb-3">
+                <div class="col-md-4"><input class="form-control" name="ip" placeholder="IP: 192.168.1.10"></div>
+                <div class="col-md-4"><input class="form-control" name="port" placeholder="Puerto: 22"></div>
+                <div class="col-md-4"><input class="form-control" name="threads" placeholder="Hilos: 10"></div>
+                <button class="btn btn-danger mt-2">Ejecutar Fuerza Bruta</button>
+            </form>
+
+            <!-- JWT -->
+            <h5>🔑 Generación JWT</h5>
+            <form id="jwtForm" class="row g-2 mb-3">
+                <div class="col-md-4">
+                    <select class="form-select" name="type">
+                        <option value="RSA">JWT RSA</option>
+                        <option value="simetrico">JWT Simétrico</option>
+                    </select>
+                </div>
+                <button class="btn btn-success col-md-8">Generar JWT</button>
+            </form>
+
+            <!-- Análisis Vulnerabilidades -->
+            <h5>🚨 Análisis Vulnerabilidades</h5>
+            <form id="vulnForm" class="row g-2 mb-2">
+                <div class="col-md-9"><input class="form-control" name="target" placeholder="IP o URL"></div>
+                <button class="btn btn-info col-md-3">Analizar</button>
+            </form>
+
+        </div>
+    </div>
+
+    <!-- Reportes -->
+    <div class="mb-5">
+        <h3>📊 Reportes</h3>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card bg-dark text-white mb-3">
+                    <div class="card-body">
+                        <h5>Escaneo Puertos</h5>
+                        <pre id="scanResults"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-dark text-white mb-3">
+                    <div class="card-body">
+                        <h5>Escaneo Avanzado</h5>
+                        <pre id="advScanResults"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card bg-dark text-white mb-3">
+                    <div class="card-body">
+                        <h5>SSH Brute Force</h5>
+                        <pre id="sshBruteResults"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card bg-dark text-white mb-3">
+                    <div class="card-body">
+                        <h5>JWT Generado</h5>
+                        <pre id="jwtResults"></pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card bg-dark text-white mb-3">
+                    <div class="card-body">
+                        <h5>Análisis Vulnerabilidades</h5>
+                        <pre id="vulnResults"></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script>
+function sendForm(id,url,res){
+  document.getElementById(id).onsubmit=e=>{
+    e.preventDefault();
+    fetch(url,{method:'POST',body:new FormData(e.target)})
+      .then(r=>r.json()).then(d=>document.getElementById(res).innerText=JSON.stringify(d,null,2));
+  };
+}
+sendForm('scanForm','/scan_ports','scanResults');
+sendForm('advScanForm','/advanced_scan','advScanResults');
+sendForm('sshBruteForm','/ssh_brute','sshBruteResults');
+sendForm('jwtForm','/generate_jwt','jwtResults');
+sendForm('vulnForm','/vulnerability_analysis','vulnResults');
+
+setInterval(()=>{
+  fetch('/honeypot_logs').then(r=>r.json()).then(logs=>{
+    document.getElementById('honeypotLogs').innerHTML=logs.map(l=>`
+      <tr><td>${l.timestamp}</td><td>${l.ip}</td><td>${l.port}</td><td>${l.protocol}</td><td>${l.info}</td></tr>`
+    ).join('');
+  });
+},5000);
+</script>
+</body>
+</html>
