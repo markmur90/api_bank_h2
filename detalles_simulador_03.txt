@@ -1,0 +1,94 @@
+The project defines a small Django API where external transfers are processed through a set of endpoints. The documentation states that the service exposes /api/transferencias/entrantes/ and requires JWT authentication obtained via /api/token:
+
+28  ## Endpoint de transferencias entrantes
+30  El proyecto expone `/api/transferencias/entrantes/` para recibir transferencias de sistemas externos. Es necesario autenticarse con JWT (ver `/api/token`). El cuerpo de la solicitud debe ser JSON y es procesado por `TransferService`.
+
+The URL mappings show that this endpoint (and its aliases) are wired in urls.py:
+
+18      path('api/token', views.generar_token),
+20      path('oidc/token', views.generar_token),
+21      path('oidc/authorize', views.oauth2_authorize, name='oauth2_authorize'),
+22      path('auth/challenges', views.api_challenge),
+23      path('otp/single', views.api_send_transfer),
+24      path('payments', views.api_transfer_incoming),
+28      path('api/transferencias/entrantes/', views.api_transfer_incoming),
+29      path('api/send-transfer', views.api_send_transfer),
+30      path('api/status-transfer', views.api_status_transfer),
+
+The process implemented in api_transfer_incoming expects a POST request with a JWT token and handles OTP validation. If the request lacks the OTP, it returns a challenge with a generated code:
+
+255  def api_transfer_incoming(request):
+256      """Recibe transferencias de sistemas externos con verificación OTP."""
+257      if request.method != 'POST':
+258          return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+260      # Autenticación mediante JWT o sesión activa
+261      if not hasattr(request, 'user_jwt') and not request.user.is_authenticated:
+262          return JsonResponse({'error': 'Autenticación requerida'}, status=401)
+
+269      payment_id = data.get('payment_id')
+270      otp = data.get('otp')
+271      totp_code = data.get('totp')
+
+273      if not otp:
+274          if not payment_id:
+275              return JsonResponse({'error': 'payment_id requerido'}, status=400)
+276          otp_val = get_random_string(6, allowed_chars='0123456789')
+277          challenge = OTPChallenge.objects.create(payment_id=payment_id, otp=otp_val)
+278          return JsonResponse({
+279              'challenge_id': str(challenge.challenge_id),
+280              'otp_required': True,
+281              'otp': otp_val
+282          }, status=202)
+...
+297          transfer = TransferService.ingest_transfer(data)
+...
+301      return JsonResponse({'payment_id': transfer.payment_id, 'status': transfer.status})
+
+The included frontend example shows the typical flow for calling these endpoints:
+
+26  async function ejecutar(simularError){
+29    log.textContent = 'Solicitando token...';
+30    let res = await fetch('/api/token', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({usuario:'demo', clave:'demo'})});
+...
+34    res = await fetch('/api/challenge', {
+35      method:'POST',
+36      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+37      body: JSON.stringify({payment_id: pid})
+38    });
+39    data = await res.json();
+42    res = await fetch('/api/send-transfer', {
+43      method:'POST',
+44      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+45      body: JSON.stringify({payment_id: pid, otp: otp})
+46    });
+
+Environment variables determine the external URLs. For example, .env.example defines where these routes live on the real server:
+
+6  BASE_URL=https://example.com
+7  TOKEN_PATH=/oidc/token
+8  AUTHORIZE_PATH=/oidc/authorize
+9  OTP_PATH=/otp/single
+10  AUTH_PATH=/auth/challenges
+11  API_PATH=/payments
+
+Summary of the flow
+
+    Obtain JWT
+    POST {BASE_URL}/oidc/token (or /api/token) with username and password.
+    Returns { "token": "..." }.
+
+    Authorize the payment ID
+    GET {BASE_URL}/oidc/authorize?payment_id=XYZ to mark the payment_id as authorized (simulated OAuth step).
+
+    Request OTP challenge
+    POST {BASE_URL}/auth/challenges (or /api/challenge) with JSON { "payment_id": "XYZ" } and header Authorization: Bearer <token>.
+    Returns { "challenge_id": "...", "otp_required": true, "otp": "123456" }.
+
+    Finalize transfer
+    POST {BASE_URL}/otp/single (or /api/send-transfer) with JSON { "payment_id": "XYZ", "otp": "123456", "totp": "<code>" } and the same Authorization header.
+    On success, you receive { "payment_id": "XYZ", "status": "PDNG" } (or final status after processing).
+
+Alternatively, the whole process can be done via a single call to /payments or /api/transferencias/entrantes/, which performs OTP validation if an OTP is supplied; otherwise it returns the challenge so you can follow up with /otp/single.
+
+These routes and the described flow ensure that an external transfer is correctly validated (token + OTP + TOTP) and then processed by TransferService.

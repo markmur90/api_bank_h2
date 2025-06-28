@@ -1,0 +1,35 @@
+Para una transferencia proveniente de un sistema externo debes utilizar las rutas definidas en banco/urls.py. Allí se observa que la API expone varios endpoints relevantes:
+
+path('api/token', views.generar_token),
+path('oidc/token', views.generar_token),
+path('oidc/authorize', views.oauth2_authorize, name='oauth2_authorize'),
+path('auth/challenges', views.api_challenge),
+path('otp/single', views.api_send_transfer),
+path('payments', views.api_transfer_incoming),
+path('api/transferencias/entrantes/', views.api_transfer_incoming),
+
+El flujo completo se implementa en las funciones del fichero banco/views.py:
+
+    Obtención del token (generar_token): usado por /api/token u /oidc/token.
+
+    Autorización OAuth simulada (oauth2_authorize) para un payment_id concreto.
+
+Generación del OTP (api_challenge), que devuelve challenge_id y otp cuando se envía el payment_id.
+
+Envío de la transferencia con OTP (api_send_transfer), validando además un código TOTP.
+
+Endpoint unificado (api_transfer_incoming), que permite obtener el OTP en un primer POST y, en una segunda llamada con otp y totp, registra la transferencia mediante TransferService.ingest_transfer.
+
+El procesamiento final de la transferencia se realiza en TransferService.ingest_transfer, respetando idempotencia y límites de frecuencia, y programando la tarea process_transfer_task que actualiza saldos y notifica el resultado:
+
+Por tanto, para procesar correctamente una operación externa:
+
+    Solicita token en POST /api/token (o /oidc/token).
+
+    Autoriza el payment_id con GET /oidc/authorize?payment_id=<id>.
+
+    Obtén OTP enviando POST /auth/challenges con { "payment_id": "<id>" } y el token.
+
+    Envía la transferencia a POST /otp/single (o a /payments / /api/transferencias/entrantes/) incluyendo payment_id, otp y el código totp. Si utilizas /payments, la primera llamada sin otp generará el desafío y la segunda con otp+totp consumirá el desafío y registrará la transferencia.
+
+Con estas rutas y el flujo descrito, la operación de transferencia externa quedará correctamente procesada por el simulador.
