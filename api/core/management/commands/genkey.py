@@ -10,7 +10,7 @@ from jwcrypto import jwk
 
 from api.gpt4.models import ClaveGenerada
 from api.configuraciones_api.models import ConfiguracionAPI
-from api.gpt4.utils import get_project_path
+from gpt4.utils import get_project_path
 
 
 class Command(BaseCommand):

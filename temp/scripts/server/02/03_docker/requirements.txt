@@ -1,6 +1,0 @@
-Flask
-Flask-WTF
-WTForms
-python-nmap
-requests
-gunicorn
