@@ -20,3 +20,7 @@ DETAIL:  La fila que falla contiene (9, null, ERROR,
 [2025-06-27 02:57:33] ERROR AL GUARDAR LOG EN DB para <django.db.models.query_utils.DeferredAttribute object at 0x7ff0d07ec370>: el valor es demasiado largo para el tipo character varying(64)
 
 [2025-06-27 02:57:33] ERROR [<django.db.models.query_utils.DeferredAttribute object at 0x7ff0d07ec370>]: Flujo OAuth no iniciado
+[2025-06-27 07:43:15] ERROR AL GUARDAR LOG EN DB para conexion: el valor es demasiado largo para el tipo character varying(20)
+
+[2025-06-27 07:43:31] ERROR AL GUARDAR LOG EN DB para conexion: el valor es demasiado largo para el tipo character varying(20)
+
