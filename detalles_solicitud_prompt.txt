@@ -1,41 +1,58 @@
 ## Goal
-Analyze and redesign the transfer process between a Django GPT4 API module and a Simulator system to ensure proper authentication flow, service delegation, and correct data transmission without premature implementation.
+Revisar y refactorizar el proceso de transferencia del módulo api.gpt4 hacia el Simulador, eliminando la creación local de servicios y configurando la integración correcta con las rutas del Simulador para autenticación y procesamiento de transferencias reales.
 
 ## Return format
-Provide a comprehensive analysis structured as follows:
-1. **Current Architecture Assessment** - Detailed evaluation of the existing GPT4 to Simulator transfer process
-2. **Authentication Flow Analysis** - Review of how the GPT4 module should request authentication services from the Simulator rather than creating its own
-3. **Data Flow Requirements** - Specification of what information needs to be sent and received between systems
-4. **Required Modifications** - Specific changes needed in the api/gpt4 routes and templates/api/GPT4 templates
-5. **Implementation Roadmap** - Step-by-step approach to implement the correct architecture
-
-For each section, provide detailed reasoning about why current approaches are problematic and how the proposed changes align with the Simulator's established authentication and transfer patterns.
+Proporciona un análisis completo y plan de refactorización que incluya:
+- Evaluación detallada del código actual en api/gpt4 y identificación de problemas específicos
+- Arquitectura de integración corregida que utilice exclusivamente los servicios del Simulador
+- Implementación paso a paso del flujo de autenticación JWT → Challenge OTP → Transferencia
+- Código refactorizado para views, urls y templates eliminando datos simulados
+- Configuración de rutas y variables de entorno necesarias
+- Plan de testing para validar la integración con datos reales
 
 ## Warnings
-- Do not propose creating new authentication services in the GPT4 module - it must delegate to the Simulator
-- Avoid suggesting immediate code changes without first completing the full requirements analysis
-- Do not assume the current implementation is partially correct - analyze from first principles
-- Be careful not to overlook the specific route mappings and aliases mentioned in the Simulator documentation
-- Consider potential security implications of the authentication delegation pattern
-- Account for the fact that both projects use Django without REST framework
+- El sistema actual puede estar creando servicios localmente en lugar de consumir los del Simulador, lo que debe ser completamente eliminado
+- Cualquier dato simulado o hardcodeado debe ser reemplazado por llamadas reales al Simulador
+- La secuencia de autenticación (JWT → OTP Challenge → Transfer) es obligatoria y no puede ser alterada
+- Los códigos TOTP tienen expiración temporal y deben ser validados correctamente
+- Las rutas del Simulador tienen múltiples alias que deben ser manejados consistentemente
+- Los payment_ids deben ser únicos y el sistema debe manejar errores de duplicación
+- La refactorización debe mantener la funcionalidad existente mientras corrige la arquitectura
+- No aplicar cambios secuenciales sin analizar primero todos los requerimientos para evitar inconsistencias
+- Los datos de transferencia (payment_id, amount, sender_account, receiver_account, currency) deben ser validados y formateados correctamente antes del envío
+- La configuración del Simulador en http://90.80.78.242:9181 debe ser verificada y actualizada según sea necesario
 
 ## Context
-You are analyzing two Django projects that handle financial transfers. The GPT4 API module currently has an incorrect implementation where it creates its own authentication services instead of properly delegating to the Simulator system.
+Estás trabajando con dos proyectos Django que no utilizan REST framework. El módulo api/gpt4 actualmente tiene un proceso de transferencia defectuoso que debe ser corregido para integrarse correctamente con el Simulador.
 
-The Simulator system has an established authentication and transfer flow:
+**Código actual disponible para análisis:**
+api/gpt4
+
+**Plantillas HTML y JavaScript actuales:**
+templates/api/gpt4
+
+**Rutas del proyecto a analizar:**
+- Módulo principal: `api/gpt4`
+- Templates: `templates/api/GPT4`
+- Configuraciones adicionales: `api/configuraciones_api/`
+
+**Configuración actual del Simulador:**
+- URL base: https://90.80.78.242:9181
+- Rutas configuradas: /api/token, /api/challenge
+- Variables de entorno: BASE_URL, TOKEN_PATH, AUTH_PATH ya configuradas
+"""<Replace this text with the CONFIGURACION SIMULADOR ACTUAL or upload a file>"""
+
+**Estructura de datos de transferencia identificada:**
+Los datos que se transfieren desde api.gpt4 al Simulador incluyen:
+- payment_id: Identificador único de la transacción
+- amount: Monto de la transferencia
+- sender_account: Cuenta origen
+- receiver_account: Cuenta destino  
+- currency: Moneda de la transacción
+- Metadatos adicionales de usuario y transacción específicos que se pasan por Transfer.to_schema_data además de los default_request_headers que está en utils.py
+
+**Arquitectura correcta del Simulador:**
 ```
-Summary
-
-La aplicación usa el view api_transfer_incoming para recibir transferencias desde sistemas externos. Su ruta está registrada en urls.py y tiene alias /payments y /api/transferencias/entrantes/. Los pasos típicos son:
-
-    Autenticación – Obtener un token JWT en /api/token o la ruta equivalente /oidc/token.
-
-    Crear challenge OTP – Enviar payment_id a /api/challenge (/auth/challenges). El servidor responde con challenge_id y el código OTP a utilizar.
-
-    Enviar la transferencia – Realizar POST a /api/send-transfer (o usar directamente /payments enviando payment_id, otp y totp) para que se procese la operación.
-
-Las rutas están definidas así en urls.py:
-
 18      path('api/token', views.generar_token),
 20      path('oidc/token', views.generar_token),
 22      path('auth/challenges', views.api_challenge),
@@ -44,61 +61,45 @@ Las rutas están definidas así en urls.py:
 27      path('api/challenge', views.api_challenge),
 28      path('api/transferencias/entrantes/', views.api_transfer_incoming),
 29      path('api/send-transfer', views.api_send_transfer),
-
-El view api_transfer_incoming gestiona tanto la generación del challenge como la validación del OTP y TOTP:
-
-254  @csrf_exempt
-255  def api_transfer_incoming(request):
-256      """Recibe transferencias de sistemas externos con verificación OTP."""
-...
-269      payment_id = data.get('payment_id')
-270      otp = data.get('otp')
-271      totp_code = data.get('totp')
-273      if not otp:
-...
-277          challenge = OTPChallenge.objects.create(payment_id=payment_id, otp=otp_val)
-278          return JsonResponse({
-279              'challenge_id': str(challenge.challenge_id),
-280              'otp_required': True,
-281              'otp': otp_val
-        }, status=202)
-284      from .totp_utils import verify_totp
-285      if not verify_totp(str(totp_code)):
-286          return JsonResponse({'error': 'TOTP inválido'}, status=400)
-...
-296      try:
-297          transfer = TransferService.ingest_transfer(data)
-...
-301      return JsonResponse({'payment_id': transfer.payment_id, 'status': transfer.status})
-
-El archivo .env.example muestra cómo configurar las rutas externas:
-
-6  BASE_URL=https://example.com
-7  TOKEN_PATH=/oidc/token
-8  AUTHORIZE_PATH=/oidc/authorize
-9  OTP_PATH=/otp/single
-10 AUTH_PATH=/auth/challenges
-11 API_PATH=/payments
-
-Estos valores se utilizan para construir las peticiones desde un cliente o script. Un ejemplo de uso se ve en la plantilla transfer_simulator_frontend.html, que solicita token, challenge y luego envía la transferencia:
-
-30    let res = await fetch('/api/token', {method:'POST', ...});
-...
-34    res = await fetch('/api/challenge', { ... });
-...
-42    res = await fetch('/api/send-transfer', {
-43      method:'POST',
-44      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
-45      body: JSON.stringify({payment_id: pid, otp: otp})
-    });
-
-En síntesis, para procesar correctamente una transferencia externa:
-
-    Obtener JWT en /api/token (/oidc/token).
-
-    Enviar payment_id a /api/challenge (/auth/challenges) para recibir el OTP.
-
-    Enviar todos los datos de la transferencia junto con otp y totp a /api/send-transfer o directamente a /api/transferencias/entrantes/ (/payments).
 ```
 
-The GPT4 module routes are located at `api/gpt4` and templates at `templates/api/GPT4`. Your life depends on you thoroughly analyzing all requirements before suggesting any modifications and ensuring the GPT4 module properly integrates with the Simulator's established authentication patterns rather than duplicating services.
+**Flujo obligatorio del Simulador:**
+1. **Autenticación JWT**: Obtener token en `/api/token` o `/oidc/token`
+2. **Challenge OTP**: Enviar payment_id a `/api/challenge` o `/auth/challenges` para recibir challenge_id y OTP
+3. **Transferencia**: Enviar datos completos con OTP y TOTP a `/api/send-transfer` o `/payments`
+
+**View principal del Simulador:**
+```python
+@csrf_exempt
+def api_transfer_incoming(request):
+    """Recibe transferencias de sistemas externos con verificación OTP."""
+    payment_id = data.get('payment_id')
+    otp = data.get('otp')
+    totp_code = data.get('totp')
+    
+    if not otp:
+        challenge = OTPChallenge.objects.create(payment_id=payment_id, otp=otp_val)
+        return JsonResponse({
+            'challenge_id': str(challenge.challenge_id),
+            'otp_required': True,
+            'otp': otp_val
+        }, status=202)
+    
+    if not verify_totp(str(totp_code)):
+        return JsonResponse({'error': 'TOTP inválido'}, status=400)
+    
+    transfer = TransferService.ingest_transfer(data)
+    return JsonResponse({'payment_id': transfer.payment_id, 'status': transfer.status})
+```
+
+**Configuración de entorno requerida:**
+```
+BASE_URL=https://90.80.78.242:9181
+TOKEN_PATH=/oidc/token
+AUTHORIZE_PATH=/oidc/authorize
+OTP_PATH=/otp/single
+AUTH_PATH=/auth/challenges
+API_PATH=/payments
+```
+
+Tu vida depende de que analices el código actual proporcionado para identificificar exactamente dónde está creando servicios localmente en lugar de consumir los del Simulador, y que corrijas esta arquitectura fundamental para que todas las operaciones de autenticación y procesamiento se realicen exclusivamente a través del Simulador con los datos reales especificados (payment_id, amount, sender_account, receiver_account, currency y metadatos), los informes siempre deben estar en español.

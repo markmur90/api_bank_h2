@@ -1,6 +1,6 @@
 Los 2 proyectos estan escritos en Django y no se utiliza REST
 
-vas a revisar el proceso de transferencia que se realiza con api.gpt4 hacia el Simulador.
+vas a revisar y refactorizar el proceso de transferencia que se realiza con api.gpt4 hacia el Simulador.
 
 No debe crear el servicio en el repositorio el servicio debe pedirlo al Simulador para autenticar, y procesar
 
@@ -17,7 +17,13 @@ Las rutas adicionales están en api/configuraciones_api/
 
 
 El contenido del archivo detalles_simulador_01.txt para referencia a donde debe aplicar las rutas al simulador es el siguiente y revisar que la información que requiere sea enviada correctamente:
+
+
 [
+
+
+genera un prompt para que una api exterior se pueda conectar al simulador, la API hace las peticiones y el simulador hace el proceso.
+
 Summary
 
 La aplicación usa el view api_transfer_incoming para recibir transferencias desde sistemas externos. Su ruta está registrada en urls.py y tiene alias /payments y /api/transferencias/entrantes/. Los pasos típicos son:
@@ -94,5 +100,3 @@ En síntesis, para procesar correctamente una transferencia externa:
 
     Enviar todos los datos de la transferencia junto con otp y totp a /api/send-transfer o directamente a /api/transferencias/entrantes/ (/payments).
 ]
-
-
