@@ -1,6 +1,10 @@
 Los 2 proyectos estan escritos en Django y no se utiliza REST
 
-De acuerdo al archivo detalles_simulador_01.txt, vas a revisar el proceso de transferencia que se realiza con api.gpt4 para realizarlo en el Simulador.
+vas a revisar el proceso de transferencia que se realiza con api.gpt4 hacia el Simulador.
+
+No debe crear el servicio en el repositorio el servicio debe pedirlo al Simulador para autenticar, y procesar
+
+No debe aplicar cambios según la secuencia, debe analizar todos los requerimientos primero para realizar las modificaciones correctas.
 
 La API corresponde a los archivos del reposito menos los vinculados para el análisis que se encuentra en la ruta simulador_banco/, estos archivos no pertenecen al repositorio.
 
@@ -8,7 +12,7 @@ Rutas para el análisis:
 Las rutas para el módulo es api/gpt4.
 Las rutas para las plantillas es templates/api/GPT4.
 
-El contenido del archivo detalles_simulador_01.txt es el siguiente:
+El contenido del archivo detalles_simulador_01.txt para referencia a donde debe aplicar las rutas al simulador es el siguiente y revisar que la información que requiere sea enviada correctamente:
 [
 Summary
 

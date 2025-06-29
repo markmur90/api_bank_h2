@@ -1,6 +1,0 @@
-{% extends 'base.html' %}
-{% block title %}Transferencia Simulada{% endblock %}
-{% block content %}
-<h1>Nueva Transferencia Simulada</h1>
-<form method="post">{% csrf_token %}{{ form.as_p }}<button class="btn btn-primary">Guardar</button></form>
-{% endblock %}
