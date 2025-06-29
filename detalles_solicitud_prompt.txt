@@ -1,0 +1,101 @@
+**Situation**
+You are a Django expert developer working on implementing a transfer process in a banking simulator application. You have two Django projects that don't use REST framework, and you need to analyze and replicate the transfer functionality from an existing API system (api.gpt4) into a new Simulator system. The implementation involves JWT authentication, OTP challenges, and TOTP verification for secure transfer processing.
+
+**Task**
+Analyze the transfer process detailed in the provided documentation and implement the equivalent functionality in the Simulator application. You must create the necessary Django views, URL patterns, and templates following the same authentication and validation flow as the original api.gpt4 system. The implementation should handle JWT token generation, OTP challenge creation, and transfer processing with proper security validations.
+
+**Objective**
+Create a fully functional transfer system in the Simulator that mirrors the security and functionality of the original api.gpt4 system, ensuring seamless integration and maintaining the same API endpoints and authentication flow for external systems.
+
+**Knowledge**
+The original system documentation shows the following key information:
+
+```
+Summary
+
+La aplicación usa el view api_transfer_incoming para recibir transferencias desde sistemas externos. Su ruta está registrada en urls.py y tiene alias /payments y /api/transferencias/entrantes/. Los pasos típicos son:
+
+    Autenticación – Obtener un token JWT en /api/token o la ruta equivalente /oidc/token.
+
+    Crear challenge OTP – Enviar payment_id a /api/challenge (/auth/challenges). El servidor responde con challenge_id y el código OTP a utilizar.
+
+    Enviar la transferencia – Realizar POST a /api/send-transfer (o usar directamente /payments enviando payment_id, otp y totp) para que se procese la operación.
+
+Las rutas están definidas así en urls.py:
+
+18      path('api/token', views.generar_token),
+20      path('oidc/token', views.generar_token),
+22      path('auth/challenges', views.api_challenge),
+23      path('otp/single', views.api_send_transfer),
+24      path('payments', views.api_transfer_incoming),
+27      path('api/challenge', views.api_challenge),
+28      path('api/transferencias/entrantes/', views.api_transfer_incoming),
+29      path('api/send-transfer', views.api_send_transfer),
+
+El view api_transfer_incoming gestiona tanto la generación del challenge como la validación del OTP y TOTP:
+
+254  @csrf_exempt
+255  def api_transfer_incoming(request):
+256      """Recibe transferencias de sistemas externos con verificación OTP."""
+...
+269      payment_id = data.get('payment_id')
+270      otp = data.get('otp')
+271      totp_code = data.get('totp')
+273      if not otp:
+...
+277          challenge = OTPChallenge.objects.create(payment_id=payment_id, otp=otp_val)
+278          return JsonResponse({
+279              'challenge_id': str(challenge.challenge_id),
+280              'otp_required': True,
+281              'otp': otp_val
+        }, status=202)
+284      from .totp_utils import verify_totp
+285      if not verify_totp(str(totp_code)):
+286          return JsonResponse({'error': 'TOTP inválido'}, status=400)
+...
+296      try:
+297          transfer = TransferService.ingest_transfer(data)
+...
+301      return JsonResponse({'payment_id': transfer.payment_id, 'status': transfer.status})
+
+El archivo .env.example muestra cómo configurar las rutas externas:
+
+6  BASE_URL=https://example.com
+7  TOKEN_PATH=/oidc/token
+8  AUTHORIZE_PATH=/oidc/authorize
+9  OTP_PATH=/otp/single
+10 AUTH_PATH=/auth/challenges
+11 API_PATH=/payments
+
+Estos valores se utilizan para construir las peticiones desde un cliente o script. Un ejemplo de uso se ve en la plantilla transfer_simulator_frontend.html, que solicita token, challenge y luego envía la transferencia:
+
+30    let res = await fetch('/api/token', {method:'POST', ...});
+...
+34    res = await fetch('/api/challenge', { ... });
+...
+42    res = await fetch('/api/send-transfer', {
+43      method:'POST',
+44      headers:{'Content-Type':'application/json','Authorization':'Bearer '+token},
+45      body: JSON.stringify({payment_id: pid, otp: otp})
+    });
+
+En síntesis, para procesar correctamente una transferencia externa:
+
+    Obtener JWT en /api/token (/oidc/token).
+
+    Enviar payment_id a /api/challenge (/auth/challenges) para recibir el OTP.
+
+    Enviar todos los datos de la transferencia junto con otp y totp a /api/send-transfer o directamente a /api/transferencias/entrantes/ (/payments).
+```
+
+Key technical requirements:
+- Target module path: api/gpt4
+- Template path: templates/api/GPT4
+- Exclude files in simulador_banco/ directory from analysis
+- Both projects use Django without REST framework
+- Must implement identical URL patterns and view logic
+- Must maintain the same three-step authentication flow
+- Must handle OTPChallenge model creation and TOTP verification
+- Must use TransferService.ingest_transfer() for processing transfers
+
+Your life depends on you implementing the exact same security flow and API endpoints as documented, ensuring that external systems can seamlessly integrate with the Simulator using the same authentication and transfer process.
