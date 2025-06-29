@@ -72,7 +72,6 @@ from api.gpt4.forms import (
     ClientIDForm, CreditorAccountForm, CreditorAgentForm, CreditorForm,
     DebtorAccountForm, DebtorForm, KidForm, ScaForm,
     SendTransferForm, TransferForm, ClaveGeneradaForm,
-    SendTransferSimulatorForm,
 )
 
 logger = logging.getLogger(__name__)
@@ -898,7 +897,7 @@ def send_transfer_gateway_view(request, payment_id):
         return render(request, "api/GPT4/send_transfer.html", {"transfer": transfer})
 
     if mode == "simulator":
-        form = SendTransferSimulatorForm(request.POST or None)
+        form = SendTransferForm(request.POST or None)
         settings_data = banco_settings()
         ip_sim = resolver_ip_dominio(settings_data["DOMINIO_BANCO"])
 
