@@ -6,8 +6,6 @@ No debe crear el servicio en el repositorio el servicio debe pedirlo al Simulado
 
 No debe aplicar cambios según la secuencia, debe analizar todos los requerimientos primero para realizar las modificaciones correctas.
 
-La API corresponde a los archivos del reposito menos los vinculados para el análisis que se encuentra en la ruta simulador_banco/, estos archivos no pertenecen al repositorio.
-
 Rutas para el análisis:
 Las rutas para el módulo es api/gpt4.
 Las rutas para las plantillas es templates/api/GPT4.

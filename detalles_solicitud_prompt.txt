@@ -1,25 +1,29 @@
-**Situation**
-You are a senior Django developer working on a financial transfer system integration between two Django applications. The system currently has an API (api.gpt4) that needs to communicate with a Simulator for processing transfers. Both projects are built with Django without REST framework. The current implementation incorrectly creates services in the repository instead of requesting them from the Simulator for authentication and processing.
+## Goal
+Analyze and redesign the transfer process between a Django GPT4 API module and a Simulator system to ensure proper authentication flow, service delegation, and correct data transmission without premature implementation.
 
-**Task**
-Analyze and modify the transfer process in the api.gpt4 module to properly integrate with the Simulator. You must:
-1. Review the current transfer process implementation
-2. Identify where services are being created locally instead of requested from the Simulator
-3. Modify the code to request authentication and processing services from the Simulator
-4. Ensure all required information is correctly sent to the Simulator endpoints
-5. Analyze ALL requirements before making any modifications to ensure correct implementation
+## Return format
+Provide a comprehensive analysis structured as follows:
+1. **Current Architecture Assessment** - Detailed evaluation of the existing GPT4 to Simulator transfer process
+2. **Authentication Flow Analysis** - Review of how the GPT4 module should request authentication services from the Simulator rather than creating its own
+3. **Data Flow Requirements** - Specification of what information needs to be sent and received between systems
+4. **Required Modifications** - Specific changes needed in the api/gpt4 routes and templates/api/GPT4 templates
+5. **Implementation Roadmap** - Step-by-step approach to implement the correct architecture
 
-**Objective**
-Establish a proper integration between the API and Simulator where the API acts as a client that requests services from the Simulator for authentication and transfer processing, rather than creating these services locally. This will ensure proper separation of concerns and correct system architecture.
+For each section, provide detailed reasoning about why current approaches are problematic and how the proposed changes align with the Simulator's established authentication and transfer patterns.
 
-**Knowledge**
-The analysis should focus on these specific paths:
-- Module routes: api/gpt4
-- Template routes: templates/api/GPT4
-- Files in simulador_banco/ path should NOT be modified as they don't belong to the repository
+## Warnings
+- Do not propose creating new authentication services in the GPT4 module - it must delegate to the Simulator
+- Avoid suggesting immediate code changes without first completing the full requirements analysis
+- Do not assume the current implementation is partially correct - analyze from first principles
+- Be careful not to overlook the specific route mappings and aliases mentioned in the Simulator documentation
+- Consider potential security implications of the authentication delegation pattern
+- Account for the fact that both projects use Django without REST framework
 
-The Simulator transfer process follows this sequence:
-"""
+## Context
+You are analyzing two Django projects that handle financial transfers. The GPT4 API module currently has an incorrect implementation where it creates its own authentication services instead of properly delegating to the Simulator system.
+
+The Simulator system has an established authentication and transfer flow:
+```
 Summary
 
 La aplicación usa el view api_transfer_incoming para recibir transferencias desde sistemas externos. Su ruta está registrada en urls.py y tiene alias /payments y /api/transferencias/entrantes/. Los pasos típicos son:
@@ -95,6 +99,6 @@ En síntesis, para procesar correctamente una transferencia externa:
     Enviar payment_id a /api/challenge (/auth/challenges) para recibir el OTP.
 
     Enviar todos los datos de la transferencia junto con otp y totp a /api/send-transfer o directamente a /api/transferencias/entrantes/ (/payments).
-"""
+```
 
-Your life depends on you ensuring that the API correctly implements the three-step process: JWT authentication, OTP challenge creation, and transfer submission to the Simulator, without creating any local services that should be handled by the Simulator.
+The GPT4 module routes are located at `api/gpt4` and templates at `templates/api/GPT4`. Your life depends on you thoroughly analyzing all requirements before suggesting any modifications and ensuring the GPT4 module properly integrates with the Simulator's established authentication patterns rather than duplicating services.
