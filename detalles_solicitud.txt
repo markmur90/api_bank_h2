@@ -4,11 +4,17 @@ vas a revisar el proceso de transferencia que se realiza con api.gpt4 hacia el S
 
 No debe crear el servicio en el repositorio el servicio debe pedirlo al Simulador para autenticar, y procesar
 
+No debes trabajar con datos simulados, todo es real, si encuentras simulaciones debes corregir para que siempre sea real.
+
 No debe aplicar cambios según la secuencia, debe analizar todos los requerimientos primero para realizar las modificaciones correctas.
 
 Rutas para el análisis:
 Las rutas para el módulo es api/gpt4.
 Las rutas para las plantillas es templates/api/GPT4.
+
+Rutas adicionales:
+Las rutas adicionales están en api/configuraciones_api/
+
 
 El contenido del archivo detalles_simulador_01.txt para referencia a donde debe aplicar las rutas al simulador es el siguiente y revisar que la información que requiere sea enviada correctamente:
 [
