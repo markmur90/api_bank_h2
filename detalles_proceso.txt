@@ -9,3 +9,4 @@ No me debes proporcionar un script de prueba, debes consumir la API y el Simulad
 Antes de ejecutar, asegúrate de:
     Estar en la misma red (o VPN) que el Simulador (80.78.30.242:9181).
     Contar con el secreto TOTP (TOTP_SECRET) en el Django del Simulador para generar códigos válidos.
+
