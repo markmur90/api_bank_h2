@@ -22,3 +22,79 @@
   },
   "error": null
 }
+{
+  "timestamp": "2025-06-30 07:48:47",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "state_mismatch",
+    "state_recibido": null,
+    "state_esperado": "1796d29ce21749a5bb077a0b2fb85723"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-30 07:48:47",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "state_mismatch",
+    "state_recibido": null,
+    "state_esperado": "1796d29ce21749a5bb077a0b2fb85723"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-30 07:49:34",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-30 07:49:34",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-30 07:49:36",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-30 07:49:36",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-30 07:50:11",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
+{
+  "timestamp": "2025-06-30 07:50:11",
+  "accion": "callback",
+  "estado": "fallo",
+  "metadata": {
+    "razon": "flujo_no_iniciado"
+  },
+  "error": null
+}
