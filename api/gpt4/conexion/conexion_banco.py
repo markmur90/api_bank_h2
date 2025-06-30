@@ -22,16 +22,22 @@ from api.configuraciones_api.helpers import get_conf
 
 @lru_cache()
 def get_settings() -> Dict[str, Any]:
+    """Return all configuration values needed for the bank connection."""
     return {
-        "BASE_URL":    get_conf("BASE_URL"),
-        "TOKEN_PATH":  get_conf("TOKEN_PATH"),
-        "AUTH_PATH":   get_conf("AUTH_PATH"),
-        "SEND_PATH":   get_conf("SEND_PATH"),
-        "STATUS_PATH": get_conf("STATUS_PATH"),
-        "TIMEOUT":     int(get_conf("TIMEOUT_REQUEST")),
-        "ALLOW_FAKE":  get_conf("ALLOW_FAKE_BANK") == "True",
-        "USER":        get_conf("BANK_USER"),
-        "PASS":        get_conf("BANK_PASS"),
+        "BASE_URL":         get_conf("BASE_URL"),
+        "TOKEN_PATH":       get_conf("TOKEN_PATH"),
+        "AUTH_PATH":        get_conf("AUTH_PATH"),
+        "SEND_PATH":        get_conf("SEND_PATH"),
+        "STATUS_PATH":      get_conf("STATUS_PATH"),
+        "TIMEOUT":          int(get_conf("TIMEOUT")),
+        "TIMEOUT_REQUEST":  int(get_conf("TIMEOUT_REQUEST")),
+        "ALLOW_FAKE_BANK":  get_conf("ALLOW_FAKE_BANK") == "True",
+        "DNS_BANCO":        get_conf("DNS_BANCO"),
+        "DOMINIO_BANCO":    get_conf("DOMINIO_BANCO"),
+        "RED_SEGURA_PREFIX": get_conf("RED_SEGURA_PREFIX"),
+        "MOCK_PORT":        int(get_conf("MOCK_PORT")),
+        "BANK_USER":        get_conf("BANK_USER"),
+        "BANK_PASS":        get_conf("BANK_PASS"),
     }
 
 

@@ -996,13 +996,6 @@ def toggle_conexion_banco(request):
     messages.success(request, f"Conexión bancaria {estado}.")
     return redirect(request.META.get("HTTP_REFERER", "/"))
 
-# @require_GET
-# def prueba_conexion_banco(request):
-#     respuesta = hacer_request_banco(request, path="/api/test")
-#     if respuesta is None:
-#         return JsonResponse({"estado": "fallo", "detalle": "No se obtuvo respuesta."}, status=502)
-#     return JsonResponse({"estado": "ok", "respuesta": respuesta})
-
 
 # ============================
 # Diagnóstico de red bancaria
@@ -1014,12 +1007,14 @@ import netifaces
 
 @lru_cache
 def get_settings():
+    """Return networking settings used by diagnostic views."""
     return {
         "DNS_BANCO":            get_conf("DNS_BANCO"),
         "DOMINIO_BANCO":        get_conf("DOMINIO_BANCO"),
         "RED_SEGURA_PREFIX":    get_conf("RED_SEGURA_PREFIX"),
         "TIMEOUT":              int(get_conf("TIMEOUT")),
         "MOCK_PORT":            int(get_conf("MOCK_PORT")),
+        "ALLOW_FAKE_BANK":      get_conf("ALLOW_FAKE_BANK") == "True",
     }
 
 
