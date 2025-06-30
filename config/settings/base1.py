@@ -172,6 +172,11 @@ OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 from api.configuraciones_api.loader import get_settings
 
+SIMULATOR_URL   = "http://80.78.30.242:9181"
+TOKEN_ENDPOINT  = f"{SIMULATOR_URL}/api/login/"
+CHALLENGE_URL   = f"{SIMULATOR_URL}/api/challenge"
+TRANSFER_URL    = f"{SIMULATOR_URL}/api/send-transfer"
+STATUS_URL      = f"{SIMULATOR_URL}/api/status-transfer"
 
 BASE_URL="http://80.78.30.242:9181"
 TOKEN_PATH="/oidc/token"
