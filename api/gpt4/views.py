@@ -796,7 +796,7 @@ def send_transfer_view(request, payment_id):
             messages.error(request, f"Error inesperado: {str(e)}")
             return redirect('transfer_detailGPT4', payment_id=payment_id)
 
-    return render(request, "gpt4/send_transfer.html", {"form": form, "transfer": transfer})
+    return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
 
 
 @requiere_conexion_banco
