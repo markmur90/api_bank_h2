@@ -1,0 +1,150 @@
+Evaluación del código actual
+
+La app define endpoints locales que replican los servicios del simulador. En api/gpt4/urls.py se crean rutas como:
+
+67  path("api/bank_sim/token", views.bank_sim_token, name="bank_sim_token"),
+68  path("api/bank_sim/challenge", views.bank_sim_challenge, name="bank_sim_challenge"),
+69  path("api/bank_sim/send-transfer", views.bank_sim_send_transfer, name="bank_sim_send_transfer"),
+70  path("api/bank_sim/status-transfer", views.bank_sim_status_transfer, name="bank_sim_status_transfer"),
+
+Las vistas asociadas (bank_sim_token, bank_sim_challenge, bank_sim_send_transfer y bank_sim_status_transfer) implementan lógicas que deberían delegarse al simulador. Ejemplo de bank_sim_challenge:
+
+1258  def bank_sim_token(request):
+...
+1268  def bank_sim_challenge(request):
+1271      data = json.loads(request.body.decode("utf-8"))
+1272      payment_id = data.get("payment_id")
+1273      token = data.get("token")
+1274      transfer = get_object_or_404(Transfer, payment_id=payment_id)
+1275      challenge_id = crear_challenge_mtan(transfer, token, payment_id)
+1276      registrar_log(payment_id, tipo_log="OTP", extra_info=f"Challenge creado {challenge_id}")
+1277      return JsonResponse({"challenge_id": challenge_id})
+
+Estas funciones invocan utilidades propias para generar OTP y envían transferencias directamente a través de requests en lugar de consumir los endpoints oficiales del simulador.
+
+El módulo utils.py contiene funciones que realizan llamadas HTTP manuales (requests.post) a URLs tomadas de variables de entorno:
+
+727  def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None,
+...
+733      pid = transfer.payment_id
+734      # 1️⃣ Token
+735      token = use_token if use_token and not regenerate_token else get_access_token(pid)
+...
+751      registrar_log(pid, headers_enviados=headers, request_body=body, tipo_log='TRANSFER', extra_info="Enviando transferencia SEPA")
+752      try:
+753          resp = requests.post(API_URL, headers=headers, json=body, timeout=TIMEOUT_REQUEST)
+
+Las variables de entorno configuran rutas del simulador, por ejemplo:
+
+31  ALLOW_FAKE_BANK=True
+33  TOKEN_URL="http://80.78.30.242:9181/oidc/token"
+34  AUTHORIZE_URL="http://80.78.30.242:9181/oidc/authorize"
+35  OTP_URL="http://80.78.30.242:9181/otp/single"
+36  AUTH_URL="http://80.78.30.242:9181/auth/challenges"
+37  API_URL="http://80.78.30.242:9181/payments"
+
+Sin embargo, la aplicación en vez de usar directamente dichos endpoints, recrea servicios propios para obtener tokens, challenges y enviar transferencias. Por ejemplo bank_sim_token llama a obtener_token_desde_simulador pero lo expone como un endpoint interno. Esto introduce duplicación, posibles inconsistencias y dificulta la integración real.
+
+Arquitectura de integración corregida
+
+La arquitectura propuesta elimina las vistas y URLs que simulan los servicios. En su lugar, se consumen de forma directa los endpoints del simulador:
+
+    JWT: POST https://simulador.ejemplo.com/oidc/token
+
+    Challenge OTP: POST https://simulador.ejemplo.com/auth/challenges
+
+    Transferencia: POST https://simulador.ejemplo.com/payments
+
+El flujo se ejecuta siempre en ese orden. Se mantiene ALLOW_FAKE_BANK para permitir bypass local sólo cuando esta variable está activa.
+
+Implementación paso a paso
+
+    Autenticación
+
+def obtener_token(username, password):
+    url = settings.TOKEN_URL
+    resp = requests.post(url, json={'username': username, 'password': password}, timeout=settings.TIMEOUT_REQUEST)
+    resp.raise_for_status()
+    return resp.json()['access_token']
+
+Challenge OTP
+
+def solicitar_challenge(payment_id, token):
+    url = settings.AUTH_URL
+    headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
+    payload = {
+        'method': 'MTAN',
+        'requestType': 'SEPA_TRANSFER_GRANT',
+        'correlationId': payment_id
+    }
+    resp = requests.post(url, headers=headers, json=payload, timeout=settings.TIMEOUT_REQUEST)
+    resp.raise_for_status()
+    data = resp.json()
+    return data['id'], data['otp']
+
+Transferencia
+
+def enviar_transferencia(transfer, token, otp):
+    url = settings.API_URL
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'Idempotency-Id': transfer.payment_id,
+        'Correlation-Id': transfer.payment_id,
+        'Otp': otp,
+    }
+    payload = transfer.to_schema_data()
+    resp = requests.post(url, headers=headers, json=payload, timeout=settings.TIMEOUT_REQUEST)
+    resp.raise_for_status()
+    return resp.json()
+
+Flujo unificado
+
+    def ejecutar_transferencia(transfer):
+        token = obtener_token(USERNAME, PASSWORD)
+        challenge_id, otp = solicitar_challenge(transfer.payment_id, token)
+        result = enviar_transferencia(transfer, token, otp)
+        transfer.status = result.get('transactionStatus')
+        transfer.auth_id = result.get('authId')
+        transfer.save()
+        return result
+
+Código refactorizado
+
+    URLs: eliminar rutas api/bank_sim/* y usar send_transfer_view directamente.
+
+    Views: send_transfer_view obtiene el token y challenge llamando a las funciones anteriores, sin exponer servicios internos.
+
+    Templates: actualizar formularios eliminando campos manuales de token/otp y mostrando mensajes en función de la respuesta del simulador.
+
+Configuración técnica
+
+Variables de entorno necesarias (ya presentes):
+
+    TOKEN_URL
+
+    AUTH_URL
+
+    API_URL
+
+    ALLOW_FAKE_BANK
+
+    OTP_URL (si se usa endpoint separado)
+
+No es necesario exponer nuevos endpoints internos. Las rutas externas del simulador se consumen vía requests usando los valores de settings.
+
+Plan de testing
+
+    Pruebas unitarias para cada función (obtener_token, solicitar_challenge, enviar_transferencia) empleando requests_mock para simular respuestas del simulador.
+
+    Pruebas de integración ejecutando el flujo completo con datos reales en un entorno de staging del simulador.
+
+    Validación de expiración OTP: tests que envíen el OTP después de su expiración para asegurar manejo correcto de errores.
+
+    Pruebas de duplicidad: enviar transferencias con el mismo payment_id y verificar que el simulador devuelve error de idempotencia.
+
+    Verificación de ALLOW_FAKE_BANK: cuando está activo, las funciones deben poder usarse con endpoints locales; cuando está desactivado, cualquier intento fuera de la red segura debe ser rechazado.
+
+    Manejo de fallos de red: simular timeouts y respuestas no válidas para garantizar que se generan logs de error y no se corrompe el flujo de estados.
+
+Esta refactorización elimina la creación de servicios locales, centraliza la comunicación exclusivamente a través del simulador y respeta la secuencia obligatoria JWT → Challenge OTP → Transferencia, manteniendo la opción de ALLOW_FAKE_BANK para pruebas en entornos no seguros.

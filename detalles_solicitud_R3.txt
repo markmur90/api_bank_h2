@@ -1,0 +1,169 @@
+Evaluation of the Current Code
+
+    Local services implemented instead of using the Simulator
+    The module defines custom endpoints such as bank_sim_token, bank_sim_challenge, bank_sim_send_transfer and bank_sim_status_transfer in api/gpt4/views.py. These views act as proxy services, handling the authentication and transfer process locally instead of invoking the Simulator directly:
+
+1258 def bank_sim_token(request):
+1259     """Obtiene un token desde el simulador bancario"""
+...
+1270 def bank_sim_challenge(request):
+...
+1281 def bank_sim_send_transfer(request):
+...
+1297 def bank_sim_status_transfer(request):
+
+They are exposed through the URL configuration under the /api/bank_sim/ prefix, effectively duplicating the Simulator’s services:
+
+67  path("api/bank_sim/token", views.bank_sim_token, name="bank_sim_token"),
+68  path("api/bank_sim/challenge", views.bank_sim_challenge, name="bank_sim_challenge"),
+69  path("api/bank_sim/send-transfer", views.bank_sim_send_transfer, name="bank_sim_send_transfer"),
+70  path("api/bank_sim/status-transfer", views.bank_sim_status_transfer, name="bank_sim_status_transfer"),
+
+Hard‑coded simulation in views
+The class SimulacionTransferenciaView constructs transfer objects with mock data rather than consuming the Simulator:
+
+1192 class SimulacionTransferenciaView(View):
+...
+1201     # Crear entidades necesarias
+1202     debtor = Debtor.objects.create(
+...
+1249     status="CREA",
+1251     auth_id="simu-auth",
+
+Templates depending on those local services
+The page transfer_send_conexion.html performs AJAX calls to the above local endpoints to obtain token, start challenge and finally send the transfer:
+
+24 <script>
+25 async function iniciarEnvio(){
+...
+28 let res = await fetch('{% url "bank_sim_token" %}', {method:'POST', headers:{"X-CSRFToken":"{{ csrf_token }}"}}); 
+...
+33 res = await fetch('{% url "bank_sim_challenge" %}', {...});
+38 res = await fetch('{% url "bank_sim_send_transfer" %}', {...});
+
+Environment settings
+Both .env.local and .env.production define variables needed to reach the Simulator:
+
+TOKEN_URL="http://80.78.30.242:9181/oidc/token"
+AUTHORIZE_URL="http://80.78.30.242:9181/oidc/authorize"
+OTP_URL="http://80.78.30.242:9181/otp/single"
+AUTH_URL="http://80.78.30.242:9181/auth/challenges"
+API_URL="http://80.78.30.242:9181/payments"
+ALLOW_FAKE_BANK=True
+
+    However, the views frequently construct their own “simulator” flows instead of using these variables.
+
+Correct Integration Architecture
+
+    Single source of API endpoints
+    All interactions (token, OTP challenge, transfer) should point directly to the simulator base URL (API_URL, TOKEN_URL, AUTH_URL, etc.). Local Django views must not replicate the API.
+
+    Flow
+
+        JWT authentication via /oidc/token or /api/token
+
+        Challenge OTP by POSTing payment information to /auth/challenges (or /api/challenge)
+
+        Transfer submission to /payments (or /api/send-transfer) including OTP and TOTP
+
+    ALLOW_FAKE_BANK handling
+    When ALLOW_FAKE_BANK=True, the system may switch the base URL to the mock server (e.g., internal IP and port) but should still use the same endpoints. The view logic should detect this setting and adjust the base URL accordingly without providing separate Django endpoints.
+
+Step‑by‑Step Implementation
+
+    Authentication
+
+def get_jwt(username: str, password: str) -> str:
+    url = settings.TOKEN_URL  # from env
+    resp = requests.post(url, json={'username': username, 'password': password}, timeout=settings.TIMEOUT_REQUEST)
+    resp.raise_for_status()
+    return resp.json()['token']
+
+Challenge
+
+def request_otp(payment_id: str, token: str) -> dict:
+    url = settings.AUTH_URL  # '/auth/challenges'
+    headers = {'Authorization': f'Bearer {token}', 'Content-Type': 'application/json'}
+    body = {'paymentId': payment_id}
+    resp = requests.post(url, headers=headers, json=body, timeout=settings.TIMEOUT_REQUEST)
+    resp.raise_for_status()
+    return resp.json()   # {'challenge_id': ..., 'otp': ...}
+
+Transfer
+
+    def send_transfer(data: dict, token: str, otp: str, totp: str) -> dict:
+        url = settings.API_URL  # '/payments'
+        headers = {
+            'Authorization': f'Bearer {token}',
+            'Content-Type': 'application/json',
+            'Otp': otp,
+            'Totp': totp,
+            'Idempotency-Id': data['payment_id'],
+            'Correlation-Id': data['payment_id'],
+        }
+        resp = requests.post(url, headers=headers, json=data, timeout=settings.TIMEOUT_REQUEST)
+        resp.raise_for_status()
+        return resp.json()
+
+    Integration into Views
+
+        The existing Django views should call these helper functions.
+
+        Remove local endpoints (bank_sim_*) and the simulation view.
+
+        When the UI initiates a transfer, the view obtains the JWT, requests the OTP challenge, prompts the user for the OTP/TOTP, then calls send_transfer.
+
+    Templates Update
+    Replace JavaScript in transfer_send_conexion.html and similar templates so that the POSTs go directly to the Django view that orchestrates the real flow; remove references to /api/bank_sim/*.
+
+    URL Configuration
+    Drop bank_sim_token, bank_sim_challenge, bank_sim_send_transfer, bank_sim_status_transfer from urls.py. Keep a single send_transfer view.
+
+    Configuration
+    Environment variables already define the required paths. Ensure settings.get_settings() or the configuration loader uses them for all HTTP calls. When ALLOW_FAKE_BANK is True, the base URL should point to the local mock, otherwise to the production simulator domain.
+
+Refactored Code Example
+
+    Updated send_transfer_view would resemble:
+
+    def send_transfer_view(request, payment_id):
+        transfer = get_object_or_404(Transfer, payment_id=payment_id)
+        if request.method == "POST":
+            form = SendTransferForm(request.POST, instance=transfer)
+            if form.is_valid():
+                token = get_jwt(settings.BANK_SIM_USER, settings.BANK_SIM_PASS)
+                challenge = request_otp(transfer.payment_id, token)
+                otp = form.cleaned_data['otp']
+                totp = form.cleaned_data['totp']
+                result = send_transfer(transfer.to_schema_data(), token, otp, totp)
+                transfer.status = result.get('status')
+                transfer.save()
+                messages.success(request, "Transferencia enviada.")
+                return redirect('transfer_detailGPT4', payment_id=payment_id)
+        else:
+            form = SendTransferForm(instance=transfer)
+        return render(request, 'api/GPT4/send_transfer.html', {'form': form, 'transfer': transfer})
+
+    The templates would simply post to this view and display the result; no calls to custom AJAX endpoints are needed.
+
+Testing Plan
+
+    Unit tests for each helper (get_jwt, request_otp, send_transfer) mocking the simulator responses.
+
+    Integration tests using Django’s Client to simulate the full workflow from transfer creation through OTP challenge to final status.
+
+    Edge cases
+
+        expired JWT or OTP
+
+        duplicate payment_id (simulator should return error 6506)
+
+        network failures: ensure retries or clear error messaging
+
+    Manual QA in both modes: ALLOW_FAKE_BANK=True (pointing to mock server) and False (production simulator).
+
+    Use wait_for_final_status after sending the transfer to confirm status transitions.
+
+Conclusion
+
+The current module exposes custom endpoints and locally creates mock entities, which duplicates the functionality already provided by the Simulator. Removing these local services and relying entirely on the Simulator’s API—respecting the mandatory flow JWT → Challenge OTP → Transfer—simplifies the architecture, avoids inconsistencies, and ensures that all validations are performed by the Simulator itself while preserving the ALLOW_FAKE_BANK feature through environment-driven configuration.

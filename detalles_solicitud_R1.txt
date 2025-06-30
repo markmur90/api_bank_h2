@@ -1,0 +1,115 @@
+1. Evaluación del código actual
+
+El módulo api/gpt4 implementa varios puntos que replican localmente servicios del simulador. En views.py se encuentran:
+
+    La vista SimulacionTransferenciaView, que crea datos de deudor, acreedor y la transferencia dentro del proyecto, simulando el comportamiento del simulador
+
+.
+
+Las funciones bank_sim_token, bank_sim_challenge, bank_sim_send_transfer y bank_sim_status_transfer implementan endpoints internos que devuelven token, OTP y status de transferencia usando fetch desde las plantillas, sin acudir al simulador real
+
+.
+
+En la plantilla transfer_send_conexion.html se invocan esas rutas por JavaScript para completar todo el flujo localmente
+
+    .
+
+Las variables de entorno definen ya los endpoints reales del simulador, por ejemplo en .env.local se ven TOKEN_URL, AUTH_URL, API_URL, etc. que apuntan al simulador externo
+
+.
+
+Esto provoca que, en lugar de consumir https://simulador.ejemplo.com, el módulo crea microservicios internos que duplican la lógica y manejan OTP de manera local, incumpliendo el flujo oficial.
+2. Arquitectura de integración corregida
+
+La refactorización debe eliminar las vistas que sirven de API local y cualquier JS que acceda a ellas. Todo el proceso se delegará a las rutas oficiales del simulador:
+
+    POST /api/token o /oidc/token para obtener JWT.
+
+    POST /api/challenge o /auth/challenges para solicitar OTP (recibe payment_id).
+
+    POST /api/send-transfer o /payments para enviar la transferencia incluyendo payment_id, datos financieros y el OTP.
+
+Se utilizará el módulo conexion_banco_refactor (o equivalente) únicamente como cliente HTTP configurado con los parámetros de red (DNS_BANCO, DOMINIO_BANCO, MOCK_PORT, etc.) y respetando ALLOW_FAKE_BANK. No deben existir endpoints locales que suplanten al simulador.
+3. Implementación paso a paso
+
+Autenticación JWT
+
+# Obtener token JWT del simulador
+def obtener_token() -> str:
+    cfg = banco_settings()
+    url = urljoin(cfg['BASE_URL'], cfg['TOKEN_PATH'])
+    res = requests.post(url, json={'username': USER, 'password': PASS}, timeout=cfg['TIMEOUT'])
+    res.raise_for_status()
+    return res.json()['access_token']
+
+Challenge OTP
+
+def solicitar_otp(token: str, payment_id: str) -> str:
+    cfg = banco_settings()
+    url = urljoin(cfg['BASE_URL'], cfg['AUTH_PATH'])
+    headers = {'Authorization': f'Bearer {token}'}
+    res = requests.post(url, json={'payment_id': payment_id}, headers=headers, timeout=cfg['TIMEOUT'])
+    res.raise_for_status()
+    return res.json()['challenge_id']
+
+Transferencia
+
+def enviar_transfer(token: str, otp: str, transfer: Transfer) -> dict:
+    cfg = banco_settings()
+    url = urljoin(cfg['BASE_URL'], cfg['API_PATH'])
+    headers = {
+        'Authorization': f'Bearer {token}',
+        'Content-Type': 'application/json',
+        'Idempotency-Id': transfer.payment_id,
+        'Correlation-Id': transfer.payment_id,
+        'Otp': otp,
+    }
+    res = requests.post(url, json=transfer.to_schema_data(), headers=headers, timeout=cfg['TIMEOUT'])
+    res.raise_for_status()
+    return res.json()
+
+4. Código refactorizado
+
+    Eliminar SimulacionTransferenciaView y las cuatro funciones bank_sim_* de views.py.
+
+    Quitar las rutas asociadas en urls.py (líneas donde se registran bank_sim_token, etc.).
+
+    Sustituir en transfer_send_conexion.html y cualquier otra plantilla el uso de fetch('{% url "bank_sim_*" %}') por formularios o peticiones que usen directamente las funciones anteriores y muestren el resultado.
+
+    En send_transfer_view o la vista equivalente se invocarán obtener_token(), solicitar_otp() y enviar_transfer() siguiendo el orden JWT → OTP → Transferencia.
+
+5. Configuración técnica
+
+Las variables de entorno ya incluyen las rutas del simulador:
+
+BASE_URL=https://simulador.ejemplo.com
+TOKEN_PATH=/oidc/token
+AUTH_PATH=/auth/challenges
+OTP_PATH=/otp/single
+API_PATH=/payments
+ALLOW_FAKE_BANK=True
+
+Hay que asegurarse de leerlas en conexion_banco_refactor o la clase que maneje las peticiones, para construir las URLs finales usando urljoin(BASE_URL, TOKEN_PATH) y similares. La ruta /otp/single se usa para completar el challenge cuando sea requerido. Se mantiene ALLOW_FAKE_BANK para permitir pruebas fuera de red segura utilizando la misma lógica de conexion_banco.
+6. Plan de testing
+
+    Pruebas unitarias para cada función de integración (obtener_token, solicitar_otp, enviar_transfer) simulando respuestas del servidor con requests-mock.
+
+    Pruebas de integración en un entorno de staging configurando las variables de entorno del simulador. Se validará:
+
+        Autenticación JWT correcta.
+
+        Recepción de challenge_id y OTP.
+
+        Envío de transferencia con validación de payment_id único y campos obligatorios.
+
+    Manejo de errores y expiración: probar expiración de OTP/TOTP, duplicados de payment_id, respuestas 4xx/5xx y timeouts.
+
+    Verificación de ALLOW_FAKE_BANK: con la variable en True se debe poder trabajar en local usando las mismas funciones, pero redirigiendo a la URL configurada para pruebas.
+
+    Testing manual en templates revisando que la vista transfer_detail muestre correctamente el flujo y que desaparezcan los botones que llamaban a los endpoints locales.
+
+Network access
+
+Some requests were blocked due to network access restrictions. Consider granting access in environment settings.
+
+    simulador.ejemplo.com: via curl or requests
