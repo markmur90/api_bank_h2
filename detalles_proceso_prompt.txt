@@ -1,0 +1,50 @@
+## Goal
+Analyze two banking system projects (Heroku client and Simulator) using the provided ZIP file contents, identify integration issues, and execute a complete real money transfer by consuming APIs with specific credentials, fixing any detected errors, and ensuring successful transaction completion through the full authentication and validation flow.
+
+## Return format
+Provide a comprehensive analysis and step-by-step execution in Spanish that includes:
+- Complete review of both projects with identified components and data flows
+- Real API consumption and transaction processing (not test scripts)
+- Error identification and complete refactored solutions showing modified files
+- Full transaction flow from token acquisition through OTP validation to final confirmation
+- Detailed technical implementation with headers, payloads, and network security considerations
+
+## Warnings
+- Do not provide test scripts or mock implementations - execute real API calls and transactions
+- Ensure network security protocols are properly implemented for the banking environment
+- Verify that the Simulator recognizes the client as being within the same secure network
+- Handle authentication tokens securely throughout the entire process
+- Account for potential API endpoint changes, authentication failures, or network connectivity issues
+- Ensure proper error handling for each step of the transaction flow
+- Validate that OTP generation and verification mechanisms work correctly
+- Confirm database registration occurs properly in the Simulator
+- Be prepared to troubleshoot integration issues between client and server components
+- Use only the provided credentials and localhost configuration for secure testing
+
+## Context
+You have access to the complete ZIP file contents for both banking system projects:
+
+"""<Replace this text with the HEROKU SIMULATOR ZIP CONTENTS or upload a file>"""
+
+The system configuration details are:
+- **Authentication credentials**: Usuario: admin, Contraseña: 123456
+- **Simulator URL**: http://localhost:3000
+- **Heroku project**: Acts as the client application that initiates transfers
+- **Simulator project**: Acts as the server that processes transfer information and handles validation
+
+Reference this transfer log and xml to understand the expected transaction pattern and data structure:
+
+schemas/transferencias/206df230-f289-4d27-a2a5-27131ee68d72/aml_206df230-f289-4d27-a2a5-27131ee68d72.xml
+schemas/transferencias/206df230-f289-4d27-a2a5-27131ee68d72/pain001_206df230-f289-4d27-a2a5-27131ee68d72.xml
+schemas/transferencias/206df230-f289-4d27-a2a5-27131ee68d72/transferencia_206df230-f289-4d27-a2a5-27131ee68d72.log
+
+The required transaction flow must follow this exact sequence:
+1. Obtain authentication token from Simulator using the provided credentials (493069k1/bar1588623)
+2. Send transfer data to Simulator via secure network connection to localhost:3000
+3. Simulator generates and sends OTP code based on transfer data
+4. Return OTP code to complete transfer validation
+5. Simulator validates the transaction, registers it in database, and returns transfer status to client
+
+Your analysis must be thorough and detail-oriented, examining all necessary information including headers, payloads, routing, forms, and security protocols from the provided ZIP contents. When refactoring code, show the complete modified file and explain the refactoring process. All communication and documentation must be in Spanish.
+
+Your life depends on completing this banking transaction successfully through proper API integration and error resolution using the exact credentials and configuration provided.

@@ -22,3 +22,5 @@ Con todo esto en contexto quiero que hagas una tranferencia real consumiendo la 
 No me debes proporcionar un script de prueba, debes consumir la API y el Simulador, procesando una transacción real con las rutas formularios todo.
 Vas a consumir los 2 zip para el proceso revisandi detalladamente toda la infromación que necesita y se envía, como encabezados, payload, etc.
 Tu vida depende de éste análisis y refactorización, cuando vayas a refactorizar, tienes que mostrar el archivo que modificas y el proceso refactorizado completo, siempre piensas y escribes en español.
+
+
