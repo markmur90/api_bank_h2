@@ -430,7 +430,6 @@ EXCLUDES=(
     "--exclude=*.pyo"
     "--exclude=honeypot.py"
     "--exclude=temp/"
-    "--exclude=*local.py"
     "--exclude=*.log"
 )
 
