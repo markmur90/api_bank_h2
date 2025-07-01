@@ -2,13 +2,13 @@
 import os
 from pydantic import BaseSettings, Field
 from dotenv import load_dotenv
+from pathlib import Path
+# Siempre cargamos el .env raíz para desarrollo local
+load_dotenv(Path(__file__).resolve().parent.parent.parent / '.env.local')
 
-# Carga automática según entorno
-env_file = f".env.{os.getenv('DJANGO_ENV', 'development')}"
-load_dotenv(env_file)
 
 class Settings(BaseSettings):
-    DJANGO_ENV: str = Field(..., description="Entorno de ejecución: development|staging|production")
+    DJANGO_ENV: str = Field(..., description="Entorno de ejecución: local|staging|production")
     SECRET_KEY: str
     BANK_HOST: str
     BANK_PORT: int
