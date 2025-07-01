@@ -13,16 +13,12 @@ Antes de ejecutar, asegúrate de:
 
 
 
-Quiero que revices los 2 zip de tu memoria, heroku y Simulador sabiendo eso vas a:
+Quiero que revices y analices a fondo los 2 zip de tu memoria, heroku y Simulador sabiendo eso vas a:
 Revisar los 2 proyectos completamente, sabiendo que heroku es un cliente y Simulador a donde se proceda la información.
 Realizar una transgerencia real, tomando en cuenta que tienes que estar en una red segura, el token lo obtiene del Simulador enviando el usuario y contraseña del usuario u oficial bancario.
 El Simulador me debe reconocer como si estuviera dentro de la misma red que el.
 El procedimiento es: La transferecia debe obtener el token del simulador, enviar los datos de la transferencia, para lo que el Simulador con esos datos me envía un otp y yo debo devolver el código para que la tranferencia sea procesada, el Simulador con esos datos correctos valida la transferencia la registra en su base y devuelve al cliente el estado de la transferencia.
 Con todo esto en contexto quiero que hagas una tranferencia real consumiendo la API y el Simulador, si detectas errores en cualquiera de los dos, debes proporcionarme la solución hasta que sea completada la transferencia.
-No me debes proporcionar un script de prueba, debes consumir la API y el Simulador, procesando una transacción real.
-
-Antes de ejecutar, asegúrate de:
-    Estar en la misma red (o VPN) que el Simulador.
-    Contar con el secreto TOTP (TOTP_SECRET) en el Django del Simulador para generar códigos válidos.
-
+No me debes proporcionar un script de prueba, debes consumir la API y el Simulador, procesando una transacción real con las rutas formularios todo.
 Vas a consumir los 2 zip para el proceso revisandi detalladamente toda la infromación que necesita y se envía, como encabezados, payload, etc.
+Tu vida depende de éste análisis y refactorización, cuando vayas a refactorizar, tienes que mostrar el archivo que modificas y el proceso refactorizado completo, siempre piensas y escribes en español.
