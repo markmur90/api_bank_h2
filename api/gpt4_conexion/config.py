@@ -1,11 +1,12 @@
-# api/gpt4_conexion/config.py
+ # api/gpt4_conexion/config.py
 import os
 from pathlib import Path
 from dotenv import load_dotenv
 from pydantic_settings import BaseSettings
-from pydantic import Field
+from pydantic import Field, Extra
+from pydantic_settings import SettingsConfigDict
 
-# Carga variables de entorno desde .env.local en raiz del proyecto
+# Carga variables de entorno…
 dotenv_path = Path(__file__).resolve().parent.parent.parent / '.env.local'
 load_dotenv(dotenv_path)
 
@@ -22,11 +23,15 @@ class Settings(BaseSettings):
     BANK_TIMEOUT: int = Field(10, env="BANK_TIMEOUT")
     BANK_RETRIES: int = Field(3, env="BANK_RETRIES")
 
-    class Config:
-        env_file = str(dotenv_path)
-        env_file_encoding = 'utf-8'
+    # ← Indica que ignore variables de entorno extras
+    model_config = SettingsConfigDict(
+        env_file=str(dotenv_path),
+        env_file_encoding='utf-8',
+        extra='ignore',
+    )
 
 settings = Settings()
+
 
 # Endpoints construidos dinámicamente
 TRANSFER_ENDPOINT = f"http://{settings.BANK_HOST}:{settings.BANK_PORT}/api/transferencia/"
