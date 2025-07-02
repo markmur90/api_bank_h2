@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # send_transfer.sh — Envía transferencia SEPA al simulador
+SIM_TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IjQ5MzA2OWsxIiwiaWF0IjoxNzUxNDMwODEwLCJleHAiOjE3NTE0MzQ0MTB9.lBIs--uDfQkaYavR8_4SueawkJ1_JZ7_8FSRwIKJduU"
 
 # Requiere: SIM_TOKEN exportado
 if [[ -z "$SIM_TOKEN" ]]; then
