@@ -21,7 +21,6 @@ from django.urls import path, include
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework import permissions
-from api.gpt4_conexion.api.transfer_flow import TransferView
 from api import views
 from api.gpt4.views import oauth2_authorize, oauth2_callback
 
@@ -42,7 +41,6 @@ schema_view = get_schema_view(
 # Definición de urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/transferencia/', TransferView.as_view(), name='api_transfer'),
     
     path('api/auth/', include('api.authentication.urls')),
 
