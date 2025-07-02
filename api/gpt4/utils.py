@@ -781,7 +781,7 @@ def send_transfer3(transfer: Transfer, use_token: str = None, use_otp: str = Non
     return resp
 
 
-def send_transfer(transfer: Transfer,
+def send_transfer4(transfer: Transfer,
                   use_token: str = None,
                   use_otp: str = None,
                   regenerate_token: bool = False,
@@ -856,6 +856,114 @@ def send_transfer(transfer: Transfer,
         raise
 
     return data
+
+
+from api.gpt4.utils import registrar_log, generar_xml_pain001
+import logging
+import requests
+from django.utils.timezone import now
+
+logger = logging.getLogger(__name__)
+
+def send_transfer(transfer, request):
+    SIMU_BASE = "http://80.78.30.242:9181"
+    headers = {k: v for k, v in request.META.items() if k.startswith("HTTP_")}
+    pid = transfer.payment_id
+
+    # 1. Generar XML
+    xml_path = generar_xml_pain001(transfer, pid)
+    registrar_log(transfer.payment_id, "XML_GENERADO", extra_info=f"Archivo: {xml_path}")
+    logger.info(f"[{transfer.payment_id}] XML generado en {xml_path}")
+
+    # 2. Login
+    login_payload = {"username": "markmur88", "password": "Ptf8454Jd55"}
+    login_response = requests.post(f"{SIMU_BASE}/auth/login", json=login_payload)
+    token = login_response.json().get("token")
+    if not token:
+        transfer.status = "RJCT"
+        transfer.save()
+        registrar_log(transfer.payment_id, "LOGIN_ERROR", error="Token no recibido", response_text=login_response.text)
+        logger.error(f"[{transfer.payment_id}] Falló login")
+        return {"error": "Login fallido"}
+    auth_headers = {"Authorization": f"Bearer {token}", **headers}
+
+    # 3. Payload completo
+    payload = {
+        "payment_id": transfer.payment_id,
+        "debtor_account_id": transfer.debtor_account.id,
+        "creditor_account": transfer.creditor_account.id,
+        "debtor": transfer.debtor.id,
+        "creditor": transfer.creditor.id,
+        "instructed_amount": float(transfer.instd_amount),
+        "currency": transfer.currency,
+        "requested_execution_date": str(transfer.requested_execution_date),
+        "purpose_code": transfer.purpose_code,
+        "remittance_information_unstructured": transfer.remittance_information_unstructured,
+        "payment_identification": transfer.payment_identification.id if transfer.payment_identification else None,
+        "auth_id": request.user.username,
+        "status": "RCVD"
+    }
+
+    # 4. Enviar transferencia
+    transfer.status = "RCVD"
+    transfer.save()
+    init_response = requests.post(f"{SIMU_BASE}/api/transfers/initiate", json=payload, headers=auth_headers)
+    init_data = init_response.json()
+    otp = init_data.get("otp")
+
+    registrar_log(
+        registro=transfer.payment_id,
+        tipo_log="ENVÍO TRANSFERENCIA",
+        headers_enviados=auth_headers,
+        request_body=payload,
+        response_headers=dict(init_response.headers),
+        response_text=init_response.text,
+        extra_info="Transferencia enviada al simulador"
+    )
+
+    # 5. Estado intermedio
+    transfer.status = "ACSP"
+    transfer.save()
+
+    registrar_log(
+        registro=transfer.payment_id,
+        tipo_log="OTP",
+        response_text=f"OTP recibido: {otp}"
+    )
+
+    # 6. Confirmar transferencia
+    confirm_payload = {"paymentId": transfer.payment_id, "otp": otp}
+    confirm_response = requests.post(f"{SIMU_BASE}/api/transfers/confirm", json=confirm_payload, headers=auth_headers)
+    confirm_data = confirm_response.json()
+
+    registrar_log(
+        registro=transfer.payment_id,
+        tipo_log="CONFIRMACIÓN",
+        request_body=confirm_payload,
+        response_headers=dict(confirm_response.headers),
+        response_text=confirm_response.text
+    )
+
+    final_status = confirm_data.get("status", "RJCT")
+    if final_status not in ["ACSC", "ACWC", "ACSP", "ACCP", "ACCC"]:
+        final_status = "RJCT"
+
+    # 7. Guardar resultado
+    transfer.status = final_status
+    transfer.auth_id = request.user.username
+    transfer.timestamp = now()
+    transfer.save()
+
+    registrar_log(
+        registro=transfer.payment_id,
+        tipo_log="FINALIZACIÓN",
+        extra_info=f"Estado final: {transfer.status}"
+    )
+
+    logger.info(f"[{transfer.payment_id}] Confirmada con estado {transfer.status}")
+    return confirm_data
+
+
 
 def limpiar_datos_sensibles(data):
     """
