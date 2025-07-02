@@ -36,10 +36,10 @@ Reference this transfer log and xml to understand the expected transaction patte
 
 schemas/transferencias/206df230-f289-4d27-a2a5-27131ee68d72/aml_206df230-f289-4d27-a2a5-27131ee68d72.xml
 schemas/transferencias/206df230-f289-4d27-a2a5-27131ee68d72/pain001_206df230-f289-4d27-a2a5-27131ee68d72.xml
-schemas/transferencias/206df230-f289-4d27-a2a5-27131ee68d72/transferencia_206df230-f289-4d27-a2a5-27131ee68d72.log
+schemas/transferencias/206df230-f289-4d27-a2a5-27131ee68d72/transferencia_206df230-f289-4d27-a2a5-27131ee68d72.log"
 
 The required transaction flow must follow this exact sequence:
-1. Obtain authentication token from Simulator using the provided credentials (493069k1/bar1588623)
+1. Obtain authentication token from Simulator using the provided credentials (admin/123456)
 2. Send transfer data to Simulator via secure network connection to localhost:3000
 3. Simulator generates and sends OTP code based on transfer data
 4. Return OTP code to complete transfer validation
