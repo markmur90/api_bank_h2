@@ -724,7 +724,7 @@ def send_transfer2(
         )
     return response
 
-def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None,
+def send_transfer3(transfer: Transfer, use_token: str = None, use_otp: str = None,
                   regenerate_token: bool = False, regenerate_otp: bool = False) -> requests.Response:
     settings = get_settings()
     API_URL = settings["API_URL"]    
@@ -781,7 +781,81 @@ def send_transfer(transfer: Transfer, use_token: str = None, use_otp: str = None
     return resp
 
 
+def send_transfer(transfer: Transfer,
+                  use_token: str = None,
+                  use_otp: str = None,
+                  regenerate_token: bool = False,
+                  regenerate_otp: bool = False) -> dict:
+    """
+    Envía una transferencia al simulador y maneja el flujo completo de OTP y validaciones.
+    """
+    pid = transfer.payment_id
 
+    # 1️⃣ Token: obtención desde simulador o reuso si no se regenera
+    token = use_token if use_token and not regenerate_token else obtener_token_simulador()
+
+    # 2️⃣ OTP: si no se pasa manualmente, solicitar al usuario
+    if use_otp and not regenerate_otp:
+        otp = use_otp
+    else:
+        otp = input(f"Introduce el código OTP para la transferencia {pid}: ")
+
+    # 3️⃣ Construir cuerpo y headers de la petición
+    body = transfer.to_schema_data()
+    headers = {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': f'Bearer {token}',
+        'Idempotency-Id': pid,
+        'Correlation-Id': pid,
+        'Otp': otp
+    }
+    registrar_log(pid,
+                  headers_enviados=headers,
+                  request_body=body,
+                  tipo_log='TRANSFER',
+                  extra_info="Enviando transferencia SEPA")
+
+    # 4️⃣ Envío inicial de la transferencia
+    response = requests.post(
+        settings.SIMULADOR_API_URL,
+        headers=headers,
+        json=body,
+        timeout=settings.TIMEOUT_REQUEST
+    )
+    registrar_log(pid,
+                  tipo_log='TRANSFER',
+                  response_text=response.text,
+                  headers_enviados=dict(response.headers),
+                  extra_info="Respuesta del API SEPA")
+    response.raise_for_status()
+    data = response.json()
+
+    # Actualizar objeto Transfer en BD
+    transfer.auth_id = data.get('authId')
+    transfer.status = data.get('transactionStatus', transfer.status)
+    transfer.save()
+    registrar_log(pid,
+                  tipo_log='TRANSFER',
+                  extra_info=f"Transferencia enviada con éxito con status {transfer.status}")
+
+    # 5️⃣ Generación y validación de XML/AML posteriores
+    try:
+        xml_path = generar_xml_pain001(transfer, pid)
+        aml_path = generar_archivo_aml(transfer, pid)
+        validar_xml_pain001(xml_path)
+        validar_aml_con_xsd(aml_path)
+        registrar_log(pid,
+                      tipo_log='TRANSFER',
+                      extra_info="Validación XML/AML completada")
+    except Exception as e:
+        registrar_log(pid,
+                      error=str(e),
+                      tipo_log='ERROR',
+                      extra_info="Error generando XML/AML posterior")
+        raise
+
+    return data
 
 def limpiar_datos_sensibles(data):
     """
@@ -813,7 +887,7 @@ from api.configuraciones_api.models import ConfiguracionAPI
 _access_token_cache = {}
 
 
-def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str:
+def get_access_token2(payment_id: str = None, force_refresh: bool = False) -> str:
     """
     Obtiene un access_token vía OAuth2 Client-Credentials, con caching in-memory
     para reutilizar el token hasta su expiración, a menos que force_refresh=True.
@@ -877,7 +951,12 @@ def get_access_token(payment_id: str = None, force_refresh: bool = False) -> str
     registrar_log(payment_id, tipo_log='AUTH', extra_info="Token obtenido y cacheado correctamente")
     return token
 
-
+def get_access_token(*args, **kwargs):
+    """
+    Obtiene el token JWT desde el simulador.
+    """
+    from api.utils.jwt_simulador import obtener_token_simulador
+    return obtener_token_simulador()
 def get_access_token_jwt(payment_id: str, force_refresh: bool = False) -> str:
     settings = get_settings()
     TOKEN_URL = settings["TOKEN_URL"]
