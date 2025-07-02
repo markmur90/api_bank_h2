@@ -9,7 +9,7 @@ from typing import Any, Dict, Optional
 
 import dns.resolver
 import requests
-
+from django.conf import settings
 from api.configuraciones_api.helpers import get_conf
 from api.gpt4.conexion.ssh_utils import ssh_request
 from api.gpt4.utils import registrar_log
@@ -31,6 +31,9 @@ def get_settings() -> Dict[str, Any]:
         "ALLOW_FAKE_BANK":  get_conf("ALLOW_FAKE_BANK") == "True",
         "BANK_USER":        get_conf("BANK_USER"),
         "BANK_PASS":        get_conf("BANK_PASS"),
+        "url_base":         settings.SIMULADOR_URL,
+        "usuario":          settings.SIMULADOR_USER,
+        "password":         settings.SIMULADOR_PASS
     }
 
 
@@ -148,7 +151,7 @@ def make_request(
     return resp
 
 
-def obtener_token() -> str:
+def obtener_token1() -> str:
     """Solicita token JWT al simulador bancario."""
     s = get_settings()
     resp = make_request(
@@ -159,7 +162,7 @@ def obtener_token() -> str:
     return resp.json().get("token") or resp.json().get("access_token", "")
 
 
-def solicitar_otp(token: str, payment_id: str) -> str:
+def solicitar_otp1(token: str, payment_id: str) -> str:
     """Solicita OTP para la transferencia identficada."""
     s = get_settings()
     resp = make_request(
@@ -171,7 +174,7 @@ def solicitar_otp(token: str, payment_id: str) -> str:
     return resp.json().get("challenge_id", "")
 
 
-def enviar_transferencia(token: str, payment_id: str, otp: str) -> Dict[str, Any]:
+def enviar_transferencia1(token: str, payment_id: str, otp: str) -> Dict[str, Any]:
     """Envía la transferencia al simulador bancario."""
     s = get_settings()
     resp = make_request(
@@ -241,3 +244,29 @@ def ejecutar_flujo_completo():
     otp = resp1.get("otp")
     resp2 = confirmar_transferencia(token, payload["paymentId"], otp)
     return resp2
+
+
+
+def obtener_token():
+    conf = get_settings()
+    response = requests.post(f"{conf['url_base']}/api/login/", json={
+        "username": conf["usuario"],
+        "password": conf["password"]
+    })
+    return response.json().get("access")
+
+def solicitar_otp(token, payment_id):
+    headers = {"Authorization": f"Bearer {token}"}
+    return requests.post(
+        f"{get_settings()['url_base']}/api/challenge/",
+        json={"payment_id": payment_id},
+        headers=headers
+    ).json()
+
+def enviar_transferencia(token, payment_id, otp):
+    headers = {"Authorization": f"Bearer {token}"}
+    return requests.post(
+        f"{get_settings()['url_base']}/api/transferencia/verify/",
+        json={"payment_id": payment_id, "otp": otp},
+        headers=headers
+    ).json()
