@@ -31,9 +31,12 @@ def get_settings() -> Dict[str, Any]:
         "ALLOW_FAKE_BANK":  get_conf("ALLOW_FAKE_BANK") == "True",
         "BANK_USER":        get_conf("BANK_USER"),
         "BANK_PASS":        get_conf("BANK_PASS"),
-        "url_base":         settings.SIMULADOR_URL,
-        "usuario":          settings.SIMULADOR_USER,
-        "password":         settings.SIMULADOR_PASS
+        "login_url":        settings.SIMULADOR_LOGIN_URL,
+        "verify_url":       settings.SIMULADOR_VERIFY_URL,
+        "otp_url":          settings.OTP_URL,
+        "transfer_url":     settings.TRANSFER_URL,
+        "usuario":          settings.SIMULADOR_USERNAME,
+        "password":         settings.SIMULADOR_PASSWORD
     }
 
 
