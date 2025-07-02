@@ -252,24 +252,29 @@ def ejecutar_flujo_completo():
 
 def obtener_token():
     conf = get_settings()
-    response = requests.post(f"{conf['url_base']}/api/login/", json={
+    response = requests.post(conf['login_url'], json={
         "username": conf["usuario"],
         "password": conf["password"]
     })
+    response.raise_for_status()
     return response.json().get("access")
 
 def solicitar_otp(token, payment_id):
     headers = {"Authorization": f"Bearer {token}"}
-    return requests.post(
-        f"{get_settings()['url_base']}/api/challenge/",
+    response = requests.post(
+        get_settings()['otp_url'],
         json={"payment_id": payment_id},
         headers=headers
-    ).json()
+    )
+    response.raise_for_status()
+    return response.json()
 
 def enviar_transferencia(token, payment_id, otp):
     headers = {"Authorization": f"Bearer {token}"}
-    return requests.post(
-        f"{get_settings()['url_base']}/api/transferencia/verify/",
+    response = requests.post(
+        get_settings()['verify_url'],
         json={"payment_id": payment_id, "otp": otp},
         headers=headers
-    ).json()
+    )
+    response.raise_for_status()
+    return response.json()
