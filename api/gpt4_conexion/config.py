@@ -1,10 +1,11 @@
 # api/gpt4_conexion/config.py
 import os
 from pathlib import Path
-from pydantic import BaseSettings, Field
 from dotenv import load_dotenv
+from pydantic_settings import BaseSettings
+from pydantic import Field
 
-# Cargar variables de entorno desde .env.local en el directorio raíz del proyecto
+# Carga variables de entorno desde .env.local en raiz del proyecto
 dotenv_path = Path(__file__).resolve().parent.parent.parent / '.env.local'
 load_dotenv(dotenv_path)
 
@@ -14,17 +15,19 @@ class Settings(BaseSettings):
     BANK_HOST: str = Field(..., env="BANK_HOST")
     BANK_PORT: int = Field(..., env="BANK_PORT")
     BANK_VERIFY_SSL: bool = Field(True, env="BANK_VERIFY_SSL")
-    BANK_TIMEOUT: int = Field(10, env="BANK_TIMEOUT")
-    BANK_RETRIES: int = Field(3, env="BANK_RETRIES")
-    RED_SEGURA_PREFIX: str = Field(..., description="Prefijo de red segura (CIDR)", env="RED_SEGURA_PREFIX")
+    RED_SEGURA_PREFIX: str = Field(..., env="RED_SEGURA_PREFIX")
     BANK_ALLOW_MOCK: bool = Field(False, env="BANK_ALLOW_MOCK")
     SIMULADOR_SECRET_KEY: str = Field(..., env="SIMULADOR_SECRET_KEY")
     TOTP_SECRET: str = Field(..., env="TOTP_SECRET")
-    SCOPE: str = Field(..., env="SCOPE")
-    TIMEOUT: int = Field(..., env="TIMEOUT")
+    BANK_TIMEOUT: int = Field(10, env="BANK_TIMEOUT")
+    BANK_RETRIES: int = Field(3, env="BANK_RETRIES")
 
     class Config:
-        env_file = dotenv_path
+        env_file = str(dotenv_path)
         env_file_encoding = 'utf-8'
 
 settings = Settings()
+
+# Endpoints construidos dinámicamente
+TRANSFER_ENDPOINT = f"http://{settings.BANK_HOST}:{settings.BANK_PORT}/api/transferencia/"
+VERIFY_OTP_ENDPOINT = f"http://{settings.BANK_HOST}:{settings.BANK_PORT}/api/transferencia/verify/"
