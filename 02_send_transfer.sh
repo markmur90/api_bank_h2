@@ -2,15 +2,29 @@
 set -euo pipefail
 
 # Configuración
+API_LOGIN="http://localhost:3000/api/login/"
 API_URL="http://localhost:3000/api/transferencia/"
+USER="493069k1"
+PASS="bar1588623"
 IDEMP_ID="206df230-f289-4d27-a2a5-27131ee68d72"
 TRANSFER_FILE="02_transfer.json"
+
+# 0️⃣ Obtener token automáticamente
+echo "🔐 Obteniendo JWT..."
+SIM_TOKEN=$(curl --silent --fail -X POST "$API_LOGIN" \
+  -H "Content-Type: application/json" \
+  -d "{\"username\":\"$USER\",\"password\":\"$PASS\"}" \
+  | jq -r '.token')
+
+if [[ -z "$SIM_TOKEN" || "$SIM_TOKEN" == "null" ]]; then
+  echo "❌ No se pudo obtener el token."
+  exit 1
+fi
+echo "✅ Token obtenido: $SIM_TOKEN"
 
 # 1️⃣ Verificar que exista el JSON de la transferencia
 if [[ ! -f "$TRANSFER_FILE" ]]; then
   echo "❌ No se encontró '$TRANSFER_FILE'."
-  echo "   Crea un archivo 'transfer.json' en esta carpeta"
-  echo "   con el JSON de la transferencia SEPA."
   exit 1
 fi
 
