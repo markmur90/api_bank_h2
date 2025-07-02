@@ -8,6 +8,12 @@ El Simulador me debe reconocer como si estuviera dentro de la misma red que el.
 El procedimiento es: La transferecia debe obtener el token del simulador, enviar los datos de la transferencia, para lo que el Simulador con esos datos me envía un otp y yo debo devolver el código para que la tranferencia sea procesada, el Simulador con esos datos correctos valida la transferencia la registra en su base y devuelve al cliente el estado de la transferencia.
 Con todo esto en contexto quiero que hagas una tranferencia real consumiendo la API y el Simulador, si detectas errores en cualquiera de los dos, debes proporcionarme la solución hasta que sea completada la transferencia.
 No me debes proporcionar un script de prueba, debes consumir la API y el Simulador, procesando una transacción real.
+Vas a consumir los 2 zip para el proceso revisandi detalladamente toda la infromación que necesita y se envía, como encabezados, payload, etc.
+Para continuar el proceso en Heroku ya se encuentra una tranferencia grabada para tu información esta en schemas/transferencias
+
+Tu vida depende de éste análisis y refactorización, cuando vayas a refactorizar, tienes que mostrar el archivo que modificas y el proceso refactorizado completo, desplegando el código refactorizado completo y no solo la selección para que el usuario no tenga confusiones, no debes pedir mas información y debes procesar hasta que termines, si necesitas hacer cambios, lo realizas en tu cache presentando el resultado final con las correcciones, siempre piensas y escribes en español.
+
+
 
 Antes de ejecutar, asegúrate de:
     Estar en la misma red (o VPN) que el Simulador (80.78.30.242:9181).
