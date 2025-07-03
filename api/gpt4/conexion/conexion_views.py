@@ -65,7 +65,7 @@ def send_transfer_bank_view(request, payment_id):
             messages.error(request, f"Error enviando transferencia: {e}")
             return redirect("transfer_detailGPT4", payment_id=payment_id)
 
-    return render(request, "api/GPT4/send_transfer_bank.html", {"transfer": transfer, "form": form})
+    return render(request, "api/GPT4/send_transfer.html", {"transfer": transfer, "form": form})
 
 @require_GET
 @requiere_conexion_banco
