@@ -408,6 +408,7 @@ def transfer_update_sca(request, payment_id):
     return render(request, 'api/GPT4/transfer_sca.html', {'form': form, 'transfer': transfer})
 
 
+
 def _render_transfer_detail(request, transfer, mensaje_error=None, details=None):
     if mensaje_error:
         registrar_log(
@@ -748,8 +749,17 @@ def send_transfer_view(request, payment_id):
                         challenge_id = crear_challenge_mtan(transfer, final_token, transfer.payment_id)
                         transfer.auth_id = challenge_id
                         transfer.save()
+                        # ✅ Agregado: Mostrar OTP como mensaje visual
+                        messages.success(request, f"OTP generado (simulado): {challenge_id}")
                         registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"Challenge MTAN creado con ID {challenge_id}")
                         return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
+
+                    # if method == 'MTAN':
+                    #     challenge_id = crear_challenge_mtan(transfer, final_token, transfer.payment_id)
+                    #     transfer.auth_id = challenge_id
+                    #     transfer.save()
+                    #     registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"Challenge MTAN creado con ID {challenge_id}")
+                    #     return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
                     elif method == 'PHOTOTAN':
                         challenge_id, img64 = crear_challenge_phototan(transfer, final_token, transfer.payment_id)
                         request.session['photo_tan_img'] = img64
