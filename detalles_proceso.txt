@@ -33,3 +33,79 @@ Vas a consumir los 2 zip para el proceso revisandi detalladamente toda la infrom
 Tu vida depende de éste análisis y refactorización, cuando vayas a refactorizar, tienes que mostrar el archivo que modificas y el proceso refactorizado completo, siempre piensas y escribes en español.
 
 
+
+
+
+Quiero que revices y analices a fondo los 2 zip, heroku y Simulador sabiendo eso vas a:
+Revisar los 2 proyectos completamente, sabiendo que heroku es un cliente y Simulador a donde se proceda la información.
+Realizar una transferencia real, tomando en cuenta que tienes que estar en una red segura, el token lo obtiene del Simulador enviando el usuario y contraseña del usuario u oficial bancario.
+El Simulador me debe reconocer como si estuviera dentro de la misma red que el.
+El procedimiento es: La transferencia debe obtener el token del simulador, enviar los datos de la transferencia, para lo que el Simulador con esos datos me envía un otp y yo debo devolver el código para que la transferencia sea procesada, el Simulador con esos datos correctos valida la transferencia la registra en su base y devuelve al cliente el estado de la transferencia.
+Con todo esto en contexto quiero que hagas una transferencia real consumiendo la API y el Simulador, si detectas errores en cualquiera de los dos, debes proporcionarme la solución hasta que sea completada la transferencia.
+No me debes proporcionar un script de prueba, debes consumir la API y el Simulador, procesando una transacción real con las rutas formularios todo.
+Vas a consumir los 2 zip para el proceso revisando detalladamente toda la información que necesita y se envía, como encabezados, payload, etc.
+Cuando creas una transferencia y guardas en Heroku, pasa a una plantilla de lista, cuando pones enviar no se autentica, así como también cuando entras en detalles y pones enviar no pasa nada, en los 2 casos nunca debe perder la autenticación, en el proceso normal cuando utilizo python puro no pierde la autenticación, pero cuando paso a html estoy teniendo estos errores, debes revisar a fondo el por que del problema, solucionar todo el proceso, templates, rutas, vistas, lo que sea necesario.
+Quiero que revises los models.py, forms.py, views.py, urls.py, y de acuerdo a eso compruebes que la plantilla send_transfer.html tiene los campo correspondientes, además debes revisar que tiene que recibir el otp, de ésto depende tu vida.
+Tu vida depende de éste análisis y refactorización, cuando vayas a refactorizar, tienes que mostrar el archivo que modificas y el proceso refactorizado completo, siempre piensas y escribes en español.
+
+
+Para complementar tus tareas, deberas:
+
+Cambiar opción de obtener token por automático.
+Quitar y optimizar el template para el token.
+
+🔵 Heroku
+    Integra muchas dependencias y decoradores (csrf_exempt, ListView, etc.).
+    Usa funciones personalizadas como crear_challenge_mtan, crear_challenge_phototan.
+    Utiliza conexion_banco para comunicarse con el Simulador.
+    No se aprecia aún la lógica exacta de envío de OTP ni validación de token en vistas send_transfer, aunque parece que se conecta con lógica de challenge.
+
+📌 Requiere validación si la vista send_transfer_view:
+    Extrae el token desde sesión o input.
+    Llama a la API del simulador para el OTP.
+    Permite la inserción manual o automática del código.
+    Recibe y procesa la respuesta del simulador.
+        
+🔵 Heroku
+    Usa múltiples rutas anidadas:
+        /api/auth/
+        /app/core/
+        /app/gpt4/ → Aquí está la lógica de transferencia.
+    Importa vistas como oauth2_authorize, oauth2_callback.
+    Swagger disponible en /swagger/.
+
+🔍 Falta validar si send_transfer, get_token, obtener_otp, etc., están definidos explícitamente en api/gpt4/urls.py.
+
+🔵 Heroku (api/gpt4/urls.py)
+Incluye las vistas clave:
+    transfers/<str:payment_id>/send/ → send_transfer_view
+    transfers/<str:payment_id>/send-banco/ → send_transfer_bank ← esta parece la que llama al simulador
+(
+🧩 Desafío OTP en Simulador (si aplica):
+    POST /api/challenge → views.api_challenge
+    📸 Genera desafío OTP (MTAN/PhotoTAN).
+
+*AVERIGUAR PUSHTAN e implementarlos
+
+🚀 Siguiente paso: refactorizar la plantilla y vistas en Heroku para:
+    Obtener el token desde Simulador.
+    Generar/recibir OTP.
+    Enviar OTP con payment_id a /api/send-transfer.
+    Verificar resultado y actualizar estado.
+
+✅ La vista oauth2_authorize(request) en Heroku maneja correctamente el flujo de autenticación.
+🔐 Qué hace:
+    Extrae el payment_id de la URL.
+    Genera PKCE para autenticación segura.
+    Guarda en sesión: verifier, state, payment_id, oauth_start_time
+    Construye la URL de autorización para el Simulador (OAuth2).
+    Redirige al usuario al login del Simulador.
+
+🔎 ¿Qué falta para que el Simulador identifique al usuario correctamente?
+
+El Simulador asocia el OTP con:
+    user.username de quien inició sesión
+
+🧠 Por tanto, la clave es que el token generado esté ligado a un usuario oficial. Y eso ocurre si la autenticación fue iniciada con credenciales válidas en el Simulador.
+
+Para información adicional toma como materia de estudio Swagger disponible en /swagger/.
