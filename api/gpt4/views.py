@@ -63,8 +63,10 @@ from api.gpt4.utils import (
 )
 from api.gpt4.conexion.conexion_banco import (
     make_request,
+    obtener_token,
     resolver_ip_dominio,
     get_settings as banco_settings,
+    solicitar_otp,
 )
 from api.gpt4.conexion.decorators import requiere_conexion_banco
 from api.gpt4.forms import (

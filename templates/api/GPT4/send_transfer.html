@@ -1,21 +1,50 @@
-{% extends 'base.html' %}
+{% extends "api/GPT4/base.html" %}
+{% load static %}
 {% block content %}
-<h3>Enviar Transferencia</h3>
+  <h2>Enviar Transferencia {{ transfer.payment_id }}</h2>
+  
+  <form method="post" action="{% url 'send_transfer' payment_id=transfer.payment_id %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    
+    {# – Si no hay token en sesión, solo mostrar botón autorización – #}
+    {% if not request.session.access_token %}
+      <button type="submit" name="action" value="authorize" class="btn btn-primary">
+        Autorizar con Banco
+      </button>
+      
+    {% else %}
+      {# – Token presente: Mostrar datos de transferencia – #}
+      <div class="mb-3">
+        <label for="id_amount">Monto</label>
+        {{ form.monto }}
+      </div>
+      <div class="mb-3">
+        <label for="id_destinatario">Destinatario</label>
+        {{ form.destinatario }}
+      </div>
 
-{% if messages %}
-  {% for message in messages %}
-    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
-  {% endfor %}
-{% endif %}
+      {# – Selección de método OTP – #}
+      <div class="form-check">
+        {{ form.obtain_otp }}
+        <label class="form-check-label" for="id_obtain_otp">
+          Obtener OTP automáticamente
+        </label>
+      </div>
+      <div class="mb-3">
+        <label>Método OTP:</label>
+        {{ form.otp_method }}
+      </div>
 
-<form method="post">
-  {% csrf_token %}
-  <!-- 🔧 Mostrar solo campo OTP, los demás campos se han removido del form en modo simple_otp -->
-  <div class="mb-3">
-    <label for="id_manual_otp" class="form-label">Código OTP:</label>
-    {{ form.manual_otp }}  {# Renderiza el input de OTP #}
-  </div>
-  <button type="submit" class="btn btn-primary">Verificar OTP</button>
-  <a href="{% url 'transfer_detailGPT4' transfer.payment_id %}" class="btn btn-secondary">Cancelar</a>
-</form>
+      {# – Campo para OTP manual, ocultable – #}
+      <div class="mb-3">
+        <label for="id_manual_otp">Introducir OTP manual</label>
+        {{ form.manual_otp }}
+      </div>
+
+      <button type="submit" name="action" value="send" class="btn btn-success">
+        Enviar Transferencia
+      </button>
+    {% endif %}
+  </form>
 {% endblock %}
