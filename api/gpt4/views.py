@@ -885,6 +885,43 @@ def diagnostico_banco(request):
 
 
 
+class ClaveGeneradaListView(ListView):
+    model = ClaveGenerada
+    template_name = 'api/claves/lista.html'
+    context_object_name = 'claves'
+
+class ClaveGeneradaCreateView(CreateView):
+    model = ClaveGenerada
+    form_class = ClaveGeneradaForm
+    template_name = 'api/claves/formulario.html'
+    success_url = reverse_lazy('lista_claves')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['modo'] = 'crear'
+        return context
+
+class ClaveGeneradaUpdateView(UpdateView):
+    model = ClaveGenerada
+    form_class = ClaveGeneradaForm
+    template_name = 'api/claves/formulario.html'
+    success_url = reverse_lazy('lista_claves')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['modo'] = 'editar'
+        return context
+
+class ClaveGeneradaDeleteView(DeleteView):
+    model = ClaveGenerada
+    template_name = 'api/claves/eliminar.html'
+    success_url = reverse_lazy('lista_claves')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['clave'] = self.get_context_data
+        return context
+
 
 
 
