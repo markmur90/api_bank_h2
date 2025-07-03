@@ -789,22 +789,21 @@ def send_transfer_view(request, payment_id):
     """
     Vista completa para:
     1. Autorizar con el Simulador vía OAuth2/SSH
-    2. Obtener OTP (MTAN/PhotoTAN) automáticamente
+    2. Obtener OTP (MTAN/PhotoTAN/PushTAN) automáticamente
     3. Enviar OTP + datos de transferencia
     Todo el tráfico al Simulador pasa por túnel SSH.
     """
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
     form = SendTransferForm(request.POST or None, instance=transfer)
 
-    token    = request.session.get('access_token')
-    expires  = request.session.get('token_expires', 0)
+    token   = request.session.get('access_token')
+    expires = request.session.get('token_expires', 0)
 
     if request.method == "POST":
         action = request.POST.get('action')
 
         # ── 1) Inicio de autorización ─────────────────────────────
         if action == "authorize":
-            # Obtiene token vía SSH/Simulador y guarda en sesión
             try:
                 token, expires = obtener_token_simulador(
                     username="493069k1",
@@ -816,8 +815,6 @@ def send_transfer_view(request, payment_id):
             except Exception as e:
                 registrar_log(payment_id, 'ERROR_AUTH', error=str(e))
                 messages.error(request, f"Error al autorizar: {e}")
-                return redirect('send_transfer', payment_id=payment_id)
-
             return redirect('send_transfer', payment_id=payment_id)
 
         # ── 2) Validación del formulario ───────────────────────────
@@ -826,7 +823,7 @@ def send_transfer_view(request, payment_id):
             messages.error(request, "Formulario inválido.")
             return redirect('send_transfer', payment_id=payment_id)
 
-        # ── 3) Renovación automática de token si expiró ────────────
+        # ── 3) Renovación de token si expiró ──────────────────────
         if not token or time.time() > expires - 60:
             registrar_log(payment_id, 'INFO', extra_info="Token ausente/expirado")
             return redirect('send_transfer', payment_id=payment_id)
@@ -835,6 +832,7 @@ def send_transfer_view(request, payment_id):
         if form.cleaned_data.get('obtain_otp'):
             method = form.cleaned_data.get('otp_method')
             try:
+                # MTAN, PHOTOTAN o PUSHTAN
                 cid, img64 = generar_challenge_simulador(
                     payment_id=payment_id,
                     token=token,
@@ -842,12 +840,13 @@ def send_transfer_view(request, payment_id):
                 )
                 transfer.auth_id = cid
                 transfer.save()
-                request.session['photo_tan_img'] = img64
+                if method == 'PHOTOTAN':
+                    request.session['photo_tan_img'] = img64
                 registrar_log(payment_id, 'OTP_GEN', extra_info=f"{method} {cid}")
                 messages.success(request, f"{method} generado: {cid}")
             except Exception as e:
                 registrar_log(payment_id, 'ERROR_OTP', error=str(e))
-                messages.error(request, f"Error al generar OTP: {e}")
+                messages.error(request, f"Error al generar {method}: {e}")
             return redirect('send_transfer', payment_id=payment_id)
 
         # ── 5) Envío definitivo de la transferencia ────────────────
@@ -865,7 +864,7 @@ def send_transfer_view(request, payment_id):
             registrar_log(payment_id, 'TRANSFER_OK', extra_info=str(result))
             messages.success(request, "Transferencia procesada con éxito.")
             # Limpieza de sesión tras éxito
-            for key in ('access_token', 'token_expires'):
+            for key in ('access_token', 'token_expires', 'photo_tan_img'):
                 request.session.pop(key, None)
             return redirect('transfer_detailGPT4', payment_id=payment_id)
         else:
@@ -873,7 +872,7 @@ def send_transfer_view(request, payment_id):
             messages.error(request, f"Error en transferencia: {result}")
             return redirect('send_transfer', payment_id=payment_id)
 
-    # ── GET: Mostrar formulario y estado actual ────────────────
+    # ── GET: Mostrar formulario y estado ────────────────────────
     return render(request, "api/GPT4/send_transfer.html", {
         "form": form,
         "transfer": transfer,
