@@ -41,6 +41,7 @@ from api.gpt4.models import (
 )
 import uuid
 
+from api.gpt4.services.transfer_services import enviar_transferencia_simulador
 from config import settings
 from api.configuraciones_api.models import ConfiguracionAPI
 from api.gpt4.models import (
@@ -713,7 +714,7 @@ def log_oauth_visual_inicio(request):
 
 
 
-def send_transfer_view(request, payment_id):
+def send_transfer_view6(request, payment_id):
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
     form = SendTransferForm(request.POST or None, instance=transfer)
     token = request.session.get('access_token')
@@ -777,6 +778,67 @@ def send_transfer_view(request, payment_id):
             return redirect('transfer_detailGPT4', payment_id=payment_id)
 
     return render(request, "api/GPT4/send_transfer.html", {"form": form, "transfer": transfer})
+
+
+def send_transfer_view(request, payment_id):
+    transfer = get_object_or_404(Transfer, payment_id=payment_id)
+    form = SendTransferForm(request.POST or None, instance=transfer)
+    token = request.session.get('access_token')
+    token_expiry = request.session.get('token_expires', 0)
+
+    if request.method == "POST":
+        if not form.is_valid():
+            registrar_log(transfer.payment_id, tipo_log='ERROR', error="Formulario inválido", extra_info=str(form.errors))
+            messages.error(request, "Formulario inválido. Revisa los campos.")
+            return redirect('transfer_detailGPT4', payment_id=payment_id)
+
+        if not token or time.time() > token_expiry - 60:
+            registrar_log(transfer.payment_id, tipo_log='AUTH', error="Token no disponible o expirado")
+            request.session['return_to_send'] = True
+            return redirect(f"{reverse('oauth2_authorize')}?payment_id={payment_id}")
+
+        manual_token = form.cleaned_data['manual_token']
+        final_token = manual_token or token
+
+        try:
+            otp = form.cleaned_data.get('manual_otp')
+            if form.cleaned_data['obtain_otp']:
+                method = form.cleaned_data.get('otp_method')
+                if method == 'MTAN':
+                    challenge_id = crear_challenge_mtan(transfer, final_token, transfer.payment_id)
+                    transfer.auth_id = challenge_id
+                    transfer.save()
+                    messages.success(request, f"OTP generado (simulado): {challenge_id}")
+                    registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"MTAN ID {challenge_id}")
+                    return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
+                elif method == 'PHOTOTAN':
+                    challenge_id, img64 = crear_challenge_phototan(transfer, final_token, transfer.payment_id)
+                    request.session['photo_tan_img'] = img64
+                    transfer.auth_id = challenge_id
+                    transfer.save()
+                    messages.success(request, f"PhotoTAN generado.")
+                    registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"PhotoTAN ID {challenge_id}")
+                    return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
+
+            if otp:
+                status, result = enviar_transferencia_simulador(transfer.payment_id, final_token, otp)
+                if status:
+                    messages.success(request, "Transferencia enviada correctamente.")
+                    registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia completada")
+                    return redirect('dashboard')
+                else:
+                    messages.error(request, f"Error al enviar transferencia: {result}")
+                    registrar_log(transfer.payment_id, tipo_log='ERROR', error=result)
+
+        except Exception as e:
+            messages.error(request, f"Error interno: {str(e)}")
+            registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e))
+
+    return render(request, 'api/GPT4/send_transfer.html', {
+        'form': form,
+        'transfer': transfer
+    })
+
 
 def prueba_conexion_banco(request):
     respuesta = make_request(request, path="/api/transferencia")

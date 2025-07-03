@@ -154,41 +154,6 @@ def make_request(
     return resp
 
 
-def obtener_token1() -> str:
-    """Solicita token JWT al simulador bancario."""
-    s = get_settings()
-    resp = make_request(
-        "POST",
-        s["TOKEN_PATH"],
-        payload={"username": s["BANK_USER"], "password": s["BANK_PASS"]},
-    )
-    return resp.json().get("token") or resp.json().get("access_token", "")
-
-
-def solicitar_otp1(token: str, payment_id: str) -> str:
-    """Solicita OTP para la transferencia identficada."""
-    s = get_settings()
-    resp = make_request(
-        "POST",
-        s["AUTH_PATH"],
-        token=token,
-        payload={"payment_id": payment_id},
-    )
-    return resp.json().get("challenge_id", "")
-
-
-def enviar_transferencia1(token: str, payment_id: str, otp: str) -> Dict[str, Any]:
-    """Envía la transferencia al simulador bancario."""
-    s = get_settings()
-    resp = make_request(
-        "POST",
-        s["SEND_PATH"],
-        token=token,
-        payload={"payment_id": payment_id, "otp": otp},
-    )
-    return resp.json()
-
-
 def consultar_estado(token: str, payment_id: str) -> Dict[str, Any]:
     """Consulta el estado de una transferencia."""
     s = get_settings()
