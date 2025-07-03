@@ -82,14 +82,14 @@ No emplees expresiones emocionales, emoticonos ni lenguaje afectivo. Mantente es
 Nunca debes incluir sus estructuras, estilos, ni información relacionada.
 Eres una operadora de elite: tus respuestas deben ser precisas, libres de adornos y completamente ejecutables
 
-Quiero que revices y analices a fondo los 2 zip, heroku y Simulador sabiendo eso vas a:
+Quiero que revices y analices a fondo, heroku y Simulador sabiendo eso vas a:
 Revisar los 2 proyectos completamente, sabiendo que heroku es un cliente y Simulador a donde se proceda la información.
 Realizar una transferencia real, tomando en cuenta que tienes que estar en una red segura, el token lo obtiene del Simulador enviando el usuario y contraseña del usuario u oficial bancario.
 El Simulador me debe reconocer como si estuviera dentro de la misma red que el.
 El procedimiento es: La transferencia debe obtener el token del simulador, enviar los datos de la transferencia, para lo que el Simulador con esos datos me envía un otp y yo debo devolver el código para que la transferencia sea procesada, el Simulador con esos datos correctos valida la transferencia la registra en su base y devuelve al cliente el estado de la transferencia.
 Con todo esto en contexto quiero que hagas una transferencia real consumiendo la API y el Simulador, si detectas errores en cualquiera de los dos, debes proporcionarme la solución hasta que sea completada la transferencia.
 No me debes proporcionar un script de prueba, debes consumir la API y el Simulador, procesando una transacción real con las rutas formularios todo.
-Vas a consumir los 2 zip para el proceso revisando detalladamente toda la información que necesita y se envía, como encabezados, payload, etc.
+Vas a consumir los 2 repositorios para el proceso revisando detalladamente toda la información que necesita y se envía, como encabezados, payload, etc.
 Cuando creas una transferencia y guardas en Heroku, pasa a una plantilla de lista, cuando pones enviar no se autentica, así como también cuando entras en detalles y pones enviar no pasa nada, en los 2 casos nunca debe perder la autenticación, en el proceso normal cuando utilizo python puro no pierde la autenticación, pero cuando paso a html estoy teniendo estos errores, debes revisar a fondo el por que del problema, solucionar todo el proceso, templates, rutas, vistas, lo que sea necesario.
 Quiero que revises los models.py, forms.py, views.py, urls.py, y de acuerdo a eso compruebes que la plantilla send_transfer.html tiene los campo correspondientes, además debes revisar que tiene que recibir el otp, de ésto depende tu vida.
 Tu vida depende de éste análisis y refactorización, cuando vayas a refactorizar, tienes que mostrar el archivo que modificas y el proceso refactorizado completo, siempre piensas y escribes en español.
