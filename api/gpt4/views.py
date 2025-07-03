@@ -784,59 +784,69 @@ def send_transfer_view(request, payment_id):
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
     form = SendTransferForm(request.POST or None, instance=transfer)
     token = request.session.get('access_token')
-    token_expiry = request.session.get('token_expires', 0)
+    expiry = request.session.get('token_expires', 0)
 
     if request.method == "POST":
+        action = request.POST.get('action')
+
+        # 1) Iniciar OAuth2 con pago asociado
+        if action == "authorize":
+            # Garantizamos que payment_id viaja siempre en la query
+            auth_url = reverse('oauth2_authorize')  # ej. '/api/auth/authorize/'
+            redirect_url = f"{auth_url}?payment_id={payment_id}"
+            return HttpResponseRedirect(redirect_url)
+
+        # 2) Validar formulario si ya tenemos token
         if not form.is_valid():
-            registrar_log(transfer.payment_id, tipo_log='ERROR', error="Formulario inválido", extra_info=str(form.errors))
-            messages.error(request, "Formulario inválido. Revisa los campos.")
+            registrar_log(payment_id, 'ERROR', error=str(form.errors))
+            messages.error(request, "Formulario inválido.")
+            return redirect('send_transfer', payment_id=payment_id)
+
+        # 3) Renovar token si expiró o no existe
+        if not token or time.time() > expiry - 60:
+            auth_url = reverse('oauth2_authorize')
+            return HttpResponseRedirect(f"{auth_url}?payment_id={payment_id}")
+
+        # 4) Generar OTP si se pidió
+        if form.cleaned_data.get('obtain_otp'):
+            method = form.cleaned_data.get('otp_method')
+            if method == 'MTAN':
+                challenge_id = crear_challenge_mtan(transfer, token, payment_id)
+                transfer.auth_id = challenge_id; transfer.save()
+                registrar_log(payment_id, 'OTP', extra_info=f"MTAN {challenge_id}")
+                messages.success(request, f"OTP MTAN generado: {challenge_id}")
+                return redirect('send_transfer', payment_id=payment_id)
+            elif method == 'PHOTOTAN':
+                cid, img64 = crear_challenge_phototan(transfer, token, payment_id)
+                request.session['photo_tan_img'] = img64
+                transfer.auth_id = cid; transfer.save()
+                registrar_log(payment_id, 'OTP', extra_info=f"PhotoTAN {cid}")
+                messages.success(request, "PhotoTAN generado.")
+                return redirect('send_transfer', payment_id=payment_id)
+
+        # 5) Envío definitivo con OTP
+        otp = form.cleaned_data.get('manual_otp')
+        if not otp:
+            messages.error(request, "Debes obtener o introducir el OTP.")
+            return redirect('send_transfer', payment_id=payment_id)
+
+        success, result = enviar_transferencia_simulador(payment_id, token, otp)
+        if success:
+            registrar_log(payment_id, 'TRANSFER', extra_info="Éxito completo")
+            messages.success(request, "Transferencia enviada correctamente.")
+            # Limpiar sesión
+            for k in ['access_token','refresh_token','token_expires']:
+                request.session.pop(k, None)
             return redirect('transfer_detailGPT4', payment_id=payment_id)
+        else:
+            registrar_log(payment_id, 'ERROR', error=result)
+            messages.error(request, f"Error: {result}")
+            return redirect('send_transfer', payment_id=payment_id)
 
-        if not token or time.time() > token_expiry - 60:
-            registrar_log(transfer.payment_id, tipo_log='AUTH', error="Token no disponible o expirado")
-            request.session['return_to_send'] = True
-            return redirect(f"{reverse('oauth2_authorize')}?payment_id={payment_id}")
-
-        manual_token = form.cleaned_data['manual_token']
-        final_token = manual_token or token
-
-        try:
-            otp = form.cleaned_data.get('manual_otp')
-            if form.cleaned_data['obtain_otp']:
-                method = form.cleaned_data.get('otp_method')
-                if method == 'MTAN':
-                    challenge_id = crear_challenge_mtan(transfer, final_token, transfer.payment_id)
-                    transfer.auth_id = challenge_id
-                    transfer.save()
-                    messages.success(request, f"OTP generado (simulado): {challenge_id}")
-                    registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"MTAN ID {challenge_id}")
-                    return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
-                elif method == 'PHOTOTAN':
-                    challenge_id, img64 = crear_challenge_phototan(transfer, final_token, transfer.payment_id)
-                    request.session['photo_tan_img'] = img64
-                    transfer.auth_id = challenge_id
-                    transfer.save()
-                    messages.success(request, f"PhotoTAN generado.")
-                    registrar_log(transfer.payment_id, tipo_log='OTP', extra_info=f"PhotoTAN ID {challenge_id}")
-                    return redirect('transfer_update_scaGPT4', payment_id=transfer.payment_id)
-
-            if otp:
-                status, result = enviar_transferencia_simulador(transfer.payment_id, final_token, otp)
-                if status:
-                    messages.success(request, "Transferencia enviada correctamente.")
-                    registrar_log(transfer.payment_id, tipo_log='TRANSFER', extra_info="Transferencia completada")
-                    return redirect('dashboard')
-                else:
-                    messages.error(request, f"Error al enviar transferencia: {result}")
-                    registrar_log(transfer.payment_id, tipo_log='ERROR', error=result)
-
-        except Exception as e:
-            messages.error(request, f"Error interno: {str(e)}")
-            registrar_log(transfer.payment_id, tipo_log='ERROR', error=str(e))
-
-    return render(request, 'api/GPT4/send_transfer.html', {
-        'form': form,
-        'transfer': transfer
+    # GET: mostrar formulario
+    return render(request, "api/GPT4/send_transfer.html", {
+        "form": form,
+        "transfer": transfer
     })
 
 
