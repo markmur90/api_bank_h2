@@ -738,30 +738,33 @@ def send_transfer_view(request, payment_id):
             token = obtener_token()
             request.session['bank_token'] = token
 
-            # 2) Solicitar desafío OTP al simulador
-            otp_resp = solicitar_otp(token, payment_id)
-            challenge_id = otp_resp.get('challenge_id')
-            otp_gen = otp_resp.get('otp')  # solo para logging en entorno de prueba
+            # 2) Autorizar OAuth simulado
+            make_request("GET", f"/oidc/authorize?payment_id={payment_id}", token=None)
 
-            # Guardar en sesión para el paso POST
+            # 3) Solicitar OTP al simulador
+            resp = make_request(
+                "POST", "/api/challenge",
+                token=token,
+                payload={"payment_id": payment_id}
+            )
+            data_otp = resp.json()
+            challenge_id = data_otp.get('challenge_id')
+            otp_val = data_otp.get('otp')
+
             request.session['bank_challenge_id'] = challenge_id
-            request.session['current_payment_id'] = payment_id
-
             registrar_log(
-                payment_id,
-                tipo_log='OTP',
-                extra_info=f'OTP enviado (Challenge ID: {challenge_id}, OTP: {otp_gen})'
+                payment_id, tipo_log='OTP',
+                extra_info=f'OTP enviado (ID={challenge_id}, OTP={otp_val})'
             )
             messages.info(request, 'OTP enviado. Ingresa el código para continuar.')
         except Exception as e:
             registrar_log(
-                payment_id,
-                tipo_log='ERROR',
-                error=str(e),
-                extra_info='Error al solicitar OTP'
+                payment_id, tipo_log='ERROR',
+                error=str(e), extra_info='Error al solicitar OTP'
             )
             messages.error(request, f'Error al iniciar la autenticación: {e}')
             return redirect('transfer_detailGPT4', payment_id=payment_id)
+
 
     elif request.method == 'POST' and form.is_valid():
         otp = form.cleaned_data.get('manual_otp')

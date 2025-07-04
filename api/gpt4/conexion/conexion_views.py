@@ -23,33 +23,48 @@ from api.gpt4.conexion.conexion_banco import (
 from api.gpt4.conexion.decorators import requiere_conexion_banco
 from api.configuraciones_api.helpers import get_conf
 
+
+
 @require_http_methods(["GET", "POST"])
 def send_transfer_bank_view(request, payment_id):
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
     form = SendTransferForm(request.POST or None, context_mode='simple_otp')
-    conf = get_settings()  # obtener configuraciones (usuario oficial, URLs, etc.)
+    conf = get_settings()
 
     if request.method == "GET":
         try:
-            # 1) Obtener token de acceso automáticamente
+            # 1) Obtener token automáticamente
             token = obtener_token()
             request.session["bank_token"] = token
 
-            # 2) Solicitar OTP al simulador (inicia desafío OTP)
-            otp_response = solicitar_otp(token, payment_id)
-            # Extraer ID de challenge (y OTP si se proporciona en entorno de prueba)
-            challenge_id = otp_response.get("challenge_id")
-            otp_generado = otp_response.get("otp")  # El OTP real enviado (solo para logging/debug)
+            # 2) Autorizar transferencia en simulador (flujo OAuth simulado)
+            make_request("GET", f"/oidc/authorize?payment_id={payment_id}", token=None)
 
-            # Guardar en sesión para uso posterior
+            # 3) Solicitar OTP al simulador
+            resp = make_request(
+                "POST", "/api/challenge",
+                token=token,
+                payload={"payment_id": payment_id}
+            )
+            otp_json = resp.json()
+            challenge_id = otp_json.get("challenge_id")
+            otp_generated = otp_json.get("otp")  # solo en entorno de pruebas
+
+            # Guardar en sesión
             request.session["bank_challenge_id"] = challenge_id
             request.session["current_payment_id"] = payment_id
 
-            registrar_log(payment_id, tipo_log="OTP", extra_info=f"OTP enviado (Challenge ID: {challenge_id}, OTP: {otp_generado})")
+            # Log interno
+            registrar_log(
+                payment_id, tipo_log="OTP",
+                extra_info=f"OTP enviado (Challenge ID: {challenge_id}, OTP: {otp_generated})"
+            )
             messages.info(request, "OTP enviado. Ingresa el código para continuar.")
         except Exception as e:
-            # Registrar y notificar error en la fase de autenticación/OTP
-            registrar_log(payment_id, tipo_log="ERROR", error=str(e), extra_info="Error al solicitar OTP")
+            registrar_log(
+                payment_id, tipo_log="ERROR",
+                error=str(e), extra_info="Error al solicitar OTP"
+            )
             messages.error(request, f"Error al iniciar la autenticación: {e}")
             return redirect("transfer_detailGPT4", payment_id=payment_id)
 
@@ -61,33 +76,33 @@ def send_transfer_bank_view(request, payment_id):
             return redirect("transfer_detailGPT4", payment_id=payment_id)
 
         try:
-            # 3) Enviar OTP al simulador para completar la transferencia
+            # 4) Enviar OTP para verificar y completar la transferencia
             resultado = enviar_transferencia(token, payment_id, otp)
-            estado_final = resultado.get("status")
-            registrar_log(payment_id, tipo_log="TRANSFER", extra_info=f"Respuesta simulador: {resultado}")
+            registrar_log(
+                payment_id, tipo_log="TRANSFER",
+                extra_info=f"Respuesta simulador: {resultado}"
+            )
 
-            # 4) Actualizar estado (y auth_id) de la transferencia local
-            if estado_final:
-                transfer.status = estado_final
-            else:
-                # Fallback: consultar estado actual si no vino en respuesta (ej. simulador no lo retornó)
-                estado_resp = consultar_estado(token, payment_id)
-                transfer.status = estado_resp.get("status", transfer.status)
-            if transfer.status == 'ACSC':  # éxito (Accepted Settlement Completed)
-                transfer.auth_id = conf["usuario"]  # Registrar qué oficial (usuario) autorizó
+            # 5) Actualizar estado local
+            estado = resultado.get("status")
+            if not estado:
+                estado = consultar_estado(token, payment_id).get("status", transfer.status)
+            transfer.status = estado
+            if estado == "ACSC":
+                transfer.auth_id = conf["usuario"]
             transfer.save()
 
             messages.success(request, "Transferencia completada correctamente.")
-            # Limpieza de la sesión tras éxito
-            request.session.pop("bank_token", None)
-            request.session.pop("bank_challenge_id", None)
-            request.session.pop("current_payment_id", None)
+            # Limpiar sesión tras éxito
+            for k in ("bank_token", "bank_challenge_id", "current_payment_id"):
+                request.session.pop(k, None)
             return redirect("transfer_detailGPT4", payment_id=payment_id)
         except Exception as e:
-            # Manejo de errores de verificación OTP o envío
-            registrar_log(payment_id, tipo_log="ERROR", error=str(e), extra_info="Fallo en verificación OTP/transferencia")
+            registrar_log(
+                payment_id, tipo_log="ERROR",
+                error=str(e), extra_info="Fallo en verificación OTP/transferencia"
+            )
             messages.error(request, f"Error enviando transferencia: {e}")
-            # No limpiamos token ni datos de sesión, permitimos reintento
             return redirect("send_transfer_bank_viewGPT4", payment_id=payment_id)
 
     # Renderizar formulario de OTP
@@ -96,6 +111,7 @@ def send_transfer_bank_view(request, payment_id):
         "form": form,
         "challenge_id": request.session.get("bank_challenge_id")
     })
+
 
 @require_GET
 @requiere_conexion_banco
