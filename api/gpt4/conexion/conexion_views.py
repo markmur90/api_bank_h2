@@ -27,20 +27,22 @@ from api.configuraciones_api.helpers import get_conf
 
 @require_http_methods(["GET", "POST"])
 def send_transfer_bank_view(request, payment_id):
+    # 1) Cargamos la transferencia existente
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
-    form = SendTransferForm(request.POST or None, context_mode='simple_otp')
+    # 2) Vinculamos el formulario a esa instancia para que traiga debtor_account, creditor_account, etc.
+    form = SendTransferForm(request.POST or None, instance=transfer, context_mode='simple_otp')
     conf = get_settings()
 
     if request.method == "GET":
         try:
-            # 1) Obtener token automáticamente
+            # 3) Obtener token automáticamente
             token = obtener_token()
             request.session["bank_token"] = token
 
-            # 2) Autorizar transferencia en simulador (flujo OAuth simulado)
+            # 4) Autorizar OAuth2 simulado en el simulador
             make_request("GET", f"/oidc/authorize?payment_id={payment_id}", token=None)
 
-            # 3) Solicitar OTP al simulador
+            # 5) Solicitar OTP al simulador
             resp = make_request(
                 "POST", "/api/challenge",
                 token=token,
@@ -48,13 +50,13 @@ def send_transfer_bank_view(request, payment_id):
             )
             otp_json = resp.json()
             challenge_id = otp_json.get("challenge_id")
-            otp_generated = otp_json.get("otp")  # solo en entorno de pruebas
+            otp_generated = otp_json.get("otp")  # sólo en entorno de pruebas
 
-            # Guardar en sesión
+            # 6) Guardar en sesión
             request.session["bank_challenge_id"] = challenge_id
             request.session["current_payment_id"] = payment_id
 
-            # Log interno
+            # 7) Log interno y mensaje al usuario
             registrar_log(
                 payment_id, tipo_log="OTP",
                 extra_info=f"OTP enviado (Challenge ID: {challenge_id}, OTP: {otp_generated})"
@@ -69,6 +71,7 @@ def send_transfer_bank_view(request, payment_id):
             return redirect("transfer_detailGPT4", payment_id=payment_id)
 
     elif request.method == "POST" and form.is_valid():
+        # 8) Leemos el OTP ingresado
         otp = form.cleaned_data.get("manual_otp")
         token = request.session.get("bank_token")
         if not token:
@@ -76,14 +79,14 @@ def send_transfer_bank_view(request, payment_id):
             return redirect("transfer_detailGPT4", payment_id=payment_id)
 
         try:
-            # 4) Enviar OTP para verificar y completar la transferencia
+            # 9) Enviar OTP para verificar y completar la transferencia
             resultado = enviar_transferencia(token, payment_id, otp)
             registrar_log(
                 payment_id, tipo_log="TRANSFER",
                 extra_info=f"Respuesta simulador: {resultado}"
             )
 
-            # 5) Actualizar estado local
+            # 10) Actualizar estado local de la transferencia
             estado = resultado.get("status")
             if not estado:
                 estado = consultar_estado(token, payment_id).get("status", transfer.status)
@@ -93,7 +96,7 @@ def send_transfer_bank_view(request, payment_id):
             transfer.save()
 
             messages.success(request, "Transferencia completada correctamente.")
-            # Limpiar sesión tras éxito
+            # 11) Limpiar la sesión tras éxito
             for k in ("bank_token", "bank_challenge_id", "current_payment_id"):
                 request.session.pop(k, None)
             return redirect("transfer_detailGPT4", payment_id=payment_id)
@@ -105,7 +108,7 @@ def send_transfer_bank_view(request, payment_id):
             messages.error(request, f"Error enviando transferencia: {e}")
             return redirect("send_transfer_bank_viewGPT4", payment_id=payment_id)
 
-    # Renderizar formulario de OTP
+    # 12) Renderizar formulario de OTP (modo simple_otp oculta campos de token)
     return render(request, "api/GPT4/send_transfer_bank.html", {
         "transfer": transfer,
         "form": form,
