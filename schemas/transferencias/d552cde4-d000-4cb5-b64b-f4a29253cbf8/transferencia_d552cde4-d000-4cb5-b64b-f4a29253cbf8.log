@@ -1,0 +1,86 @@
+
+================================================================================
+Fecha y hora: 2025-07-04 07:44:25
+================================================================================
+=== Info ===
+Transferencia creada
+
+
+================================================================================
+Fecha y hora: 2025-07-04 07:44:25
+================================================================================
+=== Info ===
+XML pain.001 generado en schemas/transferencias/d552cde4-d000-4cb5-b64b-f4a29253cbf8/pain001_d552cde4-d000-4cb5-b64b-f4a29253cbf8.xml
+
+
+================================================================================
+Fecha y hora: 2025-07-04 07:44:25
+================================================================================
+=== Info ===
+Archivo AML generado en schemas/transferencias/d552cde4-d000-4cb5-b64b-f4a29253cbf8/aml_d552cde4-d000-4cb5-b64b-f4a29253cbf8.xml
+
+
+================================================================================
+Fecha y hora: 2025-07-04 07:44:33
+================================================================================
+=== Info ===
+Error al solicitar OTP
+
+=== Error ===
+400 Client Error: Bad Request for url: http://80.78.30.242:9181/otp/single
+
+================================================================================
+Fecha y hora: 2025-07-04 07:44:56
+================================================================================
+=== Info ===
+Error al solicitar OTP
+
+=== Error ===
+400 Client Error: Bad Request for url: http://80.78.30.242:9181/otp/single
+
+================================================================================
+Fecha y hora: 2025-07-04 07:45:05
+================================================================================
+=== Info ===
+OAuth: inicio_autorizacion - exito
+
+=== Body de la petición ===
+{
+    "state": "275175296f5c49a987fc2aaaaa256da0",
+    "auth_url": "http://80.78.30.242:9181/oidc/authorize?response_type=code&client_id=7c1e2c53-8cc3-4ea0-bdd6-b3423e76adc7&redirect_uri=https://api.coretransapi.com/oauth2/callback/&scope=sepa_credit_transfers&state=275175296f5c49a987fc2aaaaa256da0&code_challenge_method=S256&code_challenge=VksHhM65lehtAZ5VO2UpCMweKxHX0RaMLqNfS1h2f2k",
+    "code_challenge": "VksHhM65lehtAZ5VO2UpCMweKxHX0RaMLqNfS1h2f2k",
+    "payment_id": "d552cde4-d000-4cb5-b64b-f4a29253cbf8"
+}
+
+
+================================================================================
+Fecha y hora: 2025-07-04 07:45:05
+================================================================================
+=== Info ===
+Inicio del flujo OAuth2 desde transferencia
+
+=== Body de la petición ===
+{
+    "verifier": "9PkV2jYwvLpbfJDJKzldMDfvOdygKOJloapxgsRii2qy_LS63DA6QfmbpJUFOnWE3R8AAO0krTz6v1fUwMQNjQ",
+    "challenge": "VksHhM65lehtAZ5VO2UpCMweKxHX0RaMLqNfS1h2f2k",
+    "state": "275175296f5c49a987fc2aaaaa256da0"
+}
+
+
+================================================================================
+Fecha y hora: 2025-07-04 07:45:16
+================================================================================
+=== Info ===
+Error al solicitar OTP
+
+=== Error ===
+400 Client Error: Bad Request for url: http://80.78.30.242:9181/otp/single
+
+================================================================================
+Fecha y hora: 2025-07-04 07:59:14
+================================================================================
+=== Info ===
+Error al solicitar OTP
+
+=== Error ===
+400 Client Error: Bad Request for url: http://80.78.30.242:9181/otp/single
