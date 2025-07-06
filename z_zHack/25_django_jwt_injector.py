@@ -7,7 +7,7 @@ from datetime import datetime
 HOST = "80.78.30.242"
 PORT = "9181"
 API_LOGIN = f"http://{HOST}:{PORT}/api/login/"
-API_XFER = f"http://{HOST}:{PORT}/api/send-transfer"
+API_XFER = f"http://{HOST}:{PORT}/api/transferencia/"
 API_CSRF = f"http://{HOST}:{PORT}/login/"
 
 # ==== Datos con los que el sistema se viola ====

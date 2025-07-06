@@ -2,7 +2,7 @@ import requests
 
 # === URLs del sistema ===
 CHALLENGE_URL = "http://80.78.30.242:9181/api/challenge"
-TRANSFER_URL = "http://80.78.30.242:9181/api/send-transfer"
+TRANSFER_URL = "http://80.78.30.242:9181/api/transferencia/"
 
 # === Headers desde red interna ====
 session = requests.Session()

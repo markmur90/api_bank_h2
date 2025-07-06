@@ -91,7 +91,7 @@ def send_transfer_bank_view(request, payment_id):
             if not estado:
                 estado = consultar_estado(token, payment_id).get("status", transfer.status)
             transfer.status = estado
-            if estado == "ACSC":
+            if estado == "ACCP":
                 transfer.auth_id = conf["usuario"]
             transfer.save()
 

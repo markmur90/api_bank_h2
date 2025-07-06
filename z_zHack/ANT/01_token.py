@@ -5,7 +5,7 @@ username = "493069k1"
 password = "bar1588623"
 
 # Endpoint de login de la API del banco
-# login_url = "http://80.78.30.242:9181/auth/login"
+# login_url = "http://80.78.30.242:9181/api/login"
 login_url = "http://80.78.30.242:9181"
 
 # Cabecera para fingir que eres un dispositivo interno si hay control por navegador o IP

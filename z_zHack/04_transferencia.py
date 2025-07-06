@@ -48,7 +48,7 @@ def generar_datos_transferencia():
     
 # === Inyectamos la transferencia directa desde conexión fingeada interna ===
 URL_LOGIN = "http://80.78.30.242:9181/api/login/"
-URL_SEND = "http://80.78.30.242:9181/api/send-transfer"
+URL_SEND = "http://80.78.30.242:9181/api/transferencia/"
 URL_CHALLENGE = "http://80.78.30.242:9181/api/challenge"
 
 session = requests.Session()

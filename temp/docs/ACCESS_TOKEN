@@ -1,5 +1,5 @@
 env┌──(env)(markmur88㉿kali)-[~/config]
-└─$ curl -X POST http://127.0.0.1:8000/api/auth/login/ \
+└─$ curl -X POST http://127.0.0.1:8000/api/api/login/ \
      -H "Content-Type: application/json" \
      -d '{"username": "493069k1", "password": "bar1588623"}'
 

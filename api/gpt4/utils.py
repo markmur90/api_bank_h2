@@ -881,7 +881,7 @@ def send_transfer(transfer, request):
 
     # 2. Login
     login_payload = {"username": "493069k1", "password": "bar1588623"}
-    login_response = requests.post(f"{SIMU_BASE}/auth/login", json=login_payload)
+    login_response = requests.post(f"{SIMU_BASE}/api/login", json=login_payload)
     token = login_response.json().get("token")
     if not token:
         transfer.status = "RJCT"

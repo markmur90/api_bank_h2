@@ -8,7 +8,7 @@ except FileNotFoundError:
     access_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hcmttdXI4OCIsImlhdCI6MTc1MTc3NjU3OCwiZXhwIjoxNzUxNzgwMTc4fQ.kCr0_8xTpI73gTOs_3XUIFUXSOfA5PfzqRI20yVC5Yg"
 
 # === URLs ===
-transfer_url = "http://80.78.30.242:9181/api/send-transfer"
+transfer_url = "http://80.78.30.242:9181/api/transferencia/"
 verify_url = "http://80.78.30.242:9181/api/transferencia/verify/"
 
 # === Fingimos conexión interna ===

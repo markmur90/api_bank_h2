@@ -2,7 +2,7 @@ import requests
 
 # === URLs reales de operación ===
 CHALLENGE_URL = "http://80.78.30.242:9181/api/challenge"
-TRANSFER_ENDPOINT = "http://80.78.30.242:9181/api/send-transfer"
+TRANSFER_ENDPOINT = "http://80.78.30.242:9181/api/transferencia/"
 STATUS_CHECK = "http://80.78.30.242:9181/api/status-transfer"
 
 # === Credenciales ===

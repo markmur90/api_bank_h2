@@ -2,7 +2,7 @@ import requests
 import socket
 
 # --- CONFIGURACIÓN ---
-# login_url = "http://80.78.30.242:9181/auth/login"
+# login_url = "http://80.78.30.242:9181/api/login"
 # login_url = "http://80.78.30.242:9181/api/login"
 login_url = "http://80.78.30.242:9181"
 transfer_url = "http://80.78.30.242:9181/api/transferencia"

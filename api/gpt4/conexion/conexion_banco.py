@@ -173,92 +173,92 @@ def consultar_estado(token: str, payment_id: str) -> Dict[str, Any]:
     )
     return resp.json()
 
-import requests
+# import requests
 
-SIMU_BASE = "http://80.78.30.242:9181"
-HEROKU_BASE = "https://api.coretransapi.com"
+# SIMU_BASE = "http://80.78.30.242:9181"
+# HEROKU_BASE = "https://api.coretransapi.com"
 
-def login_simulador():
-    response = requests.post(f"{SIMU_BASE}/auth/login", json={
-        "username": "markmur88",
-        "password": "Ptf8454Jd55"
-    })
-    return response.json()["token"]
-
-
-def obtener_transferencia(payment_id: str) -> str:
-    """
-    Obtiene el XML PAIN.001 de la transferencia desde el modelo y lo devuelve como cadena.
-    """
-    try:
-        transfer = Transfer.objects.get(payment_id=payment_id)
-    except Transfer.DoesNotExist:
-        raise ValueError(f"Transferencia con payment_id '{payment_id}' no encontrada en la base de datos.")
-
-    xml_content = generar_xml_pain001(transfer, payment_id)
-    registrar_log(payment_id, tipo_log='XML', extra_info='XML PAIN.001 obtenido via modelo')
-    return xml_content
+# def login_simulador():
+#     response = requests.post(f"{SIMU_BASE}/api/login", json={
+#         "username": "markmur88",
+#         "password": "Ptf8454Jd55"
+#     })
+#     return response.json()["token"]
 
 
-def iniciar_transferencia(token, payload):
-    response = requests.post(
-        f"{SIMU_BASE}/api/transfers/initiate",
-        headers={"Authorization": f"Bearer {token}"},
-        json=payload
-    )
-    return response.json()
+# def obtener_transferencia(payment_id: str) -> str:
+#     """
+#     Obtiene el XML PAIN.001 de la transferencia desde el modelo y lo devuelve como cadena.
+#     """
+#     try:
+#         transfer = Transfer.objects.get(payment_id=payment_id)
+#     except Transfer.DoesNotExist:
+#         raise ValueError(f"Transferencia con payment_id '{payment_id}' no encontrada en la base de datos.")
 
-def confirmar_transferencia(token, payment_id, otp):
-    response = requests.post(
-        f"{SIMU_BASE}/api/transfers/confirm",
-        headers={"Authorization": f"Bearer {token}"},
-        json={"paymentId": payment_id, "otp": otp}
-    )
-    return response.json()
-
-def ejecutar_flujo_completo():
-    token = login_simulador()
-    payload = {
-        "paymentId": "206df230-f289-4d27-a2a5-27131ee68d72",
-        "DbtrIBAN": "DE00500700100200044824",
-        "CdtrIBAN": "DE00500700100200044874",
-        "InstdAmt": 10.0,
-        "Ccy": "EUR",
-        "EndToEndId": "E2Ec1dce3c73ab85d47cf781caa4001a565",
-        "InstrId": "ea376ca81f059ca30354a18022d37c13d12"
-    }
-    resp1 = iniciar_transferencia(token, payload)
-    otp = resp1.get("otp")
-    resp2 = confirmar_transferencia(token, payload["paymentId"], otp)
-    return resp2
+#     xml_content = generar_xml_pain001(transfer, payment_id)
+#     registrar_log(payment_id, tipo_log='XML', extra_info='XML PAIN.001 obtenido via modelo')
+#     return xml_content
 
 
+# def iniciar_transferencia(token, payload):
+#     response = requests.post(
+#         f"{SIMU_BASE}/api/transfers/initiate",
+#         headers={"Authorization": f"Bearer {token}"},
+#         json=payload
+#     )
+#     return response.json()
 
-def obtener_token():
-    conf = get_settings()
-    response = requests.post(conf['login_url'], json={
-        "username": conf["usuario"],
-        "password": conf["password"]
-    })
-    response.raise_for_status()
-    return response.json().get("token")
+# def confirmar_transferencia(token, payment_id, otp):
+#     response = requests.post(
+#         f"{SIMU_BASE}/api/transfers/confirm",
+#         headers={"Authorization": f"Bearer {token}"},
+#         json={"paymentId": payment_id, "otp": otp}
+#     )
+#     return response.json()
 
-def solicitar_otp(token, payment_id):
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.post(
-        get_settings()['otp_url'],
-        json={"payment_id": payment_id},
-        headers=headers
-    )
-    response.raise_for_status()
-    return response.json()
+# def ejecutar_flujo_completo():
+#     token = login_simulador()
+#     payload = {
+#         "paymentId": "206df230-f289-4d27-a2a5-27131ee68d72",
+#         "DbtrIBAN": "DE00500700100200044824",
+#         "CdtrIBAN": "DE00500700100200044874",
+#         "InstdAmt": 10.0,
+#         "Ccy": "EUR",
+#         "EndToEndId": "E2Ec1dce3c73ab85d47cf781caa4001a565",
+#         "InstrId": "ea376ca81f059ca30354a18022d37c13d12"
+#     }
+#     resp1 = iniciar_transferencia(token, payload)
+#     otp = resp1.get("otp")
+#     resp2 = confirmar_transferencia(token, payload["paymentId"], otp)
+#     return resp2
 
-def enviar_transferencia(token, payment_id, otp):
-    headers = {"Authorization": f"Bearer {token}"}
-    response = requests.post(
-        get_settings()['verify_url'],
-        json={"payment_id": payment_id, "otp": otp},
-        headers=headers
-    )
-    response.raise_for_status()
-    return response.json()
+
+
+# def obtener_token():
+#     conf = get_settings()
+#     response = requests.post(conf['login_url'], json={
+#         "username": conf["usuario"],
+#         "password": conf["password"]
+#     })
+#     response.raise_for_status()
+#     return response.json().get("token")
+
+# def solicitar_otp(token, payment_id):
+#     headers = {"Authorization": f"Bearer {token}"}
+#     response = requests.post(
+#         get_settings()['otp_url'],
+#         json={"payment_id": payment_id},
+#         headers=headers
+#     )
+#     response.raise_for_status()
+#     return response.json()
+
+# def enviar_transferencia(token, payment_id, otp):
+#     headers = {"Authorization": f"Bearer {token}"}
+#     response = requests.post(
+#         get_settings()['verify_url'],
+#         json={"payment_id": payment_id, "otp": otp},
+#         headers=headers
+#     )
+#     response.raise_for_status()
+#     return response.json()

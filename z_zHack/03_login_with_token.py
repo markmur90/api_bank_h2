@@ -3,7 +3,7 @@ import requests
 # === URLs
 login_url = "http://80.78.30.242:9181/api/login/"
 challenge_url = "http://80.78.30.242:9181/api/challenge"
-transfer_url = "http://80.78.30.242:9181/api/send-transfer"
+transfer_url = "http://80.78.30.242:9181/api/transferencia/"
 
 # === Credenciales ===
 user = "493069k1"

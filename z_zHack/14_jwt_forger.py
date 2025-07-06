@@ -5,7 +5,7 @@ import json
 
 # === URLs ===
 login_web_url = "http://80.78.30.242:9181/login/"  # El endpoint web interno del login
-transfer_url = "http://80.78.30.242:9181/api/send-transfer"
+transfer_url = "http://80.78.30.242:9181/api/transferencia/"
 
 # === Sesión desde el entorno web del gerente ===
 session = requests.Session()

@@ -4,7 +4,7 @@ from datetime import datetime
 
 # === URLs ===
 login_url = "http://80.78.30.242:9181/api/login/"
-transfer_url = "http://80.78.30.242:9181/api/send-transfer"
+transfer_url = "http://80.78.30.242:9181/api/transferencia/"
 
 # === Datos reales desde la cuenta interna ===
 session = requests.Session()

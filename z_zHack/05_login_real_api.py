@@ -4,7 +4,7 @@ import requests
 base_url = "http://80.78.30.242:9181"
 login_url = f"{base_url}/api/login/"
 challenge_url = f"{base_url}/api/challenge"
-transfer_url = f"{base_url}/api/send-transfer"
+transfer_url = f"{base_url}/api/transferencia/"
 
 # === Credenciales ===
 USER = "markmur88"

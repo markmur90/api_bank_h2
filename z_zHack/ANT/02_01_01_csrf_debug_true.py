@@ -1,6 +1,6 @@
 import requests
 
-# login_url = "http://80.78.30.242:9181/auth/login"
+# login_url = "http://80.78.30.242:9181/api/login"
 login_url = "http://80.78.30.242:9181"
 
 csrf_url = "http://80.78.30.242:9181/api/transfer/"  # Busca una URL accesible que use CSRF - cambia esto por una página interna conocida
