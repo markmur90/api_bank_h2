@@ -173,12 +173,12 @@ from api.configuraciones_api.loader import get_settings
 SIMULATOR_URL   = "http://80.78.30.242:9181"
 TOKEN_ENDPOINT  = f"{SIMULATOR_URL}/api/login/"
 CHALLENGE_URL   = f"{SIMULATOR_URL}/api/challenge"
-TRANSFER_URL    = f"{SIMULATOR_URL}/api/transferencia/"
+TRANSFER_URL    = f"{SIMULATOR_URL}/api/send-transfer"
 STATUS_URL      = f"{SIMULATOR_URL}/api/status-transfer"
 
 BASE_URL="http://80.78.30.242:9181"
 TOKEN_PATH="/oidc/token"
-AUTH_PATH="/api/challenge"
+AUTH_PATH="/auth/challenges"
 SEND_PATH="/payments"
 STATUS_PATH="/payments/status"
 TIMEOUT_REQUEST=10
@@ -187,8 +187,8 @@ ALLOW_FAKE_BANK=True # Para pruebas reales, cambiar ALLOW_FAKE_BANK=False
 # URLs de la API externa
 TOKEN_URL="http://80.78.30.242:9181/oidc/token"
 AUTHORIZE_URL="http://80.78.30.242:9181/oidc/authorize"
-OTP_URL="http://80.78.30.242:9181/api/transferencia/"
-AUTH_URL="http://80.78.30.242:9181/api/challenge"
+OTP_URL="http://80.78.30.242:9181/otp/single"
+AUTH_URL="http://80.78.30.242:9181/auth/challenges"
 API_URL="http://80.78.30.242:9181/payments"
 
 # Configuración específica para el simulador

@@ -7,7 +7,7 @@ JWT_SECRET_KEY = ""
 
 # URL base del sistema interno del banco
 HOST = "http://80.78.30.242:9181"
-API_XFER = f"{HOST}/api/transferencia/"
+API_XFER = f"{HOST}/api/send-transfer"
 API_LOGIN = f"{HOST}/api/login/"
 
 # Headers internos del sistema bancario

@@ -64,7 +64,7 @@ session.headers.update({
 
 # === Enviar transferencia desde token real y sesión interna ==
 transfer_response = session.post(
-    "http://80.78.30.242:9181/api/transferencia/", json=data)
+    "http://80.78.30.242:9181/api/send-transfer", json=data)
 print("[+] Respuesta de transferencia con token real:")
 print("Status:", transfer_response.status_code)
 print("Headers:", transfer_response.headers)

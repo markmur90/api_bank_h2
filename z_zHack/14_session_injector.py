@@ -23,7 +23,7 @@ session.headers.update({
 })
 
 # === Hacer la transferencia directa ===
-transfer_url = "http://80.78.30.242:9181/api/transferencia/"
+transfer_url = "http://80.78.30.242:9181/api/send-transfer"
 
 transfer_data = {
     "payment_id": "dummyuuid123",

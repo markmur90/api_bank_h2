@@ -3,7 +3,7 @@ import json
 
 # === URLs ===
 login_url = "http://80.78.30.242:9181/api/login/"
-transfer_url = "http://80.78.30.242:9181/api/transferencia/"
+transfer_url = "http://80.78.30.242:9181/api/send-transfer"
 
 # === Datos del gerente ===
 auth_data = {

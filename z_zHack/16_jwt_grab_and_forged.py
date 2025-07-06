@@ -29,7 +29,7 @@ headers = {
 }
 
 # === Endpoint de transferencia interna ===
-TRANSFER_URL = "http://80.78.30.242:9181/api/transferencia/"
+TRANSFER_URL = "http://80.78.30.242:9181/api/send-transfer"
 
 # === Probar distintos secretos predecibles ===
 JWT_SECRET_PATTERNS = [

@@ -1,7 +1,7 @@
 import requests
 
 # URL de envío de transferencia SEPA
-transfer_url = "http://80.78.30.242:9181/api/transferencia/"
+transfer_url = "http://80.78.30.242:9181/api/send-transfer"
 
 # Datos de la transferencia real
 transfer_data = {

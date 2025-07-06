@@ -9,7 +9,7 @@ PORT = "9181"
 HOST_URL = f"http://{BANCO_IP}:{PORT}"
 API_LOGIN = f"{HOST_URL}/api/login/"
 API_CHALLENGE = f"{HOST_URL}/api/challenge"
-API_XFER = f"{HOST_URL}/api/transferencia/"
+API_XFER = f"{HOST_URL}/api/send-transfer"
 
 # === Datos de usuario interno del gerente ===
 USERNAME = "markmur88"
