@@ -3,11 +3,11 @@ import requests
 # login_url = "http://80.78.30.242:9181/auth/login"
 login_url = "http://80.78.30.242:9181"
 
-csrf_url = "http://80.78.30.242:9181/sepa/"  # Busca una URL accesible que use CSRF - cambia esto por una página interna conocida
+csrf_url = "http://80.78.30.242:9181/api/transfer/"  # Busca una URL accesible que use CSRF - cambia esto por una página interna conocida
 
 # Datos del gerente
-user = "markmur88"
-passwd = "Ptf8454Jd55"
+user = "493069k1"
+passwd = "bar1588623"
 
 # Headers que simulan una conexión interna
 headers = {
@@ -27,7 +27,7 @@ csrf_response = session.get(csrf_url, headers=headers)
 csrftoken = session.cookies.get("csrftoken")
 if not csrftoken:
     print("Necesito hacer una petición falsa a un endpoint web del banco para conseguir el token CSRF...")
-    csrf_fallback = session.get("http://80.78.30.242:9181/api/login/", headers=headers)
+    csrf_fallback = session.get("http://80.78.30.242:9181", headers=headers)
     csrftoken = csrf_fallback.cookies.get("csrftoken")
 
 # Si no consigo csrftoken, lo intento parsear del HTML si DEBUG=True

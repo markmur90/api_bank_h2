@@ -1,8 +1,8 @@
 import requests
 
 # Datos del gerente que tienes
-username = "markmur88"
-password = "Ptf8454Jd55"
+username = "493069k1"
+password = "bar1588623"
 
 # Endpoint de login de la API del banco
 # login_url = "http://80.78.30.242:9181/auth/login"

