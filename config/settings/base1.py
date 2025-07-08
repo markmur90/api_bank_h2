@@ -176,20 +176,7 @@ CHALLENGE_URL   = f"{SIMULATOR_URL}/api/challenge"
 TRANSFER_URL    = f"{SIMULATOR_URL}/api/send-transfer"
 STATUS_URL      = f"{SIMULATOR_URL}/api/status-transfer"
 
-BASE_URL="http://80.78.30.242:9181"
-TOKEN_PATH="/oidc/token"
-AUTH_PATH="/auth/challenges"
-SEND_PATH="/payments"
-STATUS_PATH="/payments/status"
-TIMEOUT_REQUEST=10
-ALLOW_FAKE_BANK=True # Para pruebas reales, cambiar ALLOW_FAKE_BANK=False
 
-# URLs de la API externa
-TOKEN_URL="http://80.78.30.242:9181/oidc/token"
-AUTHORIZE_URL="http://80.78.30.242:9181/oidc/authorize"
-OTP_URL="http://80.78.30.242:9181/otp/single"
-AUTH_URL="http://80.78.30.242:9181/auth/challenges"
-API_URL="http://80.78.30.242:9181/payments"
 
 # Configuración específica para el simulador
 SIMULADOR_SECRET_KEY  = os.environ['SIMULADOR_SECRET_KEY']
@@ -199,12 +186,8 @@ SIMULADOR_VERIFY_URL  = os.environ['SIMULADOR_VERIFY_URL']
 SIMULADOR_USERNAME    = os.environ['SIMULADOR_USERNAME']
 SIMULADOR_PASSWORD    = os.environ['SIMULADOR_PASSWORD']
 
-REDIRECT_URI="https://api.coretransapi.com/oauth2/callback/"
-ORIGIN="https://api.coretransapi.com"
 
 
-SCOPE = "sepa_credit_transfers"
-TIMEOUT_REQUEST = 3600
 
 ACCESS_TOKEN = env('ACCESS_TOKEN')
 CLIENT_ID = env('CLIENT_ID')
@@ -228,8 +211,7 @@ OAUTH2 = {
 
 }
 
-JWT_SIGNING_KEY = "Ptf8454Jd55"
-JWT_VERIFYING_KEY = "Ptf8454Jd55"
+
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
