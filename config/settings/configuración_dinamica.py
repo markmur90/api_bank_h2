@@ -38,3 +38,9 @@ OAUTH2 = {
     'TIMEOUT': TIMEOUT,
     'MOCK_PORT': MOCK_PORT,
 }
+
+
+
+def get_oauth2_settings() -> dict:
+    """Return a copy of the dynamic OAUTH2 configuration."""
+    return OAUTH2.copy()
