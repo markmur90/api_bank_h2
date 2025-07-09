@@ -970,8 +970,8 @@ def send_transfer5(transfer, request):
 
 import logging
 from django.shortcuts import get_object_or_404
-from .conexion.conexion_banco import make_request, obtener_token, default_request_headers
-from .models import Transfer
+from api.gpt4.conexion.conexion_banco import make_request, obtener_token
+from api.gpt4.models import Transfer
 from config.settings.env_vars import load_env
 
 logger = logging.getLogger(__name__)
