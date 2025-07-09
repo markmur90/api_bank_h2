@@ -25,6 +25,7 @@ import qrcode
 import jwt
 from cryptography.hazmat.primitives import serialization
 
+from api.gpt4.conexion.conexion_banco import make_request, obtener_token
 from api.gpt4.models import LogTransferencia, Transfer
 
 
@@ -970,7 +971,6 @@ def send_transfer5(transfer, request):
 
 import logging
 from django.shortcuts import get_object_or_404
-from api.gpt4.conexion.conexion_banco import make_request, obtener_token
 from api.gpt4.models import Transfer
 from config.settings.env_vars import load_env
 
@@ -1000,14 +1000,14 @@ def send_transfer(request, payment_id: str, otp: str) -> dict:
         "creditor_account": transfer.creditor_account.name,
         "debtor": transfer.debtor.name,
         "creditor": transfer.creditor.name,
-        "instructed_amount": float(transfer.instd_amount),
+        "instructed_amount": float(transfer.instructed_amount),
         "currency": transfer.currency,
         "requested_execution_date": str(transfer.requested_execution_date),
         "purpose_code": transfer.purpose_code,
         "remittance_information_unstructured": transfer.remittance_information_unstructured,
         "payment_identification": transfer.payment_identification.name if transfer.payment_identification else None,
         "auth_id": request.user.username,
-        "status": "RCVD",
+        "status": "PNDG",
     }
 
     # 4. Set default headers and include Authorization
