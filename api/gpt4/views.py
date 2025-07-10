@@ -857,7 +857,8 @@ from django.utils.translation import gettext as _
 from .utils import send_transfer
 from .models import Transfer
 from .forms import SendTransferForm
-from .conexion.conexion_banco import make_request, obtener_token, default_request_headers
+from .conexion.conexion_banco import make_request, obtener_token
+from .utils import default_request_headers
 from config.settings.env_vars import load_env
 
 logger = logging.getLogger(__name__)
