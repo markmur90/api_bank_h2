@@ -1023,8 +1023,8 @@ def send_transfer(request, payment_id: str, otp: str) -> dict:
     response = make_request(
         method="POST",
         path=transfer_path,
-        json=payload,
-        headers=headers,
+        payload=payload,
+        token=headers,
     )
     data = response.json()
 
