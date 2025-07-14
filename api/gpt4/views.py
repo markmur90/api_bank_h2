@@ -845,7 +845,7 @@ def send_transfer_view2(request, payment_id):
         'transfer': transfer,
         'form': form,
     }
-    return render(request, 'transfers/send_transfer.html', context)
+    return render(request, 'api/GPT4/send_transfer.html', context)
 
 
 import logging
@@ -894,7 +894,7 @@ def send_transfer_view(request, payment_id):
         'transfer': transfer,
         'form': form,
     }
-    return render(request, 'transfers/send_transfer.html', context)
+    return render(request, 'api/GPT4/send_transfer.html', context)
 
 
 
