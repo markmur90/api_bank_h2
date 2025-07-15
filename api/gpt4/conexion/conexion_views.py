@@ -38,7 +38,7 @@ def send_transfer_bank_view(request, payment_id):
             # 3) Obtener token automáticamente
             token = obtener_token()
             request.session["bank_token"] = token
-
+            # auth_url = get_conf()
             # 4) Autorizar OAuth2 simulado en el simulador
             make_request("GET", f"/gw/oidc/authorize?payment_id={payment_id}", token=None)
 
