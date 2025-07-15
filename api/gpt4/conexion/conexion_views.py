@@ -44,7 +44,7 @@ def send_transfer_bank_view(request, payment_id):
             # auth_url = get_conf()
             # 4) Autorizar OAuth2 simulado en el simulador
             # make_request("GET", f"/gw/oidc/authorize?payment_id={payment_id}", token=None)
-            make_request("GET", f""$token_path"?payment_id={payment_id}", token=None)
+            make_request("GET", f"{token_path}?payment_id={payment_id}", token=None)
 
             # 5) Solicitar OTP al simulador
             resp = make_request(
