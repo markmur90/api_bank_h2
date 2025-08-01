@@ -1,0 +1,52 @@
+{
+  "name": "Amara-AI-Complete",
+  "description": "Agente completo con todos los módulos locales instalados",
+  "version": "1.0.0",
+  "plugins": [
+    "@elizaos/plugin-bootstrap",
+    "@elizaos/plugin-dummy-services",
+    "@elizaos/plugin-sql"
+  ],
+  "settings": {
+    "port": 9182,
+    "host": "0.0.0.0",
+    "database": {
+      "type": "pglite",
+      "path": "/home/markmur88/eliza-develop/.eliza"
+    },
+    "local_modules": {
+      "gaby_fullstack": {
+        "path": "/home/markmur88/eliza-develop/Gaby_fullstack",
+        "enabled": true,
+        "models": {
+          "stable_diffusion": {
+            "path": "/home/markmur88/eliza-develop/Gaby_fullstack/stable-diffusion-webui",
+            "enabled": true
+          },
+          "huggingface": {
+            "path": "/home/markmur88/eliza-develop/Gaby_fullstack/models",
+            "enabled": true
+          }
+        }
+      },
+      "my_agent": {
+        "path": "/home/markmur88/eliza-develop/my-agent",
+        "enabled": true
+      }
+    },
+    "no_external_apis": true,
+    "local_only": true
+  },
+  "character": {
+    "name": "Amara",
+    "personality": "Soy Amara, tu asistente de IA completa. Tengo acceso a todos los módulos locales incluyendo generación de imágenes, procesamiento de texto, y herramientas de desarrollo. No necesito APIs externas, todo funciona localmente.",
+    "capabilities": [
+      "Generación de imágenes con Stable Diffusion",
+      "Procesamiento de texto local",
+      "Gestión de base de datos SQL",
+      "Herramientas de desarrollo",
+      "Análisis de código",
+      "Generación de contenido multimedia"
+    ]
+  }
+} 

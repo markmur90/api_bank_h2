@@ -1,0 +1,319 @@
+{
+  "templates": {
+    "agente_completo_local": {
+      "name": "Agente-Local-Complete",
+      "description": "Agente completo con todos los módulos locales, sin APIs externas",
+      "version": "1.0.0",
+      "plugins": [
+        "@elizaos/plugin-bootstrap",
+        "@elizaos/plugin-dummy-services",
+        "@elizaos/plugin-sql"
+      ],
+      "settings": {
+        "port": 9182,
+        "host": "0.0.0.0",
+        "database": {
+          "type": "pglite",
+          "path": "/home/markmur88/eliza-develop/.eliza"
+        },
+        "local_modules": {
+          "gaby_fullstack": {
+            "path": "/home/markmur88/eliza-develop/Gaby_fullstack",
+            "enabled": true,
+            "models": {
+              "stable_diffusion": {
+                "path": "/home/markmur88/eliza-develop/Gaby_fullstack/stable-diffusion-webui",
+                "enabled": true
+              },
+              "huggingface": {
+                "path": "/home/markmur88/eliza-develop/Gaby_fullstack/models",
+                "enabled": true
+              }
+            }
+          },
+          "my_agent": {
+            "path": "/home/markmur88/eliza-develop/my-agent",
+            "enabled": true
+          }
+        },
+        "no_external_apis": true,
+        "local_only": true
+      },
+      "character": {
+        "name": "LocalAI",
+        "personality": "Soy un asistente de IA completa que funciona 100% localmente. Tengo acceso a todos los módulos locales incluyendo generación de imágenes, procesamiento de texto, y herramientas de desarrollo. No necesito APIs externas, todo funciona en tu servidor.",
+        "capabilities": [
+          "Generación de imágenes con Stable Diffusion",
+          "Procesamiento de texto local",
+          "Gestión de base de datos SQL",
+          "Herramientas de desarrollo",
+          "Análisis de código",
+          "Generación de contenido multimedia"
+        ]
+      }
+    },
+
+    "agente_web_developer": {
+      "name": "Web-Developer-Agent",
+      "description": "Agente especializado en desarrollo web y programación",
+      "version": "1.0.0",
+      "plugins": [
+        "@elizaos/plugin-bootstrap",
+        "@elizaos/plugin-sql"
+      ],
+      "settings": {
+        "port": 9183,
+        "host": "0.0.0.0",
+        "database": {
+          "type": "pglite",
+          "path": "/home/markmur88/eliza-develop/.eliza"
+        },
+        "specializations": {
+          "web_development": {
+            "enabled": true,
+            "frameworks": ["React", "Vue", "Angular", "Node.js", "Python", "PHP"],
+            "tools": ["Git", "Docker", "Webpack", "Babel"]
+          },
+          "code_analysis": {
+            "enabled": true,
+            "languages": ["JavaScript", "TypeScript", "Python", "PHP", "Java", "C++"]
+          }
+        },
+        "local_modules": {
+          "my_agent": {
+            "path": "/home/markmur88/eliza-develop/my-agent",
+            "enabled": true
+          }
+        }
+      },
+      "character": {
+        "name": "CodeMaster",
+        "personality": "Soy CodeMaster, tu asistente especializado en desarrollo web y programación. Puedo ayudarte con análisis de código, debugging, optimización, y mejores prácticas de desarrollo. Tengo experiencia en múltiples frameworks y lenguajes de programación.",
+        "capabilities": [
+          "Análisis y revisión de código",
+          "Debugging y solución de problemas",
+          "Optimización de rendimiento",
+          "Arquitectura de software",
+          "Mejores prácticas de desarrollo",
+          "Refactoring de código"
+        ]
+      }
+    },
+
+    "agente_creative_writer": {
+      "name": "Creative-Writer-Agent",
+      "description": "Agente especializado en escritura creativa y generación de contenido",
+      "version": "1.0.0",
+      "plugins": [
+        "@elizaos/plugin-bootstrap",
+        "@elizaos/plugin-dummy-services"
+      ],
+      "settings": {
+        "port": 9184,
+        "host": "0.0.0.0",
+        "database": {
+          "type": "pglite",
+          "path": "/home/markmur88/eliza-develop/.eliza"
+        },
+        "specializations": {
+          "creative_writing": {
+            "enabled": true,
+            "genres": ["Ficción", "No ficción", "Poesía", "Guiones", "Artículos"],
+            "styles": ["Narrativo", "Descriptivo", "Persuasivo", "Expositivo"]
+          },
+          "content_generation": {
+            "enabled": true,
+            "types": ["Blog posts", "Social media", "Marketing copy", "Technical writing"]
+          }
+        },
+        "local_modules": {
+          "gaby_fullstack": {
+            "path": "/home/markmur88/eliza-develop/Gaby_fullstack",
+            "enabled": true,
+            "models": {
+              "text_generation": {
+                "enabled": true
+              }
+            }
+          }
+        }
+      },
+      "character": {
+        "name": "StoryWeaver",
+        "personality": "Soy StoryWeaver, tu asistente creativo especializado en escritura y generación de contenido. Puedo ayudarte a crear historias, artículos, poesía, y cualquier tipo de contenido escrito. Mi creatividad no tiene límites.",
+        "capabilities": [
+          "Escritura creativa y narrativa",
+          "Generación de poesía y versos",
+          "Creación de guiones y diálogos",
+          "Redacción de artículos y blogs",
+          "Copywriting y marketing",
+          "Edición y mejora de textos"
+        ]
+      }
+    },
+
+    "agente_data_analyst": {
+      "name": "Data-Analyst-Agent",
+      "description": "Agente especializado en análisis de datos y business intelligence",
+      "version": "1.0.0",
+      "plugins": [
+        "@elizaos/plugin-bootstrap",
+        "@elizaos/plugin-sql"
+      ],
+      "settings": {
+        "port": 9185,
+        "host": "0.0.0.0",
+        "database": {
+          "type": "pglite",
+          "path": "/home/markmur88/eliza-develop/.eliza"
+        },
+        "specializations": {
+          "data_analysis": {
+            "enabled": true,
+            "tools": ["SQL", "Python", "R", "Excel", "Tableau"],
+            "techniques": ["Statistical Analysis", "Data Mining", "Predictive Modeling"]
+          },
+          "business_intelligence": {
+            "enabled": true,
+            "areas": ["KPI Analysis", "Trend Analysis", "Performance Metrics"]
+          }
+        },
+        "local_modules": {
+          "my_agent": {
+            "path": "/home/markmur88/eliza-develop/my-agent",
+            "enabled": true
+          }
+        }
+      },
+      "character": {
+        "name": "DataSage",
+        "personality": "Soy DataSage, tu asistente especializado en análisis de datos y business intelligence. Puedo ayudarte a interpretar datos, crear visualizaciones, identificar tendencias, y tomar decisiones basadas en evidencia.",
+        "capabilities": [
+          "Análisis estadístico de datos",
+          "Creación de visualizaciones",
+          "Identificación de tendencias y patrones",
+          "Análisis de KPIs y métricas",
+          "Modelado predictivo",
+          "Generación de reportes ejecutivos"
+        ]
+      }
+    },
+
+    "agente_customer_support": {
+      "name": "Customer-Support-Agent",
+      "description": "Agente especializado en atención al cliente y soporte técnico",
+      "version": "1.0.0",
+      "plugins": [
+        "@elizaos/plugin-bootstrap",
+        "@elizaos/plugin-dummy-services"
+      ],
+      "settings": {
+        "port": 9186,
+        "host": "0.0.0.0",
+        "database": {
+          "type": "pglite",
+          "path": "/home/markmur88/eliza-develop/.eliza"
+        },
+        "specializations": {
+          "customer_service": {
+            "enabled": true,
+            "skills": ["Problem Solving", "Communication", "Empathy", "Product Knowledge"]
+          },
+          "technical_support": {
+            "enabled": true,
+            "areas": ["Software Issues", "Hardware Problems", "Network Troubleshooting"]
+          }
+        },
+        "integrations": {
+          "telegram": {
+            "enabled": true,
+            "bot_token": "YOUR_TELEGRAM_BOT_TOKEN",
+            "chat_id": "YOUR_CHAT_ID"
+          }
+        }
+      },
+      "character": {
+        "name": "SupportHero",
+        "personality": "Soy SupportHero, tu asistente especializado en atención al cliente y soporte técnico. Estoy aquí para ayudarte a resolver problemas, responder preguntas, y proporcionar la mejor experiencia de servicio al cliente.",
+        "capabilities": [
+          "Resolución de problemas técnicos",
+          "Atención al cliente 24/7",
+          "Soporte multilingüe",
+          "Gestión de tickets y casos",
+          "Documentación y guías",
+          "Escalación de problemas complejos"
+        ]
+      }
+    },
+
+    "agente_marketing": {
+      "name": "Marketing-Agent",
+      "description": "Agente especializado en marketing digital y estrategias de crecimiento",
+      "version": "1.0.0",
+      "plugins": [
+        "@elizaos/plugin-bootstrap",
+        "@elizaos/plugin-dummy-services"
+      ],
+      "settings": {
+        "port": 9187,
+        "host": "0.0.0.0",
+        "database": {
+          "type": "pglite",
+          "path": "/home/markmur88/eliza-develop/.eliza"
+        },
+        "specializations": {
+          "digital_marketing": {
+            "enabled": true,
+            "channels": ["Social Media", "Email Marketing", "SEO", "PPC", "Content Marketing"]
+          },
+          "growth_strategy": {
+            "enabled": true,
+            "areas": ["User Acquisition", "Retention", "Conversion Optimization", "Analytics"]
+          }
+        },
+        "local_modules": {
+          "gaby_fullstack": {
+            "path": "/home/markmur88/eliza-develop/Gaby_fullstack",
+            "enabled": true,
+            "models": {
+              "image_generation": {
+                "enabled": true,
+                "use_case": "Marketing materials and social media content"
+              }
+            }
+          }
+        }
+      },
+      "character": {
+        "name": "GrowthGuru",
+        "personality": "Soy GrowthGuru, tu asistente especializado en marketing digital y estrategias de crecimiento. Puedo ayudarte a crear campañas efectivas, optimizar conversiones, y desarrollar estrategias de marketing que generen resultados.",
+        "capabilities": [
+          "Creación de estrategias de marketing",
+          "Análisis de campañas publicitarias",
+          "Optimización de conversiones",
+          "Generación de contenido para redes sociales",
+          "Análisis de competencia",
+          "Planificación de campañas"
+        ]
+      }
+    }
+  },
+
+  "instructions": {
+    "how_to_use": {
+      "1": "Selecciona el template que mejor se adapte a tus necesidades",
+      "2": "Copia el JSON del agente deseado",
+      "3": "Modifica los valores según tu configuración específica",
+      "4": "Guarda el archivo como 'config.json' en el directorio del agente",
+      "5": "Ajusta el puerto si es necesario para evitar conflictos",
+      "6": "Personaliza la personalidad y capacidades según tus requerimientos"
+    },
+    "customization_tips": {
+      "port": "Cambia el puerto para cada agente (9182, 9183, 9184, etc.)",
+      "path": "Ajusta las rutas según tu estructura de directorios",
+      "plugins": "Agrega o quita plugins según las necesidades del agente",
+      "personality": "Personaliza la personalidad para que coincida con el propósito del agente",
+      "capabilities": "Lista las capacidades específicas que debe tener el agente"
+    }
+  }
+} 

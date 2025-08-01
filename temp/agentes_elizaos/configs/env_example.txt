@@ -1,0 +1,52 @@
+# Configuración de ElizaOS para Agentes
+# Copia este archivo a .env y modifica según tus necesidades
+
+# Configuración del servidor
+PORT=9182
+HOST=0.0.0.0
+
+# Configuración de base de datos local
+PGLITE_DATA_DIR=/home/markmur88/eliza-develop/.eliza
+
+# Configuración de logging
+LOG_LEVEL=info
+
+# Configuración de módulos locales (sin APIs externas)
+USE_LOCAL_MODULES=true
+NO_EXTERNAL_APIS=true
+
+# Configuración de Stable Diffusion local
+STABLE_DIFFUSION_PATH=/home/markmur88/eliza-develop/Gaby_fullstack/stable-diffusion-webui
+STABLE_DIFFUSION_ENABLED=true
+
+# Configuración de modelos locales
+LOCAL_MODELS_PATH=/home/markmur88/eliza-develop/Gaby_fullstack/models
+LOCAL_MODELS_ENABLED=true
+
+# Configuración de plugins locales
+PLUGIN_BOOTSTRAP_ENABLED=true
+PLUGIN_DUMMY_SERVICES_ENABLED=true
+PLUGIN_SQL_ENABLED=true
+
+# Configuración de agente personalizado
+MY_AGENT_PATH=/home/markmur88/eliza-develop/my-agent
+MY_AGENT_ENABLED=true
+
+# Configuración de Thor Toys y módulos Gaby
+GABY_FULLSTACK_PATH=/home/markmur88/eliza-develop/Gaby_fullstack
+GABY_FULLSTACK_ENABLED=true
+
+# Configuración de SadTalker local
+SADTALKER_MODEL_PATH=/home/markmur88/eliza-develop/SadTalker/checkpoints
+SADTALKER_AUDIO_PATH=/home/markmur88/eliza-develop/audio
+SADTALKER_OUTPUT_PATH=/home/markmur88/eliza-develop/videos
+SADTALKER_ENABLED=true
+
+# Configuración de Telegram (opcional)
+TELEGRAM_BOT_TOKEN=YOUR_TELEGRAM_BOT_TOKEN
+CHAT_ID=YOUR_CHAT_ID
+
+# Configuración de Venice.ai (opcional, para APIs externas)
+VENICE_API_KEY=YOUR_VENICE_API_KEY
+CHAT_MODEL=venice-uncensored
+IMAGE_MODEL=flux-dev 
