@@ -835,7 +835,7 @@ def send_transfer_view2(request, payment_id):
             except Exception as e:
                 messages.error(request, _('Error sending transfer: %(error)s') % {'error': str(e)})
                 logger.error(f"send_transfer_view: error on transfer {payment_id}: {e}")
-                return redirect(reverse('send_transfer', args=[payment_id]))
+                return redirect(reverse('send_transfer_viewGPT4', args=[payment_id]))
     else:
         # En get, renderice formulario y active OTP Enviar lógica en la pantalla de formulario si es necesario
         # The OTP challenge was already initiated in the detail view or separately
@@ -884,7 +884,7 @@ def send_transfer_view(request, payment_id):
             except Exception as e:
                 messages.error(request, _('Error sending transfer: %(error)s') % {'error': str(e)})
                 logger.error(f"send_transfer_view: error on transfer {payment_id}: {e}")
-                return redirect(reverse('send_transfer', args=[payment_id]))
+                return redirect(reverse('send_transfer_viewGPT4', args=[payment_id]))
     else:
         # En get, renderice formulario y active OTP Enviar lógica en la pantalla de formulario si es necesario
         # The OTP challenge was already initiated in the detail view or separately
