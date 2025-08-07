@@ -1002,6 +1002,7 @@ def send_transfer(request, payment_id: str, otp: str) -> dict:
         "creditor_account": transfer.creditor_account.name,
         "debtor": transfer.debtor.name,
         "creditor": transfer.creditor.name,
+        "creditor_agent": transfer.creditor_agent.bic,
         "instructed_amount": float(transfer.instructed_amount),
         "currency": transfer.currency,
         "requested_execution_date": str(transfer.requested_execution_date),
