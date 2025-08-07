@@ -1,1 +1,1 @@
-[2025-08-06 23:53:11] ERROR [2737221f-49a9-4bf1-aa23-8073f3e5371d]: 401 Client Error: Unauthorized for url: http://80.78.30.242:9181/api/login/
+[2025-08-07 06:50:18] ERROR [fccaefe5-36df-4f3f-8686-d27d5155dd0f]: name 'token_path' is not defined
