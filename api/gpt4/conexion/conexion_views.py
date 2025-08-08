@@ -32,7 +32,7 @@ def send_transfer_bank_view(request, payment_id):
     # 2) Vinculamos el formulario a esa instancia para que traiga debtor_account, creditor_account, etc.
     form = SendTransferForm(request.POST or None, instance=transfer, context_mode='simple_otp')
     conf = get_settings()
-    tokek_path_O = conf["TOKEN_PATH"]
+    tokek_path = conf["TOKEN_PATH"]
     auth_path = conf["AUTH_PATH"]
     send_path = conf["SEND_PATH"]
 
@@ -40,7 +40,6 @@ def send_transfer_bank_view(request, payment_id):
         try:
             # 3) Obtener token automáticamente
             token = obtener_token()
-            token_path = tokek_path_O
             request.session["bank_token"] = token
             # auth_url = get_conf()
             # 4) Autorizar OAuth2 simulado en el simulador
