@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ==============================================================================
 # SCRIPT PARA SUBIR VARIABLES DE ENTORNO A POSTGRESQL (CON BORRADO)
