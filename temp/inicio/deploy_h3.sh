@@ -162,7 +162,7 @@ echo "[+] Creando Dockerfile para visor web..."
 cat << 'EOF' > /opt/honeypot/web/Dockerfile
 FROM python:3.11-slim
 WORKDIR /app
-RUN pip install flask
+RUN python3 -m pip install flask
 COPY app.py ./
 COPY templates/ ./templates/
 CMD ["flask", "run", "--host=0.0.0.0"]

@@ -1,2 +1,2 @@
-pip install pytest pytest-django pytest-cov
-pip install pytest-mock
+python3 -m pip install pytest pytest-django pytest-cov
+python3 -m pip install pytest-mock

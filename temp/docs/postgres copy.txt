@@ -17,10 +17,10 @@ sudo systemctl status postgresql
 # Crear base de datos y usuario con permisos
 sudo -u postgres psql
 
-CREATE DATABASE api_db;
+CREATE DATABASE mydatabase;
 
 CREATE USER markmur88 WITH PASSWORD 'Ptf8454Jd55';
-GRANT ALL PRIVILEGES ON DATABASE api_db TO markmur88;
+GRANT ALL PRIVILEGES ON DATABASE mydatabase TO markmur88;
 GRANT USAGE, CREATE ON SCHEMA public TO markmur88;
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO markmur88;
 
@@ -28,7 +28,7 @@ ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO markmur88;
 
 # Verificar configuración
 sudo -u postgres psql
-\c api_db
+\c mydatabase
 \du
 \dn+
 \q
@@ -58,20 +58,20 @@ sudo systemctl status postgresql
 Para crear una base de datos en PostgreSQL y otorgar permisos a un usuario, puedes seguir estos pasos:
 
 sudo -u postgres psql
-CREATE DATABASE IF NOT EXISTS api_db;
+CREATE DATABASE IF NOT EXISTS mydatabase;
 CREATE USER "493069k1" WITH PASSWORD '02569S';
 GRANT ALL PRIVILEGES ON SCHEMA public TO "493069k1";
-GRANT CONNECT ON DATABASE api_db TO "493069k1";
-GRANT CREATE ON DATABASE api_db TO "493069k1";
+GRANT CONNECT ON DATABASE mydatabase TO "493069k1";
+GRANT CREATE ON DATABASE mydatabase TO "493069k1";
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO "493069k1";
 \q
 
 -- Asegúrate de que el usuario tiene permisos en la base de datos
-GRANT CONNECT ON DATABASE api_db TO "493069k1";
-GRANT CREATE ON DATABASE api_db TO "493069k1";
+GRANT CONNECT ON DATABASE mydatabase TO "493069k1";
+GRANT CREATE ON DATABASE mydatabase TO "493069k1";
 
 -- Cambia a la base de datos
-\c api_db
+\c mydatabase
 
 -- Otorga permisos en el esquema public
 GRANT USAGE ON SCHEMA public TO "493069k1";
@@ -182,20 +182,20 @@ sudo systemctl status postgresql
 Para crear una base de datos en PostgreSQL y otorgar permisos a un usuario, puedes seguir estos pasos:
 
 sudo -u postgres psql
-CREATE DATABASE IF NOT EXISTS api_db;
+CREATE DATABASE IF NOT EXISTS mydatabase;
 CREATE USER "493069k1" WITH PASSWORD '02569S';
 GRANT ALL PRIVILEGES ON SCHEMA public TO "493069k1";
-GRANT CONNECT ON DATABASE api_db TO "493069k1";
-GRANT CREATE ON DATABASE api_db TO "493069k1";
+GRANT CONNECT ON DATABASE mydatabase TO "493069k1";
+GRANT CREATE ON DATABASE mydatabase TO "493069k1";
 ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL ON TABLES TO "493069k1";
 \q
 
 -- Asegúrate de que el usuario tiene permisos en la base de datos
-GRANT CONNECT ON DATABASE api_db TO "493069k1";
-GRANT CREATE ON DATABASE api_db TO "493069k1";
+GRANT CONNECT ON DATABASE mydatabase TO "493069k1";
+GRANT CREATE ON DATABASE mydatabase TO "493069k1";
 
 -- Cambia a la base de datos
-\c api_db
+\c mydatabase
 
 -- Otorga permisos en el esquema public
 GRANT USAGE ON SCHEMA public TO "493069k1";

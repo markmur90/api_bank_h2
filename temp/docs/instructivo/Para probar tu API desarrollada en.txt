@@ -56,7 +56,7 @@ Si aún no lo has hecho, instala Django REST Framework:
 sh
 Copiar
 Editar
-pip install djangorestframework
+python3 -m pip install djangorestframework
 Luego, agrégalo en el archivo settings.py:
 
 python
@@ -88,7 +88,7 @@ Si necesitas habilitar CORS para permitir solicitudes desde otros servidores:
 sh
 Copiar
 Editar
-pip install django-cors-headers
+python3 -m pip install django-cors-headers
 Luego, agrégalo a INSTALLED_APPS y configura en settings.py:
 
 python
@@ -312,7 +312,7 @@ Si aún no lo tienes instalado, ejecuta:
 sh
 Copiar
 Editar
-pip install django djangorestframework
+python3 -m pip install django djangorestframework
 Luego, agrega 'rest_framework' en settings.py:
 
 python
@@ -1831,7 +1831,7 @@ Ejecuta este comando en la terminal para instalar el paquete de autenticación J
 sh
 Copiar
 Editar
-pip install djangorestframework-simplejwt
+python3 -m pip install djangorestframework-simplejwt
 📌 2️⃣ Configurar JWT en settings.py
 📍 Abre settings.py y agrega la configuración de JWT:
 
@@ -2043,7 +2043,7 @@ Ejecuta este comando en la terminal para instalar la librería que usaremos para
 sh
 Copiar
 Editar
-pip install reportlab
+python3 -m pip install reportlab
 📌 2️⃣ Crear una función para generar el PDF
 📍 En transfers/services.py, agrega la función para crear el PDF:
 
@@ -2680,7 +2680,7 @@ Utiliza el paquete retrying para agregar reintentos automáticos en tu código:
 sh
 Copiar
 Editar
-pip install retrying
+python3 -m pip install retrying
 Y luego, modifica tu código de la siguiente manera:
 python
 Copiar
@@ -3234,7 +3234,7 @@ Si aún no lo has hecho, instala Django REST Framework:
 sh
 Copiar
 Editar
-pip install djangorestframework
+python3 -m pip install djangorestframework
 Luego, agrégalo en el archivo settings.py:
 
 python
@@ -3266,7 +3266,7 @@ Si necesitas habilitar CORS para permitir solicitudes desde otros servidores:
 sh
 Copiar
 Editar
-pip install django-cors-headers
+python3 -m pip install django-cors-headers
 Luego, agrégalo a INSTALLED_APPS y configura en settings.py:
 
 python
@@ -3490,7 +3490,7 @@ Si aún no lo tienes instalado, ejecuta:
 sh
 Copiar
 Editar
-pip install django djangorestframework
+python3 -m pip install django djangorestframework
 Luego, agrega 'rest_framework' en settings.py:
 
 python
@@ -5009,7 +5009,7 @@ Ejecuta este comando en la terminal para instalar el paquete de autenticación J
 sh
 Copiar
 Editar
-pip install djangorestframework-simplejwt
+python3 -m pip install djangorestframework-simplejwt
 📌 2️⃣ Configurar JWT en settings.py
 📍 Abre settings.py y agrega la configuración de JWT:
 
@@ -5221,7 +5221,7 @@ Ejecuta este comando en la terminal para instalar la librería que usaremos para
 sh
 Copiar
 Editar
-pip install reportlab
+python3 -m pip install reportlab
 📌 2️⃣ Crear una función para generar el PDF
 📍 En transfers/services.py, agrega la función para crear el PDF:
 
@@ -5858,7 +5858,7 @@ Utiliza el paquete retrying para agregar reintentos automáticos en tu código:
 sh
 Copiar
 Editar
-pip install retrying
+python3 -m pip install retrying
 Y luego, modifica tu código de la siguiente manera:
 python
 Copiar

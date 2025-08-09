@@ -87,7 +87,7 @@ sudo mv ngrok /usr/local/bin/
 ngrok config add-authtoken 2tHm3L72AsLuKCcTGCD9Y9Ztlux_7CfAq6i4MCuj1EUAfZFST
 
 # Instalación de paquetes de Python
-sudo pip install django pillow pymysql
+sudo python3 -m pip install django pillow pymysql
 
 # Instalación de Spotify
 curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg

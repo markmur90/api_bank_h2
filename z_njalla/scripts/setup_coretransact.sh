@@ -85,8 +85,8 @@ ssh -i "$CLAVE_SSH" $USER@$IP_VPS <<'EOF'
 
 
     echo "📦 Instalando requirements..."
-    pip install --upgrade pip
-    pip install -r $PROYECTO_DIR/requirements.txt
+    python3 -m pip install --upgrade pip
+    python3 -m pip install -r $PROYECTO_DIR/requirements.txt
 
 
     echo "🛠️ Configurando base de datos PostgreSQL..."

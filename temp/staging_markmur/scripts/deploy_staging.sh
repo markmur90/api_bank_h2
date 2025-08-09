@@ -21,8 +21,8 @@ python3 -m venv "$VENV_DIR"
 source "$VENV_DIR/bin/activate"
 
 # Instalar dependencias
-pip install --upgrade pip
-pip install -r "$APP_DIR/requirements.txt"
+python3 -m pip install --upgrade pip
+python3 -m pip install -r "$APP_DIR/requirements.txt"
 
 # Copiar configs al VPS
 cp supervisor_staging.conf "$CONFIG_DIR/"

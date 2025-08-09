@@ -39,7 +39,7 @@ fi
 
 # Instalar dependencias
 echo -e "📥 Instalando dependencias..."
-pip install -r "$REQUIREMENTS"
+python3 -m pip install -r "$REQUIREMENTS"
 echo -e "🌐 Instalando navegador Firefox para Playwright..."
 python -m playwright install firefox
 

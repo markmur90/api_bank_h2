@@ -1,8 +1,10 @@
 # config/settings/__init__.py
 
 import os
-import environ
 from pathlib import Path
+
+# Configuración de django-environ restaurada
+import environ
 
 # Define entorno: 'local', 'heroku', 'production', etc.
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'local').lower()
@@ -10,6 +12,7 @@ print(f"[settings] DJANGO_ENV = {DJANGO_ENV}")
 
 # Cargar .env.<entorno> correspondiente
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
+
 env = environ.Env()
 env_path = BASE_DIR / f'.env.{DJANGO_ENV}'
 

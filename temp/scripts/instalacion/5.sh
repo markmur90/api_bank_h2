@@ -100,9 +100,9 @@ sudo apt-get install -y default-jre
 
 
 
-# sudo pip install django
-# sudo pip install pillow
-# sudo pip install pymysql
+# sudo python3 -m pip install django
+# sudo python3 -m pip install pillow
+# sudo python3 -m pip install pymysql
 
 sudo apt-get clean
 sudo apt-get autoremove -y

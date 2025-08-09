@@ -39,13 +39,13 @@ const djdt = {
                 const inner = current.querySelector(
                     ".djDebugPanelContent .djdt-scroll"
                 );
-                const storeId = djDebug.dataset.storeId;
-                if (storeId && inner.children.length === 0) {
+                const requestId = djDebug.dataset.requestId;
+                if (requestId && inner.children.length === 0) {
                     const url = new URL(
                         djDebug.dataset.renderPanelUrl,
                         window.location
                     );
-                    url.searchParams.append("store_id", storeId);
+                    url.searchParams.append("request_id", requestId);
                     url.searchParams.append("panel_id", panelId);
                     ajax(url).then((data) => {
                         inner.previousElementSibling.remove(); // Remove AJAX loader
@@ -212,27 +212,30 @@ const djdt = {
             djdt.updateOnAjax();
         }
 
+        const prefersDark = window.matchMedia(
+            "(prefers-color-scheme: dark)"
+        ).matches;
+        const themeList = prefersDark
+            ? ["auto", "light", "dark"]
+            : ["auto", "dark", "light"];
+        const setTheme = (theme) => {
+            djDebug.setAttribute(
+                "data-theme",
+                theme === "auto" ? (prefersDark ? "dark" : "light") : theme
+            );
+            djDebug.setAttribute("data-user-theme", theme);
+        };
+
         // Updates the theme using user settings
-        const userTheme = localStorage.getItem("djdt.user-theme");
-        if (userTheme !== null) {
-            djDebug.setAttribute("data-theme", userTheme);
-        }
+        let userTheme = localStorage.getItem("djdt.user-theme") || "auto";
+        setTheme(userTheme);
+
         // Adds the listener to the Theme Toggle Button
         $$.on(djDebug, "click", "#djToggleThemeButton", () => {
-            switch (djDebug.getAttribute("data-theme")) {
-                case "auto":
-                    djDebug.setAttribute("data-theme", "light");
-                    localStorage.setItem("djdt.user-theme", "light");
-                    break;
-                case "light":
-                    djDebug.setAttribute("data-theme", "dark");
-                    localStorage.setItem("djdt.user-theme", "dark");
-                    break;
-                default: /* dark is the default */
-                    djDebug.setAttribute("data-theme", "auto");
-                    localStorage.setItem("djdt.user-theme", "auto");
-                    break;
-            }
+            const index = themeList.indexOf(userTheme);
+            userTheme = themeList[(index + 1) % themeList.length];
+            localStorage.setItem("djdt.user-theme", userTheme);
+            setTheme(userTheme);
         });
     },
     hidePanels() {
@@ -293,12 +296,12 @@ const djdt = {
             document.getElementById("djDebug").dataset.sidebarUrl;
         const slowjax = debounce(ajax, 200);
 
-        function handleAjaxResponse(storeId) {
-            const encodedStoreId = encodeURIComponent(storeId);
-            const dest = `${sidebarUrl}?store_id=${encodedStoreId}`;
+        function handleAjaxResponse(requestId) {
+            const encodedRequestId = encodeURIComponent(requestId);
+            const dest = `${sidebarUrl}?request_id=${encodedRequestId}`;
             slowjax(dest).then((data) => {
                 if (djdt.needUpdateOnFetch) {
-                    replaceToolbarState(encodedStoreId, data);
+                    replaceToolbarState(encodedRequestId, data);
                 }
             });
         }
@@ -311,9 +314,11 @@ const djdt = {
                 // when the header can't be fetched. While it doesn't impede execution
                 // it's worrisome to developers.
                 if (
-                    this.getAllResponseHeaders().indexOf("djdt-store-id") >= 0
+                    this.getAllResponseHeaders().indexOf("djdt-request-id") >= 0
                 ) {
-                    handleAjaxResponse(this.getResponseHeader("djdt-store-id"));
+                    handleAjaxResponse(
+                        this.getResponseHeader("djdt-request-id")
+                    );
                 }
             });
             origOpen.apply(this, args);
@@ -327,10 +332,10 @@ const djdt = {
             // https://github.com/django-commons/django-debug-toolbar/pull/2100
             const promise = origFetch.apply(this, args);
             return promise.then((response) => {
-                if (response.headers.get("djdt-store-id") !== null) {
+                if (response.headers.get("djdt-request-id") !== null) {
                     try {
                         handleAjaxResponse(
-                            response.headers.get("djdt-store-id")
+                            response.headers.get("djdt-request-id")
                         );
                     } catch (err) {
                         throw new Error(

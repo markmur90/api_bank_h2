@@ -1,11 +1,13 @@
 from datetime import timedelta
 import os
 from pathlib import Path
-import environ
 from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
 from django.apps import apps
 from .env_vars import load_env
+
+# Configuración de django-environ restaurada
+import environ
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
@@ -16,9 +18,11 @@ env = environ.Env()
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
 
 env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.local')
-if not env_file.exists():
-    raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
-env.read_env(env_file)
+if env_file.exists():
+    env.read_env(env_file)
+    print(f"✅ Variables cargadas desde: {env_file}")
+else:
+    print(f"⚠️ Archivo {env_file} no encontrado, usando variables de entorno del sistema")
 
 # Cargar dinámicamente variables desde la BD
 def intentar_cargar_variables(entorno):
@@ -78,6 +82,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Dependencias de terceros restauradas
     'drf_yasg',
     'rest_framework',
     'oauth2_provider',
@@ -88,6 +93,7 @@ INSTALLED_APPS = [
     'markdownify',
     'sslserver',
     
+    # Apps personalizadas restauradas
     'api.configuraciones_api',
     'api.core',
     'api.authentication',
