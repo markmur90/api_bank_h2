@@ -347,7 +347,7 @@ echo "[+] Creando Dockerfile para visor web..."
 cat << 'EOF' > "$HONEYPOT_DIR"/web/Dockerfile
 FROM python:3.11-slim
 WORKDIR /app
-RUN python3 -m pip install flask
+RUN pip install flask
 COPY app.py ./
 COPY templates/ ./templates/
 EXPOSE 5000

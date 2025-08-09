@@ -229,7 +229,7 @@ fi
 #     Crea entorno virtual con python3 -m venv
 #     Activa entorno, instala requirements
 #     Activa y arranca PostgreSQL con systemctl
-#     Registra stdout/stderr de python3 -m pip install, enable/start postgresql
+#     Registra stdout/stderr de pip install, enable/start postgresql
 echo -e "\033[7;33m----------------------------------------------POSTGRES---------------------------------------------\033[0m"
 log_info "🐘 BLOQUE: Configuración del entorno virtual y PostgreSQL"
 
@@ -239,10 +239,10 @@ if confirmar "Configurar venv y PostgreSQL"; then
 
     source "$VENV_PATH/bin/activate"
 
-    ejecutar python3 -m pip install --upgrade pip
+    ejecutar pip install --upgrade pip
 
     log_info "📦 Instalando dependencias desde requirements.txt"
-    ejecutar python3 -m pip install -r "$PROJECT_ROOT/requirements.txt"
+    ejecutar pip install -r "$PROJECT_ROOT/requirements.txt"
 
     log_info "🔄 Habilitando y arrancando el servicio PostgreSQL"
     ejecutar sudo systemctl enable postgresql

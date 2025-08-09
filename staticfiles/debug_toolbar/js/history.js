@@ -21,17 +21,14 @@ function refreshHistory() {
     const formTarget = djDebug.querySelector(".refreshHistory");
     const container = document.getElementById("djdtHistoryRequests");
     const oldIds = new Set(
-        pluckData(
-            container.querySelectorAll("tr[data-request-id]"),
-            "requestId"
-        )
+        pluckData(container.querySelectorAll("tr[data-store-id]"), "storeId")
     );
 
     ajaxForm(formTarget)
         .then((data) => {
             // Remove existing rows first then re-populate with new data
             for (const node of container.querySelectorAll(
-                "tr[data-request-id]"
+                "tr[data-store-id]"
             )) {
                 node.remove();
             }
@@ -42,8 +39,8 @@ function refreshHistory() {
         .then(() => {
             const allIds = new Set(
                 pluckData(
-                    container.querySelectorAll("tr[data-request-id]"),
-                    "requestId"
+                    container.querySelectorAll("tr[data-store-id]"),
+                    "storeId"
                 )
             );
             const newIds = difference(allIds, oldIds);
@@ -57,13 +54,13 @@ function refreshHistory() {
         .then((refreshInfo) => {
             for (const newId of refreshInfo.newIds) {
                 const row = container.querySelector(
-                    `tr[data-request-id="${newId}"]`
+                    `tr[data-store-id="${newId}"]`
                 );
                 row.classList.add("flash-new");
             }
             setTimeout(() => {
                 for (const row of container.querySelectorAll(
-                    "tr[data-request-id]"
+                    "tr[data-store-id]"
                 )) {
                     row.classList.remove("flash-new");
                 }
@@ -71,9 +68,9 @@ function refreshHistory() {
         });
 }
 
-function switchHistory(newRequestId) {
+function switchHistory(newStoreId) {
     const formTarget = djDebug.querySelector(
-        `.switchHistory[data-request-id='${newRequestId}']`
+        `.switchHistory[data-store-id='${newStoreId}']`
     );
     const tbody = formTarget.closest("tbody");
 
@@ -87,16 +84,16 @@ function switchHistory(newRequestId) {
         if (Object.keys(data).length === 0) {
             const container = document.getElementById("djdtHistoryRequests");
             container.querySelector(
-                `button[data-request-id="${newRequestId}"]`
+                `button[data-store-id="${newStoreId}"]`
             ).innerHTML = "Switch [EXPIRED]";
         }
-        replaceToolbarState(newRequestId, data);
+        replaceToolbarState(newStoreId, data);
     });
 }
 
 $$.on(djDebug, "click", ".switchHistory", function (event) {
     event.preventDefault();
-    switchHistory(this.dataset.requestId);
+    switchHistory(this.dataset.storeId);
 });
 
 $$.on(djDebug, "click", ".refreshHistory", (event) => {

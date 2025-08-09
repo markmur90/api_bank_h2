@@ -10,11 +10,11 @@
       "name": "Activate virtual environment"
     },
     {
-      "command": "python3 -m pip install --upgrade pip",
+      "command": "pip install --upgrade pip",
       "name": "Upgrade pip"
     },
     {
-      "command": "python3 -m pip install -r requirements.txt",
+      "command": "pip install -r requirements.txt",
       "name": "Install dependencies"
     },
     {

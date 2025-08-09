@@ -246,10 +246,10 @@ echo -e "\033[7;33m----------------------------------------------POSTGRES-------
 if confirmar "Configurar venv y PostgreSQL"; then
     python3 -m venv "$VENV_PATH"
     source "$VENV_PATH/bin/activate"
-    python3 -m pip install --upgrade pip
+    pip install --upgrade pip
     echo "📦 Instalando dependencias..."
     echo ""
-    python3 -m pip install -r "$PROJECT_ROOT/requirements.txt"
+    pip install -r "$PROJECT_ROOT/requirements.txt"
     echo -e "\033[7;94m---///---///---///---///---///---///---///---///---///---\033[0m"
     echo ""
     sudo systemctl enable postgresql

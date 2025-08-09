@@ -5,7 +5,7 @@ python3 -m venv env
 source env/bin/activate
 
 # Instalar Django y otros paquetes necesarios
-python3 -m pip install django gunicorn
+pip install django gunicorn
 
 # Crear un nuevo proyecto Django
 django-admin startproject myproject

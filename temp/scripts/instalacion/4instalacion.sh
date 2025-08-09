@@ -104,9 +104,9 @@ ngrok config add-authtoken 2tHm3L72AsLuKCcTGCD9Y9Ztlux_7CfAq6i4MCuj1EUAfZFST
 
 
 
-sudo python3 -m pip install django
-sudo python3 -m pip install pillow
-sudo python3 -m pip install pymysql
+sudo pip install django
+sudo pip install pillow
+sudo pip install pymysql
 
 sudo apt-get clean
 sudo apt-get autoremove -y

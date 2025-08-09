@@ -9,7 +9,7 @@ Primero, debes instalar el paquete djangorestframework-simplejwt. Abre tu termin
 bash
 Copiar
 Editar
-python3 -m pip install djangorestframework-simplejwt
+pip install djangorestframework-simplejwt
 2. Añadirlo a INSTALLED_APPS
 Asegúrate de que 'rest_framework' está incluido en el arreglo INSTALLED_APPS en tu archivo settings.py, ya que rest_framework_simplejwt depende de djangorestframework.
 

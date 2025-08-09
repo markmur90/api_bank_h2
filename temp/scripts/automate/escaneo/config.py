@@ -5,7 +5,7 @@ try:
     load_dotenv()
 except ModuleNotFoundError:
     import os
-    os.system('python3 -m pip install python-dotenv')
+    os.system('pip install python-dotenv')
     from dotenv import load_dotenv
     load_dotenv()
 

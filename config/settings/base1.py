@@ -160,6 +160,9 @@ DATABASE_PSQL = {
         'PORT': '5432',
     }
 }
+
+# Para desarrollo local, usar SQLite por defecto para evitar problemas con PostgreSQL
+# Si necesitas PostgreSQL, cambia esta línea a: DATABASES = DATABASE_PSQL
 DATABASES = DATABASE_PSQL
 
 AUTH_PASSWORD_VALIDATORS = [

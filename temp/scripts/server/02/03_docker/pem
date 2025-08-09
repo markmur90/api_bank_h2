@@ -28,11 +28,11 @@ Asegúrate de tener instaladas las siguientes bibliotecas en tu entorno de Djang
 
     Django REST Framework:
 
-  python3 -m pip install djangorestframework
+  pip install djangorestframework
 
     PyJWT:
 
-  python3 -m pip install pyjwt
+  pip install pyjwt
 
 3. Configuración de Django
 

@@ -35,11 +35,11 @@ fi
 
 # Activar entorno virtual
 source "$VENV_DIR/bin/activate"
-python3 -m pip install --upgrade pip
+pip install --upgrade pip
 
 # Instalar dependencias del proyecto
 if [[ -f "$PROJECT_ROOT/requirements.txt" ]]; then
-  python3 -m pip install -r "$PROJECT_ROOT/requirements.txt"
+  pip install -r "$PROJECT_ROOT/requirements.txt"
   log_ok "✅ Dependencias instaladas desde requirements.txt"
 
 else

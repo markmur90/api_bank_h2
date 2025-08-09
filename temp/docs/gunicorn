@@ -5,7 +5,7 @@ Solución para producción:
 Para implementar tu aplicación en un entorno de producción, necesitas usar un servidor WSGI o ASGI como Gunicorn, uWSGI, o Daphne junto con un servidor web como Nginx o Apache. Aquí tienes los pasos básicos:
 
 Instala Gunicorn:
-python3 -m pip install gunicorn
+pip install gunicorn
 
 Ejecuta Gunicorn:
 gunicorn config.wsgi:application --bind 0.0.0.0:8000
