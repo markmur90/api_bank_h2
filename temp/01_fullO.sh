@@ -68,7 +68,7 @@ PROJECT_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
 BACKUP_DIR="/home/markmur88/Documentos/GitHub/backup/"
 HEROKU_ROOT="/home/markmur88/Documentos/GitHub/api_bank_h2"
 HEROKU_ROOT2="/home/markmur88/Documentos/GitHub/api_bank"
-VENV_PATH="/home/markmur88/Documentos/Entorno/envAPP"
+VENV_PATH="/home/markmur88/Documentos/Entorno/envSIM"
 INTERFAZ="wlan0"
 
 DB_NAME="mydatabase"

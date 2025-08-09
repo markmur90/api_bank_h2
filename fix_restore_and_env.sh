@@ -33,7 +33,7 @@ echo "✅ Restauración completada."
 
 # 2. Ejecutar migraciones para crear tablas faltantes
 echo "🔄 PASO 2: Ejecutando migraciones Django..."
-source /home/markmur88/envAPP/bin/activate
+source /home/markmur88/envSIM/bin/activate
 python manage.py migrate --skip-checks
 
 # 3. Procesar archivos .env con el script Python

@@ -9,7 +9,7 @@ IP_VPS="80.78.30.242"
 CLAVE_SSH="/home/markmur88/.ssh/vps_njalla_nueva"
 PROYECTO_DIR="/root/api_bank_h2"
 REPO_GIT="git@github.com:markmur88/api_bank_h2.git"
-VENV_DIR="/root/envAPP"
+VENV_DIR="/root/envSIM"
 
 echo "📎 Subiendo clave pública SSH..."
 scp -i "$CLAVE_SSH" ~/.ssh/vps_njalla_nueva.pub $USER@$IP_VPS:/root/coretransapi.pub

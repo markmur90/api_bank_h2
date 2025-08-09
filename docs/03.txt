@@ -11,30 +11,30 @@ Exception Value:
 
 get() returned more than one ConfiguracionAPI -- it returned 2!
 
-Exception Location: 	/home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/query.py, line 636, in get
+Exception Location: 	/home/markmur88/envSIM/lib/python3.13/site-packages/django/db/models/query.py, line 636, in get
 Raised during: 	api.gpt4.views.transfer_detail
-Python Executable: 	/home/markmur88/envAPP/bin/python3
+Python Executable: 	/home/markmur88/envSIM/bin/python3
 Python Version: 	3.13.3
 Python Path: 	
 
 ['/home/markmur88/api_bank_h2',
- '/home/markmur88/envAPP/bin',
+ '/home/markmur88/envSIM/bin',
  '/usr/lib/python313.zip',
  '/usr/lib/python3.13',
  '/usr/lib/python3.13/lib-dynload',
- '/home/markmur88/envAPP/lib/python3.13/site-packages']
+ '/home/markmur88/envSIM/lib/python3.13/site-packages']
 
 Server time: 	Mon, 14 Jul 2025 07:37:20 +0200
 Traceback Switch to copy-and-paste view
 
-    /home/markmur88/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py, line 55, in inner
+    /home/markmur88/envSIM/lib/python3.13/site-packages/django/core/handlers/exception.py, line 55, in inner
 
                         response = get_response(request)
                                        ^^^^^^^^^^^^^^^^^^^^^
 
          …
     Local vars
-    /home/markmur88/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py, line 197, in _get_response
+    /home/markmur88/envSIM/lib/python3.13/site-packages/django/core/handlers/base.py, line 197, in _get_response
 
                         response = wrapped_callback(request, *callback_args, **callback_kwargs)
                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -68,14 +68,14 @@ Traceback Switch to copy-and-paste view
 
          …
     Local vars
-    /home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/manager.py, line 87, in manager_method
+    /home/markmur88/envSIM/lib/python3.13/site-packages/django/db/models/manager.py, line 87, in manager_method
 
                         return getattr(self.get_queryset(), name)(*args, **kwargs)
                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
          …
     Local vars
-    /home/markmur88/envAPP/lib/python3.13/site-packages/django/db/models/query.py, line 636, in get
+    /home/markmur88/envSIM/lib/python3.13/site-packages/django/db/models/query.py, line 636, in get
 
                 raise self.model.MultipleObjectsReturned(
                      ^

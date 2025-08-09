@@ -11,18 +11,18 @@ Exception Value:
 
 Reverse for 'send_transfer' not found. 'send_transfer' is not a valid view function or pattern name.
 
-Exception Location: 	/home/markmur88/envAPP/lib/python3.13/site-packages/django/urls/resolvers.py, line 831, in _reverse_with_prefix
+Exception Location: 	/home/markmur88/envSIM/lib/python3.13/site-packages/django/urls/resolvers.py, line 831, in _reverse_with_prefix
 Raised during: 	api.gpt4.views.send_transfer_view
-Python Executable: 	/home/markmur88/envAPP/bin/python3
+Python Executable: 	/home/markmur88/envSIM/bin/python3
 Python Version: 	3.13.5
 Python Path: 	
 
 ['/home/markmur88/api_bank_h2',
- '/home/markmur88/envAPP/bin',
+ '/home/markmur88/envSIM/bin',
  '/usr/lib/python313.zip',
  '/usr/lib/python3.13',
  '/usr/lib/python3.13/lib-dynload',
- '/home/markmur88/envAPP/lib/python3.13/site-packages']
+ '/home/markmur88/envSIM/lib/python3.13/site-packages']
 
 Server time: 	Thu, 07 Aug 2025 00:07:34 +0200
 Traceback Switch to copy-and-paste view
@@ -48,7 +48,7 @@ Traceback Switch to copy-and-paste view
 
          …
     Local vars
-    /home/markmur88/envAPP/lib/python3.13/site-packages/requests/models.py, line 1026, in raise_for_status
+    /home/markmur88/envSIM/lib/python3.13/site-packages/requests/models.py, line 1026, in raise_for_status
 
                     raise HTTPError(http_error_msg, response=self)
                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -56,14 +56,14 @@ Traceback Switch to copy-and-paste view
          …
     Local vars
     During handling of the above exception (401 Client Error: Unauthorized for url: http://80.78.30.242:9181/api/login/), another exception occurred:
-    /home/markmur88/envAPP/lib/python3.13/site-packages/django/core/handlers/exception.py, line 55, in inner
+    /home/markmur88/envSIM/lib/python3.13/site-packages/django/core/handlers/exception.py, line 55, in inner
 
                         response = get_response(request)
                                        ^^^^^^^^^^^^^^^^^^^^^
 
          …
     Local vars
-    /home/markmur88/envAPP/lib/python3.13/site-packages/django/core/handlers/base.py, line 197, in _get_response
+    /home/markmur88/envSIM/lib/python3.13/site-packages/django/core/handlers/base.py, line 197, in _get_response
 
                         response = wrapped_callback(request, *callback_args, **callback_kwargs)
                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -77,14 +77,14 @@ Traceback Switch to copy-and-paste view
 
          …
     Local vars
-    /home/markmur88/envAPP/lib/python3.13/site-packages/django/urls/base.py, line 98, in reverse
+    /home/markmur88/envSIM/lib/python3.13/site-packages/django/urls/base.py, line 98, in reverse
 
             resolved_url = resolver._reverse_with_prefix(view, prefix, *args, **kwargs)
                                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
          …
     Local vars
-    /home/markmur88/envAPP/lib/python3.13/site-packages/django/urls/resolvers.py, line 831, in _reverse_with_prefix
+    /home/markmur88/envSIM/lib/python3.13/site-packages/django/urls/resolvers.py, line 831, in _reverse_with_prefix
 
                 raise NoReverseMatch(msg)
                      ^^^^^^^^^^^^^^^^^^^^^^^^^

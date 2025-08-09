@@ -6,7 +6,7 @@ echo "🚀 Iniciando setup de entorno STAGING..."
 # Variables
 USER="staging_markmur"
 APP_DIR="/home/$USER/api_bank_staging"
-VENV_DIR="/home/$USER/envAPP_staging"
+VENV_DIR="/home/$USER/envSIM_staging"
 LOG_DIR="/home/$USER/logs"
 CONFIG_DIR="/home/$USER/config"
 

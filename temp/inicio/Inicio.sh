@@ -63,8 +63,8 @@ fi
 
 if confirmar "Configurar entorno Python y PostgreSQL"; then
     export DATABASE_URL="postgres://markmur88:Ptf8454Jd55@0.0.0.0:5432/mydatabase"
-    python3 -m venv "/home/markmur88/Documentos/Entorno/envAPP"
-    source "/home/markmur88/Documentos/Entorno/envAPP/bin/activate"
+    python3 -m venv "/home/markmur88/Documentos/Entorno/envSIM"
+    source "/home/markmur88/Documentos/Entorno/envSIM/bin/activate"
     sudo systemctl enable postgresql
     sudo systemctl start postgresql
     echo -e "\033[1;32mEntorno y PostgreSQL listos.\033[0m"

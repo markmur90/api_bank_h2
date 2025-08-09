@@ -11,7 +11,7 @@ DIR_USR="/home/$MARK"
 CLAVE_SSH="$DIR_USR/.ssh/vps_njalla_nueva"
 PROYECTO_DIR="$DIR_USR/coretransapi"
 REPO_GIT="git@github.com:$MARK/api_bank_h2.git"
-VENV_DIR="$DIR_USR/envAPP"
+VENV_DIR="$DIR_USR/envSIM"
 
 # 1. Subir clave pública SSH
 echo "📤 Subiendo clave SSH..."

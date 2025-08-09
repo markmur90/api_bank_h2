@@ -30,7 +30,7 @@ if not PORT or not INTERFAZ or not TOR_PASS:
 #          DIRECTORIOS         #
 # ============================ #
 
-VENV_DIR = "/home/markmur88/Documentos/Entorno/envAPP"
+VENV_DIR = "/home/markmur88/Documentos/Entorno/envSIM"
 SCRIPTS_DIR = BASE_DIR / "scripts"
 SERVERS_DIR = BASE_DIR / "servers"
 CACHE_DIR = BASE_DIR / "tmp"

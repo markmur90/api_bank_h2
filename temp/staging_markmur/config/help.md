@@ -54,7 +54,7 @@ Perfecto, vamos con un setup híbrido: reutilizamos tus scripts y configuracione
 
 /home/staging_markmur/
 ├── api_bank_staging/ # Código fuente (clonado desde rama staging)
-├── envAPP_staging/ # Virtualenv propio
+├── envSIM_staging/ # Virtualenv propio
 ├── logs/ # Logs supervisord/gunicorn/nginx
 ├── config/ # Archivos adaptados: supervisor, torrc, nginx
 ├── tor_data_staging/ # DataDirectory para Tor aislado
@@ -72,7 +72,7 @@ SSH_KEY="/home/staging_markmur/.ssh/id_rsa"
 3. Supervisor (supervisor_staging.conf)
 
 [program:gunicorn_staging]
-command=/home/staging_markmur/envAPP_staging/bin/gunicorn -c config/gunicorn_staging.conf.py simulador_banco.wsgi:application
+command=/home/staging_markmur/envSIM_staging/bin/gunicorn -c config/gunicorn_staging.conf.py simulador_banco.wsgi:application
 directory=/home/staging_markmur/api_bank_staging
 autostart=true
 autorestart=true

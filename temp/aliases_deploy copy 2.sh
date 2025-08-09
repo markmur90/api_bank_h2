@@ -57,9 +57,9 @@ ssh-add ~/.ssh/id_ed25519 && ssh-add ~/.ssh/vps_njalla_nueva
 
 # === ACCESOS DIRECTOS AL PROYECTO ===
 
-alias api='cd "/home/markmur88/Documentos/GitHub/api_bank_h2" && source "/home/markmur88/Documentos/Entorno/envAPP/bin/activate" && clear'
-alias BKapi='cd "/home/markmur88/Documentos/GitHub/api_bank_h2_BK" && source "/home/markmur88/Documentos/Entorno/envAPP/bin/activate" && clear && code .'
-alias api_heroku='cd "/home/markmur88/Documentos/GitHub/api_bank_h2" && source "/home/markmur88/Documentos/Entorno/envAPP/bin/activate" && clear'
+alias api='cd "/home/markmur88/Documentos/GitHub/api_bank_h2" && source "/home/markmur88/Documentos/Entorno/envSIM/bin/activate" && clear'
+alias BKapi='cd "/home/markmur88/Documentos/GitHub/api_bank_h2_BK" && source "/home/markmur88/Documentos/Entorno/envSIM/bin/activate" && clear && code .'
+alias api_heroku='cd "/home/markmur88/Documentos/GitHub/api_bank_h2" && source "/home/markmur88/Documentos/Entorno/envSIM/bin/activate" && clear'
 alias update='sudo apt-get update && sudo apt-get upgrade -y && sudo apt-get full-upgrade -y && sudo apt-get autoremove -y'
 alias monero='bash /opt/monero-gui/monero/monero-wallet-gui'
 
@@ -79,7 +79,7 @@ unalias ad_heroku 2>/dev/null
 ad_heroku() {cd "/home/markmur88/Documentos/GitHub/api_bank_h2" && clear "$@"}
 
 unalias d_env 2>/dev/null
-d_env() {source "/home/markmur88/Documentos/Entorno/envAPP/bin/activate" "$@"}
+d_env() {source "/home/markmur88/Documentos/Entorno/envSIM/bin/activate" "$@"}
 
 unalias d_mig 2>/dev/null
 d_mig() {python3 manage.py makemigrations && python3 manage.py migrate && python3 manage.py collectstatic --noinput && clear "$@"}
