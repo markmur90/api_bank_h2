@@ -135,7 +135,7 @@ TEMPLATES = [
     },
 ]
 
-INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '193.150.']
+INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '80.78.30.242', 'api.coretransapi.com']
 
 # 5. Plantillas de base de datos
 # DATABASES_HEROKU = {
