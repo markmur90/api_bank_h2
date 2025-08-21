@@ -47,7 +47,7 @@
         "description": "This API is for creating a Sepa Credit Transfers",
         "parameters": [
           {
-            "name": "idempotency-id",
+            "name": "idempotency-Id",
             "in": "header",
             "description": "Unique id of the service call. Must be present during retries to avoid multiple processing of the same request",
             "required": true,
@@ -855,7 +855,7 @@
             }
           },
           {
-            "name": "idempotency-id",
+            "name": "idempotency-Id",
             "in": "header",
             "description": "Unique id of the service call. Must be present during retries to avoid multiple processing of the same request",
             "required": true,
@@ -1118,7 +1118,7 @@
             }
           },
           {
-            "name": "idempotency-id",
+            "name": "idempotency-Id",
             "in": "header",
             "description": "Unique id of the service call. Must be present during retries to avoid multiple processing of the same request.",
             "required": true,
@@ -1385,7 +1385,7 @@
         "description": "This API is for creating Bulk Sepa Credit Transfers.",
         "parameters": [
           {
-            "name": "idempotency-id",
+            "name": "idempotency-Id",
             "in": "header",
             "description": "Unique id of the service call. Must be present during retries to avoid multiple processing of the same request.",
             "required": true,
@@ -2142,7 +2142,7 @@
             }
           },
           {
-            "name": "idempotency-id",
+            "name": "idempotency-Id",
             "in": "header",
             "description": "Unique id of the service call. Must be present during retries to avoid multiple processing of the same request.",
             "required": true,

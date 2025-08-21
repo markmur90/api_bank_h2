@@ -1,3 +1,21 @@
+{% load static %}
 <footer class="bg-light text-center py-3">
-    <p class="mb-0">&copy; 2025 Banco Seguro. Todos los derechos reservados.</p>
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-4 text-md-start text-center">
+                <div class="d-flex align-items-center justify-content-md-start justify-content-center">
+                    <img src="{% static 'images/optimized/logo_favicon.png' %}" alt="API BanK Logo" class="footer-logo me-2">
+                    <span class="text-muted">&copy; 2025 API BanK. Todos los derechos reservados.</span>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="{% url 'terms_of_service' %}" class="text-decoration-none text-muted">Términos de Servicio</a>
+                    <a href="{% url 'privacy_policy' %}" class="text-decoration-none text-muted">Política de Privacidad</a>
+                    <a href="{% url 'client' %}" class="text-decoration-none text-muted">Cliente</a>
+                    <a href="{% url 'notifications' %}" class="text-decoration-none text-muted">Notificaciones</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>

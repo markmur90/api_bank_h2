@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Debtor(models.Model):
     name = models.CharField(max_length=70, unique=True, blank=False, default='MIRYA TRADING CO LTD')
@@ -80,7 +81,7 @@ class Transfer(models.Model):
     instructed_amount = models.DecimalField(max_digits=18, decimal_places=2)
     currency = models.CharField(max_length=3, default='EUR')
     purpose_code = models.CharField(max_length=4, default='GDSV')
-    requested_execution_date = models.DateField()
+    requested_execution_date = models.DateField(default=timezone.now, blank=False, null=False)
     remittance_information_unstructured = models.CharField(max_length=140, blank=True, null=True)
     status = models.CharField(max_length=10, choices=[
         ('RJCT', 'Rechazada'),
@@ -184,7 +185,7 @@ class Transfer(models.Model):
 
 class LogTransferencia(models.Model):
     registro = models.CharField(max_length=64, help_text="Puede ser payment_id o session_id")
-    tipo_log = models.CharField(max_length=20, choices=[
+    tipo_log = models.CharField(max_length=500, choices=[
         ('AUTH', 'Autenticación'),
         ('TRANSFER', 'Transferencia'),
         ('XML', 'Generación XML'),

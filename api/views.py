@@ -94,22 +94,19 @@ def cambiar_entorno(request, entorno):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-@login_required
-def dashboard_view(request):
-    transfers = Transfer.objects.all()
-    return render(request, 'dashboard.html', {
-        'transfers': transfers
-    })
-
 @method_decorator(login_required, name='dispatch')
-class DashboardView(View):
+class DashView(View):
     def get(self, request):
         creditors = Creditor.objects.all()
         transfers = Transfer.objects.all()
-        return render(request, 'dashboard.html', {
+        response = render(request, 'dashboard.html', {
             'creditors': creditors,
             'transfers': transfers
         })
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'
+        return response
 
 def logout_view(request):
     username = request.user.username if request.user.is_authenticated else "desconocido"
@@ -144,7 +141,7 @@ def signup_view(request):
             login(request, user)
             messages.success(request, f"Bienvenido, {user.username}")
             logger.info(f"Nuevo usuario registrado: {user.username}")
-            return redirect('dashboard')
+            return redirect('client')
 
         except IntegrityError:
             messages.error(request, "El nombre de usuario ya está en uso.")
@@ -169,7 +166,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 messages.success(request, f"Bienvenido, {user.username}")
-                return redirect('dashboard')
+                return redirect('client')
 
             messages.error(request, "Usuario o contraseña incorrectos.")
             return render(request, "login.html", status=401)
@@ -181,3 +178,45 @@ def login_view(request):
     return render(request, "login.html")
 
 
+def client_view(request):
+    """Vista para la página de información del cliente."""
+    creditors = Creditor.objects.all()
+    transfers = Transfer.objects.all()
+    context = {
+        'entorno_actual': request.session.get('entorno_actual', 'production'),
+        'creditors': creditors,
+        'transfers': transfers,
+        'transferencias_count': transfers.count(),
+        'exitosas_count': transfers.filter(status='completed').count() if hasattr(transfers.first(), 'status') else 0,
+        'pendientes_count': transfers.filter(status='pending').count() if hasattr(transfers.first(), 'status') else 0,
+        'rechazadas_count': transfers.filter(status='rejected').count() if hasattr(transfers.first(), 'status') else 0,
+    }
+    response = render(request, 'client.html', context)
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
+
+def terms_of_service_view(request):
+    """Vista para los términos de servicio."""
+    response = render(request, 'terms_of_service.html')
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
+
+def privacy_policy_view(request):
+    """Vista para la política de privacidad."""
+    response = render(request, 'privacy_policy.html')
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
+
+def notifications_view(request):
+    """Vista para el centro de notificaciones."""
+    response = render(request, 'notification_base.html')
+    response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response

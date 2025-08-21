@@ -16,24 +16,26 @@ from sshtunnel import SSHTunnelForwarder
 
 from api.gpt4.models import Transfer
 from api.gpt4.utils import crear_challenge_mtan, registrar_log
-
-# Parámetros SSH (se leen de variables de entorno)
-SSH_HOST = os.getenv("SSH_HOST")
-SSH_PORT = int(os.getenv("SSH_PORT", "22"))
-SSH_USER = os.getenv("SSH_USER")
-SSH_KEY_PATH = os.getenv("SSH_KEY_PATH")
-SSH_PASSWORD = os.getenv("SSH_PASSWORD")
+from api.configuraciones_api.helpers import get_conf
 
 @contextmanager
 def ssh_tunnel(remote_host: str, remote_port: int) -> Generator[SSHTunnelForwarder, None, None]:
     """Crea un túnel SSH que redirige remote_host:remote_port a un puerto local."""
-    if not SSH_HOST or not SSH_USER:
+    # Mover get_conf() dentro de la función para evitar problemas en migraciones
+    ssh_host = get_conf("SSH_HOST")
+    ssh_port = int(get_conf("SSH_PORT"))
+    ssh_user = get_conf("SSH_USER")
+    ssh_key_path = get_conf("SSH_KEY_PATH")
+    ssh_password = get_conf("SSH_PASSWORD")
+    
+    if not ssh_host or not ssh_user:
         raise RuntimeError("Credenciales SSH no configuradas")
+    
     server = SSHTunnelForwarder(
-        (SSH_HOST, SSH_PORT),
-        ssh_username=SSH_USER,
-        ssh_password=SSH_PASSWORD,
-        ssh_pkey=SSH_KEY_PATH,
+        (ssh_host, ssh_port),
+        ssh_username=ssh_user,
+        ssh_password=ssh_password,
+        ssh_pkey=ssh_key_path if ssh_key_path else None,
         remote_bind_address=(remote_host, remote_port),
         local_bind_address=("127.0.0.1", 0),
     )

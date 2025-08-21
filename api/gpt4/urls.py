@@ -22,11 +22,6 @@ urlpatterns = [
 
     path('clientids/create/', views.create_clientid, name='create_clientidGPT4'),
     path('kids/create/', views.create_kid, name='create_kidGPT4'),
-
-    # Transfers
-    # path('transfers/create/', views.create_transfer, name='create_transferGPT4'),
-    # path('transfers/<int:transfer_id>/send/', views.send_transfer_view, name='send_transfer_viewGPT4'),
-    # path('transfer/<str:payment_id>/sca/', views.transfer_update_sca, name='transfer_update_scaGPT4'),
     
     
     path('transfers/<str:payment_id>/pdf/', views.descargar_pdf, name='descargar_pdfGPT4'),
@@ -35,14 +30,9 @@ urlpatterns = [
     path("transfers/create/", views.create_transfer, name="create_transferGPT4"),
     path("transfers/<str:payment_id>/send/", views.send_transfer_view, name="send_transfer_viewGPT4"),
     
-    # Envío seguro
-    path(
-        "transfers/<str:payment_id>/send-banco/",
-        send_transfer_bank_view,
-        name="send_transfer_bank_viewGPT4",
-    ),
     
-    # path("transfers/<str:payment_id>/send/", views.send_transfer_view4, name="send_transfer_viewGPT4"),
+    path("transfers/<str:payment_id>/send-banco/", send_transfer_bank_view, name="send_transfer_bank_viewGPT4" ),
+    
     path("transfers/<str:payment_id>/sca/", views.transfer_update_sca, name="transfer_update_scaGPT4"),
     path("transfers/<str:payment_id>/", views.transfer_detail, name="transfer_detailGPT4"),
     

@@ -11,7 +11,7 @@ payload_structure = {
         'post': {
             'parameters': [
                 {
-                    'name': 'idempotency-id',
+                    'name': 'idempotency-Id',
                     'schema': {
                         'in': 'header',
                         'type': 'string',
@@ -134,7 +134,7 @@ payload_structure = {
                     }
                 },
                 {
-                    'name': 'idempotency-id',
+                    'name': 'idempotency-Id',
                     'schema': {
                         'in': 'header',
                         'type': 'string',
@@ -186,7 +186,7 @@ payload_structure = {
                     }
                 },
                 {
-                    'name': 'idempotency-id',
+                    'name': 'idempotency-Id',
                     'schema': {
                         'in': 'header',
                         'type': 'string',
@@ -230,7 +230,7 @@ payload_structure = {
         'post': {
             'parameters': [
                 {
-                    'name': 'idempotency-id',
+                    'name': 'idempotency-Id',
                     'schema': {
                         'in': 'header',
                         'type': 'string',
@@ -350,7 +350,7 @@ payload_structure = {
                     }
                 },
                 {
-                    'name': 'idempotency-id',
+                    'name': 'idempotency-Id',
                     'schema': {
                         'in': 'header',
                         'type': 'string',
@@ -390,7 +390,7 @@ payload_structure = {
     }
 }
 
-grouped_by_tag = {'Create Sepa Credit Transfers': {'idempotency-id': {'in': 'header', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'otp': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}, 'purposeCode': {'$ref_name': 'PurposeCode'}, 'requestedExecutionDate': {'$ref_name': 'RequestedExecutionDate'}, 'debtor': {'$ref_name': 'Debtor'}, 'debtorAccount': {'$ref_name': 'DebtorAccount'}, 'paymentIdentification': {'$ref_name': 'PaymentIdentification'}, 'instructedAmount': {'$ref_name': 'InstructedAmount'}, 'creditorAgent': {'$ref_name': 'CreditorAgent'}, 'creditor': {'$ref_name': 'Creditor'}, 'creditorAccount': {'$ref_name': 'CreditorAccount'}, 'remittanceInformationStructured': {'$ref_name': 'RemittanceInformationStructured'}, 'remittanceInformationUnstructured': {'$ref_name': 'RemittanceInformationUnstructured'}, 'groupHeader': {'$ref_name': 'GroupHeader'}, 'paymentInformation': {'type': 'array', 'items': {'$ref': '#/components/schemas/PaymentInformation'}}}, 'Get status for Sepa Credit Transfers': {'paymentId': {'in': 'path', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}}, 'Get details for Sepa Credit Transfers': {'paymentId': {'in': 'path', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}}, 'Cancel Sepa Credit Transfers': {'paymentId': {'in': 'path', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'idempotency-id': {'in': 'header', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'otp': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}}, 'Second Factor Retry': {'paymentId': {'in': 'path', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'idempotency-id': {'in': 'header', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'otp': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}, 'action': {'$ref_name': 'Action'}, 'authId': {'$ref_name': 'AuthId'}}}
+grouped_by_tag = {'Create Sepa Credit Transfers': {'idempotency-Id': {'in': 'header', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'otp': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}, 'purposeCode': {'$ref_name': 'PurposeCode'}, 'requestedExecutionDate': {'$ref_name': 'RequestedExecutionDate'}, 'debtor': {'$ref_name': 'Debtor'}, 'debtorAccount': {'$ref_name': 'DebtorAccount'}, 'paymentIdentification': {'$ref_name': 'PaymentIdentification'}, 'instructedAmount': {'$ref_name': 'InstructedAmount'}, 'creditorAgent': {'$ref_name': 'CreditorAgent'}, 'creditor': {'$ref_name': 'Creditor'}, 'creditorAccount': {'$ref_name': 'CreditorAccount'}, 'remittanceInformationStructured': {'$ref_name': 'RemittanceInformationStructured'}, 'remittanceInformationUnstructured': {'$ref_name': 'RemittanceInformationUnstructured'}, 'groupHeader': {'$ref_name': 'GroupHeader'}, 'paymentInformation': {'type': 'array', 'items': {'$ref': '#/components/schemas/PaymentInformation'}}}, 'Get status for Sepa Credit Transfers': {'paymentId': {'in': 'path', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}}, 'Get details for Sepa Credit Transfers': {'paymentId': {'in': 'path', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}}, 'Cancel Sepa Credit Transfers': {'paymentId': {'in': 'path', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'idempotency-Id': {'in': 'header', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'otp': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}}, 'Second Factor Retry': {'paymentId': {'in': 'path', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'idempotency-Id': {'in': 'header', 'type': 'string', 'format': 'uuid', 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'otp': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': None, 'minLength': None, 'enum': None, '$ref_name': None}, 'Correlation-Id': {'in': 'header', 'type': 'string', 'format': None, 'maxLength': 50, 'minLength': None, 'enum': None, '$ref_name': None}, 'action': {'$ref_name': 'Action'}, 'authId': {'$ref_name': 'AuthId'}}}
 
 def validate_PurposeCode(obj):
     if not isinstance(obj, dict):
@@ -492,13 +492,13 @@ def validate_GroupHeader(obj):
 
 def validate_Create_Sepa_Credit_Transfers_idempotency_id(value):
     if not isinstance(value, str):
-        raise ValidationError('Field idempotency-id must be string')
+        raise ValidationError('Field idempotency-Id must be string')
     if hasattr(value, '__len__') and len(value) > None:
-        raise ValidationError('Field idempotency-id max length is None')
+        raise ValidationError('Field idempotency-Id max length is None')
     if hasattr(value, '__len__') and len(value) < None:
-        raise ValidationError('Field idempotency-id min length is None')
+        raise ValidationError('Field idempotency-Id min length is None')
     if value not in None:
-        raise ValidationError('Field idempotency-id must be one of None')
+        raise ValidationError('Field idempotency-Id must be one of None')
     return True
 
 def validate_Create_Sepa_Credit_Transfers_otp(value):
@@ -621,13 +621,13 @@ def validate_Cancel_Sepa_Credit_Transfers_paymentId(value):
 
 def validate_Cancel_Sepa_Credit_Transfers_idempotency_id(value):
     if not isinstance(value, str):
-        raise ValidationError('Field idempotency-id must be string')
+        raise ValidationError('Field idempotency-Id must be string')
     if hasattr(value, '__len__') and len(value) > None:
-        raise ValidationError('Field idempotency-id max length is None')
+        raise ValidationError('Field idempotency-Id max length is None')
     if hasattr(value, '__len__') and len(value) < None:
-        raise ValidationError('Field idempotency-id min length is None')
+        raise ValidationError('Field idempotency-Id min length is None')
     if value not in None:
-        raise ValidationError('Field idempotency-id must be one of None')
+        raise ValidationError('Field idempotency-Id must be one of None')
     return True
 
 def validate_Cancel_Sepa_Credit_Transfers_otp(value):
@@ -665,13 +665,13 @@ def validate_Second_Factor_Retry_paymentId(value):
 
 def validate_Second_Factor_Retry_idempotency_id(value):
     if not isinstance(value, str):
-        raise ValidationError('Field idempotency-id must be string')
+        raise ValidationError('Field idempotency-Id must be string')
     if hasattr(value, '__len__') and len(value) > None:
-        raise ValidationError('Field idempotency-id max length is None')
+        raise ValidationError('Field idempotency-Id max length is None')
     if hasattr(value, '__len__') and len(value) < None:
-        raise ValidationError('Field idempotency-id min length is None')
+        raise ValidationError('Field idempotency-Id min length is None')
     if value not in None:
-        raise ValidationError('Field idempotency-id must be one of None')
+        raise ValidationError('Field idempotency-Id must be one of None')
     return True
 
 def validate_Second_Factor_Retry_otp(value):
@@ -703,7 +703,7 @@ def validate_Second_Factor_Retry_authId(value):
     return validate_AuthId(value)
 
 def validate_structure_headers_Create_Sepa_Credit_Transfers(headers):
-    expected = ['idempotency-id', 'otp', 'Correlation-Id']
+    expected = ['idempotency-Id', 'otp', 'Correlation-Id']
     missing = [f for f in expected if f not in headers]
     if missing:
         raise ValidationError(f'Missing headers: {missing}')
@@ -724,7 +724,7 @@ def validate_structure_path_Create_Sepa_Credit_Transfers(path_params):
 
 def validate_headers_Create_Sepa_Credit_Transfers(headers):
     validate_structure_headers_Create_Sepa_Credit_Transfers(headers)
-    validate_Create_Sepa_Credit_Transfers_idempotency_id(headers['idempotency-id'])
+    validate_Create_Sepa_Credit_Transfers_idempotency_id(headers['idempotency-Id'])
     validate_Create_Sepa_Credit_Transfers_otp(headers['otp'])
     validate_Create_Sepa_Credit_Transfers_Correlation_Id(headers['Correlation-Id'])
     return True
@@ -794,7 +794,7 @@ def validate_path_Get_details_for_Sepa_Credit_Transfers(path_params):
     return True
 
 def validate_structure_headers_Cancel_Sepa_Credit_Transfers(headers):
-    expected = ['idempotency-id', 'otp', 'Correlation-Id']
+    expected = ['idempotency-Id', 'otp', 'Correlation-Id']
     missing = [f for f in expected if f not in headers]
     if missing:
         raise ValidationError(f'Missing headers: {missing}')
@@ -815,7 +815,7 @@ def validate_structure_path_Cancel_Sepa_Credit_Transfers(path_params):
 
 def validate_headers_Cancel_Sepa_Credit_Transfers(headers):
     validate_structure_headers_Cancel_Sepa_Credit_Transfers(headers)
-    validate_Cancel_Sepa_Credit_Transfers_idempotency_id(headers['idempotency-id'])
+    validate_Cancel_Sepa_Credit_Transfers_idempotency_id(headers['idempotency-Id'])
     validate_Cancel_Sepa_Credit_Transfers_otp(headers['otp'])
     validate_Cancel_Sepa_Credit_Transfers_Correlation_Id(headers['Correlation-Id'])
     return True
@@ -826,7 +826,7 @@ def validate_path_Cancel_Sepa_Credit_Transfers(path_params):
     return True
 
 def validate_structure_headers_Second_Factor_Retry(headers):
-    expected = ['idempotency-id', 'otp', 'Correlation-Id']
+    expected = ['idempotency-Id', 'otp', 'Correlation-Id']
     missing = [f for f in expected if f not in headers]
     if missing:
         raise ValidationError(f'Missing headers: {missing}')
@@ -847,7 +847,7 @@ def validate_structure_path_Second_Factor_Retry(path_params):
 
 def validate_headers_Second_Factor_Retry(headers):
     validate_structure_headers_Second_Factor_Retry(headers)
-    validate_Second_Factor_Retry_idempotency_id(headers['idempotency-id'])
+    validate_Second_Factor_Retry_idempotency_id(headers['idempotency-Id'])
     validate_Second_Factor_Retry_otp(headers['otp'])
     validate_Second_Factor_Retry_Correlation_Id(headers['Correlation-Id'])
     return True

@@ -607,7 +607,7 @@ After=network.target
 User=www-data
 Group=www-data
 WorkingDirectory=/var/www/proyecto_django
-ExecStart=/var/www/proyecto_django/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/var/www/proyecto_django/proyecto.sock nombre_proyecto.wsgi:application
+ExecStart=/var/www/proyecto_django/venv/bin/gunicorn --access-logfile - --workers 4 --bind unix:/var/www/proyecto_django/proyecto.sock nombre_proyecto.wsgi:application
 
 [Install]
 WantedBy=multi-user.target

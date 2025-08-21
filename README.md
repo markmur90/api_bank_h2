@@ -7,8 +7,8 @@ swiftapi4 es un proyecto diseñado para proporcionar una API rápida y eficiente
 
 1. Crea y activa un entorno virtual, instala las dependencias y realiza las migraciones:
    ```bash
-   python3 -m venv .venv
-   source .venv/bin/activate
+   python3 -m venv ~/envSIM
+   source ~/envSIM/bin/activate
    pip install --upgrade pip
    pip install -r requirements.txt
    python manage.py makemigrations
@@ -26,10 +26,10 @@ swiftapi4 es un proyecto diseñado para proporcionar una API rápida y eficiente
    python manage.py makemigrations && python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000
 4. Inicia el servidor de desarrollo:
    ```bash
-   source .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000
+   source ~/envSIM/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && gunicorn config.wsgi:application --bind 0.0.0.0:8000
 5. Comando combinado para configurar y ejecutar el servidor:
    ```bash
-   source .venv/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py createsuperuser && gunicorn config.wsgi:application --bind 0.0.0.0:8000
+   source ~/envSIM/bin/activate && pip install --upgrade pip && pip install -r requirements.txt && python manage.py makemigrations && python manage.py migrate && python manage.py createsuperuser && gunicorn config.wsgi:application --bind 0.0.0.0:8000
 
 
 ## Gunicorn
@@ -609,7 +609,7 @@ After=network.target
 User=www-data
 Group=www-data
 WorkingDirectory=/var/www/proyecto_django
-ExecStart=/var/www/proyecto_django/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/var/www/proyecto_django/proyecto.sock nombre_proyecto.wsgi:application
+ExecStart=/var/www/proyecto_django/venv/bin/gunicorn --access-logfile - --workers 4 --bind unix:/var/www/proyecto_django/proyecto.sock nombre_proyecto.wsgi:application
 
 [Install]
 WantedBy=multi-user.target

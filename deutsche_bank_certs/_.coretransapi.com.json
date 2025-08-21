@@ -1,0 +1,5 @@
+{
+	"domain": "*.coretransapi.com",
+	"certUrl": "https://acme-v02.api.letsencrypt.org/acme/cert/062497fbfed803575c5cbe3d8bc83577d318",
+	"certStableUrl": "https://acme-v02.api.letsencrypt.org/acme/cert/062497fbfed803575c5cbe3d8bc83577d318"
+}

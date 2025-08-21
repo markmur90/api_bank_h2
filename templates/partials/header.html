@@ -1,3 +1,42 @@
-<header class="bg-primary text-white text-center py-3">
-    <h1>API BanK</h1>
+{% load static %}
+<header class="bg-primary text-white text-center py-2">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-md-start text-center">
+                <div class="d-flex align-items-center">
+                    <img src="{% static 'images/optimized/logo_header.png' %}" alt="API BanK Logo" class="header-logo me-3">
+                    <h1 class="mb-0">API BanK</h1>
+                </div>
+            </div>
+            <div class="col-md-6 text-md-end text-center">
+                <small class="text-light">Sistema de Transferencias Bancarias</small>
+            </div>
+        </div>
+    </div>
 </header>
+
+<style>
+.header-logo {
+    height: 40px;
+    width: auto;
+    max-width: 40px;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    transition: transform 0.3s ease;
+}
+
+.header-logo:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .header-logo {
+        height: 32px;
+        max-width: 32px;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+}
+</style>

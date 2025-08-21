@@ -18,7 +18,6 @@ from api.gpt4.conexion.conexion_banco import (
     enviar_transferencia,
     consultar_estado,
     make_request,
-
 )
 from api.gpt4.conexion.decorators import requiere_conexion_banco
 from api.configuraciones_api.helpers import get_conf
@@ -27,98 +26,212 @@ from api.configuraciones_api.helpers import get_conf
 
 @require_http_methods(["GET", "POST"])
 def send_transfer_bank_view(request, payment_id):
-    # 1) Cargamos la transferencia existente
+    """
+    Vista mejorada para envío de transferencias con OTP automático PUSHTAN
+    y certificados SSL de Deutsche Bank.
+    """
+    # 1) Cargar la transferencia existente
     transfer = get_object_or_404(Transfer, payment_id=payment_id)
-    # 2) Vinculamos el formulario a esa instancia para que traiga debtor_account, creditor_account, etc.
-    form = SendTransferForm(request.POST or None, instance=transfer, context_mode='simple_otp')
-    conf = get_settings()
-    tokek_path = conf["TOKEN_PATH"]
-    auth_path = conf["AUTH_PATH"]
-    send_path = conf["SEND_PATH"]
+    
+    # 2) Formulario vinculado a la instancia
+    form = SendTransferForm(request.POST or None, instance=transfer, context_mode='automatic')
 
     if request.method == "GET":
         try:
-            # 3) Obtener token automáticamente
-            token = obtener_token()
-            request.session["bank_token"] = token
-            # auth_url = get_conf()
-            # 4) Autorizar OAuth2 simulado en el simulador
-            # make_request("GET", f"/gw/oidc/authorize?payment_id={payment_id}", token=None)
-            make_request("GET", f"{token_path}?payment_id={payment_id}", token=None)
-
-            # 5) Solicitar OTP al simulador
-            resp = make_request(
-                # "POST", "/gw/dbapi/auth/challenges",
-                "POST", auth_path,
-                token=token,
-                payload={"payment_id": payment_id}
+            # 3) Verificar disponibilidad de certificados SSL
+            from api.gpt4.services.transfer_services import (
+                verificar_certificados_disponibles, 
+                DeutscheBankClient
             )
-            otp_json = resp.json()
-            challenge_id = otp_json.get("challenge_id")
-            otp_generated = otp_json.get("otp")  # sólo en entorno de pruebas
-
-            # 6) Guardar en sesión
-            request.session["bank_challenge_id"] = challenge_id
-            request.session["current_payment_id"] = payment_id
-
-            # 7) Log interno y mensaje al usuario
-            registrar_log(
-                payment_id, tipo_log="OTP",
-                extra_info=f"OTP enviado (Challenge ID: {challenge_id}, OTP: {otp_generated})"
-            )
-            messages.info(request, "OTP enviado. Ingresa el código para continuar.")
+            
+            certificados_disponibles, mensaje = verificar_certificados_disponibles()
+            
+            if certificados_disponibles:
+                # 4) Usar cliente con certificados SSL
+                client = DeutscheBankClient()
+                
+                # 5) Obtener credenciales del banco
+                username = get_conf("BANK_USER")
+                password = get_conf("BANK_PASS")
+                
+                if not username or not password:
+                    messages.warning(request, "Credenciales bancarias no configuradas")
+                    return redirect("transfer_detailGPT4", payment_id=payment_id)
+                
+                # 6) Obtener token con certificados SSL
+                token, expires = client.obtener_token(username, password)
+                
+                # 7) Guardar en sesión
+                request.session["bank_token"] = token
+                request.session["bank_token_expires"] = expires
+                request.session["use_ssl_certificates"] = True
+                request.session["current_payment_id"] = payment_id
+                
+                # 8) Para PUSHTAN no necesitamos generar OTP manualmente
+                request.session["otp_method"] = "PUSHTAN"
+                
+                registrar_log(
+                    payment_id, 
+                    tipo_log="AUTH",
+                    extra_info="Token obtenido con certificados SSL. Usando PUSHTAN automático"
+                )
+                
+                messages.success(
+                    request, 
+                    "✅ Autenticación exitosa con Deutsche Bank. "
+                    "La transferencia se autorizará automáticamente con PUSHTAN."
+                )
+                
+            else:
+                # Fallback: método original sin certificados
+                messages.warning(request, f"⚠️ {mensaje}. Usando método alternativo.")
+                
+                # Obtener token sin certificados
+                token = obtener_token()
+                request.session["bank_token"] = token
+                request.session["use_ssl_certificates"] = False
+                request.session["current_payment_id"] = payment_id
+                request.session["otp_method"] = "MANUAL"
+                
+                messages.info(request, "Se requiere código OTP manual")
+                
         except Exception as e:
             registrar_log(
-                payment_id, tipo_log="ERROR",
-                error=str(e), extra_info="Error al solicitar OTP"
+                payment_id, 
+                tipo_log="ERROR",
+                error=str(e), 
+                extra_info="Error en autenticación inicial"
             )
             messages.error(request, f"Error al iniciar la autenticación: {e}")
             return redirect("transfer_detailGPT4", payment_id=payment_id)
 
-    elif request.method == "POST" and form.is_valid():
-        # 8) Leemos el OTP ingresado
-        otp = form.cleaned_data.get("manual_otp")
+    elif request.method == "POST":
+        # 9) Procesar envío de transferencia
         token = request.session.get("bank_token")
+        use_ssl = request.session.get("use_ssl_certificates", False)
+        otp_method = request.session.get("otp_method", "MANUAL")
+        
         if not token:
             messages.error(request, "La sesión de autenticación expiró. Reinicia el proceso.")
             return redirect("transfer_detailGPT4", payment_id=payment_id)
 
         try:
-            # 9) Enviar OTP para verificar y completar la transferencia
-            resultado = enviar_transferencia(token, payment_id, otp)
-            registrar_log(
-                payment_id, tipo_log="TRANSFER",
-                extra_info=f"Respuesta simulador: {resultado}"
-            )
+            if use_ssl and otp_method == "PUSHTAN":
+                # 10) ENVÍO CON CERTIFICADOS SSL Y PUSHTAN AUTOMÁTICO
+                from api.gpt4.services.transfer_services import enviar_transferencia_con_pushtan
+                
+                registrar_log(
+                    payment_id, 
+                    tipo_log='TRANSFER', 
+                    extra_info="Iniciando transferencia con certificados SSL y PUSHTAN automático"
+                )
+                
+                # No necesitamos OTP manual, usar PUSHTAN
+                # IP del PSU (cliente) si está disponible
+                psu_ip = request.META.get('HTTP_X_FORWARDED_FOR')
+                if psu_ip:
+                    psu_ip = psu_ip.split(',')[0].strip()
+                else:
+                    psu_ip = request.META.get('REMOTE_ADDR')
 
-            # 10) Actualizar estado local de la transferencia
-            estado = resultado.get("status")
-            if not estado:
-                estado = consultar_estado(token, payment_id).get("status", transfer.status)
-            transfer.status = estado
-            if estado == "ACCP":
-                transfer.auth_id = conf["usuario"]
-            transfer.save()
-
-            messages.success(request, "Transferencia completada correctamente.")
-            # 11) Limpiar la sesión tras éxito
-            for k in ("bank_token", "bank_challenge_id", "current_payment_id"):
-                request.session.pop(k, None)
-            return redirect("transfer_detailGPT4", payment_id=payment_id)
+                success, result = enviar_transferencia_con_pushtan(
+                    payment_id=payment_id,
+                    token=token,
+                    psu_ip_address=psu_ip,
+                )
+                
+                if success:
+                    # 11) Actualizar estado de la transferencia
+                    estado = result.get("transactionStatus", result.get("status"))
+                    if estado:
+                        transfer.status = estado
+                        transfer.save()
+                        
+                        if estado in ["ACCP", "ACTC", "ACSC"]:
+                            messages.success(
+                                request, 
+                                f"✅ Transferencia procesada exitosamente. Estado: {estado}"
+                            )
+                        elif estado == "PDNG":
+                            messages.info(
+                                request, 
+                                f"⏳ Transferencia en proceso. Estado: {estado}"
+                            )
+                        else:
+                            messages.warning(
+                                request, 
+                                f"⚠️ Transferencia enviada. Estado: {estado}"
+                            )
+                    
+                    registrar_log(
+                        payment_id, 
+                        tipo_log="TRANSFER",
+                        extra_info=f"Transferencia completada con PUSHTAN. Estado: {estado}"
+                    )
+                    
+                    # 12) Limpiar sesión
+                    for key in ["bank_token", "bank_token_expires", "use_ssl_certificates", 
+                               "current_payment_id", "otp_method"]:
+                        request.session.pop(key, None)
+                    
+                    return redirect("transfer_detailGPT4", payment_id=payment_id)
+                    
+                else:
+                    # Error en transferencia con certificados
+                    registrar_log(
+                        payment_id, 
+                        tipo_log='ERROR', 
+                        error=result, 
+                        extra_info="Error en transferencia con PUSHTAN"
+                    )
+                    messages.error(request, f"Error en transferencia: {result}")
+                    
+            else:
+                # 13) FALLBACK: Método original con OTP manual
+                otp_manual = request.POST.get('manual_otp') or form.cleaned_data.get('manual_otp')
+                
+                if not otp_manual:
+                    messages.error(request, "Se requiere código OTP")
+                    return render(request, "api/GPT4/send_transfer_bank.html", {
+                        "transfer": transfer,
+                        "form": form,
+                        "require_manual_otp": True
+                    })
+                
+                # Enviar con OTP manual
+                resultado = enviar_transferencia(token, payment_id, otp_manual)
+                
+                estado = resultado.get("status")
+                if estado:
+                    transfer.status = estado
+                    transfer.save()
+                    messages.success(request, f"Transferencia procesada. Estado: {estado}")
+                
+                # Limpiar sesión
+                for key in ["bank_token", "current_payment_id", "otp_method"]:
+                    request.session.pop(key, None)
+                
+                return redirect("transfer_detailGPT4", payment_id=payment_id)
+                
         except Exception as e:
             registrar_log(
-                payment_id, tipo_log="ERROR",
-                error=str(e), extra_info="Fallo en verificación OTP/transferencia"
+                payment_id, 
+                tipo_log="ERROR",
+                error=str(e), 
+                extra_info="Error al procesar transferencia"
             )
-            messages.error(request, f"Error enviando transferencia: {e}")
-            return redirect("send_transfer_bank_viewGPT4", payment_id=payment_id)
+            messages.error(request, f"Error al procesar la transferencia: {e}")
+            return redirect("transfer_detailGPT4", payment_id=payment_id)
 
-    # 12) Renderizar formulario de OTP (modo simple_otp oculta campos de token)
-    return render(request, "api/GPT4/send_transfer_bank.html", {
+    # 14) Renderizar formulario
+    context = {
         "transfer": transfer,
         "form": form,
-        "challenge_id": request.session.get("bank_challenge_id")
-    })
+        "use_pushtan": request.session.get("otp_method") == "PUSHTAN",
+        "use_ssl": request.session.get("use_ssl_certificates", False),
+    }
+    
+    return render(request, "api/GPT4/send_transfer_bank.html", context)
 
 
 @require_GET
@@ -128,8 +241,8 @@ def prueba_conexion_banco(request):
     Prueba la conexión bancaria real o fake.
     """
     try:
-        # resp = make_request("GET", "/api/transferencia")
-        resp = make_request("GET", "$send_path")
+        send_path = get_conf("SEND_PATH")
+        resp = make_request("GET", send_path)
         data = resp.json()
         return JsonResponse({"estado": "ok", "respuesta": data})
     except Exception as e:

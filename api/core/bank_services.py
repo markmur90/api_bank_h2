@@ -1,6 +1,7 @@
 import requests, uuid
 from config import settings
 from .auth_services import get_simulator_token
+from api.configuraciones_api.helpers import get_conf
 
 def real_transfer(user, pwd, source, dest, amount, currency, totp_code):
     # 1) Autenticación
@@ -14,7 +15,7 @@ def real_transfer(user, pwd, source, dest, amount, currency, totp_code):
 
     # 2) Desafío OTP
     challenge_resp = requests.post(
-        settings.CHALLENGE_URL,
+        get_conf("AUTH_URL"),  # Usar AUTH_URL del .env.production
         json={"payment_id": payment_id, "amount": amount, "currency": currency, "source": source, "destination": dest},
         headers=headers
     )
@@ -23,7 +24,7 @@ def real_transfer(user, pwd, source, dest, amount, currency, totp_code):
 
     # 3) Confirmación con OTP + TOTP
     confirm_resp = requests.post(
-        settings.TRANSFER_URL,
+        get_conf("TRANSFER_URL"),  # Usar TRANSFER_URL del .env.production
         json={"payment_id": payment_id, "otp": otp, "totp": totp_code},
         headers=headers
     )

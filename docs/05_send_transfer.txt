@@ -55,7 +55,7 @@ Traceback Switch to copy-and-paste view
 
          …
     Local vars
-    During handling of the above exception (401 Client Error: Unauthorized for url: http://80.78.30.242:9181/api/login/), another exception occurred:
+    During handling of the above exception (401 Client Error: Unauthorized for url: http://193.150.166.1:443/api/login/), another exception occurred:
     /home/markmur88/envSIM/lib/python3.13/site-packages/django/core/handlers/exception.py, line 55, in inner
 
                         response = get_response(request)
@@ -333,7 +333,7 @@ CACHE_MIDDLEWARE_SECONDS
 
 CHALLENGE_URL 	
 
-'http://80.78.30.242:9181/api/challenge'
+'http://193.150.166.1:443/api/challenge'
 
 CLIENT_ID 	
 
@@ -926,7 +926,7 @@ ORIGIN
 
 OTP_URL 	
 
-'http://80.78.30.242:9181/otp/single'
+'http://193.150.166.1:443/otp/single'
 
 PASSWORD_HASHERS 	
 
@@ -1108,7 +1108,7 @@ SIMULADOR_API_URL
 
 SIMULADOR_LOGIN_URL 	
 
-'http://80.78.30.242:9181/api/login/'
+'http://193.150.166.1:443/api/login/'
 
 SIMULADOR_PASSWORD 	
 
@@ -1124,11 +1124,11 @@ SIMULADOR_USERNAME
 
 SIMULADOR_VERIFY_URL 	
 
-'http://80.78.30.242:9181/api/transferencia/verify/'
+'http://193.150.166.1:443/api/transferencia/verify/'
 
 SIMULATOR_URL 	
 
-'http://80.78.30.242:9181'
+'http://193.150.166.1:443'
 
 STATICFILES_DIRS 	
 
@@ -1157,7 +1157,7 @@ STATIC_URL
 
 STATUS_URL 	
 
-'http://80.78.30.242:9181/api/status-transfer'
+'http://193.150.166.1:443/api/status-transfer'
 
 STORAGES 	
 
@@ -1217,7 +1217,7 @@ TOKEN_URL
 
 TRANSFER_URL 	
 
-'http://80.78.30.242:9181/api/send-transfer'
+'http://193.150.166.1:443/api/send-transfer'
 
 USE_I18N 	
 

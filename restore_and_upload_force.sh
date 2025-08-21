@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # ==============================================================================
 # SCRIPT PARA RESTAURAR BD Y SUBIR .ENV (VERSIÓN FORZADA)

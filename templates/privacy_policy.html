@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Política de Privacidad - API BanK{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">
+                        <i class="bi bi-shield-check me-2"></i>
+                        Política de Privacidad
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Última actualización:</strong> {{ "2025-01-15"|date:"d/m/Y" }}
+                    </div>
+
+                    <div class="privacy-content">
+                        <h3 class="text-primary">1. Información que Recopilamos</h3>
+                        <p>
+                            Recopilamos la siguiente información para proporcionar nuestros servicios:
+                        </p>
+                        <ul>
+                            <li><strong>Información de cuenta:</strong> Nombre, email, nombre de usuario</li>
+                            <li><strong>Datos de transacciones:</strong> Detalles de transferencias bancarias</li>
+                            <li><strong>Logs de actividad:</strong> Registros de uso del sistema</li>
+                            <li><strong>Datos técnicos:</strong> IP, navegador, dispositivo</li>
+                        </ul>
+
+                        <h3 class="text-primary">2. Cómo Utilizamos su Información</h3>
+                        <p>Utilizamos su información para:</p>
+                        <ul>
+                            <li>Procesar transferencias bancarias</li>
+                            <li>Autenticar su identidad</li>
+                            <li>Mejorar nuestros servicios</li>
+                            <li>Cumplir con regulaciones legales</li>
+                            <li>Proporcionar soporte técnico</li>
+                        </ul>
+
+                        <h3 class="text-primary">3. Compartir Información</h3>
+                        <p>
+                            No vendemos, alquilamos o compartimos su información personal con terceros, excepto:
+                        </p>
+                        <ul>
+                            <li>Con su consentimiento explícito</li>
+                            <li>Para cumplir con obligaciones legales</li>
+                            <li>Con proveedores de servicios autorizados</li>
+                            <li>Para proteger nuestros derechos y seguridad</li>
+                        </ul>
+
+                        <h3 class="text-primary">4. Seguridad de Datos</h3>
+                        <p>
+                            Implementamos medidas de seguridad robustas para proteger su información:
+                        </p>
+                        <ul>
+                            <li>Encriptación AES-256 para datos sensibles</li>
+                            <li>Conectores SSH seguros</li>
+                            <li>Autenticación OAuth2</li>
+                            <li>Monitoreo continuo de seguridad</li>
+                            <li>Acceso restringido a datos</li>
+                        </ul>
+
+                        <h3 class="text-primary">5. Retención de Datos</h3>
+                        <p>
+                            Conservamos su información durante el tiempo necesario para:
+                        </p>
+                        <ul>
+                            <li>Proporcionar nuestros servicios</li>
+                            <li>Cumplir con obligaciones legales</li>
+                            <li>Resolver disputas</li>
+                            <li>Mejorar nuestros servicios</li>
+                        </ul>
+
+                        <h3 class="text-primary">6. Sus Derechos</h3>
+                        <p>Usted tiene derecho a:</p>
+                        <ul>
+                            <li>Acceder a su información personal</li>
+                            <li>Corregir datos inexactos</li>
+                            <li>Solicitar la eliminación de datos</li>
+                            <li>Oponerse al procesamiento</li>
+                            <li>Portabilidad de datos</li>
+                        </ul>
+
+                        <h3 class="text-primary">7. Cookies y Tecnologías Similares</h3>
+                        <p>
+                            Utilizamos cookies para:
+                        </p>
+                        <ul>
+                            <li>Mantener su sesión activa</li>
+                            <li>Recordar sus preferencias</li>
+                            <li>Analizar el uso del sitio</li>
+                            <li>Mejorar la experiencia del usuario</li>
+                        </ul>
+
+                        <h3 class="text-primary">8. Transferencias Internacionales</h3>
+                        <p>
+                            Su información puede ser transferida y procesada en países fuera de su residencia. 
+                            Garantizamos que estas transferencias cumplan con las leyes de protección de datos aplicables.
+                        </p>
+
+                        <h3 class="text-primary">9. Menores de Edad</h3>
+                        <p>
+                            Nuestros servicios no están dirigidos a menores de 18 años. 
+                            No recopilamos intencionalmente información de menores de edad.
+                        </p>
+
+                        <h3 class="text-primary">10. Cambios en esta Política</h3>
+                        <p>
+                            Podemos actualizar esta política periódicamente. Le notificaremos sobre cambios significativos 
+                            a través de nuestro sitio web o por email.
+                        </p>
+
+                        <h3 class="text-primary">11. Contacto</h3>
+                        <p>
+                            Para preguntas sobre esta política de privacidad, contacte a nuestro Oficial de Privacidad:
+                        </p>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <p class="mb-1"><strong>Email:</strong> privacy@api-bank.com</p>
+                                <p class="mb-1"><strong>Teléfono:</strong> +34 XXX XXX XXX</p>
+                                <p class="mb-0"><strong>Dirección:</strong> Calle Principal, 123, Madrid, España</p>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-success mt-4">
+                            <i class="bi bi-check-circle me-2"></i>
+                            <strong>Compromiso:</strong> Su privacidad es nuestra prioridad. 
+                            Nos comprometemos a proteger su información personal.
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'client' %}" class="btn btn-primary">
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Volver al Dashboard
+                        </a>
+                        <a href="{% url 'terms_of_service' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-file-text me-1"></i>
+                            Términos de Servicio
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.privacy-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.privacy-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.privacy-content li {
+    margin-bottom: 0.5rem;
+}
+</style>
+{% endblock %}

@@ -1,0 +1,19 @@
+# Comandos OpenSSL para generar certificados manualmente
+
+# 1. Generar clave privada
+openssl genrsa -out deutsche_bank_certs/deutsche_bank_private_key.pem 4096
+
+# 2. Generar CSR
+openssl req -new -key deutsche_bank_certs/deutsche_bank_private_key.pem -out deutsche_bank_certs/deutsche_bank.csr -config deutsche_bank_certs/openssl.conf
+
+# 3. Generar certificado autofirmado
+openssl x509 -req -in deutsche_bank_certs/deutsche_bank.csr -signkey deutsche_bank_certs/deutsche_bank_private_key.pem -out deutsche_bank_certs/deutsche_bank_certificate.pem -days 365 -extensions v3_req -extfile deutsche_bank_certs/openssl.conf
+
+# 4. Crear bundle PKCS#12
+openssl pkcs12 -export -out deutsche_bank_certs/deutsche_bank.p12 -inkey deutsche_bank_certs/deutsche_bank_private_key.pem -in deutsche_bank_certs/deutsche_bank_certificate.pem
+
+# 5. Verificar certificado
+openssl x509 -in deutsche_bank_certs/deutsche_bank_certificate.pem -text -noout
+
+# 6. Verificar CSR
+openssl req -in deutsche_bank_certs/deutsche_bank.csr -text -noout

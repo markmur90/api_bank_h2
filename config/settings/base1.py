@@ -1,28 +1,21 @@
 from datetime import timedelta
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 from django.core.exceptions import ImproperlyConfigured
-import dj_database_url
+# import dj_database_url  # Comentado temporalmente
 from django.apps import apps
 from .env_vars import load_env
 
-# Configuración de django-environ restaurada
-import environ
-
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-
-# 1. Creamos el lector de .env
-env = environ.Env()
 
 # 2. Detectamos el entorno (por defecto 'local') y cargamos el .env correspondiente
 DJANGO_ENV = os.getenv('DJANGO_ENV', 'local')
 
 env_file = BASE_DIR / ('.env.production' if DJANGO_ENV == 'production' else '.env.local')
-if env_file.exists():
-    env.read_env(env_file)
-    print(f"✅ Variables cargadas desde: {env_file}")
-else:
-    print(f"⚠️ Archivo {env_file} no encontrado, usando variables de entorno del sistema")
+if not env_file.exists():
+    raise ImproperlyConfigured(f'No se encuentra el archivo de entorno: {env_file}')
+load_dotenv(env_file)
 
 # Cargar dinámicamente variables desde la BD
 def intentar_cargar_variables(entorno):
@@ -47,31 +40,31 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 
 # Variables agrupadas desde env_settings
-REDIRECT_URI = env_settings["REDIRECT_URI"]
-CLIENT_ID = env_settings["CLIENT_ID"]
-CLIENT_SECRET = env_settings["CLIENT_SECRET"]
-ORIGIN = env_settings["ORIGIN"]
-TOKEN_URL = env_settings["TOKEN_URL"]
-OTP_URL = env_settings["OTP_URL"]
-AUTH_URL = env_settings["AUTH_URL"]
-API_URL = env_settings["API_URL"]
-AUTHORIZE_URL = env_settings["AUTHORIZE_URL"]
-SCOPE = env_settings["SCOPE"]
-ACCESS_TOKEN = env_settings["ACCESS_TOKEN"]
-TIMEOUT_REQUEST = env_settings["TIMEOUT_REQUEST"]
-DNS_BANCO = env_settings["DNS_BANCO"]
-DOMINIO_BANCO = env_settings["DOMINIO_BANCO"]
-RED_SEGURA_PREFIX = env_settings["RED_SEGURA_PREFIX"]
-TIMEOUT = env_settings["TIMEOUT"]
-MOCK_PORT = env_settings["MOCK_PORT"]
+# REDIRECT_URI = env_settings["REDIRECT_URI"]
+# CLIENT_ID = env_settings["CLIENT_ID"]
+# CLIENT_SECRET = env_settings["CLIENT_SECRET"]
+# ORIGIN = env_settings["ORIGIN"]
+# TOKEN_URL = env_settings["TOKEN_URL"]
+# OTP_URL = env_settings["OTP_URL"]
+# AUTH_URL = env_settings["AUTH_URL"]
+# API_URL = env_settings["API_URL"]
+# AUTHORIZE_URL = env_settings["AUTHORIZE_URL"]
+# SCOPE = env_settings["SCOPE"]
+# ACCESS_TOKEN = env_settings["ACCESS_TOKEN"]
+# TIMEOUT_REQUEST = env_settings["TIMEOUT_REQUEST"]
+# DNS_BANCO = env_settings["DNS_BANCO"]
+# DOMINIO_BANCO = env_settings["DOMINIO_BANCO"]
+# RED_SEGURA_PREFIX = env_settings["RED_SEGURA_PREFIX"]
+# TIMEOUT = env_settings["TIMEOUT"]
+# MOCK_PORT = env_settings["MOCK_PORT"]
 JWT_SIGNING_KEY = env_settings["JWT_SIGNING_KEY"]
 JWT_VERIFYING_KEY = env_settings["JWT_VERIFYING_KEY"]
-SIMULADOR_SECRET_KEY = env_settings["SIMULADOR_SECRET_KEY"]
-SIMULADOR_API_URL = env_settings["SIMULADOR_API_URL"]
-SIMULADOR_LOGIN_URL = env_settings["SIMULADOR_LOGIN_URL"]
-SIMULADOR_VERIFY_URL = env_settings["SIMULADOR_VERIFY_URL"]
-SIMULADOR_USERNAME = env_settings["SIMULADOR_USERNAME"]
-SIMULADOR_PASSWORD = env_settings["SIMULADOR_PASSWORD"]
+# SIMULADOR_SECRET_KEY = env_settings["SIMULADOR_SECRET_KEY"]
+# SIMULADOR_API_URL = env_settings["SIMULADOR_API_URL"]
+# SIMULADOR_LOGIN_URL = env_settings["SIMULADOR_LOGIN_URL"]
+# SIMULADOR_VERIFY_URL = env_settings["SIMULADOR_VERIFY_URL"]
+# SIMULADOR_USERNAME = env_settings["SIMULADOR_USERNAME"]
+# SIMULADOR_PASSWORD = env_settings["SIMULADOR_PASSWORD"]
 
 
 INSTALLED_APPS = [
@@ -82,7 +75,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # Dependencias de terceros restauradas
     'drf_yasg',
     'rest_framework',
     'oauth2_provider',
@@ -93,7 +85,6 @@ INSTALLED_APPS = [
     'markdownify',
     'sslserver',
     
-    # Apps personalizadas restauradas
     'api.configuraciones_api',
     'api.core',
     'api.authentication',
@@ -135,7 +126,7 @@ TEMPLATES = [
     },
 ]
 
-INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '80.78.30.242', 'api.coretransapi.com']
+INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '193.150.']
 
 # 5. Plantillas de base de datos
 # DATABASES_HEROKU = {
@@ -160,9 +151,6 @@ DATABASE_PSQL = {
         'PORT': '5432',
     }
 }
-
-# Para desarrollo local, usar SQLite por defecto para evitar problemas con PostgreSQL
-# Si necesitas PostgreSQL, cambia esta línea a: DATABASES = DATABASE_PSQL
 DATABASES = DATABASE_PSQL
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -208,11 +196,17 @@ REST_FRAMEWORK = {
 
 OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
-SIMULATOR_URL   = "http://80.78.30.242:9181"
-TOKEN_ENDPOINT  = f"{SIMULATOR_URL}/api/login/"
-CHALLENGE_URL   = f"{SIMULATOR_URL}/api/challenge"
-TRANSFER_URL    = f"{SIMULATOR_URL}/api/send-transfer"
-STATUS_URL      = f"{SIMULATOR_URL}/api/status-transfer"
+
+# ✅ REEMPLAZAR con comentario:
+# URLs unificadas usando get_conf() - estas variables se cargan dinámicamente
+# desde la base de datos según el entorno (local/production)
+# Las URLs válidas están en .env.production y se acceden via get_conf()
+
+# SIMULATOR_URL   = "http://193.150.166.1:443"
+# TOKEN_ENDPOINT  = f"{SIMULATOR_URL}/api/login/"
+# CHALLENGE_URL   = f"{SIMULATOR_URL}/api/challenge"
+# TRANSFER_URL    = f"{SIMULATOR_URL}/api/send-transfer"
+# STATUS_URL      = f"{SIMULATOR_URL}/api/status-transfer"
 
 OAUTH2 = env_settings["OAUTH2"]
 
@@ -276,7 +270,7 @@ LOGGING = {
 }
 
 LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/dashboard/'
+LOGIN_REDIRECT_URL = '/client/'
 # Amplía la duración de la sesión para evitar que expire durante
 # el flujo de autorización OAuth2.
 SESSION_COOKIE_AGE = 1800  # 30 minutos
@@ -286,8 +280,8 @@ DEBUG_TOOLBAR_CONFIG = {
     'INTERCEPT_REDIRECTS': False,
 }
 
-import django_heroku
-django_heroku.settings(locals())
+# import django_heroku
+# django_heroku.settings(locals())
 
 PRIVATE_KEY_PATH = os.path.join(BASE_DIR, 'keys', 'ecdsa_private_key.pem')
 PRIVATE_KEY_KID = '6316220d-fc7b-4678-902c-1cdf60acbc8e'

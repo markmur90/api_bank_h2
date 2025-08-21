@@ -2,8 +2,8 @@ from django.urls import path, include
 from django.contrib import admin
 from api.gpt4.views import oauth2_authorize, oauth2_callback
 from api.views import (
-    DashboardView, HomeView, AuthIndexView, CoreIndexView, AccountsIndexView, SCTIndexView,
-    TransactionsIndexView, TransfersIndexView, CollectionIndexView, cambiar_entorno, login_view, logout_view, mostrar_readme, ReadmeView, AuthorizeView, CallbackView, signup_view, dashboard_view
+    DashView, HomeView, AuthIndexView, CoreIndexView, AccountsIndexView, SCTIndexView,
+    TransactionsIndexView, TransfersIndexView, CollectionIndexView, cambiar_entorno, login_view, logout_view, mostrar_readme, ReadmeView, AuthorizeView, CallbackView, signup_view, client_view, terms_of_service_view, privacy_policy_view, notifications_view
 )
 
 urlpatterns = [
@@ -22,7 +22,7 @@ urlpatterns = [
     # path("readme/", ReadmeView.as_view(), name="readme_deploy"),
     path("readme/", mostrar_readme, name="readme_deploy"),
 
-    path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('dashboard/', DashView.as_view(), name='dash'),
     # path('oauth2/callback/', CallbackView.as_view(), name='oauth2_callback'),
     # path('oauth2/authorize/', AuthorizeView.as_view(), name='oauth2_authorize'),
     
@@ -38,4 +38,9 @@ urlpatterns = [
     path('configuraciones/', include('api.configuraciones_api.urls')),
     path('cambiar-entorno/<str:entorno>/', cambiar_entorno, name='cambiar_entorno'),
 
+    # Nuevas páginas
+    path('client/', client_view, name='client'),
+    path('terms-of-service/', terms_of_service_view, name='terms_of_service'),
+    path('privacy-policy/', privacy_policy_view, name='privacy_policy'),
+    path('notifications/', notifications_view, name='notifications'),
 ]

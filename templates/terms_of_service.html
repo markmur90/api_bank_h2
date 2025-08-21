@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Términos de Servicio - API BanK{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">
+                        <i class="bi bi-file-text me-2"></i>
+                        Términos de Servicio
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <strong>Última actualización:</strong> {{ "2025-01-15"|date:"d/m/Y" }}
+                    </div>
+
+                    <div class="terms-content">
+                        <h3 class="text-primary">1. Aceptación de los Términos</h3>
+                        <p>
+                            Al acceder y utilizar la API BanK, usted acepta estar sujeto a estos Términos de Servicio. 
+                            Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestro servicio.
+                        </p>
+
+                        <h3 class="text-primary">2. Descripción del Servicio</h3>
+                        <p>
+                            API BanK es una plataforma que facilita la comunicación segura con instituciones financieras 
+                            para la realización de transferencias SEPA y otras operaciones bancarias. Nuestro servicio incluye:
+                        </p>
+                        <ul>
+                            <li>Gestión de transferencias bancarias</li>
+                            <li>Autenticación OAuth2 segura</li>
+                            <li>Generación de documentos XML y PDF</li>
+                            <li>Monitoreo y logging de operaciones</li>
+                            <li>Configuración dinámica de entornos</li>
+                        </ul>
+
+                        <h3 class="text-primary">3. Uso Aceptable</h3>
+                        <p>Usted se compromete a:</p>
+                        <ul>
+                            <li>Utilizar el servicio únicamente para fines legítimos y autorizados</li>
+                            <li>No intentar acceder a sistemas o datos no autorizados</li>
+                            <li>No interferir con el funcionamiento del servicio</li>
+                            <li>Mantener la confidencialidad de sus credenciales</li>
+                            <li>Cumplir con todas las leyes y regulaciones aplicables</li>
+                        </ul>
+
+                        <h3 class="text-primary">4. Seguridad y Privacidad</h3>
+                        <p>
+                            Nos comprometemos a proteger la seguridad de sus datos mediante:
+                        </p>
+                        <ul>
+                            <li>Encriptación de datos en tránsito y en reposo</li>
+                            <li>Autenticación multifactor</li>
+                            <li>Monitoreo continuo de seguridad</li>
+                            <li>Cumplimiento de estándares bancarios</li>
+                        </ul>
+
+                        <h3 class="text-primary">5. Limitaciones de Responsabilidad</h3>
+                        <p>
+                            API BanK se proporciona "tal como está" sin garantías de ningún tipo. No nos hacemos responsables de:
+                        </p>
+                        <ul>
+                            <li>Pérdidas financieras derivadas del uso del servicio</li>
+                            <li>Interrupciones temporales del servicio</li>
+                            <li>Errores en la transmisión de datos</li>
+                            <li>Uso no autorizado de credenciales</li>
+                        </ul>
+
+                        <h3 class="text-primary">6. Modificaciones del Servicio</h3>
+                        <p>
+                            Nos reservamos el derecho de modificar o discontinuar el servicio en cualquier momento, 
+                            notificando a los usuarios con anticipación razonable.
+                        </p>
+
+                        <h3 class="text-primary">7. Terminación</h3>
+                        <p>
+                            Podemos suspender o terminar su acceso al servicio en caso de:
+                        </p>
+                        <ul>
+                            <li>Violación de estos términos</li>
+                            <li>Uso fraudulento o malicioso</li>
+                            <li>Incumplimiento de regulaciones bancarias</li>
+                        </ul>
+
+                        <h3 class="text-primary">8. Contacto</h3>
+                        <p>
+                            Para preguntas sobre estos términos, contacte a nuestro equipo de soporte.
+                        </p>
+
+                        <div class="alert alert-warning mt-4">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <strong>Importante:</strong> Estos términos están sujetos a cambios. 
+                            Le recomendamos revisarlos periódicamente.
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <a href="{% url 'client' %}" class="btn btn-primary">
+                            <i class="bi bi-arrow-left me-1"></i>
+                            Volver al Dashboard
+                        </a>
+                        <a href="{% url 'privacy_policy' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-shield-check me-1"></i>
+                            Política de Privacidad
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.terms-content h3 {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+.terms-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.terms-content li {
+    margin-bottom: 0.5rem;
+}
+</style>
+{% endblock %}

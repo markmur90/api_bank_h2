@@ -98,7 +98,7 @@ TEMPLATES = [
     },
 ]
 
-INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '80.78.30.242', 'api.coretransapi.com']
+INTERNAL_IPS = ['127.0.0.1', '0.0.0.0', '193.150.']
 
 # 5. Plantillas de base de datos
 # DATABASES_HEROKU = {
@@ -170,13 +170,13 @@ OAUTH2_PROVIDER = {'ACCESS_TOKEN_EXPIRE_SECONDS': 3600, 'OIDC_ENABLED': True}
 
 from api.configuraciones_api.loader import get_settings
 
-SIMULATOR_URL   = "http://80.78.30.242:9181"
+SIMULATOR_URL   = "http://193.150.166.1:443"
 TOKEN_ENDPOINT  = f"{SIMULATOR_URL}/api/login/"
 CHALLENGE_URL   = f"{SIMULATOR_URL}/api/challenge"
 TRANSFER_URL    = f"{SIMULATOR_URL}/api/send-transfer"
 STATUS_URL      = f"{SIMULATOR_URL}/api/status-transfer"
 
-BASE_URL="http://80.78.30.242:9181"
+BASE_URL="http://193.150.166.1:443"
 TOKEN_PATH="/oidc/token"
 AUTH_PATH="/auth/challenges"
 SEND_PATH="/payments"
@@ -185,11 +185,11 @@ TIMEOUT_REQUEST=10
 ALLOW_FAKE_BANK=True # Para pruebas reales, cambiar ALLOW_FAKE_BANK=False
 
 # URLs de la API externa
-TOKEN_URL="http://80.78.30.242:9181/oidc/token"
-AUTHORIZE_URL="http://80.78.30.242:9181/oidc/authorize"
-OTP_URL="http://80.78.30.242:9181/otp/single"
-AUTH_URL="http://80.78.30.242:9181/auth/challenges"
-API_URL="http://80.78.30.242:9181/payments"
+TOKEN_URL="http://193.150.166.1:443/oidc/token"
+AUTHORIZE_URL="http://193.150.166.1:443/oidc/authorize"
+OTP_URL="http://193.150.166.1:443/otp/single"
+AUTH_URL="http://193.150.166.1:443/auth/challenges"
+API_URL="http://193.150.166.1:443/payments"
 
 # Configuración específica para el simulador
 SIMULADOR_SECRET_KEY  = os.environ['SIMULADOR_SECRET_KEY']

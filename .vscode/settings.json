@@ -36,5 +36,8 @@
   // 4. Ajustes de Prettier (opcional)
   "prettier.singleQuote": true,
   "prettier.trailingComma": "all",
-  "python.analysis.extraPaths": ["./temp/scripts/automate/escaneo"]
+  "python.analysis.extraPaths": [
+    "./temp/scripts/automate/escaneo"
+  ],
+  "python-envs.pythonProjects": []
 }

@@ -9,7 +9,7 @@ class ConfiguracionAPI(models.Model):
 
     entorno = models.CharField(max_length=20, choices=ENTORNOS, default="production")
     nombre = models.CharField(max_length=100)
-    valor = models.CharField(max_length=100)
+    valor = models.CharField(max_length=500)
     descripcion = models.CharField(max_length=255, blank=True)
     activo = models.BooleanField(default=True)
 
