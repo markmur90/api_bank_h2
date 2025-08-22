@@ -47,6 +47,9 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
         (r'ROUTE\([\'"]([^\'"]+)[\'"]', 'Ruta genérica'),
         (r'endpoint\s*=\s*[\'"]([^\'"]+)[\'"]', 'Configuración genérica'),
     ]
+
+    # Compilar patrones para mejorar rendimiento
+    patrones_compilados = [(re.compile(p), fw) for p, fw in patrones]
     
     # Extensiones de archivo a analizar
     extensiones_validas = ['.py', '.js', '.ts', '.java', '.php', '.go', '.rb', '.cs', '.cpp', '.c', '.h', '.hpp', '.html', '.xml', '.json', '.yml', '.yaml']
@@ -99,8 +102,8 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
                     lineas = f.readlines()
                     
                     for num_linea, linea in enumerate(lineas, 1):
-                        for patron, framework in patrones:
-                            coincidencias = re.finditer(patron, linea)
+                        for patron_re, framework in patrones_compilados:
+                            coincidencias = patron_re.finditer(linea)
                             for coincidencia in coincidencias:
                                 endpoint = coincidencia.group(1)
                                 
@@ -123,6 +126,23 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
         # Escribir datos
         for endpoint, archivo, linea, framework in resultados:
             f.write(f"{endpoint}\t{archivo}\t{linea}\t{framework}\n")
+
+    # Además, generar archivo de tabla alineada para lectura humana
+    # Derivar nombre: <archivo_salida> -> <archivo_salida_sin_ext>_tabla.txt
+    archivo_tabla = re.sub(r'(\.\w+)?$', '_tabla.txt', archivo_salida)
+
+    if resultados:
+        max_endpoint = max(len(r[0]) for r in resultados)
+        max_archivo = max(len(r[1]) for r in resultados)
+        max_linea   = max(len(str(r[2])) for r in resultados)
+
+        formato = f"{{:<{max_endpoint+2}}} {{:<{max_archivo+2}}} {{:>{max_linea}}}"
+
+        with open(archivo_tabla, 'w', encoding='utf-8') as tf:
+            tf.write(formato.format("Endpoint", "Ruta archivo", "Línea archivo") + "\n")
+            tf.write("-" * (max_endpoint + max_archivo + max_linea + 4) + "\n")
+            for endpoint, archivo, linea, _framework in resultados:
+                tf.write(formato.format(endpoint, archivo, str(linea)) + "\n")
     
     # Calcular estadísticas
     archivos_con_endpoints = len(set([r[1] for r in resultados]))
@@ -135,6 +155,7 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     print(f"  Archivos con endpoints: {archivos_con_endpoints}")
     print(f"  Total de endpoints encontrados: {len(resultados)}")
     print(f"  Resultados guardados en: {archivo_salida}")
+    print(f"  Tabla legible guardada en: {archivo_tabla}")
     
     return resultados
 

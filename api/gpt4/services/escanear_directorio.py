@@ -67,9 +67,39 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     
     resultados = []
     
-    # Patrones para diferentes frameworks y lenguajes
     patrones = [
-        # ... (mismos patrones que antes)
+        # Python (Django, Flask, FastAPI)
+        (r'@(?:app|router|blueprint)\.(?:get|post|put|delete|patch|route)\([\'"]([^\'"]+)[\'"]', 'Python (Flask/FastAPI)'),
+        (r'path\([\'"]([^\'"]+)[\'"]', 'Python (Django)'),
+        (r're_path\([\'"]([^\'"]+)[\'"]', 'Python (Django)'),
+        (r'url\([\'"]([^\'"]+)[\'"]', 'Python (Django)'),
+
+        # JavaScript/TypeScript (Express, Koa, etc.)
+        (r'(?:app|router)\.(?:get|post|put|delete|patch|all|use)\([\'"]([^\'"]+)[\'"]', 'JavaScript/TypeScript (Express)'),
+        (r'router\.(?:get|post|put|delete|patch|all)\([\'"]([^\'"]+)[\'"]', 'JavaScript/TypeScript (Router)'),
+
+        # Java (Spring Boot, JAX-RS)
+        (r'@(?:RequestMapping|GetMapping|PostMapping|PutMapping|DeleteMapping|PatchMapping)\([\'"]([^\'"]+)[\'"]', 'Java (Spring)'),
+        (r'@(?:Path)\([\'"]([^\'"]+)[\'"]', 'Java (JAX-RS)'),
+
+        # PHP (Laravel, Symfony)
+        (r'Route::(?:get|post|put|delete|patch|any)\([\'"]([^\'"]+)[\'"]', 'PHP (Laravel)'),
+        (r'\$router->(?:get|post|put|delete|patch)\([\'"]([^\'"]+)[\'"]', 'PHP (Symfony)'),
+
+        # Ruby on Rails
+        (r'get\s+[\'"]([^\'"]+)[\'"]', 'Ruby (Rails)'),
+        (r'post\s+[\'"]([^\'"]+)[\'"]', 'Ruby (Rails)'),
+
+        # Go (Gin, Echo)
+        (r'(?:r|router)\.(?:GET|POST|PUT|DELETE|PATCH)\([\'"]([^\'"]+)[\'"]', 'Go (Gin/Echo)'),
+
+        # C# (ASP.NET Core)
+        (r'\[(?:HttpGet|HttpPost|HttpPut|HttpDelete|HttpPatch)\([\'"]([^\'"]+)[\'"]', 'C# (ASP.NET)'),
+        (r'Map(?:Get|Post|Put|Delete|Patch)\([\'"]([^\'"]+)[\'"]', 'C# (ASP.NET)'),
+
+        # Rutas genéricas
+        (r'ROUTE\([\'"]([^\'"]+)[\'"]', 'Ruta genérica'),
+        (r'endpoint\s*=\s*[\'"]([^\'"]+)[\'"]', 'Configuración genérica'),
     ]
     
     # Extensiones de archivo a analizar
@@ -90,6 +120,22 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
         # Escribir datos
         for endpoint, archivo, linea, framework in resultados:
             f.write(f"{endpoint}\t{archivo}\t{linea}\t{framework}\n")
+
+    # Además, generar archivo de tabla alineada para lectura humana
+    archivo_tabla = re.sub(r'(\.\w+)?$', '_tabla.txt', archivo_salida)
+
+    if resultados:
+        max_endpoint = max(len(r[0]) for r in resultados)
+        max_archivo = max(len(r[1]) for r in resultados)
+        max_linea   = max(len(str(r[2])) for r in resultados)
+
+        formato = f"{{:<{max_endpoint+2}}} {{:<{max_archivo+2}}} {{:>{max_linea}}}"
+
+        with open(archivo_tabla, 'w', encoding='utf-8') as tf:
+            tf.write(formato.format("Endpoint", "Ruta archivo", "Línea archivo") + "\n")
+            tf.write("-" * (max_endpoint + max_archivo + max_linea + 4) + "\n")
+            for endpoint, archivo, linea, _framework in resultados:
+                tf.write(formato.format(endpoint, archivo, str(linea)) + "\n")
     
     # Calcular estadísticas
     archivos_con_endpoints = len(set([r[1] for r in resultados]))
@@ -99,6 +145,7 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     print(f"  Total de endpoints encontrados: {len(resultados)}")
     print(f"  Archivos con endpoints: {archivos_con_endpoints}")
     print(f"  Resultados guardados en: {archivo_salida}")
+    print(f"  Tabla legible guardada en: {archivo_tabla}")
     
     return resultados
 

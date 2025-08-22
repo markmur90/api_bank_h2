@@ -41,6 +41,8 @@ def probar_endpoints_con_ssl(client, endpoints, timeout=30):
     print(f"Probando endpoints contra: {base_url}")
     print("-" * 80)
     
+    # Reutilizar una sola sesión SSL para todas las pruebas
+    session = client._create_session()
     for endpoint, archivo, linea, framework in endpoints:
         # Construir URL completa
         url = urljoin(base_url, endpoint.lstrip('/'))
@@ -51,9 +53,6 @@ def probar_endpoints_con_ssl(client, endpoints, timeout=30):
         for metodo in metodos:
             try:
                 print(f"Probando {metodo} {url}...", end=' ')
-                
-                # Crear una sesión SSL
-                session = client._create_session()
                 
                 # Hacer la petición
                 response = session.request(
@@ -116,7 +115,7 @@ def mostrar_resultados(resultados):
     # Datos
     for r in resultados:
         nombre_archivo = os.path.basename(r['archivo'])
-        print(formatato.format(
+        print(formato.format(
             r['endpoint'],
             r['metodo'],
             str(r['status']),
