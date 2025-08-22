@@ -5,8 +5,41 @@ from urllib.parse import urljoin, urlparse
 import re
 
 # Importar la clase DeutscheBankClient del archivo existente
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-from transfer_services import DeutscheBankClient
+# Asegurar rutas: carpeta actual y raíz del proyecto (para importar 'api.*')
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(CURRENT_DIR, '..', '..', '..'))
+if CURRENT_DIR not in sys.path:
+    sys.path.append(CURRENT_DIR)
+if PROJECT_ROOT not in sys.path:
+    sys.path.append(PROJECT_ROOT)
+
+def _ensure_django_setup():
+    """Configura Django si no está configurado, intentando detectar el módulo de settings."""
+    if 'DJANGO_SETTINGS_MODULE' not in os.environ or not os.environ['DJANGO_SETTINGS_MODULE']:
+        candidatos = [
+            'config.settings.local',
+            'config.settings.development',
+            'config.settings.dev',
+            'config.settings.base',
+            'config.settings.production',
+        ]
+        import importlib
+        elegido = None
+        for modulo in candidatos:
+            try:
+                importlib.import_module(modulo)
+                elegido = modulo
+                break
+            except Exception:
+                continue
+        if elegido:
+            os.environ['DJANGO_SETTINGS_MODULE'] = elegido
+    try:
+        import django
+        django.setup()
+    except Exception as e:
+        print(f"Advertencia: No se pudo configurar Django automáticamente: {e}")
+        # Continuar; transfer_services puede fallar si depende de Django
 
 def leer_endpoints(archivo_entrada):
     """
@@ -174,6 +207,8 @@ def main():
         return
     
     # Probar los endpoints
+    # Asegurar setup de Django antes de importar transfer_services (por dependencias internas)
+    _ensure_django_setup()
     resultados = probar_endpoints_con_ssl(client, endpoints)
     
     # Mostrar resultados
