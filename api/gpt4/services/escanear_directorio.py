@@ -69,37 +69,39 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     
     patrones = [
         # Python (Django, Flask, FastAPI)
-        (r'@(?:app|router|blueprint)\.(?:get|post|put|delete|patch|route)\([\'"]([^\'"]+)[\'"]', 'Python (Flask/FastAPI)'),
-        (r'path\([\'"]([^\'"]+)[\'"]', 'Python (Django)'),
-        (r're_path\([\'"]([^\'"]+)[\'"]', 'Python (Django)'),
-        (r'url\([\'"]([^\'"]+)[\'"]', 'Python (Django)'),
+        (r'@(?:app|router|blueprint)\.(?:get|post|put|delete|patch|route)\([\'\"]([^\'\"]+)[\'\"]', 'Python (Flask/FastAPI)'),
+        (r'path\([\'\"]([^\'\"]+)[\'\"]', 'Python (Django)'),
+        (r're_path\([\'\"]([^\'\"]+)[\'\"]', 'Python (Django)'),
+        (r'url\([\'\"]([^\'\"]+)[\'\"]', 'Python (Django)'),
 
         # JavaScript/TypeScript (Express, Koa, etc.)
-        (r'(?:app|router)\.(?:get|post|put|delete|patch|all|use)\([\'"]([^\'"]+)[\'"]', 'JavaScript/TypeScript (Express)'),
-        (r'router\.(?:get|post|put|delete|patch|all)\([\'"]([^\'"]+)[\'"]', 'JavaScript/TypeScript (Router)'),
+        (r'(?:app|router)\.(?:get|post|put|delete|patch|all|use)\([\'\"]([^\'\"]+)[\'\"]', 'JavaScript/TypeScript (Express)'),
+        (r'router\.(?:get|post|put|delete|patch|all)\([\'\"]([^\'\"]+)[\'\"]', 'JavaScript/TypeScript (Router)'),
 
         # Java (Spring Boot, JAX-RS)
-        (r'@(?:RequestMapping|GetMapping|PostMapping|PutMapping|DeleteMapping|PatchMapping)\([\'"]([^\'"]+)[\'"]', 'Java (Spring)'),
-        (r'@(?:Path)\([\'"]([^\'"]+)[\'"]', 'Java (JAX-RS)'),
+        (r'@(?:RequestMapping|GetMapping|PostMapping|PutMapping|DeleteMapping|PatchMapping)\([\'\"]([^\'\"]+)[\'\"]', 'Java (Spring)'),
+        (r'@(?:Path)\([\'\"]([^\'\"]+)[\'\"]', 'Java (JAX-RS)'),
 
         # PHP (Laravel, Symfony)
-        (r'Route::(?:get|post|put|delete|patch|any)\([\'"]([^\'"]+)[\'"]', 'PHP (Laravel)'),
-        (r'\$router->(?:get|post|put|delete|patch)\([\'"]([^\'"]+)[\'"]', 'PHP (Symfony)'),
+        (r'Route::(?:get|post|put|delete|patch|any)\([\'\"]([^\'\"]+)[\'\"]', 'PHP (Laravel)'),
+        (r'\$router->(?:get|post|put|delete|patch)\([\'\"]([^\'\"]+)[\'\"]', 'PHP (Symfony)'),
 
         # Ruby on Rails
-        (r'get\s+[\'"]([^\'"]+)[\'"]', 'Ruby (Rails)'),
-        (r'post\s+[\'"]([^\'"]+)[\'"]', 'Ruby (Rails)'),
+        (r'get\s+[\'\"]([^\'\"]+)[\'\"]', 'Ruby (Rails)'),
+        (r'post\s+[\'\"]([^\'\"]+)[\'\"]', 'Ruby (Rails)'),
 
         # Go (Gin, Echo)
-        (r'(?:r|router)\.(?:GET|POST|PUT|DELETE|PATCH)\([\'"]([^\'"]+)[\'"]', 'Go (Gin/Echo)'),
+        (r'(?:r|router)\.(?:GET|POST|PUT|DELETE|PATCH)\([\'\"]([^\'\"]+)[\'\"]', 'Go (Gin/Echo)'),
 
         # C# (ASP.NET Core)
-        (r'\[(?:HttpGet|HttpPost|HttpPut|HttpDelete|HttpPatch)\([\'"]([^\'"]+)[\'"]', 'C# (ASP.NET)'),
-        (r'Map(?:Get|Post|Put|Delete|Patch)\([\'"]([^\'"]+)[\'"]', 'C# (ASP.NET)'),
+        (r'\[(?:HttpGet|HttpPost|HttpPut|HttpDelete|HttpPatch)\([\'\"]([^\'\"]+)[\'\"]', 'C# (ASP.NET)'),
+        (r'Map(?:Get|Post|Put|Delete|Patch)\([\'\"]([^\'\"]+)[\'\"]', 'C# (ASP.NET)'),
 
         # Rutas genéricas
-        (r'ROUTE\([\'"]([^\'"]+)[\'"]', 'Ruta genérica'),
-        (r'endpoint\s*=\s*[\'"]([^\'"]+)[\'"]', 'Configuración genérica'),
+        (r'ROUTE\([\'\"]([^\'\"]+)[\'\"]', 'Ruta genérica'),
+        (r'endpoint\s*=\s*[\'\"]([^\'\"]+)[\'\"]', 'Configuración genérica'),
+        # Rutas /gw/... genéricas en cualquier texto/código
+        (r'(/gw(?:/[\w\.\-:]+)+/?)', 'Ruta /gw genérica'),
     ]
     
     # Extensiones de archivo a analizar

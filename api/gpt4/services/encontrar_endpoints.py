@@ -46,13 +46,15 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
         # Rutas genéricas
         (r'ROUTE\([\'"]([^\'"]+)[\'"]', 'Ruta genérica'),
         (r'endpoint\s*=\s*[\'"]([^\'"]+)[\'"]', 'Configuración genérica'),
+        # Rutas /gw/... genéricas en cualquier texto/código
+        (r'(/gw(?:/[\w\.\-:]+)+/?)', 'Ruta /gw genérica'),
     ]
 
     # Compilar patrones para mejorar rendimiento
     patrones_compilados = [(re.compile(p), fw) for p, fw in patrones]
     
     # Extensiones de archivo a analizar
-    extensiones_validas = ['.py', '.js', '.ts', '.java', '.php', '.go', '.rb', '.cs', '.cpp', '.c', '.h', '.hpp', '.html', '.xml', '.json', '.yml', '.yaml']
+    extensiones_validas = ['.py', '.js', '.ts', '.java', '.php', '.go', '.rb', '.cs', '.cpp', '.c', '.h', '.hpp', '.html', '.xml', '.json', '.yml', '.yaml', '.md', '.txt']
     
     # Contadores para estadísticas
     total_archivos = 0
