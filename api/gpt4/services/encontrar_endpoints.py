@@ -5,11 +5,6 @@ import sys
 def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     """
     Escanea recursivamente todos los archivos en busca de endpoints de API y guarda resultados en archivo
-    
-    Args:
-        directorio: Directorio raíz a escanear
-        archivo_salida: Archivo donde guardar los resultados
-        excluir_dirs: Lista de directorios a excluir (opcional)
     """
     if excluir_dirs is None:
         # Directorios comunes a excluir por defecto
@@ -60,18 +55,34 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     total_archivos = 0
     archivos_procesados = 0
     archivos_con_endpoints = 0
+    directorios_visitados = 0
     
     print(f"Iniciando escaneo recursivo de: {directorio}")
     print(f"Directorios excluidos: {', '.join(excluir_dirs)}")
     print("-" * 80)
     
+    # Usamos os.walk con recursión explícita
     for raiz, dirs, archivos in os.walk(directorio):
-        # Excluir directorios especificados
-        dirs[:] = [d for d in dirs if d not in excluir_dirs]
+        directorios_visitados += 1
         
-        # Mostrar progreso cada 100 archivos
-        if total_archivos % 100 == 0:
-            print(f"Procesando directorio: {raiz} (archivos hasta ahora: {total_archivos})")
+        # Mostrar progreso cada 10 directorios
+        if directorios_visitados % 10 == 0:
+            print(f"Visitando directorio #{directorios_visitados}: {raiz}")
+        
+        # Filtrar directorios a excluir (creamos una nueva lista para no afectar la recursión)
+        dirs_filtrados = []
+        for d in dirs:
+            if d not in excluir_dirs:
+                dirs_filtrados.append(d)
+            else:
+                print(f"  Excluyendo directorio: {os.path.join(raiz, d)}")
+        
+        # Reemplazar la lista de directorios con la versión filtrada
+        dirs[:] = dirs_filtrados
+        
+        # Mostrar subdirectorios que se visitarán
+        if dirs:
+            print(f"  Subdirectorios a visitar en {os.path.basename(raiz)}: {', '.join(dirs)}")
         
         for archivo in archivos:
             total_archivos += 1
@@ -118,6 +129,7 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     
     print("\n" + "-" * 80)
     print(f"Escaneo completado:")
+    print(f"  Directorios visitados: {directorios_visitados}")
     print(f"  Total de archivos encontrados: {total_archivos}")
     print(f"  Archivos procesados: {archivos_procesados}")
     print(f"  Archivos con endpoints: {archivos_con_endpoints}")
