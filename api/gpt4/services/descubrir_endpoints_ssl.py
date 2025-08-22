@@ -126,12 +126,27 @@ def mostrar_resultados(resultados):
     print(f"\nTotal de endpoints accesibles: {len(resultados)}")
 
 def main():
-    if len(sys.argv) < 2:
-        print("Uso: python descubrir_endpoints_ssl.py <archivo_endpoints.txt>")
-        print("Ejemplo: python descubrir_endpoints_ssl.py endpoints.txt")
-        sys.exit(1)
-        
-    archivo_entrada = sys.argv[1]
+    # Soporte de uso sin argumentos: usar archivo compilado por defecto
+    archivo_por_defecto = "/home/markmur88/endpoints/reportes/endpoints_compilados.tsv"
+    if len(sys.argv) < 2 or not sys.argv[1].strip():
+        archivo_entrada = archivo_por_defecto
+        print(f"Usando archivo por defecto: {archivo_entrada}")
+    else:
+        archivo_entrada = sys.argv[1]
+    
+    # Si no existe, intentar compilar automáticamente a partir de los reportes
+    if not os.path.exists(archivo_entrada):
+        try:
+            print("Archivo no encontrado. Generando lista compilada desde reportes...")
+            # Importación local para evitar dependencias circulares
+            from compilar_endpoints import compilar
+            reportes_dir = "/home/markmur88/endpoints/reportes"
+            salida_txt = os.path.join(reportes_dir, 'endpoints_compilados.txt')
+            salida_tsv = os.path.join(reportes_dir, 'endpoints_compilados.tsv')
+            compilar(reportes_dir, salida_txt, salida_tsv)
+        except Exception as e:
+            print(f"No se pudo generar la lista compilada automáticamente: {e}")
+    
     
     print(f"Leyendo endpoints desde: {archivo_entrada}")
     endpoints = leer_endpoints(archivo_entrada)

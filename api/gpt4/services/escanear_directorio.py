@@ -1,8 +1,77 @@
 import os
 import re
 import sys
+import subprocess
 
-def escanear_directorio(directorio, resultados, patrones, extensiones_validas, excluir_dirs):
+def _es_archivo_texto_procesable(nombre_archivo: str, extensiones_validas):
+    """
+    True si el archivo debe procesarse: extensión válida o sin extensión.
+    """
+    base, ext = os.path.splitext(nombre_archivo)
+    if ext:
+        return any(nombre_archivo.endswith(v) for v in extensiones_validas)
+    return True
+
+
+def _parsear_tree_txt(archivo_tree: str):
+    rutas = []
+    try:
+        with open(archivo_tree, 'r', encoding='utf-8', errors='ignore') as f:
+            lineas = [l.rstrip('\n') for l in f]
+    except Exception:
+        return rutas
+
+    if not lineas:
+        return rutas
+
+    # Lista plana de rutas absolutas
+    for linea in lineas:
+        s = linea.strip()
+        if s.startswith('/') and os.path.isfile(s):
+            rutas.append(s)
+    if rutas:
+        return rutas
+
+    root_dir = lineas[0].strip()
+    if not os.path.isabs(root_dir) or not os.path.isdir(root_dir):
+        return rutas
+
+    ramas = []
+    for idx in range(1, len(lineas)):
+        linea = lineas[idx]
+        m = re.search(r'^[\s│]*[├└]──\s+(.*)$', linea)
+        if not m:
+            continue
+        prefijo = linea[:m.start(0)]
+        nombre = m.group(1).strip()
+        depth = max(0, len(re.sub(r'[^\s]', ' ', prefijo)) // 4)
+        ramas.append((idx, depth, nombre))
+
+    pila = []
+    for i, (idx, depth, nombre) in enumerate(ramas):
+        next_depth = ramas[i + 1][1] if i + 1 < len(ramas) else 0
+        if depth < len(pila):
+            pila = pila[:depth]
+        elif depth > len(pila):
+            pila.extend([None] * (depth - len(pila)))
+
+        es_directorio = next_depth > depth
+        if es_directorio:
+            if depth == len(pila):
+                pila.append(nombre)
+            else:
+                pila[depth] = nombre
+            continue
+
+        partes = [p for p in pila if p]
+        ruta_abs = os.path.join(root_dir, *partes, nombre) if partes else os.path.join(root_dir, nombre)
+        if os.path.isfile(ruta_abs):
+            rutas.append(ruta_abs)
+
+    return rutas
+
+
+def escanear_directorio(directorio, resultados, patrones, extensiones_validas, excluir_dirs, archivo_tree_txt=None):
     """
     Función recursiva para escanear directorios
     """
@@ -33,8 +102,8 @@ def escanear_directorio(directorio, resultados, patrones, extensiones_validas, e
         
         # Si es un archivo
         elif os.path.isfile(ruta_completa):
-            # Verificar extensión
-            if not any(item.endswith(ext) for ext in extensiones_validas):
+            # Verificar archivo procesable (ext válida o sin extensión)
+            if not _es_archivo_texto_procesable(item, extensiones_validas):
                 continue
             
             try:
@@ -58,7 +127,7 @@ def escanear_directorio(directorio, resultados, patrones, extensiones_validas, e
             except Exception as e:
                 print(f"Error al procesar {ruta_completa}: {str(e)}")
 
-def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
+def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None, archivo_tree_txt=None):
     """
     Escanea recursivamente todos los archivos en busca de endpoints de API
     """
@@ -104,15 +173,37 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
         (r'(/gw(?:/[\w\.\-:]+)+/?)', 'Ruta /gw genérica'),
     ]
     
-    # Extensiones de archivo a analizar
-    extensiones_validas = ['.py', '.js', '.ts', '.java', '.php', '.go', '.rb', '.cs', '.cpp', '.c', '.h', '.hpp', '.html', '.xml', '.json', '.yml', '.md','.txt','.yaml']
+    # Extensiones de archivo a analizar (agregamos .sh)
+    extensiones_validas = ['.py', '.js', '.ts', '.java', '.php', '.go', '.rb', '.cs', '.cpp', '.c', '.h', '.hpp', '.html', '.xml', '.json', '.yml', '.md','.txt','.yaml', '.sh']
     
     print(f"Iniciando escaneo recursivo de: {directorio}")
     print(f"Directorios excluidos: {', '.join(excluir_dirs)}")
     print("-" * 80)
     
-    # Iniciar escaneo recursivo
-    escanear_directorio(directorio, resultados, patrones, extensiones_validas, excluir_dirs)
+    # Si se proporciona lista desde tree, procesar solo esos archivos
+    lista_desde_tree = []
+    if archivo_tree_txt:
+        lista_desde_tree = _parsear_tree_txt(archivo_tree_txt)
+
+    if lista_desde_tree:
+        for ruta_completa in lista_desde_tree:
+            try:
+                with open(ruta_completa, 'r', encoding='utf-8', errors='ignore') as f:
+                    lineas = f.readlines()
+                    for num_linea, linea in enumerate(lineas, 1):
+                        for patron, framework in patrones:
+                            for coincidencia in re.finditer(patron, linea):
+                                endpoint = coincidencia.group(1)
+                                if endpoint.startswith('^'):
+                                    endpoint = endpoint[1:]
+                                if endpoint.endswith('$'):
+                                    endpoint = endpoint[:-1]
+                                resultados.append((endpoint, ruta_completa, num_linea, framework))
+            except Exception as e:
+                print(f"Error al procesar {ruta_completa}: {str(e)}")
+    else:
+        # Iniciar escaneo recursivo normal
+        escanear_directorio(directorio, resultados, patrones, extensiones_validas, excluir_dirs)
     
     # Guardar resultados en archivo
     with open(archivo_salida, 'w', encoding='utf-8') as f:
@@ -152,26 +243,55 @@ def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     return resultados
 
 def main():
-    if len(sys.argv) < 3:
-        print("Uso: python encontrar_endpoints.py <directorio> <archivo_salida.txt> [directorios_a_excluir]")
-        print("Ejemplo: python encontrar_endpoints.py /ruta/a/tu/proyecto endpoints.txt")
-        print("Ejemplo con exclusión: python encontrar_endpoints.py /ruta/a/tu/proyecto endpoints.txt '.git,node_modules,venv'")
+    if len(sys.argv) < 2:
+        print("Uso: python escanear_directorio.py <directorio> [archivo_salida.tsv] [directorios_a_excluir] [archivo_tree_txt]")
+        print("Ejemplo mínimo: python escanear_directorio.py /ruta/a/tu/proyecto")
+        print("Ejemplo con salida: python escanear_directorio.py /ruta/a/tu/proyecto /home/user/endpoints_escanear.tsv")
+        print("Ejemplo con exclusión: python escanear_directorio.py /ruta/a/tu/proyecto '' '.git,node_modules,venv'")
+        print("Ejemplo usando lista de tree: python escanear_directorio.py /ruta/root '' '' /ruta/a/tree.txt")
         sys.exit(1)
         
     directorio = sys.argv[1]
-    archivo_salida = sys.argv[2]
+    # Salida por defecto en endpoints/reportes
+    salida_por_defecto = "/home/markmur88/endpoints/reportes/endpoints_escanear.tsv"
+    if len(sys.argv) > 2 and sys.argv[2].strip():
+        archivo_salida = sys.argv[2]
+    else:
+        try:
+            os.makedirs("/home/markmur88/endpoints/reportes", exist_ok=True)
+        except Exception:
+            pass
+        archivo_salida = salida_por_defecto
     
     # Procesar directorios a excluir si se proporcionan
     excluir_dirs = None
-    if len(sys.argv) > 3:
+    if len(sys.argv) > 3 and sys.argv[3].strip():
         excluir_dirs = sys.argv[3].split(',')
         print(f"Excluyendo directorios: {', '.join(excluir_dirs)}")
+    archivo_tree_txt = None
+    if len(sys.argv) > 4 and sys.argv[4].strip():
+        archivo_tree_txt = sys.argv[4]
+        print(f"Usando lista de archivos desde: {archivo_tree_txt}")
+    else:
+        # Generar automáticamente la lista con find en endpoints/tree
+        base = os.path.basename(os.path.abspath(directorio)) or "root"
+        try:
+            os.makedirs("/home/markmur88/endpoints/tree", exist_ok=True)
+        except Exception:
+            pass
+        archivo_tree_txt = f"/home/markmur88/endpoints/tree/tree__{base}.txt"
+        print(f"Generando lista de archivos con find en: {archivo_tree_txt}")
+        try:
+            with open(archivo_tree_txt, 'w', encoding='utf-8', errors='ignore') as out:
+                subprocess.run(['find', directorio, '-type', 'f'], stdout=out, stderr=subprocess.DEVNULL, check=False)
+        except Exception as e:
+            print(f"No se pudo generar la lista con find: {e}")
     
     if not os.path.isdir(directorio):
         print(f"Error: {directorio} no es un directorio válido")
         sys.exit(1)
         
-    resultados = encontrar_endpoints(directorio, archivo_salida, excluir_dirs)
+    resultados = encontrar_endpoints(directorio, archivo_salida, excluir_dirs, archivo_tree_txt)
     
     if not resultados:
         print("No se encontraron endpoints")
