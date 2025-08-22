@@ -2,10 +2,19 @@ import os
 import re
 import sys
 
-def encontrar_endpoints(directorio, archivo_salida):
+def encontrar_endpoints(directorio, archivo_salida, excluir_dirs=None):
     """
-    Escanea archivos en busca de posibles endpoints de API y guarda resultados en archivo
+    Escanea recursivamente todos los archivos en busca de endpoints de API y guarda resultados en archivo
+    
+    Args:
+        directorio: Directorio raíz a escanear
+        archivo_salida: Archivo donde guardar los resultados
+        excluir_dirs: Lista de directorios a excluir (opcional)
     """
+    if excluir_dirs is None:
+        # Directorios comunes a excluir por defecto
+        excluir_dirs = ['.git', '.idea', '__pycache__', 'node_modules', 'venv', 'env', 'dist', 'build', 'target', 'bin', 'obj']
+    
     resultados = []
     
     # Patrones para diferentes frameworks y lenguajes
@@ -45,17 +54,34 @@ def encontrar_endpoints(directorio, archivo_salida):
     ]
     
     # Extensiones de archivo a analizar
-    extensiones_validas = ['.py', '.js', '.ts', '.java', '.php', '.go', '.rb', '.cs', '.cpp', '.c', '.h', '.hpp']
+    extensiones_validas = ['.py', '.js', '.ts', '.java', '.php', '.go', '.rb', '.cs', '.cpp', '.c', '.h', '.hpp', '.html', '.xml', '.json', '.yml', '.yaml']
+    
+    # Contadores para estadísticas
+    total_archivos = 0
+    archivos_procesados = 0
+    archivos_con_endpoints = 0
+    
+    print(f"Iniciando escaneo recursivo de: {directorio}")
+    print(f"Directorios excluidos: {', '.join(excluir_dirs)}")
+    print("-" * 80)
     
     for raiz, dirs, archivos in os.walk(directorio):
-        # Ignorar directorios comunes que no contienen código
-        dirs[:] = [d for d in dirs if not d.startswith('.') and d not in ['node_modules', '__pycache__', 'venv', 'env', 'bin', 'obj']]
+        # Excluir directorios especificados
+        dirs[:] = [d for d in dirs if d not in excluir_dirs]
+        
+        # Mostrar progreso cada 100 archivos
+        if total_archivos % 100 == 0:
+            print(f"Procesando directorio: {raiz} (archivos hasta ahora: {total_archivos})")
         
         for archivo in archivos:
+            total_archivos += 1
+            
+            # Verificar extensión
             if not any(archivo.endswith(ext) for ext in extensiones_validas):
                 continue
                 
             ruta_completa = os.path.join(raiz, archivo)
+            archivos_procesados += 1
             
             try:
                 with open(ruta_completa, 'r', encoding='utf-8', errors='ignore') as f:
@@ -87,29 +113,44 @@ def encontrar_endpoints(directorio, archivo_salida):
         for endpoint, archivo, linea, framework in resultados:
             f.write(f"{endpoint}\t{archivo}\t{linea}\t{framework}\n")
     
+    # Calcular estadísticas
+    archivos_con_endpoints = len(set([r[1] for r in resultados]))
+    
+    print("\n" + "-" * 80)
+    print(f"Escaneo completado:")
+    print(f"  Total de archivos encontrados: {total_archivos}")
+    print(f"  Archivos procesados: {archivos_procesados}")
+    print(f"  Archivos con endpoints: {archivos_con_endpoints}")
+    print(f"  Total de endpoints encontrados: {len(resultados)}")
+    print(f"  Resultados guardados en: {archivo_salida}")
+    
     return resultados
 
 def main():
     if len(sys.argv) < 3:
-        print("Uso: python encontrar_endpoints.py <directorio> <archivo_salida.txt>")
+        print("Uso: python encontrar_endpoints.py <directorio> <archivo_salida.txt> [directorios_a_excluir]")
+        print("Ejemplo: python encontrar_endpoints.py /ruta/a/tu/proyecto endpoints.txt")
+        print("Ejemplo con exclusión: python encontrar_endpoints.py /ruta/a/tu/proyecto endpoints.txt '.git,node_modules,venv'")
         sys.exit(1)
         
     directorio = sys.argv[1]
     archivo_salida = sys.argv[2]
     
+    # Procesar directorios a excluir si se proporcionan
+    excluir_dirs = None
+    if len(sys.argv) > 3:
+        excluir_dirs = sys.argv[3].split(',')
+        print(f"Excluyendo directorios: {', '.join(excluir_dirs)}")
+    
     if not os.path.isdir(directorio):
         print(f"Error: {directorio} no es un directorio válido")
         sys.exit(1)
         
-    print(f"Escaneando directorio: {directorio}")
-    resultados = encontrar_endpoints(directorio, archivo_salida)
+    resultados = encontrar_endpoints(directorio, archivo_salida, excluir_dirs)
     
     if not resultados:
         print("No se encontraron endpoints")
         return
-        
-    print(f"Resultados guardados en: {archivo_salida}")
-    print(f"Total de endpoints encontrados: {len(resultados)}")
 
 if __name__ == "__main__":
     main()
